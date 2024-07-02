@@ -1,0 +1,11 @@
+spring:
+  main:
+    banner-mode: off
+  config:
+    activate:
+      on-profile: brp-it
+
+ca-brp-endpoint: "http://localhost:8000"
+
+transaction-logging:
+  enabled: false

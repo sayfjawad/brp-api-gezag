@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- example of a exclude below -->
+<!--    <Bug pattern="PATH_TRAVERSAL_IN"/>  &lt;!&ndash; Currently finds false positives for us &ndash;&gt;-->
+</FindBugsFilter>

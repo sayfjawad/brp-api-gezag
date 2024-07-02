@@ -1,0 +1,16 @@
+app:
+  features:
+    brp:
+      dataset-path: src/test/resources/fixtures/persoonslijsten/GegenereerdUitBrpData/20230703
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./tmp/mydb
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true

@@ -1,0 +1,514 @@
+package nl.rijksoverheid.mev.gezagsmodule.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Setter;
+import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
+import nl.rijksoverheid.mev.exception.AfleidingsregelException;
+import nl.rijksoverheid.mev.exception.BrpException;
+import java.lang.reflect.Field;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Stream;
+import lombok.Getter;
+import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
+import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+
+/**
+ * De Persoonslijst is onderverdeeld in een aantal categorieen met bij elkaar
+ * horende gegevens. Zie: <a
+ * href="<a">href="https://www.rvig.nl/brp/documenten/publicaties/2019/06/26/logisch-ontwerp-gba-ve</a>rsie-3.12">...</a>
+ * (p. 151 en verder)
+ */
+@Setter
+public class Persoonslijst {
+
+    private Map<String, PersoonslijstVeld> values;
+    private Map<String, List<PersoonslijstVeld>> listValues;
+
+    private final Clock clock;
+
+    public Persoonslijst(final Clock clock) {
+        values = new HashMap<>();
+        listValues = new HashMap<>();
+
+        this.clock = clock;
+    }
+
+    public <T extends PersoonslijstVeld> void addVeld(final String categorie, final T veld) {
+        values.put(categorie, veld);
+    }
+
+    public <T extends PersoonslijstVeld> void addVeldToList(final String categorie, final T veld) {
+        listValues.merge(
+                categorie,
+                List.of(veld),
+                (list1, list2) -> Stream.of(list1, list2)
+                        .flatMap(Collection::stream).toList());
+    }
+
+    public List<String> getUsedVeldenInOnderzoek() {
+        List<String> inOnderzoek = new ArrayList<>();
+        for (PersoonslijstVeld value : values.values()) {
+            // list values
+            if (value instanceof PotentieelInOnderzoek potentieelInOnderzoek) {
+                inOnderzoek.addAll(potentieelInOnderzoek.getVeldenInOnderzoek());
+            }
+        }
+
+        return inOnderzoek;
+    }
+
+    public Persoon getPersoon() {
+        if (values.containsKey(Categorie.PERSOON)) {
+            return (Persoon) values.get(Categorie.PERSOON);
+        } else {
+            return null;
+        }
+    }
+
+    public Ouder1 getOuder1() {
+        if (values.containsKey(Categorie.OUDER_1)) {
+            return (Ouder1) values.get(Categorie.OUDER_1);
+        } else {
+            return null;
+        }
+    }
+
+    public Ouder2 getOuder2() {
+        if (values.containsKey(Categorie.OUDER_2)) {
+            return (Ouder2) values.get(Categorie.OUDER_2);
+        } else {
+            return null;
+        }
+    }
+
+    public List<HuwelijkOfPartnerschap> getHuwelijkOfPartnerschappen() {
+        if (listValues.containsKey(Categorie.HUWELIJK_OF_PARTNERSCHAP)) {
+            return (List<HuwelijkOfPartnerschap>) (Object) listValues.get(Categorie.HUWELIJK_OF_PARTNERSCHAP);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public Inschrijving getInschrijving() {
+        if (values.containsKey(Categorie.INSCHRIJVING)) {
+            return (Inschrijving) values.get(Categorie.INSCHRIJVING);
+        } else {
+            return null;
+        }
+    }
+
+    public Verblijfplaats getVerblijfplaats() {
+        if (values.containsKey(Categorie.VERBLIJFPLAATS)) {
+            return (Verblijfplaats) values.get(Categorie.VERBLIJFPLAATS);
+        } else {
+            return null;
+        }
+    }
+
+    public List<Kind> getKinderen() {
+        if (listValues.containsKey(Categorie.KIND)) {
+            return (List<Kind>) (Object) listValues.get(Categorie.KIND);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public Gezagsverhouding getGezagsverhouding() {
+        if (values.containsKey(Categorie.GEZAGSVERHOUDING)) {
+            return (Gezagsverhouding) values.get(Categorie.GEZAGSVERHOUDING);
+        } else {
+            return null;
+        }
+    }
+
+    public List<GeschiedenisHuwelijkOfPartnerschap> getGeschiedenisHuwelijkOfPartnerschappen() {
+        if (listValues.containsKey(Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP)) {
+            return (List<GeschiedenisHuwelijkOfPartnerschap>) (Object) listValues.get(Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<GeschiedenisPersoon> getGeschiedenisPersoon() {
+        if (listValues.containsKey(Categorie.GESCHIEDENIS_PERSOON)) {
+            return (List<GeschiedenisPersoon>) (Object) listValues.get(Categorie.GESCHIEDENIS_PERSOON);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public static final int MEERDERJARIGE_LEEFTIJD = 180000;
+    public static final int AKTE_NUMMER_LENGTE = 3;
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+    /*
+        In het BRP wordt een puntouder vastgelegd in de geslachtsnaam met een "."
+     */
+    public static final String GEEN_OUDERS = "Geen_ouders";
+    public static final String EEN_OUDER = "Een_ouder";
+    public static final String TWEE_OUDERS = "Twee_ouders";
+    public static final String GESLACHTNAAM_AANDUIDING_PUNTOUDER = ".";
+
+    /*
+        Mogelijke antwoorden op de vraag: Hoeveel Juridische Ouders
+     */
+    public static final String PUNTOUDERS = "1_of_2_puntouders";
+    /*
+        Akte aanduidingen die gebruikt worden om adoptie of erkenning vast te stellen
+        Vaderschap is toegevoegd om in situaties van 1 ouderlijk gezag de gezaghebbende ouder te kunnen bepalen
+     */
+    public static final char TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE = 'B';
+    public static final char TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE = 'C';
+    public static final char TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING = 'J';
+    public static final char TABEL_39_AKTEAANDUIDING_ADOPTIE = 'Q';
+    public static final char TABEL_39_AKTEAANDUIDING_GEBOORTE = 'A';
+    public static final char TABLE_39_AKTEAANDUIDING_VADERSCHAP = 'V';
+    static final List<String> INDICATIE_GEZAG_CODES = Arrays.asList("1", "2", "12", "1D", "2D", "D");
+    static final String[] HUWELIJK_OF_PARTNERSCHAP_REDEN_ONTBINDING = new String[]{"O", "R"};
+
+    @JsonIgnore
+    @Getter
+    private HopRelaties hopRelaties = null;
+
+    @Getter
+    private String receivedId;
+
+    public List<String> getBurgerservicenummersVanKinderen() {
+        if (getKinderen() == null) {
+            return Collections.emptyList();
+        }
+
+        return getKinderen().stream()
+                .map(Kind::getBsn)
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    public List<String> getBurgerservicenummersVanMinderjarigeKinderen() {
+        if (getKinderen() == null) {
+            return Collections.emptyList();
+        }
+
+        return getKinderen().stream()
+                .filter(Kind::isMinderjarig)
+                .map(Kind::getBsn)
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    /**
+     * Controlleer huwelijk of partnerschap relaties
+     */
+    public void checkHopRelaties() {
+        hopRelaties = new HopRelaties();
+        if (getHuwelijkOfPartnerschappen() != null) {
+            for (HuwelijkOfPartnerschap gebeurtenis : getHuwelijkOfPartnerschappen()) {
+                /*
+                In het BRP worden drie manieren van registreren gebruikt
+                - Bij overlijden van de partner wordt bij de actuele hop de ontbindingsdatum bijgeschreven
+                - Bij eigen overlijden wordt niets veranderd en lijkt het alsof de hop nog bestaat
+                - Bij scheiding wordt alleen de scheiding in de actuele hop geregistreerd en de voltrekking
+                  van de hop gaat naar de geschiedenis.
+                Voor het maken van een gebeurtenissen tijdlijn wordt voltrekking en ontbinding geregistreerd
+                als twee gebeurtenissen, daarom kan het gebeuren dat per hop twee gebeurtenissem worden geregistreerd
+                dit is het geval als de reden van ontbinding het overlijden van de partner betreft.
+                 */
+                if (gebeurtenis.getDatumOntbinding() != null) {
+                    hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
+                            gebeurtenis.getBsnPartner(),
+                            gebeurtenis.getDatumOntbinding(),
+                            gebeurtenis.getRedenOntbinding()
+                    );
+                }
+                if (gebeurtenis.getDatumVoltrokken() != null) {
+                    hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
+                            gebeurtenis.getBsnPartner(),
+                            gebeurtenis.getDatumVoltrokken(),
+                            null);
+                }
+            }
+            if (getGeschiedenisHuwelijkOfPartnerschappen() != null) {
+                for (GeschiedenisHuwelijkOfPartnerschap gebeurtenis : getGeschiedenisHuwelijkOfPartnerschappen()) {
+                    if (gebeurtenis.getDatumVoltrokken() != null) {
+                        hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
+                                gebeurtenis.getBsnPartner(),
+                                gebeurtenis.getDatumVoltrokken(),
+                                gebeurtenis.getRedenOntbinding()
+                        );
+                    }
+                    if (gebeurtenis.getDatumOntbinding() != null) {
+                        hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
+                                gebeurtenis.getBsnPartner(),
+                                gebeurtenis.getDatumOntbinding(),
+                                gebeurtenis.getRedenOntbinding()
+                        );
+                    }
+                }
+            }
+        }
+        hopRelaties.checkRelaties();
+    }
+
+    @JsonIgnore
+    public boolean isOpgeschort() {
+        // PL 1/2 : 07.67.10
+        Inschrijving inschrijving = getInschrijving();
+        return (inschrijving != null
+                && inschrijving.getDatumOpschortingBijhouding() != null);
+    }
+
+    @JsonIgnore
+    public boolean isNietIngeschrevenInRNI() {
+        // PL 1/2 : 07.67.20
+        Inschrijving inschrijving = getInschrijving();
+        return !(inschrijving != null && Objects.equals(inschrijving.getRedenOpschortingBijhouding(), "R"));
+    }
+
+    @JsonIgnore
+    public boolean isNietGeemigreerd() {
+        // PL 1/2 : 07.67.20
+        Inschrijving inschrijving = getInschrijving();
+        return !(inschrijving != null && Objects.equals(inschrijving.getRedenOpschortingBijhouding(), "E"));
+    }
+
+    public boolean onderCurateleGesteld() {
+        Gezagsverhouding gezagsverhouding = getGezagsverhouding();
+        return gezagsverhouding != null
+                && isNotBlank(gezagsverhouding.getIndicatieCurateleRegister());
+    }
+
+    @JsonIgnore
+    public boolean isOverledenOfOnbevoegd() throws AfleidingsregelException {
+        return isOpgeschort() || minderjarig() || onderCurateleGesteld();
+    }
+
+    public boolean alsMinderjarigeOpgeschort() throws AfleidingsregelException {
+        if (isOpgeschort()) {
+            int datumOpschorting = Integer.parseInt(getInschrijving().getDatumOpschortingBijhouding());
+            int meerderjarigheidsDatum = Integer.parseInt(getPersoon().getGeboortedatum())
+                    + MEERDERJARIGE_LEEFTIJD;
+            return datumOpschorting < meerderjarigheidsDatum;
+        }
+        return false;
+    }
+
+    public boolean heeftTweeOuders() {
+        if ((getOuder1() != null) && (getOuder2() != null)) {
+            return (getOuder1().getGeslachtsnaam() != null)
+                    && !getOuder1().getGeslachtsnaam().equals(".")
+                    && (getOuder2().getGeslachtsnaam() != null)
+                    && !getOuder2().getGeslachtsnaam().equals(".");
+        }
+        return false;
+    }
+
+    public boolean erkend() {
+        // Als het kind geen twee juridische ouders heeft, dan is het ook niet erkend
+        if (!heeftTweeOuders()) {
+            return false;
+        }
+        // zoniet controleer dan op akte erkenning actueel en geschiedenis op B, C, J en A
+        // voorbereiding, zet alle aktenummers in een lijst
+        List<String> akteNummers = new ArrayList<>();
+        akteNummers.add(getPersoon().getAktenummer());
+        List<GeschiedenisPersoon> geschiedenisPersoon = getGeschiedenisPersoon();
+        if (geschiedenisPersoon != null) {
+            for (GeschiedenisPersoon p : geschiedenisPersoon) {
+                akteNummers.add(p.getAktenummer());
+            }
+        }
+        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
+        for (String aktenummer : akteNummers) {
+            if (aktenummer != null && aktenummer.length() >= AKTE_NUMMER_LENGTE) {
+                char thirdChar = aktenummer.charAt(2);
+                if (thirdChar == TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE
+                        || thirdChar == TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE
+                        || thirdChar == TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING
+                        || thirdChar == TABEL_39_AKTEAANDUIDING_GEBOORTE) {
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public boolean beideOudersHebbenEenBSN() {
+        String bsnOuder1 = getOuder1().getBsn();
+        String bsnOuder2 = getOuder2().getBsn();
+        if (bsnOuder1 != null && bsnOuder2 != null) {
+            return !bsnOuder1.isEmpty() && !bsnOuder2.isEmpty();
+        } else {
+            return false;
+        }
+    }
+
+    @JsonIgnore
+    public boolean isIngezeteneInBRP() {
+        Verblijfplaats verblijfplaats = getVerblijfplaats();
+        if (verblijfplaats != null && verblijfplaats.getGemeenteVanInschrijving() != null) {
+            return !verblijfplaats.getGemeenteVanInschrijving().equals("1999");
+        }
+        return false;
+    }
+
+    public String hoeveelJuridischeOuders() {
+        String geslachtsnaamOuder1 = getOuder1() == null ? null : getOuder1().getGeslachtsnaam();
+        String geslachtsnaamOuder2 = getOuder2() == null ? null : getOuder2().getGeslachtsnaam();
+        if (Objects.equals(geslachtsnaamOuder1, GESLACHTNAAM_AANDUIDING_PUNTOUDER)
+                || Objects.equals(geslachtsnaamOuder2, GESLACHTNAAM_AANDUIDING_PUNTOUDER)) {
+            return PUNTOUDERS;
+        } else if (geslachtsnaamOuder1 == null && geslachtsnaamOuder2 == null) {
+            return GEEN_OUDERS;
+        } else if (geslachtsnaamOuder1 == null ^ geslachtsnaamOuder2 == null) {
+            return EEN_OUDER;
+        } else {
+            return TWEE_OUDERS;
+        }
+    }
+
+    public boolean naarBuitenlandGeemigreerdGeweest() {
+        return getPersoon().getGeboorteland().equals("6030")
+                && getVerblijfplaats().getDatumVestigingInNederland() != null
+                && !(getVerblijfplaats().getDatumVestigingInNederland().isEmpty());
+    }
+
+    @JsonIgnore
+    public boolean isGeborenInBuitenland() {
+        return getPersoon() != null && !getPersoon().getGeboorteland().equals("6030")
+                && isNotEmpty(getVerblijfplaats().getDatumVestigingInNederland());
+    }
+
+    public boolean adoptieNaIngangsGeldigheidsdatum() {
+        if (geadopteerdMetNlAkte()) {
+            boolean ouder1AdoptieNa = Integer.parseInt(getOuder1().getDatumIngangFamiliebetrekking())
+                    >= Integer.parseInt(getGezagsverhouding().getIngangsdatumGeldigheidGezag());
+            boolean ouder2AdoptieNa = Integer.parseInt(getOuder2().getDatumIngangFamiliebetrekking())
+                    >= Integer.parseInt(getGezagsverhouding().getIngangsdatumGeldigheidGezag());
+            return (ouder1AdoptieNa || ouder2AdoptieNa);
+        }
+        return false;
+    }
+
+    public boolean geadopteerdMetNlAkte() {
+        List<String> akteNummers = new ArrayList<>();
+        akteNummers.add(getPersoon().getAktenummer());
+        List<GeschiedenisPersoon> geschiedenisPersoon = getGeschiedenisPersoon();
+        if (geschiedenisPersoon != null) {
+            for (GeschiedenisPersoon p : geschiedenisPersoon) {
+                akteNummers.add(p.getAktenummer());
+            }
+        }
+        for (String aktenummer : akteNummers) {
+            if (aktenummer != null && aktenummer.length() >= AKTE_NUMMER_LENGTE) {
+                char thirdChar = aktenummer.charAt(2);
+                if (thirdChar == TABEL_39_AKTEAANDUIDING_ADOPTIE) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean heefIndicatieGezag() {
+        Gezagsverhouding gezagsverhouding = getGezagsverhouding();
+        return gezagsverhouding != null
+                && INDICATIE_GEZAG_CODES.contains(gezagsverhouding.getIndicatieGezagMinderjarige());
+    }
+
+    public boolean minderjarig() throws AfleidingsregelException {
+        // PL 1/2 : 01.03.10 
+        Persoon persoon = getPersoon();
+        if (persoon == null || persoon.getGeboortedatum() == null) {
+            throw new AfleidingsregelException("Preconditie: Persoon en geboortedatum mogen niet leeg zijn");
+        }
+        int geboortedatum = Integer.parseInt(persoon.getGeboortedatum());
+        int datumVolwassenVanaf = Integer.parseInt(LocalDate.now(clock).format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
+        return geboortedatum > datumVolwassenVanaf;
+    }
+
+    boolean checkHopReden(HuwelijkOfPartnerschap huwelijkOfPartnerschap) {
+        for (String reden : HUWELIJK_OF_PARTNERSCHAP_REDEN_ONTBINDING) {
+            if (reden.equals(huwelijkOfPartnerschap.getRedenOntbinding())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    String datumPartnerschap(HuwelijkOfPartnerschap eersteHuwelijkElement) {
+        String datumPartnerschap = null;
+        if (eersteHuwelijkElement.getDatumVoltrokken() != null) {
+            datumPartnerschap = eersteHuwelijkElement.getDatumVoltrokken();
+        } else if (eersteHuwelijkElement.getRedenOntbinding() != null
+                && checkHopReden(eersteHuwelijkElement)) {
+            GeschiedenisHuwelijkOfPartnerschap eersteGeschiedenisHuwelijkElement
+                    = getGeschiedenisHuwelijkOfPartnerschappen().get(0);
+            datumPartnerschap = eersteGeschiedenisHuwelijkElement.getDatumVoltrokken();
+        }
+        return datumPartnerschap;
+    }
+
+    private String datumPartnerschap() {
+        HuwelijkOfPartnerschap eersteHuwelijkElement = getHuwelijkOfPartnerschappen().get(0);
+        String datumPartnerschap = datumPartnerschap(eersteHuwelijkElement);
+        // Controleer of datum partnerschap een datum bevat,
+        // ontbreken daarvan duidt op een nietigverklaring huwelijk
+        // dan hoef je ook geen geschiedenis op te halen
+        if (datumPartnerschap != null && !datumPartnerschap.isBlank()) {
+            List<GeschiedenisHuwelijkOfPartnerschap> geschiedenisHop
+                    = getGeschiedenisHuwelijkOfPartnerschappen();
+            if ((geschiedenisHop != null) && !geschiedenisHop.isEmpty()) {
+                for (GeschiedenisHuwelijkOfPartnerschap geschiedenisHuwelijkOfPartnerschapEntry : geschiedenisHop) {
+                    if (geschiedenisHuwelijkOfPartnerschapEntry.getDatumVoltrokken() != null) {
+                        datumPartnerschap = geschiedenisHuwelijkOfPartnerschapEntry.getDatumVoltrokken();
+                    }
+                }
+            }
+        }
+        return datumPartnerschap;
+    }
+
+    public boolean staandeHuwelijkGeboren(String geboorteDatumKind) {
+        boolean result = false;
+        boolean heeftMinstens1Huwelijk = !(getHuwelijkOfPartnerschappen() == null
+                || getHuwelijkOfPartnerschappen().isEmpty());
+        if (heeftMinstens1Huwelijk) {
+            String datumPartnerschap = datumPartnerschap();
+            if (datumPartnerschap != null && !datumPartnerschap.isBlank()) {
+                int intDatumPartnerschap = Integer.parseInt(datumPartnerschap);
+                int intGeboorteDatumKind = Integer.parseInt(geboorteDatumKind);
+                result = intDatumPartnerschap <= intGeboorteDatumKind;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * @return of een van de velden een waarde heeft in de persoonslijst
+     * @throws BrpException als eeen invalide veld benaderd wordt
+     */
+    public boolean hasAnyValue() throws BrpException {
+        try {
+            for (Field f : this.getClass().getDeclaredFields()) {
+                if (f.getType() == List.class) {
+                    List<?> x = (List) f.get(this);
+                    if (x != null && !x.isEmpty()) {
+                        return true;
+                    }
+                } else {
+                    if (f.get(this) != null) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        } catch (IllegalAccessException ex) {
+            throw new BrpException(ex.getMessage());
+        }
+    }
+}

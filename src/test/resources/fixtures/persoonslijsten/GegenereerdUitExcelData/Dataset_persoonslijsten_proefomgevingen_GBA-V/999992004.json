@@ -1,0 +1,56 @@
+{
+  "arguments": {
+    "bsn": "999992004"
+  },
+  "returned": {
+    "01": {
+      "010120": "999992004",
+      "010210": "Prince-Fritz-Cruene-August-Willem-Jan-Hendrik-Dick Dicky Bondjol-S Baydr-al-Fay Muhammed Jhompo-A-Loktoe Kolokoe-Jiji",
+      "010230": "Van Der",
+      "010240": "B",
+      "010310": "19730707",
+      "010330": "6030",
+      "018120": null,
+      "018230": "PKA",
+      "018310": null,
+      "018320": null,
+      "018330": null,
+      "018810": null
+    },
+    "02": {
+      "020120": null,
+      "020210": "Fleur",
+      "020230": "Van Der",
+      "020240": "B",
+      "026210": "19730707",
+      "028120": null,
+      "028310": null,
+      "028320": null,
+      "028330": null
+    },
+    "03": null,
+    "04": null,
+    "05": null,
+    "06": null,
+    "07": null,
+    "08": {
+      "080910": "1676",
+      "081410": null,
+      "081420": null,
+      "088310": null,
+      "088320": null,
+      "088330": null,
+      "088810": null
+    },
+    "09": null,
+    "11": null,
+    "51": null,
+    "52": null,
+    "53": null,
+    "54": null,
+    "55": null,
+    "57": null,
+    "58": null,
+    "59": null
+  }
+}
