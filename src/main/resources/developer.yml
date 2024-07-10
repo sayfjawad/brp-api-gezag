@@ -1,7 +1,7 @@
 app:
   features:
     brp:
-      dataset-path: src/test/resources/fixtures/persoonslijsten/GegenereerdUitBrpData/20230703
+      dataset-path: src/test/resources/fixtures/persoonslijsten/GegenereerdUitExcelData/CGR_testbestand-20230525
 
 server:
   port: 8080

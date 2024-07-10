@@ -1,9 +1,9 @@
 package nl.rijksoverheid.mev.brpadapter.soap;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.common.util.BSNValidator;
-import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.*;
 import nl.rijksoverheid.mev.transaction.Transaction;
@@ -17,18 +17,18 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.time.Clock;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
+@Slf4j
 @Component
 @Profile("fake-brp")
 public class BrpFakeClient implements BrpClient {
 
     private final Path datasetPath;
     private final Clock clock;
+    private final HashMap<String, PersoonslijstFixture> fixtures;
 
     /**
      * @param datasetPath path to a directory containing a BRP dataset
@@ -36,6 +36,33 @@ public class BrpFakeClient implements BrpClient {
     public BrpFakeClient(@Value("${app.features.brp.dataset-path}") Path datasetPath, final Clock clock) {
         this.datasetPath = datasetPath;
         this.clock = clock;
+        this.fixtures = new HashMap<>();
+        List<Path> files = new ArrayList<>();
+        try ( var stream = Files.newDirectoryStream(this.datasetPath)) {
+            for(Path entry : stream) {
+                 files.add(entry);
+            }
+            Collections.sort(files);
+            for (Path entry : files) {
+                if (Files.isRegularFile(entry)) {
+                    var inputStream = Files.newInputStream(entry);
+                    PersoonslijstFixture fixture = readAsPersoonslijstFixture(inputStream);
+                    String bsn = fixture.arguments.bsn;
+                    if (!fixtures.containsKey(bsn)){
+                        fixtures.put(fixture.arguments.bsn,fixture);
+                    }
+                    else {
+                        log.error(
+                            "Duplicaat van BSN " + bsn + " gevonden in de testsets: \n" +
+                                "Bestaand: " + fixtures.get(bsn).arguments.testcase + "\n"+
+                                "Nieuw: " + fixture.arguments.testcase
+                        );
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new StubException(e);
+        }
     }
 
     @Override
@@ -43,35 +70,21 @@ public class BrpFakeClient implements BrpClient {
         if (!new BSNValidator().isValid(bsn)) {
             return null;
         }
-
-        var persoonslijstFixture = parsePersoonslijstFixture(bsn);
-
-        if (persoonslijstFixture.hasException()) {
-            throw new BrpException(persoonslijstFixture.exception().description());
+        if (fixtures.containsKey(bsn)){
+            return fixtures.get(bsn).data;
         }
-
-        return persoonslijstFixture.data();
-    }
-
-    private PersoonslijstFixture parsePersoonslijstFixture(String bsn) {
-        var dataFilename = bsn + ".json";
-        var dataFilePath = datasetPath.resolve(dataFilename);
-
-        try ( var inputStream = Files.newInputStream(dataFilePath)) {
-            return readAsPersoonslijstFixture(inputStream);
-        } catch (NoSuchFileException e) {
-            return createEmptyPersoonslijstFixture(bsn);
-        } catch (IOException e) {
-            throw new StubException(e);
-        }
+        log.info("Persoonslijst niet gevonden: " + bsn);
+        return createEmptyPersoonslijstFixture("", bsn).data;
     }
 
     private PersoonslijstFixture readAsPersoonslijstFixture(final InputStream inputStream) {
         Persoonslijst persoonslijst = new Persoonslijst(clock);
         String bsn = null;
+        String testcase = null;
         JSONObject json = new JSONObject(new JSONTokener(inputStream));
         if (!json.isEmpty()) {
             JSONObject arguments = (JSONObject) json.get("arguments");
+            testcase = (String) arguments.get("testcase");
             bsn = (String) arguments.get("bsn");
 
             JSONObject returned = (JSONObject) json.get("returned");
@@ -91,20 +104,24 @@ public class BrpFakeClient implements BrpClient {
         }
 
         return new PersoonslijstFixture(
-                new PersoonslijstFixture.Arguments(bsn),
+                new PersoonslijstFixture.Arguments(testcase, bsn),
                 persoonslijst,
                 null
         );
     }
 
     private void appendPersoonslijstVeld(final String categorienummer, final JSONObject obj, final Persoonslijst persoonslijst) {
-        Map<String, String> values = new HashMap<>();
         JSONArray names = obj.names();
+        if (names == null) return;
+
+        Map<String, String> values = new HashMap<>();
         for (int i = 0; i < names.length(); i++) {
-            String name = (String) names.get(i);
-            Object objEntry = obj.get(name);
-            if (objEntry != null && !("Null".equals(objEntry.getClass().getSimpleName()))) {
-                values.put(name, (String) objEntry);
+            String name = names.optString(i);
+            if (!name.isEmpty()) {
+                Object objEntry = obj.opt(name);
+                if (objEntry instanceof String stringValue) {
+                    values.put(name, stringValue);
+                }
             }
         }
 
@@ -127,14 +144,21 @@ public class BrpFakeClient implements BrpClient {
                 persoonslijst.addVeld(Categorie.GEZAGSVERHOUDING, new Gezagsverhouding(values, clock));
             case Categorie.GESCHIEDENIS_PERSOON ->
                 persoonslijst.addVeldToList(Categorie.GESCHIEDENIS_PERSOON, new GeschiedenisPersoon(values, clock));
+            case Categorie.GESCHIEDENIS_OUDER_1 ->
+                persoonslijst.addVeldToList(Categorie.GESCHIEDENIS_OUDER_1, new GeschiedenisOuder1(values, clock));
+            case Categorie.GESCHIEDENIS_OUDER_2 ->
+                persoonslijst.addVeldToList(Categorie.GESCHIEDENIS_OUDER_2, new GeschiedenisOuder2(values, clock));
             case Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP ->
                 persoonslijst.addVeldToList(Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP, new GeschiedenisHuwelijkOfPartnerschap(values, clock));
+            default -> {
+                // niet gebruikte, maar wel aanwezige categorieën, niet importeren
+            }
         }
     }
 
-    private PersoonslijstFixture createEmptyPersoonslijstFixture(String bsn) {
+    private PersoonslijstFixture createEmptyPersoonslijstFixture(String testcase, String bsn) {
         return new PersoonslijstFixture(
-                new PersoonslijstFixture.Arguments(bsn),
+                new PersoonslijstFixture.Arguments(testcase, bsn),
                 new Persoonslijst(clock),
                 null
         );
@@ -145,7 +169,7 @@ public class BrpFakeClient implements BrpClient {
             @JsonProperty("returned") Persoonslijst data,
             Exception exception) {
 
-        public record Arguments(String bsn) {
+        public record Arguments(String testcase, String bsn) {
 
         }
 

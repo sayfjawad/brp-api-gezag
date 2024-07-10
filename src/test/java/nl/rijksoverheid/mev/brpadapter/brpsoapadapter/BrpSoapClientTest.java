@@ -34,7 +34,7 @@ import static org.mockito.Mockito.verify;
  * Tests for brp soap client
  */
 @ExtendWith(MockitoExtension.class)
-public class BrpSoapClientTest {
+class BrpSoapClientTest {
 
     @Mock
     private BRPCache brpCache;

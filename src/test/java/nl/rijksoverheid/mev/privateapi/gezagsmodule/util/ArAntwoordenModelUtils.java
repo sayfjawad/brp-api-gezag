@@ -33,14 +33,14 @@ public class ArAntwoordenModelUtils {
                 , null, null, null, null, null, null
                 , null, null, null, null, null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
-            case "2mi" -> new ARAntwoordenModel("Ja", null, null, null, null, null
+            case "2mi" -> new ARAntwoordenModel("Ja", "Nee_meerderjarig", null, null, null, null
                 , null, null, null, null, null, null
                 , null, null, null, null, null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "2o" -> new ARAntwoordenModel("Ja", "Nee_overleden", null, null, null, null
                 , null, null, null, null, null, null
                 , null, null, null, null, null, null,
-                GEZAG_ONBEKEND, null, null, null, null, null, null);
+                NIET_VAN_TOEPASSING, null, null, null, null, null, null);
             case "2m" -> new ARAntwoordenModel("Ja", "Nee_meerderjarig", null, null, null, null
                 , null, null, null, null, null, null
                 , null, null, null, null, null, null,
@@ -57,17 +57,9 @@ public class ArAntwoordenModelUtils {
                 , null, null, null, null, null, null
                 , null, null, null, null, null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
-            case "3a" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Ja", "Nee", null
+            case "3a", "3ai" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Ja", "Nee", null
                 , null, null, null, null, null, null
                 , null, null, null, null, null, null,
-                GEZAG_ONBEKEND, null, null, null, null, null, null);
-            case "3ai" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Ja", null, null
-                , null, null, null, null, null, null
-                , null, null, null, null, null, null,
-                GEZAG_ONBEKEND, null, null, null, null, null, null);
-            case "4i" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, null, null, null, null,
-                null, null, "Nee", "1D", null, null, null
-                , null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "4ee" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Ja"
                 , null, null, null, null, null, null
@@ -91,7 +83,7 @@ public class ArAntwoordenModelUtils {
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "7i" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Ja"
                 , null, null, null, null, null, "Nee"
-                , "12", null, null, null, null, null,
+                , "12", "Nee", null, null, null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "7" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Ja"
                 , null, null, null, null, null, "Nee"
@@ -177,8 +169,8 @@ public class ArAntwoordenModelUtils {
                 , "Een_ouder", null, null, null, null, null
                 , null, null, null, null, null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
-            case "39e" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, null
-                , "Een_ouder", null, null, null, "Nee", null
+            case "39e" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Een_ouder", null, null, null, null, null
                 , null, null, null, null, null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "39ee" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
@@ -200,7 +192,7 @@ public class ArAntwoordenModelUtils {
             case "40o1i" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
                 , "Een_ouder", null, null, null, "Nee", null
                 , null, null, "Nee_ouder1", null, null, null,
-                EENOUDER_GEZAG, null, null, null, null, null, null);
+                GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "40o2" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
                 , "Een_ouder", null, null, null, "Nee", null
                 , null, null, "Nee_ouder2", null, null, null,
@@ -208,7 +200,7 @@ public class ArAntwoordenModelUtils {
             case "40o2i" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
                 , "Een_ouder", null, null, null, "Nee", null
                 , null, null, "Nee_ouder2", null, null, null,
-                EENOUDER_GEZAG, null, null, null, null, null, null);
+                GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "41" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
                 , "Een_ouder", null, null, null, "Ja", null
                 , null, null, null, "Nee", null, null,
@@ -237,20 +229,16 @@ public class ArAntwoordenModelUtils {
                 , "Twee_ouders", "Ja", null, null, null, null
                 , null, "Nee", null, null, null, null,
                 TWEEOUDER_GEZAG, null, null, null, null, null, null);
-            case "49x" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
-                , "Twee_ouders", "Nee_nietig_verklaard", null, null, null, null
-                , null, "Nee", null, null, null, null,
-                TWEEOUDER_GEZAG, null, null, null, null, null, null);
             case "49i" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
                 , "Twee_ouders", "Ja", null, null, null, null
                 , null, "Nee", null, null, null, null,
-                TWEEOUDER_GEZAG, null, null, null, null, null, null);
+                GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "49a" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Ja", "Ja", "Nee"
                 , "Twee_ouders", "Ja", null, null, null, null
                 , null, "Nee", null, null, null, null,
                 TWEEOUDER_GEZAG, null, null, null, null, null, null);
             case "45" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
-                , "Twee_ouders", "Nee_gescheiden", null, null, null, null
+                , "Twee_ouders", "Nee", null, null, null, null
                 , null, "Nee", null, null, null, null,
                 TWEEOUDER_GEZAG, null, null, null, null, null, null);
             case "45ai" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Ja", "Ja", "Nee"
@@ -261,6 +249,18 @@ public class ArAntwoordenModelUtils {
                 , "Twee_ouders", null, null, null, null, null
                 , null, null, null, null, null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
+            case "46" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee", null, null, null, null
+                , null, "Ja_ouder1", null, null, null, null,
+                EENOUDER_GEZAG, null, null, null, null, null, null);
+            case "47" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee", null, null, null, null
+                , null, "Ja_ouder2", null, null, null, null,
+                EENOUDER_GEZAG, null, null, null, null, null, null);
+            case "48" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee", null, null, null, null
+                , null, "Ja_beiden", null, null, null, null,
+                GEEN_GEZAG, null, null, null, null, null, null);
             case "50" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
                 , "Twee_ouders", "Ja", null, null, null, null
                 , null, "Ja_ouder1", null, null, null, null,
@@ -285,8 +285,20 @@ public class ArAntwoordenModelUtils {
                 , "Twee_ouders", "Nee_nooit", "Nee", "Na", null, null
                 , null, "Ja_ouder2", null, null, null, null,
                 EENOUDER_GEZAG, null, null, null, null, null, null);
+            case "53ee" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee_nooit", "Nee", "Voor", null, null
+                , null, null, null, null, null, null,
+                GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "53eee" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
                 , "Twee_ouders", "Nee_nooit", "Nee", "Voor", null, null
+                , null, null, null, null, null, null,
+                GEZAG_ONBEKEND, null, null, null, null, null, null);
+            case "53v1eee" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee_nooit", "Nee", "Voor_ouder1", null, null
+                , null, null, "Nee", null, null, null,
+                GEZAG_ONBEKEND, null, null, null, null, null, null);
+            case "53v2eee" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee_nooit", "Nee", "Voor_ouder2", null, null
                 , null, null, "Nee", null, null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
             case "53eeei" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
@@ -297,6 +309,22 @@ public class ArAntwoordenModelUtils {
                 , "Twee_ouders", "Nee_nooit", "Nee", "Voor", null, null
                 , null, null, "Nee", null, null, null,
                 GEZAG_ONBEKEND, null, null, null, null, null, null);
+            case "54v1o1" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee_nooit", "Nee", "Voor_ouder1", null, null
+                , null, null, "Nee_ouder1", null, null, null,
+                GEZAG_ONBEKEND, null, null, null, null, null, null);
+            case "54v2o2" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee_nooit", "Nee", "Voor_ouder2", null, null
+                , null, null, "Nee_ouder2", null, null, null,
+                GEZAG_ONBEKEND, null, null, null, null, null, null);
+            case "54v1" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee_nooit", "Nee", "Voor_ouder1", null, null
+                , null, null, "Nee", null, null, null,
+                EENOUDER_GEZAG, null, null, null, null, null, null);
+            case "54v2" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
+                , "Twee_ouders", "Nee_nooit", "Nee", "Voor_ouder2", null, null
+                , null, null, "Nee", null, null, null,
+                EENOUDER_GEZAG, null, null, null, null, null, null);
             case "54o1" -> new ARAntwoordenModel("Ja", "Ja", "Nee", "Nee", null, "Nee"
                 , "Twee_ouders", "Nee_nooit", "Nee", "Voor", null, null
                 , null, null, "Nee_ouder1", null, null, null,
@@ -375,23 +403,23 @@ public class ArAntwoordenModelUtils {
 
     public record ArAntwoordenAssertion(ARAntwoordenModel arAntwoordenModel) {
 
-        public void areEqualTo(ARAntwoordenModel arAntwoordenModel) {
-            assertThat(arAntwoordenModel.getV0101()).as("Vraag 0101").isEqualTo(arAntwoordenModel.getV0101());
-            assertThat(arAntwoordenModel.getV0102()).as("Vraag 0102").isEqualTo(arAntwoordenModel.getV0102());
-            assertThat(arAntwoordenModel.getV0103()).as("Vraag 0103").isEqualTo(arAntwoordenModel.getV0103());
-            assertThat(arAntwoordenModel.getV0103A()).as("Vraag 0103A").isEqualTo(arAntwoordenModel.getV0103A());
-            assertThat(arAntwoordenModel.getV0103B()).as("Vraag 0103B").isEqualTo(arAntwoordenModel.getV0103B());
-            assertThat(arAntwoordenModel.getV0104()).as("Vraag 0104").isEqualTo(arAntwoordenModel.getV0104());
-            assertThat(arAntwoordenModel.getV0201()).as("Vraag 0201").isEqualTo(arAntwoordenModel.getV0201());
-            assertThat(arAntwoordenModel.getV02A01()).as("Vraag 02A01").isEqualTo(arAntwoordenModel.getV02A01());
-            assertThat(arAntwoordenModel.getV02A02()).as("Vraag 02A02").isEqualTo(arAntwoordenModel.getV02A02());
-            assertThat(arAntwoordenModel.getV02A03()).as("Vraag 02A03").isEqualTo(arAntwoordenModel.getV02A03());
-            assertThat(arAntwoordenModel.getV02B01()).as("Vraag 02B01").isEqualTo(arAntwoordenModel.getV02B01());
-            assertThat(arAntwoordenModel.getV0301()).as("Vraag 0301").isEqualTo(arAntwoordenModel.getV0301());
-            assertThat(arAntwoordenModel.getV0302()).as("Vraag 0302").isEqualTo(arAntwoordenModel.getV0302());
-            assertThat(arAntwoordenModel.getV04A02()).as("Vraag 04A02").isEqualTo(arAntwoordenModel.getV04A02());
-            assertThat(arAntwoordenModel.getV04A03()).as("Vraag 04A03").isEqualTo(arAntwoordenModel.getV04A03());
-            assertThat(arAntwoordenModel.getV04B01()).as("Vraag 04B01").isEqualTo(arAntwoordenModel.getV04B01());
+        public void areEqualTo(ARAntwoordenModel arAntwoordenModelExpected) {
+            assertThat(arAntwoordenModel.getV0101()).as("Vraag 0101").isEqualTo(arAntwoordenModelExpected.getV0101());
+            assertThat(arAntwoordenModel.getV0102()).as("Vraag 0102").isEqualTo(arAntwoordenModelExpected.getV0102());
+            assertThat(arAntwoordenModel.getV0103()).as("Vraag 0103").isEqualTo(arAntwoordenModelExpected.getV0103());
+            assertThat(arAntwoordenModel.getV0103A()).as("Vraag 0103A").isEqualTo(arAntwoordenModelExpected.getV0103A());
+            assertThat(arAntwoordenModel.getV0103B()).as("Vraag 0103B").isEqualTo(arAntwoordenModelExpected.getV0103B());
+            assertThat(arAntwoordenModel.getV0104()).as("Vraag 0104").isEqualTo(arAntwoordenModelExpected.getV0104());
+            assertThat(arAntwoordenModel.getV0201()).as("Vraag 0201").isEqualTo(arAntwoordenModelExpected.getV0201());
+            assertThat(arAntwoordenModel.getV02A01()).as("Vraag 02A01").isEqualTo(arAntwoordenModelExpected.getV02A01());
+            assertThat(arAntwoordenModel.getV02A02()).as("Vraag 02A02").isEqualTo(arAntwoordenModelExpected.getV02A02());
+            assertThat(arAntwoordenModel.getV02A03()).as("Vraag 02A03").isEqualTo(arAntwoordenModelExpected.getV02A03());
+            assertThat(arAntwoordenModel.getV02B01()).as("Vraag 02B01").isEqualTo(arAntwoordenModelExpected.getV02B01());
+            assertThat(arAntwoordenModel.getV0301()).as("Vraag 0301").isEqualTo(arAntwoordenModelExpected.getV0301());
+            assertThat(arAntwoordenModel.getV0302()).as("Vraag 0302").isEqualTo(arAntwoordenModelExpected.getV0302());
+            assertThat(arAntwoordenModel.getV04A02()).as("Vraag 04A02").isEqualTo(arAntwoordenModelExpected.getV04A02());
+            assertThat(arAntwoordenModel.getV04A03()).as("Vraag 04A03").isEqualTo(arAntwoordenModelExpected.getV04A03());
+            assertThat(arAntwoordenModel.getV04B01()).as("Vraag 04B01").isEqualTo(arAntwoordenModelExpected.getV04B01());
         }
     }
 }

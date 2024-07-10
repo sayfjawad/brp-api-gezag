@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -167,19 +166,15 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
         //        "999999245", // Lg01_049 disable until this burgerservicenummer is added to the BRP on pre-production
         "999998948", // Lg01_058
         "999999072", // Lg01_069
-        "999999230", // Lg01_083
         "999999928", // Lg01_128
-//        "999999977", // Lg01_132
+        "999999230", // Lg01_083
         "999970008", // Lg01_134
         "999970288", // Lg01_136
         "999970331", // Lg01_137
         "999970434", // Lg01_139
-        "999970549", // Lg01_149
-        "999970033", // Lg01_167
         "999970094", // Lg01_173
         "999970264", // Lg01_189
         "999970306", // Lg01_191
-        "999970379", // Lg01_195
         "999970392", // Lg01_197
     })
     @DisplayName("""
@@ -268,18 +263,22 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
                 Arguments.of("999998936", "999998912"), // Lg01_059
                 Arguments.of("999998985", "999998912"), // Lg01_062
                 Arguments.of("999999023", "999999011"), // Lg01_064
+
                 Arguments.of("999999102", "999999084"), // Lg01_072
                 Arguments.of("999999151", "999999126"), // Lg01_076
+
                 Arguments.of("999999540", "999999527"), // Lg01_093
                 Arguments.of("999999734", "999998791"), // Lg01_110
                 Arguments.of("999999746", "999998778"), // Lg01_111
                 Arguments.of("999999989", "999999965"), // Lg01_133
                 Arguments.of("999970525", "999970513"), // Lg01_147
-                Arguments.of("999970550", "999970513"), // Lg01_150
+                Arguments.of("999970549", "999970513"), // Lg01_149
                 Arguments.of("999970550", "999970513"), // Lg01_150
                 Arguments.of("999970574", "999970513"), // Lg01_152
+                Arguments.of("999970021", "999999126"), // Lg01_166
+                Arguments.of("999970033", "999999126"), // Lg01_167
                 Arguments.of("999970082", "999970057"), // Lg01_172
-                Arguments.of("999970185", "999970124"), // Lg01_150
+                Arguments.of("999970185", "999970124"), // Lg01_180
                 Arguments.of("999970276", "999970318"), // Lg01_190
                 Arguments.of("999970343", "999970318"), // Lg01_192
                 Arguments.of("999970744", "999970732"), // Lg01_202
@@ -354,6 +353,7 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
                 Arguments.of("999970070", Set.of("999970057", "999970069")), // Lg01_171
                 Arguments.of("999970355", Set.of("999998870", "999998882")), // Lg01_193
                 Arguments.of("999970367", Set.of("999998870", "999998882")), // Lg01_194
+                Arguments.of("999970379", Set.of("999998870", "999998882")), // Lg01_195
                 Arguments.of("999970380", Set.of("999998870", "999998882")), // Lg01_196
                 Arguments.of("999970409", Set.of("999970124", "999970410")) // Lg01_198
         );
@@ -387,7 +387,7 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
 
             var gezagshouders = results.stream()
                     .map(Gezagsrelatie::getBsnMeerderjarige)
-                    .collect(Collectors.toList());
+                    .toList();
             assertThat(gezagshouders).containsExactlyInAnyOrderElementsOf(expected);
 
             var soortenGezag = results.stream()
@@ -447,7 +447,7 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
 
             var gezagshouders = results.stream()
                     .map(Gezagsrelatie::getBsnMeerderjarige)
-                    .collect(Collectors.toList());
+                    .toList();
             assertThat(gezagshouders).containsExactlyInAnyOrderElementsOf(expected);
 
             var soortenGezag = results.stream()
@@ -464,7 +464,6 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
                 Arguments.of("999999801", Set.of("999999795", "999999783")), // Lg01_116
                 Arguments.of("999999813", Set.of("999999795", "999999783")), // Lg01_117
                 Arguments.of("999999850", Set.of("999999849", "999999837")), // Lg01_121
-                Arguments.of("999970021", Set.of("999999126", "999999163")), // Lg01_166
                 Arguments.of("999970161", Set.of("999970124", "999970136")) // Lg01_178
         );
     }
@@ -497,7 +496,7 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
 
             var gezagshouders = results.stream()
                     .map(Gezagsrelatie::getBsnMeerderjarige)
-                    .collect(Collectors.toList());
+                    .toList();
             assertThat(gezagshouders).containsExactlyInAnyOrderElementsOf(expected);
 
             var soortenGezag = results.stream()

@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -58,15 +57,10 @@ public abstract class GezagsmoduleTest {
         ArAntwoordenModelUtils.assertThatArAntwoorden(gezagAfleidingsResultaat.getArAntwoordenModel()).areEqualTo(arAntwoordenExpected);
 
         assertThat(gezagAfleidingsResultaat.getRoute()).isEqualTo(routeTestArguments.expectedRoute);
-
-//        if ((routeTestArguments != null) && (routeTestArguments.bsnsGezaghoudersExpected.size() > 0))
-        {
+        if (!gezagAfleidingsResultaat.getRoute().equals("2m") && (!gezagAfleidingsResultaat.getRoute().equals("2o"))){
             assertThat(getBsnsGezaghouders(gezagAfleidingsResultaat)).containsExactlyInAnyOrderElementsOf(
-                    routeTestArguments.bsnsGezaghoudersExpected);
-        }
-//        else
-            if ((gezagAfleidingsResultaat.getGezagsrelaties() != null) && (gezagAfleidingsResultaat.getGezagsrelaties().size() == 1)) {
-            assertThat(gezagAfleidingsResultaat.getGezagsrelaties().get(0).soortGezag()).containsAnyOf("N", "G", "V");
+                        routeTestArguments.bsnsGezaghoudersExpected);
+            assertThat(gezagAfleidingsResultaat.getGezagsrelaties().get(0).soortGezag()).isEqualTo(arAntwoordenExpected.getSoortGezag());
         }
     }
 
@@ -80,6 +74,6 @@ public abstract class GezagsmoduleTest {
     private static List<String> getBsnsGezaghouders(GezagAfleidingsResultaat gezagAfleidingsResultaat) {
         return gezagAfleidingsResultaat.getGezagsrelaties().stream()
                 .map(Gezagsrelatie::bsnMeerderjarige)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

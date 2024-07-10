@@ -42,7 +42,7 @@ public class TransactionService implements TransactionHandler {
     private static final String APPLICATIE_NAAM_BRP_ADAPTER = "brp-adapter";
     private static final String METHODE_OPVRAGEN_PERSOONSLIJST = "opvragenPersoonslijst";
     private static final String APPLICATIE_NAAM_GEZAGSMODULE = "gezagsmodule";
-    private static final String GEZAGSMODULE_VERSIE = "2.2.0";
+    private static final String GEZAGSMODULE_VERSIE = "2.2.1";
     private static final String GEZAGSMODULE_GET_GEZAG = "getGezag";
     private static final String GEZAGSMODULE_VRAGENMODEL_PLOUDER1 = "gezagsmodule/vragenmodel/plOuder1";
     private static final String GEZAGSMODULE_VRAGENMODEL_PLOUDER2 = "gezagsmodule/vragenmodel/plOuder2";

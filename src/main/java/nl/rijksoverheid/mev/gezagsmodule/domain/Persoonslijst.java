@@ -1,24 +1,26 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
 import lombok.Setter;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
+import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
+import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.BrpException;
+
 import java.lang.reflect.Field;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Stream;
-import lombok.Getter;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
+
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
- * De Persoonslijst is onderverdeeld in een aantal categorieen met bij elkaar
+ * De Persoonslijst is onderverdeeld in een aantal categorieën met bij elkaar
  * horende gegevens. Zie: <a
  * href="<a">href="https://www.rvig.nl/brp/documenten/publicaties/2019/06/26/logisch-ontwerp-gba-ve</a>rsie-3.12">...</a>
  * (p. 151 en verder)
@@ -142,6 +144,21 @@ public class Persoonslijst {
         }
     }
 
+    public List<GeschiedenisOuder1> getGeschiedenisOuder1() {
+        if (listValues.containsKey(Categorie.GESCHIEDENIS_OUDER_1)) {
+            return (List<GeschiedenisOuder1>) (Object) listValues.get(Categorie.GESCHIEDENIS_OUDER_1);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<GeschiedenisOuder2> getGeschiedenisOuder2() {
+        if (listValues.containsKey(Categorie.GESCHIEDENIS_OUDER_2)) {
+            return (List<GeschiedenisOuder2>) (Object) listValues.get(Categorie.GESCHIEDENIS_OUDER_2);
+        } else {
+            return new ArrayList<>();
+        }
+    }
     public static final int MEERDERJARIGE_LEEFTIJD = 180000;
     public static final int AKTE_NUMMER_LENGTE = 3;
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -162,11 +179,13 @@ public class Persoonslijst {
         Vaderschap is toegevoegd om in situaties van 1 ouderlijk gezag de gezaghebbende ouder te kunnen bepalen
      */
     public static final char TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE = 'B';
+    public static final char TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP = 'E'; // Rechterlijke uitspraak
     public static final char TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE = 'C';
     public static final char TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING = 'J';
     public static final char TABEL_39_AKTEAANDUIDING_ADOPTIE = 'Q';
     public static final char TABEL_39_AKTEAANDUIDING_GEBOORTE = 'A';
-    public static final char TABLE_39_AKTEAANDUIDING_VADERSCHAP = 'V';
+    public static final char TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP = 'V';
+    public static final String PUNTOUDER_INDICATIE = ".";
     static final List<String> INDICATIE_GEZAG_CODES = Arrays.asList("1", "2", "12", "1D", "2D", "D");
     static final String[] HUWELIJK_OF_PARTNERSCHAP_REDEN_ONTBINDING = new String[]{"O", "R"};
 
@@ -201,52 +220,50 @@ public class Persoonslijst {
     }
 
     /**
-     * Controlleer huwelijk of partnerschap relaties
+     * Controleer huwelijk of partnerschap relaties
+     * <p>
+     * In het BRP worden drie manieren van registreren gebruikt
+     *
+     * <li>Bij overlijden van de partner wordt bij de actuele hop de ontbindingsdatum bijgeschreven</li>
+     * <li>Bij eigen overlijden wordt niets veranderd en lijkt het alsof de hop nog bestaat</li>
+     * <li>Bij scheiding wordt alleen de scheiding in de actuele hop geregistreerd en
+     * de voltrekking van de hop gaat naar de geschiedenis.</li>
+     *
+     * Voor het maken van een gebeurtenissen tijdlijn wordt voltrekking en ontbinding geregistreerd
+     * als twee gebeurtenissen, daarom kan het gebeuren dat per hop twee gebeurtenissen worden geregistreerd
+     * dit is het geval als de reden van ontbinding het overlijden van de partner betreft.
      */
     public void checkHopRelaties() {
-        hopRelaties = new HopRelaties();
-        if (getHuwelijkOfPartnerschappen() != null) {
-            for (HuwelijkOfPartnerschap gebeurtenis : getHuwelijkOfPartnerschappen()) {
-                /*
-                In het BRP worden drie manieren van registreren gebruikt
-                - Bij overlijden van de partner wordt bij de actuele hop de ontbindingsdatum bijgeschreven
-                - Bij eigen overlijden wordt niets veranderd en lijkt het alsof de hop nog bestaat
-                - Bij scheiding wordt alleen de scheiding in de actuele hop geregistreerd en de voltrekking
-                  van de hop gaat naar de geschiedenis.
-                Voor het maken van een gebeurtenissen tijdlijn wordt voltrekking en ontbinding geregistreerd
-                als twee gebeurtenissen, daarom kan het gebeuren dat per hop twee gebeurtenissem worden geregistreerd
-                dit is het geval als de reden van ontbinding het overlijden van de partner betreft.
-                 */
+        for (HuwelijkOfPartnerschap gebeurtenis : getHuwelijkOfPartnerschappen()) {
+            if (gebeurtenis.getDatumOntbinding() != null) {
+                hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
+                        gebeurtenis.getBsnPartner(),
+                        gebeurtenis.getDatumOntbinding(),
+                        gebeurtenis.getRedenOntbinding()
+                );
+            }
+            if (gebeurtenis.getDatumVoltrokken() != null) {
+                hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
+                        gebeurtenis.getBsnPartner(),
+                        gebeurtenis.getDatumVoltrokken(),
+                        null);
+            }
+        }
+        if (getGeschiedenisHuwelijkOfPartnerschappen() != null) {
+            for (GeschiedenisHuwelijkOfPartnerschap gebeurtenis : getGeschiedenisHuwelijkOfPartnerschappen()) {
+                if (gebeurtenis.getDatumVoltrokken() != null) {
+                    hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
+                            gebeurtenis.getBsnPartner(),
+                            gebeurtenis.getDatumVoltrokken(),
+                            gebeurtenis.getRedenOntbinding()
+                    );
+                }
                 if (gebeurtenis.getDatumOntbinding() != null) {
                     hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
                             gebeurtenis.getBsnPartner(),
                             gebeurtenis.getDatumOntbinding(),
                             gebeurtenis.getRedenOntbinding()
                     );
-                }
-                if (gebeurtenis.getDatumVoltrokken() != null) {
-                    hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
-                            gebeurtenis.getBsnPartner(),
-                            gebeurtenis.getDatumVoltrokken(),
-                            null);
-                }
-            }
-            if (getGeschiedenisHuwelijkOfPartnerschappen() != null) {
-                for (GeschiedenisHuwelijkOfPartnerschap gebeurtenis : getGeschiedenisHuwelijkOfPartnerschappen()) {
-                    if (gebeurtenis.getDatumVoltrokken() != null) {
-                        hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
-                                gebeurtenis.getBsnPartner(),
-                                gebeurtenis.getDatumVoltrokken(),
-                                gebeurtenis.getRedenOntbinding()
-                        );
-                    }
-                    if (gebeurtenis.getDatumOntbinding() != null) {
-                        hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
-                                gebeurtenis.getBsnPartner(),
-                                gebeurtenis.getDatumOntbinding(),
-                                gebeurtenis.getRedenOntbinding()
-                        );
-                    }
                 }
             }
         }
@@ -259,6 +276,15 @@ public class Persoonslijst {
         Inschrijving inschrijving = getInschrijving();
         return (inschrijving != null
                 && inschrijving.getDatumOpschortingBijhouding() != null);
+    }
+
+    @JsonIgnore
+    public boolean isOverleden() {
+        // PL 1/2 : 07.67.10
+        Inschrijving inschrijving = getInschrijving();
+        return (inschrijving != null
+            && inschrijving.getDatumOpschortingBijhouding() != null)
+            && inschrijving.getRedenOpschortingBijhouding().equals("O");
     }
 
     @JsonIgnore
@@ -287,54 +313,150 @@ public class Persoonslijst {
     }
 
     public boolean alsMinderjarigeOpgeschort() throws AfleidingsregelException {
-        if (isOpgeschort()) {
+        if (isOpgeschort()){
             int datumOpschorting = Integer.parseInt(getInschrijving().getDatumOpschortingBijhouding());
-            int meerderjarigheidsDatum = Integer.parseInt(getPersoon().getGeboortedatum())
+            int meerderjarigheidDatum = Integer.parseInt(getPersoon().getGeboortedatum())
                     + MEERDERJARIGE_LEEFTIJD;
-            return datumOpschorting < meerderjarigheidsDatum;
+            return datumOpschorting < meerderjarigheidDatum;
         }
         return false;
     }
 
     public boolean heeftTweeOuders() {
         if ((getOuder1() != null) && (getOuder2() != null)) {
-            return (getOuder1().getGeslachtsnaam() != null)
-                    && !getOuder1().getGeslachtsnaam().equals(".")
-                    && (getOuder2().getGeslachtsnaam() != null)
-                    && !getOuder2().getGeslachtsnaam().equals(".");
+            return isValideGeslachtsnaam(getOuder1().getGeslachtsnaam()) && isValideGeslachtsnaam(getOuder2().getGeslachtsnaam());
         }
         return false;
     }
 
-    public boolean erkend() {
-        // Als het kind geen twee juridische ouders heeft, dan is het ook niet erkend
-        if (!heeftTweeOuders()) {
-            return false;
-        }
-        // zoniet controleer dan op akte erkenning actueel en geschiedenis op B, C, J en A
+    public static boolean isValideGeslachtsnaam(String str) {
+        return str != null && !str.isEmpty() && !str.isBlank() && !str.equals(PUNTOUDER_INDICATIE) ;
+    }
+
+    /**
+     * Controleert een lijst van aktenummers op geldige erkenningscodes.
+     *
+     * @param akteNummers Een lijst van String objecten die de te controleren aktenummers bevat.
+     *                    Elk aktenummer moet minimaal {@value #AKTE_NUMMER_LENGTE} tekens lang zijn.
+     * @param geldigeErkenningCodes Een Set van Character objecten die de geldige erkenningscodes bevat.
+     *                                Deze codes worden vergeleken met het derde teken van elk aktenummer.
+     * @return {@code true} als er minstens één aktenummer is gevonden met een geldige erkenningscode,
+     *         {@code false} als er geen enkel aktenummer met een geldige erkenningscode is gevonden.
+     * @throws NullPointerException als {@code akteNummers} of {@code geldigeErkenningCodes} null is.
+     */
+    public static boolean controleerAkteNummers(List<String> akteNummers, Set<Character> geldigeErkenningCodes) {
+        return akteNummers.stream()
+            .filter(aktenummer -> aktenummer != null && aktenummer.length() >= AKTE_NUMMER_LENGTE)
+            .anyMatch(aktenummer -> geldigeErkenningCodes.contains(aktenummer.charAt(2)));
+    }
+
+    public boolean geenOngeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling() {
+        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getPersoon().getAktenummer());
-        List<GeschiedenisPersoon> geschiedenisPersoon = getGeschiedenisPersoon();
-        if (geschiedenisPersoon != null) {
-            for (GeschiedenisPersoon p : geschiedenisPersoon) {
+        akteNummers.add(getOuder1().getAktenummer());
+        List<GeschiedenisOuder1> geschiedenisOuder1 = getGeschiedenisOuder1();
+        if (geschiedenisOuder1 != null) {
+            for (GeschiedenisOuder1 p : geschiedenisOuder1) {
+                    akteNummers.add(p.getAktenummer());
+            }
+        }
+        Set<Character> geldigeErkenningCodes = new HashSet<>(Arrays.asList(
+            TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE,
+            TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE,
+            TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING,
+            TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP));
+        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
+        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+    }
+
+    public boolean ontkenningOuderschapDoorOuder1() {
+        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
+        // voorbereiding, zet alle aktenummers in een lijst
+        List<String> akteNummers = new ArrayList<>();
+        akteNummers.add(getOuder1().getAktenummer());
+        List<GeschiedenisOuder1> geschiedenisOuder1 = getGeschiedenisOuder1();
+        if (geschiedenisOuder1 != null) {
+            for (GeschiedenisOuder1 p : geschiedenisOuder1) {
+                akteNummers.add(p.getAktenummer());
+            }
+        }
+        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
+            TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP));
+        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
+        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+    }
+
+    public boolean ontkenningOuderschapDoorOuder2() {
+        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
+        // voorbereiding, zet alle aktenummers in een lijst
+        List<String> akteNummers = new ArrayList<>();
+        akteNummers.add(getOuder2().getAktenummer());
+        List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
+        if (geschiedenisOuder2 != null) {
+            for (GeschiedenisOuder2 p : geschiedenisOuder2) {
                 akteNummers.add(p.getAktenummer());
             }
         }
         // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        for (String aktenummer : akteNummers) {
-            if (aktenummer != null && aktenummer.length() >= AKTE_NUMMER_LENGTE) {
-                char thirdChar = aktenummer.charAt(2);
-                if (thirdChar == TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE
-                        || thirdChar == TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE
-                        || thirdChar == TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING
-                        || thirdChar == TABEL_39_AKTEAANDUIDING_GEBOORTE) {
-                    return true;
-                }
-            }
+        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
+            TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP));
+        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
+        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+    }
 
+    public boolean ongeborenVruchtDoorOuder1Erkend() {
+        // controleer dan op akte erkenning actueel en geschiedenis op A
+        // voorbereiding, zet alle aktenummers in een lijst
+        List<String> akteNummers = new ArrayList<>();
+        akteNummers.add(getOuder1().getAktenummer());
+        List<GeschiedenisOuder1> geschiedenisOuder1 = getGeschiedenisOuder1();
+        if (geschiedenisOuder1 != null) {
+            for (GeschiedenisOuder1 p : geschiedenisOuder1) {
+                akteNummers.add(p.getAktenummer());
+            }
         }
-        return false;
+        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
+            TABEL_39_AKTEAANDUIDING_GEBOORTE));
+        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
+        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+    }
+
+    public boolean geenOngeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling() {
+        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
+        // voorbereiding, zet alle aktenummers in een lijst
+        List<String> akteNummers = new ArrayList<>();
+        akteNummers.add(getOuder2().getAktenummer());
+        List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
+        if (geschiedenisOuder2 != null) {
+            for (GeschiedenisOuder2 p : geschiedenisOuder2) {
+                akteNummers.add(p.getAktenummer());
+            }
+        }
+        Set<Character> geldigeErkenningCodes = new HashSet<>(Arrays.asList(
+            TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE,
+            TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE,
+            TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING,
+            TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP));
+        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
+        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+    }
+
+    public boolean ongeborenVruchtDoorOuder2Erkend() {
+        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
+        // voorbereiding, zet alle aktenummers in een lijst
+        List<String> akteNummers = new ArrayList<>();
+        akteNummers.add(getOuder2().getAktenummer());
+        List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
+        if (geschiedenisOuder2 != null) {
+            for (GeschiedenisOuder2 p : geschiedenisOuder2) {
+                akteNummers.add(p.getAktenummer());
+            }
+        }
+        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
+            TABEL_39_AKTEAANDUIDING_GEBOORTE));
+        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
+        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
     }
 
     public boolean beideOudersHebbenEenBSN() {
@@ -403,15 +525,10 @@ public class Persoonslijst {
                 akteNummers.add(p.getAktenummer());
             }
         }
-        for (String aktenummer : akteNummers) {
-            if (aktenummer != null && aktenummer.length() >= AKTE_NUMMER_LENGTE) {
-                char thirdChar = aktenummer.charAt(2);
-                if (thirdChar == TABEL_39_AKTEAANDUIDING_ADOPTIE) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
+            TABEL_39_AKTEAANDUIDING_ADOPTIE));
+        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
+        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
     }
 
     public boolean heefIndicatieGezag() {
@@ -429,63 +546,6 @@ public class Persoonslijst {
         int geboortedatum = Integer.parseInt(persoon.getGeboortedatum());
         int datumVolwassenVanaf = Integer.parseInt(LocalDate.now(clock).format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
         return geboortedatum > datumVolwassenVanaf;
-    }
-
-    boolean checkHopReden(HuwelijkOfPartnerschap huwelijkOfPartnerschap) {
-        for (String reden : HUWELIJK_OF_PARTNERSCHAP_REDEN_ONTBINDING) {
-            if (reden.equals(huwelijkOfPartnerschap.getRedenOntbinding())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    String datumPartnerschap(HuwelijkOfPartnerschap eersteHuwelijkElement) {
-        String datumPartnerschap = null;
-        if (eersteHuwelijkElement.getDatumVoltrokken() != null) {
-            datumPartnerschap = eersteHuwelijkElement.getDatumVoltrokken();
-        } else if (eersteHuwelijkElement.getRedenOntbinding() != null
-                && checkHopReden(eersteHuwelijkElement)) {
-            GeschiedenisHuwelijkOfPartnerschap eersteGeschiedenisHuwelijkElement
-                    = getGeschiedenisHuwelijkOfPartnerschappen().get(0);
-            datumPartnerschap = eersteGeschiedenisHuwelijkElement.getDatumVoltrokken();
-        }
-        return datumPartnerschap;
-    }
-
-    private String datumPartnerschap() {
-        HuwelijkOfPartnerschap eersteHuwelijkElement = getHuwelijkOfPartnerschappen().get(0);
-        String datumPartnerschap = datumPartnerschap(eersteHuwelijkElement);
-        // Controleer of datum partnerschap een datum bevat,
-        // ontbreken daarvan duidt op een nietigverklaring huwelijk
-        // dan hoef je ook geen geschiedenis op te halen
-        if (datumPartnerschap != null && !datumPartnerschap.isBlank()) {
-            List<GeschiedenisHuwelijkOfPartnerschap> geschiedenisHop
-                    = getGeschiedenisHuwelijkOfPartnerschappen();
-            if ((geschiedenisHop != null) && !geschiedenisHop.isEmpty()) {
-                for (GeschiedenisHuwelijkOfPartnerschap geschiedenisHuwelijkOfPartnerschapEntry : geschiedenisHop) {
-                    if (geschiedenisHuwelijkOfPartnerschapEntry.getDatumVoltrokken() != null) {
-                        datumPartnerschap = geschiedenisHuwelijkOfPartnerschapEntry.getDatumVoltrokken();
-                    }
-                }
-            }
-        }
-        return datumPartnerschap;
-    }
-
-    public boolean staandeHuwelijkGeboren(String geboorteDatumKind) {
-        boolean result = false;
-        boolean heeftMinstens1Huwelijk = !(getHuwelijkOfPartnerschappen() == null
-                || getHuwelijkOfPartnerschappen().isEmpty());
-        if (heeftMinstens1Huwelijk) {
-            String datumPartnerschap = datumPartnerschap();
-            if (datumPartnerschap != null && !datumPartnerschap.isBlank()) {
-                int intDatumPartnerschap = Integer.parseInt(datumPartnerschap);
-                int intGeboorteDatumKind = Integer.parseInt(geboorteDatumKind);
-                result = intDatumPartnerschap <= intGeboorteDatumKind;
-            }
-        }
-        return result;
     }
 
     /**

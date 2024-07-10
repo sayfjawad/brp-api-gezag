@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class CsvTestResultWriter {
 
@@ -81,7 +80,7 @@ public class CsvTestResultWriter {
         if (gezagAfleidingsResultaat.getGezagsrelaties() != null) {
             return gezagAfleidingsResultaat.getGezagsrelaties().stream()
                     .map(Gezagsrelatie::bsnMeerderjarige)
-                    .collect(Collectors.toList());
+                    .toList();
         }
         return null;
     }
@@ -106,7 +105,7 @@ public class CsvTestResultWriter {
     }
 
     public static String[] getCsvHeaderRow() {
-        String[] header = {
+        return new String[]{
             "Test Case", "Bsn Kind", "Bsn Verwachte gezaghouders", "Terug gekregen bsn", "Resultaat",
             "route", "Verwachting route", "Gelijk route",
             "soortGezag", "Verwachting soortGezag", "Gelijk soortGezag",
@@ -126,9 +125,8 @@ public class CsvTestResultWriter {
             "04A02", "Verwachting 04A02", "Gelijk 04A02",
             "04A03", "Verwachting 04A03", "Gelijk 04A03",
             "04B01", "Verwachting 04B01", "Gelijk 04B01",
-             "Lengte in ms", "Exception", "Uitleg"
+            "Lengte in ms", "Exception", "Uitleg"
         };
-        return header;
     }
 
     public static String[] getCsvDataRow(
@@ -156,80 +154,79 @@ public class CsvTestResultWriter {
             String.valueOf(soortGezagActual),
             String.valueOf(arAntwoordenExpected.getSoortGezag()),
             String.valueOf((soortGezagActual != null ? soortGezagActual.equals(arAntwoordenExpected.getSoortGezag()) : "null")),
-            String.valueOf(arAntwoordenActual.getV0101() != null ? arAntwoordenActual.getV0101() : ""),
-            String.valueOf(arAntwoordenExpected.getV0101() != null ? arAntwoordenExpected.getV0101() : ""),
+            arAntwoordenActual.getV0101() != null ? arAntwoordenActual.getV0101() : "",
+            arAntwoordenExpected.getV0101() != null ? arAntwoordenExpected.getV0101() : "",
             String.valueOf(!(arAntwoordenActual.getV0101() == null && arAntwoordenExpected.getV0101() == null)
             ? arAntwoordenEqual.get("0101") : ""),
-            String.valueOf(arAntwoordenActual.getV0102() != null ? arAntwoordenActual.getV0102() : ""),
-            String.valueOf(arAntwoordenExpected.getV0102() != null ? arAntwoordenExpected.getV0102() : ""),
+            arAntwoordenActual.getV0102() != null ? arAntwoordenActual.getV0102() : "",
+            arAntwoordenExpected.getV0102() != null ? arAntwoordenExpected.getV0102() : "",
             String.valueOf(!(arAntwoordenActual.getV0102() == null && arAntwoordenExpected.getV0102() == null)
             ? arAntwoordenEqual.get("0102") : ""),
-            String.valueOf(arAntwoordenActual.getV0103() != null ? arAntwoordenActual.getV0103() : ""),
-            String.valueOf(arAntwoordenExpected.getV0103() != null ? arAntwoordenExpected.getV0103() : ""),
+            arAntwoordenActual.getV0103() != null ? arAntwoordenActual.getV0103() : "",
+            arAntwoordenExpected.getV0103() != null ? arAntwoordenExpected.getV0103() : "",
             String.valueOf(!(arAntwoordenActual.getV0103() == null && arAntwoordenExpected.getV0103() == null)
             ? arAntwoordenEqual.get("0103") : ""),
-            String.valueOf(arAntwoordenActual.getV0103A() != null ? arAntwoordenActual.getV0103A() : ""),
-            String.valueOf(arAntwoordenExpected.getV0103A() != null ? arAntwoordenExpected.getV0103A() : ""),
+            arAntwoordenActual.getV0103A() != null ? arAntwoordenActual.getV0103A() : "",
+            arAntwoordenExpected.getV0103A() != null ? arAntwoordenExpected.getV0103A() : "",
             String.valueOf(!(arAntwoordenActual.getV0103A() == null && arAntwoordenExpected.getV0103A() == null)
             ? arAntwoordenEqual.get("0103A") : ""),
-            String.valueOf(arAntwoordenActual.getV0103B() != null ? arAntwoordenActual.getV0103B() : ""),
-            String.valueOf(arAntwoordenExpected.getV0103B() != null ? arAntwoordenExpected.getV0103B() : ""),
+            arAntwoordenActual.getV0103B() != null ? arAntwoordenActual.getV0103B() : "",
+            arAntwoordenExpected.getV0103B() != null ? arAntwoordenExpected.getV0103B() : "",
             String.valueOf(!(arAntwoordenActual.getV0103B() == null && arAntwoordenExpected.getV0103B() == null)
             ? arAntwoordenEqual.get("0103B") : ""),
-            String.valueOf(arAntwoordenActual.getV0104() != null ? arAntwoordenActual.getV0104() : ""),
-            String.valueOf(arAntwoordenExpected.getV0104() != null ? arAntwoordenExpected.getV0104() : ""),
+            arAntwoordenActual.getV0104() != null ? arAntwoordenActual.getV0104() : "",
+            arAntwoordenExpected.getV0104() != null ? arAntwoordenExpected.getV0104() : "",
             String.valueOf(!(arAntwoordenActual.getV0104() == null && arAntwoordenExpected.getV0104() == null)
             ? arAntwoordenEqual.get("0104") : ""),
-            String.valueOf(arAntwoordenActual.getV0201() != null ? arAntwoordenActual.getV0201() : ""),
-            String.valueOf(arAntwoordenExpected.getV0201() != null ? arAntwoordenExpected.getV0201() : ""),
+            arAntwoordenActual.getV0201() != null ? arAntwoordenActual.getV0201() : "",
+            arAntwoordenExpected.getV0201() != null ? arAntwoordenExpected.getV0201() : "",
             String.valueOf(!(arAntwoordenActual.getV0201() == null && arAntwoordenExpected.getV0201() == null)
             ? arAntwoordenEqual.get("0201") : ""),
-            String.valueOf(arAntwoordenActual.getV02A01() != null ? arAntwoordenActual.getV02A01() : ""),
-            String.valueOf(arAntwoordenExpected.getV02A01() != null ? arAntwoordenExpected.getV02A01()
-            : ""),
+            arAntwoordenActual.getV02A01() != null ? arAntwoordenActual.getV02A01() : "",
+            arAntwoordenExpected.getV02A01() != null ? arAntwoordenExpected.getV02A01()
+                : "",
             String.valueOf(!(arAntwoordenActual.getV02A01() == null && arAntwoordenExpected.getV02A01() == null)
             ? arAntwoordenEqual.get("02A01") : ""),
-            String.valueOf(arAntwoordenActual.getV02A02() != null ? arAntwoordenActual.getV02A02() : ""),
-            String.valueOf(arAntwoordenExpected.getV02A02() != null ? arAntwoordenExpected.getV02A02()
-            : ""),
+            arAntwoordenActual.getV02A02() != null ? arAntwoordenActual.getV02A02() : "",
+            arAntwoordenExpected.getV02A02() != null ? arAntwoordenExpected.getV02A02()
+                : "",
             String.valueOf(!(arAntwoordenActual.getV02A02() == null && arAntwoordenExpected.getV02A02() == null)
             ? arAntwoordenEqual.get("02A02") : ""),
-            String.valueOf(arAntwoordenActual.getV02A03() != null ? arAntwoordenActual.getV02A03() : ""),
-            String.valueOf(arAntwoordenExpected.getV02A03() != null ? arAntwoordenExpected.getV02A03()
-            : ""),
+            arAntwoordenActual.getV02A03() != null ? arAntwoordenActual.getV02A03() : "",
+            arAntwoordenExpected.getV02A03() != null ? arAntwoordenExpected.getV02A03()
+                : "",
             String.valueOf(!(arAntwoordenActual.getV02A03() == null && arAntwoordenExpected.getV02A03() == null)
             ? arAntwoordenEqual.get("02A03") : ""),
-            String.valueOf(arAntwoordenActual.getV02B01() != null ? arAntwoordenActual.getV02B01() : ""),
-            String.valueOf(arAntwoordenExpected.getV02B01() != null ? arAntwoordenExpected.getV02B01()
-            : ""),
+            arAntwoordenActual.getV02B01() != null ? arAntwoordenActual.getV02B01() : "",
+            arAntwoordenExpected.getV02B01() != null ? arAntwoordenExpected.getV02B01()
+                : "",
             String.valueOf(!(arAntwoordenActual.getV02B01() == null && arAntwoordenExpected.getV02B01() == null)
             ? arAntwoordenEqual.get("02B01") : ""),
-            String.valueOf(arAntwoordenActual.getV0301() != null ? arAntwoordenActual.getV0301() : ""),
-            String.valueOf(arAntwoordenExpected.getV0301() != null ? arAntwoordenExpected.getV0301() : ""),
+            arAntwoordenActual.getV0301() != null ? arAntwoordenActual.getV0301() : "",
+            arAntwoordenExpected.getV0301() != null ? arAntwoordenExpected.getV0301() : "",
             String.valueOf(!(arAntwoordenActual.getV0301() == null && arAntwoordenExpected.getV0301() == null)
             ? arAntwoordenEqual.get("0301") : ""),
-            String.valueOf(arAntwoordenActual.getV0302() != null ? arAntwoordenActual.getV0302() : ""),
-            String.valueOf(arAntwoordenExpected.getV0302() != null ? arAntwoordenExpected.getV0302() : ""),
+            arAntwoordenActual.getV0302() != null ? arAntwoordenActual.getV0302() : "",
+            arAntwoordenExpected.getV0302() != null ? arAntwoordenExpected.getV0302() : "",
             String.valueOf(!(arAntwoordenActual.getV0302() == null && arAntwoordenExpected.getV0302() == null)
             ? arAntwoordenEqual.get("0302") : ""),
-            String.valueOf(arAntwoordenActual.getV04A02() != null ? arAntwoordenActual.getV04A02() : ""),
-            String.valueOf(arAntwoordenExpected.getV04A02() != null ? arAntwoordenExpected.getV04A02()
-            : ""),
-            String.valueOf(!(arAntwoordenActual.getV04A02() == null && arAntwoordenExpected.getV04A02() == null)
-            ? arAntwoordenEqual.get("04A02") : ""),
-            String.valueOf(arAntwoordenActual.getV04A03() != null ? arAntwoordenActual.getV04A03() : ""),
-            String.valueOf(arAntwoordenExpected.getV04A03() != null ? arAntwoordenExpected.getV04A03()
-            : ""),
+            arAntwoordenActual.getV04A02() != null ? arAntwoordenActual.getV04A02() : "",
+            arAntwoordenExpected.getV04A02() != null ? arAntwoordenExpected.getV04A02()
+                : "",
+            !(arAntwoordenActual.getV04A02() == null) && arAntwoordenExpected.getV04A02() == null
+            ? String.valueOf(arAntwoordenEqual.get("04A02")) : "",
+            arAntwoordenActual.getV04A03() != null ? arAntwoordenActual.getV04A03() : "",
+            arAntwoordenExpected.getV04A03() != null ? arAntwoordenExpected.getV04A03()
+                : "",
             String.valueOf(!(arAntwoordenActual.getV04A03() == null && arAntwoordenExpected.getV04A03() == null)
             ? arAntwoordenEqual.get("04A03") : ""),
-            String.valueOf(arAntwoordenActual.getV04B01() != null ? arAntwoordenActual.getV04B01() : ""),
-            String.valueOf(arAntwoordenExpected.getV04B01() != null ? arAntwoordenExpected.getV04B01()
-            : ""),
+            arAntwoordenActual.getV04B01() != null ? arAntwoordenActual.getV04B01() : "",
+            arAntwoordenExpected.getV04B01() != null ? arAntwoordenExpected.getV04B01() : "",
             String.valueOf(!(arAntwoordenActual.getV04B01() == null && arAntwoordenExpected.getV04B01() == null)
             ? arAntwoordenEqual.get("04B01") : ""),
             String.valueOf(responseDuration),
-            String.valueOf((arAntwoordenActual.getException() != null) ? arAntwoordenActual.getException().getMessage() : ""),
-            String.valueOf((arAntwoordenActual.getUitleg() != null) ? arAntwoordenActual.getUitleg() : "")
+            arAntwoordenActual.getException() != null ? arAntwoordenActual.getException().getMessage() : "",
+            arAntwoordenActual.getUitleg() != null ? arAntwoordenActual.getUitleg() : ""
         };
         return data;
     }

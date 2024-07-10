@@ -60,13 +60,13 @@ class GetPersoonsgegevensIntegrationTest {
 
     @Test
     void ophalenPersoonsgegevensMetVertegenwoordigerLevertLijstMetPersoonsgegevensOp() {
-        var vertegenwoordigder = "999998675";
+        var vertegenwoordiger = "999998675";
 
         webTestClient.post().uri("/api/v1/getPersoonsgegevens")
             .contentType(MediaType.APPLICATION_JSON)
             .bodyValue(new PersoonsgegevensRequest()
                 .vertegenwoordiger(new Identificatie()
-                    .identificatieNummer("999998675")
+                    .identificatieNummer(vertegenwoordiger)
                     .identificatieSoort("bsn")
                 )
                 .vertegenwoordigde(new Identificatie()

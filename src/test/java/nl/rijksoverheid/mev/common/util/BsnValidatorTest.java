@@ -1,6 +1,5 @@
 package nl.rijksoverheid.mev.common.util;
 
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.exception.InvalidBSNException;
 import org.junit.jupiter.api.Test;
@@ -26,14 +25,15 @@ class BsnValidatorTest {
 
     @Test
     void emptyBsnExpectingFalse() {
+        BSNValidator bsnValidator = new BSNValidator();
         GezagException exception = assertThrows(InvalidBSNException.class,
-                () -> new BSNValidator().isValid(BSN_EMPTY));
+                () -> bsnValidator.isValid(BSN_EMPTY));
 
         assertNotNull(exception);
     }
 
     @Test
-    void invelidBsnExpectingFalse() throws GezagException {
+    void invalidBsnExpectingFalse() throws GezagException {
         assertFalse(new BSNValidator().isValid(BSN_INVALID));
     }
 

@@ -1,14 +1,11 @@
 package nl.rijksoverheid.mev.transaction;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+
+import java.io.*;
+import java.nio.file.Files;
 
 /**
  * Asynchroon opslaan van een transactie in de transactie database
@@ -72,11 +69,16 @@ public class SaveTransactionTask implements Runnable {
             if (toStore != null) {
                 repository.save(toStore);
 
-                if (backup != null && backup.exists() && !backup.delete()) {
-                    log.error("Error while deleting transaction with name: {} from backup location", backup.getName());
+                if (backup != null && backup.exists()){
+                    Files.delete(backup.toPath());
                 }
             }
-        } catch (DataAccessException ex) {
+        }
+        catch (IOException ex) {
+            log.error("Error while deleting backup with name: {} from backup location", backup.getName());
+            storeBackup(toStore);
+        }
+        catch (DataAccessException ex) {
             log.error("Error while saving transaction", ex);
             storeBackup(toStore);
         }

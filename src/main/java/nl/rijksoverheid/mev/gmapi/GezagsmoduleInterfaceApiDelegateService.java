@@ -6,7 +6,6 @@ import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.openapitools.api.GezagsmoduleInterfaceApiDelegate;
 import org.openapitools.model.GezagRequest;
 import org.openapitools.model.Gezagsrelatie;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

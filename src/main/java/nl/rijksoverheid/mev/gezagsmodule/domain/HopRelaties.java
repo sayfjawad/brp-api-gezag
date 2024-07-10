@@ -1,11 +1,10 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -48,8 +47,7 @@ public class HopRelaties {
      * Sorteer de gebeurtenissen van meest actuele naar minst actuele datum
      */
     public void sorteerGebeurtenissenOpDatum() {
-        Collections.sort(gebeurtenissen,
-            (Gebeurtenis gebeurtenis1, Gebeurtenis gebeurtenis2) -> Integer.compare(gebeurtenis2.getDatum(), gebeurtenis1.getDatum()));
+        gebeurtenissen.sort(Comparator.comparingInt(Gebeurtenis::getDatum).reversed());
     }
 
     /**
@@ -89,20 +87,6 @@ public class HopRelaties {
         if (hopRelatie.getStartDatum() != null) {
             voegRelatieToe(hopRelatie);
         }
-    }
-
-    /*
-    Zoek de meest actuele relatie. Dit is de meest recente relatie zonder einddatum
-    - werkt ook bij een ontbinding door overlijden, de overleden ouder heeft geen einddatum
-    - werkt ook bij een omzetting van partnerschap naar huwelijk, beide relaties hebben dan geen einddatum
-     */
-    public HopRelatie actueleRelatie() {
-        for (HopRelatie relatie : relaties) {
-            if (relatie.getEindDatum() == null) {
-                return relatie;
-            }
-        }
-        return null;
     }
 
     /*

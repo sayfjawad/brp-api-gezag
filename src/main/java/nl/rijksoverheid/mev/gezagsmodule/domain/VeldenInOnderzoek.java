@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
 
 /**
- * Object met verzameling velden in onderzoek met kopeling aan welke persoon
+ * Object met verzameling velden in onderzoek met koppeling aan welke persoon
  */
 @JsonInclude(Include.NON_NULL)
 public class VeldenInOnderzoek {

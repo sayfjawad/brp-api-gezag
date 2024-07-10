@@ -1,12 +1,13 @@
 package nl.rijksoverheid.mev.brpadapter.soap.persoonlijst;
 
+import lombok.Getter;
+
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lombok.Getter;
 
 /**
  * Een veld in de persoonslijst die potentieel in onderzoek kan zijn
@@ -58,15 +59,19 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
                     int datumVandaag = Integer.parseInt(LocalDate.now(clock).format(FORMATTER));
 
                     if (datumVandaag <= datumEindeOnderzoekInt) {
-                        veldenInOnderzoek.add(key);
+                        voegVeldInOnderzoekToeAlsDezeNogNietBestaat(key);
                     }
                 } else {
-                    veldenInOnderzoek.add(key);
+                    voegVeldInOnderzoekToeAlsDezeNogNietBestaat(key);
                 }
             }
         }
     }
+    protected void voegVeldInOnderzoekToeAlsDezeNogNietBestaat(String key){
+        if (veldenInOnderzoek.contains(key)) return;
 
+        veldenInOnderzoek.add(key);
+    }
     @Override
     public String get(final String key) {
         inOnderzoek(key);

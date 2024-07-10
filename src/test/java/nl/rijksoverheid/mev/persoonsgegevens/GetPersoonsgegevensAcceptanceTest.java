@@ -32,7 +32,7 @@ class GetPersoonsgegevensAcceptanceTest {
             .contentType(MediaType.APPLICATION_JSON)
             .bodyValue(new PersoonsgegevensRequest()
                 .vertegenwoordiger(new Identificatie()
-                    .identificatieNummer("999998675")
+                    .identificatieNummer(vertegenwoordigder)
                     .identificatieSoort("bsn")
                 )
                 .vertegenwoordigde(new Identificatie()
