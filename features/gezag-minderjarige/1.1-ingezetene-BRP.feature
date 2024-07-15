@@ -60,9 +60,12 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       Als gezag wordt gezocht met de volgende parameters
       | naam | waarde    |
       | bsn  | 000000012 |
-      Dan heeft de response de volgende gezagsrelaties
-      | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-      | 000000012       | N          |                  |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam | waarde             |
+      | type | GezagNietTeBepalen |
 
       Voorbeelden:
       | geboortedatum    | omschrijving                     |
@@ -102,9 +105,12 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       Als gezag wordt gezocht met de volgende parameters
       | naam | waarde    |
       | bsn  | 000000012 |
-      Dan heeft de response de volgende gezagsrelaties
-      | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-      | 000000012       | N          |                  |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam | waarde             |
+      | type | GezagNietTeBepalen |
 
       Voorbeelden:
       | aanduiding in onderzoek | omschrijving                        |
@@ -152,10 +158,19 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       Als gezag wordt gezocht met de volgende parameters
       | naam | waarde    |
       | bsn  | 000000012 |
-      Dan heeft de response de volgende gezagsrelaties
-      | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-      | 000000012       | OG2        | 000000024        |
-      | 000000012       | OG2        | 000000036        |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000012                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
 
     Scenario: gezag kan wel worden bepaald wanneer de vorige verblijfplaats in onderzoek staat
       Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
@@ -191,7 +206,16 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       Als gezag wordt gezocht met de volgende parameters
       | naam | waarde    |
       | bsn  | 000000012 |
-      Dan heeft de response de volgende gezagsrelaties
-      | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-      | 000000012       | OG2        | 000000024        |
-      | 000000012       | OG2        | 000000036        |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000012                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
