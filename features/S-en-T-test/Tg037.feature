@@ -40,14 +40,14 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     | beschrijving document (82.30)                      | PK        |
     | ingangsdatum geldigheid (85.10)                    | 0         |
     | datum ingang familierechtelijke betrekking (62.10) | 0         |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                            | waarde          |
     | beschrijving document (82.30)   | nietig huwelijk |
     | ingangsdatum geldigheid (85.10) | 20081201        |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AA0150  |
@@ -85,14 +85,14 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     | beschrijving document (82.30)                      | PK        |
     | ingangsdatum geldigheid (85.10)                    | 0         |
     | datum ingang familierechtelijke betrekking (62.10) | 0         |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                            | waarde          |
     | beschrijving document (82.30)   | nietig huwelijk |
     | ingangsdatum geldigheid (85.10) | 20081201        |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -141,7 +141,10 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_201 - gehuwd, kind geboren tijdens huwelijk, huwelijk nadien nietig (gecorrigeerd)
     # Meerderjarig
@@ -149,15 +152,25 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG1        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                |
+    | ouder.burgerservicenummer        | 000000024                |
 
   Scenario: Lg01_202 - geboren tijdens huwelijk ouders, huwelijk ouders nietig, categorie 03 aangepast in juridisch geen ouder
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG1        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                |
+    | ouder.burgerservicenummer        | 000000024                |

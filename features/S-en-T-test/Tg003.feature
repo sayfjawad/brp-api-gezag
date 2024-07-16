@@ -138,11 +138,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | geslachtsaanduiding (04.10)     | M          |
     | beschrijving document (82.30)   | PKA        |
     | ingangsdatum geldigheid (85.10) | 0          |
-    En de persoon heeft de volgende 'inschrijving' gegevens
-    | naam                                 | waarde                     |
-    | datum opschorting bijhouding (67.10) | 20201001                   |
-    | reden opschorting bijhouding (67.20) | O                          |
-    | indicatie geheim (70.10)             | 0                          |
     En de persoon heeft een ouder '1' met de volgende gegevens
     | naam                                               | waarde    |
     | voornamen (02.10)                                  | Berdien   |
@@ -163,10 +158,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | beschrijving document (82.30)                      | PK        |
     | ingangsdatum geldigheid (85.10)                    | 0         |
     | datum ingang familierechtelijke betrekking (62.10) | 0         |
-    En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000061  |
@@ -180,6 +171,20 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20100904   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon heeft de volgende 'overlijden' gegevens
+    | naam                            | waarde   |
+    | datum overlijden (08.10)        | 20201001 |
+    | aktenummer (81.20)              | 2AA0104  |
+    | ingangsdatum geldigheid (85.10) | 20201001 |
+    En de persoon heeft de volgende 'inschrijving' gegevens
+    | naam                                 | waarde                     |
+    | datum opschorting bijhouding (67.10) | 20201001                   |
+    | reden opschorting bijhouding (67.20) | O                          |
+    | indicatie geheim (70.10)             | 0                          |
+    En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
@@ -230,10 +235,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000048  |
@@ -261,11 +262,10 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
     | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
-    En de persoon heeft de volgende 'gezagsverhouding' gegevens
-    | naam                               | waarde                      |
-    | indicatie curateleregister (33.10) | 1                           |
-    | beschrijving document (82.30)      | mededeling curateleregister |
-    | ingangsdatum geldigheid (85.10)    | 20210701                    |
+    En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
@@ -284,6 +284,11 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0105    |
     | ingangsdatum geldigheid (85.10) | 20141205   |
+    En de persoon heeft de volgende 'gezagsverhouding' gegevens
+    | naam                               | waarde                      |
+    | indicatie curateleregister (33.10) | 1                           |
+    | beschrijving document (82.30)      | mededeling curateleregister |
+    | ingangsdatum geldigheid (85.10)    | 20210701                    |
     
     # Lg01_108 - vader overleden, moeder onder curatele, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
@@ -373,28 +378,47 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG1        | 000000012        |
-    | 000000024       | OG1        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000024                |
+    | ouder.burgerservicenummer        | 000000012                |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                |
+    | ouder.burgerservicenummer        | 000000012                |
 
   Scenario: Lg01_011 - moeder opgenomen in categorie 02, categorie 03 leeg, geen categorie 11
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000024       | OG1        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000024                |
+    | ouder.burgerservicenummer        | 000000012                |
 
   Scenario: Lg01_012 - moeder opgenomen in categorie 03, categorie 02 leeg, geen categorie 11
     # Route: 40o2 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG1        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                |
+    | ouder.burgerservicenummer        | 000000012                |
 
   Scenario: Lg01_106 - overleden
     # Meerderjarig
@@ -402,7 +426,10 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000048 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_107 - onder curatele
     # Meerderjarig
@@ -410,22 +437,33 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000061 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_108 - vader overleden, moeder onder curatele, geen categorie 11
     # Route: 48 - Wie heeft gezag?: geen gezag (G)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000073 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000073       | G          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam | waarde             |
+    | type | TijdelijkGeenGezag |
 
   Scenario: Lg01_109 - vader overleden, moeder onder curatele, kind categorie 11 gezag bij derde
     # Route: 6 - Wie heeft gezag?: voogdij (V)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000085 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000085       | V          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde    |
+    | type                             | Voogdij   |
+    | minderjarige.burgerservicenummer | 000000085 |
+    En heeft 'gezag' geen derden

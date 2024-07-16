@@ -42,10 +42,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000073  |
@@ -155,6 +151,10 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518            |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030            |
     | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S               |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | voornamen (02.10)               | Helma      |
@@ -234,10 +234,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | beschrijving document (82.30)                      | PK         |
     | ingangsdatum geldigheid (85.10)                    | 0          |
     | datum ingang familierechtelijke betrekking (62.10) | 0          |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000012  |
@@ -251,6 +247,10 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20120801   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -314,11 +314,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | geslachtsaanduiding (04.10)     | M          |
     | beschrijving document (82.30)   | PKA        |
     | ingangsdatum geldigheid (85.10) | 0          |
-    En de persoon heeft de volgende 'inschrijving' gegevens
-    | naam                                 | waarde                     |
-    | datum opschorting bijhouding (67.10) | 20181201                   |
-    | reden opschorting bijhouding (67.20) | E                          |
-    | indicatie geheim (70.10)             | 0                          |
     En de persoon heeft een ouder '1' met de volgende gegevens
     | naam                                               | waarde    |
     | voornamen (02.10)                                  | Henriette |
@@ -340,12 +335,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op een buitenlands adres met de volgende gegevens
-    | naam                                   | waarde                  |
-    | gemeente van inschrijving (09.10)      | 1999                    |
-    | land (13.10)                           | 6016                    |
-    | datum aanvang adres buitenland (13.20) | 20181201                |
-    | ingangsdatum geldigheid (85.10)        | 20181201                |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000012  |
@@ -373,6 +362,17 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
     | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    En de persoon heeft de volgende 'inschrijving' gegevens
+    | naam                                 | waarde                     |
+    | datum opschorting bijhouding (67.10) | 20181201                   |
+    | reden opschorting bijhouding (67.20) | E                          |
+    | indicatie geheim (70.10)             | 0                          |
+    En de persoon is ingeschreven op een buitenlands adres met de volgende gegevens
+    | naam                                   | waarde                  |
+    | gemeente van inschrijving (09.10)      | 1999                    |
+    | land (13.10)                           | 6016                    |
+    | datum aanvang adres buitenland (13.20) | 20181201                |
+    | ingangsdatum geldigheid (85.10)        | 20181201                |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
@@ -396,11 +396,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | geslachtsaanduiding (04.10)     | V          |
     | aktenummer (81.20)              | 1AA0100    |
     | ingangsdatum geldigheid (85.10) | 20101201   |
-    En de persoon heeft de volgende 'inschrijving' gegevens
-    | naam                                 | waarde                     |
-    | datum opschorting bijhouding (67.10) | 20181201                   |
-    | reden opschorting bijhouding (67.20) | E                          |
-    | indicatie geheim (70.10)             | 0                          |
     En de persoon heeft een ouder '1' met de volgende gegevens
     | naam                                               | waarde     |
     | burgerservicenummer (01.20)                        | 000000012  |
@@ -424,6 +419,11 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | aktenummer (81.20)                                 | 1AA0100    |
     | ingangsdatum geldigheid (85.10)                    | 20101201   |
     | datum ingang familierechtelijke betrekking (62.10) | 20101201   |
+    En de persoon heeft de volgende 'inschrijving' gegevens
+    | naam                                 | waarde                     |
+    | datum opschorting bijhouding (67.10) | 20181201                   |
+    | reden opschorting bijhouding (67.20) | E                          |
+    | indicatie geheim (70.10)             | 0                          |
     En de persoon is ingeschreven op een buitenlands adres met de volgende gegevens
     | naam                                   | waarde                  |
     | gemeente van inschrijving (09.10)      | 1999                    |
@@ -462,10 +462,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000012  |
@@ -506,6 +502,10 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20130801   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | voornamen (02.10)               | Helena     |
@@ -556,12 +556,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | beschrijving document (82.30)                      | .        |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
-    | naam                                 | waarde   |
-    | gemeente van inschrijving (09.10)    | 518      |
-    | land vanwaar ingeschreven (14.10)    | 6003     |
-    | datum vestiging in Nederland (14.20) | 20130101 |
-    | ingangsdatum geldigheid (85.10)      | 20130101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000073  |
@@ -575,6 +569,12 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20130801   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
+    | naam                                 | waarde   |
+    | gemeente van inschrijving (09.10)    | 518      |
+    | land vanwaar ingeschreven (14.10)    | 6003     |
+    | datum vestiging in Nederland (14.20) | 20130101 |
+    | ingangsdatum geldigheid (85.10)      | 20130101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
@@ -695,9 +695,19 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_042 - gehuwd, 1 minderjarig kind
     # Meerderjarig
@@ -705,19 +715,38 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_043 - minderjarig kind uit gehuwde ouders (moeder meerdere ontbonden huwelijken)
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000024        |
-    | 000000036       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_044 - ontbonden partnerschap, 1 minderjarig kind, emigratie
     # Meerderjarig
@@ -725,18 +754,22 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000048 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000048       | N          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_045 - minderjarige, emigratie
     # Route: 1 - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000061 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000061       | N          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam | waarde             |
+    | type | GezagNietTeBepalen |
 
   Scenario: Lg01_046 - actueel gehuwd en gescheiden, 1 meerderjarig kind, 1 minderjarig erkend kind
     # Meerderjarig
@@ -744,9 +777,19 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000073 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000097       | OG2        | 000000073        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000097                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
 
   Scenario: Lg01_047 - actueel gehuwd, 1 minderjarige kind met 2 vreemde nationaliteiten, 1 minderjarig erkend kind met Nederlandse nationaliteit door erkenning
     # Meerderjarig
@@ -754,23 +797,47 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000085 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000097       | OG2        | 000000085        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000097                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
 
   Scenario: Lg01_048 - minderjarige, erkend, vervolgens ouders gehuwd, 2 beëindigde vreemde nationaliteiten, Nederlandse nationaliteit vanaf geboorte
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000097 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000097       | OG2        | 000000085        |
-    | 000000097       | OG2        | 000000073        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000097 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000097                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
 
   Scenario: Lg01_049 - minderjarige, juridisch geen vader, 2 vreemde nationaliteiten
     # Route: 3 - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000103 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000103 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam | waarde             |
+    | type | GezagNietTeBepalen |

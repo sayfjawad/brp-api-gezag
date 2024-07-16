@@ -39,10 +39,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | beschrijving document (82.30)                      | PK         |
     | ingangsdatum geldigheid (85.10)                    | 0          |
     | datum ingang familierechtelijke betrekking (62.10) | 0          |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000024  |
@@ -56,6 +52,10 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20141201   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
@@ -188,10 +188,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000012  |
@@ -205,6 +201,10 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20141201   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
@@ -327,11 +327,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geslachtsaanduiding (04.10)     | M          |
     | aktenummer (81.20)              | 1AA0002    |
     | ingangsdatum geldigheid (85.10) | 20151201   |
-    En de persoon heeft de volgende 'inschrijving' gegevens
-    | naam                                 | waarde                     |
-    | datum opschorting bijhouding (67.10) | 20160101                   |
-    | reden opschorting bijhouding (67.20) | O                          |
-    | indicatie geheim (70.10)             | 0                          |
     En de persoon heeft een ouder '1' met de volgende gegevens
     | naam                                               | waarde     |
     | burgerservicenummer (01.20)                        | 000000012  |
@@ -354,6 +349,16 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | aktenummer (81.20)                                 | 1AA0002    |
     | ingangsdatum geldigheid (85.10)                    | 20151201   |
     | datum ingang familierechtelijke betrekking (62.10) | 20151201   |
+    En de persoon heeft de volgende 'overlijden' gegevens
+    | naam                            | waarde   |
+    | datum overlijden (08.10)        | 20160101 |
+    | aktenummer (81.20)              | 2AA0001  |
+    | ingangsdatum geldigheid (85.10) | 20160101 |
+    En de persoon heeft de volgende 'inschrijving' gegevens
+    | naam                                 | waarde                     |
+    | datum opschorting bijhouding (67.10) | 20160101                   |
+    | reden opschorting bijhouding (67.20) | O                          |
+    | indicatie geheim (70.10)             | 0                          |
     En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
@@ -656,12 +661,44 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000012        |
-    | 000000097       | OG1        | 000000012        |
-    | 000000061       | OG2        | 000000012        |
-    | 000000073       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000061                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000073                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000097                |
+    | ouder.burgerservicenummer        | 000000012                |
 
   Scenario: Lg01_002 - gehuwd, 4 minderjarige kinderen geboren vóór huwelijk, 2 minderjarige kinderen geboren ná huwelijk, 1 overleden kind, 1 meerderjarig kind, 4 kinderen onder gezag
     # Meerderjarig
@@ -669,82 +706,164 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000085       | OG1        | 000000024        |
-    | 000000036       | OG2        | 000000024        |
-    | 000000061       | OG2        | 000000024        |
-    | 000000073       | OG2        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000061                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000073                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000085                |
+    | ouder.burgerservicenummer        | 000000024                |
 
   Scenario: Lg01_003 - minderjarig, ouders gehuwd op moment geboorte, geen categorie 11
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000024        |
-    | 000000036       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_004 - overleden, ouders gehuwd op moment geboorte, geen categorie 11
     # Route: 2o - Wie heeft gezag?: overleden, gezag is niet van toepassing (NVT )
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000048 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_005 - minderjarig, erkend als ongeboren vrucht, geen categorie 11, ouders gehuwd ná de geboorte
     # Route: 49 - Wie heeft gezag?: ouders gezamenlijk ouderlijk gezag (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000061 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000061       | OG2        | 000000024        |
-    | 000000061       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000061                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_006 - minderjarig, ouder dan 12, erkend als ongeboren vrucht, geen categorie 11, ouders gehuwd ná de geboorte
     # Route: 49 - Wie heeft gezag?: ouders gezamenlijk ouderlijk gezag (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000073 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000073       | OG2        | 000000024        |
-    | 000000073       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000073                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_110 - ouders gehuwd, indicatie gezag "2"
     # Route: 13 - Wie heeft gezag?: vader (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000085 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000085       | OG1        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000085                |
+    | ouder.burgerservicenummer        | 000000024                |
 
   Scenario: Lg01_111 - erkend, ouders later gehuwd, indicatie gezag "1" geldig voor huwelijksdatum
     # Route: 11 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000097 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000097       | OG1        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000097 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000097                |
+    | ouder.burgerservicenummer        | 000000012                |
 
   Scenario: Lg01_112 - erkend, ouders later gehuwd, indicatie gezag "1D" geldig na huwelijksdatum
     # Route: 4 - Wie heeft gezag?: niet te bepalen (V)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000103 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000103       | V          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000103 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde    |
+    | type                             | Voogdij   |
+    | minderjarige.burgerservicenummer | 000000103 |
+    En heeft 'gezag' geen derden
 
   Scenario: Lg01_113 - erkend, ouders later gehuwd, indicatie gezag "1D" geldig voor huwelijksdatum
     # Route: 4 - Wie heeft gezag?: niet te bepalen (V)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000115 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000115       | V          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000115 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde    |
+    | type                             | Voogdij   |
+    | minderjarige.burgerservicenummer | 000000115 |
+    En heeft 'gezag' geen derden

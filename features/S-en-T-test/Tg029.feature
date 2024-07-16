@@ -41,10 +41,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000024  |
@@ -72,6 +68,10 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
     | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -144,11 +144,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | geslachtsaanduiding (04.10)     | V          |
     | beschrijving document (82.30)   | PKA        |
     | ingangsdatum geldigheid (85.10) | 0          |
-    En de persoon heeft de volgende 'inschrijving' gegevens
-    | naam                                 | waarde                     |
-    | datum opschorting bijhouding (67.10) | 20221220                   |
-    | reden opschorting bijhouding (67.20) | O                          |
-    | indicatie geheim (70.10)             | 0                          |
     En de persoon heeft een ouder '1' met de volgende gegevens
     | naam                                               | waarde    |
     | voornamen (02.10)                                  | Koosje    |
@@ -169,10 +164,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | beschrijving document (82.30)                      | PK        |
     | ingangsdatum geldigheid (85.10)                    | 0         |
     | datum ingang familierechtelijke betrekking (62.10) | 0         |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000012  |
@@ -187,6 +178,20 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20180920   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon heeft de volgende 'overlijden' gegevens
+    | naam                            | waarde   |
+    | datum overlijden (08.10)        | 20221220 |
+    | aktenummer (81.20)              | 2AA0100  |
+    | ingangsdatum geldigheid (85.10) | 20221220 |
+    En de persoon heeft de volgende 'inschrijving' gegevens
+    | naam                                 | waarde                     |
+    | datum opschorting bijhouding (67.10) | 20221220                   |
+    | reden opschorting bijhouding (67.20) | O                          |
+    | indicatie geheim (70.10)             | 0                          |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     
     # Lg01_158 - alleen moeder, moeder wel gehuwd maar geen anonieme donor, na overlijden huwelijkspartner moeder erkend in 2023, akteaanduiding C in actuele categorie bij persoon en ouder2
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
@@ -403,9 +408,29 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000061                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
 
   Scenario: Lg01_157 - vrouw, huwelijk met vrouw, echtgenote krijgt 2 kinderen (geen anonieme donor), overleden
     # Meerderjarig
@@ -413,17 +438,29 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_158 - alleen moeder, moeder wel gehuwd maar geen anonieme donor, na overlijden huwelijkspartner moeder erkend in 2023, akteaanduiding C in actuele categorie bij persoon en ouder2
     # Route: 54n - Wie heeft gezag?: moeder en erkenner (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000012        |
-    | 000000036       | OG2        | 000000048        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
 
   Scenario: Lg01_159 - erkenner van 2 kinderen waarvan de moeder gehuwd was met een vrouw die niet de meemoeder is van de kinderen (geen anonieme donor). Huwelijkspartner moeder overleden
     # Meerderjarig
@@ -431,15 +468,45 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000048 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000048        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000061                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
 
   Scenario: Lg01_160 - alleen moeder, moeder wel gehuwd maar geen anonieme donor, na overlijden huwelijkspartner moeder erkend in 2023, akteaanduiding C in historische categorie bij persoon en ouder2
     # Route: 54n - Wie heeft gezag?: moeder en erkenner (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000061 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000061       | N          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000061                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |

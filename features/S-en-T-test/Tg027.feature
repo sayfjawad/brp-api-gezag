@@ -546,10 +546,10 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000048       | OG2        | 000000012        |
-    | 000000085       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_146 - ongehuwde ouders met 6 kinderen geboren voor en na 01-01-2023, 5 kinderen erkend, 2 kinderen vaststelling vaderschap
     # Meerderjarig
@@ -557,77 +557,159 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG1        | 000000024        |
-    | 000000048       | OG2        | 000000024        |
-    | 000000061       | OG1        | 000000024        |
-    | 000000103       | OG1        | 000000024        |
-    | 000000073       | OG1        | 000000024        |
-    | 000000085       | OG2        | 000000024        |
-    | 000000097       | OG1        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                |
+    | ouder.burgerservicenummer        | 000000024                |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000048                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 999770501 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000061                |
+    | ouder.burgerservicenummer        | 000000024                |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000073                |
+    | ouder.burgerservicenummer        | 000000024                |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000085                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 999770501 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000097                |
+    | ouder.burgerservicenummer        | 000000024                |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000103                |
+    | ouder.burgerservicenummer        | 000000024                |
 
   Scenario: Lg01_147 - kind geboren uit ongehuwde ouders na 01-01- 2023, erkenning ongeboren vrucht,  indicatie gezag
     # Route: 11 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG1        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                |
+    | ouder.burgerservicenummer        | 000000024                |
 
   Scenario: Lg01_148 - kind geboren uit ongehuwde ouders na 01-01- 2023, erkenning ongeboren vrucht,  geen indicatie gezag
     # Route: 54n - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000048 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000048       | OG2        | 000000012        |
-    | 000000048       | OG2        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000048                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 999770501 |
 
   Scenario: Lg01_149 - kind geboren uit ongehuwde ouders voor 01-01-2023, vaststelling ouderschap
     # Route: 54v1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000061 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000061       | OG1        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000061                |
+    | ouder.burgerservicenummer        | 000000024                |
 
   Scenario: Lg01_150 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning na 01-01-2023, aantekening gezag
     # Route: 11 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000073 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000073       | OG1        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000073                |
+    | ouder.burgerservicenummer        | 000000024                |
 
   Scenario: Lg01_151 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning na 01-01-2023, geen aantekening gezag
     # Route: 54n - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000085 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000085       | OG2        | 000000012        |
-    | 000000085       | OG2        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000085                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 999770501 |
 
   Scenario: Lg01_152 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning voor 01-01-2023, geen aantekening gezag
     # Route: 54v1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000097 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000097       | OG1        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000097 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000097                |
+    | ouder.burgerservicenummer        | 000000024                |
 
   Scenario: Lg01_215 - kind geboren uit ongehuwde ouders voor 01-01-2023, vaststelling ouderschap, moeder categorie 02
     # Route: 54v2 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000103 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000103       | OG1        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000103 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                   |
+    | type                             | EenhoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000103                |
+    | ouder.burgerservicenummer        | 000000024                |

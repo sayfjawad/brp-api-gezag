@@ -19,11 +19,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | geslachtsaanduiding (04.10)     | V          |
     | beschrijving document (82.30)   | PKA        |
     | ingangsdatum geldigheid (85.10) | 0          |
-    En de persoon heeft de volgende 'inschrijving' gegevens
-    | naam                                 | waarde                     |
-    | datum opschorting bijhouding (67.10) | 20150901                   |
-    | reden opschorting bijhouding (67.20) | O                          |
-    | indicatie geheim (70.10)             | 0                          |
     En de persoon heeft een ouder '1' met de volgende gegevens
     | naam                                               | waarde   |
     | voornamen (02.10)                                  | Noor     |
@@ -44,10 +39,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde           |
     | burgerservicenummer (01.20)                                         | 000000024        |
@@ -61,6 +52,20 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20120901         |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518             |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030             |
+    En de persoon heeft de volgende 'overlijden' gegevens
+    | naam                            | waarde   |
+    | datum overlijden (08.10)        | 20150901 |
+    | aktenummer (81.20)              | 2AA0100  |
+    | ingangsdatum geldigheid (85.10) | 20150901 |
+    En de persoon heeft de volgende 'inschrijving' gegevens
+    | naam                                 | waarde                     |
+    | datum opschorting bijhouding (67.10) | 20150901                   |
+    | reden opschorting bijhouding (67.20) | O                          |
+    | indicatie geheim (70.10)             | 0                          |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -102,10 +107,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | beschrijving document (82.30)                      | PK               |
     | ingangsdatum geldigheid (85.10)                    | 0                |
     | datum ingang familierechtelijke betrekking (62.10) | 0                |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000012  |
@@ -133,6 +134,10 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
     | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
@@ -205,10 +210,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000061  |
@@ -222,6 +223,10 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20140901   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
@@ -263,10 +268,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000048  |
@@ -280,6 +281,10 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20140901   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     
     # Lg01_083 - geboren uit huwelijk 2 vrouwen, als ongeboren vrucht erkend door vader (huwelijkspartner moeder is daardoor geen ouder), geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
@@ -326,7 +331,10 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_079 - geregistreerd partnerschap, partner heeft minderjarig, niet erkend kind geboren vóór 01-04-2014, partner overleden
     # Meerderjarig
@@ -334,16 +342,32 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde    |
+    | type                             | Voogdij   |
+    | minderjarige.burgerservicenummer | 000000036 |
+    En heeft 'gezag' een 'derde' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_080 - moeder geregistreerd partnerschap, niet erkend, geen categorie 11, moeder overleden geregistreerd partner van moeder automatisch gezag
     # Route: 43o1 - Wie heeft gezag?: geregistreerd partner van overleden moeder gezag (V)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | V          | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde    |
+    | type                             | Voogdij   |
+    | minderjarige.burgerservicenummer | 000000036 |
+    En heeft 'gezag' een 'derde' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_081 - huwelijk personen gelijk geslacht (V), 1 minderjarig kind erkend als ongeboren vrucht door vader
     # Meerderjarig
@@ -351,7 +375,10 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000048 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_082 - huwelijk personen gelijk geslacht (V), echtgenote 1 minderjarig kind erkend als ongeboren vrucht door vader
     # Meerderjarig
@@ -359,13 +386,19 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000061 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_083 - geboren uit huwelijk 2 vrouwen, als ongeboren vrucht erkend door vader (huwelijkspartner moeder is daardoor geen ouder), geen categorie 11
     # Route: 54 - Wie heeft gezag?: moeder, maar valt niet te achterhalen (N)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000073 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000073       | N          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam | waarde             |
+    | type | GezagNietTeBepalen |

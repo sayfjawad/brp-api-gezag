@@ -31,12 +31,6 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     | beschrijving document (82.30)                      | voe      |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                                 | waarde   |
-    | gemeente van inschrijving (09.10)    | 518      |
-    | land vanwaar ingeschreven (14.10)    | 7009     |
-    | datum vestiging in Nederland (14.20) | 20131201 |
-    | ingangsdatum geldigheid (85.10)      | 20131201 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000024  |
@@ -50,6 +44,12 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20100000   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | Aleppo     |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 7009       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                                 | waarde   |
+    | gemeente van inschrijving (09.10)    | 518      |
+    | land vanwaar ingeschreven (14.10)    | 7009     |
+    | datum vestiging in Nederland (14.20) | 20131201 |
+    | ingangsdatum geldigheid (85.10)      | 20131201 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -83,12 +83,6 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     | beschrijving document (82.30)                      | voe      |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                                 | waarde   |
-    | gemeente van inschrijving (09.10)    | 518      |
-    | land vanwaar ingeschreven (14.10)    | 7009     |
-    | datum vestiging in Nederland (14.20) | 20131201 |
-    | ingangsdatum geldigheid (85.10)      | 20131201 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000012  |
@@ -102,6 +96,12 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20100000   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | Aleppo     |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 7009       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                                 | waarde   |
+    | gemeente van inschrijving (09.10)    | 518      |
+    | land vanwaar ingeschreven (14.10)    | 7009     |
+    | datum vestiging in Nederland (14.20) | 20131201 |
+    | ingangsdatum geldigheid (85.10)      | 20131201 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -157,9 +157,19 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_123 - alleen huwelijksjaar bekend
     # Meerderjarig
@@ -167,16 +177,35 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_124 - ouders geboren en gehuwd in buitenland, alleen jaar bekend, kind in Nederland geboren
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000024        |
-    | 000000036       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |

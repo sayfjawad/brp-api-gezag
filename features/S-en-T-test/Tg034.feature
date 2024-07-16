@@ -9,7 +9,7 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     | 518                  | Turfmarkt          | 75                 | 0518200000583568                           |
 
     # Lg01_181 - vrouw gehuwd met vrouw, 1 kind (bekende donor) huwelijkspartner geen meemoeder kind, onder curatele
-    Gegeven de persoon met burgerservicenummer 'None' heeft de volgende gegevens
+    Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
     | voornamen (02.10)               | Ria        |
     | geslachtsnaam (02.40)           | Ruijgrok   |
@@ -43,10 +43,6 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AA0201  |
     | ingangsdatum geldigheid (85.10) | 19981201 |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000024  |
@@ -60,11 +56,10 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20170101   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
-    En de persoon heeft de volgende 'gezagsverhouding' gegevens
-    | naam                               | waarde                        |
-    | indicatie curateleregister (33.10) | 1                             |
-    | beschrijving document (82.30)      | kennisgeving curateleregister |
-    | ingangsdatum geldigheid (85.10)    | 20200202                      |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
@@ -83,6 +78,11 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0100    |
     | ingangsdatum geldigheid (85.10) | 20181201   |
+    En de persoon heeft de volgende 'gezagsverhouding' gegevens
+    | naam                               | waarde                        |
+    | indicatie curateleregister (33.10) | 1                             |
+    | beschrijving document (82.30)      | kennisgeving curateleregister |
+    | ingangsdatum geldigheid (85.10)    | 20200202                      |
     
     # Lg01_182 - huwelijkspartner van vrouw geen meemoeder van kind, eenhoofdig gezag (moeder onder curatele)
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -109,10 +109,6 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     | naam                            | waarde   |
     | beschrijving document (82.30)   | PK       |
     | ingangsdatum geldigheid (85.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000012  |
@@ -126,6 +122,10 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20170101   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     
     # Lg01_183 - 1 ouder, moeder gehuwd, huwelijkspartner moeder alleen gezag (moeder onder curatele)
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
@@ -206,7 +206,10 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_182 - huwelijkspartner van vrouw geen meemoeder van kind, eenhoofdig gezag (moeder onder curatele)
     # Meerderjarig
@@ -214,22 +217,41 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde    |
+    | type                             | Voogdij   |
+    | minderjarige.burgerservicenummer | 000000036 |
+    En heeft 'gezag' een 'derde' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_183 - 1 ouder, moeder gehuwd, huwelijkspartner moeder alleen gezag (moeder onder curatele)
     # Route: 43o1 - Wie heeft gezag?: meemoeder (V)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | V          | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde    |
+    | type                             | Voogdij   |
+    | minderjarige.burgerservicenummer | 000000036 |
+    En heeft 'gezag' een 'derde' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_184 - 1 ouder, moeder gehuwd, huwelijkspartner moeder geen gezag (moeder onder curatele, indicatie gezag 1
     # Route: 12 - Wie heeft gezag?: niet te bepalen (G )
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000048 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000048       | G          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam | waarde             |
+    | type | TijdelijkGeenGezag |

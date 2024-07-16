@@ -48,12 +48,6 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | datum ingang onderzoek (83.20)                     | 20220825 |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | aanduiding in onderzoek (83.10)   | 89999    |
-    | datum ingang onderzoek (83.20)    | 20220825 |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000024  |
@@ -69,6 +63,12 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20051203   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | aanduiding in onderzoek (83.10)   | 89999    |
+    | datum ingang onderzoek (83.20)    | 20220825 |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -132,12 +132,6 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | aanduiding in onderzoek (83.10) | 30000    |
     | datum ingang onderzoek (83.20)  | 20220825 |
     | ingangsdatum geldigheid (85.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                              | waarde   |
-    | gemeente van inschrijving (09.10) | 518      |
-    | aanduiding in onderzoek (83.10)   | 80000    |
-    | datum ingang onderzoek (83.20)    | 20220825 |
-    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000012  |
@@ -154,6 +148,12 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 20151203   |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518       |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030       |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                              | waarde   |
+    | gemeente van inschrijving (09.10) | 518      |
+    | aanduiding in onderzoek (83.10)   | 80000    |
+    | datum ingang onderzoek (83.20)    | 20220825 |
+    | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -310,11 +310,6 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | aanduiding in onderzoek (83.10) | 18120      |
     | datum ingang onderzoek (83.20)  | 20220825   |
     | ingangsdatum geldigheid (85.10) | 20211012   |
-    En de persoon heeft de volgende 'inschrijving' gegevens
-    | naam                                 | waarde                     |
-    | datum opschorting bijhouding (67.10) | 20220201                   |
-    | reden opschorting bijhouding (67.20) | O                          |
-    | indicatie geheim (70.10)             | 0                          |
     En de persoon heeft een ouder '1' met de volgende gegevens
     | naam                                               | waarde     |
     | burgerservicenummer (01.20)                        | 000000012  |
@@ -342,6 +337,18 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | datum ingang onderzoek (83.20)                     | 20220825   |
     | ingangsdatum geldigheid (85.10)                    | 20211012   |
     | datum ingang familierechtelijke betrekking (62.10) | 20211012   |
+    En de persoon heeft de volgende 'overlijden' gegevens
+    | naam                            | waarde                  |
+    | datum overlijden (08.10)        | 20220201                |
+    | beschrijving document (82.30)   | kennisgeving ziekenhuis |
+    | aanduiding in onderzoek (83.10) | 60000                   |
+    | datum ingang onderzoek (83.20)  | 20220825                |
+    | ingangsdatum geldigheid (85.10) | 20220201                |
+    En de persoon heeft de volgende 'inschrijving' gegevens
+    | naam                                 | waarde                     |
+    | datum opschorting bijhouding (67.10) | 20220201                   |
+    | reden opschorting bijhouding (67.20) | O                          |
+    | indicatie geheim (70.10)             | 0                          |
     En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
@@ -354,9 +361,10 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000012       | N          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_135 - gehuwd, kinderen, in onderzoek 026210, 030000, 050200, 080000, 090330
     # Meerderjarig
@@ -364,29 +372,41 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_136 - kind geboren tijdens huwelijk, in onderzoek 010310, 026210, 030210, 080920, 613210
     # Route: 49i - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | N          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam | waarde             |
+    | type | GezagNietTeBepalen |
 
   Scenario: Lg01_137 - kind geboren tijdens huwelijk in onderzoek 010330 (voorvoegsel ontbreekt), 040510, 081420, 113210
     # Route: 3ai - Wie heeft gezag?: niet te bepalen (N )
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000048 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000048       | N          |                  |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam | waarde             |
+    | type | GezagNietTeBepalen |
 
   Scenario: Lg01_138 - kind geboren tijdens huwelijk, overleden, gezag is niet van toepassing
     # Route: 2o - Wie heeft gezag?: overleden, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000061 |
-    Dan heeft de response 0 gezagsrelaties
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
+    En heeft de persoon geen gezag

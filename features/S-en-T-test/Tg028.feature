@@ -32,12 +32,6 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                                 | waarde   |
-    | gemeente van inschrijving (09.10)    | 518      |
-    | land vanwaar ingeschreven (14.10)    | 7054     |
-    | datum vestiging in Nederland (14.20) | 19920412 |
-    | ingangsdatum geldigheid (85.10)      | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde                |
     | burgerservicenummer (01.20)                                         | 000000024             |
@@ -50,6 +44,12 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 19900000              |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | Mogadishu             |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6013                  |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                                 | waarde   |
+    | gemeente van inschrijving (09.10)    | 518      |
+    | land vanwaar ingeschreven (14.10)    | 7054     |
+    | datum vestiging in Nederland (14.20) | 19920412 |
+    | ingangsdatum geldigheid (85.10)      | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde                |
     | burgerservicenummer (01.20)     | 000000036             |
@@ -83,12 +83,6 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     | beschrijving document (82.30)                      | PK       |
     | ingangsdatum geldigheid (85.10)                    | 0        |
     | datum ingang familierechtelijke betrekking (62.10) | 0        |
-    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-    | naam                                 | waarde   |
-    | gemeente van inschrijving (09.10)    | 518      |
-    | land vanwaar ingeschreven (14.10)    | 7054     |
-    | datum vestiging in Nederland (14.20) | 19920412 |
-    | ingangsdatum geldigheid (85.10)      | 20111101 |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde                 |
     | burgerservicenummer (01.20)                                         | 000000012              |
@@ -101,6 +95,12 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | 19900000               |
     | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | Mogadishu              |
     | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6013                   |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+    | naam                                 | waarde   |
+    | gemeente van inschrijving (09.10)    | 518      |
+    | land vanwaar ingeschreven (14.10)    | 7054     |
+    | datum vestiging in Nederland (14.20) | 19920412 |
+    | ingangsdatum geldigheid (85.10)      | 20111101 |
     En de persoon heeft (nog) een 'kind' met de volgende gegevens
     | naam                            | waarde                |
     | burgerservicenummer (01.20)     | 000000036             |
@@ -152,9 +152,19 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000012 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000012        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
 
   Scenario: Lg01_154 - onvolledige geboortedatum, namenreeks, gehuwd, 1 minderjarig kind met namenreeks
     # Meerderjarig
@@ -162,16 +172,35 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000024 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
 
   Scenario: Lg01_155 - in Nederland geboren kind met namenreeks, ouders onvolledige geboortedatum
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
     | naam | waarde    |
     | bsn  | 000000036 |
-    Dan heeft de response de volgende gezagsrelaties
-    | bsnMinderjarige | soortGezag | bsnMeerderjarige |
-    | 000000036       | OG2        | 000000012        |
-    | 000000036       | OG2        | 000000024        |
+    Dan heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
