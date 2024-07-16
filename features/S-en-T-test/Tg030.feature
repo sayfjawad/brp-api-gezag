@@ -7,7 +7,7 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 67                 | 0518200000583564                           |
-
+    
     # Lg01_161 - moeder van 2 erkende kinderen
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -320,8 +320,9 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_162 - voogd van 2 minderjarige kinderen (1D), 1 kind door hem later erkend
@@ -331,8 +332,9 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_163 - erkenner van minderjarig kind wat eerder onder gezag (1D) is geplaatst
@@ -342,8 +344,9 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000036                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_164 - minderjarig kind onder gezag 1D, erkend
@@ -352,8 +355,9 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000048 |
+    | naam                | waarde                                                                                                   |
+    | burgerservicenummer | 000000048                                                                                                |
+    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder1 en een derde - soort gezag is V - er is sprake van voogdij |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |
@@ -366,8 +370,9 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000061 |
+    | naam                | waarde                                                                                                   |
+    | burgerservicenummer | 000000061                                                                                                |
+    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder1 en een derde - soort gezag is V - er is sprake van voogdij |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |

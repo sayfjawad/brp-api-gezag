@@ -7,7 +7,7 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 9                  | 0518200000583532                           |
-
+    
     # Lg01_024 - gehuwd, echtgenoot overleden, 2 minderjarige kinderen
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -256,8 +256,9 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -271,8 +272,9 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_026 - minderjarig kind, geboren tijdens huwelijk ouders, vader (Ouder2) overleden, onder voogdij D
@@ -281,8 +283,9 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                         |
+    | burgerservicenummer | 000000036                                                                                      |
+    | toelichting         | Ingezeten - minderjarig - categorie 11 een derde - soort gezag is V - er is sprake van voogdij |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |
@@ -295,8 +298,9 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000048 |
+    | naam                | waarde                                                                                                                                                                                                                    |
+    | burgerservicenummer | 000000048                                                                                                                                                                                                                 |
+    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - huwelijk/partnerschap ouders nietig verklaard dan wel ontbonden door echtscheiding of ontbinding of overlijden - ouder1 onbevoegd - soort gezag is OG1 - ouder2 heeft gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |

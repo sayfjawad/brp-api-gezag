@@ -7,7 +7,7 @@ Functionaliteit: Tg015 - Oei
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 29                 | 0518200000583545                           |
-
+    
     # Lg01_085 - ongehuwde vrouw, overleden, één minderjarig niet erkend kind
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -96,8 +96,9 @@ Functionaliteit: Tg015 - Oei
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_086 - minderjarig kind, niet erkend, moeder overleden
@@ -106,8 +107,9 @@ Functionaliteit: Tg015 - Oei
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                                                                                   |
+    | burgerservicenummer | 000000024                                                                                                                                |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - ouder onbevoegd - soort gezag is G - tijdelijk geen gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |

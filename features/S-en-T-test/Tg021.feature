@@ -7,7 +7,7 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 45                 | 0518200000583553                           |
-
+    
     # Lg01_119 - geregistreerd partnerschap omgezet in huwelijk
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -186,8 +186,9 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -204,8 +205,9 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -221,8 +223,9 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                                                                 |
+    | burgerservicenummer | 000000036                                                                                                                                              |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - gehuwd/partnerschap - ouder en partner zijn bevoegd tot gezag - soort gezag is GG - ouder en partner gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |

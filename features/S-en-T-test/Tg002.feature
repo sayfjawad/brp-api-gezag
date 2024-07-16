@@ -7,7 +7,7 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 1                  | 0518200000583526                           |
-
+    
     # Lg01_007 - minderjarige asielzoeker, puntouders (onbekende ouders), geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -98,8 +98,9 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                                                           |
+    | burgerservicenummer | 000000012                                                                                                        |
+    | toelichting         | Ingezeten - minderjarig - buitenland geboren; geen adoptie NL akte - soort gezag is N - gezag is niet te bepalen |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | GezagNietTeBepalen |
@@ -110,8 +111,9 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                                               |
+    | burgerservicenummer | 000000024                                                                                            |
+    | toelichting         | Ingezeten - minderjarig - heeft één of meer puntouders - soort gezag is N - gezag is niet te bepalen |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | GezagNietTeBepalen |
@@ -122,8 +124,9 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                           |
+    | burgerservicenummer | 000000036                                                                                                        |
+    | toelichting         | Ingezeten - minderjarig - buitenland geboren; geen adoptie NL akte - soort gezag is N - gezag is niet te bepalen |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | GezagNietTeBepalen |

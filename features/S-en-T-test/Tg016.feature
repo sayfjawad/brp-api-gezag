@@ -13,7 +13,7 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     Gegeven adres 'A3' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 35                 | 0518200000583548                           |
-
+    
     # Lg01_087 - geregistreerd partnerschap, overleden
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -571,8 +571,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_088 - geregistreerd partnerschap, overleden
@@ -582,8 +583,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_089 - niet erkend minderjarig kind, moeder geregistreerd partnerschap voor 01-04-2014, zowel moeder als geregistreerd partner moeder overleden
@@ -592,8 +594,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                                                       |
+    | burgerservicenummer | 000000036                                                                                                                                    |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder gehuwd/partnerschap - ouder en partner onbevoegd - soort gezag is G - tijdelijk geen gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |
@@ -604,8 +607,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000048 |
+    | naam                | waarde                                                                                                   |
+    | burgerservicenummer | 000000048                                                                                                |
+    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder1 en een derde - soort gezag is V - er is sprake van voogdij |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |
@@ -619,8 +623,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000061 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000061                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -634,8 +639,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000073 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000073                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_093 - moeder gehuwd met vrouw vóór 01-04-2014, partner moeder geen ouder maar wel gezamenlijk gezag, partner moeder overleden
@@ -644,8 +650,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000085 |
+    | naam                | waarde                                                                                                                                                  |
+    | burgerservicenummer | 000000085                                                                                                                                               |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - partner is onbevoegd tot gezag - soort gezag is OG1 - ouder1 heeft gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -659,8 +666,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000097 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000097                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_095 - gehuwd, overleden
@@ -670,8 +678,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000103 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000103 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000103                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_096 - minderjarig kind van gehuwde ouders, beide ouders overleden, geen gezagsverhouding in cat 11
@@ -680,8 +689,9 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam | waarde    |
     | bsn  | 000000115 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000115 |
+    | naam                | waarde                                                                                                                                                                                                                          |
+    | burgerservicenummer | 000000115                                                                                                                                                                                                                       |
+    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - huwelijk/partnerschap ouders nietig verklaard dan wel ontbonden door echtscheiding of ontbinding of overlijden - beide ouders onbevoegd - soort gezag is G - tijdelijk geen gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |

@@ -7,7 +7,7 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 27                 | 0518200000583544                           |
-
+    
     # Lg01_078 - geregistreerd partnerschap en minderjarig kind geboren vóór 01-04-2014, overleden
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -332,8 +332,9 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_079 - geregistreerd partnerschap, partner heeft minderjarig, niet erkend kind geboren vóór 01-04-2014, partner overleden
@@ -343,8 +344,9 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |
@@ -359,8 +361,9 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                                                             |
+    | burgerservicenummer | 000000036                                                                                                                                          |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - ouder onbevoegd - soort gezag is V - de partner van ouder1 is voogd |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |
@@ -376,8 +379,9 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000048 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000048                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_082 - huwelijk personen gelijk geslacht (V), echtgenote 1 minderjarig kind erkend als ongeboren vrucht door vader
@@ -387,8 +391,9 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000061 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000061                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_083 - geboren uit huwelijk 2 vrouwen, als ongeboren vrucht erkend door vader (huwelijkspartner moeder is daardoor geen ouder), geen categorie 11
@@ -397,8 +402,9 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | naam | waarde    |
     | bsn  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000073 |
+    | naam                | waarde                                                                                                                                                                                                                                                                                           |
+    | burgerservicenummer | 000000073                                                                                                                                                                                                                                                                                        |
+    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning voor 20230101 - er kan niet bepaald worden welke ouder gezag heeft, beiden bevoegd, beide familiaire betrekking ingangsdatum gelijk geboortedatum kind - soort gezag is N - gezag is niet te bepalen |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | GezagNietTeBepalen |

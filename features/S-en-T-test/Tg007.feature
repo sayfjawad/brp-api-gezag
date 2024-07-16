@@ -7,7 +7,7 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 11                 | 0518200000583533                           |
-
+    
     # Lg01_028 - gehuwd, 1 minderjarig kind erkend vóór huwelijk, 1 minderjarig kind geboren ná huwelijk, echtgenoot onder curatele
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -231,8 +231,9 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -251,8 +252,9 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_030 - minderjarige kind, geboren tijdens huwelijk ouders, vader (Ouder2) onder curatele
@@ -261,8 +263,9 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                                            |
+    | burgerservicenummer | 000000036                                                                                                                         |
+    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - ouder2 is onbevoegd - soort gezag is OG1 - ouder1 heeft gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -275,8 +278,9 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000048 |
+    | naam                | waarde                                                                                                                            |
+    | burgerservicenummer | 000000048                                                                                                                         |
+    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - ouder2 is onbevoegd - soort gezag is OG1 - ouder1 heeft gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |

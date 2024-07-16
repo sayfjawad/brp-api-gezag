@@ -7,7 +7,7 @@ Functionaliteit: Tg018 - Vondeling - Kind zonder ouders
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 1                  | 0518200000583526                           |
-
+    
     # Lg01_100 - vondeling, juridisch geen ouders (is fout in BRP opgenomen)
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -39,8 +39,9 @@ Functionaliteit: Tg018 - Vondeling - Kind zonder ouders
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                                |
+    | burgerservicenummer | 000000012                                                                             |
+    | toelichting         | Ingezeten - minderjarig - heeft geen ouders - soort gezag is G - tijdelijk geen gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |

@@ -7,7 +7,7 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 75                 | 0518200000583568                           |
-
+    
     # Lg01_200 - gehuwd, kind geboren tijdens huwelijk, huwelijk nadien nietig (gecorrigeerd), kind eveneens gecorrigeerd
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -142,8 +142,9 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_201 - gehuwd, kind geboren tijdens huwelijk, huwelijk nadien nietig (gecorrigeerd)
@@ -153,8 +154,9 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -167,8 +169,9 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                                 |
+    | burgerservicenummer | 000000036                                                                                                              |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |

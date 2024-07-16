@@ -7,7 +7,7 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 43                 | 0518200000583552                           |
-
+    
     # Lg01_114 - geregistreerd partnerschap vóór 01-04-2014, 2 minderjarige kinderen vóór 01-04-2014 en 1 minderjarig kind daarna
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -250,8 +250,9 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -286,8 +287,9 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -321,8 +323,9 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                                                                 |
+    | burgerservicenummer | 000000036                                                                                                                                              |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - gehuwd/partnerschap - ouder en partner zijn bevoegd tot gezag - soort gezag is GG - ouder en partner gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -338,8 +341,9 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000048 |
+    | naam                | waarde                                                                                                                                                 |
+    | burgerservicenummer | 000000048                                                                                                                                              |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - gehuwd/partnerschap - ouder en partner zijn bevoegd tot gezag - soort gezag is GG - ouder en partner gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -355,8 +359,9 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000061 |
+    | naam                | waarde                                                                                                                             |
+    | burgerservicenummer | 000000061                                                                                                                          |
+    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |

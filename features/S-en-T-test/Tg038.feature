@@ -7,7 +7,7 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 77                 | 0518200000583569                           |
-
+    
     # Lg01_203 - ongehuwd, 2 kinderen (1 geboren en erkend voor 01-01-2023 en 1 geboren en erkend na 01-01-2023
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -269,8 +269,9 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_204 - ongehuwd, 2 kinderen (1 g erkend voor 01-01-2023 en 1 erkend na 01-01-2023
@@ -280,8 +281,9 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -299,8 +301,9 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                               |
+    | burgerservicenummer | 000000036                                                                                                            |
+    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder1 en ouder2 - ouder1 onbevoegd - soort gezag is OG1 - ouder2 heeft gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -313,8 +316,9 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000048 |
+    | naam                | waarde                                                                                                                                                               |
+    | burgerservicenummer | 000000048                                                                                                                                                            |
+    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning na 20230101 - ouder1 onbevoegd - soort gezag is OG1 - ouder2 heeft gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |

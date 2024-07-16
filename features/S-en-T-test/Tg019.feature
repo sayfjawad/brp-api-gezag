@@ -7,7 +7,7 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 39                 | 0518200000583550                           |
-
+    
     # Lg01_101 - gehuwd, 3 kinderen, overleden op zelfde dag als partner (als eerste overleden, dus geen huwelijksontbinding)
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -370,8 +370,9 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_102 - gehuwd, 3 kinderen, overleden op zelfde dag als partner (partner als eerste overleden dus huwelijksontbinding)
@@ -381,8 +382,9 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_103 - gehuwde ouders beiden overleden, geen categorie 11
@@ -391,8 +393,9 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                                                                                                                                          |
+    | burgerservicenummer | 000000036                                                                                                                                                                                                                       |
+    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - huwelijk/partnerschap ouders nietig verklaard dan wel ontbonden door echtscheiding of ontbinding of overlijden - beide ouders onbevoegd - soort gezag is G - tijdelijk geen gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |
@@ -403,8 +406,9 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000048 |
+    | naam                | waarde                                                                                                           |
+    | burgerservicenummer | 000000048                                                                                                        |
+    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder1 - beide ouders onbevoegd - soort gezag is G - tijdelijk geen gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |
@@ -415,8 +419,9 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000061 |
+    | naam                | waarde                                                                                         |
+    | burgerservicenummer | 000000061                                                                                      |
+    | toelichting         | Ingezeten - minderjarig - categorie 11 een derde - soort gezag is V - er is sprake van voogdij |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |

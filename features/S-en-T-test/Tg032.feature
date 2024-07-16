@@ -7,7 +7,7 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 71                 | 0518200000583566                           |
-
+    
     # Lg01_173 - minderjarige moeder, gezag niet te bepalen BSN moeder ontbreekt
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde           |
@@ -130,8 +130,9 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                                                                                                               |
+    | burgerservicenummer | 000000012                                                                                                                                                            |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - exceptie - bij bepaling huwelijk/partnerschap ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | GezagNietTeBepalen |
@@ -142,8 +143,9 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                                                                                   |
+    | burgerservicenummer | 000000024                                                                                                                                |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - ouder onbevoegd - soort gezag is G - tijdelijk geen gezag |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |
@@ -154,8 +156,9 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                   |
+    | burgerservicenummer | 000000036                                                                                                |
+    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder1 en een derde - soort gezag is V - er is sprake van voogdij |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |

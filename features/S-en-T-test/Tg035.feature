@@ -7,7 +7,7 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
     | 518                  | Turfmarkt          | 77                 | 0518200000583569                           |
-
+    
     # Lg01_185 - 1 ouder, moeder gehuwd,moeder alleen gezag, moeder overleden
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
@@ -161,8 +161,9 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000012 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000012                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_186 - huwelijkspartner van vrouw, van rechtswege gezag
@@ -172,8 +173,9 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | naam                | waarde                                                                       |
+    | burgerservicenummer | 000000024                                                                    |
+    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |
@@ -188,8 +190,9 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000036 |
+    | naam                | waarde                                                                                                                                             |
+    | burgerservicenummer | 000000036                                                                                                                                          |
+    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - ouder onbevoegd - soort gezag is V - de partner van ouder1 is voogd |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |
