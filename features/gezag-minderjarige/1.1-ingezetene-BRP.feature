@@ -61,12 +61,12 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam | waarde    |
       | bsn  | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde                                                       |
-      | burgerservicenummer | 000000012                                                    |
-      | toelichting         | Niet ingezeten - soort gezag is N - gezag is niet te bepalen |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | GezagNietTeBepalen |
+      | naam        | waarde                                                       |
+      | type        | GezagNietTeBepalen                                           |
+      | toelichting | Niet ingezeten - soort gezag is N - gezag is niet te bepalen |
 
 
   Regel: Als gemeente van inschrijving in onderzoek staat kan het gezag niet worden bepaald
@@ -102,12 +102,12 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam | waarde    |
       | bsn  | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde                                                                                                                                                                                                                                                                                                                                                     |
-      | burgerservicenummer | 000000012                                                                                                                                                                                                                                                                                                                                                  |
-      | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: gemeente van inschrijving |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | GezagNietTeBepalen |
+      | naam        | waarde                                                                                                                                                                                                                 |
+      | type        | GezagNietTeBepalen                                                                                                                                                                                                     |
+      | toelichting | Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: gemeente van inschrijving |
 
       Voorbeelden:
       | aanduiding in onderzoek | omschrijving                        |
@@ -147,9 +147,8 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam | waarde    |
       | bsn  | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde                                                                                                                             |
-      | burgerservicenummer | 000000012                                                                                                                          |
-      | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
@@ -207,9 +206,8 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam | waarde    |
       | bsn  | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde                                                                                                                             |
-      | burgerservicenummer | 000000012                                                                                                                          |
-      | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
@@ -258,7 +256,6 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde                                                                                                                             |
       | burgerservicenummer | 000000012                                                                                                                          |
-      | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
