@@ -379,9 +379,8 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -399,9 +398,8 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                 |
-    | burgerservicenummer | 000000024                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -414,9 +412,8 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                               |
-    | burgerservicenummer | 000000036                                                                                                                                            |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - ouder2 is bevoegd tot gezag - soort gezag is OG1 - ouder2 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -430,9 +427,8 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000048                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_107 - onder curatele
@@ -442,9 +438,8 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000061                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_108 - vader overleden, moeder onder curatele, geen categorie 11
@@ -453,9 +448,8 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam | waarde    |
     | bsn  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                                                          |
-    | burgerservicenummer | 000000073                                                                                                                                                                                                                       |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - huwelijk/partnerschap ouders nietig verklaard dan wel ontbonden door echtscheiding of ontbinding of overlijden - beide ouders onbevoegd - soort gezag is G - tijdelijk geen gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |
@@ -466,9 +460,8 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam | waarde    |
     | bsn  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                         |
-    | burgerservicenummer | 000000085                                                                                      |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 een derde - soort gezag is V - er is sprake van voogdij |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |

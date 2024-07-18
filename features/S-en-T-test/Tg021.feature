@@ -186,9 +186,8 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -205,9 +204,8 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000024                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -223,9 +221,8 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                 |
-    | burgerservicenummer | 000000036                                                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - gehuwd/partnerschap - ouder en partner zijn bevoegd tot gezag - soort gezag is GG - ouder en partner gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |

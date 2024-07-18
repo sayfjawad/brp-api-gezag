@@ -362,9 +362,8 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                                                                                                                                              |
-    | burgerservicenummer | 000000012                                                                                                                                                                                                                                                                                                           |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: gemeente van inschrijving, geboortedatum |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_135 - gehuwd, kinderen, in onderzoek 026210, 030000, 050200, 080000, 090330
@@ -374,9 +373,8 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000024                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_136 - kind geboren tijdens huwelijk, in onderzoek 010310, 026210, 030210, 080920, 613210
@@ -385,12 +383,12 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-    | burgerservicenummer | 000000036                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: geboortedatum, datum ingang familierechtelijke betrekking, datum huwelijkssluiting/aangaan geregistreerd partnerschap van ouder, geslachtsnaam van ouder |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+    | type        | GezagNietTeBepalen                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+    | toelichting | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: geboortedatum, datum ingang familierechtelijke betrekking, datum huwelijkssluiting/aangaan geregistreerd partnerschap van ouder, geslachtsnaam van ouder |
 
   Scenario: Lg01_137 - kind geboren tijdens huwelijk in onderzoek 010330 (voorvoegsel ontbreekt), 040510, 081420, 113210
     # Route: 3ai - Wie heeft gezag?: niet te bepalen (N )
@@ -398,12 +396,12 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-    | burgerservicenummer | 000000048                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - buitenland geboren; geen adoptie NL akte - soort gezag is N - gezag is niet te bepalen. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: geboorteland, datum vestiging in Nederland, indicatie gezag minderjarige, datum huwelijkssluiting/aangaan geregistreerd partnerschap van ouder, geslachtsnaam van ouder |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+    | type        | GezagNietTeBepalen                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+    | toelichting | Ingezeten - minderjarig - buitenland geboren; geen adoptie NL akte - soort gezag is N - gezag is niet te bepalen. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: geboorteland, datum vestiging in Nederland, indicatie gezag minderjarige, datum huwelijkssluiting/aangaan geregistreerd partnerschap van ouder, geslachtsnaam van ouder |
 
   Scenario: Lg01_138 - kind geboren tijdens huwelijk, overleden, gezag is niet van toepassing
     # Route: 2o - Wie heeft gezag?: overleden, gezag is niet van toepassing (NVT)
@@ -411,7 +409,6 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                |
-    | burgerservicenummer | 000000061                                                                             |
-    | toelichting         | Ingezeten - minderjarig overleden - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
     En heeft de persoon geen gezag

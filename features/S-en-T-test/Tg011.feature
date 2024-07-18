@@ -798,9 +798,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -819,9 +818,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000024                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -859,9 +857,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                         |
-    | burgerservicenummer | 000000036                                                                                      |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 een derde - soort gezag is V - er is sprake van voogdij |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |
@@ -874,12 +871,12 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                             |
-    | burgerservicenummer | 000000048                                                                                                                          |
-    | toelichting         | Ingezeten - minderjarig - exceptie - Bij bepaling gezag ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                                             |
+    | type        | GezagNietTeBepalen                                                                                                                 |
+    | toelichting | Ingezeten - minderjarig - exceptie - Bij bepaling gezag ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
 
   Scenario: Lg01_059 - gezag ouder2, geldigheid ná datum reparatiehuwelijk
     # Route: 13 - Wie heeft gezag?: moeder (OG1)
@@ -887,9 +884,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                         |
-    | burgerservicenummer | 000000061                                                                                                      |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder2 - beide ouders bevoegd - soort gezag is OG1 - ouder2 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -902,9 +898,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                 |
-    | burgerservicenummer | 000000073                                                                                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 en recentere gebeurtenis(sen) - heeft twee ouders - ouders gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -923,9 +918,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000085                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_062 - vader overleden, moeder gezag van rechtswege
@@ -934,9 +928,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                                                    |
-    | burgerservicenummer | 000000097                                                                                                                                                                                                                 |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - huwelijk/partnerschap ouders nietig verklaard dan wel ontbonden door echtscheiding of ontbinding of overlijden - ouder1 onbevoegd - soort gezag is OG1 - ouder2 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000097 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -950,9 +943,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000103 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000103                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000103 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -965,9 +957,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000115 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                         |
-    | burgerservicenummer | 000000115                                                                                                      |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder2 - beide ouders bevoegd - soort gezag is OG1 - ouder2 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000115 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -980,9 +971,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000127 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                 |
-    | burgerservicenummer | 000000127                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000127 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -995,9 +985,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam | waarde    |
     | bsn  | 000000138 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                               |
-    | burgerservicenummer | 000000138                                                                                                                                            |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - ouder2 is bevoegd tot gezag - soort gezag is OG1 - ouder2 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000138 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |

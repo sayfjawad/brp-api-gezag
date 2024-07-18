@@ -98,12 +98,12 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                           |
-    | burgerservicenummer | 000000012                                                                                                        |
-    | toelichting         | Ingezeten - minderjarig - buitenland geboren; geen adoptie NL akte - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                           |
+    | type        | GezagNietTeBepalen                                                                                               |
+    | toelichting | Ingezeten - minderjarig - buitenland geboren; geen adoptie NL akte - soort gezag is N - gezag is niet te bepalen |
 
   Scenario: Lg01_008 - vondeling in Nederland, puntmoeder (onbekende ouder), lege categorie 03 (juridisch geen ouder), geen categorie 11
     # Route: 38 - Wie heeft gezag?: gezag niet te bepalen (N)
@@ -111,12 +111,12 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                               |
-    | burgerservicenummer | 000000024                                                                                            |
-    | toelichting         | Ingezeten - minderjarig - heeft één of meer puntouders - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                               |
+    | type        | GezagNietTeBepalen                                                                                   |
+    | toelichting | Ingezeten - minderjarig - heeft één of meer puntouders - soort gezag is N - gezag is niet te bepalen |
 
   Scenario: Lg01_009 - vondeling in China, juridisch geen ouders, geen categorie 11
     # Route: 3a - Wie heeft gezag?: gezag niet te bepalen (N)
@@ -124,9 +124,9 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                           |
-    | burgerservicenummer | 000000036                                                                                                        |
-    | toelichting         | Ingezeten - minderjarig - buitenland geboren; geen adoptie NL akte - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                           |
+    | type        | GezagNietTeBepalen                                                                                               |
+    | toelichting | Ingezeten - minderjarig - buitenland geboren; geen adoptie NL akte - soort gezag is N - gezag is niet te bepalen |

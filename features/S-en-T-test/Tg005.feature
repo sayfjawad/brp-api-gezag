@@ -447,9 +447,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_018 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, vader niet ingeschreven in BRP, kind Nederlandse nationaliteit + Beëindigde vreemde nationaliteit
@@ -458,12 +457,12 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                 |
-    | burgerservicenummer | 000000024                                                                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - exceptie - bij bepaling huwelijk/partnerschap ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                                                                                 |
+    | type        | GezagNietTeBepalen                                                                                                                                                     |
+    | toelichting | Ingezeten - minderjarig - heeft twee ouders - exceptie - bij bepaling huwelijk/partnerschap ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
 
   Scenario: Lg01_019 - gehuwd, 3 minderjarige kinderen geboren tijdens huwelijk ouders, echtgenoot en 2 kinderen geëmigreerd (RNI), 1 kind weer teruggekeerd (immigratie)
     # Meerderjarig
@@ -472,9 +471,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000036                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_020 - gehuwd, 2 minderjarige kinderen geboren tijdens huwelijk ouders, zelf + 2 kinderen geëmigreerd (RNI), 1 kind weer teruggekeerd (immigratie).
@@ -484,9 +482,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                       |
-    | burgerservicenummer | 000000048                                                    |
-    | toelichting         | Niet ingezeten - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_021 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, vader ingeschreven in RNI, kind Nederlandse nationaliteit
@@ -495,12 +492,12 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                 |
-    | burgerservicenummer | 000000061                                                                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - exceptie - bij bepaling huwelijk/partnerschap ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                                                                                 |
+    | type        | GezagNietTeBepalen                                                                                                                                                     |
+    | toelichting | Ingezeten - minderjarig - heeft twee ouders - exceptie - bij bepaling huwelijk/partnerschap ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
 
   Scenario: Lg01_022 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, geëmigreerd, ingeschreven in RNI evenals vader
     # Route: 1 - Wie heeft gezag?:  (N)
@@ -508,12 +505,12 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam | waarde    |
     | bsn  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                       |
-    | burgerservicenummer | 000000073                                                    |
-    | toelichting         | Niet ingezeten - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                       |
+    | type        | GezagNietTeBepalen                                           |
+    | toelichting | Niet ingezeten - soort gezag is N - gezag is niet te bepalen |
 
   Scenario: Lg01_023 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, vader ingeschreven in de RNI, kind Nederlandse nationaliteit, geëmigreerd geweest en geïmmigreerd
     # Route: 3 - Wie heeft gezag?:  (N)
@@ -521,12 +518,12 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam | waarde    |
     | bsn  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                     |
-    | burgerservicenummer | 000000085                                                                                  |
-    | toelichting         | Ingezeten - minderjarig - emigratie gegevens - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                     |
+    | type        | GezagNietTeBepalen                                                                         |
+    | toelichting | Ingezeten - minderjarig - emigratie gegevens - soort gezag is N - gezag is niet te bepalen |
 
   Scenario: Lg01_197 - minderjarig kind, geboren in Nederland, moeder ingezetene, vader RNI
     # Route: 45e - Wie heeft gezag?: niet te bepalen (N)
@@ -534,9 +531,9 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam | waarde    |
     | bsn  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                 |
-    | burgerservicenummer | 000000097                                                                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - exceptie - bij bepaling huwelijk/partnerschap ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000097 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                                                                                 |
+    | type        | GezagNietTeBepalen                                                                                                                                                     |
+    | toelichting | Ingezeten - minderjarig - heeft twee ouders - exceptie - bij bepaling huwelijk/partnerschap ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |

@@ -243,9 +243,8 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -269,9 +268,8 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000024                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -289,9 +287,8 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                                      |
-    | burgerservicenummer | 000000036                                                                                                                                                                                                   |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 en recentere gebeurtenis(sen) - heeft twee ouders - ouders ongehuwd/geen partnerschap - geadopteerd - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -309,9 +306,8 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                              |
-    | burgerservicenummer | 000000048                                                                                                                                                           |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 en recentere gebeurtenis(sen) - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |

@@ -216,9 +216,8 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -236,12 +235,12 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                                                                                                                                                                                                          |
-    | burgerservicenummer | 000000024                                                                                                                                                                                                                                                                                                                                                                       |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: geboortedatum, geboorteland, burgerservicenummer van ouder |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                                                                                                                                                                                                                                                                                          |
+    | type        | GezagNietTeBepalen                                                                                                                                                                                                                                                                                                                                                              |
+    | toelichting | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: geboortedatum, geboorteland, burgerservicenummer van ouder |
 
   Scenario: Lg01_190 - minderjarig kind, 080000 in onderzoek
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
@@ -249,9 +248,8 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                 |
-    | burgerservicenummer | 000000036                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -264,12 +262,12 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                                                                                                                                                                                      |
-    | burgerservicenummer | 000000048                                                                                                                                                                                                                                                                                                                                                   |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: ouder 1, burgerservicenummer van ouder |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                                                                                                                                                                                                                                                                      |
+    | type        | GezagNietTeBepalen                                                                                                                                                                                                                                                                                                                                          |
+    | toelichting | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag. Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: ouder 1, burgerservicenummer van ouder |
 
   Scenario: Lg01_192 - minderjarig kind, 010320 in onderzoek
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
@@ -277,9 +275,8 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                 |
-    | burgerservicenummer | 000000061                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |

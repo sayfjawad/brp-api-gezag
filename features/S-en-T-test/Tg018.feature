@@ -39,9 +39,8 @@ Functionaliteit: Tg018 - Vondeling - Kind zonder ouders
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                |
-    | burgerservicenummer | 000000012                                                                             |
-    | toelichting         | Ingezeten - minderjarig - heeft geen ouders - soort gezag is G - tijdelijk geen gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |

@@ -269,9 +269,8 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_204 - ongehuwd, 2 kinderen (1 g erkend voor 01-01-2023 en 1 erkend na 01-01-2023
@@ -281,9 +280,8 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000024                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -301,9 +299,8 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                               |
-    | burgerservicenummer | 000000036                                                                                                            |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder1 en ouder2 - ouder1 onbevoegd - soort gezag is OG1 - ouder2 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -316,9 +313,8 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                               |
-    | burgerservicenummer | 000000048                                                                                                                                                            |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning na 20230101 - ouder1 onbevoegd - soort gezag is OG1 - ouder2 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |

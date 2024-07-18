@@ -696,9 +696,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -717,9 +716,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000024                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -737,9 +735,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                             |
-    | burgerservicenummer | 000000036                                                                                                                          |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -758,9 +755,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                       |
-    | burgerservicenummer | 000000048                                                    |
-    | toelichting         | Niet ingezeten - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_045 - minderjarige, emigratie
@@ -769,12 +765,12 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                       |
-    | burgerservicenummer | 000000061                                                    |
-    | toelichting         | Niet ingezeten - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                       |
+    | type        | GezagNietTeBepalen                                           |
+    | toelichting | Niet ingezeten - soort gezag is N - gezag is niet te bepalen |
 
   Scenario: Lg01_046 - actueel gehuwd en gescheiden, 1 meerderjarig kind, 1 minderjarig erkend kind
     # Meerderjarig
@@ -783,9 +779,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam | waarde    |
     | bsn  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000073                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -804,9 +799,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam | waarde    |
     | bsn  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000085                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -824,9 +818,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam | waarde    |
     | bsn  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                             |
-    | burgerservicenummer | 000000097                                                                                                                          |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - gehuwd/partnerschap - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000097 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -844,9 +837,9 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam | waarde    |
     | bsn  | 000000103 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                     |
-    | burgerservicenummer | 000000103                                                                                  |
-    | toelichting         | Ingezeten - minderjarig - emigratie gegevens - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000103 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                     |
+    | type        | GezagNietTeBepalen                                                                         |
+    | toelichting | Ingezeten - minderjarig - emigratie gegevens - soort gezag is N - gezag is niet te bepalen |

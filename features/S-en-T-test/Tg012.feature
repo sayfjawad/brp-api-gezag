@@ -289,9 +289,8 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -320,9 +319,8 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000024                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -350,9 +348,8 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                         |
-    | burgerservicenummer | 000000036                                                                                                                                                      |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - geadopteerd - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -370,9 +367,8 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                   |
-    | burgerservicenummer | 000000048                                                                                                                |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder1 en ouder2 - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -390,9 +386,9 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                                                                                                                                           |
-    | burgerservicenummer | 000000061                                                                                                                                                                                                                                                                                        |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning voor 20230101 - er kan niet bepaald worden welke ouder gezag heeft, beiden bevoegd, beide familiaire betrekking ingangsdatum gelijk geboortedatum kind - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam | waarde             |
-    | type | GezagNietTeBepalen |
+    | naam        | waarde                                                                                                                                                                                                                                                                                           |
+    | type        | GezagNietTeBepalen                                                                                                                                                                                                                                                                               |
+    | toelichting | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning voor 20230101 - er kan niet bepaald worden welke ouder gezag heeft, beiden bevoegd, beide familiaire betrekking ingangsdatum gelijk geboortedatum kind - soort gezag is N - gezag is niet te bepalen |

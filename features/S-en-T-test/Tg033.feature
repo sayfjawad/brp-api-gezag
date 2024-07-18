@@ -345,9 +345,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -379,9 +378,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000024                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -397,9 +395,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                 |
-    | burgerservicenummer | 000000036                                                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - gehuwd/partnerschap - ouder en partner zijn bevoegd tot gezag - soort gezag is GG - ouder en partner gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde           |
     | type                             | GezamenlijkGezag |
@@ -415,9 +412,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                   |
-    | burgerservicenummer | 000000048                                                                                                |
-    | toelichting         | Ingezeten - minderjarig - categorie 11 ouder1 en een derde - soort gezag is V - er is sprake van voogdij |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde    |
     | type                             | Voogdij   |
@@ -430,9 +426,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                 |
-    | burgerservicenummer | 000000061                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -445,9 +440,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | naam | waarde    |
     | bsn  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                   |
-    | burgerservicenummer | 000000073                                                                                                                                                                |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning na 20230101 - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000073 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -466,9 +460,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | naam | waarde    |
     | bsn  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000085                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000085 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |

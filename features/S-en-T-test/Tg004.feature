@@ -174,9 +174,8 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                               |
-    | burgerservicenummer | 000000012                                                                                                                                                            |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - exceptie - bij bepaling huwelijk/partnerschap ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_014 - minderjarig niet erkend kind, moeder ook minderjarig, geen categorie 11
@@ -185,9 +184,8 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                   |
-    | burgerservicenummer | 000000024                                                                                                                                |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - ouder onbevoegd - soort gezag is G - tijdelijk geen gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam | waarde             |
     | type | TijdelijkGeenGezag |
@@ -199,9 +197,8 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000036                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -214,9 +211,8 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                 |
-    | burgerservicenummer | 000000048                                                                                                              |
-    | toelichting         | Ingezeten - minderjarig - heeft één ouder - ouder ongehuwd/geen partnerschap - soort gezag is OG1 - ouder1 heeft gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |

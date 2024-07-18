@@ -409,9 +409,8 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | naam | waarde    |
     | bsn  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000012                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -440,9 +439,8 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | naam | waarde    |
     | bsn  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000024                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
     En heeft de persoon geen gezag
 
   Scenario: Lg01_158 - alleen moeder, moeder wel gehuwd maar geen anonieme donor, na overlijden huwelijkspartner moeder erkend in 2023, akteaanduiding C in actuele categorie bij persoon en ouder2
@@ -451,9 +449,8 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | naam | waarde    |
     | bsn  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                   |
-    | burgerservicenummer | 000000036                                                                                                                                                                |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning na 20230101 - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -472,9 +469,8 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | naam | waarde    |
     | bsn  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                       |
-    | burgerservicenummer | 000000048                                                                    |
-    | toelichting         | Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
@@ -502,9 +498,8 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | naam | waarde    |
     | bsn  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
-    | naam                | waarde                                                                                                                                                                   |
-    | burgerservicenummer | 000000061                                                                                                                                                                |
-    | toelichting         | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning na 20230101 - beide ouders bevoegd - soort gezag is OG2 - beide ouders gezag |
+    | naam                | waarde    |
+    | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
