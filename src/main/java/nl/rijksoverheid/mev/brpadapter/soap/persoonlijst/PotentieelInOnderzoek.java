@@ -5,9 +5,9 @@ import lombok.Getter;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Een veld in de persoonslijst die potentieel in onderzoek kan zijn
@@ -16,7 +16,7 @@ import java.util.Map;
 public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
 
     private final String categorie;
-    private final List<String> veldenInOnderzoek;// TODO: Set
+    private final Set<String> veldenInOnderzoek;
 
     protected final Clock clock;
     protected final Map<String, String> values;
@@ -38,7 +38,7 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
         this.aanduidingGegevensInOnderzoek = categorie + "8310";
         this.datumIngangOnderzoek = categorie + "8320";
         this.datumEindeOnderzoek = categorie + "8330";
-        veldenInOnderzoek = new ArrayList<>();
+        veldenInOnderzoek = new HashSet<>();
     }
 
     /**
@@ -60,21 +60,13 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
                     int datumVandaag = Integer.parseInt(LocalDate.now(clock).format(FORMATTER));
 
                     if (datumVandaag <= datumEindeOnderzoekInt) {
-                        voegVeldInOnderzoekToeAlsDezeNogNietBestaat(fieldName);
+                        veldenInOnderzoek.add(fieldName);
                     }
                 } else {
-                    voegVeldInOnderzoekToeAlsDezeNogNietBestaat(fieldName);
+                    veldenInOnderzoek.add(fieldName);
                 }
             }
         }
-    }
-
-    protected void voegVeldInOnderzoekToeAlsDezeNogNietBestaat(String key) {// TODO: Set
-        if (veldenInOnderzoek.contains(key)) {
-            return;
-        }
-
-        veldenInOnderzoek.add(key);
     }
 
     @Override
