@@ -56,7 +56,7 @@ public class GezagService {
                         "Gezagsrelatie kon niet worden bepaald vanwege een onverwachte exceptie, resultaat 'N' wordt als antwoord gegeven"));
             }
         }
-
+        
         return gezagRelaties;
     }
 
@@ -181,7 +181,7 @@ public class GezagService {
     /**
      * Bepaal gezag afleidingsresultaat
      *
-     * @param bsnKind bsn van kind
+     * @param bsn bsn van kind
      * @param transaction originele transactie
      * @return gezagsafleidingsresultaat
      * @throws AfleidingsregelException wanneer gezag niet kan worden bepaald
@@ -216,6 +216,7 @@ public class GezagService {
         setConfiguredValues(arAntwoordenModel);
 
         if (hasVeldenInOnderzoek) {
+            route = route + "i";
             arAntwoordenModel.setRoute(arAntwoordenModel.getRoute() + "i");
             arAntwoordenModel.setSoortGezag(SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD);
             arAntwoordenModel.setGezagOuder1(DEFAULT_NEE);
@@ -229,7 +230,6 @@ public class GezagService {
         if (arVragenModel != null) {
             gezagsdragers = arVragenModel.bepalenGezagdragers(arAntwoordenModel);
         }
-
         if (!gezagsdragers.isEmpty()) {
             gezagRelaties = gezagsdragers.stream().map(gezagdrager -> new Gezagsrelatie(bsn,
                     arAntwoordenModel.getSoortGezag(), gezagdrager, arAntwoordenModel.getUitleg())).toList();
@@ -400,23 +400,31 @@ public class GezagService {
     private void updateUitlegWithInOnderzoek(final ARAntwoordenModel arAntwoordenModel, final ARVragenModel vragenModel) {
         StringBuilder sb = new StringBuilder();
         sb.append(arAntwoordenModel.getUitleg());
-        sb.append("Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: ");
+        sb.append("Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: \n ");
         VeldenInOnderzoek veldenInOnderzoek = vragenModel.getVeldenInOnderzoek();
         List<String> persoonInOnderzoekVelden = veldenInOnderzoek.getPersoon();
-        if (!veldenInOnderzoek.getPersoon().isEmpty()) {
+        if (!persoonInOnderzoekVelden.isEmpty()) {
+            sb.append("Persoonsvelden: ");
             sb.append(String.join(", ", persoonInOnderzoekVelden));
+            sb.append(".\n");
         }
         List<String> ouder1InOnderzoekVelden = veldenInOnderzoek.getOuder1();
-        if (!veldenInOnderzoek.getPersoon().isEmpty()) {
-            sb.append(String.join(" van ouder 1, ", ouder1InOnderzoekVelden));
+        if (!ouder1InOnderzoekVelden.isEmpty()) {
+            sb.append(" Velden van ouder 1: ");
+            sb.append(String.join(", ", ouder1InOnderzoekVelden));
+            sb.append(".\n");
         }
         List<String> ouder2InOnderzoekVelden = veldenInOnderzoek.getOuder2();
-        if (!veldenInOnderzoek.getPersoon().isEmpty()) {
-            sb.append(String.join(" van ouder 2, ", ouder2InOnderzoekVelden));
+        if (!ouder2InOnderzoekVelden.isEmpty()) {
+            sb.append(" Velden van ouder 2: ");
+            sb.append(String.join(", ", ouder2InOnderzoekVelden));
+            sb.append(".\n");
         }
         List<String> nietOuderInOnderzoekVelden = veldenInOnderzoek.getNietOuder();
-        if (!veldenInOnderzoek.getPersoon().isEmpty()) {
-            sb.append(String.join(" van niet ouder, ", nietOuderInOnderzoekVelden));
+        if (!nietOuderInOnderzoekVelden.isEmpty()) {
+            sb.append(" Velden van niet ouder: ");
+            sb.append(String.join(", ", nietOuderInOnderzoekVelden));
+            sb.append(".\n");
         }
 
         arAntwoordenModel.setUitleg(sb.toString());

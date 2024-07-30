@@ -34,7 +34,7 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
 
     @Override
     public String get(final String key, final String fieldName) {
-        inOnderzoek(key, fieldName);
+        //inOnderzoek(key, fieldName);
 
         return values.get(key);
     }

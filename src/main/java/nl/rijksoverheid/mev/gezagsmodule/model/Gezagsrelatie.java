@@ -34,4 +34,14 @@ public class Gezagsrelatie {
         this.bsnMinderjarige = bsnMinderjarige;
         this.soortGezag = soortGezag;
     }
+
+    @Override
+    public String toString() {
+        return "Gezagsrelatie{" 
+                + "bsnBevraagdePersoon=" + bsnBevraagdePersoon 
+                + ", bsnMinderjarige=" + bsnMinderjarige 
+                + ", soortGezag=" + soortGezag 
+                + ", bsnMeerderjarige=" + bsnMeerderjarige 
+                + ", toelichting=" + toelichting + '}';
+    }
 }

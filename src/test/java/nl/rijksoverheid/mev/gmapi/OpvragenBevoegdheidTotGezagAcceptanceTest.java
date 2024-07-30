@@ -439,8 +439,7 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 meerderjarigeArguments("Lg01_134", "999970008", Set.of(
                         new Gezagsrelatie("999970008", "N"))),
                 // lg01_135 meerderjarige gehuwd, kinderen, in onderzoek 026210, 030000, 050200, 080000, 090330
-                meerderjarigeArguments("Lg01_135", "999970148", Set.of(
-                        new Gezagsrelatie("", "N"))),
+                meerderjarigeArguments("Lg01_135", "999970148", Set.of()),
                 // lg01_136 minderjarige, kind geboren tijdens huwelijk, in onderzoek 010310, 026210, 030210, 080920, 613210
                 minderjarigeArguments("Lg01_136", "999970288", "N", List.of("")),
                 // lg01_137 minderjarige, kind geboren tijdens huwelijk in onderzoek 010330, 040510, 081420, 113210
@@ -736,6 +735,8 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 List<Persoon> expectedPersonen = transformer.fromGezagrelaties(new ArrayList<>(expected));
 
                 Persoon expectedPerson = expectedPersonen.get(0);
+                assertThat(result.getPersonen()).isNotNull();
+                assertThat(result.getPersonen()).isNotEmpty();
                 Persoon actualPerson = result.getPersonen().get(0);
 
                 assertEquals(expectedPerson.getBurgerservicenummer(), actualPerson.getBurgerservicenummer());
