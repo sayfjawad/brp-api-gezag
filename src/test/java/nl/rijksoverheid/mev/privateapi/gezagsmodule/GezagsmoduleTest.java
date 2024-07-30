@@ -54,14 +54,13 @@ public abstract class GezagsmoduleTest {
         CsvTestResultWriter.writeTestResultsAsCsvRow(routeTestArguments, responseInfo, arAntwoordenExpected);
 
         var gezagAfleidingsResultaat = responseInfo.gezagAfleidingsResultaat();
-        ArAntwoordenModelUtils.assertThatArAntwoorden(gezagAfleidingsResultaat.getArAntwoordenModel()).areEqualTo(arAntwoordenExpected);
-
         assertThat(gezagAfleidingsResultaat.getRoute()).isEqualTo(routeTestArguments.expectedRoute);
         if (!gezagAfleidingsResultaat.getRoute().equals("2m") && (!gezagAfleidingsResultaat.getRoute().equals("2o"))){
             assertThat(getBsnsGezaghouders(gezagAfleidingsResultaat)).containsExactlyInAnyOrderElementsOf(
                         routeTestArguments.bsnsGezaghoudersExpected);
             assertThat(gezagAfleidingsResultaat.getGezagsrelaties().get(0).soortGezag()).isEqualTo(arAntwoordenExpected.getSoortGezag());
         }
+        ArAntwoordenModelUtils.assertThatArAntwoorden(gezagAfleidingsResultaat.getArAntwoordenModel()).areEqualTo(arAntwoordenExpected);
     }
 
     private ResponseInfo queryGezagsmoduleInternalsAPI(String bsn) throws AfleidingsregelException {

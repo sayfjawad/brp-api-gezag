@@ -244,21 +244,19 @@ public class ARVragenModel {
         if (persoonOuder1 == null || persoonOuder2 == null)
             throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geen twee ouders bij erkenning");
         // voor snelheid en gegevens in onderzoek
-        Boolean ouder1Erkend = plPersoon.geenOngeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling();
-        Boolean ouder2Erkend = plPersoon.geenOngeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling();
-        Boolean ouder1OngeborenVruchtErkend = plPersoon.ongeborenVruchtDoorOuder1Erkend();
-        Boolean ouder2OngeborenVruchtErkend = plPersoon.ongeborenVruchtDoorOuder2Erkend();
-        Boolean ouder1ErkendOpOfNa01012023 = Integer.parseInt(persoonOuder1.getDatumIngangFamiliebetrekking()) >= DATE_JAN_1_2023;
-        Boolean ouder2ErkendOpOfNa01012023 = Integer.parseInt(persoonOuder2.getDatumIngangFamiliebetrekking()) >= DATE_JAN_1_2023;
-        Boolean persoonGeborenVoor01012023 = Integer.parseInt(plPersoon.getPersoon().getGeboortedatum()) < DATE_JAN_1_2023;
+        boolean persoonErkend = plPersoon.geenOngeborenVruchtErkendOfGerechtelijkeVaststelling();
+        boolean ouder1Erkend = plPersoon.geenOngeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling();
+        boolean ouder2Erkend = plPersoon.geenOngeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling();
+        boolean persoonOngeborenVruchtErkend = plPersoon.ongeborenVruchtErkend();
+        boolean ouder1ErkendOpOfNa01012023 = Integer.parseInt(persoonOuder1.getDatumIngangFamiliebetrekking()) >= DATE_JAN_1_2023;
+        boolean ouder2ErkendOpOfNa01012023 = Integer.parseInt(persoonOuder2.getDatumIngangFamiliebetrekking()) >= DATE_JAN_1_2023;
+        boolean persoonGeborenVoor01012023 = Integer.parseInt(plPersoon.getPersoon().getGeboortedatum()) < DATE_JAN_1_2023;
         // evaluatie op volgorde
-        if (ouder1Erkend && ouder1ErkendOpOfNa01012023) return V2A_3_NA;
-        if (ouder2Erkend && ouder2ErkendOpOfNa01012023) return V2A_3_NA;
-        if (ouder1OngeborenVruchtErkend && ouder1ErkendOpOfNa01012023) return V2A_3_NA;
-        if (ouder2OngeborenVruchtErkend && ouder2ErkendOpOfNa01012023) return V2A_3_NA;
+        if ((persoonErkend || persoonOngeborenVruchtErkend) &&
+            (ouder1ErkendOpOfNa01012023 || ouder2ErkendOpOfNa01012023)) return V2A_3_NA;
         if (ouder1Erkend) return V2A_3_VOOR_OUDER2;
         if (ouder2Erkend) return V2A_3_VOOR_OUDER1;
-        if (ouder1OngeborenVruchtErkend && ouder2OngeborenVruchtErkend && persoonGeborenVoor01012023)
+        if (!persoonErkend && persoonOngeborenVruchtErkend && persoonGeborenVoor01012023)
             return V2A_3_VOOR;
 
         throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen");

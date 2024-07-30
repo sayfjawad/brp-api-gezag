@@ -6,10 +6,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, properties="app.clock=2024-07-14T00:00:00Z")
 
 public class GezagsmoduleBaseTest extends GezagsmoduleTest {
 
@@ -32,8 +36,8 @@ public class GezagsmoduleBaseTest extends GezagsmoduleTest {
                 Arguments.of("Lg01_010", "999998390", List.of(), "2m"),
                 Arguments.of("Lg01_011", "999999266", List.of("999998390"), "40o1"),
                 Arguments.of("Lg01_012", "999999278", List.of("999998390"), "40o2"),
-                Arguments.of("Lg01_013", "999998420", List.of(""), "39e"),
-                Arguments.of("Lg01_014", "999998432", List.of(""), "39"),
+                Arguments.of("Lg01_013", "999998420", List.of(""), "2m"),
+                Arguments.of("Lg01_014", "999998432", List.of("999998420"), "40o1"),
                 Arguments.of("Lg01_015", "999998444", List.of(), "2m"),
                 Arguments.of("Lg01_016", "999998456", List.of("999998444"), "40o1"),
                 Arguments.of("Lg01_017", "999998468", List.of(), "2m"),
@@ -122,7 +126,7 @@ public class GezagsmoduleBaseTest extends GezagsmoduleTest {
                 Arguments.of("Lg01_100", "999999631", List.of(""), "37"),
                 Arguments.of("Lg01_101", "999999643", List.of(), "2m"),
                 Arguments.of("Lg01_102", "999999655", List.of(), "2m"),
-                Arguments.of("Lg01_103", "999999667", List.of(""), "48"),
+                Arguments.of("Lg01_103", "999999667", List.of(""), "2m"),
                 Arguments.of("Lg01_104", "999999679", List.of(""), "12"),
                 Arguments.of("Lg01_105", "999999680", List.of(""), "6"),
                 Arguments.of("Lg01_106", "999999692", List.of(), "2m"),
@@ -140,7 +144,7 @@ public class GezagsmoduleBaseTest extends GezagsmoduleTest {
                 Arguments.of("Lg01_118", "999999825", List.of("999999795", "999999783"), "49"),
                 Arguments.of("Lg01_119", "999999837", List.of(), "2m"),
                 Arguments.of("Lg01_120", "999999849", List.of(), "2m"),
-                Arguments.of("Lg01_121", "999999850", List.of("999999849","999999837"), "41"),
+                Arguments.of("Lg01_121", "999999850", List.of("999999849","999999837"), "2m"),
                 Arguments.of("Lg01_122", "999999862", List.of(), "2m"),
                 Arguments.of("Lg01_123", "999999874", List.of(), "2m"),
                 Arguments.of("Lg01_124", "999999886", List.of("999999862", "999999874"), "49"),
@@ -192,8 +196,8 @@ public class GezagsmoduleBaseTest extends GezagsmoduleTest {
                 Arguments.of("Lg01_170", "999970069", List.of(), "2m"),
                 Arguments.of("Lg01_171", "999970070", List.of("999970057", "999970069"), "33"),
                 Arguments.of("Lg01_172", "999970082", List.of("999970057"), "18o1"),
-                Arguments.of("Lg01_173", "999970094", List.of(""), "39e"),
-                Arguments.of("Lg01_174", "999970100", List.of(""), "39"),
+                Arguments.of("Lg01_173", "999970094", List.of(""), "2m"),
+                Arguments.of("Lg01_174", "999970100", List.of("999970094"), "40o1"),
                 Arguments.of("Lg01_175", "999970112", List.of(""), "4"),
                 Arguments.of("Lg01_176", "999970124", List.of(), "2m"),
                 Arguments.of("Lg01_177", "999970136", List.of(), "2m"),
@@ -233,7 +237,7 @@ public class GezagsmoduleBaseTest extends GezagsmoduleTest {
                 Arguments.of("Lg01_211", "999971001", List.of("999970987"), "42no1"),
                 Arguments.of("Lg01_212", "999971013", List.of("999970987"), "42no2"),
                 Arguments.of("Lg01_213", "999971025", List.of("999970987"), "43o1"),
-                Arguments.of("Lg01_214", "999971001", List.of("999970987"), "42no1"),
+                Arguments.of("Lg01_214", "999971037", List.of("999970987"), "43o2"),
                 Arguments.of("Lg01_215", "999971049", List.of("999970513"), "54v2")
         );
     }

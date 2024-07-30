@@ -350,6 +350,28 @@ public class Persoonslijst {
             .anyMatch(aktenummer -> geldigeErkenningCodes.contains(aktenummer.charAt(2)));
     }
 
+    public boolean geenOngeborenVruchtErkendOfGerechtelijkeVaststelling() {
+        // controleer dan persoon op akte erkenning actueel en geschiedenis op B, C, J en V
+        // voorbereiding, zet alle aktenummers in een lijst
+        List<String> akteNummers = new ArrayList<>();
+        akteNummers.add(getPersoon().getAktenummer());
+        List<GeschiedenisPersoon> geschiedenisPersoon = getGeschiedenisPersoon();
+        if (geschiedenisPersoon != null) {
+            for (GeschiedenisPersoon p : geschiedenisPersoon) {
+                akteNummers.add(p.getAktenummer());
+            }
+        }
+        Set<Character> geldigeErkenningCodes = new HashSet<>(Arrays.asList(
+            TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE,
+            TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE,
+            TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING,
+            TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP));
+        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
+        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+    }
+
+
+
     public boolean geenOngeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling() {
         // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
         // voorbereiding, zet alle aktenummers in een lijst
@@ -371,7 +393,7 @@ public class Persoonslijst {
     }
 
     public boolean ontkenningOuderschapDoorOuder1() {
-        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
+        // controleer dan op akte erkenning actueel en geschiedenis op E
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
         akteNummers.add(getOuder1().getAktenummer());
@@ -388,7 +410,7 @@ public class Persoonslijst {
     }
 
     public boolean ontkenningOuderschapDoorOuder2() {
-        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
+        // controleer dan op akte erkenning actueel en geschiedenis op E
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
         akteNummers.add(getOuder2().getAktenummer());
@@ -405,14 +427,14 @@ public class Persoonslijst {
         return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
     }
 
-    public boolean ongeborenVruchtDoorOuder1Erkend() {
-        // controleer dan op akte erkenning actueel en geschiedenis op A
+    public boolean ongeborenVruchtErkend() {
+        // controleer dan persoon op akte erkenning actueel en geschiedenis op A
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getOuder1().getAktenummer());
-        List<GeschiedenisOuder1> geschiedenisOuder1 = getGeschiedenisOuder1();
-        if (geschiedenisOuder1 != null) {
-            for (GeschiedenisOuder1 p : geschiedenisOuder1) {
+        akteNummers.add(getPersoon().getAktenummer());
+        List<GeschiedenisPersoon> geschiedenisPersoon = getGeschiedenisPersoon();
+        if (geschiedenisPersoon != null) {
+            for (GeschiedenisPersoon p : geschiedenisPersoon) {
                 akteNummers.add(p.getAktenummer());
             }
         }
@@ -421,6 +443,7 @@ public class Persoonslijst {
         // controleer de lijst op de erkenningscodes uit de publieke tabel 39
         return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
     }
+
 
     public boolean geenOngeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling() {
         // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
@@ -438,23 +461,6 @@ public class Persoonslijst {
             TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE,
             TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING,
             TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP));
-        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
-    }
-
-    public boolean ongeborenVruchtDoorOuder2Erkend() {
-        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
-        // voorbereiding, zet alle aktenummers in een lijst
-        List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getOuder2().getAktenummer());
-        List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
-        if (geschiedenisOuder2 != null) {
-            for (GeschiedenisOuder2 p : geschiedenisOuder2) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
-            TABEL_39_AKTEAANDUIDING_GEBOORTE));
         // controleer de lijst op de erkenningscodes uit de publieke tabel 39
         return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
     }
@@ -550,7 +556,7 @@ public class Persoonslijst {
 
     /**
      * @return of een van de velden een waarde heeft in de persoonslijst
-     * @throws BrpException als eeen invalide veld benaderd wordt
+     * @throws BrpException als een invalide veld benaderd wordt
      */
     public boolean hasAnyValue() throws BrpException {
         try {
