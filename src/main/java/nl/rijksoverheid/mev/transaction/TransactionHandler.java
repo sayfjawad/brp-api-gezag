@@ -12,17 +12,6 @@ import org.springframework.http.HttpStatusCode;
 public interface TransactionHandler {
 
     /**
-     * Maak een persoonsgegevens transactie aan
-     *
-     * @param request de aanvraag
-     * @param response het antwoord
-     * @return de transactie
-     */
-    Transaction createPersoonsgegevensTransaction(
-            final HttpServletRequest request,
-            final HttpServletResponse response);
-
-    /**
      * Maak een GM api transactie aan
      *
      * @param request de aanvraag

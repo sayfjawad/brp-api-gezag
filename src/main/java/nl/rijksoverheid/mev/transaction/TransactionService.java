@@ -35,7 +35,6 @@ public class TransactionService implements TransactionHandler {
 
     private static final String KEY_CORRELATION_ID = "correlation-id";
     private static final String KEY_START_ATTRIBUTE = "startTime";
-    private static final String APPLICATIE_NAAM_PERSOONSGEGEVENS_SERVICE = "persoonsgegevens";
     private static final String KEY_OIN = "oin";
     private static final String KEY_TRANSACTION_ID = "TransactionID";
     private static final String APPLICATIE_NAAM_GM_API = "gm-api";
@@ -55,30 +54,6 @@ public class TransactionService implements TransactionHandler {
         this.repository = repository;
         this.correlationIdService = correlationIdService;
         executor = Executors.newCachedThreadPool();
-    }
-
-    @Override
-    public Transaction createPersoonsgegevensTransaction(
-            final HttpServletRequest request,
-            final HttpServletResponse response) {
-        String dienstverlener = request.getHeader(KEY_OIN);
-        correlationIdService.prepareForProcess(request.getHeader(KEY_CORRELATION_ID), dienstverlener);
-        String correlationId = correlationIdService.getCorrelationIdForProcess();
-
-        MDC.put(KEY_CORRELATION_ID, correlationId);
-
-        Transaction transaction = new Transaction(
-                correlationId,
-                dienstverlener,
-                null,
-                request.getRequestURI(),
-                APPLICATIE_NAAM_PERSOONSGEGEVENS_SERVICE,
-                Timestamp.from(Instant.now()));
-
-        response.setHeader(KEY_CORRELATION_ID, correlationId);
-        request.setAttribute(KEY_START_ATTRIBUTE, System.currentTimeMillis());
-
-        return transaction;
     }
 
     @Override

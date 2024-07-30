@@ -16,8 +16,8 @@ import java.util.Map;
 public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
 
     private final String categorie;
-    private final List<String> veldenInOnderzoek;
-    
+    private final List<String> veldenInOnderzoek;// TODO: Set
+
     protected final Clock clock;
     protected final Map<String, String> values;
 
@@ -46,12 +46,13 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
      * onderzoek is
      *
      * @param key het veld om op te halen
+     * @param fieldName de leesbare naam van het op te halen veld
      */
-    protected void inOnderzoek(final String key) {
+    protected void inOnderzoek(final String key, final String fieldName) {
         String inOnderzoek = values.get(aanduidingGegevensInOnderzoek);
         if (inOnderzoek != null && !inOnderzoek.isEmpty()) {
             String formattedVeldName = getFormattedVeldName(inOnderzoek, key);
-            
+
             if (inOnderzoek.equals(key) || inOnderzoek.equals(formattedVeldName)) {
                 String datumEindeOnderzoekValue = values.get(datumEindeOnderzoek);
                 if (datumEindeOnderzoekValue != null && !datumEindeOnderzoekValue.isEmpty()) {
@@ -59,22 +60,33 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
                     int datumVandaag = Integer.parseInt(LocalDate.now(clock).format(FORMATTER));
 
                     if (datumVandaag <= datumEindeOnderzoekInt) {
-                        voegVeldInOnderzoekToeAlsDezeNogNietBestaat(key);
+                        voegVeldInOnderzoekToeAlsDezeNogNietBestaat(fieldName);
                     }
                 } else {
-                    voegVeldInOnderzoekToeAlsDezeNogNietBestaat(key);
+                    voegVeldInOnderzoekToeAlsDezeNogNietBestaat(fieldName);
                 }
             }
         }
     }
-    protected void voegVeldInOnderzoekToeAlsDezeNogNietBestaat(String key){
-        if (veldenInOnderzoek.contains(key)) return;
+
+    protected void voegVeldInOnderzoekToeAlsDezeNogNietBestaat(String key) {// TODO: Set
+        if (veldenInOnderzoek.contains(key)) {
+            return;
+        }
 
         veldenInOnderzoek.add(key);
     }
+
     @Override
     public String get(final String key) {
-        inOnderzoek(key);
+        inOnderzoek(key, key);
+
+        return values.get(key);
+    }
+
+    @Override
+    public String get(final String key, final String fieldName) {
+        inOnderzoek(key, fieldName);
 
         return values.get(key);
     }

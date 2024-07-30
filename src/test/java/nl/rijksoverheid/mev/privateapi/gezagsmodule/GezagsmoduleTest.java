@@ -58,7 +58,7 @@ public abstract class GezagsmoduleTest {
         if (!gezagAfleidingsResultaat.getRoute().equals("2m") && (!gezagAfleidingsResultaat.getRoute().equals("2o"))){
             assertThat(getBsnsGezaghouders(gezagAfleidingsResultaat)).containsExactlyInAnyOrderElementsOf(
                         routeTestArguments.bsnsGezaghoudersExpected);
-            assertThat(gezagAfleidingsResultaat.getGezagsrelaties().get(0).soortGezag()).isEqualTo(arAntwoordenExpected.getSoortGezag());
+            assertThat(gezagAfleidingsResultaat.getGezagsrelaties().get(0).getSoortGezag()).isEqualTo(arAntwoordenExpected.getSoortGezag());
         }
         ArAntwoordenModelUtils.assertThatArAntwoorden(gezagAfleidingsResultaat.getArAntwoordenModel()).areEqualTo(arAntwoordenExpected);
     }
@@ -72,7 +72,7 @@ public abstract class GezagsmoduleTest {
 
     private static List<String> getBsnsGezaghouders(GezagAfleidingsResultaat gezagAfleidingsResultaat) {
         return gezagAfleidingsResultaat.getGezagsrelaties().stream()
-                .map(Gezagsrelatie::bsnMeerderjarige)
+                .map(Gezagsrelatie::getBsnMeerderjarige)
                 .toList();
     }
 }

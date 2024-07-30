@@ -15,9 +15,33 @@ public final class BSNValidator {
     private static final int ELF_PROEF_DENOMINATOR = 11;
 
     /**
+     * Valideer één of meerdere bsns
+     *
+     * @param bsns de lijst met bsns
+     * @return of de bsns valide zijn
+     * @throws GezagException wanneer één van de bsns niet voldoet aan de elf
+     * proef
+     */
+    public boolean isValid(final List<String> bsns) {
+        boolean valid = true;
+
+        if (bsns != null) {
+            for (String bsn : bsns) {
+                valid = isValid(bsn);
+
+                if (!valid) {
+                    break;
+                }
+            }
+        }
+
+        return valid;
+    }
+    
+    /**
      * Valideer een bsn
      *
-     * @param bsn de bsn 
+     * @param bsn de bsn
      * @return of de bsn valide is
      * @throws GezagException wanneer de bsn niet voldoet aan de elf proef
      */

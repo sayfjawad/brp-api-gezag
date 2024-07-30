@@ -55,9 +55,7 @@ public class BeslissingsmatrixService {
             return "-503i";
         } else if ((arAntwoordenModel.getException() != null)
             && (Objects.equals(arAntwoordenModel.getException().getClass(), VeldInOnderzoekException.class))) {
-            String route = getRouteFromVraagModel(arAntwoordenModel);
-
-            return route + "i";
+            return getRouteFromVraagModel(arAntwoordenModel);
         } else {
             return getRouteFromVraagModel(arAntwoordenModel);
         }

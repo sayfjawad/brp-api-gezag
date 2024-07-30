@@ -32,20 +32,27 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
         return values.get(key);
     }
 
+    @Override
+    public String get(final String key, final String fieldName) {
+        inOnderzoek(key, fieldName);
+
+        return values.get(key);
+    }
+
     public String getGemeenteVanInschrijving() {
-        return get(GEMEENTE_VAN_INSCHRIJVING);
+        return get(GEMEENTE_VAN_INSCHRIJVING, "gemeente van inschrijving");
     }
 
     public String getLandVanwaarIngeschreven() {
-        return get(LAND_VANWAAR_INGESCHREVEN);
+        return get(LAND_VANWAAR_INGESCHREVEN, "land vanwaar ingeschreven");
     }
 
     public String getDatumVestigingInNederland() {
-        return get(DATUM_VESTIGING_IN_NEDERLAND);
+        return get(DATUM_VESTIGING_IN_NEDERLAND, "datum vestiging in nederland");
     }
 
     public String getRniDeelnemer() {
-        return get(RNI_DEELNEMER);
+        return get(RNI_DEELNEMER, "RNI deelnemer");
     }
 
     @Override

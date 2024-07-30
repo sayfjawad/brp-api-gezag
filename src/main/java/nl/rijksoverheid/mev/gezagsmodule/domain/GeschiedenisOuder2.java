@@ -28,39 +28,39 @@ public class GeschiedenisOuder2 extends PotentieelInOnderzoek {
     }
 
     public String getBsn() {
-        return get(BSN);
+        return get(BSN, "BSN");
     }
 
     public String getVoornamen() {
-        return get(VOORNAMEN);
+        return get(VOORNAMEN, "voornamen");
     }
 
     public String getVoorvoegsel() {
-        return get(VOORVOEGSEL);
+        return get(VOORVOEGSEL, "voorvoegsel");
     }
 
     public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM);
+        return get(GESLACHTSNAAM, "geslachtsnaam");
     }
 
     public String getGeboortedatum() {
-        return get(GEBOORTEDATUM);
+        return get(GEBOORTEDATUM, "geboortedatum");
     }
 
     public String getGeboorteland() {
-        return get(GEBOORTELAND);
+        return get(GEBOORTELAND, "geboorteland");
     }
 
     public String getAktenummer() {
-        return get(AKTENUMMER);
+        return get(AKTENUMMER, "aktenummer");
     }
 
     public String getDocumentBeschrijving() {
-        return get(DOCUMENT_BESCHRIJVING);
+        return get(DOCUMENT_BESCHRIJVING, "document beschrijving");
     }
 
     public String getRniDeelnemer() {
-        return get(RNI_DEELNEMER);
+        return get(RNI_DEELNEMER, "RNI deelnemer");
     }
 
     @Override

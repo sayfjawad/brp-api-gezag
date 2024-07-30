@@ -13,7 +13,6 @@ import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import nl.rijksoverheid.mev.transaction.TransactionHandler;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -26,6 +25,7 @@ import java.util.function.Supplier;
 @Service
 @RequiredArgsConstructor
 public class GezagService {
+
     private final VragenlijstService vragenlijstService;
     private final TransactionHandler transactionHandler;
     private final BrpService brpService;
@@ -39,21 +39,25 @@ public class GezagService {
     /**
      * Bepaal gezag van kind
      *
-     * @param bsnKind de bsn
+     * @param bsns de bsn(s)
      * @param transaction de transactie zoals gemaakt bij het ontvangen van het
      * request
      * @return lijst gezagsrelaties of lijst gezagsrelatie 'N'
      */
-    public List<Gezagsrelatie> getGezag(final String bsnKind, final Transaction transaction) throws BrpException {
-        try {
-            return getGezagAfleidingsResultaat(bsnKind, transaction).getGezagsrelaties();
-        } catch (AfleidingsregelException ex) {
-            log.error("Gezagsrelatie kon niet worden bepaald, dit is een urgent probleem! Resultaat 'N' wordt als antwoord gegeven", ex);
-
-            transactionHandler.saveGezagmoduleTransaction(null, null, null, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, null, transaction);
-
-            return List.of(new Gezagsrelatie(bsnKind, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, BSN_MEERDERJARIGE_LEEG));
+    public List<Gezagsrelatie> getGezag(final List<String> bsns, final Transaction transaction) throws BrpException {
+        List<Gezagsrelatie> gezagRelaties = new ArrayList<>();
+        for (String bsn : bsns) {
+            try {
+                gezagRelaties.addAll(getGezagAfleidingsResultaat(bsn, transaction).getGezagsrelaties());
+            } catch (AfleidingsregelException ex) {
+                log.error("Gezagsrelatie kon niet worden bepaald, dit is een urgent probleem! Resultaat 'N' wordt als antwoord gegeven", ex);
+                transactionHandler.saveGezagmoduleTransaction(null, null, null, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, null, transaction);
+                gezagRelaties.add(new Gezagsrelatie(bsn, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, BSN_MEERDERJARIGE_LEEG,
+                        "Gezagsrelatie kon niet worden bepaald vanwege een onverwachte exceptie, resultaat 'N' wordt als antwoord gegeven"));
+            }
         }
+
+        return gezagRelaties;
     }
 
     private Map<String, Supplier<String>> initializeVragenMap(ARVragenModel arVragenModel, ARAntwoordenModel arAntwoordenModel) {
@@ -73,12 +77,12 @@ public class GezagService {
             arAntwoordenModel.setV0103(antwoord);
             return antwoord;
         });
-        map.put("v1.3a",() -> {
+        map.put("v1.3a", () -> {
             String antwoord = arVragenModel.v13aisGeborenInBuitenland();
             arAntwoordenModel.setV0103A(antwoord);
             return antwoord;
         });
-        map.put( "v1.3b", () -> {
+        map.put("v1.3b", () -> {
             String antwoord = arVragenModel.v13bIsGeadopteerdMetNlAkte();
             arAntwoordenModel.setV0103B(antwoord);
             return antwoord;
@@ -108,7 +112,7 @@ public class GezagService {
             arAntwoordenModel.setV02A03(antwoord);
             return antwoord;
         });
-        map.put("v2b.1",() -> {
+        map.put("v2b.1", () -> {
             String antwoord = arVragenModel.v2b1IsStaandeHuwelijkOfPartnerschapGeboren();
             arAntwoordenModel.setV02B01(antwoord);
             return antwoord;
@@ -141,7 +145,7 @@ public class GezagService {
         return map;
     }
 
-    public String processVraag( Map<String, Supplier<String>> vragenMap, String vraagCode) {
+    public String processVraag(Map<String, Supplier<String>> vragenMap, String vraagCode) {
         Supplier<String> vraagProcessor = vragenMap.get(vraagCode);
         if (vraagProcessor != null) {
             return vraagProcessor.get();
@@ -154,7 +158,7 @@ public class GezagService {
         try {
             String huidigeVraag = "v1.1";
             Map<String, Map<String, String>> hoofdstroomschema = vragenlijstService.getVragenMap();
-            Map<String, Supplier<String>> vragenMap = initializeVragenMap(arVragenModel , arAntwoordenModel);
+            Map<String, Supplier<String>> vragenMap = initializeVragenMap(arVragenModel, arAntwoordenModel);
             String antwoord;
             while (!huidigeVraag.equals(EINDE)) {
                 antwoord = processVraag(vragenMap, huidigeVraag);
@@ -162,8 +166,7 @@ public class GezagService {
                 Map<String, String> antwoordEnActieParen = hoofdstroomschema.get(huidigeVraag);
                 if (antwoordEnActieParen == null) {
                     huidigeVraag = EINDE;
-                }
-                else {
+                } else {
                     // 4. De actie uitvoeren die is gekoppeld aan het antwoord en doorgaan naar de volgende vraag.
                     huidigeVraag = antwoordEnActieParen.getOrDefault(antwoord, EINDE);
                 }
@@ -183,7 +186,7 @@ public class GezagService {
      * @return gezagsafleidingsresultaat
      * @throws AfleidingsregelException wanneer gezag niet kan worden bepaald
      */
-    public GezagAfleidingsResultaat getGezagAfleidingsResultaat(final String bsnKind, final Transaction transaction) throws GezagException {
+    public GezagAfleidingsResultaat getGezagAfleidingsResultaat(final String bsn, final Transaction transaction) throws GezagException {
         ARVragenModel arVragenModel = null;
         final ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
         GezagAfleidingsResultaat result;
@@ -191,8 +194,8 @@ public class GezagService {
         String route;
         Persoonslijst plPersoon = null;
         try {
-            if (new BSNValidator().isValid(bsnKind)) {
-                plPersoon = brpService.getPersoonslijst(bsnKind, transaction);
+            if (new BSNValidator().isValid(bsn)) {
+                plPersoon = brpService.getPersoonslijst(bsn, transaction);
                 transactionHandler.saveGezagmoduleTransaction(
                         PersoonlijstType.PERSOON,
                         plPersoon.getReceivedId(),
@@ -210,14 +213,16 @@ public class GezagService {
         }
         route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel);
         arAntwoordenModel.setRoute(route);
-        arAntwoordenModel.setSoortGezag(SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD);
-        arAntwoordenModel.setGezagOuder1(DEFAULT_NEE);
-        arAntwoordenModel.setGezagOuder2(DEFAULT_NEE);
-        arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
-        arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
-        arAntwoordenModel.setUitleg("In onderzoek velden geconstateerd");
-        if (!hasVeldenInOnderzoek) {
-            setConfiguredValues(arAntwoordenModel);
+        setConfiguredValues(arAntwoordenModel);
+
+        if (hasVeldenInOnderzoek) {
+            arAntwoordenModel.setRoute(arAntwoordenModel.getRoute() + "i");
+            arAntwoordenModel.setSoortGezag(SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD);
+            arAntwoordenModel.setGezagOuder1(DEFAULT_NEE);
+            arAntwoordenModel.setGezagOuder2(DEFAULT_NEE);
+            arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
+            arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
+            updateUitlegWithInOnderzoek(arAntwoordenModel, arVragenModel);
         }
 
         Set<String> gezagsdragers = new HashSet<>();
@@ -226,10 +231,10 @@ public class GezagService {
         }
 
         if (!gezagsdragers.isEmpty()) {
-            gezagRelaties = gezagsdragers.stream().map(gezagdrager -> new Gezagsrelatie(bsnKind,
-                    arAntwoordenModel.getSoortGezag(), gezagdrager)).toList();
-        } else if ( arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals(SOORT_GEZAG_NVT)) {
-            gezagRelaties.add(new Gezagsrelatie(bsnKind, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG));
+            gezagRelaties = gezagsdragers.stream().map(gezagdrager -> new Gezagsrelatie(bsn,
+                    arAntwoordenModel.getSoortGezag(), gezagdrager, arAntwoordenModel.getUitleg())).toList();
+        } else if (arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals(SOORT_GEZAG_NVT)) {
+            gezagRelaties.add(new Gezagsrelatie(bsn, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, arAntwoordenModel.getUitleg()));
         }
 
         result = new GezagAfleidingsResultaat(gezagRelaties, arAntwoordenModel, route);
@@ -373,12 +378,12 @@ public class GezagService {
 
     private void saveTransaction(Persoonslijst plNietOuder, Transaction originalTransaction) {
         transactionHandler.saveGezagmoduleTransaction(
-            PersoonlijstType.NIET_OUDER,
-            plNietOuder.getReceivedId(),
-            null,
-            null,
-            null,
-            originalTransaction
+                PersoonlijstType.NIET_OUDER,
+                plNietOuder.getReceivedId(),
+                null,
+                null,
+                null,
+                originalTransaction
         );
     }
 
@@ -390,5 +395,30 @@ public class GezagService {
         arAntwoordenModel.setGezagNietOuder1(configuredARAntwoordenModel.getGezagNietOuder1());
         arAntwoordenModel.setGezagNietOuder2(configuredARAntwoordenModel.getGezagNietOuder2());
         arAntwoordenModel.setUitleg(configuredARAntwoordenModel.getUitleg());
+    }
+
+    private void updateUitlegWithInOnderzoek(final ARAntwoordenModel arAntwoordenModel, final ARVragenModel vragenModel) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(arAntwoordenModel.getUitleg());
+        sb.append("Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: ");
+        VeldenInOnderzoek veldenInOnderzoek = vragenModel.getVeldenInOnderzoek();
+        List<String> persoonInOnderzoekVelden = veldenInOnderzoek.getPersoon();
+        if (!veldenInOnderzoek.getPersoon().isEmpty()) {
+            sb.append(String.join(", ", persoonInOnderzoekVelden));
+        }
+        List<String> ouder1InOnderzoekVelden = veldenInOnderzoek.getOuder1();
+        if (!veldenInOnderzoek.getPersoon().isEmpty()) {
+            sb.append(String.join(" van ouder 1, ", ouder1InOnderzoekVelden));
+        }
+        List<String> ouder2InOnderzoekVelden = veldenInOnderzoek.getOuder2();
+        if (!veldenInOnderzoek.getPersoon().isEmpty()) {
+            sb.append(String.join(" van ouder 2, ", ouder2InOnderzoekVelden));
+        }
+        List<String> nietOuderInOnderzoekVelden = veldenInOnderzoek.getNietOuder();
+        if (!veldenInOnderzoek.getPersoon().isEmpty()) {
+            sb.append(String.join(" van niet ouder, ", nietOuderInOnderzoekVelden));
+        }
+
+        arAntwoordenModel.setUitleg(sb.toString());
     }
 }
