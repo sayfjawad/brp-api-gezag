@@ -64,7 +64,7 @@ public class BeslissingsmatrixService {
     private void determineRoutes() {
         List<String> antwoordenModelLines = new ArrayList<>();
         try (BufferedReader antwoordenModelCsvReader = new BufferedReader(
-            new InputStreamReader(BeslissingsmatrixService.class.getResourceAsStream("/AntwoordenModel_v2_2_1.csv")))) {
+            new InputStreamReader(BeslissingsmatrixService.class.getResourceAsStream("/AntwoordenModel_v2_2_2.csv")))) {
             String line;
             while ((line = antwoordenModelCsvReader.readLine()) != null) {
                 antwoordenModelLines.add(line);
