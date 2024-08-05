@@ -2,7 +2,9 @@ package nl.rijksoverheid.mev.common.util;
 
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.exception.InvalidBSNException;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -20,24 +22,17 @@ public final class BSNValidator {
      * @param bsns de lijst met bsns
      * @return of de bsns valide zijn
      * @throws GezagException wanneer één van de bsns niet voldoet aan de elf
-     * proef
+     *                        proef
      */
-    public boolean isValid(final List<String> bsns) {
-        boolean valid = true;
-
+    public boolean isValid(final Collection<String> bsns) {
         if (bsns != null) {
-            for (String bsn : bsns) {
-                valid = isValid(bsn);
-
-                if (!valid) {
-                    break;
-                }
-            }
+            return bsns.stream()
+                .allMatch(this::isValid);
         }
 
-        return valid;
+        return true;
     }
-    
+
     /**
      * Valideer een bsn
      *

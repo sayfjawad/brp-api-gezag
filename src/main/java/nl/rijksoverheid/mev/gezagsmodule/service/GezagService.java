@@ -39,9 +39,9 @@ public class GezagService {
     /**
      * Bepaal gezag van kind
      *
-     * @param bsns de bsn(s)
+     * @param bsns        de bsn(s)
      * @param transaction de transactie zoals gemaakt bij het ontvangen van het
-     * request
+     *                    request
      * @return lijst gezagsrelaties of lijst gezagsrelatie 'N'
      */
     public List<Gezagsrelatie> getGezag(final List<String> bsns, final Transaction transaction) throws BrpException {
@@ -53,10 +53,10 @@ public class GezagService {
                 log.error("Gezagsrelatie kon niet worden bepaald, dit is een urgent probleem! Resultaat 'N' wordt als antwoord gegeven", ex);
                 transactionHandler.saveGezagmoduleTransaction(null, null, null, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, null, transaction);
                 gezagRelaties.add(new Gezagsrelatie(bsn, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, BSN_MEERDERJARIGE_LEEG,
-                        "Gezagsrelatie kon niet worden bepaald vanwege een onverwachte exceptie, resultaat 'N' wordt als antwoord gegeven"));
+                    "Gezagsrelatie kon niet worden bepaald vanwege een onverwachte exceptie, resultaat 'N' wordt als antwoord gegeven"));
             }
         }
-        
+
         return gezagRelaties;
     }
 
@@ -181,7 +181,7 @@ public class GezagService {
     /**
      * Bepaal gezag afleidingsresultaat
      *
-     * @param bsn bsn van kind
+     * @param bsn         bsn van kind
      * @param transaction originele transactie
      * @return gezagsafleidingsresultaat
      * @throws AfleidingsregelException wanneer gezag niet kan worden bepaald
@@ -197,9 +197,9 @@ public class GezagService {
             if (new BSNValidator().isValid(bsn)) {
                 plPersoon = brpService.getPersoonslijst(bsn, transaction);
                 transactionHandler.saveGezagmoduleTransaction(
-                        PersoonlijstType.PERSOON,
-                        plPersoon.getReceivedId(),
-                        null, null, null, transaction);
+                    PersoonlijstType.PERSOON,
+                    plPersoon.getReceivedId(),
+                    null, null, null, transaction);
                 // Implementatie van de logica van de vragenlijst
                 arVragenModel = new ARVragenModel(plPersoon, this, transaction);
                 processAlleVragen(arVragenModel, arAntwoordenModel);
@@ -232,7 +232,7 @@ public class GezagService {
         }
         if (!gezagsdragers.isEmpty()) {
             gezagRelaties = gezagsdragers.stream().map(gezagdrager -> new Gezagsrelatie(bsn,
-                    arAntwoordenModel.getSoortGezag(), gezagdrager, arAntwoordenModel.getUitleg())).toList();
+                arAntwoordenModel.getSoortGezag(), gezagdrager, arAntwoordenModel.getUitleg())).toList();
         } else if (arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals(SOORT_GEZAG_NVT)) {
             gezagRelaties.add(new Gezagsrelatie(bsn, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, arAntwoordenModel.getUitleg()));
         }
@@ -241,12 +241,12 @@ public class GezagService {
 
         String persoonReceivedId = (plPersoon != null ? plPersoon.getReceivedId() : "");
         transactionHandler.saveGezagmoduleTransaction(
-                null,
-                persoonReceivedId,
-                route,
-                arAntwoordenModel.getSoortGezag(),
-                (arVragenModel != null ? arVragenModel.getVeldenInOnderzoek() : null),
-                transaction);
+            null,
+            persoonReceivedId,
+            route,
+            arAntwoordenModel.getSoortGezag(),
+            (arVragenModel != null ? arVragenModel.getVeldenInOnderzoek() : null),
+            transaction);
         if (transaction.getReceivedId() == null) {
             transaction.setReceivedId(persoonReceivedId);
         }
@@ -259,12 +259,13 @@ public class GezagService {
      * Anders wordt deze uit het BRP opgehaald en lokaal opgeslagen.
      * De lokale kopie wordt gebruikt om de aanvullende businesslogica te voorzien van persoonsgegevens
      */
+
     /**
      * Ophalen ouder1
      *
-     * @param plPersoon de persoon om ouder 1 voor op te halen
+     * @param plPersoon           de persoon om ouder 1 voor op te halen
      * @param originalTransaction de transactie zoals gemaakt bij het ontvangen
-     * van het request
+     *                            van het request
      * @return ouder 1 of null
      */
     public Persoonslijst ophalenOuder1(final Persoonslijst plPersoon, final Transaction originalTransaction) {
@@ -272,15 +273,15 @@ public class GezagService {
         try {
             if (plPersoon.getOuder1() != null && plPersoon.getOuder1().getBsn() != null) {
                 plOuder1 = brpService.getPersoonslijst(
-                        plPersoon.getOuder1().getBsn(), originalTransaction);
+                    plPersoon.getOuder1().getBsn(), originalTransaction);
                 if (plOuder1 != null) {
                     transactionHandler.saveGezagmoduleTransaction(
-                            PersoonlijstType.OUDER1,
-                            plOuder1.getReceivedId(),
-                            null,
-                            null,
-                            null,
-                            originalTransaction);
+                        PersoonlijstType.OUDER1,
+                        plOuder1.getReceivedId(),
+                        null,
+                        null,
+                        null,
+                        originalTransaction);
                     plOuder1.setHopRelaties(new HopRelaties());
                     plOuder1.checkHopRelaties();
                 }
@@ -295,9 +296,9 @@ public class GezagService {
     /**
      * Ophalen ouder 2
      *
-     * @param plPersoon de persoon om ouder2 voor op te halen
+     * @param plPersoon           de persoon om ouder2 voor op te halen
      * @param originalTransaction de transactie zoals gemaakt bij het ontvangen
-     * van het request
+     *                            van het request
      * @return ouder2 of null
      */
     public Persoonslijst ophalenOuder2(final Persoonslijst plPersoon, final Transaction originalTransaction) {
@@ -305,15 +306,15 @@ public class GezagService {
         try {
             if (plPersoon.getOuder2() != null && plPersoon.getOuder2().getBsn() != null) {
                 plOuder2 = brpService.getPersoonslijst(
-                        plPersoon.getOuder2().getBsn(), originalTransaction);
+                    plPersoon.getOuder2().getBsn(), originalTransaction);
                 if (plOuder2 != null) {
                     transactionHandler.saveGezagmoduleTransaction(
-                            PersoonlijstType.OUDER2,
-                            plOuder2.getReceivedId(),
-                            null,
-                            null,
-                            null,
-                            originalTransaction);
+                        PersoonlijstType.OUDER2,
+                        plOuder2.getReceivedId(),
+                        null,
+                        null,
+                        null,
+                        originalTransaction);
                     plOuder2.setHopRelaties(new HopRelaties());
                     plOuder2.checkHopRelaties();
 
@@ -330,11 +331,11 @@ public class GezagService {
     /**
      * Ophalen niet-ouder
      *
-     * @param plPersoon de persoon om niet ouder voor te bepalen
-     * @param plOuder1 de ouder 1
-     * @param plOuder2 de ouder 2
+     * @param plPersoon           de persoon om niet ouder voor te bepalen
+     * @param plOuder1            de ouder 1
+     * @param plOuder2            de ouder 2
      * @param originalTransaction de transactie zoals gemaakt bij het ontvangen
-     * van het request entry of the request
+     *                            van het request entry of the request
      * @return de niet ouder of null
      */
     public Persoonslijst ophalenNietOuder(final Persoonslijst plPersoon, final Persoonslijst plOuder1, final Persoonslijst plOuder2, final Transaction originalTransaction) {
@@ -378,12 +379,12 @@ public class GezagService {
 
     private void saveTransaction(Persoonslijst plNietOuder, Transaction originalTransaction) {
         transactionHandler.saveGezagmoduleTransaction(
-                PersoonlijstType.NIET_OUDER,
-                plNietOuder.getReceivedId(),
-                null,
-                null,
-                null,
-                originalTransaction
+            PersoonlijstType.NIET_OUDER,
+            plNietOuder.getReceivedId(),
+            null,
+            null,
+            null,
+            originalTransaction
         );
     }
 

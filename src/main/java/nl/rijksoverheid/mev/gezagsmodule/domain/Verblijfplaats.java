@@ -1,11 +1,12 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
-import java.time.Clock;
-import java.util.Map;
-import java.util.Objects;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+
+import java.time.Clock;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Verblijfplaats van de persoon
@@ -34,6 +35,7 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
 
     @Override
     public String get(final String key, final String fieldName) {
+        // Onderstaande heeft invloed op: https://github.com/BRP-API/brp-api-gezag/issues/17
         //inOnderzoek(key, fieldName);
 
         return values.get(key);
@@ -63,13 +65,13 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
     @Override
     public int hashCode() {
         return Objects.hash(
-                getGemeenteVanInschrijving(),
-                getLandVanwaarIngeschreven(),
-                getDatumVestigingInNederland(),
-                getRniDeelnemer(),
-                getAanduidingGegevensInOnderzoek(),
-                getDatumIngangOnderzoek(),
-                getDatumEindeOnderzoek());
+            getGemeenteVanInschrijving(),
+            getLandVanwaarIngeschreven(),
+            getDatumVestigingInNederland(),
+            getRniDeelnemer(),
+            getAanduidingGegevensInOnderzoek(),
+            getDatumIngangOnderzoek(),
+            getDatumEindeOnderzoek());
 
     }
 }
