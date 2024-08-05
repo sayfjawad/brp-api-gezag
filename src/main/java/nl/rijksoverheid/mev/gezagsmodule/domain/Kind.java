@@ -25,23 +25,23 @@ public class Kind extends PotentieelInOnderzoek {
     }
 
     public String getBsn() {
-        return get(BSN);
+        return get(BSN, "bsn");
     }
 
     public String getVoornamen() {
-        return get(VOORNAMEN);
+        return get(VOORNAMEN, "voornamen");
     }
 
     public String getVoorvoegsel() {
-        return get(VOORVOEGSEL);
+        return get(VOORVOEGSEL, "voorvoegsel");
     }
 
     public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM);
+        return get(GESLACHTSNAAM, "geslachtsnaam");
     }
 
     public String getGeboortedatum() {
-        return get(GEBOORTEDATUM);
+        return get(GEBOORTEDATUM, "geboortedatum");
     }
 
     public boolean isMinderjarig() {

@@ -24,27 +24,27 @@ public class Ouder2 extends PotentieelInOnderzoek {
     }
 
     public String getBsn() {
-        return get(BSN);
+        return get(BSN, "bsn");
     }
 
     public String getVoornamen() {
-        return get(VOORNAMEN);
+        return get(VOORNAMEN, "voornamen");
     }
 
     public String getVoorvoegsel() {
-        return get(VOORVOEGSEL);
+        return get(VOORVOEGSEL, "voorvoegsel");
     }
 
     public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM);
+        return get(GESLACHTSNAAM, "geslachtsnaam");
     }
 
     public String getDatumIngangFamiliebetrekking() {
-        return get(DATUM_INGANG_FAMILIEBETREKKING);
+        return get(DATUM_INGANG_FAMILIEBETREKKING, "datum ingang familiebetrekking");
     }
 
     public String getAktenummer() {
-        return get(AKTENUMMER);
+        return get(AKTENUMMER, "aktenummer");
     }
 
     @Override

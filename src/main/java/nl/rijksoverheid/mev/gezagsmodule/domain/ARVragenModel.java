@@ -530,7 +530,7 @@ public class ARVragenModel {
      */
     private List<String> filterVelden(final List<String> veldenInOnderzoek) {
         return veldenInOnderzoek.stream()
-                .filter(v -> !v.equals("010120") && !v.equals("080910"))
+                .filter(v -> !v.equals("bsn") && !v.equals("gemeente van inschrijving"))
             .toList();
     }
 

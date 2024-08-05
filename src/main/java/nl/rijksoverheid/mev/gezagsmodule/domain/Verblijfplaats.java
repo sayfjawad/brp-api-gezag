@@ -1,11 +1,12 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
-import java.time.Clock;
-import java.util.Map;
-import java.util.Objects;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+
+import java.time.Clock;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Verblijfplaats van de persoon
@@ -32,20 +33,28 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
         return values.get(key);
     }
 
+    @Override
+    public String get(final String key, final String fieldName) {
+        // Onderstaande heeft invloed op: https://github.com/BRP-API/brp-api-gezag/issues/17
+        //inOnderzoek(key, fieldName);
+
+        return values.get(key);
+    }
+
     public String getGemeenteVanInschrijving() {
-        return get(GEMEENTE_VAN_INSCHRIJVING);
+        return get(GEMEENTE_VAN_INSCHRIJVING, "gemeente van inschrijving");
     }
 
     public String getLandVanwaarIngeschreven() {
-        return get(LAND_VANWAAR_INGESCHREVEN);
+        return get(LAND_VANWAAR_INGESCHREVEN, "land vanwaar ingeschreven");
     }
 
     public String getDatumVestigingInNederland() {
-        return get(DATUM_VESTIGING_IN_NEDERLAND);
+        return get(DATUM_VESTIGING_IN_NEDERLAND, "datum vestiging in nederland");
     }
 
     public String getRniDeelnemer() {
-        return get(RNI_DEELNEMER);
+        return get(RNI_DEELNEMER, "RNI deelnemer");
     }
 
     @Override
@@ -56,13 +65,13 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
     @Override
     public int hashCode() {
         return Objects.hash(
-                getGemeenteVanInschrijving(),
-                getLandVanwaarIngeschreven(),
-                getDatumVestigingInNederland(),
-                getRniDeelnemer(),
-                getAanduidingGegevensInOnderzoek(),
-                getDatumIngangOnderzoek(),
-                getDatumEindeOnderzoek());
+            getGemeenteVanInschrijving(),
+            getLandVanwaarIngeschreven(),
+            getDatumVestigingInNederland(),
+            getRniDeelnemer(),
+            getAanduidingGegevensInOnderzoek(),
+            getDatumIngangOnderzoek(),
+            getDatumEindeOnderzoek());
 
     }
 }

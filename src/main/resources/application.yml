@@ -64,7 +64,7 @@ correlation:
   component-id: 02
 
 transaction-logging:
-  enabled: true
+  enabled: false
 
 transaction:
   backup:
