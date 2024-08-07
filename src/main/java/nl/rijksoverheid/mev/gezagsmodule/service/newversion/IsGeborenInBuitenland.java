@@ -24,8 +24,9 @@ public class IsGeborenInBuitenland extends GezagVraag {
 
         if (plPersoon.isGeborenInBuitenland()) {
             answer = V1_3A_JA;
+        } else {
+            answer = V1_3A_NEE;
         }
-        answer = V1_3A_NEE;
 
         gezagBepaling.getArAntwoordenModel().setV0103A(answer);
     }
