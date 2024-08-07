@@ -23,8 +23,9 @@ public class IsUitspraakGezagAanwezig extends GezagVraag {
 
         if (plPersoon.heefIndicatieGezag()) {
             answer = V1_4_JA;
+        } else {
+            answer = V1_4_NEE;
         }
-        answer = V1_4_NEE;
 
         gezagBepaling.getArAntwoordenModel().setV0104(answer);
     }
