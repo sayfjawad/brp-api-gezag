@@ -11,6 +11,7 @@ import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.*;
 import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
+import nl.rijksoverheid.mev.gezagsmodule.service.newversion.GezagBepaling;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.springframework.stereotype.Service;
@@ -193,6 +194,7 @@ public class GezagService {
         List<Gezagsrelatie> gezagRelaties = new ArrayList<>();
         String route;
         Persoonslijst plPersoon = null;
+        GezagBepaling gezagBepaling = null;
         try {
             if (new BSNValidator().isValid(bsn)) {
                 plPersoon = brpService.getPersoonslijst(bsn, transaction);
@@ -202,6 +204,11 @@ public class GezagService {
                     null, null, null, transaction);
                 // Implementatie van de logica van de vragenlijst
                 arVragenModel = new ARVragenModel(plPersoon, this, transaction);
+
+                // new
+                gezagBepaling = new GezagBepaling(plPersoon, this, vragenlijstService.getVragenMap(), transaction);
+
+
                 processAlleVragen(arVragenModel, arAntwoordenModel);
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
@@ -212,6 +219,18 @@ public class GezagService {
             arAntwoordenModel.setException(new VeldInOnderzoekException("Preconditie: Velden mogen niet in onderzoek staan"));
         }
         route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel);
+
+        if(gezagBepaling != null) {
+            String routeNieuw = beslissingsmatrixService.findMatchingRoute(gezagBepaling.getArAntwoordenModel());
+            if (route.equals(routeNieuw)) {
+                System.out.println("EQUALS");
+            } else {
+                System.out.println("NOT EQUAL");
+                System.out.println(arAntwoordenModel);
+                System.out.println(gezagBepaling.getArAntwoordenModel());
+            }
+        }
+
         arAntwoordenModel.setRoute(route);
         setConfiguredValues(arAntwoordenModel);
 
