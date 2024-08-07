@@ -3,7 +3,7 @@ package nl.rijksoverheid.mev.privateapi.gezagsmodule;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagServiceOld;
 import nl.rijksoverheid.mev.privateapi.gezagsmodule.util.ArAntwoordenModelUtils;
 import nl.rijksoverheid.mev.privateapi.gezagsmodule.util.CsvTestResultWriter;
 import nl.rijksoverheid.mev.transaction.Transaction;
@@ -40,7 +40,7 @@ public abstract class GezagsmoduleTest {
     private Transaction transaction;
 
     @Autowired
-    private GezagService subject;
+    private GezagServiceOld subject;
 
     @AfterAll
     public static void teardown() throws IOException {

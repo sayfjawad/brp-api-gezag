@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagServiceOld;
 import nl.rijksoverheid.mev.transaction.Transaction;
 
 import java.util.*;

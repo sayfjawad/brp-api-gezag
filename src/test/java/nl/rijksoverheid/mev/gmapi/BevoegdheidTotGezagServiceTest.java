@@ -2,7 +2,7 @@ package nl.rijksoverheid.mev.gmapi;
 
 import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.exception.GezagException;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagServiceOld;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ class BevoegdheidTotGezagServiceTest {
     BevoegdheidTotGezagService subject;
 
     @MockBean
-    GezagService gezagService;
+    GezagServiceOld gezagService;
 
     @MockBean
     BrpService brpService;

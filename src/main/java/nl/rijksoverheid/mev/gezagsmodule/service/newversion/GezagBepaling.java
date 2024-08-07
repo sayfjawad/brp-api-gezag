@@ -4,6 +4,7 @@ import lombok.Getter;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagServiceOld;
 import nl.rijksoverheid.mev.transaction.Transaction;
 
 import java.util.HashMap;
@@ -58,9 +59,14 @@ public class GezagBepaling {
     }
 
     public void next(final String currentQuestion, final String answer) {
-        Map<String, String> antwoordEnActieParen = hoofdstroomschema.get(currentQuestion);
-        if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
-            vragenMap.get(antwoordEnActieParen.get(answer)).step();
+        try {
+            Map<String, String> antwoordEnActieParen = hoofdstroomschema.get(currentQuestion);
+            if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
+                vragenMap.get(antwoordEnActieParen.get(answer)).step();
+            }
+        } catch(Exception ex) {
+            System.out.println("EEEEEE");
+            System.out.println(ex.getMessage());
         }
     }
 
