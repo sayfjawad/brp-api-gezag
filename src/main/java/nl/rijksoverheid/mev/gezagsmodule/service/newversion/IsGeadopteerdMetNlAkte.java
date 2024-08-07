@@ -9,7 +9,7 @@ public class IsGeadopteerdMetNlAkte extends GezagVraag {
 
     protected IsGeadopteerdMetNlAkte(final GezagBepaling gezagBepaling) {
         super(gezagBepaling);
-        currentQuestion = "v1_3b";
+        currentQuestion = "v1.3b";
     }
 
     /**

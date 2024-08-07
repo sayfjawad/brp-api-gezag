@@ -9,7 +9,7 @@ public class IsGeborenInBuitenland extends GezagVraag {
 
     protected IsGeborenInBuitenland(final GezagBepaling gezagBepaling) {
         super(gezagBepaling);
-        currentQuestion = "v1_3a";
+        currentQuestion = "v1.3a";
     }
 
     /*

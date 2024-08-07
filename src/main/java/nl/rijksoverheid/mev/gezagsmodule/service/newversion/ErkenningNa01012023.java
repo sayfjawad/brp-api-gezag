@@ -15,7 +15,7 @@ public class ErkenningNa01012023 extends GezagVraag {
 
     protected ErkenningNa01012023(final GezagBepaling gezagBepaling) {
         super(gezagBepaling);
-        currentQuestion = "v2a_3";
+        currentQuestion = "v2a.3";
     }
 
     /**

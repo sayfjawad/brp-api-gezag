@@ -43,7 +43,6 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
      */
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
         String key;
         // Preconditie: minimaal 1 ouder moet een BSN hebben
         Persoonslijst lplOuder1 = gezagBepaling.getPlOuder1();
