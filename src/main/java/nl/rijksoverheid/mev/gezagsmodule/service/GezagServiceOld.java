@@ -25,7 +25,7 @@ import java.util.function.Supplier;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "new-gezag-service.enabled", havingValue = "false")
+@ConditionalOnProperty(name = "transaction-logging.enabled", havingValue = "false", matchIfMissing = true)
 public class GezagServiceOld implements GezagService {
 
     private final VragenlijstService vragenlijstService;
