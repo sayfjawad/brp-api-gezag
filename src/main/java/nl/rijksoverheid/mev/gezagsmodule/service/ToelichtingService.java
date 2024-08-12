@@ -28,14 +28,14 @@ public class ToelichtingService {
      * @param missendeGegevens  de missende gegevens - of null
      * @return de toelichting zoals uit het antwoorden model bewerkt met de additionele gegevens
      */
-    public String decorateToelichting(final String baseToelichting, final VeldenInOnderzoek veldenInOnderzoek, List<String> missendeGegevens) {
+    public String decorateToelichting(final String baseToelichting, final VeldenInOnderzoek veldenInOnderzoek, final List<String> missendeGegevens) {
         StringBuilder sb = new StringBuilder();
         if (baseToelichting != null && !baseToelichting.isEmpty()) {
             if (veldenInOnderzoek != null && veldenInOnderzoek.hasValues()) {
                 sb.append(baseToelichting);
                 setInOnderzoek(sb, veldenInOnderzoek);
             } else if (missendeGegevens != null && !missendeGegevens.isEmpty()) {
-                setMissendeGegevens(baseToelichting, missendeGegevens);
+                setMissendeGegevens(sb, baseToelichting, missendeGegevens);
             }
         }
         return sb.toString();
@@ -69,7 +69,11 @@ public class ToelichtingService {
         }
     }
 
-    private void setMissendeGegevens(final String baseUitleg, final List<String> missendeGegevens) {
-        if (baseUitleg.contains(FORMAT_SIGN))
+    private void setMissendeGegevens(final StringBuilder sb, final String baseUitleg, final List<String> missendeGegevens) {
+        if (baseUitleg.contains(FORMAT_SIGN)) {
+            sb.append(String.format(baseUitleg, String.join(", ", missendeGegevens)));
+        } else {
+            // toelichting bevat al volledige informatie en heeft geen formattering nodig
+        }
     }
 }

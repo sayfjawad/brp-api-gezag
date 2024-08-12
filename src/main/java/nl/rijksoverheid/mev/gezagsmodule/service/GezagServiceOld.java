@@ -32,6 +32,7 @@ public class GezagServiceOld implements GezagService {
     private final TransactionHandler transactionHandler;
     private final BrpService brpService;
     private final BeslissingsmatrixService beslissingsmatrixService;
+    private final ToelichtingService toelichtingService;
     private static final String DEFAULT_NEE = "Nee";
     private static final String SOORT_GEZAG_NVT = "NVT";
     private static final String SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD = "N";
@@ -227,7 +228,7 @@ public class GezagServiceOld implements GezagService {
             arAntwoordenModel.setGezagOuder2(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
-            updateUitlegWithInOnderzoek(arAntwoordenModel, arVragenModel);
+            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), arVragenModel.getVeldenInOnderzoek(), null));
         }
 
         Set<String> gezagsdragers = new HashSet<>();
