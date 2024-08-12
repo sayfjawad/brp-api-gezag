@@ -73,8 +73,7 @@ public class GezagServiceNew implements GezagService {
      */
     @Override
     public GezagAfleidingsResultaat getGezagAfleidingsResultaat(final String bsn, final Transaction transaction) throws GezagException {
-        ARVragenModel arVragenModel = null;
-        final ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
+        ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
         GezagAfleidingsResultaat result;
         List<Gezagsrelatie> gezagRelaties = new ArrayList<>();
         String route;
@@ -89,6 +88,7 @@ public class GezagServiceNew implements GezagService {
                     null, null, null, transaction);
 
                 gezagBepaling = new GezagBepaling(plPersoon, this, vragenlijstService.getVragenMap(), transaction);
+                gezagBepaling.start();
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
@@ -109,12 +109,12 @@ public class GezagServiceNew implements GezagService {
             arAntwoordenModel.setGezagOuder2(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
-            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), arVragenModel.getVeldenInOnderzoek(), null));
+            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), gezagBepaling.getVeldenInOnderzoek(), null));
         }
 
         Set<String> gezagsdragers = new HashSet<>();
-        if (arVragenModel != null) {
-            gezagsdragers = arVragenModel.bepalenGezagdragers(arAntwoordenModel);
+        if (gezagBepaling != null) {
+            gezagsdragers = gezagBepaling.bepalenGezagdragers(arAntwoordenModel);
         }
         if (!gezagsdragers.isEmpty()) {
             gezagRelaties = gezagsdragers.stream().map(gezagdrager -> new Gezagsrelatie(bsn,
@@ -131,7 +131,7 @@ public class GezagServiceNew implements GezagService {
             persoonReceivedId,
             route,
             arAntwoordenModel.getSoortGezag(),
-            (arVragenModel != null ? arVragenModel.getVeldenInOnderzoek() : null),
+            (gezagBepaling != null ? gezagBepaling.getVeldenInOnderzoek() : null),
             transaction);
         if (transaction.getReceivedId() == null) {
             transaction.setReceivedId(persoonReceivedId);

@@ -8,9 +8,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 public class GezagBepaling {
@@ -27,6 +25,8 @@ public class GezagBepaling {
     private final Transaction transaction;
     @Getter
     private final ARAntwoordenModel arAntwoordenModel;
+    @Getter
+    private final List<String> missendeGegegevens;
 
     public GezagBepaling(
         final Persoonslijst plPersoon,
@@ -39,26 +39,17 @@ public class GezagBepaling {
         this.transaction = transaction;
 
         arAntwoordenModel = new ARAntwoordenModel();
-
         vragenMap = new HashMap<>();
-        IsPersoonIngezeteneInBRP startBepaling = new IsPersoonIngezeteneInBRP(this);
-        vragenMap.put("v1.1", startBepaling);
-        vragenMap.put("v1.2", new IsPersoonMinderjarigEnNietOverleden(this));
-        vragenMap.put("v1.3", new IsNaarBuitenlandGeemigreerdGeweest(this));
-        vragenMap.put("v1.3a", new IsGeborenInBuitenland(this));
-        vragenMap.put("v1.3b", new IsGeadopteerdMetNlAkte(this));
-        vragenMap.put("v1.4", new IsUitspraakGezagAanwezig(this));
-        vragenMap.put("v2.1", new HoeveelJuridischeOudersHeeftMinderjarige(this));
-        vragenMap.put("v2a.1", new ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners(this));
-        vragenMap.put("v2a.2", new AdoptiefOuders(this));
-        vragenMap.put("v2a.3", new ErkenningNa01012023(this));
-        vragenMap.put("v2b.1", new IsStaandeHuwelijkOfPartnerschapGeboren(this));
-        vragenMap.put("v3.1", new IsErSprakeVanEenRecenteGebeurtenis(this));
-        vragenMap.put("v3.2", new IndicatieGezagMinderjarige(this));
-        vragenMap.put("v4a.2", new OudersOverledenOfOnbevoegdTotGezag(this));
-        vragenMap.put("v4a.3", new OuderOverledenOfOnbevoegdTotGezag(this));
-        vragenMap.put("v4b.1", new OuderOfPartnerOverledenOfOnbevoegdTotGezag(this));
-        startBepaling.step();
+        missendeGegegevens = new ArrayList<>();
+
+        initializeVragenMap();
+    }
+
+    /**
+     * Start de gezag bepaling
+     */
+    public void start() {
+        vragenMap.get(0).step();
     }
 
     public void next(final String currentQuestion, final String answer) {
@@ -67,7 +58,7 @@ public class GezagBepaling {
             if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
                 vragenMap.get(antwoordEnActieParen.get(answer)).step();
             }
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             arAntwoordenModel.setException(ex);
         }
     }
@@ -95,7 +86,6 @@ public class GezagBepaling {
 
         return plNietOuder;
     }
-
 
     /**
      * @return of er velden in onderzoek waren (010120 en 080910 worden
@@ -141,6 +131,50 @@ public class GezagBepaling {
         }
 
         return velden;
+    }
+
+    /*
+     * Probeer hier niet de ouders of nietouders op te halen, in dit stadium zijn
+     * deze al lang opgehaald of was dit onnodig.
+     */
+    public Set<String> bepalenGezagdragers(final ARAntwoordenModel arAntwoordenModel) {
+        Set<String> gezagsdragers = new HashSet<>();
+        if (arAntwoordenModel != null) {
+            if (arAntwoordenModel.getGezagOuder1() != null && arAntwoordenModel.getGezagOuder1().equals("Ja")
+                && (plOuder1 != null)) {
+                gezagsdragers.add(plOuder1.getPersoon().getBsn());
+            }
+            if (arAntwoordenModel.getGezagOuder2() != null && arAntwoordenModel.getGezagOuder2().equals("Ja")
+                && (plOuder2 != null)) {
+                gezagsdragers.add(plOuder2.getPersoon().getBsn());
+            }
+            if ((((arAntwoordenModel.getGezagNietOuder1() != null && arAntwoordenModel.getGezagNietOuder1().equals("Ja"))
+                || (arAntwoordenModel.getGezagNietOuder2() != null && arAntwoordenModel.getGezagNietOuder2().equals("Ja")))
+                && (plNietOuder != null))) {
+                gezagsdragers.add(plNietOuder.getPersoon().getBsn());
+            }
+        }
+
+        return gezagsdragers;
+    }
+
+    private void initializeVragenMap() {
+        vragenMap.put("v1.1", new IsPersoonIngezeteneInBRP(this));
+        vragenMap.put("v1.2", new IsPersoonMinderjarigEnNietOverleden(this));
+        vragenMap.put("v1.3", new IsNaarBuitenlandGeemigreerdGeweest(this));
+        vragenMap.put("v1.3a", new IsGeborenInBuitenland(this));
+        vragenMap.put("v1.3b", new IsGeadopteerdMetNlAkte(this));
+        vragenMap.put("v1.4", new IsUitspraakGezagAanwezig(this));
+        vragenMap.put("v2.1", new HoeveelJuridischeOudersHeeftMinderjarige(this));
+        vragenMap.put("v2a.1", new ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners(this));
+        vragenMap.put("v2a.2", new AdoptiefOuders(this));
+        vragenMap.put("v2a.3", new ErkenningNa01012023(this));
+        vragenMap.put("v2b.1", new IsStaandeHuwelijkOfPartnerschapGeboren(this));
+        vragenMap.put("v3.1", new IsErSprakeVanEenRecenteGebeurtenis(this));
+        vragenMap.put("v3.2", new IndicatieGezagMinderjarige(this));
+        vragenMap.put("v4a.2", new OudersOverledenOfOnbevoegdTotGezag(this));
+        vragenMap.put("v4a.3", new OuderOverledenOfOnbevoegdTotGezag(this));
+        vragenMap.put("v4b.1", new OuderOfPartnerOverledenOfOnbevoegdTotGezag(this));
     }
 
     /**
