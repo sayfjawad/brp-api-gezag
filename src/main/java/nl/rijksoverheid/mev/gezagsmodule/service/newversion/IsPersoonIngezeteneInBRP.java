@@ -21,6 +21,7 @@ public class IsPersoonIngezeteneInBRP extends GezagVraag {
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+
         if (plPersoon != null && plPersoon.isIngezeteneInBRP()) {
             answer = V1_1_JA;
         } else if (plPersoon != null && !plPersoon.isIngezeteneInBRP()) {

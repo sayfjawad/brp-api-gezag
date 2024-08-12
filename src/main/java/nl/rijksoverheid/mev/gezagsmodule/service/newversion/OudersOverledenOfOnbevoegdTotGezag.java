@@ -1,7 +1,5 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
 
-import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
-
 public class OudersOverledenOfOnbevoegdTotGezag extends GezagVraag {
 
     private static final String V4A_2_JA_BEIDEN = "Ja_beiden";

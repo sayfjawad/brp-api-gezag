@@ -23,8 +23,9 @@ public class IsGeadopteerdMetNlAkte extends GezagVraag {
 
         if (plPersoon.geadopteerdMetNlAkte()) {
             answer = V1_3B_JA;
+        } else {
+            answer = V1_3B_NEE;
         }
-        answer = V1_3B_NEE;
 
         gezagBepaling.getArAntwoordenModel().setV0103B(answer);
     }

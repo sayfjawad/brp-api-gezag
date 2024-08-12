@@ -34,7 +34,7 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag 
         // Als er geen huwelijk tussen de ouders gevonden wordt is het antwoord "Nee_nooit"
         if (hopOuder1 == null || hopOuder2 == null) {
             answer = V2A_1_NEE_NA_GEBOORTE_NOOIT_GEHUWD_PARTNERS_GEWEEST_MET_ELKAAR;
-        } else if (!hopOuder1.getDatumVoltrokken().isEmpty() && hopOuder2.getDatumVoltrokken().isEmpty()) {
+        } else if (isHuwelijkOfPartnerschapTussenOudersActueel(hopOuder1, hopOuder2)) {
             if (!plOuder1.isOverleden() && !plOuder2.isOverleden()) {
                 answer = V2A_1_JA_GEHUWD_OF_PARTNERS;
             } else {
@@ -62,7 +62,12 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag 
     }
 
     private boolean ouderGescheiden(HuwelijkOfPartnerschap hop, String geboortedatumKind) {
-        return (hop.getRedenOntbinding() != null && hop.getRedenOntbinding().equals("S")
-            && Integer.parseInt(hop.getDatumOntbinding()) < Integer.parseInt(geboortedatumKind));
+        return (hop.getRedenOntbinding() != null && hop.getRedenOntbinding().equals("S") && Integer.parseInt(hop.getDatumOntbinding()) < Integer.parseInt(geboortedatumKind));
     }
+
+    private boolean isHuwelijkOfPartnerschapTussenOudersActueel(HuwelijkOfPartnerschap hopOuder1, HuwelijkOfPartnerschap hopOuder2) {
+        // Alleen als het huwelijk actueel is bij beide ouders is er sprake van een actueel huwelijk of partnerschap
+        return org.apache.commons.lang3.StringUtils.isNotBlank(hopOuder1.getDatumVoltrokken()) && org.apache.commons.lang3.StringUtils.isNotBlank(hopOuder2.getDatumVoltrokken());
+    }
+
 }

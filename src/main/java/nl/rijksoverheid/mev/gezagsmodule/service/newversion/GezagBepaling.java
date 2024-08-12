@@ -1,15 +1,18 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagServiceOld;
 import nl.rijksoverheid.mev.transaction.Transaction;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+@Slf4j
 public class GezagBepaling {
 
     @Getter
@@ -65,8 +68,7 @@ public class GezagBepaling {
                 vragenMap.get(antwoordEnActieParen.get(answer)).step();
             }
         } catch(Exception ex) {
-            System.out.println("EEEEEE");
-            System.out.println(ex.getMessage());
+            arAntwoordenModel.setException(ex);
         }
     }
 
@@ -92,5 +94,63 @@ public class GezagBepaling {
         }
 
         return plNietOuder;
+    }
+
+
+    /**
+     * @return of er velden in onderzoek waren (010120 en 080910 worden
+     * gefiltered)
+     */
+    public boolean warenVeldenInOnderzoek() {
+        List<String> veldenInOnderzoek = plPersoon.getUsedVeldenInOnderzoek();
+        if (plOuder1 != null) {
+            veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
+        }
+
+        if (plOuder2 != null) {
+            veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
+        }
+
+        if (plNietOuder != null) {
+            veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
+        }
+
+        if (!veldenInOnderzoek.isEmpty()) {
+            log.info("Velden waren in onderzoek: {}", veldenInOnderzoek);
+        }
+
+        veldenInOnderzoek = filterVelden(veldenInOnderzoek);
+
+        return !veldenInOnderzoek.isEmpty();
+    }
+
+    /**
+     * @return velden in onderzoek per persoon
+     */
+    public VeldenInOnderzoek getVeldenInOnderzoek() {
+        VeldenInOnderzoek velden = new VeldenInOnderzoek();
+        velden.setPersoon(plPersoon.getUsedVeldenInOnderzoek());
+        if (plOuder1 != null) {
+            velden.setOuder1(plOuder1.getUsedVeldenInOnderzoek());
+        }
+        if (plOuder2 != null) {
+            velden.setOuder2(plOuder2.getUsedVeldenInOnderzoek());
+        }
+        if (plNietOuder != null) {
+            velden.setNietOuder(plNietOuder.getUsedVeldenInOnderzoek());
+        }
+
+        return velden;
+    }
+
+    /**
+     * Verwijder velden in onderzoek die we niet willen overwegen
+     *
+     * @param veldenInOnderzoek lijst met velden in onderzoek om te filteren
+     */
+    private List<String> filterVelden(final List<String> veldenInOnderzoek) {
+        return veldenInOnderzoek.stream()
+            .filter(v -> !v.equals("bsn") && !v.equals("gemeente van inschrijving"))
+            .toList();
     }
 }

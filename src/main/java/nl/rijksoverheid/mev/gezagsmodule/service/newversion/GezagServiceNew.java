@@ -21,7 +21,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.function.Supplier;
 
 /**
  * Service voor bepalen gezag
@@ -40,7 +39,6 @@ public class GezagServiceNew implements GezagService {
     private static final String SOORT_GEZAG_NVT = "NVT";
     private static final String SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD = "N";
     private static final String BSN_MEERDERJARIGE_LEEG = "";
-    private static final String EINDE = "Einde";
 
     /**
      * Bepaal gezag van kind
@@ -67,124 +65,6 @@ public class GezagServiceNew implements GezagService {
         return gezagRelaties;
     }
 
-    private Map<String, Supplier<String>> initializeVragenMap(ARVragenModel arVragenModel, ARAntwoordenModel arAntwoordenModel) {
-        Map<String, Supplier<String>> map = new HashMap<>();
-        map.put("v1.1", () -> {
-            String antwoord = arVragenModel.v11isPersoonIngezeteneInBRP();
-            arAntwoordenModel.setV0101(antwoord);
-            return antwoord;
-        });
-        map.put("v1.2", () -> {
-            String antwoord = arVragenModel.v12IsPersoonMinderjarigEnNietOverleden();
-            arAntwoordenModel.setV0102(antwoord);
-            return antwoord;
-        });
-        map.put("v1.3", () -> {
-            String antwoord = arVragenModel.v13isNaarHetBuitenlandGeemigreerdGeweest();
-            arAntwoordenModel.setV0103(antwoord);
-            return antwoord;
-        });
-        map.put("v1.3a", () -> {
-            String antwoord = arVragenModel.v13aisGeborenInBuitenland();
-            arAntwoordenModel.setV0103A(antwoord);
-            return antwoord;
-        });
-        map.put("v1.3b", () -> {
-            String antwoord = arVragenModel.v13bIsGeadopteerdMetNlAkte();
-            arAntwoordenModel.setV0103B(antwoord);
-            return antwoord;
-        });
-        map.put("v1.4", () -> {
-            String antwoord = arVragenModel.v14IsUitspraakGezagAanwezig();
-            arAntwoordenModel.setV0104(antwoord);
-            return antwoord;
-        });
-        map.put("v2.1", () -> {
-            String antwoord = arVragenModel.v21HoeveelJuridischeOudersHeeftMinderjarige();
-            arAntwoordenModel.setV0201(antwoord);
-            return antwoord;
-        });
-        map.put("v2a.1", () -> {
-            String antwoord = arVragenModel.v2a1ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners();
-            arAntwoordenModel.setV02A01(antwoord);
-            return antwoord;
-        });
-        map.put("v2a.2", () -> {
-            String antwoord = arVragenModel.v2a2AdoptiefOuders();
-            arAntwoordenModel.setV02A02(antwoord);
-            return antwoord;
-        });
-        map.put("v2a.3", () -> {
-            String antwoord = arVragenModel.v2a3ErkenningNa01012023();
-            arAntwoordenModel.setV02A03(antwoord);
-            return antwoord;
-        });
-        map.put("v2b.1", () -> {
-            String antwoord = arVragenModel.v2b1IsStaandeHuwelijkOfPartnerschapGeboren();
-            arAntwoordenModel.setV02B01(antwoord);
-            return antwoord;
-        });
-        map.put("v3.1", () -> {
-            String antwoord = arVragenModel.v31IsErSprakeVanEenRecenteGebeurtenis();
-            arAntwoordenModel.setV0301(antwoord);
-            return antwoord;
-        });
-        map.put("v3.2", () -> {
-            String antwoord = arVragenModel.v32IndicatieGezagMinderjarige();
-            arAntwoordenModel.setV0302(antwoord);
-            return antwoord;
-        });
-        map.put("v4a.2", () -> {
-            String antwoord = arVragenModel.v4a2OudersOverledenOfOnbevoegdTotGezag();
-            arAntwoordenModel.setV04A02(antwoord);
-            return antwoord;
-        });
-        map.put("v4a.3", () -> {
-            String antwoord = arVragenModel.v4a3OuderOverledenOfOnbevoegdTotGezag();
-            arAntwoordenModel.setV04A03(antwoord);
-            return antwoord;
-        });
-        map.put("v4b.1", () -> {
-            String antwoord = arVragenModel.v4b1OuderOfPartnerOverledenOfOnbevoegdTotGezag();
-            arAntwoordenModel.setV04B01(antwoord);
-            return antwoord;
-        });
-        return map;
-    }
-
-    private String processVraag(Map<String, Supplier<String>> vragenMap, String vraagCode) {
-        Supplier<String> vraagProcessor = vragenMap.get(vraagCode);
-        if (vraagProcessor != null) {
-            return vraagProcessor.get();
-        } else {
-            return "EINDE";
-        }
-    }
-
-    private void processAlleVragen(ARVragenModel arVragenModel, ARAntwoordenModel arAntwoordenModel) throws BrpException {
-        try {
-            String huidigeVraag = "v1.1";
-            Map<String, Map<String, String>> hoofdstroomschema = vragenlijstService.getVragenMap();
-            Map<String, Supplier<String>> vragenMap = initializeVragenMap(arVragenModel, arAntwoordenModel);
-            String antwoord;
-            while (!huidigeVraag.equals(EINDE)) {
-                antwoord = processVraag(vragenMap, huidigeVraag);
-                // Logica om de volgende vraag te bepalen uit het hoofdstroomschema
-                Map<String, String> antwoordEnActieParen = hoofdstroomschema.get(huidigeVraag);
-                if (antwoordEnActieParen == null) {
-                    huidigeVraag = EINDE;
-                } else {
-                    // 4. De actie uitvoeren die is gekoppeld aan het antwoord en doorgaan naar de volgende vraag.
-                    huidigeVraag = antwoordEnActieParen.getOrDefault(antwoord, EINDE);
-                }
-            }
-        } catch (AfleidingsregelException e) {
-            arAntwoordenModel.setException(e);
-        } catch (BrpException e) {
-            throw new BrpException();
-        }
-    }
-
     /**
      * Bepaal gezag afleidingsresultaat
      *
@@ -209,35 +89,17 @@ public class GezagServiceNew implements GezagService {
                     PersoonlijstType.PERSOON,
                     plPersoon.getReceivedId(),
                     null, null, null, transaction);
-                // Implementatie van de logica van de vragenlijst
-                arVragenModel = new ARVragenModel(plPersoon, this, transaction);
 
-                // new
                 gezagBepaling = new GezagBepaling(plPersoon, this, vragenlijstService.getVragenMap(), transaction);
-
-
-                processAlleVragen(arVragenModel, arAntwoordenModel);
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
         }
-        boolean hasVeldenInOnderzoek = arVragenModel != null && arVragenModel.warenVeldenInOnderzoek();
+        boolean hasVeldenInOnderzoek = gezagBepaling != null && gezagBepaling.warenVeldenInOnderzoek();
         if (hasVeldenInOnderzoek) {
             arAntwoordenModel.setException(new VeldInOnderzoekException("Preconditie: Velden mogen niet in onderzoek staan"));
         }
         route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel);
-
-        if(gezagBepaling != null) {
-            String routeNieuw = beslissingsmatrixService.findMatchingRoute(gezagBepaling.getArAntwoordenModel());
-            if (route.equals(routeNieuw)) {
-                System.out.println("EQUALS");
-            } else {
-                System.out.println("NOT EQUAL");
-                System.out.println(arAntwoordenModel);
-                System.out.println(gezagBepaling.getArAntwoordenModel());
-            }
-        }
-
         arAntwoordenModel.setRoute(route);
         setConfiguredValues(arAntwoordenModel);
 

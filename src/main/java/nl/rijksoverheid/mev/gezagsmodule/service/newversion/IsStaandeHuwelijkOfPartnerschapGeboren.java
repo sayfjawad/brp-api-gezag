@@ -37,7 +37,7 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
         is de relatie ontbonden met als reden overlijden. Controleer of de BSN van de partner bij geboorte
         gelijk is aan de BSN van de actuele partner. Als dat het geval is, heeft deze partner ook gezag.
          */
-        if (lOuder1 != null && isValideGeslachtsnaam(lOuder1.getGeslachtsnaam())){
+        if (lOuder1 != null && isValideGeslachtsnaam(lOuder1.getGeslachtsnaam())) {
             Persoonslijst plOuder1 = gezagBepaling.getPlOuder1();
             preconditieCheckGeregistreerd("ouder1", plOuder1);
             if (heeftOuderRelatieBijGeboorteKind(plOuder1, geboorteDatumKind) && !plPersoon.ontkenningOuderschapDoorOuder2()) {
@@ -45,23 +45,24 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
             }
         }
 
-        if (lOuder2!=null && isValideGeslachtsnaam(lOuder2.getGeslachtsnaam())){
+        if (lOuder2 != null && isValideGeslachtsnaam(lOuder2.getGeslachtsnaam())) {
             Persoonslijst plOuder2 = gezagBepaling.getPlOuder2();
             preconditieCheckGeregistreerd("ouder2", plOuder2);
             if (heeftOuderRelatieBijGeboorteKind(plOuder2, geboorteDatumKind) && !plPersoon.ontkenningOuderschapDoorOuder1()) {
                 answer = V2B_1_JA;
             }
         }
-        answer = V2B_1_NEE;
+
+        if (answer == null) {
+            answer = V2B_1_NEE;
+        }
 
         gezagBepaling.getArAntwoordenModel().setV02B01(answer);
     }
 
-    public boolean heeftOuderRelatieBijGeboorteKind(Persoonslijst plOuder, String geboortedatum)
-    {
+    public boolean heeftOuderRelatieBijGeboorteKind(Persoonslijst plOuder, String geboortedatum) {
         List<HuwelijkOfPartnerschap> hopPlOuder = plOuder.getHuwelijkOfPartnerschappen();
-        if (!hopPlOuder.isEmpty() && (hopPlOuder.get(0).getBsnPartner() != null))
-        {
+        if (!hopPlOuder.isEmpty() && (hopPlOuder.get(0).getBsnPartner() != null)) {
             HopRelaties hopRelaties = plOuder.getHopRelaties();
             HopRelatie geborenInRelatie = hopRelaties.geborenInRelatie(Integer.parseInt(geboortedatum));
             return geborenInRelatie != null;

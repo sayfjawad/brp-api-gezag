@@ -20,6 +20,7 @@ public class AdoptiefOuders extends GezagVraag {
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+
         answer = (plPersoon.geadopteerdMetNlAkte()) ? V2A_2_JA : V2A_2_NEE;
 
         gezagBepaling.getArAntwoordenModel().setV02A02(answer);

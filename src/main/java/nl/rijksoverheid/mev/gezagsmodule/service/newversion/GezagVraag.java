@@ -41,5 +41,4 @@ public abstract class GezagVraag {
             throw new AfleidingsregelException("Preconditie: " + beschrijving + " moet in BRP geregistreerd staan");
         }
     }
-
 }

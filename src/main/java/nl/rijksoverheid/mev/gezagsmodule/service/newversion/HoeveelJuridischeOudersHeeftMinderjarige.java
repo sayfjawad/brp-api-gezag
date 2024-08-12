@@ -19,6 +19,8 @@ public class HoeveelJuridischeOudersHeeftMinderjarige extends GezagVraag {
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
 
-        gezagBepaling.getArAntwoordenModel().setV0201(plPersoon.hoeveelJuridischeOuders());
+        answer = plPersoon.hoeveelJuridischeOuders();
+
+        gezagBepaling.getArAntwoordenModel().setV0201(answer);
     }
 }

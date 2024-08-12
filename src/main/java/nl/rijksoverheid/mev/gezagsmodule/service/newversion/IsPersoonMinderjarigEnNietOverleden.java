@@ -33,7 +33,7 @@ public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
 
         if (isAlsMinderjarigOpgeschort) {
             answer = V1_2_NEE_OVERLEDEN;
-        } else if(isOpgeschort) {
+        } else if (isOpgeschort) {
             answer = V1_2_NEE_MEERDERJARIG;
         } else if (isMinderjarig) {
             answer = V1_2_JA; // Minderjarig en niet overleden

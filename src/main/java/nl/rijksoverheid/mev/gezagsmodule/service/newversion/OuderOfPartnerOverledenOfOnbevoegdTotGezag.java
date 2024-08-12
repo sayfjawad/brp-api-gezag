@@ -1,8 +1,6 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
 
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
-import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder1;
-import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder2;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
 import java.util.Map;
@@ -37,8 +35,9 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
 
     /**
      * v4b1
-     *
+     * <p>
      * OuderOfPartnerOverledenOfOnbevoegdTotGezag
+     *
      * @return if ouder of partner overleden of onbevoegd tot gezag is
      */
     @Override
@@ -52,15 +51,21 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
         if (lplOuder1 == null && lplOuder2 == null) {
             throw new AfleidingsregelException("Preconditie: Minimaal 1 ouder moet geregistreerd staan in BRP");
         }
+
         if (lplNietOuder == null) {
             throw new AfleidingsregelException("Preconditie: niet_ouder  moet geregistreerd staan in BRP");
         }
-        if (lplOuder1!=null) {
-            key = "ouder1,"+(lplOuder1.isOverledenOfOnbevoegd())+","+(lplNietOuder.isOverledenOfOnbevoegd());
+
+        if (lplOuder1 != null) {
+            key = "ouder1," + (lplOuder1.isOverledenOfOnbevoegd()) + "," + (lplNietOuder.isOverledenOfOnbevoegd());
             answer = ouderOfPartnerOverledenOfOnbevoegdTotGezagMap.get(key);
         }
-        key = "ouder2,"+(lplOuder2.isOverledenOfOnbevoegd())+","+(lplNietOuder.isOverledenOfOnbevoegd());
-        answer = ouderOfPartnerOverledenOfOnbevoegdTotGezagMap.get(key);
+
+        if (answer == null) {
+            key = "ouder2," + (lplOuder2.isOverledenOfOnbevoegd()) + "," + (lplNietOuder.isOverledenOfOnbevoegd());
+            answer = ouderOfPartnerOverledenOfOnbevoegdTotGezagMap.get(key);
+        }
+
         gezagBepaling.getArAntwoordenModel().setV04B01(answer);
     }
 }

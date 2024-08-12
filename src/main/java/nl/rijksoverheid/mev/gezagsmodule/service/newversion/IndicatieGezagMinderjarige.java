@@ -18,6 +18,8 @@ public class IndicatieGezagMinderjarige extends GezagVraag {
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
 
-        gezagBepaling.getArAntwoordenModel().setV0302(plPersoon.getGezagsverhouding().getIndicatieGezagMinderjarige());
+        answer = plPersoon.getGezagsverhouding().getIndicatieGezagMinderjarige();
+
+        gezagBepaling.getArAntwoordenModel().setV0302(answer);
     }
 }

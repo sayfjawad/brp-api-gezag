@@ -25,7 +25,8 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
-
+        answer = "";
+        
         // Preconditie: minimaal 1 ouder moet een BSN hebben
         Ouder1 persoonOuder1 = plPersoon.getOuder1();
         Ouder2 persoonOuder2 = plPersoon.getOuder2();
@@ -50,6 +51,7 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
                 answer = V4A_3_NEE_OUDER2;
             }
         }
+
         if (answer.isEmpty()) {
             answer = V4A_3_JA;
         }

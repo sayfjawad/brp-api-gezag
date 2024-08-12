@@ -57,7 +57,10 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
                 answer = V3_1_JA;
             }
         }
-        answer = V3_1_NEE;
+
+        if(answer == null) {
+            answer = V3_1_NEE;
+        }
 
         gezagBepaling.getArAntwoordenModel().setV0301(answer);
     }

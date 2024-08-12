@@ -43,13 +43,13 @@ public class ErkenningNa01012023 extends GezagVraag {
             (ouder1ErkendOpOfNa01012023 || ouder2ErkendOpOfNa01012023)) {
             answer = V2A_3_NA;
         }
-        if (ouder1Erkend) {
+        if (answer == null && ouder1Erkend) {
             answer = V2A_3_VOOR_OUDER2;
         }
-        if (ouder2Erkend) {
+        if (answer == null && ouder2Erkend) {
             answer = V2A_3_VOOR_OUDER1;
         }
-        if (!persoonErkend && persoonOngeborenVruchtErkend && persoonGeborenVoor01012023) {
+        if (answer == null && !persoonErkend && persoonOngeborenVruchtErkend && persoonGeborenVoor01012023) {
             answer = V2A_3_VOOR;
         }
 
