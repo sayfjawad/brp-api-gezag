@@ -1,9 +1,15 @@
+logging:
+  file:
+    name: brp-api-gezag.log
+
 server:
   port: 8080
   error:
     include-message: always
 
 spring:
+  application:
+    name: brp-api-gezag
   datasource:
     hikari:
       max-lifetime: 655000
