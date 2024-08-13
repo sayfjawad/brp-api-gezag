@@ -1,21 +1,16 @@
 package nl.rijksoverheid.mev.brpadapter.brpsoapadapter;
 
-import nl.rijksoverheid.mev.brpadapter.soap.BRPCache;
-import nl.rijksoverheid.mev.brpadapter.soap.SOAPSender;
-import nl.rijksoverheid.mev.brpadapter.soap.SOAPHelper;
-import nl.rijksoverheid.mev.brpadapter.soap.BrpSoapClient;
 import jakarta.xml.soap.SOAPBody;
 import jakarta.xml.soap.SOAPException;
 import jakarta.xml.soap.SOAPMessage;
-import java.io.IOException;
-import java.io.StringReader;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import nl.rijksoverheid.mev.brpadapter.soap.BRPCache;
+import nl.rijksoverheid.mev.brpadapter.soap.BrpSoapClient;
+import nl.rijksoverheid.mev.brpadapter.soap.SOAPHelper;
+import nl.rijksoverheid.mev.brpadapter.soap.SOAPSender;
 import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.transaction.Transaction;
-import nl.rijksoverheid.mev.transaction.TransactionService;
+import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,11 +19,16 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.StringReader;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Tests for brp soap client
@@ -55,7 +55,7 @@ class BrpSoapClientTest {
     private SOAPBody soapBody;
 
     @Mock
-    private TransactionService transactionService;
+    private TransactionHandler transactionHandler;
 
     @Mock
     private Transaction transaction;
