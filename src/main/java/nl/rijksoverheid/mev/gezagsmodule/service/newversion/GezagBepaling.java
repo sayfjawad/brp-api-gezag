@@ -93,21 +93,11 @@ public class GezagBepaling {
      */
     public boolean warenVeldenInOnderzoek() {
         List<String> veldenInOnderzoek = plPersoon.getUsedVeldenInOnderzoek();
-        if (plOuder1 != null) {
-            veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
-        }
+        veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
+        veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
+        veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
 
-        if (plOuder2 != null) {
-            veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
-        }
-
-        if (plNietOuder != null) {
-            veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
-        }
-
-        if (!veldenInOnderzoek.isEmpty()) {
-            log.info("Velden waren in onderzoek: {}", veldenInOnderzoek);
-        }
+        log.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
 
         veldenInOnderzoek = filterVelden(veldenInOnderzoek);
 
