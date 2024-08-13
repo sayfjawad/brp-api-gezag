@@ -18,6 +18,8 @@ public class GezagBepaling {
     private Persoonslijst plOuder1;
     private Persoonslijst plOuder2;
     private Persoonslijst plNietOuder;
+    @Getter
+    private List<String> missendeGegegevens;
     private final GezagService gezagService;
     private final Map<String, Map<String, String>> hoofdstroomschema;
     private Map<String, GezagVraag> vragenMap;
@@ -25,8 +27,6 @@ public class GezagBepaling {
     private final Transaction transaction;
     @Getter
     private final ARAntwoordenModel arAntwoordenModel;
-    @Getter
-    private final List<String> missendeGegegevens;
 
     public GezagBepaling(
         final Persoonslijst plPersoon,
@@ -146,6 +146,14 @@ public class GezagBepaling {
         }
 
         return gezagsdragers;
+    }
+
+    public void addMissendeGegegevens(final String missendGegegeven) {
+        if(missendeGegegevens == null) {
+            missendeGegegevens = new ArrayList<>();
+        }
+
+        missendeGegegevens.add(missendGegegeven);
     }
 
     private void initializeVragenMap() {

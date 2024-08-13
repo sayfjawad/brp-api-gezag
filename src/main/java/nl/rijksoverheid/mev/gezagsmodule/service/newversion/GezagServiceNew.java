@@ -8,7 +8,10 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
-import nl.rijksoverheid.mev.gezagsmodule.domain.*;
+import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
+import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
+import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
+import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.*;
@@ -110,6 +113,10 @@ public class GezagServiceNew implements GezagService {
             arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
             arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), gezagBepaling.getVeldenInOnderzoek(), null));
+        }
+
+        if (!gezagBepaling.getMissendeGegegevens().isEmpty()) {
+            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), null, gezagBepaling.getMissendeGegegevens()));
         }
 
         Set<String> gezagsdragers = new HashSet<>();

@@ -26,6 +26,7 @@ public abstract class GezagVraag {
 
     protected void preconditieCheckOudersGeregistreerd() throws GezagException {
         if (!gezagBepaling.getPlPersoon().heeftTweeOuders()) {
+            gezagBepaling.addMissendeGegegevens("van de bevraagde persoon zijn geen twee ouders bekend");
             throw new AfleidingsregelException("Preconditie: Kind moet twee ouders hebben");
         }
         preconditieCheckGeregistreerd("ouder1", gezagBepaling.getPlOuder1());
@@ -38,6 +39,7 @@ public abstract class GezagVraag {
             && plOuder.isNietIngeschrevenInRNI()
             && plOuder.isNietGeemigreerd();
         if (!ouderGeregistreerdInBrp) {
+            gezagBepaling.addMissendeGegegevens(beschrijving + " van bevraagde persoon is niet in BRP geregistreerd");
             throw new AfleidingsregelException("Preconditie: " + beschrijving + " moet in BRP geregistreerd staan");
         }
     }

@@ -10,6 +10,8 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
 
     private static final String V2B_1_JA = "Ja";
     private static final String V2B_1_NEE = "Nee";
+    private static final String OUDER_1 = "ouder1";
+    private static final String OUDER_2 = "ouder2";
 
     protected IsStaandeHuwelijkOfPartnerschapGeboren(final GezagBepaling gezagBepaling) {
         super(gezagBepaling);
@@ -26,6 +28,7 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
 
+        answer = V2B_1_NEE;
         String geboorteDatumKind = plPersoon.getPersoon().getGeboortedatum();
         Ouder1 lOuder1 = plPersoon.getOuder1();
         Ouder2 lOuder2 = plPersoon.getOuder2();
@@ -39,7 +42,7 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
          */
         if (lOuder1 != null && isValideGeslachtsnaam(lOuder1.getGeslachtsnaam())) {
             Persoonslijst plOuder1 = gezagBepaling.getPlOuder1();
-            preconditieCheckGeregistreerd("ouder1", plOuder1);
+            preconditieCheckGeregistreerd(OUDER_1, plOuder1);
             if (heeftOuderRelatieBijGeboorteKind(plOuder1, geboorteDatumKind) && !plPersoon.ontkenningOuderschapDoorOuder2()) {
                 answer = V2B_1_JA;
             }
@@ -47,14 +50,10 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
 
         if (lOuder2 != null && isValideGeslachtsnaam(lOuder2.getGeslachtsnaam())) {
             Persoonslijst plOuder2 = gezagBepaling.getPlOuder2();
-            preconditieCheckGeregistreerd("ouder2", plOuder2);
+            preconditieCheckGeregistreerd(OUDER_2, plOuder2);
             if (heeftOuderRelatieBijGeboorteKind(plOuder2, geboorteDatumKind) && !plPersoon.ontkenningOuderschapDoorOuder1()) {
                 answer = V2B_1_JA;
             }
-        }
-
-        if (answer == null) {
-            answer = V2B_1_NEE;
         }
 
         gezagBepaling.getArAntwoordenModel().setV02B01(answer);

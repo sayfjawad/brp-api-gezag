@@ -32,34 +32,39 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
         Gezagsverhouding gezagsverhouding = plPersoon.getGezagsverhouding();
-        String indicatieGezagMinderjarige = gezagsverhouding.getIndicatieGezagMinderjarige();
-        String ingangsdatumGeldigheidGezag = gezagsverhouding.getIngangsdatumGeldigheidGezag();
-        // Check voor ontkenning erkenning, als er niet erkend is, dan is er sprake van ontkenning erkenning
-        if ((indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_BEIDE_OUDERS)) && (!plPersoon.heeftTweeOuders())) {
-            answer = V3_1_JA;
-        }
-        // Preconditie ingangsdatum geldigheid gezag moet een geldige datum zijn en niet de standaard waarde
-        if (Objects.equals(ingangsdatumGeldigheidGezag, STANDAARD_WAARDE_INGANGSDATUM_GELDIGHEID_GEZAG)) {
-            throw new AfleidingsregelException("Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten");
-        }
-        // Controleer op adoptie na uitspraak gezag, als adoptie heeft plaatsgevonden na de uitspraak
-        // dan is er sprake van een recente gebeurtenis
-        if (plPersoon.adoptieNaIngangsGeldigheidsdatum()) {
-            answer = V3_1_JA;
-        }
-        // Controleer op reparatiehuwelijk alleen als gezag aan een van de ouders is toegewezen
-        // In geval van een reparatiehuwelijk na ingangsdatum is er sprake van een recente gebeurtenis
-        if ((indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER1) || indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER2))
-            && plPersoon.heeftTweeOuders() && plPersoon.beideOudersHebbenEenBSN()) {
-            Persoonslijst lplOuder1 = gezagBepaling.getPlOuder1();
-            Persoonslijst lplOuder2 = gezagBepaling.getPlOuder2();
-            if (nuGehuwdOudersNaGeldigheidsdatum(lplOuder1, lplOuder2, ingangsdatumGeldigheidGezag)) {
+        if (gezagsverhouding != null) {
+            String indicatieGezagMinderjarige = gezagsverhouding.getIndicatieGezagMinderjarige();
+            String ingangsdatumGeldigheidGezag = gezagsverhouding.getIngangsdatumGeldigheidGezag();
+            // Check voor ontkenning erkenning, als er niet erkend is, dan is er sprake van ontkenning erkenning
+            if ((indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_BEIDE_OUDERS)) && (!plPersoon.heeftTweeOuders())) {
                 answer = V3_1_JA;
             }
-        }
+            // Preconditie ingangsdatum geldigheid gezag moet een geldige datum zijn en niet de standaard waarde
+            if (Objects.equals(ingangsdatumGeldigheidGezag, STANDAARD_WAARDE_INGANGSDATUM_GELDIGHEID_GEZAG)) {
+                gezagBepaling.addMissendeGegegevens("Ingangsdatum geldigheid gezag");
+                throw new AfleidingsregelException("Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten");
+            }
+            // Controleer op adoptie na uitspraak gezag, als adoptie heeft plaatsgevonden na de uitspraak
+            // dan is er sprake van een recente gebeurtenis
+            if (plPersoon.adoptieNaIngangsGeldigheidsdatum()) {
+                answer = V3_1_JA;
+            }
+            // Controleer op reparatiehuwelijk alleen als gezag aan een van de ouders is toegewezen
+            // In geval van een reparatiehuwelijk na ingangsdatum is er sprake van een recente gebeurtenis
+            if ((indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER1) || indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER2))
+                && plPersoon.heeftTweeOuders() && plPersoon.beideOudersHebbenEenBSN()) {
+                Persoonslijst lplOuder1 = gezagBepaling.getPlOuder1();
+                Persoonslijst lplOuder2 = gezagBepaling.getPlOuder2();
+                if (nuGehuwdOudersNaGeldigheidsdatum(lplOuder1, lplOuder2, ingangsdatumGeldigheidGezag)) {
+                    answer = V3_1_JA;
+                }
+            }
 
-        if(answer == null) {
-            answer = V3_1_NEE;
+            if (answer == null) {
+                answer = V3_1_NEE;
+            }
+        } else {
+            gezagBepaling.addMissendeGegegevens("gezagsverhouding van bevraagde persoon");
         }
 
         gezagBepaling.getArAntwoordenModel().setV0301(answer);
