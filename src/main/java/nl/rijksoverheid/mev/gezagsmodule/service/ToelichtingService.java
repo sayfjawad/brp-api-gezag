@@ -16,7 +16,7 @@ public class ToelichtingService {
     private static final String IN_ONDERZOEK_VELDEN_OUDER_1 = " Velden van ouder 1: ";
     private static final String IN_ONDERZOEK_VELDEN_OUDER_2 = " Velden van ouder 2: ";
     private static final String IN_ONDERZOEK_VELDEN_NIET_OUDER = " Velden van niet ouder: ";
-    private static final String FORMAT_SIGN = "%s";
+    private static final String PLACEHOLDER = "%s";
     private static final String SPACE = " ";
     private static final String DOT_ENDLINE = ".\n";
 
@@ -72,8 +72,8 @@ public class ToelichtingService {
     }
 
     private void setMissendeGegevens(final StringBuilder sb, final String baseUitleg, final List<String> missendeGegevens) {
-        if (baseUitleg.contains(FORMAT_SIGN)) {
-            sb.append(String.format(baseUitleg, String.join(", ", missendeGegevens)));
+        if (baseUitleg.contains(PLACEHOLDER)) {
+            sb.append(baseUitleg.format(String.join(", ", missendeGegevens)));
         } else {
             // toelichting bevat al volledige informatie en heeft geen formattering nodig
         }

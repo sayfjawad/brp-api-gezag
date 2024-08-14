@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ToelichtingServiceTest {
@@ -23,7 +24,7 @@ class ToelichtingServiceTest {
     private static final String IN_ONDERZOEK_OUDER_1 = "ouder 1";
 
     @BeforeEach
-    public void ToelichtingServiceTest() {
+    public void setup() {
         classUnderTest = new ToelichtingService();
     }
 
@@ -100,6 +101,7 @@ class ToelichtingServiceTest {
     @Test
     void baseToelichtingAndTwoVeldenInOnderzoekOnePersoonAndOneOuder1ExpectingBaseWithVeldenInOnderzoek() {
         String toelichting = BASE_TOELICHTING;
+        long expectedTimesFieldInResult = 2;
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
         veldenInOnderzoek.setPersoon(List.of(FIELD_1));
         veldenInOnderzoek.setOuder1(List.of(FIELD_1));
@@ -111,7 +113,8 @@ class ToelichtingServiceTest {
         assertTrue(result.contains(IN_ONDERZOEK_NEEDLE));
         assertTrue(result.contains(IN_ONDERZOEK_PERSOONSVELDEN));
         assertTrue(result.contains(IN_ONDERZOEK_OUDER_1));
-        assertTrue(Pattern.compile(FIELD_1).matcher(result).results().count() == 2);
+        long occurrencesOfFieldInResult = Pattern.compile(FIELD_1).matcher(result).results().count();
+        assertEquals(expectedTimesFieldInResult, occurrencesOfFieldInResult);
     }
     
     @Test
@@ -145,6 +148,7 @@ class ToelichtingServiceTest {
     @Test
     void baseToelichtingAndTwoVeldenInOnderzoekAndTwoMissendeGegevensExpectingBaseWithVeldenInOnderzoek() {
         String toelichting = BASE_TOELICHTING;
+        long expectedTimesFieldInResult = 2;
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
         veldenInOnderzoek.setPersoon(List.of(FIELD_1));
         veldenInOnderzoek.setOuder1(List.of(FIELD_1));
@@ -156,6 +160,7 @@ class ToelichtingServiceTest {
         assertTrue(result.contains(IN_ONDERZOEK_NEEDLE));
         assertTrue(result.contains(IN_ONDERZOEK_PERSOONSVELDEN));
         assertTrue(result.contains(IN_ONDERZOEK_OUDER_1));
-        assertTrue(Pattern.compile(FIELD_1).matcher(result).results().count() == 2);
+        long occurrencesOfFieldInResult = Pattern.compile(FIELD_1).matcher(result).results().count();
+        assertEquals(expectedTimesFieldInResult, occurrencesOfFieldInResult);
     }
 }

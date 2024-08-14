@@ -35,14 +35,7 @@ public class IsNaarBuitenlandGeemigreerdGeweest extends GezagVraag {
         } else {
             answer = V1_3_NEE;
         }
-
-    /*
-        if (plPersoon.naarBuitenlandGeemigreerdGeweest()) {
-            answer = V1_3_JA;
-        } else {
-            answer = V1_3_NEE;
-        }
-    */
+        
         gezagBepaling.getArAntwoordenModel().setV0103(answer);
     }
 }
