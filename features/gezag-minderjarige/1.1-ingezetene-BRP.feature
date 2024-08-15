@@ -64,9 +64,9 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                       |
-      | type        | GezagNietTeBepalen                                           |
-      | toelichting | Niet ingezeten - soort gezag is N - gezag is niet te bepalen |
+      | naam        | waarde                                                               |
+      | type        | GezagNietTeBepalen                                                   |
+      | toelichting | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
 
 
   Regel: Als gemeente van inschrijving in onderzoek staat kan het gezag niet worden bepaald
