@@ -1,11 +1,14 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
-import java.time.Clock;
-import java.util.Map;
-import java.util.Objects;
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoudingRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+
+import java.time.Clock;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Gezags verhouding
@@ -25,6 +28,15 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
     private static final String INDICATIE_CURATELE_REGISTER = "113310";
     // Datum waarop het geheel van gegevens geldig is geworden: yyyyMMdd formaat
     private static final String INGANGSDATUM_GELDIGHEID_GEZAG = "118510";
+
+    public static Gezagsverhouding from(Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord, Clock clock) {
+        Map<String, String> values = new HashMap<>();
+        values.put(INDICATIE_GEZAG_MINDERJARIGE, lo3PlGezagsverhoudingRecord.getMinderjarigGezagInd());
+        values.put(INDICATIE_CURATELE_REGISTER, Objects.toString(lo3PlGezagsverhoudingRecord.getCurateleRegisterInd(), null));
+        values.put(INGANGSDATUM_GELDIGHEID_GEZAG, Objects.toString(lo3PlGezagsverhoudingRecord.getGeldigheidStartDatum(), null));
+
+        return new Gezagsverhouding(values, clock);
+    }
 
     public Gezagsverhouding(final Map<String, String> values, final Clock clock) {
         super(Categorie.GEZAGSVERHOUDING, values, clock);

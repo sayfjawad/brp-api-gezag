@@ -1,11 +1,14 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
-import java.time.Clock;
-import java.util.Map;
-import java.util.Objects;
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+
+import java.time.Clock;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Ouder2 voor persoon
@@ -18,6 +21,18 @@ public class Ouder2 extends PotentieelInOnderzoek {
     private static final String GESLACHTSNAAM = "030240";
     private static final String AKTENUMMER = "038120";
     private static final String DATUM_INGANG_FAMILIEBETREKKING = "036210"; // yyyMMdd formaat
+
+    public static Ouder2 from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+        Map<String, String> values = new HashMap<>();
+        values.put(BSN, Objects.toString(lo3PlPersoonRecord.getBurgerServiceNr(), null));
+        values.put(VOORNAMEN, lo3PlPersoonRecord.getVoorNaam());
+        values.put(VOORVOEGSEL, lo3PlPersoonRecord.getGeslachtsNaamVoorvoegsel());
+        values.put(GESLACHTSNAAM, lo3PlPersoonRecord.getGeslachtsNaam());
+        values.put(AKTENUMMER, lo3PlPersoonRecord.getAkteNr());
+        values.put(DATUM_INGANG_FAMILIEBETREKKING, Objects.toString(lo3PlPersoonRecord.getFamilieBetrekStartDatum(), null));
+
+        return new Ouder2(values, clock);
+    }
 
     public Ouder2(final Map<String, String> values, final Clock clock) {
         super(Categorie.OUDER_2, values, clock);

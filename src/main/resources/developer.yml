@@ -8,12 +8,11 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:file:./tmp/mydb
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
+    url: jdbc:postgresql://localhost:5432/rvig_brp_api_testdata
+    username: root
+    password: root
+  cache:
+    type: none
 
 new-gezag-service:
   enabled: true

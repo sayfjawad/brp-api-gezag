@@ -1,10 +1,12 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import java.time.Clock;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -22,6 +24,21 @@ public class GeschiedenisOuder2 extends PotentieelInOnderzoek {
     private static final String RNI_DEELNEMER = "538810";
     private static final String AKTENUMMER = "538120";
     private static final String DOCUMENT_BESCHRIJVING = "538230";
+
+    public static GeschiedenisOuder2 from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+        Map<String, String> values = new HashMap<>();
+        values.put(BSN, Objects.toString(lo3PlPersoonRecord.getBurgerServiceNr(), null));
+        values.put(VOORNAMEN, lo3PlPersoonRecord.getVoorNaam());
+        values.put(VOORVOEGSEL, lo3PlPersoonRecord.getGeslachtsNaamVoorvoegsel());
+        values.put(GESLACHTSNAAM, lo3PlPersoonRecord.getGeslachtsNaam());
+        values.put(GEBOORTEDATUM, Objects.toString(lo3PlPersoonRecord.getGeboorteDatum(), null));
+        values.put(GEBOORTELAND, Objects.toString(lo3PlPersoonRecord.getGeboorteLandCode(), null));
+        values.put(RNI_DEELNEMER, Objects.toString(lo3PlPersoonRecord.getRniDeelnemer(), null));
+        values.put(AKTENUMMER, lo3PlPersoonRecord.getAkteNr());
+        values.put(DOCUMENT_BESCHRIJVING, lo3PlPersoonRecord.getDocBeschrijving());
+
+        return new GeschiedenisOuder2(values, clock);
+    }
 
     public GeschiedenisOuder2(final Map<String, String> values, final Clock clock) {
         super(Categorie.GESCHIEDENIS_OUDER_2, values, clock);
