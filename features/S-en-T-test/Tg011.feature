@@ -874,9 +874,9 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                             |
-    | type        | GezagNietTeBepalen                                                                                                                 |
-    | toelichting | Ingezeten - minderjarig - exceptie - Bij bepaling gezag ontbreken relevante gegevens - soort gezag is N - gezag is niet te bepalen |
+    | naam        | waarde                                                                                                                |
+    | type        | GezagNietTeBepalen                                                                                                    |
+    | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: ingangsdatum geldigheid van gezagsverhouding |
 
   Scenario: Lg01_059 - gezag ouder2, geldigheid ná datum reparatiehuwelijk
     # Route: 13 - Wie heeft gezag?: moeder (OG1)

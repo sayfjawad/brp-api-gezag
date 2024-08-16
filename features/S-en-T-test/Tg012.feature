@@ -389,6 +389,6 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                                                                                                                                                                                           |
-    | type        | GezagNietTeBepalen                                                                                                                                                                                                                                                                               |
-    | toelichting | Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning voor 20230101 - er kan niet bepaald worden welke ouder gezag heeft, beiden bevoegd, beide familiaire betrekking ingangsdatum gelijk geboortedatum kind - soort gezag is N - gezag is niet te bepalen |
+    | naam        | waarde                                                                               |
+    | type        | GezagNietTeBepalen                                                                   |
+    | toelichting | gezag kan niet worden bepaald omdat niet bepaald kan worden welke ouder gezag heeft. |
