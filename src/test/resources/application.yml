@@ -3,7 +3,6 @@ app:
     brp:
       dataset-path: src/test/resources/fixtures/persoonslijsten/GegenereerdUitExcelData/CGR_testbestand-20230525
 
-
 logging:
   file:
     name: brp-api-gezag.log
@@ -26,7 +25,7 @@ spring:
     sql-dialect: postgres
   profiles:
     group:
-      default: real-brp
+      default: fake-brp
       ont: fake-brp
       pre: real-brp
       prd: real-brp
