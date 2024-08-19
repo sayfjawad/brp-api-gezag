@@ -56,7 +56,7 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Christiaan |
@@ -114,7 +114,7 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Cecilia    |
@@ -123,7 +123,7 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0101    |
     | ingangsdatum geldigheid (85.10) | 20110601   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Chantal    |
@@ -132,7 +132,7 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0102    |
     | ingangsdatum geldigheid (85.10) | 20120801   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Christiaan |

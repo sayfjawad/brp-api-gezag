@@ -56,7 +56,7 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Laeticia   |
@@ -75,7 +75,7 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0601    |
     | ingangsdatum geldigheid (85.10) | 20230125   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Larissa    |
@@ -130,7 +130,7 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Laeticia   |
@@ -184,7 +184,7 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Larissa    |

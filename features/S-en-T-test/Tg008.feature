@@ -75,7 +75,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Gabriel    |
@@ -94,7 +94,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0200    |
     | ingangsdatum geldigheid (85.10) | 20100901   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Gaston     |
@@ -169,7 +169,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Gabriel    |
@@ -188,7 +188,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0200    |
     | ingangsdatum geldigheid (85.10) | 20100901   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Gaston     |
@@ -362,7 +362,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Gigi       |
@@ -381,7 +381,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AB0100    |
     | ingangsdatum geldigheid (85.10) | 20120803   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Gina       |
@@ -400,7 +400,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AB0100    |
     | ingangsdatum geldigheid (85.10) | 20130803   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Guido      |
@@ -475,7 +475,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Gigi       |
@@ -494,7 +494,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AB0100    |
     | ingangsdatum geldigheid (85.10) | 20120803   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Gina       |
@@ -513,7 +513,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AB0100    |
     | ingangsdatum geldigheid (85.10) | 20130803   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Guido      |

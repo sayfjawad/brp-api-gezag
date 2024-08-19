@@ -57,7 +57,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | William    |
@@ -70,7 +70,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AQ0101  |
     | ingangsdatum geldigheid (85.10) | 20191201 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Harry      |
@@ -211,7 +211,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde       |
     | burgerservicenummer (01.20)     | 000000115    |
     | voornamen (02.10)               | Jinthe Jiang |
@@ -220,7 +220,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022         |
     | aktenummer (81.20)              | 1VQ0700      |
     | ingangsdatum geldigheid (85.10) | 20180101     |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Jia        |
@@ -229,7 +229,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022       |
     | aktenummer (81.20)              | 1VQ0701    |
     | ingangsdatum geldigheid (85.10) | 20190101   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Jiali      |
@@ -247,7 +247,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022       |
     | aktenummer (81.20)              | 1VM0700    |
     | ingangsdatum geldigheid (85.10) | 20190510   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Jin        |
@@ -265,7 +265,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022       |
     | aktenummer (81.20)              | 1VM0700    |
     | ingangsdatum geldigheid (85.10) | 20190510   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Li         |
@@ -274,7 +274,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022       |
     | aktenummer (81.20)              | 1VQ0700    |
     | ingangsdatum geldigheid (85.10) | 20180101   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | William    |
@@ -292,7 +292,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AM0101    |
     | ingangsdatum geldigheid (85.10) | 20200105   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Harry      |
@@ -359,7 +359,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde       |
     | burgerservicenummer (01.20)     | 000000115    |
     | voornamen (02.10)               | Jinthe Jiang |
@@ -368,7 +368,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022         |
     | aktenummer (81.20)              | 1VQ0700      |
     | ingangsdatum geldigheid (85.10) | 20180101     |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Jia        |
@@ -377,7 +377,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022       |
     | aktenummer (81.20)              | 1VQ0701    |
     | ingangsdatum geldigheid (85.10) | 20190101   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Jiali      |
@@ -395,7 +395,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022       |
     | aktenummer (81.20)              | 1VM0700    |
     | ingangsdatum geldigheid (85.10) | 20190510   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Jin        |
@@ -413,7 +413,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022       |
     | aktenummer (81.20)              | 1VQ0700    |
     | ingangsdatum geldigheid (85.10) | 20180101   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | William    |
@@ -431,7 +431,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AM0101    |
     | ingangsdatum geldigheid (85.10) | 20200105   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Harry      |

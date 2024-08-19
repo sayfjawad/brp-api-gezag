@@ -37,7 +37,7 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde       |
     | burgerservicenummer (01.20)     | 000000048    |
     | voornamen (02.10)               | Niels        |
@@ -55,7 +55,7 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | geboorteland (03.30)            | 6030         |
     | aktenummer (81.20)              | 1AN0001      |
     | ingangsdatum geldigheid (85.10) | 20210101     |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde       |
     | burgerservicenummer (01.20)     | 000000036    |
     | voornamen (02.10)               | Nicolas      |
@@ -106,11 +106,11 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AN0001  |
     | ingangsdatum geldigheid (85.10) | 20210101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Nicolas    |

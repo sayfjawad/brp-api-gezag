@@ -37,7 +37,7 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     | naam                              | waarde           |
     | gemeente van inschrijving (09.10) | 518              |
     | ingangsdatum geldigheid (85.10)   | morgen - 18 jaar |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Onne       |
@@ -46,7 +46,7 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0011    |
     | ingangsdatum geldigheid (85.10) | 20220202   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Olle       |

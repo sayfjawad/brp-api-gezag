@@ -37,7 +37,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Jettie     |
@@ -46,7 +46,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0502    |
     | ingangsdatum geldigheid (85.10) | 20211231   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Janneke    |
@@ -55,7 +55,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0501    |
     | ingangsdatum geldigheid (85.10) | 20230105   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Jantina    |
@@ -64,7 +64,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0500    |
     | ingangsdatum geldigheid (85.10) | 20230105   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Joy        |
@@ -73,7 +73,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AV0501    |
     | ingangsdatum geldigheid (85.10) | 20200601   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Johanna    |
@@ -82,7 +82,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AV0500    |
     | ingangsdatum geldigheid (85.10) | 20200601   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Jolanda    |
@@ -91,7 +91,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0011    |
     | ingangsdatum geldigheid (85.10) | 20230106   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Jacoba     |
@@ -130,7 +130,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Jettie     |
@@ -148,7 +148,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0502    |
     | ingangsdatum geldigheid (85.10) | 20211231   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Janneke    |
@@ -166,7 +166,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0501    |
     | ingangsdatum geldigheid (85.10) | 20230105   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Jantina    |
@@ -184,7 +184,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0500    |
     | ingangsdatum geldigheid (85.10) | 20230105   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Joy        |
@@ -193,7 +193,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AV0501    |
     | ingangsdatum geldigheid (85.10) | 20200601   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Johanna    |
@@ -202,7 +202,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AV0500    |
     | ingangsdatum geldigheid (85.10) | 20200601   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Jolanda    |
@@ -211,7 +211,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0011    |
     | ingangsdatum geldigheid (85.10) | 20230106   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Jacoba     |

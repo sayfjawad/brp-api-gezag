@@ -46,7 +46,7 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Esther     |
@@ -55,7 +55,7 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0102    |
     | ingangsdatum geldigheid (85.10) | 20161001   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde   |
     | voornamen (02.10)               | Eveline  |
     | geslachtsnaam (02.40)           | Ederveen |
@@ -99,7 +99,7 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Esther     |
@@ -117,7 +117,7 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0102    |
     | ingangsdatum geldigheid (85.10) | 20161001   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Eveline    |
@@ -135,7 +135,7 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0103    |
     | ingangsdatum geldigheid (85.10) | 20190601   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Esmee      |

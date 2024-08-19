@@ -50,7 +50,7 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     | land vanwaar ingeschreven (14.10)    | 7009     |
     | datum vestiging in Nederland (14.20) | 20131201 |
     | ingangsdatum geldigheid (85.10)      | 20131201 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Salim      |
@@ -102,7 +102,7 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     | land vanwaar ingeschreven (14.10)    | 7009     |
     | datum vestiging in Nederland (14.20) | 20131201 |
     | ingangsdatum geldigheid (85.10)      | 20131201 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Salim      |

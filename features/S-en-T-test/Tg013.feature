@@ -49,7 +49,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Mark       |
@@ -114,7 +114,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AN0100  |
     | ingangsdatum geldigheid (85.10) | 20140301 |
@@ -229,7 +229,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Mark       |
@@ -314,7 +314,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Mirthe     |
@@ -371,7 +371,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde                 |
     | beschrijving document (82.30)   | ten onrechte opgenomen |
     | ingangsdatum geldigheid (85.10) | 20150401               |
@@ -504,7 +504,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | land vanwaar ingeschreven (14.10)    | 9089     |
     | datum vestiging in Nederland (14.20) | 20160401 |
     | ingangsdatum geldigheid (85.10)      | 20160401 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000115  |
     | voornamen (02.10)               | Mira       |
@@ -513,7 +513,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AV0102    |
     | ingangsdatum geldigheid (85.10) | 20170101   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000127  |
     | voornamen (02.10)               | Meike      |
@@ -522,7 +522,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AV0103    |
     | ingangsdatum geldigheid (85.10) | 20170101   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AE0100  |
     | ingangsdatum geldigheid (85.10) | 20150201 |

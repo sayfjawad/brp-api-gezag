@@ -45,7 +45,7 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Luc        |
@@ -54,7 +54,7 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AQ0100    |
     | ingangsdatum geldigheid (85.10) | 20120501   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Lex        |
@@ -72,7 +72,7 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AB0100    |
     | ingangsdatum geldigheid (85.10) | 20140502   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Lux        |
@@ -117,7 +117,7 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Luc        |
@@ -126,7 +126,7 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AQ0100    |
     | ingangsdatum geldigheid (85.10) | 20120501   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Lex        |
@@ -135,7 +135,7 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AB0100    |
     | ingangsdatum geldigheid (85.10) | 20140502   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Lux        |

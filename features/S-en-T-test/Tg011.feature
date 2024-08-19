@@ -116,7 +116,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000036   |
     | voornamen (02.10)               | Kerwin      |
@@ -125,7 +125,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030        |
     | beschrijving document (82.30)   | PL kind     |
     | ingangsdatum geldigheid (85.10) | 20120401    |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000048   |
     | voornamen (02.10)               | Kevin       |
@@ -134,7 +134,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030        |
     | beschrijving document (82.30)   | PL kind     |
     | ingangsdatum geldigheid (85.10) | 20130401    |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000061   |
     | voornamen (02.10)               | Kelvin      |
@@ -143,7 +143,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030        |
     | beschrijving document (82.30)   | PL kind     |
     | ingangsdatum geldigheid (85.10) | 20140401    |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000073   |
     | voornamen (02.10)               | Kylian      |
@@ -152,7 +152,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030        |
     | beschrijving document (82.30)   | PL kind     |
     | ingangsdatum geldigheid (85.10) | 20150401    |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000115   |
     | voornamen (02.10)               | Kyona       |
@@ -266,7 +266,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000036   |
     | voornamen (02.10)               | Kerwin      |
@@ -275,7 +275,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030        |
     | beschrijving document (82.30)   | PL kind     |
     | ingangsdatum geldigheid (85.10) | 20120401    |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000048   |
     | voornamen (02.10)               | Kevin       |
@@ -284,7 +284,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030        |
     | beschrijving document (82.30)   | PL kind     |
     | ingangsdatum geldigheid (85.10) | 20130401    |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000061   |
     | voornamen (02.10)               | Kelvin      |
@@ -293,7 +293,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030        |
     | beschrijving document (82.30)   | PL kind     |
     | ingangsdatum geldigheid (85.10) | 20140401    |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000073   |
     | voornamen (02.10)               | Kylian      |
@@ -302,7 +302,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030        |
     | beschrijving document (82.30)   | PL kind     |
     | ingangsdatum geldigheid (85.10) | 20150401    |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000138  |
     | voornamen (02.10)               | Kaylee     |
@@ -312,7 +312,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0199    |
     | ingangsdatum geldigheid (85.10) | 20180401   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Kyra       |
@@ -321,7 +321,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0100    |
     | ingangsdatum geldigheid (85.10) | 20200301   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000127  |
     | voornamen (02.10)               | Karina     |
@@ -566,7 +566,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Kyra       |
@@ -671,7 +671,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000115   |
     | voornamen (02.10)               | Kyona       |

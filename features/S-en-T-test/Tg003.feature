@@ -46,7 +46,7 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Bram       |
@@ -55,7 +55,7 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0010    |
     | ingangsdatum geldigheid (85.10) | 20140201   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Benno      |
@@ -185,7 +185,7 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Boudewijn  |
@@ -194,7 +194,7 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0104    |
     | ingangsdatum geldigheid (85.10) | 20120601   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Bertram    |
@@ -266,7 +266,7 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Boudewijn  |
@@ -275,7 +275,7 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0104    |
     | ingangsdatum geldigheid (85.10) | 20120601   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Bertram    |

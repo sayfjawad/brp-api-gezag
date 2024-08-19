@@ -139,7 +139,7 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Pascalle   |
@@ -148,7 +148,7 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0101    |
     | ingangsdatum geldigheid (85.10) | 20131201   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Pierre     |
@@ -281,7 +281,7 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Pepita     |
@@ -448,7 +448,7 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000115  |
     | voornamen (02.10)               | Paul       |
@@ -516,7 +516,7 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                        | waarde     |
     | burgerservicenummer (01.20) | 000000115  |
     | voornamen (02.10)           | Paul       |

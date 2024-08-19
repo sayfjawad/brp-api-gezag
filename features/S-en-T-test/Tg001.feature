@@ -11,7 +11,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_001 - gehuwd, 4 minderjarige kinderen geboren vóór huwelijk, 2 minderjarige kinderen geboren ná huwelijk, 1 overleden kind, 1 meerderjarig kind, 4 kinderen onder gezag
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Annet      |
     | geslachtsnaam (02.40)           | Adema      |
     | geboortedatum (03.10)           | 19820101   |
@@ -56,7 +55,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Alexa      |
@@ -65,7 +64,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0100    |
     | ingangsdatum geldigheid (85.10) | 20090401   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Alicia     |
@@ -74,7 +73,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0100    |
     | ingangsdatum geldigheid (85.10) | 20140401   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000115  |
     | voornamen (02.10)               | Xandra     |
@@ -92,7 +91,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0109    |
     | ingangsdatum geldigheid (85.10) | 20150301   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Astrid     |
@@ -110,7 +109,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0108    |
     | ingangsdatum geldigheid (85.10) | 20150301   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Ariana     |
@@ -128,7 +127,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0107    |
     | ingangsdatum geldigheid (85.10) | 20150301   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Xander     |
@@ -137,7 +136,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0002    |
     | ingangsdatum geldigheid (85.10) | 20151201   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Axel       |
@@ -146,7 +145,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0001    |
     | ingangsdatum geldigheid (85.10) | 20151201   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Amalia     |
@@ -159,7 +158,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_002 - gehuwd, 4 minderjarige kinderen geboren vóór huwelijk, 2 minderjarige kinderen geboren ná huwelijk, 1 overleden kind, 1 meerderjarig kind, 4 kinderen onder gezag
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Adam       |
     | geslachtsnaam (02.40)           | Arendsen   |
     | geboortedatum (03.10)           | 19810101   |
@@ -205,7 +203,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Alexa      |
@@ -214,7 +212,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0100    |
     | ingangsdatum geldigheid (85.10) | 20090401   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Alicia     |
@@ -223,7 +221,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0100    |
     | ingangsdatum geldigheid (85.10) | 20140401   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000115  |
     | voornamen (02.10)               | Xandra     |
@@ -232,7 +230,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0109    |
     | ingangsdatum geldigheid (85.10) | 20150301   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Astrid     |
@@ -241,7 +239,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0108    |
     | ingangsdatum geldigheid (85.10) | 20150301   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Ariana     |
@@ -250,7 +248,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0107    |
     | ingangsdatum geldigheid (85.10) | 20150301   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Xander     |
@@ -259,7 +257,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0002    |
     | ingangsdatum geldigheid (85.10) | 20151201   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Axel       |
@@ -268,7 +266,7 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0001    |
     | ingangsdatum geldigheid (85.10) | 20151201   |
-    En de persoon heeft (nog) een 'kind' met de volgende gegevens
+    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Amalia     |
@@ -281,7 +279,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_003 - minderjarig, ouders gehuwd op moment geboorte, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Axel       |
     | geslachtsnaam (02.40)           | Arendsen   |
     | geboortedatum (03.10)           | 20151201   |
@@ -319,7 +316,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_004 - overleden, ouders gehuwd op moment geboorte, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Xander     |
     | geslachtsnaam (02.40)           | Arendsen   |
     | geboortedatum (03.10)           | 20151201   |
@@ -367,7 +363,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_005 - minderjarig, erkend als ongeboren vrucht, geen categorie 11, ouders gehuwd ná de geboorte
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Alicia     |
     | geslachtsnaam (02.40)           | Arendsen   |
     | geboortedatum (03.10)           | 20140401   |
@@ -405,7 +400,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_006 - minderjarig, ouder dan 12, erkend als ongeboren vrucht, geen categorie 11, ouders gehuwd ná de geboorte
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Alexa      |
     | geslachtsnaam (02.40)           | Arendsen   |
     | geboortedatum (03.10)           | 20090401   |
@@ -443,7 +437,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_110 - ouders gehuwd, indicatie gezag "2"
     Gegeven de persoon met burgerservicenummer '000000085' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Amalia     |
     | geslachtsnaam (02.40)           | Arendsen   |
     | geboortedatum (03.10)           | 20161231   |
@@ -486,7 +479,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_111 - erkend, ouders later gehuwd, indicatie gezag "1" geldig voor huwelijksdatum
     Gegeven de persoon met burgerservicenummer '000000097' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Ariana     |
     | geslachtsnaam (02.40)           | Adema      |
     | geboortedatum (03.10)           | 20100601   |
@@ -543,7 +535,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_112 - erkend, ouders later gehuwd, indicatie gezag "1D" geldig na huwelijksdatum
     Gegeven de persoon met burgerservicenummer '000000103' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Astrid     |
     | geslachtsnaam (02.40)           | Adema      |
     | geboortedatum (03.10)           | 20100601   |
@@ -600,7 +591,6 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Lg01_113 - erkend, ouders later gehuwd, indicatie gezag "1D" geldig voor huwelijksdatum
     Gegeven de persoon met burgerservicenummer '000000115' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000115  |
     | voornamen (02.10)               | Xandra     |
     | geslachtsnaam (02.40)           | Adema      |
     | geboortedatum (03.10)           | 20100601   |
