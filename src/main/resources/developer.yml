@@ -11,8 +11,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/rvig_brp_api_testdata
     username: root
     password: root
-  cache:
-    type: none
 
 new-gezag-service:
   enabled: true
