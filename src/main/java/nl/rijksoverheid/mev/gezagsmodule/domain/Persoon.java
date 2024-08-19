@@ -29,7 +29,7 @@ public class Persoon extends PotentieelInOnderzoek {
         Map<String, String> values = new HashMap<>();
         values.put(BSN, Objects.toString(lo3PlPersoonRecord.getBurgerServiceNr(), null));
         values.put(VOORNAMEN, lo3PlPersoonRecord.getVoorNaam());
-        values.put(VOORVOEGSEL, Objects.toString(lo3PlPersoonRecord.getGeslachtsNaamVoorvoegsel(), null));
+        values.put(VOORVOEGSEL, lo3PlPersoonRecord.getGeslachtsNaamVoorvoegsel());
         values.put(GESLACHTSNAAM, lo3PlPersoonRecord.getGeslachtsNaam());
         values.put(GEBOORTEDATUM, Objects.toString(lo3PlPersoonRecord.getGeboorteDatum(), null));
         values.put(GEBOORTELAND, Objects.toString(lo3PlPersoonRecord.getGeboorteLandCode(), null));
