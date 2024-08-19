@@ -1,0 +1,6 @@
+:!package.json
+:!package-lock.json
+:!.docker/scripts/schema.sql
+:!.docker/db.yml
+:!features/step_definitions/*.*
+*
