@@ -77,6 +77,9 @@ transaction:
     location: transaction-backup
 
 exceptie-bij-in-onderzoek: true
+
+new-gezag-service:
+  enabled: false
 ---
 
 spring:

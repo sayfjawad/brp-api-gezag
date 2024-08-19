@@ -4,7 +4,7 @@ import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.common.util.BSNValidator;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagServiceOld;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import org.openapitools.model.GezagRequest;
 import org.openapitools.model.Persoon;
@@ -22,11 +22,11 @@ import java.util.stream.Stream;
 public class BevoegdheidTotGezagService {
 
     private final BrpService brpService;
-    private final GezagService gezagService;
+    private final GezagServiceOld gezagService;
     private final GezagTransformer gezagTransformer;
     private final BSNValidator bsnValidator;
 
-    public BevoegdheidTotGezagService(final BrpService brpService, final GezagService gezagService, final GezagTransformer gezagTransformer) {
+    public BevoegdheidTotGezagService(final BrpService brpService, final GezagServiceOld gezagService, final GezagTransformer gezagTransformer) {
         this.brpService = brpService;
         this.gezagService = gezagService;
         this.gezagTransformer = gezagTransformer;

@@ -499,18 +499,6 @@ public class Persoonslijst {
         }
     }
 
-    public boolean naarBuitenlandGeemigreerdGeweest() {
-        return getPersoon().getGeboorteland().equals("6030")
-                && getVerblijfplaats().getDatumVestigingInNederland() != null
-                && !(getVerblijfplaats().getDatumVestigingInNederland().isEmpty());
-    }
-
-    @JsonIgnore
-    public boolean isGeborenInBuitenland() {
-        return getPersoon() != null && !getPersoon().getGeboorteland().equals("6030")
-                && isNotEmpty(getVerblijfplaats().getDatumVestigingInNederland());
-    }
-
     public boolean adoptieNaIngangsGeldigheidsdatum() {
         if (geadopteerdMetNlAkte()) {
             boolean ouder1AdoptieNa = Integer.parseInt(getOuder1().getDatumIngangFamiliebetrekking())
