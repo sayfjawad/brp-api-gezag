@@ -31,15 +31,15 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
     }
 
     public String getIndicatieGezagMinderjarige() {
-        return get(INDICATIE_GEZAG_MINDERJARIGE);
+        return get(INDICATIE_GEZAG_MINDERJARIGE, "indicatie gezag minderjarige");
     }
 
     public String getIndicatieCurateleRegister() {
-        return get(INDICATIE_CURATELE_REGISTER);
+        return get(INDICATIE_CURATELE_REGISTER, "indicatie curatele register");
     }
 
     public String getIngangsdatumGeldigheidGezag() {
-        return get(INGANGSDATUM_GELDIGHEID_GEZAG);
+        return get(INGANGSDATUM_GELDIGHEID_GEZAG, "ingangsdatum geldigheid gezag");
     }
 
     @Override

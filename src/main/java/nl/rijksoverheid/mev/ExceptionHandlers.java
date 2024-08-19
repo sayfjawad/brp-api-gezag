@@ -1,6 +1,5 @@
 package nl.rijksoverheid.mev;
 
-import org.openapitools.api.PersoonsgegevensV1ApiController;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 

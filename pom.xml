@@ -6,23 +6,24 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.3</version>
+        <version>3.3.0</version>
         <relativePath/>
     </parent>
 
     <groupId>nl.rijksoverheid.mev</groupId>
     <artifactId>gezag</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>1.1.0</version>
 
     <name>gezag</name>
     <description>Gezag</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <sonar.projectKey>gezag</sonar.projectKey>
         <sonar.organization>logius</sonar.organization>
+        <ecs-logging-java.version>1.6.0</ecs-logging-java.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <org.projectlombok.version>1.18.28</org.projectlombok.version>
+        <org.projectlombok.version>1.18.30</org.projectlombok.version>
         <wiremock.version>3.0.0-beta-10</wiremock.version>
     </properties>
 
@@ -83,9 +84,9 @@
             <version>4.5.14</version>
         </dependency>
         <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>7.3</version>
+            <groupId>co.elastic.logging</groupId>
+            <artifactId>logback-ecs-encoder</artifactId>
+            <version>${ecs-logging-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -95,7 +96,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20230227</version>
+            <version>20240303</version>
         </dependency>
         <dependency>
             <!-- Was needed by some plugin, otherwise compiler error occurred -->
@@ -211,7 +212,7 @@
         <dependency>
             <groupId>jakarta.xml.soap</groupId>
             <artifactId>jakarta.xml.soap-api</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.2</version>
         </dependency>
     </dependencies>
 
@@ -228,17 +229,17 @@
                 <!-- Execute with maven goals: versions:display-plugin-updates versions:display-dependency-updates -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>2.16.0</version>
+                <version>2.16.2</version>
             </plugin>
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.7.3.4</version>
+                <version>4.8.5.0</version>
                 <dependencies>
                     <dependency>
                         <groupId>com.github.spotbugs</groupId>
                         <artifactId>spotbugs</artifactId>
-                        <version>4.7.3</version>
+                        <version>4.8.6</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -264,7 +265,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>8.4.3</version>
+                <version>9.2.0</version>
                 <configuration>
                     <failBuildOnCVSS>7</failBuildOnCVSS>
                     <suppressionFiles>
@@ -283,12 +284,12 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.10</version>
+                <version>0.8.12</version>
                 <dependencies>
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>10.12.0</version>
+                        <version>10.17.0</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -335,12 +336,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-wrapper-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-codegen-plugin</artifactId>
-                <version>4.0.1</version>
+                <version>4.0.4</version>
                 <executions>
                     <execution>
                         <id>generate-sources</id>
@@ -364,10 +365,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>21</source>
+                    <target>21</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>
@@ -390,7 +391,7 @@
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.0.1</version>
+                <version>7.6.0</version>
                 <executions>
                     <execution>
                         <id>spring-server-gmapi</id>
@@ -398,25 +399,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/openapi-gmapi.yml</inputSpec>
-                            <generatorName>spring</generatorName>
-                            <configOptions>
-                                <delegatePattern>true</delegatePattern>
-                                <documentationProvider>none</documentationProvider>
-                                <implicitHeaders>true</implicitHeaders>
-                                <useOptional>true</useOptional>
-                                <useSpringBoot3>true</useSpringBoot3>
-                                <useTags>true</useTags>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>spring-server-persoonsgegevens</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/openapi-persoonsgegevens.yml</inputSpec>
+                            <inputSpec>${project.basedir}/src/main/resources/brp-api-gezag.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <configOptions>
                                 <delegatePattern>true</delegatePattern>

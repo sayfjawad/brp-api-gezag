@@ -1,10 +1,10 @@
 package nl.rijksoverheid.mev.common.util;
 
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
+import java.util.Collections;
+import java.util.List;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.exception.InvalidBSNException;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -21,7 +21,7 @@ class BsnValidatorTest {
 
     @Test
     void nullBsnExpectingTrue() throws GezagException {
-        assertFalse(new BSNValidator().isValid(null));
+        assertFalse(new BSNValidator().isValid((String)null));
     }
 
     @Test
@@ -40,5 +40,57 @@ class BsnValidatorTest {
     @Test
     void validBsnExpectingTrue() throws GezagException {
         assertTrue(new BSNValidator().isValid(BSN_VALID));
+    }
+
+    @Test
+    void validBsnsWithoutValue() throws GezagException {
+        List<String> bsns = null;
+
+        assertTrue(new BSNValidator().isValid(bsns));
+    }
+
+    @Test
+    void validBsnsWithEmptyValue() throws GezagException {
+        List<String> bsns = Collections.EMPTY_LIST;
+
+        assertTrue(new BSNValidator().isValid(bsns));
+    }
+
+    @Test
+    void validBsnsWithOneEntryBeingEmpty() throws GezagException {
+        List<String> bsns = List.of("");
+
+        GezagException exception = assertThrows(InvalidBSNException.class,
+                () -> new BSNValidator().isValid(bsns));
+
+        assertNotNull(exception);
+    }
+
+    @Test
+    void validBsnsWithOneEntryBeingInvalid() throws GezagException {
+        List<String> bsns = List.of(BSN_INVALID);
+        
+        assertFalse(new BSNValidator().isValid(bsns));
+    }
+
+    @Test
+    void validBsnsWithOneEntryBeingValid() throws GezagException {
+        List<String> bsns = List.of(BSN_VALID);
+
+        assertTrue(new BSNValidator().isValid(bsns));
+    }
+
+    @Test
+    void validBsnsWithMultipleEntriesOneInvalidOthersValid() throws GezagException {
+        List<String> bsns = List.of(BSN_VALID, BSN_INVALID, BSN_VALID);
+
+        assertFalse(new BSNValidator().isValid(bsns));
+    }
+
+    @Test
+    void validBsnsWithMultipleEntriesAllValid() throws GezagException {
+        List<String> bsns = List.of(BSN_VALID, BSN_VALID, BSN_VALID);
+
+        assertTrue(new BSNValidator().isValid(bsns));
     }
 }

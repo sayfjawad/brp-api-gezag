@@ -1,9 +1,15 @@
+logging:
+  file:
+    name: brp-api-gezag.log
+
 server:
   port: 8080
   error:
     include-message: always
 
 spring:
+  application:
+    name: brp-api-gezag
   datasource:
     hikari:
       max-lifetime: 655000
@@ -64,13 +70,16 @@ correlation:
   component-id: 02
 
 transaction-logging:
-  enabled: true
+  enabled: false
 
 transaction:
   backup:
     location: transaction-backup
 
 exceptie-bij-in-onderzoek: true
+
+new-gezag-service:
+  enabled: false
 ---
 
 spring:

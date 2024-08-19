@@ -36,13 +36,13 @@ public class SOAPHelper {
         // Persoon Geschiedenis
         518120, 518230,
         // Ouder 1
-        20120, 20210, 20240, 26210,
+        20120, 20210, 20240, 26210, 28120,
         // Adoptieouder 1 (Ouder 1 Geschiedenis)
-        520210, 520240,
+        520210, 520240, 526210, 528120,
         // Ouder 2
-        30120, 30210, 30240, 36210,
+        30120, 30210, 30240, 36210, 38120,
         // Adoptieouder 2 (Ouder 2 Geschiedenis)
-        530210, 530240,
+        530210, 530240, 536210, 538120,
         // HuwelijkOfPartnerschap
         50120, 50610, 50620, 50630, 50710, 50720, 50730, 50740,
         // HuwelijkOfPartnerschap Geschiedenis

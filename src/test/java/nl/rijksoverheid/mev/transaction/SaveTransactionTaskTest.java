@@ -1,8 +1,4 @@
 package nl.rijksoverheid.mev.transaction;
-
-import nl.rijksoverheid.mev.transaction.SaveTransactionTask;
-import nl.rijksoverheid.mev.transaction.Transaction;
-import nl.rijksoverheid.mev.transaction.TransactionRepository;
 import java.io.File;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -24,7 +20,7 @@ import org.springframework.dao.QueryTimeoutException;
  * Tests for saving transaction task
  */
 @ExtendWith(MockitoExtension.class)
-public class SaveTransactionTaskTest {
+class SaveTransactionTaskTest {
 
     @Mock
     private TransactionRepository repository;
@@ -33,14 +29,14 @@ public class SaveTransactionTaskTest {
     private static final String TEMP_DIR = "testing";
 
     @Test
-    public void saveTransactionTaskWithoutTransactionAndTransactionLocationDoesNotThrowException() {
+    void saveTransactionTaskWithoutTransactionAndTransactionLocationDoesNotThrowException() {
         SaveTransactionTask task = new SaveTransactionTask(repository, null, null);
 
         assertDoesNotThrow(task::run);
     }
 
     @Test
-    public void saveTransactionTaskWithTransactionAndWithoutTransactionLocationDoesNotThrowException() {
+    void saveTransactionTaskWithTransactionAndWithoutTransactionLocationDoesNotThrowException() {
         Transaction transaction = getTransaction(1);
         SaveTransactionTask task = new SaveTransactionTask(repository, transaction, null);
 
@@ -48,14 +44,14 @@ public class SaveTransactionTaskTest {
     }
 
     @Test
-    public void saveTransactionTaskWithoutTransactionAndWithTransactionLocationDoesNotThrowException() {
+    void saveTransactionTaskWithoutTransactionAndWithTransactionLocationDoesNotThrowException() {
         SaveTransactionTask task = new SaveTransactionTask(repository, null, TEMP_DIR);
 
         assertDoesNotThrow(task::run);
     }
 
     @Test
-    public void saveTransactionTaskExpectingTransactionToBeSaved() {
+    void saveTransactionTaskExpectingTransactionToBeSaved() {
         Transaction transaction = getTransaction(1);
         SaveTransactionTask task = new SaveTransactionTask(repository, transaction, TEMP_DIR);
         task.run();
@@ -65,7 +61,7 @@ public class SaveTransactionTaskTest {
     }
 
     @Test
-    public void saveTransactionTaskExpectingTransactionSaveToFailAndBackupToBeCreated() {
+    void saveTransactionTaskExpectingTransactionSaveToFailAndBackupToBeCreated() {
         Transaction transaction = getTransaction(1);
         when(repository.save(transaction)).thenThrow(QueryTimeoutException.class);
 
@@ -77,7 +73,7 @@ public class SaveTransactionTaskTest {
     }
 
     @Test
-    public void saveTransactionTaskExpectingTransactionSaveToFailAndBackupToBeCreatedAndThenRestored() {
+    void saveTransactionTaskExpectingTransactionSaveToFailAndBackupToBeCreatedAndThenRestored() {
         Transaction transaction = getTransaction(1);
         when(repository.save(transaction))
                 .thenThrow(QueryTimeoutException.class)
