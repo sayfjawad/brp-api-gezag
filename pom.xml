@@ -197,6 +197,9 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>nl.rijksoverheid.mev.GezagApplication</mainClass>
+                    <image>
+                        <builder>dashaun/builder:tiny</builder>
+                    </image>
                 </configuration>
             </plugin>
 
