@@ -11,7 +11,6 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Lg01_145 - ongehuwde ouders met 6 kinderen geboren voor en na 01-01-2023, 5 kinderen erkend, 2 kinderen vaststelling vaderschap
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Joop       |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 19890727   |
@@ -37,7 +36,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Jettie     |
@@ -104,7 +103,6 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Lg01_146 - ongehuwde ouders met 6 kinderen geboren voor en na 01-01-2023, 5 kinderen erkend, 2 kinderen vaststelling vaderschap
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Josephien  |
     | geslachtsnaam (02.40)           | Joosten    |
     | geboortedatum (03.10)           | 19900830   |
@@ -130,7 +128,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Jettie     |
@@ -224,7 +222,6 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Lg01_147 - kind geboren uit ongehuwde ouders na 01-01- 2023, erkenning ongeboren vrucht,  indicatie gezag
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Jacoba     |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 20230106   |
@@ -267,7 +264,6 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Lg01_148 - kind geboren uit ongehuwde ouders na 01-01- 2023, erkenning ongeboren vrucht,  geen indicatie gezag
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Jolanda    |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 20230106   |
@@ -305,7 +301,6 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Lg01_149 - kind geboren uit ongehuwde ouders voor 01-01-2023, vaststelling ouderschap
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Johanna    |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 20200601   |
@@ -343,7 +338,6 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Lg01_150 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning na 01-01-2023, aantekening gezag
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Jantina    |
     | geslachtsnaam (02.40)           | Joosten    |
     | geboortedatum (03.10)           | 20211201   |
@@ -400,7 +394,6 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Lg01_151 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning na 01-01-2023, geen aantekening gezag
     Gegeven de persoon met burgerservicenummer '000000085' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Janneke    |
     | geslachtsnaam (02.40)           | Joosten    |
     | geboortedatum (03.10)           | 20211201   |
@@ -452,7 +445,6 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Lg01_152 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning voor 01-01-2023, geen aantekening gezag
     Gegeven de persoon met burgerservicenummer '000000097' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Jettie     |
     | geslachtsnaam (02.40)           | Joosten    |
     | geboortedatum (03.10)           | 20211201   |
@@ -504,7 +496,6 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Lg01_215 - kind geboren uit ongehuwde ouders voor 01-01-2023, vaststelling ouderschap, moeder categorie 02
     Gegeven de persoon met burgerservicenummer '000000103' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Joy        |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 20200601   |

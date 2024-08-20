@@ -11,7 +11,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     # Lg01_156 - vrouw, huwelijk met vrouw, 2 kinderen maar echtgenote geen duomoeder, echtgenote wel gezag, echtgenote overleden, kinderen worden in 2023 erkend
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Kim        |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Kootwijk   |
@@ -72,7 +71,7 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Kira       |
@@ -136,7 +135,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     # Lg01_157 - vrouw, huwelijk met vrouw, echtgenote krijgt 2 kinderen (geen anonieme donor), overleden
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Karla      |
     | geslachtsnaam (02.40)           | Kruiswijk  |
     | geboortedatum (03.10)           | 19870320   |
@@ -196,7 +194,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     # Lg01_158 - alleen moeder, moeder wel gehuwd maar geen anonieme donor, na overlijden huwelijkspartner moeder erkend in 2023, akteaanduiding C in actuele categorie bij persoon en ouder2
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Kira       |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Kootwijk   |
@@ -262,7 +259,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     # Lg01_159 - erkenner van 2 kinderen waarvan de moeder gehuwd was met een vrouw die niet de meemoeder is van de kinderen (geen anonieme donor). Huwelijkspartner moeder overleden
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Kees       |
     | geslachtsnaam (02.40)           | Klapwijk   |
     | geboortedatum (03.10)           | 19851110   |
@@ -294,7 +290,7 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Kyrolina   |
@@ -328,7 +324,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     # Lg01_160 - alleen moeder, moeder wel gehuwd maar geen anonieme donor, na overlijden huwelijkspartner moeder erkend in 2023, akteaanduiding C in historische categorie bij persoon en ouder2
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Karo       |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Kootwijk   |

@@ -11,7 +11,6 @@ Functionaliteit: Tg018 - Vondeling - Kind zonder ouders
     # Lg01_100 - vondeling, juridisch geen ouders (is fout in BRP opgenomen)
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Zacharias  |
     | geslachtsnaam (02.40)           | Vondeling  |
     | geboortedatum (03.10)           | 20210801   |

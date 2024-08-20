@@ -11,7 +11,6 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     # Lg01_209 - geregistreerd partnerschap met vrouw, partner overleden, minderjarig kind van bekende donor
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Tina       |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Tubbergen  |
@@ -74,7 +73,7 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Trudetty   |
@@ -98,7 +97,6 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     # Lg01_210 - geregistreerd partnerschap met vrouw, overleden
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Trudy      |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Tintelen   |
@@ -156,7 +154,7 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Tom        |
@@ -180,7 +178,6 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     # Lg01_211 - juridisch alleen moeder, geregistreerd partner van moeder overleden, moeder categorie 02
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Trinette   |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Tubbergen  |
@@ -213,7 +210,6 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     # Lg01_212 - juridisch alleen moeder, geregistreerd partner van moeder overleden, moeder categorie 03
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Trudetty   |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Tubbergen  |
@@ -246,7 +242,6 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     # Lg01_213 - juridisch alleen moeder, moeder overleden, geregistreerd partner moeder geen ouder wel gezag, moeder categorie 02
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Tim        |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Tintelen   |
@@ -279,7 +274,6 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     # Lg01_214 - juridisch alleen moeder, moeder overleden, geregistreerd partner moeder geen ouder wel gezag, moeder categorie 03
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Tom        |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Tintelen   |

@@ -56,7 +56,7 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Laeticia   |
@@ -98,7 +98,6 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     # Lg01_162 - voogd van 2 minderjarige kinderen (1D), 1 kind door hem later erkend
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Louis      |
     | geslachtsnaam (02.40)           | Luiten     |
     | geboortedatum (03.10)           | 19901201   |
@@ -130,7 +129,7 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Laeticia   |
@@ -184,7 +183,7 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Larissa    |
@@ -197,7 +196,6 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     # Lg01_164 - minderjarig kind onder gezag 1D, erkend
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Larissa    |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Leeuwen    |
@@ -256,7 +254,6 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     # Lg01_165 - minderjarig kind onder gezag 1D, erkend  door voogd
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Laeticia   |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Leeuwen    |

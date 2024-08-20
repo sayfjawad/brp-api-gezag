@@ -11,7 +11,6 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     # Lg01_203 - ongehuwd, 2 kinderen (1 geboren en erkend voor 01-01-2023 en 1 geboren en erkend na 01-01-2023
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Simone     |
     | geslachtsnaam (02.40)           | Savelskoul |
     | geboortedatum (03.10)           | 19800101   |
@@ -47,7 +46,7 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Sjoukje    |
@@ -89,7 +88,6 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     # Lg01_204 - ongehuwd, 2 kinderen (1 g erkend voor 01-01-2023 en 1 erkend na 01-01-2023
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde      |
-    | burgerservicenummer (01.20)     | 000000024   |
     | voornamen (02.10)               | Sjoerd      |
     | voorvoegsel (02.30)             | van         |
     | geslachtsnaam (02.40)           | Steenbergen |
@@ -117,7 +115,7 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000036   |
     | voornamen (02.10)               | Sjoukje     |
@@ -141,7 +139,6 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     # Lg01_205 - geadopteerd door niet gehuwde ouders, indicatie gezag 12,  adoptiemoeder overleden,  indicatie gezag 12
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Sjoukje    |
     | geslachtsnaam (02.40)           | Saroutakia |
     | geboortedatum (03.10)           | 20220601   |
@@ -210,7 +207,6 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     # Lg01_206 - geboren en erkend na 01-01-2023, moeder overleden, geen indicatie gezag
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Sytse      |
     | geslachtsnaam (02.40)           | Savelskoul |
     | geboortedatum (03.10)           | 20230601   |

@@ -14,7 +14,6 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     # Lg01_125 - 3 erkende kinderen
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Ewald      |
     | geslachtsnaam (02.40)           | Egberts    |
     | geboortedatum (03.10)           | 19721001   |
@@ -46,7 +45,7 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Esther     |
@@ -67,7 +66,6 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     # Lg01_126 - 3 erkende kinderen
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Edwina     |
     | geslachtsnaam (02.40)           | Ederveen   |
     | geboortedatum (03.10)           | 19891201   |
@@ -99,7 +97,7 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Esther     |
@@ -157,7 +155,6 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     # Lg01_127 - erkend, categorie 09 op PL vader/erkenner zonder SoFi-nr/BSN, indicatie gezag 12
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Esther     |
     | geslachtsnaam (02.40)           | Ederveen   |
     | geboortedatum (03.10)           | 20150801   |
@@ -214,7 +211,6 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     # Lg01_128 - erkend, categorie 03 op PL kind zonder SoFi-nr/BSN, wel A-nr/BSN in categorie 09 PL vader/erkenner, indicatie gezag 12
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Eveline    |
     | geslachtsnaam (02.40)           | Ederveen   |
     | geboortedatum (03.10)           | 20180401   |
@@ -270,7 +266,6 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     # Lg01_129 - erkend categorie 03 op PL kind met Anr/BSN, categorie 09 ontbreekt bij vader, indicatie gezag 12
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Esmee      |
     | geslachtsnaam (02.40)           | Ederveen   |
     | geboortedatum (03.10)           | 20200501   |

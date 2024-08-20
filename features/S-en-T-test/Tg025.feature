@@ -11,7 +11,6 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     # Lg01_134 - gehuwd, kinderen, in onderzoek 010300, 020000, 030310, 050610, 089999, 090000, 090300
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Govert     |
     | voorvoegsel (02.30)             | de         |
     | geslachtsnaam (02.40)           | Geus       |
@@ -69,7 +68,7 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | aanduiding in onderzoek (83.10)   | 89999    |
     | datum ingang onderzoek (83.20)    | 20220825 |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Gerdien    |
@@ -106,7 +105,6 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     # Lg01_135 - gehuwd, kinderen, in onderzoek 026210, 030000, 050200, 080000, 090330
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Grada      |
     | geslachtsnaam (02.40)           | Goverwelle |
     | geboortedatum (03.10)           | 19890416   |
@@ -154,7 +152,7 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | aanduiding in onderzoek (83.10)   | 80000    |
     | datum ingang onderzoek (83.20)    | 20220825 |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Gerdien    |
@@ -189,7 +187,6 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     # Lg01_136 - kind geboren tijdens huwelijk, in onderzoek 010310, 026210, 030210, 080920, 613210
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Gerdien    |
     | voorvoegsel (02.30)             | de         |
     | geslachtsnaam (02.40)           | Geus       |
@@ -247,7 +244,6 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     # Lg01_137 - kind geboren tijdens huwelijk in onderzoek 010330 (voorvoegsel ontbreekt), 040510, 081420, 113210
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Gijs       |
     | geslachtsnaam (02.40)           | Geus       |
     | geboortedatum (03.10)           | 20191205   |
@@ -299,7 +295,6 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     # Lg01_138 - kind geboren tijdens huwelijk, overleden, gezag is niet van toepassing
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Gloria     |
     | voorvoegsel (02.30)             | de         |
     | geslachtsnaam (02.40)           | Geus       |

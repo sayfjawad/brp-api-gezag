@@ -46,7 +46,7 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     | naam                              | waarde           |
     | gemeente van inschrijving (09.10) | 518              |
     | ingangsdatum geldigheid (85.10)   | 20111101         |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Chrissy    |
@@ -59,7 +59,6 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     # Lg01_014 - minderjarig niet erkend kind, moeder ook minderjarig, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Chrissy    |
     | geslachtsnaam (02.40)           | Custers    |
     | geboortedatum (03.10)           | 20210401   |
@@ -125,7 +124,7 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Carlijn    |
@@ -138,7 +137,6 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     # Lg01_016 - minderjarig niet erkend kind, moeder minderjarig, bij geboorte, inmiddels meerderjarig, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Carlijn    |
     | geslachtsnaam (02.40)           | Custers    |
     | geboortedatum (03.10)           | 20190501   |

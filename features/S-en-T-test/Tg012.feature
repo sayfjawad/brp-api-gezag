@@ -11,7 +11,6 @@ Functionaliteit: Tg012 - Loon-Liebeek
     # Lg01_065 - ongehuwde vrouw, 3 minderjarige kinderen samen met ongehuwde vrouw
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Leonie     |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Loon       |
@@ -45,7 +44,7 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Luc        |
@@ -85,7 +84,6 @@ Functionaliteit: Tg012 - Loon-Liebeek
     # Lg01_066 - ongehuwde vrouw, 3 minderjarige kinderen samen met ongehuwde vrouw
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Lieke      |
     | geslachtsnaam (02.40)           | Liebeek    |
     | geboortedatum (03.10)           | 19810501   |
@@ -117,7 +115,7 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Luc        |
@@ -148,7 +146,6 @@ Functionaliteit: Tg012 - Loon-Liebeek
     # Lg01_067 - geboorte uit ongehuwde vrouw, adoptie met terugwerkende kracht tot geboortedatum door duo-moeder
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Luc        |
     | geslachtsnaam (02.40)           | Liebeek    |
     | geboortedatum (03.10)           | 20120501   |
@@ -187,7 +184,6 @@ Functionaliteit: Tg012 - Loon-Liebeek
     # Lg01_068 - geboorte uit ongehuwde vrouw, erkenning bij geboorteaangifte (ná dag geboorte) door meemoeder, categorie 11 met 12
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Lex        |
     | geslachtsnaam (02.40)           | Liebeek    |
     | geboortedatum (03.10)           | 20140501   |
@@ -245,7 +241,6 @@ Functionaliteit: Tg012 - Loon-Liebeek
     # Lg01_069 - geboorte uit ongehuwde vrouw, erkenning ongeboren vrucht door meemoeder, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Lux        |
     | geslachtsnaam (02.40)           | Liebeek    |
     | geboortedatum (03.10)           | 20160501   |

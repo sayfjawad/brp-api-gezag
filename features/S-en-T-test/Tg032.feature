@@ -11,7 +11,6 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     # Lg01_173 - minderjarige moeder, gezag niet te bepalen BSN moeder ontbreekt
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde           |
-    | burgerservicenummer (01.20)     | 000000012        |
     | voornamen (02.10)               | Olga             |
     | geslachtsnaam (02.40)           | Oostingh         |
     | geboortedatum (03.10)           | morgen - 18 jaar |
@@ -37,7 +36,7 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     | naam                              | waarde           |
     | gemeente van inschrijving (09.10) | 518              |
     | ingangsdatum geldigheid (85.10)   | morgen - 18 jaar |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Onne       |
@@ -59,7 +58,6 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     # Lg01_174 - minderjarige moeder, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Olle       |
     | geslachtsnaam (02.40)           | Oostingh   |
     | geboortedatum (03.10)           | 20220202   |
@@ -90,7 +88,6 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     # Lg01_175 - minderjarige moeder, wel categorie 11
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Onne       |
     | geslachtsnaam (02.40)           | Oostingh   |
     | geboortedatum (03.10)           | 20220202   |

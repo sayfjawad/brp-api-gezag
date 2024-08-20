@@ -11,7 +11,6 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     # Lg01_028 - gehuwd, 1 minderjarig kind erkend vóór huwelijk, 1 minderjarig kind geboren ná huwelijk, echtgenoot onder curatele
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Fieke      |
     | geslachtsnaam (02.40)           | Frederiks  |
     | geboortedatum (03.10)           | 19801201   |
@@ -56,7 +55,7 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Frits      |
@@ -78,7 +77,6 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     # Lg01_029 - gehuwd, 1 minderjarig kind erkend vóór huwelijk, 1 minderjarig kind geboren ná huwelijk, onder curatele
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Fabian     |
     | geslachtsnaam (02.40)           | Faassen    |
     | geboortedatum (03.10)           | 19791201   |
@@ -123,7 +121,7 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Frits      |
@@ -150,7 +148,6 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     # Lg01_030 - minderjarige kind, geboren tijdens huwelijk ouders, vader (Ouder2) onder curatele
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Frans      |
     | geslachtsnaam (02.40)           | Frederiks  |
     | geboortedatum (03.10)           | 20181201   |
@@ -188,7 +185,6 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     # Lg01_031 - minderjarig erkend kind, ouders inmiddels gehuwd, vader (Ouder2) onder curatele
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Frits      |
     | geslachtsnaam (02.40)           | Frederiks  |
     | geboortedatum (03.10)           | 20171201   |

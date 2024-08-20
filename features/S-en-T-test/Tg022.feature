@@ -11,7 +11,6 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     # Lg01_122 - alleen huwelijksjaar bekend
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Saadallah  |
     | geslachtsnaam (02.40)           | Barakat    |
     | geboortedatum (03.10)           | 19800000   |
@@ -50,7 +49,7 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     | land vanwaar ingeschreven (14.10)    | 7009     |
     | datum vestiging in Nederland (14.20) | 20131201 |
     | ingangsdatum geldigheid (85.10)      | 20131201 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Salim      |
@@ -63,7 +62,6 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     # Lg01_123 - alleen huwelijksjaar bekend
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Maryana    |
     | geslachtsnaam (02.40)           | Idilbi     |
     | geboortedatum (03.10)           | 19890000   |
@@ -102,7 +100,7 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     | land vanwaar ingeschreven (14.10)    | 7009     |
     | datum vestiging in Nederland (14.20) | 20131201 |
     | ingangsdatum geldigheid (85.10)      | 20131201 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Salim      |
@@ -115,7 +113,6 @@ Functionaliteit: Tg022 - Barakat-Idilbi - Ouders met een onvolledige huwelijksda
     # Lg01_124 - ouders geboren en gehuwd in buitenland, alleen jaar bekend, kind in Nederland geboren
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Salim      |
     | geslachtsnaam (02.40)           | Barakat    |
     | geboortedatum (03.10)           | 20140701   |

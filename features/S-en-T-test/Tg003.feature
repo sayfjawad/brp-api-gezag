@@ -14,7 +14,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     # Lg01_010 - ongehuwde meerderjarige moeder met 2 minderjarige niet erkende kinderen
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Bianca     |
     | geslachtsnaam (02.40)           | Bloem      |
     | geboortedatum (03.10)           | 19900101   |
@@ -46,7 +45,7 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Bram       |
@@ -68,7 +67,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     # Lg01_011 - moeder opgenomen in categorie 02, categorie 03 leeg, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Bram       |
     | geslachtsnaam (02.40)           | Bloem      |
     | geboortedatum (03.10)           | 20140201   |
@@ -99,7 +97,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     # Lg01_012 - moeder opgenomen in categorie 03, categorie 02 leeg, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Benno      |
     | geslachtsnaam (02.40)           | Bloem      |
     | geboortedatum (03.10)           | 20160201   |
@@ -130,7 +127,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     # Lg01_106 - overleden
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Brand      |
     | geslachtsnaam (02.40)           | Berendsen  |
     | geboortedatum (03.10)           | 19720808   |
@@ -185,7 +181,7 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Boudewijn  |
@@ -207,7 +203,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     # Lg01_107 - onder curatele
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Baukje     |
     | geslachtsnaam (02.40)           | Bolder     |
     | geboortedatum (03.10)           | 19750901   |
@@ -266,7 +261,7 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Boudewijn  |
@@ -293,7 +288,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     # Lg01_108 - vader overleden, moeder onder curatele, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Boudewijn  |
     | geslachtsnaam (02.40)           | Berendsen  |
     | geboortedatum (03.10)           | 20120601   |
@@ -331,7 +325,6 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
     # Lg01_109 - vader overleden, moeder onder curatele, kind categorie 11 gezag bij derde
     Gegeven de persoon met burgerservicenummer '000000085' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Bertram    |
     | geslachtsnaam (02.40)           | Berendsen  |
     | geboortedatum (03.10)           | 20141205   |

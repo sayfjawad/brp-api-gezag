@@ -57,7 +57,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | William    |
@@ -87,7 +87,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Lg01_051 - minderjarig kind, geadopteerd + voornaamswijziging, onder gezag Derde (vóór adoptie).
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Harry      |
     | geslachtsnaam (02.40)           | Hanssen    |
     | geboortedatum (03.10)           | 20161201   |
@@ -165,7 +164,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Lg01_052 - gehuwd + 7 adoptiekinderen
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Jaqueline  |
     | geslachtsnaam (02.40)           | Jozefs     |
     | geboortedatum (03.10)           | 19831001   |
@@ -211,7 +209,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde       |
     | burgerservicenummer (01.20)     | 000000115    |
     | voornamen (02.10)               | Jinthe Jiang |
@@ -314,7 +312,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Lg01_053 - gehuwd + 7 adoptiekinderen
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Jeroen     |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 19821001   |
@@ -359,7 +356,7 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde       |
     | burgerservicenummer (01.20)     | 000000115    |
     | voornamen (02.10)               | Jinthe Jiang |
@@ -453,7 +450,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Lg01_054 - minderjarig kind, geadopteerd uit buitenland, Nederlandse adoptieakte
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Li         |
     | geslachtsnaam (02.40)           | Yu         |
     | geboortedatum (03.10)           | 20150101   |
@@ -515,7 +511,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Lg01_084 - minderjarig kind, geadopteerd + voornaamswijziging, onder gezag adoptieouders, Geen gezag ex-moeder
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | William    |
     | geslachtsnaam (02.40)           | Hanssen    |
     | geboortedatum (03.10)           | 20161201   |
@@ -588,7 +583,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Lg01_193 - buitenland geboren, geadopteerd met Nederlandse Q-akte in historie
     Gegeven de persoon met burgerservicenummer '000000085' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Jin        |
     | geslachtsnaam (02.40)           | Jang       |
     | geboortedatum (03.10)           | 20150101   |
@@ -656,7 +650,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Lg01_194 - buitenland geboren, geadopteerd met Nederlandse Q-akte in historie, onderzoek in 018120
     Gegeven de persoon met burgerservicenummer '000000097' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Jiali      |
     | geslachtsnaam (02.40)           | Jang       |
     | geboortedatum (03.10)           | 20150101   |
@@ -731,7 +724,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Lg01_195 - buitenland geboren, geadopteerd met Nederlandse Q-akte in historie, onderzoek in 536200
     Gegeven de persoon met burgerservicenummer '000000103' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Jia        |
     | geslachtsnaam (02.40)           | Jang       |
     | geboortedatum (03.10)           | 20150101   |
@@ -791,7 +783,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Lg01_196 - buitenland geboren, geadopteerd met Nederlandse Q-akte in historie, afgerond onderzoek in 018120, 026200, 036200
     Gegeven de persoon met burgerservicenummer '000000115' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000115  |
     | voornamen (02.10)               | Jiang      |
     | geslachtsnaam (02.40)           | Jang       |
     | geboortedatum (03.10)           | 20150101   |

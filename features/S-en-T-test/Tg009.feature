@@ -14,7 +14,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Lg01_041 - 2 ontbonden huwelijken, 1 ontbonden partnerschap, 1 actueel huwelijk. In eerste ontbonden huwelijk is in 2020 relatie gelegd waardoor deze 'bovenaan' ligt. Totaal 4 kinderen, waarvan 2 ouder dan 18 en 2 jonger dan 18
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Hedwig     |
     | geslachtsnaam (02.40)           | Harmsen    |
     | geboortedatum (03.10)           | 19700401   |
@@ -155,7 +154,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | voornamen (02.10)               | Helma      |
     | geslachtsnaam (02.40)           | Hovink     |
@@ -204,7 +203,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Lg01_042 - gehuwd, 1 minderjarig kind
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Hessel     |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Henegouwen |
@@ -251,7 +249,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Hilde      |
@@ -265,7 +263,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Lg01_043 - minderjarig kind uit gehuwde ouders (moeder meerdere ontbonden huwelijken)
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Hilde      |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Henegouwen |
@@ -305,7 +302,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Lg01_044 - ontbonden partnerschap, 1 minderjarig kind, emigratie
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Hendrik    |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Hapert     |
@@ -373,7 +369,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | land (13.10)                           | 6016                    |
     | datum aanvang adres buitenland (13.20) | 20181201                |
     | ingangsdatum geldigheid (85.10)        | 20181201                |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Hanna      |
@@ -387,7 +383,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Lg01_045 - minderjarige, emigratie
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Hanna      |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Hapert     |
@@ -434,7 +429,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Lg01_046 - actueel gehuwd en gescheiden, 1 meerderjarig kind, 1 minderjarig erkend kind
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Harald     |
     | geslachtsnaam (02.40)           | Hanssen    |
     | geboortedatum (03.10)           | 19640802   |
@@ -506,7 +500,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | voornamen (02.10)               | Helena     |
     | geslachtsnaam (02.40)           | Hanssen    |
@@ -536,7 +530,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Lg01_047 - actueel gehuwd, 1 minderjarige kind met 2 vreemde nationaliteiten, 1 minderjarig erkend kind met Nederlandse nationaliteit door erkenning
     Gegeven de persoon met burgerservicenummer '000000085' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Irini      |
     | geslachtsnaam (02.40)           | Iakovida   |
     | geboortedatum (03.10)           | 19850801   |
@@ -575,7 +568,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | land vanwaar ingeschreven (14.10)    | 6003     |
     | datum vestiging in Nederland (14.20) | 20130101 |
     | ingangsdatum geldigheid (85.10)      | 20130101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Isidoros   |
@@ -606,7 +599,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Lg01_048 - minderjarige, erkend, vervolgens ouders gehuwd, 2 beëindigde vreemde nationaliteiten, Nederlandse nationaliteit vanaf geboorte
     Gegeven de persoon met burgerservicenummer '000000097' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Ioanna     |
     | geslachtsnaam (02.40)           | Iakovida   |
     | geboortedatum (03.10)           | 20130501   |
@@ -658,7 +650,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Lg01_049 - minderjarige, juridisch geen vader, 2 vreemde nationaliteiten
     Gegeven de persoon met burgerservicenummer '000000103' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Isidoros   |
     | geslachtsnaam (02.40)           | Iakovidis  |
     | geboortedatum (03.10)           | 20110601   |

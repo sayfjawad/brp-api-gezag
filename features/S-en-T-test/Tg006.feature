@@ -11,7 +11,6 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     # Lg01_024 - gehuwd, echtgenoot overleden, 2 minderjarige kinderen
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Erica      |
     | geslachtsnaam (02.40)           | Elbertsen  |
     | geboortedatum (03.10)           | 19801001   |
@@ -71,7 +70,7 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Emilia     |
@@ -93,7 +92,6 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     # Lg01_025 - gehuwd, 2 minderjarige kinderen, overleden
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Evert      |
     | geslachtsnaam (02.40)           | Eizenga    |
     | geboortedatum (03.10)           | 19781001   |
@@ -148,7 +146,7 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Emilia     |
@@ -170,7 +168,6 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     # Lg01_026 - minderjarig kind, geboren tijdens huwelijk ouders, vader (Ouder2) overleden, onder voogdij D
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Eline      |
     | geslachtsnaam (02.40)           | Eizenga    |
     | geboortedatum (03.10)           | 20131001   |
@@ -213,7 +210,6 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     # Lg01_027 - minderjarig kind, geboren tijdens huwelijk ouders, vader (Ouder1) overleden, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Emilia     |
     | geslachtsnaam (02.40)           | Eizenga    |
     | geboortedatum (03.10)           | 20111001   |

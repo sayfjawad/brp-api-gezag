@@ -11,7 +11,6 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     # Lg01_153 - onvolledige geboortedatum, namenreeks, gehuwd, 1 minderjarig kind met namenreeks
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde                 |
-    | burgerservicenummer (01.20)     | 000000012              |
     | geslachtsnaam (02.40)           | Mohamed Farooq Hussein |
     | geboortedatum (03.10)           | 19700000               |
     | geboorteland (03.30)            | 6013                   |
@@ -50,7 +49,7 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     | land vanwaar ingeschreven (14.10)    | 7054     |
     | datum vestiging in Nederland (14.20) | 19920412 |
     | ingangsdatum geldigheid (85.10)      | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde                |
     | burgerservicenummer (01.20)     | 000000036             |
     | geslachtsnaam (02.40)           | Kamal Mohammed Farroq |
@@ -62,7 +61,6 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     # Lg01_154 - onvolledige geboortedatum, namenreeks, gehuwd, 1 minderjarig kind met namenreeks
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde                |
-    | burgerservicenummer (01.20)     | 000000024             |
     | geslachtsnaam (02.40)           | Amina Hassan Mohammed |
     | geboortedatum (03.10)           | 19780600              |
     | geboorteland (03.30)            | 6013                  |
@@ -101,7 +99,7 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     | land vanwaar ingeschreven (14.10)    | 7054     |
     | datum vestiging in Nederland (14.20) | 19920412 |
     | ingangsdatum geldigheid (85.10)      | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde                |
     | burgerservicenummer (01.20)     | 000000036             |
     | geslachtsnaam (02.40)           | Kamal Mohammed Farroq |
@@ -113,7 +111,6 @@ Functionaliteit: Tg028 - Geen voornamen, geslachtsnaam is een namenreeks
     # Lg01_155 - in Nederland geboren kind met namenreeks, ouders onvolledige geboortedatum
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde                |
-    | burgerservicenummer (01.20)     | 000000036             |
     | geslachtsnaam (02.40)           | Kamal Mohammed Farroq |
     | geboortedatum (03.10)           | 20071201              |
     | geboorteland (03.30)            | 6030                  |

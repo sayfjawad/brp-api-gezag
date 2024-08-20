@@ -11,7 +11,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Lg01_078 - geregistreerd partnerschap en minderjarig kind geboren vóór 01-04-2014, overleden
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Nicolien   |
     | geslachtsnaam (02.40)           | Nicolaesen |
     | geboortedatum (03.10)           | 19850901   |
@@ -66,7 +65,7 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Naomi      |
@@ -79,7 +78,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Lg01_079 - geregistreerd partnerschap, partner heeft minderjarig, niet erkend kind geboren vóór 01-04-2014, partner overleden
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde           |
-    | burgerservicenummer (01.20)     | 000000024        |
     | voornamen (02.10)               | Nout             |
     | geslachtsnaam (02.40)           | Niemandsverdriet |
     | geboortedatum (03.10)           | 19720901         |
@@ -138,7 +136,7 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Noralie    |
@@ -151,7 +149,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Lg01_080 - moeder geregistreerd partnerschap, niet erkend, geen categorie 11, moeder overleden geregistreerd partner van moeder automatisch gezag
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Naomi      |
     | geslachtsnaam (02.40)           | Nicolaesen |
     | geboortedatum (03.10)           | 20130901   |
@@ -182,7 +179,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Lg01_081 - huwelijk personen gelijk geslacht (V), 1 minderjarig kind erkend als ongeboren vrucht door vader
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Norah      |
     | geslachtsnaam (02.40)           | Nicolaesen |
     | geboortedatum (03.10)           | 19830901   |
@@ -227,7 +223,7 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Noralie    |
@@ -240,7 +236,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Lg01_082 - huwelijk personen gelijk geslacht (V), echtgenote 1 minderjarig kind erkend als ongeboren vrucht door vader
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Nienke     |
     | geslachtsnaam (02.40)           | Nijman     |
     | geboortedatum (03.10)           | 19780901   |
@@ -289,7 +284,6 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Lg01_083 - geboren uit huwelijk 2 vrouwen, als ongeboren vrucht erkend door vader (huwelijkspartner moeder is daardoor geen ouder), geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Noralie    |
     | geslachtsnaam (02.40)           | Nicolaesen |
     | geboortedatum (03.10)           | 20151201   |

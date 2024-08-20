@@ -11,7 +11,6 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     # Lg01_119 - geregistreerd partnerschap omgezet in huwelijk
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Daniel     |
     | geslachtsnaam (02.40)           | Doornenbal |
     | geboortedatum (03.10)           | 19730301   |
@@ -76,7 +75,6 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     # Lg01_120 - geregistreerd partnerschap omgezet in huwelijk
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Delilah    |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Doodewaard |
@@ -136,7 +134,7 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde           |
     | burgerservicenummer (01.20)     | 000000036        |
     | voornamen (02.10)               | Daan             |
@@ -149,7 +147,6 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     # Lg01_121 - ouders geregistreerd partnerschap vóór 01-04-2014, alleen Ouder1 gevuld. Na geboorte kind hebben ouders geregistreerd partnerschap omgezet in een huwelijk.
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde           |
-    | burgerservicenummer (01.20)     | 000000036        |
     | voornamen (02.10)               | Daan             |
     | geslachtsnaam (02.40)           | Doornenbal       |
     | geboortedatum (03.10)           | morgen - 18 jaar |

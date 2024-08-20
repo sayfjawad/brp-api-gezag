@@ -69,7 +69,7 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Sanne      |
@@ -82,7 +82,6 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
     # Lg01_186 - huwelijkspartner van vrouw, van rechtswege gezag
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Saskia     |
     | geslachtsnaam (02.40)           | Suijdema   |
     | geboortedatum (03.10)           | 19890401   |
@@ -125,7 +124,6 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
     # Lg01_187 - 1 ouder, moeder gehuwd, meemoeder geen ouder, moeder overleden
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Sanne      |
     | geslachtsnaam (02.40)           | Saasveld   |
     | geboortedatum (03.10)           | 20181201   |

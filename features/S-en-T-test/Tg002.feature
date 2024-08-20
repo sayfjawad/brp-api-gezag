@@ -11,7 +11,6 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     # Lg01_007 - minderjarige asielzoeker, puntouders (onbekende ouders), geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Adil       |
     | geslachtsnaam (02.40)           | Tafesh     |
     | geboortedatum (03.10)           | 20100101   |
@@ -41,7 +40,6 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     # Lg01_008 - vondeling in Nederland, puntmoeder (onbekende ouder), lege categorie 03 (juridisch geen ouder), geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Alberta    |
     | geslachtsnaam (02.40)           | Vondeling  |
     | geboortedatum (03.10)           | 20210101   |
@@ -68,7 +66,6 @@ Functionaliteit: Tg002 - Ouderlozen – Puntouder(s) - Geen ouders
     # Lg01_009 - vondeling in China, juridisch geen ouders, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde        |
-    | burgerservicenummer (01.20)     | 000000036     |
     | voornamen (02.10)               | An            |
     | geslachtsnaam (02.40)           | Xue           |
     | geboortedatum (03.10)           | 20210101      |

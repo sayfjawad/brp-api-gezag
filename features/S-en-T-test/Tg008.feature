@@ -14,7 +14,6 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     # Lg01_032 - gescheiden, 1 minderjarig kind erkend vóór huwelijk, 1 minderjarig kind tijdens huwelijk
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Gea        |
     | geslachtsnaam (02.40)           | Gerritsen  |
     | geboortedatum (03.10)           | 19800801   |
@@ -75,7 +74,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Gabriel    |
@@ -108,7 +107,6 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     # Lg01_033 - gescheiden, 1 minderjarig kind erkend vóór huwelijk, 1 minderjarig kind tijdens huwelijk
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Govert     |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Groningen  |
@@ -169,7 +167,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Gabriel    |
@@ -202,7 +200,6 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     # Lg01_034 - minderjarig kind, erkend ná de geboorte, ouders vervolgens gehuwd en weer gescheiden, categorie 11 met 12 vóór huwelijk ouders
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Gabriel    |
     | geslachtsnaam (02.40)           | Gerritsen  |
     | geboortedatum (03.10)           | 20100801   |
@@ -261,7 +258,6 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     # Lg01_035 - minderjarig kind, geboren tijdens huwelijk ouders, ouders inmiddels gescheiden, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Gaston     |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Groningen  |
@@ -301,7 +297,6 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     # Lg01_036 - gescheiden, 1 minderjarig erkend kind geboren ná de echtscheiding
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Gerda      |
     | geslachtsnaam (02.40)           | Gerritsen  |
     | geboortedatum (03.10)           | 19800801   |
@@ -362,7 +357,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Gigi       |
@@ -414,7 +409,6 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     # Lg01_037 - gescheiden, 1 minderjarig erkend kind geboren ná de echtscheiding
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Gert-Jan   |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Gouda      |
@@ -475,7 +469,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Gigi       |
@@ -527,7 +521,6 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     # Lg01_038 - erkend kind, ouders gescheiden vóór de geboortedatum, geen categorie 11
     Gegeven de persoon met burgerservicenummer '000000085' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Gigi       |
     | geslachtsnaam (02.40)           | Gerritsen  |
     | geboortedatum (03.10)           | 20120801   |
@@ -581,7 +574,6 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     # Lg01_039 - erkend kind, ouders gescheiden vóór de geboortedatum, in categorie 11 aanduiding '12'
     Gegeven de persoon met burgerservicenummer '000000097' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Gina       |
     | geslachtsnaam (02.40)           | Gerritsen  |
     | geboortedatum (03.10)           | 20130801   |
@@ -640,7 +632,6 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     # Lg01_040 - erkend als ongeboren vrucht, ouders gescheiden vóór de geboortedatum, in 11 aanduiding 'D'
     Gegeven de persoon met burgerservicenummer '000000103' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Guido      |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Gouda      |

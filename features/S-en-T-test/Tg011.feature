@@ -14,7 +14,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_055 - 3x gehuwd (1x reparatiehuwelijk), 2x gescheiden, 5 minderjarige kinderen
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde      |
-    | burgerservicenummer (01.20)     | 000000012   |
     | voornamen (02.10)               | Karel       |
     | geslachtsnaam (02.40)           | Kornelissen |
     | geboortedatum (03.10)           | 19800401    |
@@ -116,7 +115,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000036   |
     | voornamen (02.10)               | Kerwin      |
@@ -165,7 +164,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_056 - 2x gehuwd (1x reparatiehuwelijk), 1x partnerschap. 1x gescheiden, 1x weduwe, 7 minderjarige kinderen waarvan 2 geboren buiten de huwelijken om
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Koosje     |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Krabben    |
@@ -266,7 +264,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000036   |
     | voornamen (02.10)               | Kerwin      |
@@ -335,7 +333,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_057 - onder gezag derde, geldigheid vóór scheiding ouders
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde      |
-    | burgerservicenummer (01.20)     | 000000036   |
     | voornamen (02.10)               | Kerwin      |
     | geslachtsnaam (02.40)           | Kornelissen |
     | geboortedatum (03.10)           | 20120401    |
@@ -379,7 +376,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_058 - gezag ouder1, datum geldigheid standaardwaarde
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde      |
-    | burgerservicenummer (01.20)     | 000000048   |
     | voornamen (02.10)               | Kevin       |
     | geslachtsnaam (02.40)           | Kornelissen |
     | geboortedatum (03.10)           | 20130401    |
@@ -423,7 +419,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_059 - gezag ouder2, geldigheid ná datum reparatiehuwelijk
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde      |
-    | burgerservicenummer (01.20)     | 000000061   |
     | voornamen (02.10)               | Kelvin      |
     | geslachtsnaam (02.40)           | Kornelissen |
     | geboortedatum (03.10)           | 20140401    |
@@ -472,7 +467,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_060 - gezag ouder1, datum geldigheid vóór reparatiehuwelijk
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
     | naam                            | waarde      |
-    | burgerservicenummer (01.20)     | 000000073   |
     | voornamen (02.10)               | Kylian      |
     | geslachtsnaam (02.40)           | Kornelissen |
     | geboortedatum (03.10)           | 20150401    |
@@ -516,7 +510,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_061 - partnerschap, overleden, 1 minderjarig kind
     Gegeven de persoon met burgerservicenummer '000000085' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
     | voornamen (02.10)               | Kobus      |
     | geslachtsnaam (02.40)           | Krelissen  |
     | geboortedatum (03.10)           | 19700401   |
@@ -566,7 +559,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Kyra       |
@@ -579,7 +572,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_062 - vader overleden, moeder gezag van rechtswege
     Gegeven de persoon met burgerservicenummer '000000097' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Kyra       |
     | geslachtsnaam (02.40)           | Krelissen  |
     | geboortedatum (03.10)           | 20200301   |
@@ -618,7 +610,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_063 - gescheiden, 1 minderjarig kind
     Gegeven de persoon met burgerservicenummer '000000103' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Karolien   |
     | geslachtsnaam (02.40)           | Kozijn     |
     | geboortedatum (03.10)           | 19880401   |
@@ -671,7 +662,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000115   |
     | voornamen (02.10)               | Kyona       |
@@ -684,7 +675,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_064 - ouders gescheiden, moeder gezag vóór scheiding
     Gegeven de persoon met burgerservicenummer '000000115' heeft de volgende gegevens
     | naam                            | waarde      |
-    | burgerservicenummer (01.20)     | 000000115   |
     | voornamen (02.10)               | Kyona       |
     | geslachtsnaam (02.40)           | Kornelissen |
     | geboortedatum (03.10)           | 20190401    |
@@ -727,7 +717,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_207 - geboren tussen verschillende (ontbonden) huwelijken moeder, juridisch 1 ouder. Moeder in categorie 02
     Gegeven de persoon met burgerservicenummer '000000127' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000127  |
     | voornamen (02.10)               | Karina     |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Krabben    |
@@ -760,7 +749,6 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Lg01_208 - geboren tussen verschillende (ontbonden) huwelijken moeder, juridisch 1 ouder. Moeder in categorie 03
     Gegeven de persoon met burgerservicenummer '000000138' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000138  |
     | voornamen (02.10)               | Kaylee     |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Krabben    |

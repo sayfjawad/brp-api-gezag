@@ -11,7 +11,6 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     # Lg01_188 - moeder van minderjarig kind, 010100 in onderzoek
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Tasnim     |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 19851211   |
@@ -39,7 +38,7 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | land vanwaar ingeschreven (14.10)    | 7009     |
     | datum vestiging in Nederland (14.20) | 20090101 |
     | ingangsdatum geldigheid (85.10)      | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Thaliya    |
@@ -79,7 +78,6 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     # Lg01_189 - minderjarig kind, 010000 in onderzoek
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Thurayya   |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 20100316   |
@@ -112,7 +110,6 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     # Lg01_190 - minderjarig kind, 080000 in onderzoek
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Tayeh      |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 20100316   |
@@ -145,7 +142,6 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     # Lg01_191 - minderjarig kind, 020000 in onderzoek
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Tamineh    |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 20100316   |
@@ -178,7 +174,6 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     # Lg01_192 - minderjarig kind, 010320 in onderzoek
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Thaliya    |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 20100316   |

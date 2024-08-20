@@ -11,7 +11,6 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     # Lg01_114 - geregistreerd partnerschap vóór 01-04-2014, 2 minderjarige kinderen vóór 01-04-2014 en 1 minderjarig kind daarna
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Carel      |
     | geslachtsnaam (02.40)           | Carolussen |
     | geboortedatum (03.10)           | 19700201   |
@@ -56,7 +55,7 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Christiaan |
@@ -69,7 +68,6 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     # Lg01_115 - geregistreerd partnerschap vóór 01-04-2014, 2 minderjarige kinderen vóór 01-04-2014 en 1 minderjarig kind daarna
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Charlotte  |
     | geslachtsnaam (02.40)           | Charbon    |
     | geboortedatum (03.10)           | 19720310   |
@@ -114,7 +112,7 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Cecilia    |
@@ -145,7 +143,6 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     # Lg01_116 - ouders geregistreerd partnerschap vóór 01-04-204, alleen Ouder1 gevuld
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Cecilia    |
     | geslachtsnaam (02.40)           | Charbon    |
     | geboortedatum (03.10)           | 20110601   |
@@ -176,7 +173,6 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     # Lg01_117 - ouders geregistreerd partnerschap vóór 01-04-204, alleen Ouder2 gevuld
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Chantal    |
     | geslachtsnaam (02.40)           | Charbon    |
     | geboortedatum (03.10)           | 20120801   |
@@ -207,7 +203,6 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     # Lg01_118 - ouders geregistreerd partnerschap na 01-04-2014, 2 ouders
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Christiaan |
     | geslachtsnaam (02.40)           | Charbon    |
     | geboortedatum (03.10)           | 20150901   |

@@ -11,7 +11,6 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     # Lg01_101 - gehuwd, 3 kinderen, overleden op zelfde dag als partner (als eerste overleden, dus geen huwelijksontbinding)
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Arend      |
     | voorvoegsel (02.30)             | van der    |
     | geslachtsnaam (02.40)           | Aa         |
@@ -68,7 +67,7 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Annajet    |
@@ -111,7 +110,6 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     # Lg01_102 - gehuwd, 3 kinderen, overleden op zelfde dag als partner (partner als eerste overleden dus huwelijksontbinding)
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Astrid     |
     | geslachtsnaam (02.40)           | Abels      |
     | geboortedatum (03.10)           | 19741216   |
@@ -182,7 +180,7 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Annajet    |
@@ -275,7 +273,6 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     # Lg01_104 - gehuwde ouders beiden overleden, indicatie gezag 1 geplaatst vóór overlijden Ouder1
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Annalies   |
     | voorvoegsel (02.30)             | van der    |
     | geslachtsnaam (02.40)           | Aa         |
@@ -320,7 +317,6 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     # Lg01_105 - gehuwde ouders beiden overleden, indicatie D geplaatst ná overlijden Ouders
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Annajet    |
     | voorvoegsel (02.30)             | van der    |
     | geslachtsnaam (02.40)           | Aa         |

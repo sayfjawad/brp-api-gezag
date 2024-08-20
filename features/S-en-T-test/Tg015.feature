@@ -11,7 +11,6 @@ Functionaliteit: Tg015 - Oei
     # Lg01_085 - ongehuwde vrouw, overleden, één minderjarig niet erkend kind
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
     | voornamen (02.10)               | Ottolien   |
     | geslachtsnaam (02.40)           | Oei        |
     | geboortedatum (03.10)           | 19820301   |
@@ -47,7 +46,7 @@ Functionaliteit: Tg015 - Oei
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
+    En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Olinka     |
@@ -60,7 +59,6 @@ Functionaliteit: Tg015 - Oei
     # Lg01_086 - minderjarig kind, niet erkend, moeder overleden
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Olinka     |
     | geslachtsnaam (02.40)           | Oei        |
     | geboortedatum (03.10)           | 20200606   |
