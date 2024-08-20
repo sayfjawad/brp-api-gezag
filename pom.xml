@@ -12,7 +12,7 @@
 
     <groupId>nl.rijksoverheid.mev</groupId>
     <artifactId>gezag</artifactId>
-    <version>1.1.0</version>
+    <version>1.3.0</version>
 
     <name>gezag</name>
     <description>Gezag</description>
@@ -22,6 +22,7 @@
         <sonar.projectKey>gezag</sonar.projectKey>
         <sonar.organization>logius</sonar.organization>
         <ecs-logging-java.version>1.6.0</ecs-logging-java.version>
+        <jooq.version>3.17.27</jooq.version> <!-- this is the latest OSS version that supports PostgreSQL 14 -->
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.30</org.projectlombok.version>
         <wiremock.version>3.0.0-beta-10</wiremock.version>
@@ -60,6 +61,14 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jooq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
@@ -69,10 +78,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -183,37 +188,6 @@
             <version>${wiremock.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Brp-Adapter specific: dependencies for SOAP/XML -->
-        <dependency>
-            <groupId>jakarta.xml.ws</groupId>
-            <artifactId>jakarta.xml.ws-api</artifactId>
-            <version>4.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.ws</groupId>
-            <artifactId>jaxws-rt</artifactId>
-            <version>4.0.1</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>4.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>4.0.2</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.xml.soap</groupId>
-            <artifactId>jakarta.xml.soap-api</artifactId>
-            <version>3.0.2</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -223,6 +197,43 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>nl.rijksoverheid.mev.GezagApplication</mainClass>
+                    <image>
+                        <builder>dashaun/builder:tiny</builder>
+                    </image>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgresql.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <jdbc>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql:rvig_brp_api_testdata</url>
+                        <user>root</user>
+                        <password>root</password>
+                    </jdbc>
+                    <generator>
+                        <database>
+                            <inputSchema>public</inputSchema>
+                            <includes>
+                                lo3_pl_persoon
+                                | lo3_pl_verblijfplaats
+                                | lo3_pl_gezagsverhouding
+                            </includes>
+                        </database>
+                        <target>
+                            <packageName>nl.rijksoverheid.mev.brp.brpv.generated</packageName>
+                            <directory>src/main/java</directory>
+                        </target>
+                    </generator>
                 </configuration>
             </plugin>
             <plugin>
@@ -336,31 +347,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-wrapper-plugin</artifactId>
-                <version>3.3.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-codegen-plugin</artifactId>
-                <version>4.0.4</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <wsdlOptions>
-                                <wsdlOption>
-                                    <wsdl>${project.basedir}/src/main/resources/brp/LrdPlus1_1.wsdl</wsdl>
-                                    <extraargs>
-                                        <extraarg>-autoNameResolution</extraarg>
-                                    </extraargs>
-                                </wsdlOption>
-                            </wsdlOptions>
-                        </configuration>
-                        <goals>
-                            <goal>wsdl2java</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <version>3.2.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

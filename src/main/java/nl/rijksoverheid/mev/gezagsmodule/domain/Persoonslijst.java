@@ -3,6 +3,9 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoudingRecord;
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
@@ -38,6 +41,46 @@ public class Persoonslijst {
         listValues = new HashMap<>();
 
         this.clock = clock;
+    }
+
+    public void addGezagsverhouding(final Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord) {
+        addVeld(Categorie.GEZAGSVERHOUDING, Gezagsverhouding.from(lo3PlGezagsverhoudingRecord, clock));
+    }
+
+    public void addVerblijfplaats(final Lo3PlVerblijfplaatsRecord lo3PlVerblijfplaatsRecord) {
+        addVeld(Categorie.VERBLIJFPLAATS, Verblijfplaats.from(lo3PlVerblijfplaatsRecord, clock));
+    }
+
+    public void addRelatie(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
+        addVeldToList(Categorie.HUWELIJK_OF_PARTNERSCHAP, HuwelijkOfPartnerschap.from(lo3PlPersoonRecord, clock));
+    }
+
+    public void addKind(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
+        addVeld(Categorie.KIND, Kind.from(lo3PlPersoonRecord, clock));
+    }
+
+    public void addOuder1(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
+        addVeld(Categorie.OUDER_1, Ouder1.from(lo3PlPersoonRecord, clock));
+    }
+
+    public void addOuder1Geschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
+        addVeldToList(Categorie.GESCHIEDENIS_OUDER_1, GeschiedenisOuder1.from(lo3PlPersoonRecord, clock));
+    }
+
+    public void addOuder2(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
+        addVeld(Categorie.OUDER_2, Ouder2.from(lo3PlPersoonRecord, clock));
+    }
+
+    public void addOuder2Geschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
+        addVeldToList(Categorie.GESCHIEDENIS_OUDER_2, GeschiedenisOuder2.from(lo3PlPersoonRecord, clock));
+    }
+
+    public void addPersoon(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
+        addVeld(Categorie.PERSOON, Persoon.from(lo3PlPersoonRecord, clock));
+    }
+
+    public void addPersoonGeschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
+        addVeldToList(Categorie.GESCHIEDENIS_PERSOON, GeschiedenisPersoon.from(lo3PlPersoonRecord, clock));
     }
 
     public <T extends PersoonslijstVeld> void addVeld(final String categorie, final T veld) {
