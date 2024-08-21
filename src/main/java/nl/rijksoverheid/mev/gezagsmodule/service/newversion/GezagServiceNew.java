@@ -119,14 +119,11 @@ public class GezagServiceNew implements GezagService {
             arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), null, gezagBepaling.getMissendeGegegevens()));
         }
 
-        Set<String> gezagsdragers = new HashSet<>();
-        if (gezagBepaling != null) {
-            gezagsdragers = gezagBepaling.bepalenGezagdragers(arAntwoordenModel);
+        if(gezagBepaling != null) {
+            gezagBepaling.bepalenGezagdragers(bsn, arAntwoordenModel, gezagRelaties);
         }
-        if (!gezagsdragers.isEmpty()) {
-            gezagRelaties = gezagsdragers.stream().map(gezagdrager -> new Gezagsrelatie(bsn,
-                arAntwoordenModel.getSoortGezag(), gezagdrager, arAntwoordenModel.getUitleg())).toList();
-        } else if (arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals(SOORT_GEZAG_NVT)) {
+
+        if (gezagRelaties.isEmpty() && arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals(SOORT_GEZAG_NVT)) {
             gezagRelaties.add(new Gezagsrelatie(bsn, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, arAntwoordenModel.getUitleg()));
         }
 

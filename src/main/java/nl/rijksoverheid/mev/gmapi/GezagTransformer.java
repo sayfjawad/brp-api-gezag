@@ -1,12 +1,13 @@
 package nl.rijksoverheid.mev.gmapi;
 
+import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
+import org.openapitools.model.*;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
-import org.springframework.stereotype.Component;
-import org.openapitools.model.*;
 
 /**
  * Vertaal gezagrelaties naar Persoon met abstract gezagrelatie.
@@ -70,16 +71,16 @@ public class GezagTransformer {
      * FUTURE_WORK: bij GG en bij Voogdij moet de ouder en niet ouder gescheiden
      * worden, hier is meer informatie voor nodig
      *
-     * @param persoon de persoon
+     * @param persoon       de persoon
      * @param gezagsrelatie de gezagsrelatie
      */
     private void transformGezagForPersoon(final Persoon persoon, final Gezagsrelatie gezagsrelatie) {
         switch (gezagsrelatie.getSoortGezag()) {
             case "OG1" -> {
                 AbstractGezagsrelatie gezag = new EenhoofdigOuderlijkGezag()
-                        .ouder(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
-                        .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
-                        .type(TYPE_EENHOOFDIG_OUDERLIJK_GEZAG);
+                    .ouder(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
+                    .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
+                    .type(TYPE_EENHOOFDIG_OUDERLIJK_GEZAG);
 
                 persoon.addGezagItem(gezag);
             }
@@ -89,33 +90,38 @@ public class GezagTransformer {
                     huidigeVoorMinderjarige.addOudersItem(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()));
                 } else {
                     AbstractGezagsrelatie gezag = new TweehoofdigOuderlijkGezag()
-                            .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
-                            .addOudersItem(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
-                            .type(TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG);
+                        .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
+                        .addOudersItem(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
+                        .type(TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG);
 
                     persoon.addGezagItem(gezag);
                 }
             }
             case "GG" -> {
-                // Is er inderdaad altijd 1 ouder en 1 derde? kan het niet meerdere ouders of meerdere derde zijn?
-                AbstractGezagsrelatie gezag = new GezamenlijkGezag()
+                AbstractGezagsrelatie gezag;
+                if (!gezagsrelatie.isDerde()) {
+                    gezag = new GezamenlijkGezag()
                         .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
                         .ouder(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
-                        //  .addDerdenItem(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige())
                         .type(TYPE_GEZAMELIJK_GEZAG);
+                } else {
+                    gezag = new GezamenlijkGezag()
+                        .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
+                        .derde(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
+                        .type(TYPE_GEZAMELIJK_GEZAG);
+                }
 
                 persoon.addGezagItem(gezag);
             }
             case "V" -> {
                 AbstractGezagsrelatie gezag = new Voogdij()
-                        .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
-                        .addDerdenItem(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
-                        .type(TYPE_VOOGDIJ);
+                    .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
+                    .addDerdenItem(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
+                    .type(TYPE_VOOGDIJ);
 
                 persoon.addGezagItem(gezag);
             }
-            case "G" ->
-                persoon.addGezagItem(new TijdelijkGeenGezag().type(TYPE_TIJDELIJK_GEEN_GEZAG));
+            case "G" -> persoon.addGezagItem(new TijdelijkGeenGezag().type(TYPE_TIJDELIJK_GEEN_GEZAG));
             case "N" ->
                 persoon.addGezagItem(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(gezagsrelatie.getToelichting()));
         }

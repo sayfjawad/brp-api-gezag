@@ -17,6 +17,7 @@ public class Gezagsrelatie {
     private String soortGezag;
     private String bsnMeerderjarige;
     private String toelichting;
+    private boolean isDerde;
 
     public Gezagsrelatie(
             final String bsnMinderjarige,
