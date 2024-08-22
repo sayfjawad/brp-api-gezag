@@ -1,11 +1,14 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
-import java.time.Clock;
-import java.util.Map;
-import java.util.Objects;
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+
+import java.time.Clock;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Huwelijk of partnerschap
@@ -59,40 +62,54 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
      */
     private static final String REDEN_ONTBINDING = "050740";
 
+    public static HuwelijkOfPartnerschap from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+        Map<String, String> values = new HashMap<>();
+        values.put(BSN, Objects.toString(lo3PlPersoonRecord.getBurgerServiceNr(), null));
+        values.put(DATUM_VOLTROKKEN, Objects.toString(lo3PlPersoonRecord.getRelatieStartDatum(), null));
+        values.put(PLAATS_VOLTROKKEN, lo3PlPersoonRecord.getRelatieStartPlaats());
+        values.put(LAND_VOLTROKKEN, Objects.toString(lo3PlPersoonRecord.getRelatieStartLandCode(), null));
+        values.put(DATUM_ONTBINDING, Objects.toString(lo3PlPersoonRecord.getRelatieEindDatum(), null));
+        values.put(PLAATS_ONTBINDING, lo3PlPersoonRecord.getRelatieEindPlaats());
+        values.put(LAND_ONTBINDING, Objects.toString(lo3PlPersoonRecord.getRelatieEindLandCode(), null));
+        values.put(REDEN_ONTBINDING, lo3PlPersoonRecord.getRelatieEindReden());
+
+        return new HuwelijkOfPartnerschap(values, clock);
+    }
+
     public HuwelijkOfPartnerschap(final Map<String, String> values, final Clock clock) {
         super(Categorie.HUWELIJK_OF_PARTNERSCHAP, values, clock);
     }
 
     public String getBsnPartner() {
-        return get(BSN);
+        return get(BSN, "BSN");
     }
 
     public String getDatumVoltrokken() {
-        return get(DATUM_VOLTROKKEN);
+        return get(DATUM_VOLTROKKEN, "datum voltrokken");
     }
 
     public String getPlaatsVoltrokken() {
-        return get(PLAATS_VOLTROKKEN);
+        return get(PLAATS_VOLTROKKEN, "plaats voltrokken");
     }
 
     public String getLandVoltrokken() {
-        return get(LAND_VOLTROKKEN);
+        return get(LAND_VOLTROKKEN, "land voltrokken");
     }
 
     public String getDatumOntbinding() {
-        return get(DATUM_ONTBINDING);
+        return get(DATUM_ONTBINDING, "datum ontbinding");
     }
 
     public String getPlaatsOntbinding() {
-        return get(PLAATS_ONTBINDING);
+        return get(PLAATS_ONTBINDING, "plaats ontbinding");
     }
 
     public String getLandOntbinding() {
-        return get(LAND_ONTBINDING);
+        return get(LAND_ONTBINDING, "land ontbinding");
     }
 
     public String getRedenOntbinding() {
-        return get(REDEN_ONTBINDING);
+        return get(REDEN_ONTBINDING, "reden ontbinding");
     }
 
     @Override

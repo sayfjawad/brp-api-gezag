@@ -2,8 +2,11 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 
 import java.time.Clock;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -20,28 +23,39 @@ public class Kind extends PotentieelInOnderzoek {
     public static final String GEBOORTEDATUM = "090310";
     private static final int MEERDERJARIGE_LEEFTIJD = 180000;
 
+    public static Kind from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+        Map<String, String> values = new HashMap<>();
+        values.put(BSN, Objects.toString(lo3PlPersoonRecord.getBurgerServiceNr(), null));
+        values.put(VOORNAMEN, lo3PlPersoonRecord.getVoorNaam());
+        values.put(VOORVOEGSEL, lo3PlPersoonRecord.getGeslachtsNaamVoorvoegsel());
+        values.put(GESLACHTSNAAM, lo3PlPersoonRecord.getGeslachtsNaam());
+        values.put(GEBOORTEDATUM, Objects.toString(lo3PlPersoonRecord.getGeboorteDatum(), null));
+
+        return new Kind(values, clock);
+    }
+
     public Kind(final Map<String, String> values, final Clock clock) {
         super(Categorie.KIND, values, clock);
     }
 
     public String getBsn() {
-        return get(BSN);
+        return get(BSN, "bsn");
     }
 
     public String getVoornamen() {
-        return get(VOORNAMEN);
+        return get(VOORNAMEN, "voornamen");
     }
 
     public String getVoorvoegsel() {
-        return get(VOORVOEGSEL);
+        return get(VOORVOEGSEL, "voorvoegsel");
     }
 
     public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM);
+        return get(GESLACHTSNAAM, "geslachtsnaam");
     }
 
     public String getGeboortedatum() {
-        return get(GEBOORTEDATUM);
+        return get(GEBOORTEDATUM, "geboortedatum");
     }
 
     public boolean isMinderjarig() {

@@ -1,14 +1,14 @@
 package nl.rijksoverheid.mev.brpadapter.soap.persoonlijst;
 
 /**
- * Categorieen die voorkomen in de persoonlijst met bijbehoordende code
+ * Categorieen die voorkomen in de persoonlijst met bijbehorende code
  */
 public class Categorie {
 
     public static final String PERSOON = "01";
     public static final String OUDER_1 = "02";
     public static final String OUDER_2 = "03";
-    public static final String NATIONALIEIT = "04";
+    public static final String NATIONALITEIT = "04";
     public static final String HUWELIJK_OF_PARTNERSCHAP = "05";
     public static final String OVERLIJDEN = "06";
     public static final String INSCHRIJVING = "07";

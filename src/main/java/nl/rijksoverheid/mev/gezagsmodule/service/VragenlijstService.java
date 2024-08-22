@@ -18,7 +18,7 @@ import nl.rijksoverheid.mev.exception.HoofdstroomSchemaNietGevondenExceptie;
 @Slf4j
 public class VragenlijstService {
 
-    private static final String HOOFDSTROOMSCHEMA = "/hoofdstroomschema.csv";
+    private static final String HOOFDSTROOMSCHEMA = "/hoofdstroomschema_v2_2_1.csv";
     private final Map<String, Map<String, String>> vragenMap;
 
     public VragenlijstService() {
