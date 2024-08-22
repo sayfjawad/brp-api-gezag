@@ -67,7 +67,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 19980601   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000048  |
@@ -96,7 +96,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20110701   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000024  |
@@ -135,7 +135,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 19940501 |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518     |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030     |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S        |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S        |
     En de 'partner' is gewijzigd naar de volgende gegevens
     | naam                                                          | waarde          |
     | burgerservicenummer (01.20)                                   | 999998730       |
@@ -149,7 +149,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 19940501        |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518            |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030            |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S               |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S               |
     En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
@@ -357,7 +357,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20110701   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon heeft de volgende 'inschrijving' gegevens
     | naam                                 | waarde                     |
     | datum opschorting bijhouding (67.10) | 20181201                   |
@@ -482,7 +482,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 19980601   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000085  |

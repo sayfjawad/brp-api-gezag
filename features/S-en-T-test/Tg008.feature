@@ -69,7 +69,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20200801   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
@@ -162,7 +162,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20200801   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
@@ -352,7 +352,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20100801   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
@@ -464,7 +464,7 @@ Functionaliteit: Tg008 - Gerritsen-Groningen-Gouda
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20100801   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |

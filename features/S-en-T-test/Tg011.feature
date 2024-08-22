@@ -69,7 +69,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20170401   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000103  |
@@ -96,7 +96,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20200401   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000024  |
@@ -219,7 +219,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20170401    |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518        |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030        |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S           |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S           |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde     |
     | burgerservicenummer (01.20)                                         | 000000085  |
@@ -246,7 +246,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20200401   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
     En de persoon heeft een 'partner' met de volgende gegevens
     | naam                                                                | waarde      |
     | burgerservicenummer (01.20)                                         | 000000012   |
@@ -657,7 +657,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20200401    |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518        |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030        |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S           |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S           |
     En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |

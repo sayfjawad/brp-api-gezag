@@ -66,7 +66,7 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20131001   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | N          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | N          |
     En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
@@ -144,7 +144,7 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20131001   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | N          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | N          |
     En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |

@@ -122,7 +122,7 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)        | 20200601   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20)       | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)         | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)        | O          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)        | O          |
     En de persoon heeft de volgende 'overlijden' gegevens
     | naam                            | waarde   |
     | datum overlijden (08.10)        | 20210801 |
@@ -271,7 +271,7 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20201201   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
     En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
@@ -425,7 +425,7 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20190101   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
     En de persoon heeft de volgende 'overlijden' gegevens
     | naam                            | waarde   |
     | datum overlijden (08.10)        | 20210801 |

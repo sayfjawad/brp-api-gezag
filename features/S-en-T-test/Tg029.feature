@@ -66,7 +66,7 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20221220   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O          |
     En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |

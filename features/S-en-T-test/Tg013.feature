@@ -290,7 +290,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20160201     |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518         |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030         |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S            |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S            |
     En de 'partner' is gewijzigd naar de volgende gegevens
     | naam                                                          | waarde          |
     | burgerservicenummer (01.20)                                   | 000000097       |
@@ -304,7 +304,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20160201        |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518            |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030            |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S               |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S               |
     En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
     | naam                              | waarde   |
     | gemeente van inschrijving (09.10) | 518      |
@@ -489,7 +489,7 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20160201   |
     | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 0518       |
     | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030       |
-    | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
+    | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | S          |
     En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
     | naam                                 | waarde   |
     | gemeente van inschrijving (09.10)    | 518      |
