@@ -18,15 +18,6 @@ import org.springframework.stereotype.Service;
 public class TransactionServiceNoOp implements TransactionHandler {
 
     @Override
-    public Transaction createPersoonsgegevensTransaction(
-            final HttpServletRequest request,
-            final HttpServletResponse response) {
-        log.trace("createPersoonsgegevensTransaction - {}, {}, {}, {}", null, null, request, response);
-
-        return new Transaction();
-    }
-
-    @Override
     public Transaction createGmApiTransaction(final HttpServletRequest request, final HttpServletResponse response) {
         log.trace("createGmApiTransaction - {}, {}", request, response);
 

@@ -1,6 +1,7 @@
 ### temp project files ###
 /tmp
 /brpstubs/GegenereerdUitBrpData/new
+brp-api-gezag.log.json
 
 ### soaplog folder with generated wiremock stubs ###
 /soaplog
@@ -44,3 +45,7 @@ nb-configuration.xml
 ### Configuration files with confidential information ###
 
 /src/test/resources/pre-prod-credentials.yml
+
+# Dependency directories
+
+node_modules/

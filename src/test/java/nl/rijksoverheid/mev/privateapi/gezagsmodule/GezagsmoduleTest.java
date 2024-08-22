@@ -3,7 +3,7 @@ package nl.rijksoverheid.mev.privateapi.gezagsmodule;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagServiceOld;
 import nl.rijksoverheid.mev.privateapi.gezagsmodule.util.ArAntwoordenModelUtils;
 import nl.rijksoverheid.mev.privateapi.gezagsmodule.util.CsvTestResultWriter;
 import nl.rijksoverheid.mev.transaction.Transaction;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Gebruikte afkortingen: AR = Afleidingsregel
  *
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, properties="app.clock=2023-02-01T00:00:00Z")
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, properties = "app.clock=2023-02-01T00:00:00Z")
 public abstract class GezagsmoduleTest {
 
     public record ResponseInfo(GezagAfleidingsResultaat gezagAfleidingsResultaat, long responseTime) {
@@ -40,7 +40,7 @@ public abstract class GezagsmoduleTest {
     private Transaction transaction;
 
     @Autowired
-    private GezagService subject;
+    private GezagServiceOld subject;
 
     @AfterAll
     public static void teardown() throws IOException {
@@ -54,14 +54,13 @@ public abstract class GezagsmoduleTest {
         CsvTestResultWriter.writeTestResultsAsCsvRow(routeTestArguments, responseInfo, arAntwoordenExpected);
 
         var gezagAfleidingsResultaat = responseInfo.gezagAfleidingsResultaat();
-        ArAntwoordenModelUtils.assertThatArAntwoorden(gezagAfleidingsResultaat.getArAntwoordenModel()).areEqualTo(arAntwoordenExpected);
-
         assertThat(gezagAfleidingsResultaat.getRoute()).isEqualTo(routeTestArguments.expectedRoute);
-        if (!gezagAfleidingsResultaat.getRoute().equals("2m") && (!gezagAfleidingsResultaat.getRoute().equals("2o"))){
+        if (!gezagAfleidingsResultaat.getRoute().equals("2m") && (!gezagAfleidingsResultaat.getRoute().equals("2o"))) {
             assertThat(getBsnsGezaghouders(gezagAfleidingsResultaat)).containsExactlyInAnyOrderElementsOf(
-                        routeTestArguments.bsnsGezaghoudersExpected);
-            assertThat(gezagAfleidingsResultaat.getGezagsrelaties().get(0).soortGezag()).isEqualTo(arAntwoordenExpected.getSoortGezag());
+                    routeTestArguments.bsnsGezaghoudersExpected);
+            assertThat(gezagAfleidingsResultaat.getGezagsrelaties().get(0).getSoortGezag()).isEqualTo(arAntwoordenExpected.getSoortGezag());
         }
+        ArAntwoordenModelUtils.assertThatArAntwoorden(gezagAfleidingsResultaat.getArAntwoordenModel()).areEqualTo(arAntwoordenExpected);
     }
 
     private ResponseInfo queryGezagsmoduleInternalsAPI(String bsn) throws AfleidingsregelException {
@@ -73,7 +72,7 @@ public abstract class GezagsmoduleTest {
 
     private static List<String> getBsnsGezaghouders(GezagAfleidingsResultaat gezagAfleidingsResultaat) {
         return gezagAfleidingsResultaat.getGezagsrelaties().stream()
-                .map(Gezagsrelatie::bsnMeerderjarige)
+                .map(Gezagsrelatie::getBsnMeerderjarige)
                 .toList();
     }
 }

@@ -55,9 +55,7 @@ public class BeslissingsmatrixService {
             return "-503i";
         } else if ((arAntwoordenModel.getException() != null)
             && (Objects.equals(arAntwoordenModel.getException().getClass(), VeldInOnderzoekException.class))) {
-            String route = getRouteFromVraagModel(arAntwoordenModel);
-
-            return route + "i";
+            return getRouteFromVraagModel(arAntwoordenModel);
         } else {
             return getRouteFromVraagModel(arAntwoordenModel);
         }
@@ -66,7 +64,7 @@ public class BeslissingsmatrixService {
     private void determineRoutes() {
         List<String> antwoordenModelLines = new ArrayList<>();
         try (BufferedReader antwoordenModelCsvReader = new BufferedReader(
-            new InputStreamReader(BeslissingsmatrixService.class.getResourceAsStream("/AntwoordenModel_v2_2_1.csv")))) {
+            new InputStreamReader(BeslissingsmatrixService.class.getResourceAsStream("/AntwoordenModel_v2_2_2.csv")))) {
             String line;
             while ((line = antwoordenModelCsvReader.readLine()) != null) {
                 antwoordenModelLines.add(line);

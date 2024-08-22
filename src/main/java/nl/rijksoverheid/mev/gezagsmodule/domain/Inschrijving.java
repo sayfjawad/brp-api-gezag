@@ -35,24 +35,29 @@ public class Inschrijving implements PersoonslijstVeld {
         return values.get(key);
     }
 
+    @Override
+    public String get(final String key, final String fieldName) {
+        return values.get(key);
+    }
+    
     public String getDatumOpschortingBijhouding() {
-        return get(DATUM_OPSCHORTING_BIJHOUDING);
+        return get(DATUM_OPSCHORTING_BIJHOUDING, "datum opschroting bijhouding");
     }
 
     public String getRedenOpschortingBijhouding() {
-        return get(REDEN_OPSCHORTING_BIJHOUDING);
+        return get(REDEN_OPSCHORTING_BIJHOUDING, "reden opschorting bijhouding");
     }
 
     public String getDatumVerificatie() {
-        return get(DATUM_VERIFICATIE);
+        return get(DATUM_VERIFICATIE, "datum verificatie");
     }
 
     public String getOmschrijvingVerificatie() {
-        return get(OMSCHRIJVING_VERIFICATIE);
+        return get(OMSCHRIJVING_VERIFICATIE, "omschrijving verificatie");
     }
 
     public String getRniDeelnemer() {
-        return get(RNI_DEELNEMER);
+        return get(RNI_DEELNEMER, "RNI deelnemer");
     }
 
     @Override

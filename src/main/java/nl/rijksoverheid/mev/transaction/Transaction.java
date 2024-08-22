@@ -1,10 +1,9 @@
 package nl.rijksoverheid.mev.transaction;
 
-import jakarta.persistence.*;
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -21,66 +20,49 @@ import java.time.Instant;
  * <li>BRP aanvragen</li>
  * </ul>
  */
-@Entity
 @Getter
 public class Transaction implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "generated_id")
     private String generatedId;
 
     @Setter
-    @Column(name = "received_id")
     private String receivedId;
 
-    @Column(name = "datetime_created", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp datetimeCreated;
 
     @Setter
-    @Column(name = "transaction_datetime", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp transactionDatetime;
 
     @Setter
-    @Column(name = "oin")
     private String oin;
 
     @Setter
-    @Column(name = "soort_gezag")
     private String soortGezag;
 
     @Setter
-    @Column(name = "gezagmodule_gezag_soort")
     private String gezagmoduleGezagSoort;
 
     @Setter
-    @Column(name = "gezagmodule_path")
     private String gezagmodulePath;
 
     @Setter
-    @Column(name = "gezagmodule_route")
     private String gezagmoduleRoute;
 
     @Setter
-    @Column(name = "applicatie_naam")
     private String applicationName;
 
     @Setter
-    @Column(name = "gezagmodule_versie")
     private String gezagmoduleVersie;
 
     @Setter
-    @Column(name = "dienst_id")
     private String dienst;
 
     @Setter
-    @Column(name = "dienstverlener_id")
     private String dienstverlenerId;
 
     @Setter
-    @Column(name = "response_code")
     private String responseCode;
 
     /**

@@ -79,7 +79,7 @@ public class CsvTestResultWriter {
     private static List<String> getBsnsGezaghouders(GezagAfleidingsResultaat gezagAfleidingsResultaat) {
         if (gezagAfleidingsResultaat.getGezagsrelaties() != null) {
             return gezagAfleidingsResultaat.getGezagsrelaties().stream()
-                    .map(Gezagsrelatie::bsnMeerderjarige)
+                    .map(Gezagsrelatie::getBsnMeerderjarige)
                     .toList();
         }
         return null;

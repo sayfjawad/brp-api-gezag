@@ -1,9 +1,0 @@
-spring:
-  main:
-    banner-mode: off
-  config:
-    activate:
-      on-profile: test
-
-transaction-logging:
-  enabled: false
