@@ -28,7 +28,7 @@ import java.util.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "new-gezag-service.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "app.features.refactored-gezag.enabled", havingValue = "true")
 public class GezagServiceNew implements GezagService {
 
     private final VragenlijstService vragenlijstService;
