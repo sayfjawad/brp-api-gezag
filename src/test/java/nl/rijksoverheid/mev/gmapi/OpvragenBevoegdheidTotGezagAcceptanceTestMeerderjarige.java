@@ -35,10 +35,10 @@ class OpvragenBevoegdheidTotGezagAcceptanceTestMeerderjarige {
                 Arguments.of(
                         "999998778", // meerderjarige
                         Set.of(
-                                new Gezagsrelatie("999998778", "999998316", "OG2", "999998778", null),
-                                new Gezagsrelatie("999998778", "999999746", "OG1", "999998778", null),
-                                new Gezagsrelatie("999998778", "999998341", "OG2", "999998778", null),
-                                new Gezagsrelatie("999998778", "999998328", "OG2", "999998778", null)
+                                new Gezagsrelatie("999998778", "999998316", "OG2", "999998778", null, false),
+                                new Gezagsrelatie("999998778", "999999746", "OG1", "999998778", null, false),
+                                new Gezagsrelatie("999998778", "999998341", "OG2", "999998778", null, false),
+                                new Gezagsrelatie("999998778", "999998328", "OG2", "999998778", null, false)
                         )
                 )
         );

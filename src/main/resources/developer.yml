@@ -2,18 +2,14 @@ app:
   features:
     brp:
       dataset-path: src/test/resources/fixtures/persoonslijsten/GegenereerdUitExcelData/CGR_testbestand-20230525
+    refactored-gezag:
+      enabled: true
 
 server:
   port: 8080
 
 spring:
   datasource:
-    url: jdbc:h2:file:./tmp/mydb
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-
-new-gezag-service:
-  enabled: true
+    url: jdbc:postgresql://localhost:5432/rvig_brp_api_testdata
+    username: root
+    password: root

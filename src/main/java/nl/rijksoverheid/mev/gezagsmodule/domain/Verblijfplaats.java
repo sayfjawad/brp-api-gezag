@@ -1,10 +1,12 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import java.time.Clock;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -23,6 +25,16 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
     private static final String LAND_VANWAAR_INGESCHREVEN = "081410";
     private static final String DATUM_VESTIGING_IN_NEDERLAND = "081420";
     private static final String RNI_DEELNEMER = "088810";
+
+    public static Verblijfplaats from(Lo3PlVerblijfplaatsRecord lo3PlVerblijfplaatsRecord, Clock clock) {
+        Map<String, String> values = new HashMap<>();
+        values.put(GEMEENTE_VAN_INSCHRIJVING, Objects.toString(lo3PlVerblijfplaatsRecord.getInschrijvingGemeenteCode(), null));
+        values.put(LAND_VANWAAR_INGESCHREVEN, Objects.toString(lo3PlVerblijfplaatsRecord.getVestigingLandCode(), null));
+        values.put(DATUM_VESTIGING_IN_NEDERLAND, Objects.toString(lo3PlVerblijfplaatsRecord.getVestigingDatum(), null));
+        values.put(RNI_DEELNEMER, Objects.toString(lo3PlVerblijfplaatsRecord.getRniDeelnemer(), null));
+
+        return new Verblijfplaats(values, clock);
+    }
 
     public Verblijfplaats(final Map<String, String> values, final Clock clock) {
         super(Categorie.VERBLIJFPLAATS, values, clock);

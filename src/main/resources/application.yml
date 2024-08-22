@@ -1,3 +1,8 @@
+app:
+  features:
+    refactored-gezag:
+      enabled: false
+
 logging:
   file:
     name: brp-api-gezag.log
@@ -10,22 +15,11 @@ server:
 spring:
   application:
     name: brp-api-gezag
-  datasource:
-    hikari:
-      max-lifetime: 655000
-  jpa:
-    hibernate:
-      ddl-auto: update
-    open-in-view: false
-    properties:
-      hibernate:
-        jdbc:
-          time_zone: UTC
-          lob:
-            non_contextual_creation: true
+  jooq:
+    sql-dialect: postgres
   profiles:
     group:
-      default: fake-brp
+      default: real-brp
       ont: fake-brp
       pre: real-brp
       prd: real-brp
@@ -49,23 +43,6 @@ management:
     recording:
       enabled: true
 
-brp-credentials:
-  username: dummy
-  password: dummy
-ca-credentials:
-  Authorization: dummy
-  X-Origin-OIN: dummy
-ca-brp-endpoint: "https://ca-pre.logius.nl/brp/opvragen-persoon/1.0"
-
-services:
-  certificates:
-    key-store-type: JKS
-    key-store: dummykeystore.jks
-    key-store-password: "dummy"
-    key-password: "dummy"
-    trust-store: dummytruststore.jks
-    trust-store-password: "dummy"
-
 correlation:
   component-id: 02
 
@@ -78,8 +55,6 @@ transaction:
 
 exceptie-bij-in-onderzoek: true
 
-new-gezag-service:
-  enabled: false
 ---
 
 spring:
