@@ -4,10 +4,13 @@ Functionaliteit: voogdij van een meerderjarige over een kind van een (ex)partner
 
 
     Achtergrond:
+      Gegeven adres 'A1' heeft de volgende gegevens
+      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) | identificatiecode nummeraanduiding (11.90) |
+      | 518                  | Turfmarkt          | 43                 | 0518200000583552                           |
+
       # kind geboren vóór huwelijk/partnerschap
       Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
       | naam                            | waarde          |
-      | burgerservicenummer (01.20)     | 000000036       |
       | geslachtsnaam (02.40)           | Doornenbal      |
       | geboortedatum (03.10)           | morgen - 9 jaar |
       | geboorteland (03.30)            | 6030            |
@@ -27,13 +30,12 @@ Functionaliteit: voogdij van een meerderjarige over een kind van een (ex)partner
       | aktenummer (81.20)              | 1AA0101         |
       | ingangsdatum geldigheid (85.10) | morgen - 9 jaar |
       En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                              | waarde   |
-      | gemeente van inschrijving (09.10) | 518      |
+      | naam                              | waarde |
+      | gemeente van inschrijving (09.10) | 0518   |
 
       # kind geboren tijdens aangaan huwelijk/partnerschap
       Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
       | naam                            | waarde          |
-      | burgerservicenummer (01.20)     | 000000048       |
       | geslachtsnaam (02.40)           | Doornenbal      |
       | geboortedatum (03.10)           | morgen - 5 jaar |
       | geboorteland (03.30)            | 6030            |
@@ -63,7 +65,6 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
     Scenario: de (ex)partner van overleden ouder heeft gezag over een binnen het huwelijk geboren niet-erkend kind
       Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
       | naam                            | waarde     |
-      | burgerservicenummer (01.20)     | 000000012  |
       | voornamen (02.10)               | Daniel     |
       | geslachtsnaam (02.40)           | Doornenbal |
       | geboortedatum (03.10)           | 19730301   |
@@ -85,7 +86,7 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10)  | 20200317  |
       | plaats ontbinding huwelijk/geregistreerd partnerschap (07.20) | 518       |
       | land ontbinding huwelijk/geregistreerd partnerschap (07.30)   | 6030      |
-      | Reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O         |
+      | reden ontbinding huwelijk/geregistreerd partnerschap (07.40)  | O         |
       En de persoon heeft een 'partner' met de volgende gegevens
       | naam                                                                | waarde   |
       | geslachtsnaam (02.40)                                               | Dest     |
@@ -94,7 +95,6 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 5010     |
       En de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
       | naam                            | waarde     |
-      | burgerservicenummer (01.20)     | 000000024  |
       | voornamen (02.10)               | Delilah    |
       | voorvoegsel (02.30)             | van        |
       | geslachtsnaam (02.40)           | Doodewaard |
@@ -111,7 +111,7 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | morgen - 7 jaar |
       | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518            |
       | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030            |
-      En de persoon heeft (nog) een 'kind' met de volgende gegevens
+      En de persoon heeft een 'kind' met de volgende gegevens
       | naam                            | waarde          |
       | burgerservicenummer (01.20)     | 000000036       |
       | voornamen (02.10)               | Diana           |
@@ -120,7 +120,7 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | geboorteland (03.30)            | 6030            |
       | aktenummer (81.20)              | 1AA0101         |
       | ingangsdatum geldigheid (85.10) | morgen - 9 jaar |
-      En de persoon heeft (nog) een 'kind' met de volgende gegevens
+      En de persoon heeft nog een 'kind' met de volgende gegevens
       | naam                            | waarde          |
       | burgerservicenummer (01.20)     | 000000048       |
       | voornamen (02.10)               | Daan            |
@@ -133,9 +133,12 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | naam                     | waarde   |
       | datum overlijden (08.10) | 20200317 |
       Als gezag wordt gezocht met de volgende parameters
-      | naam | waarde    |
-      | bsn  | 000000012 |
-      Dan heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde    |
       | type                             | Voogdij   |
       | minderjarige.burgerservicenummer | 000000048 |
@@ -146,7 +149,6 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
     Scenario: de partner van ouder onder curatele heeft gezag over een binnen het huwelijk geboren niet-erkend kind
       Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
       | naam                            | waarde     |
-      | burgerservicenummer (01.20)     | 000000012  |
       | voornamen (02.10)               | Daniel     |
       | geslachtsnaam (02.40)           | Doornenbal |
       | geboortedatum (03.10)           | 19730301   |
@@ -164,7 +166,6 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030            |
       En de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
       | naam                            | waarde     |
-      | burgerservicenummer (01.20)     | 000000024  |
       | voornamen (02.10)               | Delilah    |
       | voorvoegsel (02.30)             | van        |
       | geslachtsnaam (02.40)           | Doodewaard |
@@ -181,7 +182,7 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  | morgen - 7 jaar |
       | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) | 0518            |
       | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   | 6030            |
-      En de persoon heeft (nog) een 'kind' met de volgende gegevens
+      En de persoon heeft een 'kind' met de volgende gegevens
       | naam                            | waarde          |
       | burgerservicenummer (01.20)     | 000000036       |
       | voornamen (02.10)               | Diana           |
@@ -190,7 +191,7 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | geboorteland (03.30)            | 6030            |
       | aktenummer (81.20)              | 1AA0101         |
       | ingangsdatum geldigheid (85.10) | morgen - 9 jaar |
-      En de persoon heeft (nog) een 'kind' met de volgende gegevens
+      En de persoon heeft nog een 'kind' met de volgende gegevens
       | naam                            | waarde          |
       | burgerservicenummer (01.20)     | 000000048       |
       | voornamen (02.10)               | Daan            |
@@ -205,9 +206,12 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | beschrijving document (82.30)      | kennisgeving curateleregister |
       | ingangsdatum geldigheid (85.10)    | 20231107                      |
       Als gezag wordt gezocht met de volgende parameters
-      | naam | waarde    |
-      | bsn  | 000000012 |
-      Dan heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde    |
       | type                             | Voogdij   |
       | minderjarige.burgerservicenummer | 000000048 |
