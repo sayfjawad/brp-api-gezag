@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
+import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
 
@@ -454,25 +455,29 @@ public class ARVragenModel {
     Probeer hier niet de ouders of nietouders op te halen, in dit stadium zijn
     deze al lang opgehaald of was dit onnodig.
      */
-    public Set<String> bepalenGezagdragers(final ARAntwoordenModel arAntwoordenModel) {
+    public void bepalenGezagdragers(final String bsn, final ARAntwoordenModel arAntwoordenModel, final List<Gezagsrelatie> gezagsrelaties) {
         Set<String> gezagsdragers = new HashSet<>();
         if (arAntwoordenModel != null) {
+            String uitleg = arAntwoordenModel.getUitleg();
+            String soortGezag = arAntwoordenModel.getSoortGezag();
             if (arAntwoordenModel.getGezagOuder1() != null && arAntwoordenModel.getGezagOuder1().equals("Ja")
                 && (plOuder1 != null)) {
-                gezagsdragers.add(plOuder1.getPersoon().getBsn());
+                gezagsrelaties.add(
+                    new Gezagsrelatie(bsn, soortGezag, plOuder1.getPersoon().getBsn(), uitleg));
             }
             if (arAntwoordenModel.getGezagOuder2() != null && arAntwoordenModel.getGezagOuder2().equals("Ja")
                 && (plOuder2 != null)) {
-                gezagsdragers.add(plOuder2.getPersoon().getBsn());
+                gezagsrelaties.add(
+                    new Gezagsrelatie(bsn, soortGezag, plOuder2.getPersoon().getBsn(), uitleg));
             }
             if ((((arAntwoordenModel.getGezagNietOuder1() != null && arAntwoordenModel.getGezagNietOuder1().equals("Ja"))
                 || (arAntwoordenModel.getGezagNietOuder2() != null && arAntwoordenModel.getGezagNietOuder2().equals("Ja")))
                 && (plNietOuder != null))) {
-                gezagsdragers.add(plNietOuder.getPersoon().getBsn());
+                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, plNietOuder.getPersoon().getBsn(), uitleg);
+                gezagsrelatie.setDerde(true);
+                gezagsrelaties.add(gezagsrelatie);
             }
         }
-
-        return gezagsdragers;
     }
 
     /**

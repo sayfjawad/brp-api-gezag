@@ -137,8 +137,6 @@ class ToelichtingServiceTest {
         List<String> missendeGegevens = List.of(FIELD_1, FIELD_2);
 
         String result = classUnderTest.decorateToelichting(toelichting, veldenInOnderzoek, missendeGegevens);
-
-        System.out.println(result);
         
         assertTrue(result.startsWith(toelichting.substring(0, (toelichting.length() - 2))));
         assertTrue(result.contains(FIELD_1));
