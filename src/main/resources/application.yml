@@ -1,3 +1,8 @@
+app:
+  features:
+    refactored-gezag:
+      enabled: false
+
 logging:
   file:
     name: brp-api-gezag.log
@@ -50,8 +55,6 @@ transaction:
 
 exceptie-bij-in-onderzoek: true
 
-new-gezag-service:
-  enabled: false
 ---
 
 spring:
