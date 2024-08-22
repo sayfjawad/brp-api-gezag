@@ -77,7 +77,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | ingangsdatum geldigheid (85.10)      | morgen - 12 jaar            |
       Als gezag wordt gezocht met de volgende parameters
       | naam | waarde    |
-      | bsn  | 000000012 |
+      | burgerservicenummer  | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
@@ -152,8 +152,8 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | beschrijving document (82.30)        | kennisgeving gezagsregister |
       | ingangsdatum geldigheid (85.10)      | morgen - 12 jaar            |
       Als gezag wordt gezocht met de volgende parameters
-      | naam | waarde    |
-      | bsn  | 000000012 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
@@ -210,8 +210,8 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | beschrijving document (82.30)        | kennisgeving gezagsregister |
       | ingangsdatum geldigheid (85.10)      | morgen - 10 jaar            |
       Als gezag wordt gezocht met de volgende parameters
-      | naam | waarde    |
-      | bsn  | 000000012 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
@@ -269,8 +269,8 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | beschrijving document (82.30)        | kennisgeving gezagsregister |
       | ingangsdatum geldigheid (85.10)      | morgen - 12 jaar            |
       Als gezag wordt gezocht met de volgende parameters
-      | naam | waarde    |
-      | bsn  | 000000012 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
@@ -331,8 +331,8 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | beschrijving document (82.30)        | kennisgeving gezagsregister |
       | ingangsdatum geldigheid (85.10)      | morgen - 12 jaar            |
       Als gezag wordt gezocht met de volgende parameters
-      | naam | waarde    |
-      | bsn  | 000000012 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
@@ -390,8 +390,8 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | beschrijving document (82.30)        | kennisgeving gezagsregister     |
       | ingangsdatum geldigheid (85.10)      | <ingangsdatum geldigheid gezag> |
       Als gezag wordt gezocht met de volgende parameters
-      | naam | waarde    |
-      | bsn  | 000000012 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
