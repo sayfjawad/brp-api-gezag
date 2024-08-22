@@ -12,7 +12,7 @@
 
     <groupId>nl.rijksoverheid.mev</groupId>
     <artifactId>gezag</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
 
     <name>gezag</name>
     <description>Gezag</description>
