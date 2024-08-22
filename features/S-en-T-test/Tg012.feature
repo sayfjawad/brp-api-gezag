@@ -281,8 +281,8 @@ Functionaliteit: Tg012 - Loon-Liebeek
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -311,8 +311,8 @@ Functionaliteit: Tg012 - Loon-Liebeek
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -340,8 +340,8 @@ Functionaliteit: Tg012 - Loon-Liebeek
   Scenario: Lg01_067 - geboorte uit ongehuwde vrouw, adoptie met terugwerkende kracht tot geboortedatum door duo-moeder
     # Route: 55 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -359,8 +359,8 @@ Functionaliteit: Tg012 - Loon-Liebeek
   Scenario: Lg01_068 - geboorte uit ongehuwde vrouw, erkenning bij geboorteaangifte (ná dag geboorte) door meemoeder, categorie 11 met 12
     # Route: 7 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -378,8 +378,8 @@ Functionaliteit: Tg012 - Loon-Liebeek
   Scenario: Lg01_069 - geboorte uit ongehuwde vrouw, erkenning ongeboren vrucht door meemoeder, geen categorie 11
     # Route: 54 - Wie heeft gezag?: moeder, maar valt niet te achterhalen (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |

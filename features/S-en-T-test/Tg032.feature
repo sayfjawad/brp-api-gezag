@@ -124,8 +124,8 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
   Scenario: Lg01_173 - minderjarige moeder, gezag niet te bepalen BSN moeder ontbreekt
     # Route: 39e - Wie heeft gezag?: exception (BSN moeder ontbreekt) (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -137,8 +137,8 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
   Scenario: Lg01_174 - minderjarige moeder, geen categorie 11
     # Route: 39 - Wie heeft gezag?: tijdelijk geen gezag (G)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -149,8 +149,8 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
   Scenario: Lg01_175 - minderjarige moeder, wel categorie 11
     # Route: 4 - Wie heeft gezag?: moeder en derde (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |

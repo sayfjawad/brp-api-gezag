@@ -633,8 +633,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -648,8 +648,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -658,8 +658,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
   Scenario: Lg01_072 - minderjarig kind, erkenning, vernietiging erkenning, nieuwe erkenning, cat 11 in historie 12, actueel leeg (vernietiging erkenning)
     # Route: 54v1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -673,8 +673,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -684,8 +684,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
@@ -719,8 +719,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000073 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000073 |
@@ -729,8 +729,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
   Scenario: Lg01_076 - minderjarig kind bij geboorte alleen moeder, vervolgens erkend, geboorte en erkenning onjuist moeder bleek gehuwd op datum geboorte, ontkenning vaderschap door (ex)huwelijkspartner moeder, vervolgens opnieuw erkend door eerste erkenner, geen categorie 11
     # Route: 54v2 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000085 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000085 |
@@ -744,8 +744,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000097 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000097 |
@@ -763,8 +763,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
   Scenario: Lg01_166 - ontkenning vaderschap, juridisch geen ouder1, wel ouder2
     # Route: 40o2 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000103 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000103 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000103 |
@@ -777,8 +777,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
   Scenario: Lg01_167 - vaststelling ouderschap, geen categorie 11
     # Route: 54v1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000115 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000115 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000115 |
@@ -791,8 +791,8 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
   Scenario: Lg01_168 - vaststelling ouderschap, wel categorie 11
     # Route: 7 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000127 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000127 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000127 |

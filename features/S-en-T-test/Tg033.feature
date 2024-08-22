@@ -336,8 +336,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -369,8 +369,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -386,8 +386,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
   Scenario: Lg01_178 - 1 ouder, moeder gehuwd, gezamenlijk gezag moeder en meemoeder
     # Route: 41 - Wie heeft gezag?: moeder en meemoeder (GG)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -403,8 +403,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
   Scenario: Lg01_179 - 1 ouder, moeder gehuwd, indicatie gezag 1D geen gezamenlijk gezag moeder en meemoeder
     # Route: 4 - Wie heeft gezag?: moeder en derde (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -417,8 +417,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
   Scenario: Lg01_180 - 1 ouder, moeder gehuwd na geboorte kind, geen gezamenlijk gezag
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
@@ -431,8 +431,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
   Scenario: Lg01_198 - minderjarige geboren na 01-01-2023 uit gehuwde moeder en bekende donor, erkend voor geboorte door ander dan partner
     # Route: 54n - Wie heeft gezag?: moeder (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000073 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000073 |
@@ -451,8 +451,8 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000085 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000085 |

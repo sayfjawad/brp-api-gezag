@@ -224,8 +224,8 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -244,8 +244,8 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -254,8 +254,8 @@ Functionaliteit: Tg007 - Frederiks-Faassen
   Scenario: Lg01_030 - minderjarige kind, geboren tijdens huwelijk ouders, vader (Ouder2) onder curatele
     # Route: 51 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -268,8 +268,8 @@ Functionaliteit: Tg007 - Frederiks-Faassen
   Scenario: Lg01_031 - minderjarig erkend kind, ouders inmiddels gehuwd, vader (Ouder2) onder curatele
     # Route: 51 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |

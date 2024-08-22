@@ -684,8 +684,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -704,8 +704,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -723,8 +723,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
   Scenario: Lg01_043 - minderjarig kind uit gehuwde ouders (moeder meerdere ontbonden huwelijken)
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -743,8 +743,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Meerderjarig
     # Route: 1 - Wie heeft gezag?:  (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -753,8 +753,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
   Scenario: Lg01_045 - minderjarige, emigratie
     # Route: 1 - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
@@ -767,8 +767,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000073 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000073 |
@@ -787,8 +787,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000085 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000085 |
@@ -806,8 +806,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
   Scenario: Lg01_048 - minderjarige, erkend, vervolgens ouders gehuwd, 2 beëindigde vreemde nationaliteiten, Nederlandse nationaliteit vanaf geboorte
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000097 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000097 |
@@ -825,8 +825,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
   Scenario: Lg01_049 - minderjarige, juridisch geen vader, 2 vreemde nationaliteiten
     # Route: 3 - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000103 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000103 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000103 |

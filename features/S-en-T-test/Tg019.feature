@@ -363,8 +363,8 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -374,8 +374,8 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -384,8 +384,8 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
   Scenario: Lg01_103 - gehuwde ouders beiden overleden, geen categorie 11
     # Route: 48 - Wie heeft gezag?: geen gezag (G)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -396,8 +396,8 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
   Scenario: Lg01_104 - gehuwde ouders beiden overleden, indicatie gezag 1 geplaatst vóór overlijden Ouder1
     # Route: 12 - Wie heeft gezag?: geen gezag (G)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -408,8 +408,8 @@ Functionaliteit: Tg019 - Aa-Abels - Ouders overleden zelfde dag
   Scenario: Lg01_105 - gehuwde ouders beiden overleden, indicatie D geplaatst ná overlijden Ouders
     # Route: 6 - Wie heeft gezag?: voogdij (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |

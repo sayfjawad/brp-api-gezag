@@ -156,8 +156,8 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -167,8 +167,8 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -183,8 +183,8 @@ Functionaliteit: Tg035 - Saasveld-Suijdema - Vanuit gezamenlijk gezag komt moede
   Scenario: Lg01_187 - 1 ouder, moeder gehuwd, meemoeder geen ouder, moeder overleden
     # Route: 43o1 - Wie heeft gezag?: meemoeder (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |

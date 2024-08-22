@@ -354,8 +354,8 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     # Meerderjarig
     # Route: 2mi - Wie heeft gezag?:  (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -365,8 +365,8 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -375,8 +375,8 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
   Scenario: Lg01_136 - kind geboren tijdens huwelijk, in onderzoek 010310, 026210, 030210, 080920, 613210
     # Route: 49i - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -388,8 +388,8 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
   Scenario: Lg01_137 - kind geboren tijdens huwelijk in onderzoek 010330 (voorvoegsel ontbreekt), 040510, 081420, 113210
     # Route: 3ai - Wie heeft gezag?: niet te bepalen (N )
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -401,8 +401,8 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
   Scenario: Lg01_138 - kind geboren tijdens huwelijk, overleden, gezag is niet van toepassing
     # Route: 2o - Wie heeft gezag?: overleden, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |

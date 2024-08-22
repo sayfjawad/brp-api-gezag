@@ -314,8 +314,8 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -325,8 +325,8 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -336,8 +336,8 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -346,8 +346,8 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
   Scenario: Lg01_164 - minderjarig kind onder gezag 1D, erkend
     # Route: 4 - Wie heeft gezag?: erkenner/voogd (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -360,8 +360,8 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
   Scenario: Lg01_165 - minderjarig kind onder gezag 1D, erkend  door voogd
     # Route: 4 - Wie heeft gezag?: voogd (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |

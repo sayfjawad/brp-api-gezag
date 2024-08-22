@@ -649,8 +649,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -694,8 +694,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -738,8 +738,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
   Scenario: Lg01_003 - minderjarig, ouders gehuwd op moment geboorte, geen categorie 11
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -757,8 +757,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
   Scenario: Lg01_004 - overleden, ouders gehuwd op moment geboorte, geen categorie 11
     # Route: 2o - Wie heeft gezag?: overleden, gezag is niet van toepassing (NVT )
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -767,8 +767,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
   Scenario: Lg01_005 - minderjarig, erkend als ongeboren vrucht, geen categorie 11, ouders gehuwd ná de geboorte
     # Route: 49 - Wie heeft gezag?: ouders gezamenlijk ouderlijk gezag (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
@@ -786,8 +786,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
   Scenario: Lg01_006 - minderjarig, ouder dan 12, erkend als ongeboren vrucht, geen categorie 11, ouders gehuwd ná de geboorte
     # Route: 49 - Wie heeft gezag?: ouders gezamenlijk ouderlijk gezag (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000073 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000073 |
@@ -805,8 +805,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
   Scenario: Lg01_110 - ouders gehuwd, indicatie gezag "2"
     # Route: 13 - Wie heeft gezag?: vader (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000085 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000085 |
@@ -819,8 +819,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
   Scenario: Lg01_111 - erkend, ouders later gehuwd, indicatie gezag "1" geldig voor huwelijksdatum
     # Route: 11 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000097 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000097 |
@@ -833,8 +833,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
   Scenario: Lg01_112 - erkend, ouders later gehuwd, indicatie gezag "1D" geldig na huwelijksdatum
     # Route: 4 - Wie heeft gezag?: niet te bepalen (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000103 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000103 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000103 |
@@ -847,8 +847,8 @@ Functionaliteit: Tg001 - Adema-Arendsen - Gehuwd met kinderen geboren voor en na
   Scenario: Lg01_113 - erkend, ouders later gehuwd, indicatie gezag "1D" geldig voor huwelijksdatum
     # Route: 4 - Wie heeft gezag?: niet te bepalen (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000115 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000115 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000115 |

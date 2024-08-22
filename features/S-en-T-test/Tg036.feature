@@ -208,8 +208,8 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT )
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -227,8 +227,8 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
   Scenario: Lg01_189 - minderjarig kind, 010000 in onderzoek
     # Route: 40o1i - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -240,8 +240,8 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
   Scenario: Lg01_190 - minderjarig kind, 080000 in onderzoek
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -254,8 +254,8 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
   Scenario: Lg01_191 - minderjarig kind, 020000 in onderzoek
     # Route: 40o1i - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -267,8 +267,8 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
   Scenario: Lg01_192 - minderjarig kind, 010320 in onderzoek
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |

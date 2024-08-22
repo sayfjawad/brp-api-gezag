@@ -535,8 +535,8 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -546,8 +546,8 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -600,8 +600,8 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
   Scenario: Lg01_147 - kind geboren uit ongehuwde ouders na 01-01- 2023, erkenning ongeboren vrucht,  indicatie gezag
     # Route: 11 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -614,8 +614,8 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
   Scenario: Lg01_148 - kind geboren uit ongehuwde ouders na 01-01- 2023, erkenning ongeboren vrucht,  geen indicatie gezag
     # Route: 54n - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -633,8 +633,8 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
   Scenario: Lg01_149 - kind geboren uit ongehuwde ouders voor 01-01-2023, vaststelling ouderschap
     # Route: 54v1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
@@ -647,8 +647,8 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
   Scenario: Lg01_150 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning na 01-01-2023, aantekening gezag
     # Route: 11 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000073 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000073 |
@@ -661,8 +661,8 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
   Scenario: Lg01_151 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning na 01-01-2023, geen aantekening gezag
     # Route: 54n - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000085 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000085 |
@@ -680,8 +680,8 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
   Scenario: Lg01_152 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning voor 01-01-2023, geen aantekening gezag
     # Route: 54v1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000097 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000097 |
@@ -694,8 +694,8 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
   Scenario: Lg01_215 - kind geboren uit ongehuwde ouders voor 01-01-2023, vaststelling ouderschap, moeder categorie 02
     # Route: 54v2 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000103 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000103 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000103 |

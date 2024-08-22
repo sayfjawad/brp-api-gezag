@@ -323,8 +323,8 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -334,8 +334,8 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -350,8 +350,8 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
   Scenario: Lg01_080 - moeder geregistreerd partnerschap, niet erkend, geen categorie 11, moeder overleden geregistreerd partner van moeder automatisch gezag
     # Route: 43o1 - Wie heeft gezag?: geregistreerd partner van overleden moeder gezag (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -367,8 +367,8 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -378,8 +378,8 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
@@ -388,8 +388,8 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
   Scenario: Lg01_083 - geboren uit huwelijk 2 vrouwen, als ongeboren vrucht erkend door vader (huwelijkspartner moeder is daardoor geen ouder), geen categorie 11
     # Route: 54 - Wie heeft gezag?: moeder, maar valt niet te achterhalen (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000073 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000073 |

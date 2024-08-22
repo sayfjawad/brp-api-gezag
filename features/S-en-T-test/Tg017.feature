@@ -169,8 +169,8 @@ Functionaliteit: Tg017 - Rooyakkers-Ros - Getrouwd met kind in Cat.11 1D
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -180,8 +180,8 @@ Functionaliteit: Tg017 - Rooyakkers-Ros - Getrouwd met kind in Cat.11 1D
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -190,8 +190,8 @@ Functionaliteit: Tg017 - Rooyakkers-Ros - Getrouwd met kind in Cat.11 1D
   Scenario: Lg01_099 - ouders gehuwd, indicatie gezag 1D
     # Route: 4 - Wie heeft gezag?: voogdij (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |

@@ -136,8 +136,8 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -147,8 +147,8 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -161,8 +161,8 @@ Functionaliteit: Tg037 - Reijmersma-Rozenburg - Ouders met een vernietigd huweli
   Scenario: Lg01_202 - geboren tijdens huwelijk ouders, huwelijk ouders nietig, categorie 03 aangepast in juridisch geen ouder
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |

@@ -436,8 +436,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -446,8 +446,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
   Scenario: Lg01_018 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, vader niet ingeschreven in BRP, kind Nederlandse nationaliteit + Beëindigde vreemde nationaliteit
     # Route: 45e - Wie heeft gezag?: exceptie, BSN vader ontbreekt (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -460,8 +460,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -471,8 +471,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     # Meerderjarig
     # Route: 1 - Wie heeft gezag?:  (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -481,8 +481,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
   Scenario: Lg01_021 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, vader ingeschreven in RNI, kind Nederlandse nationaliteit
     # Route: 45e - Wie heeft gezag?:  (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
@@ -494,8 +494,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
   Scenario: Lg01_022 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, geëmigreerd, ingeschreven in RNI evenals vader
     # Route: 1 - Wie heeft gezag?:  (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000073 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000073 |
@@ -507,8 +507,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
   Scenario: Lg01_023 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, vader ingeschreven in de RNI, kind Nederlandse nationaliteit, geëmigreerd geweest en geïmmigreerd
     # Route: 3 - Wie heeft gezag?:  (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000085 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000085 |
@@ -520,8 +520,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
   Scenario: Lg01_197 - minderjarig kind, geboren in Nederland, moeder ingezetene, vader RNI
     # Route: 45e - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000097 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000097 |

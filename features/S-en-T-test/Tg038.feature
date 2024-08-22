@@ -262,8 +262,8 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -273,8 +273,8 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -292,8 +292,8 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
   Scenario: Lg01_205 - geadopteerd door niet gehuwde ouders, indicatie gezag 12,  adoptiemoeder overleden,  indicatie gezag 12
     # Route: 8 - Wie heeft gezag?: vader (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -306,8 +306,8 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
   Scenario: Lg01_206 - geboren en erkend na 01-01-2023, moeder overleden, geen indicatie gezag
     # Route: 53n1 - Wie heeft gezag?: vader (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |

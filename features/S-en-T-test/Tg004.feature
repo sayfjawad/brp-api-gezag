@@ -169,8 +169,8 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     # Meerderjarig
     # Route: 39e - Wie heeft gezag?: gezag niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -179,8 +179,8 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
   Scenario: Lg01_014 - minderjarig niet erkend kind, moeder ook minderjarig, geen categorie 11
     # Route: 39 - Wie heeft gezag?: geen gezag (tijdelijk) (G)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -192,8 +192,8 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -206,8 +206,8 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
   Scenario: Lg01_016 - minderjarig niet erkend kind, moeder minderjarig, bij geboorte, inmiddels meerderjarig, geen categorie 11
     # Route: 40o1 - Wie heeft gezag?: Ouder1 eenhoofdig ouderlijk gezag (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |

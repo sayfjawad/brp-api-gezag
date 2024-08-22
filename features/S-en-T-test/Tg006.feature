@@ -249,8 +249,8 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -264,8 +264,8 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -274,8 +274,8 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
   Scenario: Lg01_026 - minderjarig kind, geboren tijdens huwelijk ouders, vader (Ouder2) overleden, onder voogdij D
     # Route: 6 - Wie heeft gezag?: Derde heeft gezag (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -288,8 +288,8 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
   Scenario: Lg01_027 - minderjarig kind, geboren tijdens huwelijk ouders, vader (Ouder1) overleden, geen categorie 11
     # Route: 46 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |

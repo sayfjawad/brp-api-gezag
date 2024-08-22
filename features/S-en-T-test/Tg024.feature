@@ -266,8 +266,8 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -286,8 +286,8 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -310,8 +310,8 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
   Scenario: Lg01_132 - geboren uit huwelijk ouders wat later nietig is verklaard
     # Route: 45 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -329,8 +329,8 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
   Scenario: Lg01_133 - erkend, maar erkenning is vernietigd
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |

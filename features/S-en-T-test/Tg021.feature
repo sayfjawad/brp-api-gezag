@@ -180,8 +180,8 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -198,8 +198,8 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -215,8 +215,8 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
   Scenario: Lg01_121 - ouders geregistreerd partnerschap vóór 01-04-2014, alleen Ouder1 gevuld. Na geboorte kind hebben ouders geregistreerd partnerschap omgezet in een huwelijk.
     # Route: 41 - Wie heeft gezag?: moeder en partner (GG)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |

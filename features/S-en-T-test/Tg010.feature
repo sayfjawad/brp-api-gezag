@@ -860,8 +860,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -870,8 +870,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
   Scenario: Lg01_051 - minderjarig kind, geadopteerd + voornaamswijziging, onder gezag Derde (vóór adoptie).
     # Route: 27 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -890,8 +890,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -970,8 +970,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -1049,8 +1049,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
   Scenario: Lg01_054 - minderjarig kind, geadopteerd uit buitenland, Nederlandse adoptieakte
     # Route: 49a - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
@@ -1068,8 +1068,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
   Scenario: Lg01_084 - minderjarig kind, geadopteerd + voornaamswijziging, onder gezag adoptieouders, Geen gezag ex-moeder
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000073 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000073 |
@@ -1087,8 +1087,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
   Scenario: Lg01_193 - buitenland geboren, geadopteerd met Nederlandse Q-akte in historie
     # Route: 49a - Wie heeft gezag?: beide adoptieouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000085 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000085 |
@@ -1106,8 +1106,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
   Scenario: Lg01_194 - buitenland geboren, geadopteerd met Nederlandse Q-akte in historie, onderzoek in 018120
     # Route: 49a - Wie heeft gezag?: beide adoptieouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000097 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000097 |
@@ -1125,8 +1125,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
   Scenario: Lg01_195 - buitenland geboren, geadopteerd met Nederlandse Q-akte in historie, onderzoek in 536200
     # Route: 49a - Wie heeft gezag?: beide adoptieouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000103 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000103 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000103 |
@@ -1144,8 +1144,8 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
   Scenario: Lg01_196 - buitenland geboren, geadopteerd met Nederlandse Q-akte in historie, afgerond onderzoek in 018120, 026200, 036200
     # Route: 49a - Wie heeft gezag?: beide adoptieouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000115 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000115 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000115 |

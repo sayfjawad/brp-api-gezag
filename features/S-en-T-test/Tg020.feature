@@ -242,8 +242,8 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -278,8 +278,8 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -313,8 +313,8 @@ Functionaliteit: Tg020 - Carolussen-Charbon
   Scenario: Lg01_116 - ouders geregistreerd partnerschap vóór 01-04-204, alleen Ouder1 gevuld
     # Route: 41 - Wie heeft gezag?: Ouder1 + partner (GG)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -330,8 +330,8 @@ Functionaliteit: Tg020 - Carolussen-Charbon
   Scenario: Lg01_117 - ouders geregistreerd partnerschap vóór 01-04-204, alleen Ouder2 gevuld
     # Route: 41 - Wie heeft gezag?: Ouder2 + partner (GG)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -347,8 +347,8 @@ Functionaliteit: Tg020 - Carolussen-Charbon
   Scenario: Lg01_118 - ouders geregistreerd partnerschap na 01-04-2014, 2 ouders
     # Route: 49 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |

@@ -35,8 +35,8 @@ Functionaliteit: Tg018 - Vondeling - Kind zonder ouders
   Scenario: Lg01_100 - vondeling, juridisch geen ouders (is fout in BRP opgenomen)
     # Route: 37 - Wie heeft gezag?: niet te bepalen (G)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |

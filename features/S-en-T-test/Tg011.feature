@@ -783,8 +783,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -803,8 +803,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -842,8 +842,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
   Scenario: Lg01_057 - onder gezag derde, geldigheid vóór scheiding ouders
     # Route: 6 - Wie heeft gezag?: Derde heeft gezag (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -856,8 +856,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
   Scenario: Lg01_058 - gezag ouder1, datum geldigheid standaardwaarde
     # Route: 4ee - Wie heeft gezag?: moeder (N)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
@@ -869,8 +869,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
   Scenario: Lg01_059 - gezag ouder2, geldigheid ná datum reparatiehuwelijk
     # Route: 13 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000061 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000061 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
@@ -883,8 +883,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
   Scenario: Lg01_060 - gezag ouder1, datum geldigheid vóór reparatiehuwelijk
     # Route: 27 - Wie heeft gezag?: beide ouders (OG2)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000073 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000073 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000073 |
@@ -903,8 +903,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000085 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000085 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000085 |
@@ -913,8 +913,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
   Scenario: Lg01_062 - vader overleden, moeder gezag van rechtswege
     # Route: 46 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000097 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000097 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000097 |
@@ -928,8 +928,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000103 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000103 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000103 |
@@ -942,8 +942,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
   Scenario: Lg01_064 - ouders gescheiden, moeder gezag vóór scheiding
     # Route: 13 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000115 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000115 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000115 |
@@ -956,8 +956,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
   Scenario: Lg01_207 - geboren tussen verschillende (ontbonden) huwelijken moeder, juridisch 1 ouder. Moeder in categorie 02
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000127 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000127 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000127 |
@@ -970,8 +970,8 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
   Scenario: Lg01_208 - geboren tussen verschillende (ontbonden) huwelijken moeder, juridisch 1 ouder. Moeder in categorie 03
     # Route: 40o2 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000138 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000138 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000138 |

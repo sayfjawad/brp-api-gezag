@@ -201,8 +201,8 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000012 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000012 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
@@ -212,8 +212,8 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
     # Meerderjarig
     # Route: 2m - Wie heeft gezag?: meerderjarig, gezag is niet van toepassing (NVT)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000024 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000024 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
@@ -228,8 +228,8 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
   Scenario: Lg01_183 - 1 ouder, moeder gehuwd, huwelijkspartner moeder alleen gezag (moeder onder curatele)
     # Route: 43o1 - Wie heeft gezag?: meemoeder (V)
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000036 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000036 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
@@ -244,8 +244,8 @@ Functionaliteit: Tg034 - Ruijgrok-Rademaker – Twee gehuwde vrouwen met 2 kinde
   Scenario: Lg01_184 - 1 ouder, moeder gehuwd, huwelijkspartner moeder geen gezag (moeder onder curatele, indicatie gezag 1
     # Route: 12 - Wie heeft gezag?: niet te bepalen (G )
     Als gezag wordt gezocht met de volgende parameters
-    | naam | waarde    |
-    | bsn  | 000000048 |
+    | naam                 | waarde    |
+    | burgerservicenummer  | 000000048 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
