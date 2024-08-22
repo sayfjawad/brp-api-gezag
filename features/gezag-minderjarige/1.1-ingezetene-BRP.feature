@@ -161,3 +161,35 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | 080900                  | groep gemeente                      |
       | 080910                  | gemeente van inschrijving           |
       | 089999                  | vastgesteld verblijft niet op adres |
+
+    Scenario: er is geen verblijfplaats vastgelegd van de minderjarige
+      Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
+      | naam                   | waarde             |
+      | voornamen (02.10)      | Junior             |
+      | geslachtsnaam (02.40)  | Test               |
+      | geboortedatum (03.10)  | gisteren - 15 jaar |
+      | geboorteplaats (03.20) | 0518               |
+      | geboorteland (03.30)   | 6030               |
+      En de persoon heeft de volgende 'inschrijving' gegevens
+      | naam                                  | waarde           |
+      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
+      En de persoon heeft een ouder '1' met de volgende gegevens
+      | naam                                               | waarde             |
+      | burgerservicenummer (01.20)                        | 000000024          |
+      | geslachtsnaam (02.40)                              | Check              |
+      | datum ingang familierechtelijke betrekking (62.10) | gisteren - 15 jaar |
+      En de persoon heeft een ouder '2' met de volgende gegevens
+      | naam                                               | waarde             |
+      | burgerservicenummer (01.20)                        | 000000036          |
+      | geslachtsnaam (02.40)                              | Test               |
+      | datum ingang familierechtelijke betrekking (62.10) | gisteren - 15 jaar |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam        | waarde                                                                                             |
+      | type        | GezagNietTeBepalen                                                                                 |
+      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: gemeente van inschrijving |
