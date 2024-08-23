@@ -38,9 +38,9 @@ public class IsPersoonIngezeteneInBRP extends GezagVraag {
                 answer = V1_1_NEE;
             }
 
-            if (plPersoon != null && plPersoon.isIngezeteneInBRP()) {
+            if (plPersoon.isIngezeteneInBRP()) {
                 answer = V1_1_JA;
-            } else if (plPersoon != null && !plPersoon.isIngezeteneInBRP()) {
+            } else if (!plPersoon.isIngezeteneInBRP()) {
                 answer = V1_1_NEE;
             }
         } else {
