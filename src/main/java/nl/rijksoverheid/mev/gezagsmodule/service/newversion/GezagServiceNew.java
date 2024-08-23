@@ -115,11 +115,13 @@ public class GezagServiceNew implements GezagService {
             arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), gezagBepaling.getVeldenInOnderzoek(), null));
         }
 
-        if (!gezagBepaling.getMissendeGegegevens().isEmpty()) {
-            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), null, gezagBepaling.getMissendeGegegevens()));
-        }
+        if (gezagBepaling != null) {
+            List<String> missendeGegegevens = gezagBepaling.getMissendeGegegevens();
+            if (!missendeGegegevens.isEmpty()) {
+                String toelichting = toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), null, missendeGegegevens);
+                arAntwoordenModel.setUitleg(toelichting);
+            }
 
-        if(gezagBepaling != null) {
             gezagBepaling.bepalenGezagdragers(bsn, arAntwoordenModel, gezagRelaties);
         }
 

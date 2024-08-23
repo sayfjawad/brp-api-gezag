@@ -32,7 +32,7 @@ public class IsPersoonIngezeteneInBRP extends GezagVraag {
                 gezagBepaling.addMissendeGegegevens("gemeente van inschrijving van bevraagde persoon");
             }
 
-            if (!verblijfplaats.getGemeenteVanInschrijving().equals(REGISTRATIE_NIET_INGEZETENEN)) {
+            if (verblijfplaats != null && !verblijfplaats.getGemeenteVanInschrijving().equals(REGISTRATIE_NIET_INGEZETENEN)) {
                 answer = V1_1_JA;
             } else {
                 answer = V1_1_NEE;
