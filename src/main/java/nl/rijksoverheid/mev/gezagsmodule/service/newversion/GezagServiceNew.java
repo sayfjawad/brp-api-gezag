@@ -91,7 +91,7 @@ public class GezagServiceNew implements GezagService {
                     null, null, null, transaction);
 
                 gezagBepaling = new GezagBepaling(plPersoon, this, vragenlijstService.getVragenMap(), transaction);
-                gezagBepaling.start();
+                arAntwoordenModel = gezagBepaling.start();
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);

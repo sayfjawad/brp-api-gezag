@@ -49,8 +49,9 @@ public class GezagBepaling {
     /**
      * Start de gezag bepaling
      */
-    public void start() {
+    public ARAntwoordenModel start() {
         vragenMap.get("v1.1").step();
+        return arAntwoordenModel;
     }
 
     public void next(final String currentQuestion, final String answer) {
