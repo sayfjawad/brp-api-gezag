@@ -15,9 +15,10 @@ public class IsPersoonIngezeteneInBRP extends GezagVraag {
     }
 
     /**
-     * v1_1
+     * Sets the answer to {@code "Ja"} if <i>persoon is ingezetene</i>, otherwise {@code "Nee"}.
      *
-     * @return "Ja" als isIngezeteneInBRP anders "Nee"
+     * <p>
+     * This is question 1_1.
      */
     @Override
     public void perform() {
