@@ -130,7 +130,6 @@ public class GezagBepaling {
      * deze al lang opgehaald of was dit onnodig.
      */
     public void bepalenGezagdragers(final String bsn, final ARAntwoordenModel arAntwoordenModel, final List<Gezagsrelatie> gezagsrelaties) {
-        Set<String> gezagsdragers = new HashSet<>();
         if (arAntwoordenModel != null) {
             String uitleg = arAntwoordenModel.getUitleg();
             String soortGezag = arAntwoordenModel.getSoortGezag();
