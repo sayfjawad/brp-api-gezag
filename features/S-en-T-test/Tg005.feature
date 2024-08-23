@@ -487,9 +487,9 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                                              |
-    | type        | GezagNietTeBepalen                                                                                                                                  |
-    | toelichting | gezag is niet te bepalen omdat bij bepaling huwelijk/partnerschap relevante gegevens ontbreken. Het gaat om de volgende gegevens: ????????????????? |
+    | naam        | waarde                                                                                                                                                                      |
+    | type        | GezagNietTeBepalen                                                                                                                                                          |
+    | toelichting | gezag is niet te bepalen omdat bij bepaling huwelijk/partnerschap relevante gegevens ontbreken. Het gaat om de volgende gegevens: ouder 2 staat niet ingeschreven in de BRP |
 
   Scenario: Lg01_022 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, geëmigreerd, ingeschreven in RNI evenals vader
     # Route: 1 - Wie heeft gezag?:  (N)
@@ -526,6 +526,6 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | naam                | waarde    |
     | burgerservicenummer | 000000097 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                                              |
-    | type        | GezagNietTeBepalen                                                                                                                                  |
-    | toelichting | gezag is niet te bepalen omdat bij bepaling huwelijk/partnerschap relevante gegevens ontbreken. Het gaat om de volgende gegevens: ????????????????? |
+    | naam        | waarde                                                                                                                                                                      |
+    | type        | GezagNietTeBepalen                                                                                                                                                          |
+    | toelichting | gezag is niet te bepalen omdat bij bepaling huwelijk/partnerschap relevante gegevens ontbreken. Het gaat om de volgende gegevens: ouder 2 staat niet ingeschreven in de BRP |
