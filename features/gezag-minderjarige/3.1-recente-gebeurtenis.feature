@@ -14,6 +14,9 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       En de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
       | naam                  | waarde |
       | geslachtsnaam (02.40) | Check  |
+      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+      | naam                               | waarde   |
+      | gemeente van inschrijving (09.10)  | 0518     |
       En de persoon heeft een 'partner' met de volgende gegevens
       | naam                                                               | waarde    |
       | burgerservicenummer (01.20)                                        | 000000036 |
@@ -23,6 +26,9 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       En de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
       | naam                  | waarde |
       | geslachtsnaam (02.40) | Test   |
+      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+      | naam                               | waarde   |
+      | gemeente van inschrijving (09.10)  | 0518     |
       En de persoon heeft een 'partner' met de volgende gegevens
       | naam                                                               | waarde    |
       | burgerservicenummer (01.20)                                        | 000000024 |
