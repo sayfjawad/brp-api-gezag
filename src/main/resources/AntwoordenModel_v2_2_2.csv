@@ -6,9 +6,9 @@ Ja,Nee_meerderjarig,,,,,,,,,,,,,,,,2m,NVT,Nee,Nee,Nee,Nee,210,Ingezeten - meerde
 Ja,Nee_overleden,,,,,,,,,,,,,,,,2o,NVT,Nee,Nee,Nee,Nee,220,Ingezeten - minderjarig overleden - soort gezag is NVT - gezag is niet van toepassing
 Ja,Ja,,,,,,,,,,,,,,,,3e,N,Nee,Nee,Nee,Nee,300,gezag is niet te bepalen, omdat???
 Ja,Ja,Nee,Ja,,,,,,,,,,,,,,3ae,N,Nee,Nee,Nee,Nee,301,gezag is niet te bepalen omdat bij bepaling van adoptie van minderjarige relevante gegevens ontbreken
-Ja,Ja,Nee,,,,,,,,,,,,,,,3ee,N,Nee,Nee,Nee,Nee,310,gezag is niet te bepalen omdat geboortegegevens (in onderzoek staan. 
+Ja,Ja,Nee,,,,,,,,,,,,,,,3ee,N,Nee,Nee,Nee,Nee,310,gezag is niet te bepalen omdat geboortegegevens (in onderzoek staan.
 Ja,Ja,Ja,,,,,,,,,,,,,,,3,N,Nee,Nee,Nee,Nee,350,gezag is niet te bepalen omdat minderjarige buiten Nederland heeft verbleven.
-Ja,Ja,Nee,Ja,Nee,,,,,,,,,,,,,3a,N,Nee,Nee,Nee,Nee,351,gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is. 
+Ja,Ja,Nee,Ja,Nee,,,,,,,,,,,,,3a,N,Nee,Nee,Nee,Nee,351,gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is.
 Ja,Ja,Nee,Nee,,,,,,,,,,,,,,4e,N,Nee,Nee,Nee,Nee,400,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
 Ja,Ja,Nee,Ja,Ja,,,,,,,,,,,,,4ae,N,Nee,Nee,Nee,Nee,401,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
 Ja,Ja,Nee,Nee,,Ja,,,,,,,,,,,,4ee,N,Nee,Nee,Nee,Nee,420,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
@@ -57,7 +57,7 @@ Ja,Ja,Nee,Nee,,Ja,Geen_ouders,,,,,Ja,,,,,,15,G,Nee,Nee,Nee,Nee,1550,Ingezeten - 
 Ja,Ja,Nee,Ja,Ja,Ja,Geen_ouders,,,,,Ja,,,,,,15a,G,Nee,Nee,Nee,Nee,1551,Ingezeten - minderjarig - adoptie NL akte - categorie 11 en recentere gebeurtenis(sen) - heeft geen ouders - soort gezag is G - tijdelijk geen gezag
 Ja,Ja,Nee,Nee,,Ja,Twee_ouders,,,,,Ja,,,,,,16e,N,Nee,Nee,Nee,Nee,1600,gezag is niet te bepalen omdat relevante gegevens ontbreken bij de bepaling huwelijk/partnerschap. Het gaat om de volgende gegevens: %s
 Ja,Ja,Nee,Ja,Ja,Ja,Twee_ouders,,,,,Ja,,,,,,16ae,N,Nee,Nee,Nee,Nee,1601,gezag is niet te bepalen omdat relevante gegevens ontbreken bij de bepaling huwelijk/partnerschap. Het gaat om de volgende gegevens: %s
-Ja,Ja,Nee,Nee,,Ja,1_of_2_puntouders,,,,,Ja,,,,,,16,N,Nee,Nee,Nee,Nee,1650,gezag is niet te bepalen omdat één of meer ouders onbekend is. 
+Ja,Ja,Nee,Nee,,Ja,1_of_2_puntouders,,,,,Ja,,,,,,16,N,Nee,Nee,Nee,Nee,1650,gezag is niet te bepalen omdat één of meer ouders onbekend is.
 Ja,Ja,Nee,Ja,Ja,Ja,1_of_2_puntouders,,,,,Ja,,,,,,16a,N,Nee,Nee,Nee,Nee,1651,gezag is niet te bepalen omdat één of meer ouders onbekend is.
 Ja,Ja,Nee,Nee,,Ja,Een_ouder,,,,,Ja,,,,,,17e,N,Nee,Nee,Nee,Nee,1700,gezag is niet te bepalen omdat relevante gegevens ontbreken bij de bepaling huwelijk/partnerschap. Het gaat om de volgende gegevens: %s
 Ja,Ja,Nee,Ja,Ja,Ja,Een_ouder,,,,,Ja,,,,,,17ae,N,Nee,Nee,Nee,Nee,1701,gezag is niet te bepalen omdat relevante gegevens ontbreken bij de bepaling huwelijk/partnerschap. Het gaat om de volgende gegevens: %s
@@ -160,7 +160,7 @@ Ja,Ja,Nee,Nee,,Nee,,,,,,,,,,,,37e,N,Nee,Nee,Nee,Nee,3700,gezag is niet te bepale
 Ja,Ja,Nee,Ja,Ja,Nee,,,,,,,,,,,,37ae,N,Nee,Nee,Nee,Nee,3701,gezag is niet te bepalen omdat bij het bepalen van het aantal ouders relevante gegevens ontbreken. Het gaat om de volgende gegevens: %s
 Ja,Ja,Nee,Nee,,Nee,Geen_ouders,,,,,,,,,,,37,G,Nee,Nee,Nee,Nee,3750,Ingezeten - minderjarig - heeft geen ouders - soort gezag is G - tijdelijk geen gezag
 Ja,Ja,Nee,Ja,Ja,Nee,Geen_ouders,,,,,,,,,,,37a,G,Nee,Nee,Nee,Nee,3751,Ingezeten - minderjarig - adoptie NL akte - heeft geen ouders - soort gezag is G - tijdelijk geen gezag
-Ja,Ja,Nee,Nee,,Nee,1_of_2_puntouders,,,,,,,,,,,38,N,Nee,Nee,Nee,Nee,3850,gezag is niet te bepalen omdat één of meer ouders van minderjarige onbekend is. 
+Ja,Ja,Nee,Nee,,Nee,1_of_2_puntouders,,,,,,,,,,,38,N,Nee,Nee,Nee,Nee,3850,gezag is niet te bepalen omdat één of meer ouders van minderjarige onbekend is.
 Ja,Ja,Nee,Ja,Ja,Nee,1_of_2_puntouders,,,,,,,,,,,38a,N,Nee,Nee,Nee,Nee,3851,gezag is niet te bepalen omdat één of meer ouders van minderjarige onbekend is.
 Ja,Ja,Nee,Nee,,Nee,Een_ouder,,,,,,,,,,,39e,N,Nee,Nee,Nee,Nee,3900,gezag is niet te bepalen omdat bij bepaling huwelijk/partnerschap relevante gegevens ontbreken. Het gaat om de volgende gegevens: %s
 Ja,Ja,Nee,Ja,Ja,Nee,Een_ouder,,,,,,,,,,,39ae,N,Nee,Nee,Nee,Nee,3901,gezag is niet te bepalen omdat bij bepaling huwelijk/partnerschap relevante gegevens ontbreken. Het gaat om de volgende gegevens: %s
