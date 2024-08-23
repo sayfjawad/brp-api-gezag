@@ -13,11 +13,11 @@ public class IsGeborenInBuitenland extends GezagVraag {
         currentQuestion = "v1.3a";
     }
 
-    /*
     /**
-     * v1_3a
+     * Sets the answer to {@code "Ja"} if <i>persoon is in buitenland geboren</i>, otherwise {@code "Nee"}.
      *
-     * @return "Ja" als is geboren in het buitenland anders "Nee"
+     * <p>
+     * This is question 1_3A.
      */
     @Override
     public void perform() {
