@@ -13,6 +13,10 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       En de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
       | naam                  | waarde |
       | geslachtsnaam (02.40) | Check  |
+      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+      | naam                               | waarde           |
+      | gemeente van inschrijving (09.10)  | 0518             |
+      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
       En de persoon heeft een 'partner' met de volgende gegevens
       | naam                                                               | waarde    |
       | burgerservicenummer (01.20)                                        | 000000036 |
@@ -22,6 +26,10 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       En de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
       | naam                  | waarde |
       | geslachtsnaam (02.40) | Test   |
+      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+      | naam                               | waarde           |
+      | gemeente van inschrijving (09.10)  | 0518             |
+      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
       En de persoon heeft een 'partner' met de volgende gegevens
       | naam                                                               | waarde    |
       | burgerservicenummer (01.20)                                        | 000000024 |
@@ -81,9 +89,9 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam                                  | waarde           |
       | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
       En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde                    |
-      | gemeente van inschrijving (09.10)  | 0518                      |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar          |
+      | naam                               | waarde           |
+      | gemeente van inschrijving (09.10)  | 0518             |
+      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
       En de persoon heeft een ouder '1' met de volgende gegevens
       | naam                                               | waarde             |
       | burgerservicenummer (01.20)                        | 000000024          |
