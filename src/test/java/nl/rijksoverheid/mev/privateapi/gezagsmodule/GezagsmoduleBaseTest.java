@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, properties="app.clock=2024-07-14T00:00:00Z")
-
 public class GezagsmoduleBaseTest extends GezagsmoduleTest {
 
     @BeforeAll
