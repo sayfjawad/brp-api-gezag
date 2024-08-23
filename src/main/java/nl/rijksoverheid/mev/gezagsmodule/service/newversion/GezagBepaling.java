@@ -50,7 +50,7 @@ public class GezagBepaling {
      * Start de gezag bepaling
      */
     public void start() {
-        vragenMap.get(0).step();
+        vragenMap.get("v1.1").step();
     }
 
     public void next(final String currentQuestion, final String answer) {
