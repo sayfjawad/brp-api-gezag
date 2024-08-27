@@ -63,8 +63,7 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
         var plId = plPersoonPersoonRecent.getPlId();
 
         var inschrijvingen = findInschrijvingen(plId);
-        inschrijvingen.stream()
-            .forEach(result::addInschrijving);
+        inschrijvingen.forEach(result::addInschrijving);
 
         var plPersoonByPersoonType = findPlPersoonByPersoonTypeNotPersoonAndPlId(plId);
 
