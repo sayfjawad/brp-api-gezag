@@ -436,20 +436,20 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
     static Stream<Arguments> opvragenBevoegdheidTotGezagMinderjarig6() {
         return Stream.of(
                 // (input, expected)
-                Arguments.of("999998572", Set.of("")), // Lg01_026
-                Arguments.of("999998717", Set.of("")), // Lg01_040
-                Arguments.of("999998961", Set.of("")), // Lg01_057
+                Arguments.of("999998572", Set.of()), // Lg01_026
+                Arguments.of("999998717", Set.of()), // Lg01_040
+                Arguments.of("999998961", Set.of()), // Lg01_057
                 Arguments.of("999999205", Set.of("999999199")), // Lg01_080
-                Arguments.of("999999515", Set.of("")), // Lg01_090
-                Arguments.of("999999618", Set.of("")), // Lg01_099
-                Arguments.of("999999680", Set.of("")), // Lg01_105
-                Arguments.of("999999722", Set.of("")), // Lg01_109
-                Arguments.of("999999758", Set.of("")), // Lg01_112
-                Arguments.of("999999771", Set.of("")), // Lg01_113
-                Arguments.of("999970707", Set.of("")), // Lg01_164
-                Arguments.of("999970719", Set.of("")), // Lg01_165
-                Arguments.of("999970112", Set.of("")), // Lg01_175
-                Arguments.of("999970173", Set.of("")), // Lg01_179
+                Arguments.of("999999515", Set.of()), // Lg01_090
+                Arguments.of("999999618", Set.of()), // Lg01_099
+                Arguments.of("999999680", Set.of()), // Lg01_105
+                Arguments.of("999999722", Set.of()), // Lg01_109
+                Arguments.of("999999758", Set.of()), // Lg01_112
+                Arguments.of("999999771", Set.of()), // Lg01_113
+                Arguments.of("999970707", Set.of()), // Lg01_164
+                Arguments.of("999970719", Set.of()), // Lg01_165
+                Arguments.of("999970112", Set.of()), // Lg01_175
+                Arguments.of("999970173", Set.of()), // Lg01_179
                 Arguments.of("999970215", Set.of("999970203")), // Lg01_183
                 Arguments.of("999970252", Set.of("999970240")) // Lg01_187
         );
