@@ -117,8 +117,9 @@ public class GezagTransformer {
                 Voogdij gezag = new Voogdij()
                     .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
                     .type(TYPE_VOOGDIJ);
-                if(gezagsrelatie.getBsnMeerderjarige() != null && !gezagsrelatie.getBsnMeerderjarige().isEmpty()) {
-                    gezag.addDerdenItem(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()));
+                String bsnMeerderjarige = gezagsrelatie.getBsnMeerderjarige();
+                if(bsnMeerderjarige != null && !bsnMeerderjarige.isEmpty()) {
+                    gezag.addDerdenItem(new Meerderjarige().burgerservicenummer(bsnMeerderjarige));
                 }
 
                 persoon.addGezagItem(gezag);
