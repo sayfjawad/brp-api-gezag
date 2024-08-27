@@ -49,13 +49,11 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
         Persoonslijst lplNietOuder = gezagBepaling.getPlNietOuder();
         // Preconditie: minimaal 1 ouder moet geregistreerd staan in BRP
         if (lplOuder1 == null && lplOuder2 == null) {
-            gezagBepaling.addMissendeGegegevens("voor de bevraagde persoon moet minimaal 1 ouder geregistreerd staan in BRP");
-            throw new AfleidingsregelException("Preconditie: Minimaal 1 ouder moet geregistreerd staan in BRP");
+            throw new AfleidingsregelException("Preconditie: Minimaal 1 ouder moet geregistreerd staan in BRP", "voor de bevraagde persoon moet minimaal 1 ouder geregistreerd staan in BRP");
         }
 
         if (lplNietOuder == null) {
-            gezagBepaling.addMissendeGegegevens("voor de bevraagde persoon moet niet_ouder geregistreerd staan in BRP");
-            throw new AfleidingsregelException("Preconditie: niet_ouder  moet geregistreerd staan in BRP");
+            throw new AfleidingsregelException("Preconditie: niet_ouder  moet geregistreerd staan in BRP", "voor de bevraagde persoon moet niet_ouder geregistreerd staan in BRP");
         }
 
         if (lplOuder1 != null) {

@@ -39,7 +39,7 @@ public class BeslissingsmatrixService {
             return routes.get(route);
         } else {
             log.error("Route kon niet worden gevonden, route is: {} en exceptie: {}", route, resultaat.getException());
-            throw new AfleidingsregelException("Route kon niet worden gevonden in het ingelezen antwoorden model, de route is: " + route);
+            throw new AfleidingsregelException("Route kon niet worden gevonden in het ingelezen antwoorden model, de route is: " + route, "onbekend");
         }
     }
 

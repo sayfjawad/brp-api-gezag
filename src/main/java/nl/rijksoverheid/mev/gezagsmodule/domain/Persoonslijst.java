@@ -583,8 +583,10 @@ public class Persoonslijst {
         // PL 1/2 : 01.03.10 
         Persoon persoon = getPersoon();
         if (persoon == null || persoon.getGeboortedatum() == null) {
-            throw new AfleidingsregelException("Preconditie: Persoon en geboortedatum mogen niet leeg zijn");
+            throw new AfleidingsregelException("Preconditie: Persoon en geboortedatum mogen niet leeg zijn",
+                           (persoon == null ? "persoon" : "geboortedatum"));
         }
+
         int geboortedatum = Integer.parseInt(persoon.getGeboortedatum());
         int datumVolwassenVanaf = Integer.parseInt(LocalDate.now(clock).format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
         return geboortedatum > datumVolwassenVanaf;
