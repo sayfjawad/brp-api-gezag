@@ -107,7 +107,7 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
         return create.selectFrom(LO3_PL)
             .where(LO3_PL.PL_ID.equal(plId))
             .fetchStreamInto(Lo3PlRecord.class)
-            .collect(Collectors.toList());
+            .toList();
     }
 
     private List<Lo3PlPersoonRecord> findPlPersoonByPersoonTypeIsPersoonAndBurgerservicenummer(
