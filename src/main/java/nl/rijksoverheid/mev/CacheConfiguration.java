@@ -8,6 +8,7 @@ import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.support.NullValue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,7 +20,7 @@ public class CacheConfiguration {
 
     @Bean
     JCacheManagerCustomizer jCacheManagerCustomizer() {
-        return cacheManager ->
+        return cacheManager -> {
             cacheManager.createCache("persoonslijsten", Eh107Configuration.fromEhcacheCacheConfiguration(
                 CacheConfigurationBuilder.newCacheConfigurationBuilder(
                     Burgerservicenummer.class,
@@ -27,5 +28,14 @@ public class CacheConfiguration {
                     ResourcePoolsBuilder.heap(1000)
                 ).withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofMinutes(20L)))
             ));
+
+            cacheManager.createCache("persoonslijstenNull", Eh107Configuration.fromEhcacheCacheConfiguration(
+                CacheConfigurationBuilder.newCacheConfigurationBuilder(
+                    Burgerservicenummer.class,
+                    NullValue.class,
+                    ResourcePoolsBuilder.heap(1000)
+                ).withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofMinutes(20L)))
+            ));
+        };
     }
 }

@@ -1,7 +1,6 @@
 package nl.rijksoverheid.mev.brp.brpv;
 
 import nl.rijksoverheid.mev.brp.PersoonslijstFinder;
-import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3Pl;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlGezagsverhouding;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlVerblijfplaats;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoudingRecord;
@@ -12,6 +11,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.Burgerservicenummer;
 import org.jooq.DSLContext;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +43,10 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
         this.create = create;
     }
 
-    @Cacheable("persoonslijsten")
+    @Caching(cacheable = {
+        @Cacheable(value = "persoonslijsten", unless = "#result == null"),
+        @Cacheable(value = "persoonslijstenNull", unless = "#result != null")
+    })
     @Override
     public Optional<Persoonslijst> findPersoonslijst(Burgerservicenummer burgerservicenummer) {
         var plPersoonPersoon = findPlPersoonByPersoonTypeIsPersoonAndBurgerservicenummer(burgerservicenummer);
