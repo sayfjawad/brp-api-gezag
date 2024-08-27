@@ -2,6 +2,7 @@ package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
@@ -60,6 +61,9 @@ public class GezagBepaling {
             if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
                 vragenMap.get(antwoordEnActieParen.get(answer)).step();
             }
+        }  catch(AfleidingsregelException ex) {
+            addMissendeGegegevens(ex.getMissendVeld());
+            arAntwoordenModel.setException(ex);
         } catch (Exception ex) {
             arAntwoordenModel.setException(ex);
         }

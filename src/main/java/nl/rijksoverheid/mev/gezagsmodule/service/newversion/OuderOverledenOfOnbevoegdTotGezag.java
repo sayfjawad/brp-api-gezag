@@ -32,14 +32,12 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
         Ouder2 persoonOuder2 = plPersoon.getOuder2();
         if ((persoonOuder1 == null || persoonOuder1.getBsn() == null)
             && (persoonOuder2 == null || persoonOuder2.getBsn() == null)) {
-            gezagBepaling.addMissendeGegegevens("Ouder moet een BSN hebben");
-            throw new AfleidingsregelException("Preconditie: Ouder moet een BSN hebben");
+            throw new AfleidingsregelException("Preconditie: Ouder moet een BSN hebben", "Ouder moet een BSN hebben");
         }
         Persoonslijst lplOuder1 = gezagBepaling.getPlOuder1();
         Persoonslijst lplOuder2 = gezagBepaling.getPlOuder2();
         if ((lplOuder1 == null) && (lplOuder2 == null)) {
-            gezagBepaling.addMissendeGegegevens("minimaal 1 ouder van de bevraagde persoon moet geregistreerd staan in het BRP");
-            throw new AfleidingsregelException("Preconditie: Ouder moet geregistreerd staan in het BRP");
+            throw new AfleidingsregelException("Preconditie: Ouder moet geregistreerd staan in het BRP", "minimaal 1 ouder van de bevraagde persoon moet geregistreerd staan in het BRP");
         }
         if (lplOuder1 != null
             && (!lplOuder1.isOverledenOfOnbevoegd())) {
