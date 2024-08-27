@@ -2,6 +2,7 @@ package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
@@ -49,8 +50,9 @@ public class GezagBepaling {
     /**
      * Start de gezag bepaling
      */
-    public void start() {
-        vragenMap.get(0).step();
+    public ARAntwoordenModel start() {
+        vragenMap.get("v1.1").step();
+        return arAntwoordenModel;
     }
 
     public void next(final String currentQuestion, final String answer) {
@@ -59,6 +61,9 @@ public class GezagBepaling {
             if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
                 vragenMap.get(antwoordEnActieParen.get(answer)).step();
             }
+        }  catch(AfleidingsregelException ex) {
+            addMissendeGegegevens(ex.getMissendVeld());
+            arAntwoordenModel.setException(ex);
         } catch (Exception ex) {
             arAntwoordenModel.setException(ex);
         }
@@ -94,9 +99,10 @@ public class GezagBepaling {
      */
     public boolean warenVeldenInOnderzoek() {
         List<String> veldenInOnderzoek = plPersoon.getUsedVeldenInOnderzoek();
-        veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
-        veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
-        veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
+
+        if (plOuder1 != null) veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
+        if (plOuder2 != null) veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
+        if (plNietOuder != null) veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
 
         log.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
 
@@ -129,7 +135,6 @@ public class GezagBepaling {
      * deze al lang opgehaald of was dit onnodig.
      */
     public void bepalenGezagdragers(final String bsn, final ARAntwoordenModel arAntwoordenModel, final List<Gezagsrelatie> gezagsrelaties) {
-        Set<String> gezagsdragers = new HashSet<>();
         if (arAntwoordenModel != null) {
             String uitleg = arAntwoordenModel.getUitleg();
             String soortGezag = arAntwoordenModel.getSoortGezag();

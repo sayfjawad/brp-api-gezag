@@ -4,6 +4,7 @@
 package nl.rijksoverheid.mev.brp.brpv.generated;
 
 
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3Pl;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlGezagsverhouding;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlPersoon;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlVerblijfplaats;
@@ -14,6 +15,11 @@ import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlVerblijfplaats;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Tables {
+
+    /**
+     * The table <code>public.lo3_pl</code>.
+     */
+    public static final Lo3Pl LO3_PL = Lo3Pl.LO3_PL;
 
     /**
      * The table <code>public.lo3_pl_gezagsverhouding</code>.

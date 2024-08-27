@@ -29,9 +29,9 @@ public class ErkenningNa01012023 extends GezagVraag {
         Ouder1 persoonOuder1 = plPersoon.getOuder1();
         Ouder2 persoonOuder2 = plPersoon.getOuder2();
         if (persoonOuder1 == null || persoonOuder2 == null) {
-            gezagBepaling.addMissendeGegegevens((persoonOuder1 == null && persoonOuder2 == null
-                ? "beide ouders van bevraagde persoon" : "een ouder van de bevraagde persoon"));
-            throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geen twee ouders bij erkenning");
+            String missendeGegeven = (persoonOuder1 == null && persoonOuder2 == null
+                ? "beide ouders van bevraagde persoon" : "een ouder van de bevraagde persoon");
+            throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geen twee ouders bij erkenning", missendeGegeven);
         }
         // voor snelheid en gegevens in onderzoek
         boolean persoonErkend = plPersoon.geenOngeborenVruchtErkendOfGerechtelijkeVaststelling();
@@ -59,8 +59,7 @@ public class ErkenningNa01012023 extends GezagVraag {
         if(answer != null) {
             gezagBepaling.getArAntwoordenModel().setV02A03(answer);
         } else {
-            gezagBepaling.addMissendeGegegevens("Geboortemoeder van bevraagde persoon niet te bepalen");
-            throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen");
+            throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen", "Geboortemoeder van bevraagde persoon niet te bepalen");
         }
     }
 }

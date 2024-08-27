@@ -1,7 +1,12 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
+import java.time.Clock;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
@@ -28,6 +33,17 @@ public class Inschrijving implements PersoonslijstVeld {
 
     public Inschrijving(final Map<String, String> values) {
         this.values = values;
+    }
+
+    public static Inschrijving from(final Lo3PlRecord lo3PlRecord) {
+        Map<String, String> values = new HashMap<>();
+        values.put(DATUM_OPSCHORTING_BIJHOUDING, Objects.toString(lo3PlRecord.getBijhoudingOpschortDatum()));
+        values.put(REDEN_OPSCHORTING_BIJHOUDING, lo3PlRecord.getBijhoudingOpschortReden());
+        values.put(DATUM_VERIFICATIE, Objects.toString(lo3PlRecord.getVerificatieDatum()));
+        values.put(OMSCHRIJVING_VERIFICATIE, lo3PlRecord.getVerificatieOms());
+        values.put(RNI_DEELNEMER, Objects.toString(lo3PlRecord.getRniDeelnemer()));
+
+        return new Inschrijving(values);
     }
 
     @Override

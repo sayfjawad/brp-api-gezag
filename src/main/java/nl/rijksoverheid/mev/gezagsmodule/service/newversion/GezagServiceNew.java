@@ -91,7 +91,7 @@ public class GezagServiceNew implements GezagService {
                     null, null, null, transaction);
 
                 gezagBepaling = new GezagBepaling(plPersoon, this, vragenlijstService.getVragenMap(), transaction);
-                gezagBepaling.start();
+                arAntwoordenModel = gezagBepaling.start();
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
@@ -115,11 +115,13 @@ public class GezagServiceNew implements GezagService {
             arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), gezagBepaling.getVeldenInOnderzoek(), null));
         }
 
-        if (!gezagBepaling.getMissendeGegegevens().isEmpty()) {
-            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), null, gezagBepaling.getMissendeGegegevens()));
-        }
+        if (gezagBepaling != null) {
+            List<String> missendeGegegevens = gezagBepaling.getMissendeGegegevens();
+            if (!missendeGegegevens.isEmpty()) {
+                String toelichting = toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), null, missendeGegegevens);
+                arAntwoordenModel.setUitleg(toelichting);
+            }
 
-        if(gezagBepaling != null) {
             gezagBepaling.bepalenGezagdragers(bsn, arAntwoordenModel, gezagRelaties);
         }
 

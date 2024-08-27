@@ -12,7 +12,7 @@
 
     <groupId>nl.rijksoverheid.mev</groupId>
     <artifactId>gezag</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.4</version>
 
     <name>gezag</name>
     <description>Gezag</description>
@@ -227,6 +227,7 @@
                                 lo3_pl_persoon
                                 | lo3_pl_verblijfplaats
                                 | lo3_pl_gezagsverhouding
+                                | lo3_pl
                             </includes>
                         </database>
                         <target>

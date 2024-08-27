@@ -7,6 +7,7 @@ package nl.rijksoverheid.mev.brp.brpv.generated;
 import java.util.Arrays;
 import java.util.List;
 
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3Pl;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlGezagsverhouding;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlPersoon;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlVerblijfplaats;
@@ -28,6 +29,11 @@ public class Public extends SchemaImpl {
      * The reference instance of <code>public</code>
      */
     public static final Public PUBLIC = new Public();
+
+    /**
+     * The table <code>public.lo3_pl</code>.
+     */
+    public final Lo3Pl LO3_PL = Lo3Pl.LO3_PL;
 
     /**
      * The table <code>public.lo3_pl_gezagsverhouding</code>.
@@ -60,6 +66,7 @@ public class Public extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
+            Lo3Pl.LO3_PL,
             Lo3PlGezagsverhouding.LO3_PL_GEZAGSVERHOUDING,
             Lo3PlPersoon.LO3_PL_PERSOON,
             Lo3PlVerblijfplaats.LO3_PL_VERBLIJFPLAATS

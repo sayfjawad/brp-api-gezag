@@ -527,7 +527,7 @@ public class DatasetPersoonslijstenProefomgevingenGbavTest extends GezagsmoduleT
             Arguments.of("Lg01_773", "999995807", List.of("999993112", "999994542"), "49"),
             Arguments.of("Lg01_774", "999995832", List.of("999993112", "999994542"), "49"),
             Arguments.of("Lg01_775", "999995911", Collections.emptyList(), "2m"),
-            Arguments.of("Lg01_775", "999995601", List.of(""), "1"),
+            Arguments.of("Lg01_775", "999995601", List.of(""), "0"),
             Arguments.of("Lg01_776", "999995844", Collections.emptyList(), "2m"),
             Arguments.of("Lg01_777", "999995856", Collections.emptyList(), "2m"),
             Arguments.of("Lg01_778", "999995868", Collections.emptyList(), "2m"),
