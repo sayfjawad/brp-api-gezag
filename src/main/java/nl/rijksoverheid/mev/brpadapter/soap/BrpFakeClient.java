@@ -124,7 +124,8 @@ public class BrpFakeClient implements BrpClient {
                 }
             }
         }
-
+        System.out.println("appending");
+        System.out.println(categorienummer);
         switch (categorienummer) {
             case Categorie.PERSOON ->
                 persoonslijst.addVeld(Categorie.PERSOON, new Persoon(values, clock));

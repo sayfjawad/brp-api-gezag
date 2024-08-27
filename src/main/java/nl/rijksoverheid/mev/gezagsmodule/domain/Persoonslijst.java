@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoudingRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
@@ -83,6 +84,10 @@ public class Persoonslijst {
         addVeldToList(Categorie.GESCHIEDENIS_PERSOON, GeschiedenisPersoon.from(lo3PlPersoonRecord, clock));
     }
 
+    public void addInschrijving(final Lo3PlRecord lo3PlRecord) {
+        addVeld(Categorie.INSCHRIJVING, Inschrijving.from(lo3PlRecord));
+    }
+
     public <T extends PersoonslijstVeld> void addVeld(final String categorie, final T veld) {
         values.put(categorie, veld);
     }
@@ -140,6 +145,7 @@ public class Persoonslijst {
     }
 
     public Inschrijving getInschrijving() {
+        System.out.println(values);
         if (values.containsKey(Categorie.INSCHRIJVING)) {
             return (Inschrijving) values.get(Categorie.INSCHRIJVING);
         } else {
@@ -317,6 +323,8 @@ public class Persoonslijst {
     public boolean isOpgeschort() {
         // PL 1/2 : 07.67.10
         Inschrijving inschrijving = getInschrijving();
+        System.out.println("inschrijving");
+        System.out.println(inschrijving);
         return (inschrijving != null
                 && inschrijving.getDatumOpschortingBijhouding() != null);
     }

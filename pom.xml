@@ -227,6 +227,7 @@
                                 lo3_pl_persoon
                                 | lo3_pl_verblijfplaats
                                 | lo3_pl_gezagsverhouding
+                                | lo3_pl
                             </includes>
                         </database>
                         <target>
