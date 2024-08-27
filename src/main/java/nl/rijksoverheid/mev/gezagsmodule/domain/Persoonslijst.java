@@ -582,9 +582,10 @@ public class Persoonslijst {
     public boolean minderjarig() throws AfleidingsregelException {
         // PL 1/2 : 01.03.10 
         Persoon persoon = getPersoon();
-        if (persoon == null || persoon.getGeboortedatum() == null) {
-            throw new AfleidingsregelException("Preconditie: Persoon en geboortedatum mogen niet leeg zijn",
-                           (persoon == null ? "persoon" : "geboortedatum"));
+        if (persoon == null) {
+            throw new AfleidingsregelException("Preconditie: persoon mag niet leeg zijn", "persoon");
+        } else if (persoon.getGeboortedatum() == null) {
+            throw new AfleidingsregelException("Preconditie: geboortedatum mag niet leeg zijn", "geboortedatum");
         }
 
         int geboortedatum = Integer.parseInt(persoon.getGeboortedatum());
