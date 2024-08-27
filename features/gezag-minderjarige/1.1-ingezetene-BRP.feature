@@ -11,51 +11,33 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
       | 518                  | Turfmarkt          | 2                  |
       En de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
-      | naam                  | waarde |
-      | geslachtsnaam (02.40) | Check  |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde           |
-      | gemeente van inschrijving (09.10)  | 0518             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
+      | naam                  | waarde   |
+      | geslachtsnaam (02.40) | Check    |
+      | geboortedatum (03.10) | 19800101 |
       En de persoon heeft een 'partner' met de volgende gegevens
       | naam                                                               | waarde    |
       | burgerservicenummer (01.20)                                        | 000000036 |
-      | geslachtsnaam (02.40)                                              | Test      |
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | 20010928  |
-      | soort verbintenis (15.10)                                          | H         |
       En de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
-      | naam                  | waarde |
-      | geslachtsnaam (02.40) | Test   |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde           |
-      | gemeente van inschrijving (09.10)  | 0518             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
+      | naam                  | waarde   |
+      | geslachtsnaam (02.40) | Test     |
+      | geboortedatum (03.10) | 19800201 |
       En de persoon heeft een 'partner' met de volgende gegevens
       | naam                                                               | waarde    |
       | burgerservicenummer (01.20)                                        | 000000024 |
-      | geslachtsnaam (02.40)                                              | Check     |
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | 20010928  |
-      | soort verbintenis (15.10)                                          | H         |
 
 
   Regel: Als de gemeente van inschrijving is RNI kan het gezag van de persoon niet worden bepaald
 
     Scenario: minderjarige staat ingeschreven in RNI (route 1)
       Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
-      | naam                   | waarde           |
-      | voornamen (02.10)      | Junior           |
-      | geslachtsnaam (02.40)  | Test             |
-      | geboortedatum (03.10)  | morgen - 15 jaar |
-      | geboorteplaats (03.20) | 0518             |
-      | geboorteland (03.30)   | 6030             |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
+      | naam                   | waarde             |
+      | geboortedatum (03.10)  | gisteren - 15 jaar |
+      | geboorteland (03.30)   | 6030               |
       En de persoon heeft de volgende 'verblijfplaats' gegevens
       | naam                               | waarde           |
       | gemeente van inschrijving (09.10)  | 1999             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
-      | land adres buitenland (13.10)      | 6014             |
       En de persoon heeft een ouder '1' met de volgende gegevens
       | naam                                               | waarde           |
       | burgerservicenummer (01.20)                        | 000000024        |
@@ -80,18 +62,11 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
     Scenario: minderjarige staat ingeschreven in Nederlandse gemeente
       Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
       | naam                   | waarde             |
-      | voornamen (02.10)      | Junior             |
-      | geslachtsnaam (02.40)  | Test               |
       | geboortedatum (03.10)  | gisteren - 15 jaar |
-      | geboorteplaats (03.20) | 0518               |
       | geboorteland (03.30)   | 6030               |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
       En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
       | naam                               | waarde           |
       | gemeente van inschrijving (09.10)  | 0518             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
       En de persoon heeft een ouder '1' met de volgende gegevens
       | naam                                               | waarde             |
       | burgerservicenummer (01.20)                        | 000000024          |
@@ -119,23 +94,18 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
 
+
+  Regel: onderzoek op gemeente van inschrijving leidt niet tot uitval
+
     Abstract Scenario: minderjarige staat ingeschreven in Nederlandse gemeente en <omschrijving> staat in onderzoek
       Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
       | naam                   | waarde             |
-      | voornamen (02.10)      | Junior             |
-      | geslachtsnaam (02.40)  | Test               |
       | geboortedatum (03.10)  | gisteren - 15 jaar |
-      | geboorteplaats (03.20) | 0518               |
       | geboorteland (03.30)   | 6030               |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
       En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
       | naam                               | waarde                    |
       | gemeente van inschrijving (09.10)  | 0518                      |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar          |
       | aanduiding in onderzoek (83.10)    | <aanduiding in onderzoek> |
-      | datum ingang onderzoek (83.20)     | 20240701                  |
       En de persoon heeft een ouder '1' met de volgende gegevens
       | naam                                               | waarde             |
       | burgerservicenummer (01.20)                        | 000000024          |
@@ -170,17 +140,14 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | 080910                  | gemeente van inschrijving           |
       | 089999                  | vastgesteld verblijft niet op adres |
 
+
+  Regel: wanneer gemeente van inschrijving ontbreekt is gezag niet te bepalen
+
     Scenario: er is geen verblijfplaats vastgelegd van de minderjarige
       Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
       | naam                   | waarde             |
-      | voornamen (02.10)      | Junior             |
-      | geslachtsnaam (02.40)  | Test               |
       | geboortedatum (03.10)  | gisteren - 15 jaar |
-      | geboorteplaats (03.20) | 0518               |
       | geboorteland (03.30)   | 6030               |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
       En de persoon heeft een ouder '1' met de volgende gegevens
       | naam                                               | waarde             |
       | burgerservicenummer (01.20)                        | 000000024          |
@@ -198,6 +165,6 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                             |
-      | type        | GezagNietTeBepalen                                                                                 |
-      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: gemeente van inschrijving |
+      | naam        | waarde                                                                                                        |
+      | type        | GezagNietTeBepalen                                                                                            |
+      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: verblijfplaats van bevraagde persoon |
