@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile("real-brp")
-public class BrpSqlClientAdapter  implements BrpClient{
+public class BrpSqlClientAdapter implements BrpClient {
 
     private final PersoonslijstFinder persoonslijstFinder;
 
