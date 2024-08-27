@@ -117,10 +117,6 @@ public class ARVragenModel {
         boolean isOpgeschort = plPersoon.isOpgeschort();
         boolean isAlsMinderjarigOpgeschort = plPersoon.alsMinderjarigeOpgeschort();
 
-        System.out.println(isMinderjarig);
-        System.out.println(isOpgeschort);
-        System.out.println(isAlsMinderjarigOpgeschort);
-
         if (isAlsMinderjarigOpgeschort) return V1_2_NEE_OVERLEDEN;
         if (isOpgeschort) return V1_2_NEE_MEERDERJARIG;
         if (isMinderjarig) return V1_2_JA; // Minderjarig en niet overleden

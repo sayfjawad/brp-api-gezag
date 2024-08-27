@@ -145,7 +145,6 @@ public class Persoonslijst {
     }
 
     public Inschrijving getInschrijving() {
-        System.out.println(values);
         if (values.containsKey(Categorie.INSCHRIJVING)) {
             return (Inschrijving) values.get(Categorie.INSCHRIJVING);
         } else {
@@ -323,8 +322,6 @@ public class Persoonslijst {
     public boolean isOpgeschort() {
         // PL 1/2 : 07.67.10
         Inschrijving inschrijving = getInschrijving();
-        System.out.println("inschrijving");
-        System.out.println(inschrijving);
         return (inschrijving != null
                 && inschrijving.getDatumOpschortingBijhouding() != null);
     }
