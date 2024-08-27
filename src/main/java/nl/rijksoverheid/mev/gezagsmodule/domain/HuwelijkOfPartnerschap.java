@@ -63,8 +63,11 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
     private static final String REDEN_ONTBINDING = "050740";
 
     public static HuwelijkOfPartnerschap from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+        var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
+        var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
+
         Map<String, String> values = new HashMap<>();
-        values.put(BSN, Objects.toString(lo3PlPersoonRecord.getBurgerServiceNr(), null));
+        values.put(BSN, burgerServiceNrAsString);
         values.put(DATUM_VOLTROKKEN, Objects.toString(lo3PlPersoonRecord.getRelatieStartDatum(), null));
         values.put(PLAATS_VOLTROKKEN, lo3PlPersoonRecord.getRelatieStartPlaats());
         values.put(LAND_VOLTROKKEN, Objects.toString(lo3PlPersoonRecord.getRelatieStartLandCode(), null));

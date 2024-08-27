@@ -1,12 +1,10 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
-import nl.rijksoverheid.mev.gezagsmodule.domain.Verblijfplaats;
-
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 public class IsGeborenInBuitenland extends GezagVraag {
 
+    private static final String GEBOORTELAND_CODE_NEDERLAND = "6030";
     private static final String V1_3A_JA = "Ja";
     private static final String V1_3A_NEE = "Nee";
 
@@ -15,35 +13,41 @@ public class IsGeborenInBuitenland extends GezagVraag {
         currentQuestion = "v1.3a";
     }
 
-    /*
     /**
-     * v1_3a
+     * Sets the answer to {@code "Ja"} if <i>persoon is in buitenland geboren</i>, otherwise {@code "Nee"}.
      *
-     * @return "Ja" als is geboren in het buitenland anders "Nee"
+     * <p>
+     * This is question 1_3A.
      */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        if (plPersoon == null) {
+            gezagBepaling.addMissendeGegegevens("persoonlijst van bevraagde persoon");
+            return;
+        }
 
         String geboorteland = plPersoon.getPersoon().getGeboorteland();
-        Verblijfplaats verblijfplaats = plPersoon.getVerblijfplaats();
         if (geboorteland == null) {
             gezagBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
-        } else if (verblijfplaats == null) {
-            gezagBepaling.addMissendeGegegevens("Verblijfplaats van bevraagde persoon");
-        } else if (geboorteland.equals("6030") && isNotEmpty(verblijfplaats.getDatumVestigingInNederland())) {
-            answer = V1_3A_JA;
-        } else {
-            answer = V1_3A_NEE;
+            return;
         }
 
-        /*
-        if (plPersoon.isGeborenInBuitenland()) {
-            answer = V1_3A_JA;
-        } else {
-            answer = V1_3A_NEE;
+        var verblijfplaats = plPersoon.getVerblijfplaats();
+        if (verblijfplaats == null) {
+            gezagBepaling.addMissendeGegegevens("Verblijfplaats van bevraagde persoon");
+            return;
         }
-        */
+        String datumVestigingInNederland = verblijfplaats.getDatumVestigingInNederland();
+
+        if (datumVestigingInNederland == null
+            || datumVestigingInNederland.isEmpty()
+            || geboorteland.equals(GEBOORTELAND_CODE_NEDERLAND)
+        ) {
+            answer = V1_3A_NEE;
+        } else {
+            answer = V1_3A_JA;
+        }
 
         gezagBepaling.getArAntwoordenModel().setV0103A(answer);
     }
