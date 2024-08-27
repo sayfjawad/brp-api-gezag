@@ -114,10 +114,12 @@ public class GezagTransformer {
                 persoon.addGezagItem(gezag);
             }
             case "V" -> {
-                AbstractGezagsrelatie gezag = new Voogdij()
+                Voogdij gezag = new Voogdij()
                     .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
-                    .addDerdenItem(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
                     .type(TYPE_VOOGDIJ);
+                if(gezagsrelatie.getBsnMeerderjarige() != null && !gezagsrelatie.getBsnMeerderjarige().isEmpty()) {
+                    gezag.addDerdenItem(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()));
+                }
 
                 persoon.addGezagItem(gezag);
             }
