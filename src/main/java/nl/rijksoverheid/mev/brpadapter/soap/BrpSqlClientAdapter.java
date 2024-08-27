@@ -6,6 +6,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.Burgerservicenummer;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,6 +23,6 @@ public class BrpSqlClientAdapter  implements BrpClient{
     public Persoonslijst opvragenPersoonslijst(String bsn, Transaction transaction) throws BrpException {
         var burgerservicenummer = new Burgerservicenummer(Long.parseLong(bsn));
         return persoonslijstFinder.findPersoonslijst(burgerservicenummer)
-            .orElseThrow(() -> new BrpException("Persoonslijst niet gevonden"));
+            .orElseThrow(() -> new BrpException(HttpStatus.NOT_FOUND, "Persoonslijst niet gevonden"));
     }
 }
