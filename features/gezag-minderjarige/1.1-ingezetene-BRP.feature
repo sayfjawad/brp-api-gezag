@@ -4,13 +4,7 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
 
 
     Achtergrond:
-      Gegeven adres 'A1' heeft de volgende gegevens
-      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
-      | 518                  | Turfmarkt          | 1                  |
-      En adres 'A2' heeft de volgende gegevens
-      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
-      | 518                  | Turfmarkt          | 2                  |
-      En de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
       | naam                  | waarde   |
       | geslachtsnaam (02.40) | Check    |
       | geboortedatum (03.10) | 19800101 |
@@ -64,7 +58,7 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam                   | waarde             |
       | geboortedatum (03.10)  | gisteren - 15 jaar |
       | geboorteland (03.30)   | 6030               |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+      En de persoon heeft de volgende 'verblijfplaats' gegevens
       | naam                               | waarde           |
       | gemeente van inschrijving (09.10)  | 0518             |
       En de persoon heeft een ouder '1' met de volgende gegevens
@@ -102,7 +96,7 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam                   | waarde             |
       | geboortedatum (03.10)  | gisteren - 15 jaar |
       | geboorteland (03.30)   | 6030               |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
+      En de persoon heeft de volgende 'verblijfplaats' gegevens
       | naam                               | waarde                    |
       | gemeente van inschrijving (09.10)  | 0518                      |
       | aanduiding in onderzoek (83.10)    | <aanduiding in onderzoek> |
