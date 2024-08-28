@@ -27,19 +27,6 @@
         <wiremock.version>3.0.0-beta-10</wiremock.version>
     </properties>
 
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <name>bzk-mev-releases</name>
-            <url>https://nexus.cicd.s15m.nl/repository/bzk-mev-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus</id>
-            <name>bzk-mev-snapshots</name>
-            <url>https://nexus.cicd.s15m.nl/repository/bzk-mev-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>
