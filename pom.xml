@@ -162,12 +162,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <!-- Execute with maven goals: versions:display-plugin-updates versions:display-dependency-updates -->
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>2.16.2</version>
-            </plugin>
-            <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>4.8.5.0</version>
