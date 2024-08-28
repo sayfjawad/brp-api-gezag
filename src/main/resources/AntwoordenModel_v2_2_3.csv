@@ -15,10 +15,10 @@ Ja,Ja,Nee,Nee,,Ja,,,,,,,,,,,,4ee,N,Nee,Nee,Nee,Nee,420,gezag is niet te bepalen 
 Ja,Ja,Nee,Ja,Ja,Ja,,,,,,,,,,,,4aee,N,Nee,Nee,Nee,Nee,421,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
 Ja,Ja,Nee,Nee,,Ja,,,,,,Nee,,,,,,4eee,N,Nee,Nee,Nee,Nee,430,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
 Ja,Ja,Nee,Ja,Ja,Ja,,,,,,Nee,,,,,,4aeee,N,Nee,Nee,Nee,Nee,431,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
-Ja,Ja,Nee,Nee,,Ja,,,,,,Nee,1D,,,,,4,V,Nee,Nee,Nee,Nee,450,Ingezeten - minderjarig - categorie 11 ouder1 en een derde - soort gezag is V 
-Ja,Ja,Nee,Ja,Ja,Ja,,,,,,Nee,1D,,,,,4a,V,Nee,Nee,Nee,Nee,451,Ingezeten - minderjarig - adoptie NL akte - categorie 11 ouder1 en een derde - soort gezag is V 
-Ja,Ja,Nee,Nee,,Ja,,,,,,Nee,2D,,,,,5,V,Nee,Nee,Nee,Nee,550,Ingezeten - minderjarig - categorie 11 ouder2 en een derde - soort gezag is V 
-Ja,Ja,Nee,Ja,Ja,Ja,,,,,,Nee,2D,,,,,5a,V,Nee,Nee,Nee,Nee,551,Ingezeten - minderjarig - adoptie NL akte - categorie 11 ouder2 en een derde - soort gezag is V 
+Ja,Ja,Nee,Nee,,Ja,,,,,,Nee,1D,,,,,4,V,Nee,Nee,Nee,Nee,450,Ingezeten - minderjarig - categorie 11 ouder1 en een derde - soort gezag is V - Er is sprake van voogdij n.a.v. een gerechtelijke uitspraak over gezag
+Ja,Ja,Nee,Ja,Ja,Ja,,,,,,Nee,1D,,,,,4a,V,Nee,Nee,Nee,Nee,451,Ingezeten - minderjarig - adoptie NL akte - categorie 11 ouder1 en een derde - soort gezag is V - Er is sprake van voogdij n.a.v. een gerechtelijke uitspraak over gezag na adoptie
+Ja,Ja,Nee,Nee,,Ja,,,,,,Nee,2D,,,,,5,V,Nee,Nee,Nee,Nee,550,Ingezeten - minderjarig - categorie 11 ouder2 en een derde - soort gezag is V - Er is sprake van voogdij n.a.v. een gerechtelijke uitspraak over gezag
+Ja,Ja,Nee,Ja,Ja,Ja,,,,,,Nee,2D,,,,,5a,V,Nee,Nee,Nee,Nee,551,Ingezeten - minderjarig - adoptie NL akte - categorie 11 ouder2 en een derde - soort gezag is V - Er is sprake van voogdij n.a.v. een gerechtelijke uitspraak over gezag na adoptie
 Ja,Ja,Nee,Nee,,Ja,,,,,,Nee,D,,,,,6,V,Nee,Nee,Nee,Nee,650,Ingezeten - minderjarig - categorie 11 een derde - soort gezag is V 
 Ja,Ja,Nee,Ja,Ja,Ja,,,,,,Nee,D,,,,,6a,V,Nee,Nee,Nee,Nee,651,Ingezeten - minderjarig - adoptie NL akte - categorie 11 een derde - soort gezag is V 
 Ja,Ja,Nee,Nee,,Ja,,,,,,Nee,12,,,,,7e,N,Nee,Nee,Nee,Nee,700,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
