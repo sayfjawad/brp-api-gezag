@@ -466,5 +466,6 @@ public class Lo3PlRecord extends UpdatableRecordImpl<Lo3PlRecord> {
         setAdresEuLidstaatVanHerkomst(adresEuLidstaatVanHerkomst);
         setPlaatsEuLidstaatVanHerkomst(plaatsEuLidstaatVanHerkomst);
         setLandEuLidstaatVanHerkomst(landEuLidstaatVanHerkomst);
+        resetChangedOnNotNull();
     }
 }

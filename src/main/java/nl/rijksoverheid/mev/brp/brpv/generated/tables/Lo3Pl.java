@@ -5,16 +5,21 @@ package nl.rijksoverheid.mev.brp.brpv.generated.tables;
 
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import nl.rijksoverheid.mev.brp.brpv.generated.Keys;
 import nl.rijksoverheid.mev.brp.brpv.generated.Public;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
 
+import org.jooq.Condition;
 import org.jooq.Field;
-import org.jooq.ForeignKey;
 import org.jooq.Name;
-import org.jooq.Record;
+import org.jooq.PlainSQL;
+import org.jooq.QueryPart;
+import org.jooq.SQL;
 import org.jooq.Schema;
+import org.jooq.Select;
+import org.jooq.Stringly;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -133,7 +138,7 @@ public class Lo3Pl extends TableImpl<Lo3PlRecord> {
     /**
      * The column <code>public.lo3_pl.creatie_dt</code>.
      */
-    public final TableField<Lo3PlRecord, LocalDateTime> CREATIE_DT = createField(DSL.name("creatie_dt"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<Lo3PlRecord, LocalDateTime> CREATIE_DT = createField(DSL.name("creatie_dt"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field(DSL.raw("now()"), SQLDataType.LOCALDATETIME)), this, "");
 
     /**
      * The column <code>public.lo3_pl.mutatie_dt</code>.
@@ -186,11 +191,11 @@ public class Lo3Pl extends TableImpl<Lo3PlRecord> {
     public final TableField<Lo3PlRecord, Short> LAND_EU_LIDSTAAT_VAN_HERKOMST = createField(DSL.name("land_eu_lidstaat_van_herkomst"), SQLDataType.SMALLINT, this, "");
 
     private Lo3Pl(Name alias, Table<Lo3PlRecord> aliased) {
-        this(alias, aliased, null);
+        this(alias, aliased, (Field<?>[]) null, null);
     }
 
-    private Lo3Pl(Name alias, Table<Lo3PlRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    private Lo3Pl(Name alias, Table<Lo3PlRecord> aliased, Field<?>[] parameters, Condition where) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table(), where);
     }
 
     /**
@@ -212,10 +217,6 @@ public class Lo3Pl extends TableImpl<Lo3PlRecord> {
      */
     public Lo3Pl() {
         this(DSL.name("lo3_pl"), null);
-    }
-
-    public <O extends Record> Lo3Pl(Table<O> child, ForeignKey<O, Lo3PlRecord> key) {
-        super(child, key, LO3_PL);
     }
 
     @Override
@@ -265,5 +266,89 @@ public class Lo3Pl extends TableImpl<Lo3PlRecord> {
     @Override
     public Lo3Pl rename(Table<?> name) {
         return new Lo3Pl(name.getQualifiedName(), null);
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3Pl where(Condition condition) {
+        return new Lo3Pl(getQualifiedName(), aliased() ? this : null, null, condition);
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3Pl where(Collection<? extends Condition> conditions) {
+        return where(DSL.and(conditions));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3Pl where(Condition... conditions) {
+        return where(DSL.and(conditions));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3Pl where(Field<Boolean> condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3Pl where(SQL condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3Pl where(@Stringly.SQL String condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3Pl where(@Stringly.SQL String condition, Object... binds) {
+        return where(DSL.condition(condition, binds));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3Pl where(@Stringly.SQL String condition, QueryPart... parts) {
+        return where(DSL.condition(condition, parts));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3Pl whereExists(Select<?> select) {
+        return where(DSL.exists(select));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3Pl whereNotExists(Select<?> select) {
+        return where(DSL.notExists(select));
     }
 }
