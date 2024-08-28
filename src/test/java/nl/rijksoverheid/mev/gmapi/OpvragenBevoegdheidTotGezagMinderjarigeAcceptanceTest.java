@@ -489,7 +489,7 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
 
                     List<String> gezagshouders = gezag.getDerden().stream()
                             .map(Meerderjarige::getBurgerservicenummer)
-                            .map(Optional::get)
+                            .flatMap(Optional::stream)
                             .toList();
                     assertThat(gezagshouders)
                             .containsExactlyInAnyOrderElementsOf(expected);
