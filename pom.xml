@@ -90,13 +90,6 @@
             <version>20240303</version>
         </dependency>
         <dependency>
-            <!-- Provides checker-qual to postgresql dependency -->
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>32.0.0-jre</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>compile</scope>
@@ -111,13 +104,6 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
-            <exclusions>
-                <exclusion>
-                    <!-- Provided by the Guava dependency -->
-                    <artifactId>checker-qual</artifactId>
-                    <groupId>org.checkerframework</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
