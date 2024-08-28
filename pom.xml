@@ -91,12 +91,6 @@
             <version>20240303</version>
         </dependency>
         <dependency>
-            <groupId>com.tngtech.archunit</groupId>
-            <artifactId>archunit</artifactId>
-            <version>1.0.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <!-- Provides checker-qual to postgresql dependency -->
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
