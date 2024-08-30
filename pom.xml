@@ -12,7 +12,7 @@
 
     <groupId>nl.rijksoverheid.mev</groupId>
     <artifactId>gezag</artifactId>
-    <version>1.4.4</version>
+    <version>1.5.0</version>
 
     <name>gezag</name>
     <description>Gezag</description>
@@ -172,11 +172,6 @@
         </dependency>
 
         <!-- Brp-Adapter specific -->
-        <dependency>
-            <groupId>org.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>3.10.8</version>
-        </dependency>
         <dependency>
             <groupId>io.github.resilience4j</groupId>
             <artifactId>resilience4j-circuitbreaker</artifactId>
