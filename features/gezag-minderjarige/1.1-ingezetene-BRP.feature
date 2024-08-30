@@ -16,6 +16,8 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
 
 
   Regel: Als de gemeente van inschrijving is RNI kan het gezag van de persoon niet worden bepaald
+    # een persoon staat in de RNI ingeschreven wanneer gemeente van inschrijving (09.10) gelijk is aan 1999.
+    # een persoon staat in de BRP ingeschreven wanneer gemeente van inschrijving (09.10) ongelijk is aan 1999.
 
     Scenario: minderjarige staat ingeschreven in RNI (route 1)
       Gegeven de persoon 'P3' met burgerservicenummer '000000036'
