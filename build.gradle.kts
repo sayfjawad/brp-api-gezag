@@ -98,7 +98,6 @@ java.sourceCompatibility = JavaVersion.VERSION_21
 
 tasks.withType<BootBuildImage> {
     builder = "dashaun/builder:tiny"
-    environment.put("BP_NATIVE_IMAGE", "true")
 }
 
 tasks.withType<JavaCompile> {
