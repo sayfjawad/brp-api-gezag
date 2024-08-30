@@ -146,7 +146,7 @@ public class CsvTestResultWriter {
             long responseDuration,
             String soortGezagActual
     ) {
-        String[] data = {
+        return new String[]{
             testCase, bsnKind,
             String.valueOf(bsnsGezaghoudersExpected),
             String.valueOf(bsnsGezaghoudersActual),
@@ -231,6 +231,5 @@ public class CsvTestResultWriter {
             arAntwoordenActual.getException() != null ? arAntwoordenActual.getException().getMessage() : "",
             arAntwoordenActual.getUitleg() != null ? arAntwoordenActual.getUitleg() : ""
         };
-        return data;
     }
 }
