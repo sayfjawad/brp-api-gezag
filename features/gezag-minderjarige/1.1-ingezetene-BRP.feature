@@ -23,9 +23,6 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       Gegeven de persoon 'P3' met burgerservicenummer '000000036'
       * is in Nederland geboren
       * is minderjarige
-      * is geregistreerd met de geboorteakte
-      | aktenummer (81.20) |
-      | 1GA0001            |
       * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
       * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
       * is ingeschreven in de de RNI
@@ -46,9 +43,6 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       Gegeven de persoon 'P3' met burgerservicenummer '000000036'
       * is in Nederland geboren
       * is minderjarige
-      * is geregistreerd met de geboorteakte
-      | aktenummer (81.20) |
-      | 1GA0001            |
       * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
       * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
       * is ingeschreven in de de BRP
@@ -78,9 +72,6 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       Gegeven de persoon 'P3' met burgerservicenummer '000000036'
       * is in Nederland geboren
       * is minderjarige
-      * is geregistreerd met de geboorteakte
-      | aktenummer (81.20) |
-      | 1GA0001            |
       * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
       * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
       * is ingeschreven in de de BRP
@@ -117,9 +108,6 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       Gegeven de persoon 'P3' met burgerservicenummer '000000036'
       * is in Nederland geboren
       * is minderjarige
-      * is geregistreerd met de geboorteakte
-      | aktenummer (81.20) |
-      | 1GA0001            |
       * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
       * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
       Als gezag wordt gezocht met de volgende parameters
