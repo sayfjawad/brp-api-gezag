@@ -52,6 +52,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
       En de persoon is gewijzigd naar de volgende gegevens
       | naam                            | waarde           |
+      | burgerservicenummer (01.20)     | 000000012        |
       | voornamen (02.10)               | Junior           |
       | geslachtsnaam (02.40)           | Test             |
       | geboortedatum (03.10)           | morgen - 15 jaar |
@@ -82,8 +83,8 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | beschrijving document (82.30)        | kennisgeving gezagsregister |
       | ingangsdatum geldigheid (85.10)      | morgen - 12 jaar            |
       Als gezag wordt gezocht met de volgende parameters
-      | naam | waarde    |
-      | burgerservicenummer  | 000000012 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
@@ -119,6 +120,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
       En de persoon is gewijzigd naar de volgende gegevens
       | naam                            | waarde           |
+      | burgerservicenummer (01.20)     | 000000012        |
       | voornamen (02.10)               | Junior           |
       | geslachtsnaam (02.40)           | Test             |
       | geboortedatum (03.10)           | morgen - 15 jaar |
@@ -128,6 +130,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | ingangsdatum geldigheid (85.10) | morgen - 10 jaar |
       En de persoon is gewijzigd naar de volgende gegevens
       | naam                            | waarde           |
+      | burgerservicenummer (01.20)     | 000000012        |
       | voornamen (02.10)               | Junior           |
       | geslachtsnaam (02.40)           | Check            |
       | geboortedatum (03.10)           | morgen - 15 jaar |
@@ -186,6 +189,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
       En de persoon is gewijzigd naar de volgende gegevens
       | naam                            | waarde           |
+      | burgerservicenummer (01.20)     | 000000012        |
       | voornamen (02.10)               | Junior           |
       | geslachtsnaam (02.40)           | Test             |
       | geboortedatum (03.10)           | morgen - 15 jaar |
@@ -227,7 +231,6 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | minderjarige.burgerservicenummer | 000000012                |
       | ouder.burgerservicenummer        | <gezaghebbende>          |
 
-
       Voorbeelden:
       | indicatie gezag | gezaghebbende | route |
       | 1               | 000000024     | 11    |
@@ -245,6 +248,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
       En de persoon is gewijzigd naar de volgende gegevens
       | naam                            | waarde           |
+      | burgerservicenummer (01.20)     | 000000012        |
       | voornamen (02.10)               | Junior           |
       | geslachtsnaam (02.40)           | Test             |
       | geboortedatum (03.10)           | morgen - 15 jaar |
@@ -298,6 +302,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
       En de persoon is gewijzigd naar de volgende gegevens
       | naam                            | waarde           |
+      | burgerservicenummer (01.20)     | 000000012        |
       | voornamen (02.10)               | Junior           |
       | geslachtsnaam (02.40)           | Test             |
       | geboortedatum (03.10)           | morgen - 15 jaar |
@@ -307,6 +312,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | ingangsdatum geldigheid (85.10) | morgen - 10 jaar |
       En de persoon is gecorrigeerd naar de volgende gegevens
       | naam                            | waarde           |
+      | burgerservicenummer (01.20)     | 000000012        |
       | voornamen (02.10)               | Junior           |
       | geslachtsnaam (02.40)           | Test             |
       | geboortedatum (03.10)           | morgen - 15 jaar |
@@ -366,6 +372,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
       En de persoon is gewijzigd naar de volgende gegevens
       | naam                            | waarde           |
+      | burgerservicenummer (01.20)     | 000000012        |
       | voornamen (02.10)               | Junior           |
       | geslachtsnaam (02.40)           | Test             |
       | geboortedatum (03.10)           | morgen - 15 jaar |
