@@ -113,3 +113,7 @@ tasks.withType<Javadoc> {
 tasks.withType<LombokTask> {
     mustRunAfter("openApiGenerate")
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
