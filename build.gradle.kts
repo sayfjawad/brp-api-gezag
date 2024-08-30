@@ -41,7 +41,7 @@ dependencies {
 }
 
 application {
-    mainClass = "nl.rijksoverheid.mev.GezagApplication.java"
+    mainClass = "nl.rijksoverheid.mev.GezagApplication"
 }
 
 jooq {
