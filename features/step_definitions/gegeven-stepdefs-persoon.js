@@ -1,9 +1,10 @@
 const { Given } = require('@cucumber/cucumber');
 const { createPersoon,
-        createPersoonMetGegevensgroep,
-        createInschrijving,
-        updatePersoon,
-        wijzigPersoon } = require('./persoon');
+    createPersoonMetGegevensgroep,
+    createInschrijving,
+    updatePersoon,
+    wijzigPersoon,
+    createPersoonMetAanduiding } = require('./persoon');
 
 Given(/^de persoon met burgerservicenummer '(\d*)' heeft de volgende gegevens$/, function (burgerservicenummer, dataTable) {
     createPersoon(this.context, burgerservicenummer, dataTable);
@@ -35,4 +36,8 @@ Given(/^de persoon is gecorrigeerd naar de volgende gegevens$/, function (dataTa
 
 Given(/^de persoon heeft (?:GEEN|geen) '(.*)' gegevens$/, function (_) {
     // doe niets
+});
+
+Given(/^de persoon '(.*)' met burgerservicenummer '(\d*)'$/, function (aanduiding, burgerservicenummer) {
+    createPersoonMetAanduiding(this.context, aanduiding, burgerservicenummer);
 });
