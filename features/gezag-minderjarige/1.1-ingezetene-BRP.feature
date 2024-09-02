@@ -6,10 +6,8 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
     Achtergrond:
       Gegeven de persoon 'P1' met burgerservicenummer '000000012'
       * is meerderjarig
-      * heeft geslachtsnaam gevuld
       En de persoon 'P2' met burgerservicenummer '000000024'
       * is meerderjarig
-      * heeft geslachtsnaam gevuld
       En persoon 'P1' heeft geregistreerd partnerschap met persoon 'P2'
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
