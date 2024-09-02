@@ -3,101 +3,40 @@
 Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) van rechtswege ondanks dat er eerder een uitspraak is gedaan?
 
 
-
-    Achtergrond:
-      Gegeven adres 'A1' heeft de volgende gegevens
-      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
-      | 518                  | Turfmarkt          | 1                  |
-      En adres 'A2' heeft de volgende gegevens
-      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
-      | 518                  | Turfmarkt          | 2                  |
-      En de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
-      | naam                  | waarde |
-      | geslachtsnaam (02.40) | Check  |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde   |
-      | gemeente van inschrijving (09.10)  | 0518     |
-      En de persoon heeft een 'partner' met de volgende gegevens
-      | naam                                                               | waarde    |
-      | burgerservicenummer (01.20)                                        | 000000036 |
-      | geslachtsnaam (02.40)                                              | Test      |
-      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | 20010928  |
-      | soort verbintenis (15.10)                                          | H         |
-      En de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
-      | naam                  | waarde |
-      | geslachtsnaam (02.40) | Test   |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde   |
-      | gemeente van inschrijving (09.10)  | 0518     |
-      En de persoon heeft een 'partner' met de volgende gegevens
-      | naam                                                               | waarde    |
-      | burgerservicenummer (01.20)                                        | 000000024 |
-      | geslachtsnaam (02.40)                                              | Check     |
-      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | 20010928  |
-      | soort verbintenis (15.10)                                          | H         |
-
-
   Regel: Als adoptie heeft plaatsgevonden na de gerechtelijke uitspraak over gezag, wordt het gezag van rechtswege bepaald
     # Er heeft adoptie plaatsgevonden als aktenummer van de persoon in de actuele of een historisch voorkomen als 3e karakter een 'Q' heeft
 
-    Abstract Scenario: gezag wordt van rechtswege bepaald voor minderjarige die is geadopteerd door beide ouders na de gerechtelijke uitspraak (route 27)
-      Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
-      | naam                            | waarde           |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AA0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
-      En de persoon is gewijzigd naar de volgende gegevens
-      | naam                            | waarde           |
-      | burgerservicenummer (01.20)     | 000000012        |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AQ0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 10 jaar |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde           |
-      | gemeente van inschrijving (09.10)  | 0518             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
-      En de persoon heeft een ouder '1' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000024        |
-      | geslachtsnaam (02.40)                              | Check            |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 10 jaar |
-      En de persoon heeft een ouder '2' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000036        |
-      | geslachtsnaam (02.40)                              | Test             |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 10 jaar |
-      En de persoon heeft de volgende 'gezagsverhouding' gegevens
-      | naam                                 | waarde                      |
-      | indicatie gezag minderjarige (32.10) | <indicatie gezag>           |
-      | beschrijving document (82.30)        | kennisgeving gezagsregister |
-      | ingangsdatum geldigheid (85.10)      | morgen - 12 jaar            |
+    Abstract Scenario: gezag wordt van rechtswege bepaald voor minderjarige die is geadopteerd na de gerechtelijke uitspraak (route 27)
+      Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is minderjarig
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * heeft gezag uitspraak
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | <indicatie gezag>                    | gisteren - 5 jaar               |
+      * is geadopteerd
+      | aktenummer (81.20) | ingangsdatum geldigheid (85.10) |
+      | 1AQ0100            | morgen - 4 jaar                 |
+      * heeft 2 juridische ouders met burgerservicenummer '000000012' en '000000024'
+      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000012                 |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
 
       Voorbeelden:
       | indicatie gezag |
@@ -108,250 +47,131 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       | 2D              |
       | D               |
 
-    Scenario: gezag wordt van rechtswege bepaald voor minderjarige die is geadopteerd na de gerechtelijke uitspraak en gegevens van de minderjarige zijn daarna gewijzigd met ander aktenummer (route 27)
-      Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
-      | naam                            | waarde           |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AA0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
-      En de persoon is gewijzigd naar de volgende gegevens
-      | naam                            | waarde           |
-      | burgerservicenummer (01.20)     | 000000012        |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AQ0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 10 jaar |
-      En de persoon is gewijzigd naar de volgende gegevens
-      | naam                            | waarde           |
-      | burgerservicenummer (01.20)     | 000000012        |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Check            |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AM0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 9 jaar  |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde           |
-      | gemeente van inschrijving (09.10)  | 0518             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
-      En de persoon heeft een ouder '1' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000024        |
-      | geslachtsnaam (02.40)                              | Check            |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 10 jaar |
-      En de persoon heeft een ouder '2' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000036        |
-      | geslachtsnaam (02.40)                              | Test             |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 10 jaar |
-      En de persoon heeft de volgende 'gezagsverhouding' gegevens
-      | naam                                 | waarde                      |
-      | indicatie gezag minderjarige (32.10) | D                           |
-      | beschrijving document (82.30)        | kennisgeving gezagsregister |
-      | ingangsdatum geldigheid (85.10)      | morgen - 12 jaar            |
+    Abstract Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige die is geadopteerd vóór de gerechtelijke uitspraak (route <route>)
+      Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is minderjarig
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * is geadopteerd
+      | aktenummer (81.20) | ingangsdatum geldigheid (85.10) |
+      | 1AQ0100            | morgen - 6 jaar                 |
+      * heeft gezag uitspraak
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | <indicatie gezag>                    | gisteren - 5 jaar               |
+      * heeft 2 juridische ouders met burgerservicenummer '000000012' en '000000024'
+      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
       Als gezag wordt gezocht met de volgende parameters
-      | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
-      Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TweehoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000012                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000024 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-
-    Abstract Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige die is geadopteerd vóór de gerechtelijke uitspraak (route <route>)
-      Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
-      | naam                            | waarde           |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AA0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
-      En de persoon is gewijzigd naar de volgende gegevens
-      | naam                            | waarde           |
-      | burgerservicenummer (01.20)     | 000000012        |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AQ0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 12 jaar |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde           |
-      | gemeente van inschrijving (09.10)  | 0518             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
-      En de persoon heeft een ouder '1' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000024        |
-      | geslachtsnaam (02.40)                              | Check            |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 12 jaar |
-      En de persoon heeft een ouder '2' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000036        |
-      | geslachtsnaam (02.40)                              | Test             |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 12 jaar |
-      En de persoon heeft de volgende 'gezagsverhouding' gegevens
-      | naam                                 | waarde                      |
-      | indicatie gezag minderjarige (32.10) | <indicatie gezag>           |
-      | beschrijving document (82.30)        | kennisgeving gezagsregister |
-      | ingangsdatum geldigheid (85.10)      | morgen - 10 jaar            |
-      Als gezag wordt gezocht met de volgende parameters
-      | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                   |
       | type                             | EenhoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000012                |
+      | minderjarige.burgerservicenummer | 000000036                |
       | ouder.burgerservicenummer        | <gezaghebbende>          |
 
       Voorbeelden:
       | indicatie gezag | gezaghebbende | route |
-      | 1               | 000000024     | 11    |
-      | 2               | 000000036     | 13    |
+      | 1               | 000000012     | 11    |
+      | 2               | 000000024     | 13    |
 
-    Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige die is erkend (niet geadopteerd) na de gerechtelijke uitspraak (route 4)
-      Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
-      | naam                            | waarde           |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Check            |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AA0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
-      En de persoon is gewijzigd naar de volgende gegevens
-      | naam                            | waarde           |
-      | burgerservicenummer (01.20)     | 000000012        |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AA0200          |
-      | ingangsdatum geldigheid (85.10) | morgen - 9 jaar  |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde           |
-      | gemeente van inschrijving (09.10)  | 0518             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
-      En de persoon heeft een ouder '1' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000024        |
-      | geslachtsnaam (02.40)                              | Check            |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 15 jaar |
-      En de persoon heeft een ouder '2' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000036        |
-      | geslachtsnaam (02.40)                              | Test             |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 10 jaar |
-      En de persoon heeft de volgende 'gezagsverhouding' gegevens
-      | naam                                 | waarde                      |
-      | indicatie gezag minderjarige (32.10) | 1D                          |
-      | beschrijving document (82.30)        | kennisgeving gezagsregister |
-      | ingangsdatum geldigheid (85.10)      | morgen - 12 jaar            |
+    Abstract Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige die is geadopteerd vóór de gerechtelijke uitspraak en gegevens van de minderjarige zijn na de uitspraak gewijzigd
+      Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is minderjarig
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * is geadopteerd
+      | aktenummer (81.20) | ingangsdatum geldigheid (85.10) |
+      | 1AQ0100            | morgen - 6 jaar                 |
+      * heeft gezag uitspraak
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1                                    | gisteren - 5 jaar               |
+      * zijn de volgende gegevens gewijzigd
+      | aktenummer (81.20) | ingangsdatum geldigheid (85.10) |
+      | <aktenummer>       | morgen - 4 jaar                 |
+      * heeft 2 juridische ouders met burgerservicenummer '000000012' en '000000024'
+      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
+      Voorbeelden:
+      | aktenummer | omschrijving                           |
+      | 1AQ0100    | onder zelfde adoptie aktenummer        |
+      | 1AW0200    | ander soort wijziging (naamswijziging) |
+
+    Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige die is erkend (niet geadopteerd) na de gerechtelijke uitspraak (route 4)
+      Gegeven de persoon 'P1' met burgerservicenummer '000000012'
+      * is meerderjarig
+      En de persoon 'P2' met burgerservicenummer '000000024'
+      * is meerderjarig
+      En de persoon 'P3' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is minderjarig
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * heeft persoon 'P1' als ouder
+      * heeft uitspraak dat gezag is toegewezen aan 'een derde'
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | D                                    | gisteren - 5 jaar               |
+      * is erkend door ouder 'P2'
+      | datum ingang familierechtelijke betrekking (62.10) |
+      | morgen - 4 jaar                                    |
+      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde    |
       | type                             | Voogdij   |
-      | minderjarige.burgerservicenummer | 000000012 |
+      | minderjarige.burgerservicenummer | 000000036 |
       En heeft 'gezag' geen derden
 
     Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige waarbij na de gerechtelijke uitspraak ten onrechte adoptie is geregistreerd (route 4)
-      Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
-      | naam                            | waarde           |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AA0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
-      En de persoon is gewijzigd naar de volgende gegevens
-      | naam                            | waarde           |
-      | burgerservicenummer (01.20)     | 000000012        |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AQ0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 10 jaar |
-      En de persoon is gecorrigeerd naar de volgende gegevens
-      | naam                            | waarde           |
-      | burgerservicenummer (01.20)     | 000000012        |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AA0200          |
-      | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde           |
-      | gemeente van inschrijving (09.10)  | 0518             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
-      En de persoon heeft een ouder '1' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000024        |
-      | geslachtsnaam (02.40)                              | Check            |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 10 jaar |
-      En de persoon heeft een ouder '2' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000036        |
-      | geslachtsnaam (02.40)                              | Test             |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 10 jaar |
-      En de persoon heeft de volgende 'gezagsverhouding' gegevens
-      | naam                                 | waarde                      |
-      | indicatie gezag minderjarige (32.10) | D                           |
-      | beschrijving document (82.30)        | kennisgeving gezagsregister |
-      | ingangsdatum geldigheid (85.10)      | morgen - 12 jaar            |
+      Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is minderjarig
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * heeft gezag uitspraak
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | D                                    | gisteren - 5 jaar               |
+      * is geadopteerd
+      | aktenummer (81.20) | ingangsdatum geldigheid (85.10) |
+      | 1AQ0100            | morgen - 4 jaar                 |
+      * de adoptie is gecorrigeerd
+      | aktenummer (81.20) | ingangsdatum geldigheid (85.10) |
+      | 1AR0200            | morgen - 4 jaar                 |
+      * heeft 2 juridische ouders met burgerservicenummer '000000012' en '000000024'
+      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde    |
       | type                             | Voogdij   |
-      | minderjarige.burgerservicenummer | 000000012 |
+      | minderjarige.burgerservicenummer | 000000036 |
       En heeft 'gezag' geen derden
 
 
@@ -361,53 +181,26 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
       # gezag niet te bepalen. ingangsdatum geldigheid van gerechtelijke uitspraak ontbreekt
       # hoe gaat code om met gedeeltelijk onbekende datums die zeker voor of na adoptie liggen?
       # hoe werkt dit wanneer datum gezag onbekend is, maar er is geen adoptie en geen hertrouwen?
-      Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
-      | naam                            | waarde           |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AA0100          |
-      | ingangsdatum geldigheid (85.10) | morgen - 15 jaar |
-      En de persoon is gewijzigd naar de volgende gegevens
-      | naam                            | waarde           |
-      | burgerservicenummer (01.20)     | 000000012        |
-      | voornamen (02.10)               | Junior           |
-      | geslachtsnaam (02.40)           | Test             |
-      | geboortedatum (03.10)           | morgen - 15 jaar |
-      | geboorteplaats (03.20)          | 0518             |
-      | geboorteland (03.30)            | 6030             |
-      | aktenummer (81.20)              | 1AQ0100          |
-      | ingangsdatum geldigheid (85.10) | 20210526         |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                  | waarde           |
-      | datum eerste inschrijving GBA (68.10) | morgen - 15 jaar |
-      En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
-      | naam                               | waarde           |
-      | gemeente van inschrijving (09.10)  | 0518             |
-      | datum aanvang adreshouding (10.30) | morgen - 15 jaar |
-      En de persoon heeft een ouder '1' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000024        |
-      | geslachtsnaam (02.40)                              | Check            |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 10 jaar |
-      En de persoon heeft een ouder '2' met de volgende gegevens
-      | naam                                               | waarde           |
-      | burgerservicenummer (01.20)                        | 000000036        |
-      | geslachtsnaam (02.40)                              | Test             |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 10 jaar |
-      En de persoon heeft de volgende 'gezagsverhouding' gegevens
-      | naam                                 | waarde                          |
-      | indicatie gezag minderjarige (32.10) | 1                               |
-      | beschrijving document (82.30)        | kennisgeving gezagsregister     |
-      | ingangsdatum geldigheid (85.10)      | <ingangsdatum geldigheid gezag> |
+      Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is minderjarig
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * is geadopteerd
+      | aktenummer (81.20) | ingangsdatum geldigheid (85.10) |
+      | 1AQ0100            | morgen - 6 jaar                 |
+      * heeft gezag uitspraak
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1                                    | <ingangsdatum geldigheid gezag> |
+      * heeft 2 juridische ouders met burgerservicenummer '000000012' en '000000024'
+      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam        | waarde                                                                               |
       | type        | GezagNietTeBepalen                                                                   |
@@ -429,25 +222,72 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
   Regel: Als datum familierechtelijke betrekking of indicatie gezag of ingangsdatum gezagsverhouding in onderzoek staan, is het gezag niet te bepalen
 
     Abstract Scenario: gezag kan niet worden bepaald wanneer <omschrijving> in onderzoek staat
+      Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is minderjarig
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * heeft gezag uitspraak
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | D                                    | gisteren - 5 jaar               |
+      * heeft een ouder met burgerservicenummer '000000012'
+      | aanduiding in onderzoek (83.10) |
+      | <aanduiding onderzoek ouder 1>  |
+      * heeft een ouder met burgerservicenummer '000000024'
+      | aanduiding in onderzoek (83.10) |
+      | <aanduiding onderzoek ouder 2>  |
+      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam        | waarde                                                                                          |
+      | type        | GezagNietTeBepalen                                                                              |
+      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
 
       Voorbeelden:
-      | aanduiding onderzoek | omschrijving                                           |
-      | 020000               | hele categorie ouder 1                                 |
-      | 026200               | hele groep familierechtelijke betrekking van ouder 1   |
-      | 026210               | datum ingang familierechtelijke betrekking van ouder 1 |
-      | 030000               | hele categorie ouder 2                                 |
-      | 036200               | hele groep familierechtelijke betrekking van ouder 2   |
-      | 036210               | datum ingang familierechtelijke betrekking van ouder 2 |
+      | aanduiding onderzoek ouder 1 | aanduiding onderzoek ouder 2 | omschrijving                                           | toelichting                               |
+      | 020000                       |                              | hele categorie ouder 1                                 | familierechtelijke betrekking van ouder 1 |
+      | 026200                       |                              | hele groep familierechtelijke betrekking van ouder 1   | familierechtelijke betrekking van ouder 1 |
+      | 026210                       |                              | datum ingang familierechtelijke betrekking van ouder 1 | familierechtelijke betrekking van ouder 1 |
+      |                              | 030000                       | hele categorie ouder 2                                 | familierechtelijke betrekking van ouder 2 |
+      |                              | 036200                       | hele groep familierechtelijke betrekking van ouder 2   | familierechtelijke betrekking van ouder 2 |
+      |                              | 036210                       | datum ingang familierechtelijke betrekking van ouder 2 | familierechtelijke betrekking van ouder 2 |
 
     Abstract Scenario: gezag kan niet worden bepaald wanneer <omschrijving> in onderzoek staat
+      Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is minderjarig
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * heeft gezag uitspraak
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | D                                    | gisteren - 5 jaar               |
+      * heeft 2 juridische ouders met burgerservicenummer '000000012' en '000000024'
+      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam        | waarde                                                                                          |
+      | type        | GezagNietTeBepalen                                                                              |
+      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
 
       Voorbeelden:
-      | aanduiding onderzoek | omschrijving                    |
-      | 110000               | hele categorie gezagsverhouding |
-      | 113200               | hele groep gezag minderjarige   |
-      | 113210               | indicatie gezag minderjarige    |
-      | 118500               | hele groep geldigheid           |
-      | 118510               | datum ingang geldigheid         |
+      | aanduiding onderzoek | omschrijving                    | toelichting                                                                  |
+      | 110000               | hele categorie gezagsverhouding | indicatie gezag minderjarige,datum ingang geldigheid van de gezagsverhouding |
+      | 113200               | hele groep gezag minderjarige   | indicatie gezag minderjarige                                                 |
+      | 113210               | indicatie gezag minderjarige    | indicatie gezag minderjarige                                                 |
+      | 118500               | hele groep geldigheid           | datum ingang geldigheid van de gezagsverhouding                              |
+      | 118510               | datum ingang geldigheid         | datum ingang geldigheid van de gezagsverhouding                              |
 
     Scenario: gezag kan wel worden bepaald als het onderzoek op de familierechtelijke betrekking is beëindigd
 
