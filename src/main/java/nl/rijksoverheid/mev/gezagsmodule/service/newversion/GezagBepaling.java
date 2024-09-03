@@ -70,6 +70,7 @@ public class GezagBepaling {
             addMissendeGegegevens(ex.getMissendVeld());
             arAntwoordenModel.setException(ex);
         } catch (Exception ex) {
+            logger.error("Programmeerfout tijdens gezagbepaling", ex);
             arAntwoordenModel.setException(ex);
         }
     }
