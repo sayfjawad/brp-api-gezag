@@ -1,4 +1,4 @@
-const { Given } = require('@cucumber/cucumber');
+const { Given, DataTable } = require('@cucumber/cucumber');
 const { createPersoon,
     createPersoonMetGegevensgroep,
     createInschrijving,
@@ -38,6 +38,17 @@ Given(/^de persoon heeft (?:GEEN|geen) '(.*)' gegevens$/, function (_) {
     // doe niets
 });
 
-Given(/^de persoon '(.*)' met burgerservicenummer '(\d*)'$/, function (aanduiding, burgerservicenummer) {
-    createPersoonMetAanduiding(this.context, aanduiding, burgerservicenummer);
+Given(/^de persoon(?: '(.*)')? met burgerservicenummer '(\d*)'$/, function (aanduiding, burgerservicenummer) {
+    createPersoonMetAanduiding(this.context, aanduiding || '', burgerservicenummer);
+});
+
+Given(/^de persoon is ingeschreven in de BRP/, function () {
+    const data = [
+        ['naam', 'waarde'],
+        ['gemeente van inschrijving (9.10)', '518']
+    ];
+
+    const dataTable = new DataTable(data);
+
+    createInschrijving(this.context, dataTable);
 });
