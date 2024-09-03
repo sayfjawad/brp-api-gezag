@@ -57,7 +57,7 @@ public class Persoonslijst {
     }
 
     public void addKind(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeld(Categorie.KIND, Kind.from(lo3PlPersoonRecord, clock));
+        addVeldToList(Categorie.KIND, Kind.from(lo3PlPersoonRecord, clock));
     }
 
     public void addOuder1(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
