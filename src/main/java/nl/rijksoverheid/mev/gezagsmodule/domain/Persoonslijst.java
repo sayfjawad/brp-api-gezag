@@ -21,7 +21,6 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * De Persoonslijst is onderverdeeld in een aantal categorieën met bij elkaar
@@ -57,7 +56,7 @@ public class Persoonslijst {
     }
 
     public void addKind(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeld(Categorie.KIND, Kind.from(lo3PlPersoonRecord, clock));
+        addVeldToList(Categorie.KIND, Kind.from(lo3PlPersoonRecord, clock));
     }
 
     public void addOuder1(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
