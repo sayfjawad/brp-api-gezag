@@ -1,7 +1,6 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
 
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
@@ -9,11 +8,17 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-@Slf4j
 public class GezagBepaling {
+
+    private static final Logger logger = LoggerFactory.getLogger(GezagBepaling.class);
 
     @Getter
     private final Persoonslijst plPersoon;
@@ -104,7 +109,7 @@ public class GezagBepaling {
         if (plOuder2 != null) veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
         if (plNietOuder != null) veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
 
-        log.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
+        logger.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
 
         veldenInOnderzoek = filterVelden(veldenInOnderzoek);
 
