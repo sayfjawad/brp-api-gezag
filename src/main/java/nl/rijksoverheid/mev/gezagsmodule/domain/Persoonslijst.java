@@ -21,7 +21,6 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * De Persoonslijst is onderverdeeld in een aantal categorieën met bij elkaar
