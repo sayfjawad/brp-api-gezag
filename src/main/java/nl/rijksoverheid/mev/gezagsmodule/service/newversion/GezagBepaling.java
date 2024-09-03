@@ -66,7 +66,7 @@ public class GezagBepaling {
             if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
                 vragenMap.get(antwoordEnActieParen.get(answer)).step();
             }
-        }  catch(AfleidingsregelException ex) {
+        } catch (AfleidingsregelException ex) {
             addMissendeGegegevens(ex.getMissendVeld());
             arAntwoordenModel.setException(ex);
         } catch (Exception ex) {
@@ -165,7 +165,7 @@ public class GezagBepaling {
     }
 
     public void addMissendeGegegevens(final String missendGegegeven) {
-        if(missendeGegegevens == null) {
+        if (missendeGegegevens == null) {
             missendeGegegevens = new ArrayList<>();
         }
 
