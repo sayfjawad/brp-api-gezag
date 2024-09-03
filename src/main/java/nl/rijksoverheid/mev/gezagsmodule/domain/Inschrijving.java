@@ -37,11 +37,11 @@ public class Inschrijving implements PersoonslijstVeld {
 
     public static Inschrijving from(final Lo3PlRecord lo3PlRecord) {
         Map<String, String> values = new HashMap<>();
-        values.put(DATUM_OPSCHORTING_BIJHOUDING, Objects.toString(lo3PlRecord.getBijhoudingOpschortDatum()));
+        values.put(DATUM_OPSCHORTING_BIJHOUDING, Objects.toString(lo3PlRecord.getBijhoudingOpschortDatum(), null));
         values.put(REDEN_OPSCHORTING_BIJHOUDING, lo3PlRecord.getBijhoudingOpschortReden());
-        values.put(DATUM_VERIFICATIE, Objects.toString(lo3PlRecord.getVerificatieDatum()));
+        values.put(DATUM_VERIFICATIE, Objects.toString(lo3PlRecord.getVerificatieDatum(), null));
         values.put(OMSCHRIJVING_VERIFICATIE, lo3PlRecord.getVerificatieOms());
-        values.put(RNI_DEELNEMER, Objects.toString(lo3PlRecord.getRniDeelnemer()));
+        values.put(RNI_DEELNEMER, Objects.toString(lo3PlRecord.getRniDeelnemer(), null));
 
         return new Inschrijving(values);
     }
