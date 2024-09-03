@@ -42,13 +42,64 @@ Given(/^de persoon(?: '(.*)')? met burgerservicenummer '(\d*)'$/, function (aand
     createPersoonMetAanduiding(this.context, aanduiding || '', burgerservicenummer);
 });
 
-Given(/^de persoon is ingeschreven in de BRP/, function () {
+Given(/^de persoon(?: '(.*)')? in ingeschreven in de BRP met de volgende gegevens/, function (_, dataTable) {
+    createInschrijving(this.context, dataTable);
+});
+
+Given(/^de persoon(?: '(.*)')? is ingeschreven in de BRP/, function (_) {
     const data = [
         ['naam', 'waarde'],
-        ['gemeente van inschrijving (9.10)', '518']
+        ['gemeente van inschrijving (09.10)', '518']
     ];
 
-    const dataTable = new DataTable(data);
+    createInschrijving(this.context, new DataTable(data));
+});
 
-    createInschrijving(this.context, dataTable);
+Given(/^de persoon(?: '(.*)')? is ingeschreven in de RNI/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['gemeente van inschrijving (09.10)', '1999']
+    ];
+
+    createInschrijving(this.context, new DataTable(data));
+});
+
+Given(/^de persoon(?: '(.*)')? is minderjarig/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['geboortedatum (03.10)', 'morgen - 17']
+    ];
+
+    wijzigPersoon(this.context, new DataTable(data), true);
+});
+
+Given(/^de persoon(?: '(.*)')? is meerderjarig/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['geboortedatum (03.10)', 'gisteren - 35']
+    ];
+
+    wijzigPersoon(this.context, new DataTable(data), true);
+});
+
+Given(/^de persoon(?: '(.*)')? is niet geëmigreerd geweest/, function (_) {
+    // doe niets
+});
+
+Given(/^de persoon(?: '(.*)')? is in Nederland geboren/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['geboorteland (03.30)', '6030'],
+        ['aktenummer (81.20)]', '1AA0100']
+    ];
+
+    wijzigPersoon(this.context, new DataTable(data), true);
+});
+
+Given(/^de persoon(?: '(.*)')? heeft geen uitspraak gezag/, function (_) {
+    // doe niets
+});
+
+Given(/^de persoon(?: '(.*)')? heeft uitspraak gezag met de volgende gegevens/, function (_, dataTable) {
+    wijzigPersoon(this.context, dataTable);
 });
