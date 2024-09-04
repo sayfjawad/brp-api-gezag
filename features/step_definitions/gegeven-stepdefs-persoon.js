@@ -4,7 +4,6 @@ const { createPersoon,
     createInschrijving,
     updatePersoon,
     wijzigPersoon } = require('./persoon');
-const { createVerblijfplaats } = require('./verblijfplaats');
 const { toDateOrString } = require('./brpDatum');
 
 Given(/^de persoon met burgerservicenummer '(\d*)' heeft de volgende gegevens$/, function (burgerservicenummer, dataTable) {
@@ -43,27 +42,6 @@ Given(/^(?:de persoon(?: '(.*)')? )?met burgerservicenummer '(\d*)'$/, function 
     createPersoon(this.context, burgerservicenummer);
 });
 
-Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de BRP(?: met de volgende gegevens)?$/, function (_, dataTable) {
-    if (dataTable && dataTable instanceof DataTable) {
-        createInschrijving(this.context, dataTable);
-    } else {
-        const data = [
-            ['naam', 'waarde'],
-            ['gemeente van inschrijving (09.10)', '518']
-        ];
-        createInschrijving(this.context, new DataTable(data));
-    }
-});
-
-Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de RNI/, function (_) {
-    const data = [
-        ['naam', 'waarde'],
-        ['gemeente van inschrijving (09.10)', '1999']
-    ];
-
-    createInschrijving(this.context, new DataTable(data));
-});
-
 Given(/^(?:de persoon(?: '(.*)')? )?is minderjarig/, function (_) {
     const data = [
         ['naam', 'waarde'],
@@ -92,19 +70,3 @@ Given(/^(?:de persoon(?: '(.*)')? )?is in Nederland geboren/, function (_) {
     wijzigPersoon(this.context, new DataTable(data), true);
 });
 
-Given(/^(?:de persoon(?: '(.*)')? )?is niet geëmigreerd geweest/, function (_) {
-    // doe niets
-});
-
-Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest(?: met de volgende gegevens)?$/, function (_, dataTable) {
-    
-    if (dataTable && dataTable instanceof DataTable) {
-        createVerblijfplaats(this.context, dataTable);
-    }else {
-        const data = [
-            ['naam', 'waarde'],
-            ['datum vestiging in Nederland (14.20)', toDateOrString('vandaag - 10 jaar', true)]
-        ];
-        createVerblijfplaats(this.context, new DataTable(data));
-    }
-});

@@ -1,4 +1,4 @@
-const { Given } = require('@cucumber/cucumber');
+const { Given, DataTable } = require('@cucumber/cucumber');
 const deepEqualInAnyOrder = require('deep-equal-in-any-order');
 const should = require('chai').use(deepEqualInAnyOrder).should();
 const { createPersoonMetWoonadres,
@@ -64,5 +64,40 @@ Given(/^er zijn (\d*) personen ingeschreven op adres '(.*)' met de volgende gege
         const burgerservicenummer = (i + '').padStart(9, '0');
 
         createPersoonMetWoonadres(this.context, burgerservicenummer, adresId, dataTable);
+    }
+});
+
+Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de BRP?$/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['gemeente van inschrijving (09.10)', '0518']
+    ];
+
+    createVerblijfplaats(this.context, new DataTable(data));
+});
+
+Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de RNI/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['gemeente van inschrijving (09.10)', '1999']
+    ];
+
+    createVerblijfplaats(this.context, new DataTable(data));
+});
+
+Given(/^(?:de persoon(?: '(.*)')? )?is niet geëmigreerd geweest/, function (_) {
+    // doe niets
+});
+
+Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest(?: met de volgende gegevens)?$/, function (_, dataTable) {
+    
+    if (dataTable && dataTable instanceof DataTable) {
+        createVerblijfplaats(this.context, dataTable);
+    }else {
+        const data = [
+            ['naam', 'waarde'],
+            ['datum vestiging in Nederland (14.20)', toDateOrString('vandaag - 10 jaar', true)]
+        ];
+        createVerblijfplaats(this.context, new DataTable(data));
     }
 });
