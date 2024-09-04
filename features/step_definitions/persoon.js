@@ -67,23 +67,6 @@ function createPersoon(context, burgerservicenummer, dataTable = undefined) {
     return sqlData;
 }
 
-function createPersoonMetAanduiding(context, aanduiding, burgerservicenummer, dataTable = undefined) {
-    if(context.sqlData === undefined) {
-        context.sqlData = [];
-    }
-    context.sqlData.push({});
-
-    createInschrijving(context, undefined, true, getPlId(dataTable));
-
-    let sqlData = context.sqlData.at(-1);
-
-    persoon = [ createPersoonTypeData('persoon', dataTable, burgerservicenummer, 1) ];
-    persoon[0].push(['aanduiding', aanduiding]);
-
-    sqlData['persoon'] = persoon;
-    return sqlData;
-}
-
 function createVoorkomenData(dataTable) {
     return [
         [ 'volg_nr', '0']
@@ -185,7 +168,6 @@ function wijzigGegevensgroep(context, gegevensgroep, dataTable, isCorrectie = fa
 
 module.exports = {
     createPersoon,
-    createPersoonMetAanduiding,
     createPersoonMetGegevensgroep,
     createPersoonMetStapel,
     createStapel,
