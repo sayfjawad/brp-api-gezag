@@ -11,15 +11,14 @@ import nl.rijksoverheid.mev.transaction.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GezagBepaling {
 
     private static final Logger logger = LoggerFactory.getLogger(GezagBepaling.class);
 
+    @Getter
+    private UUID errorTraceCode;
     @Getter
     private final Persoonslijst plPersoon;
     private Persoonslijst plOuder1;
@@ -70,7 +69,9 @@ public class GezagBepaling {
             addMissendeGegegevens(ex.getMissendVeld());
             arAntwoordenModel.setException(ex);
         } catch (Exception ex) {
-            logger.error("Programmeerfout tijdens gezagbepaling", ex);
+            errorTraceCode = UUID.randomUUID();
+            logger.error("Programmeerfout tijdens het bepalen van gezag ({})", errorTraceCode, ex);
+
             arAntwoordenModel.setException(ex);
         }
     }
