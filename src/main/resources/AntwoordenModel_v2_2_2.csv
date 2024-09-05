@@ -4,7 +4,7 @@ Nee,,,,,,,,,,,,,,,,,1,N,Nee,Nee,Nee,Nee,150,gezag is niet te bepalen omdat minde
 Ja,,,,,,,,,,,,,,,,,2e,N,Nee,Nee,Nee,Nee,200,gezag is niet te bepalen omdat de geboortedatum van minderjarige niet bekend is.
 Ja,Nee_meerderjarig,,,,,,,,,,,,,,,,2m,NVT,Nee,Nee,Nee,Nee,210,Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing
 Ja,Nee_overleden,,,,,,,,,,,,,,,,2o,NVT,Nee,Nee,Nee,Nee,220,Ingezeten - minderjarig overleden - soort gezag is NVT - gezag is niet van toepassing
-Ja,Ja,,,,,,,,,,,,,,,,3e,N,Nee,Nee,Nee,Nee,300,gezag is niet te bepalen omdat
+Ja,Ja,,,,,,,,,,,,,,,,3e,N,Nee,Nee,Nee,Nee,300,gezag is niet te bepalen. Neem contact op met RvIG via info@RvIG onder vermelding van BRP API route 3e. Vermeld de volgende foutcode: %s
 Ja,Ja,Nee,Ja,,,,,,,,,,,,,,3ae,N,Nee,Nee,Nee,Nee,301,gezag is niet te bepalen omdat bij bepaling van adoptie van minderjarige relevante gegevens ontbreken
 Ja,Ja,Nee,,,,,,,,,,,,,,,3ee,N,Nee,Nee,Nee,Nee,310,gezag is niet te bepalen omdat geboortegegevens (in onderzoek staan.
 Ja,Ja,Ja,,,,,,,,,,,,,,,3,N,Nee,Nee,Nee,Nee,350,gezag is niet te bepalen omdat minderjarige buiten Nederland heeft verbleven.
