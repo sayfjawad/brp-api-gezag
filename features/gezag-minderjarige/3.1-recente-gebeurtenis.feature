@@ -4,7 +4,7 @@ Functionaliteit: 3.1 - Is er door een recente gebeurtenis het gezag toch (weer) 
 
 
     Achtergrond:
-      Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+      Gegeven de persoon 'kind' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is niet geëmigreerd geweest
