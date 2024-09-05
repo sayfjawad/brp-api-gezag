@@ -16,4 +16,8 @@ public class BrpException extends GezagException {
     public BrpException(final String message) {
         super(HttpStatus.SERVICE_UNAVAILABLE, message);
     }
+
+    public BrpException(final HttpStatus httpStatus, final String message) {
+        super(httpStatus, message);
+    }
 }

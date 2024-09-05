@@ -4,21 +4,21 @@
 package nl.rijksoverheid.mev.brp.brpv.generated.tables;
 
 
-import java.util.function.Function;
+import java.util.Collection;
 
 import nl.rijksoverheid.mev.brp.brpv.generated.Keys;
 import nl.rijksoverheid.mev.brp.brpv.generated.Public;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoudingRecord;
 
+import org.jooq.Condition;
 import org.jooq.Field;
-import org.jooq.ForeignKey;
-import org.jooq.Function13;
 import org.jooq.Name;
-import org.jooq.Record;
-import org.jooq.Records;
-import org.jooq.Row13;
+import org.jooq.PlainSQL;
+import org.jooq.QueryPart;
+import org.jooq.SQL;
 import org.jooq.Schema;
-import org.jooq.SelectField;
+import org.jooq.Select;
+import org.jooq.Stringly;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -121,11 +121,11 @@ public class Lo3PlGezagsverhouding extends TableImpl<Lo3PlGezagsverhoudingRecord
     public final TableField<Lo3PlGezagsverhoudingRecord, Integer> OPNEMING_DATUM = createField(DSL.name("opneming_datum"), SQLDataType.INTEGER, this, "");
 
     private Lo3PlGezagsverhouding(Name alias, Table<Lo3PlGezagsverhoudingRecord> aliased) {
-        this(alias, aliased, null);
+        this(alias, aliased, (Field<?>[]) null, null);
     }
 
-    private Lo3PlGezagsverhouding(Name alias, Table<Lo3PlGezagsverhoudingRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    private Lo3PlGezagsverhouding(Name alias, Table<Lo3PlGezagsverhoudingRecord> aliased, Field<?>[] parameters, Condition where) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table(), where);
     }
 
     /**
@@ -149,10 +149,6 @@ public class Lo3PlGezagsverhouding extends TableImpl<Lo3PlGezagsverhoudingRecord
      */
     public Lo3PlGezagsverhouding() {
         this(DSL.name("lo3_pl_gezagsverhouding"), null);
-    }
-
-    public <O extends Record> Lo3PlGezagsverhouding(Table<O> child, ForeignKey<O, Lo3PlGezagsverhoudingRecord> key) {
-        super(child, key, LO3_PL_GEZAGSVERHOUDING);
     }
 
     @Override
@@ -204,27 +200,87 @@ public class Lo3PlGezagsverhouding extends TableImpl<Lo3PlGezagsverhoudingRecord
         return new Lo3PlGezagsverhouding(name.getQualifiedName(), null);
     }
 
-    // -------------------------------------------------------------------------
-    // Row13 type methods
-    // -------------------------------------------------------------------------
-
+    /**
+     * Create an inline derived table from this table
+     */
     @Override
-    public Row13<Long, Short, String, Short, Short, Integer, String, Integer, Integer, Integer, String, Integer, Integer> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Lo3PlGezagsverhouding where(Condition condition) {
+        return new Lo3PlGezagsverhouding(getQualifiedName(), aliased() ? this : null, null, condition);
     }
 
     /**
-     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     * Create an inline derived table from this table
      */
-    public <U> SelectField<U> mapping(Function13<? super Long, ? super Short, ? super String, ? super Short, ? super Short, ? super Integer, ? super String, ? super Integer, ? super Integer, ? super Integer, ? super String, ? super Integer, ? super Integer, ? extends U> from) {
-        return convertFrom(Records.mapping(from));
+    @Override
+    public Lo3PlGezagsverhouding where(Collection<? extends Condition> conditions) {
+        return where(DSL.and(conditions));
     }
 
     /**
-     * Convenience mapping calling {@link SelectField#convertFrom(Class,
-     * Function)}.
+     * Create an inline derived table from this table
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function13<? super Long, ? super Short, ? super String, ? super Short, ? super Short, ? super Integer, ? super String, ? super Integer, ? super Integer, ? super Integer, ? super String, ? super Integer, ? super Integer, ? extends U> from) {
-        return convertFrom(toType, Records.mapping(from));
+    @Override
+    public Lo3PlGezagsverhouding where(Condition... conditions) {
+        return where(DSL.and(conditions));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlGezagsverhouding where(Field<Boolean> condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlGezagsverhouding where(SQL condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlGezagsverhouding where(@Stringly.SQL String condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlGezagsverhouding where(@Stringly.SQL String condition, Object... binds) {
+        return where(DSL.condition(condition, binds));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlGezagsverhouding where(@Stringly.SQL String condition, QueryPart... parts) {
+        return where(DSL.condition(condition, parts));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlGezagsverhouding whereExists(Select<?> select) {
+        return where(DSL.exists(select));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlGezagsverhouding whereNotExists(Select<?> select) {
+        return where(DSL.notExists(select));
     }
 }

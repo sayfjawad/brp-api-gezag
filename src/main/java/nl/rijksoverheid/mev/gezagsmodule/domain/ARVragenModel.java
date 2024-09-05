@@ -188,13 +188,14 @@ public class ARVragenModel {
             && plOuder.isNietIngeschrevenInRNI()
             && plOuder.isNietGeemigreerd();
         if (!ouderGeregistreerdInBrp) {
-            throw new AfleidingsregelException("Preconditie: " + beschrijving + " moet in BRP geregistreerd staan");
+            throw new AfleidingsregelException("Preconditie: " + beschrijving + " moet in BRP geregistreerd staan",
+                beschrijving + " staat niet in BRP geregistreerd");
         }
     }
 
     public void preconditieCheckOudersGeregistreerd() throws GezagException {
         if (!plPersoon.heeftTweeOuders()) {
-            throw new AfleidingsregelException("Preconditie: Kind moet twee ouders hebben");
+            throw new AfleidingsregelException("Preconditie: Kind moet twee ouders hebben", "kind heeft geen twee ouders");
         }
         preconditieCheckGeregistreerd("ouder1", getPlOuder1());
         preconditieCheckGeregistreerd("ouder2", getPlOuder2());
@@ -243,7 +244,7 @@ public class ARVragenModel {
         Ouder1 persoonOuder1 = plPersoon.getOuder1();
         Ouder2 persoonOuder2 = plPersoon.getOuder2();
         if (persoonOuder1 == null || persoonOuder2 == null)
-            throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geen twee ouders bij erkenning");
+            throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geen twee ouders bij erkenning", "geen twee ouders bij erkenning");
         // voor snelheid en gegevens in onderzoek
         boolean persoonErkend = plPersoon.geenOngeborenVruchtErkendOfGerechtelijkeVaststelling();
         boolean ouder1Erkend = plPersoon.geenOngeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling();
@@ -260,7 +261,7 @@ public class ARVragenModel {
         if (!persoonErkend && persoonOngeborenVruchtErkend && persoonGeborenVoor01012023)
             return V2A_3_VOOR;
 
-        throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen");
+        throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen", "geboortemoeder");
     }
 
     public boolean heeftOuderRelatieBijGeboorteKind(Persoonslijst plOuder, String geboortedatum) {
@@ -320,7 +321,7 @@ public class ARVragenModel {
         }
         // Preconditie ingangsdatum geldigheid gezag moet een geldige datum zijn en niet de standaard waarde
         if (Objects.equals(ingangsdatumGeldigheidGezag, STANDAARD_WAARDE_INGANGSDATUM_GELDIGHEID_GEZAG)) {
-            throw new AfleidingsregelException("Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten");
+            throw new AfleidingsregelException("Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten", "Ingangsdatum geldigheid gezag");
         }
         // Controleer op adoptie na uitspraak gezag, als adoptie heeft plaatsgevonden na de uitspraak
         // dan is er sprake van een recente gebeurtenis
@@ -385,12 +386,12 @@ public class ARVragenModel {
         Ouder2 persoonOuder2 = plPersoon.getOuder2();
         if ((persoonOuder1 == null || persoonOuder1.getBsn() == null)
             && (persoonOuder2 == null || persoonOuder2.getBsn() == null)) {
-            throw new AfleidingsregelException("Preconditie: Ouder moet een BSN hebben");
+            throw new AfleidingsregelException("Preconditie: Ouder moet een BSN hebben", "bsn van ouder");
         }
         Persoonslijst lplOuder1 = getPlOuder1();
         Persoonslijst lplOuder2 = getPlOuder2();
         if ((lplOuder1 == null) && (lplOuder2 == null)) {
-            throw new AfleidingsregelException("Preconditie: Ouder moet geregistreerd staan in het BRP");
+            throw new AfleidingsregelException("Preconditie: Ouder moet geregistreerd staan in het BRP", "ouder staat niet geregistreerd in BRP");
         }
         if (lplOuder1 != null
             && (!lplOuder1.isOverledenOfOnbevoegd())) {
@@ -438,10 +439,10 @@ public class ARVragenModel {
         Persoonslijst lplNietOuder = getPlNietOuder();
         // Preconditie: minimaal 1 ouder moet geregistreerd staan in BRP
         if (lplOuder1 == null && lplOuder2 == null) {
-            throw new AfleidingsregelException("Preconditie: Minimaal 1 ouder moet geregistreerd staan in BRP");
+            throw new AfleidingsregelException("Preconditie: Minimaal 1 ouder moet geregistreerd staan in BRP", "minimaal 1 ouder moet in BRP geregistreerd zijn");
         }
         if (lplNietOuder == null) {
-            throw new AfleidingsregelException("Preconditie: niet_ouder  moet geregistreerd staan in BRP");
+            throw new AfleidingsregelException("Preconditie: niet_ouder  moet geregistreerd staan in BRP", "niet ouder moet in BRP geregistreerd zijn");
         }
         if (lplOuder1 != null) {
             key = "ouder1," + (lplOuder1.isOverledenOfOnbevoegd()) + "," + (lplNietOuder.isOverledenOfOnbevoegd());

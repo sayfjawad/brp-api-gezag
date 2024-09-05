@@ -5,6 +5,7 @@ package nl.rijksoverheid.mev.brp.brpv.generated.tables;
 
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import nl.rijksoverheid.mev.brp.brpv.generated.Indexes;
@@ -12,12 +13,16 @@ import nl.rijksoverheid.mev.brp.brpv.generated.Keys;
 import nl.rijksoverheid.mev.brp.brpv.generated.Public;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
 
+import org.jooq.Condition;
 import org.jooq.Field;
-import org.jooq.ForeignKey;
 import org.jooq.Index;
 import org.jooq.Name;
-import org.jooq.Record;
+import org.jooq.PlainSQL;
+import org.jooq.QueryPart;
+import org.jooq.SQL;
 import org.jooq.Schema;
+import org.jooq.Select;
+import org.jooq.Stringly;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -184,11 +189,11 @@ public class Lo3PlVerblijfplaats extends TableImpl<Lo3PlVerblijfplaatsRecord> {
     public final TableField<Lo3PlVerblijfplaatsRecord, String> VERDRAG_OMS = createField(DSL.name("verdrag_oms"), SQLDataType.VARCHAR(50), this, "");
 
     private Lo3PlVerblijfplaats(Name alias, Table<Lo3PlVerblijfplaatsRecord> aliased) {
-        this(alias, aliased, null);
+        this(alias, aliased, (Field<?>[]) null, null);
     }
 
-    private Lo3PlVerblijfplaats(Name alias, Table<Lo3PlVerblijfplaatsRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    private Lo3PlVerblijfplaats(Name alias, Table<Lo3PlVerblijfplaatsRecord> aliased, Field<?>[] parameters, Condition where) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table(), where);
     }
 
     /**
@@ -212,10 +217,6 @@ public class Lo3PlVerblijfplaats extends TableImpl<Lo3PlVerblijfplaatsRecord> {
      */
     public Lo3PlVerblijfplaats() {
         this(DSL.name("lo3_pl_verblijfplaats"), null);
-    }
-
-    public <O extends Record> Lo3PlVerblijfplaats(Table<O> child, ForeignKey<O, Lo3PlVerblijfplaatsRecord> key) {
-        super(child, key, LO3_PL_VERBLIJFPLAATS);
     }
 
     @Override
@@ -270,5 +271,89 @@ public class Lo3PlVerblijfplaats extends TableImpl<Lo3PlVerblijfplaatsRecord> {
     @Override
     public Lo3PlVerblijfplaats rename(Table<?> name) {
         return new Lo3PlVerblijfplaats(name.getQualifiedName(), null);
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlVerblijfplaats where(Condition condition) {
+        return new Lo3PlVerblijfplaats(getQualifiedName(), aliased() ? this : null, null, condition);
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlVerblijfplaats where(Collection<? extends Condition> conditions) {
+        return where(DSL.and(conditions));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlVerblijfplaats where(Condition... conditions) {
+        return where(DSL.and(conditions));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlVerblijfplaats where(Field<Boolean> condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlVerblijfplaats where(SQL condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlVerblijfplaats where(@Stringly.SQL String condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlVerblijfplaats where(@Stringly.SQL String condition, Object... binds) {
+        return where(DSL.condition(condition, binds));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlVerblijfplaats where(@Stringly.SQL String condition, QueryPart... parts) {
+        return where(DSL.condition(condition, parts));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlVerblijfplaats whereExists(Select<?> select) {
+        return where(DSL.exists(select));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlVerblijfplaats whereNotExists(Select<?> select) {
+        return where(DSL.notExists(select));
     }
 }

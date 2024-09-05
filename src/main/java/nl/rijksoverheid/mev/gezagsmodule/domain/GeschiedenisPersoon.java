@@ -26,8 +26,11 @@ public class GeschiedenisPersoon extends PotentieelInOnderzoek {
     private static final String DOCUMENT_BESCHRIJVING = "518230";
 
     public static GeschiedenisPersoon from(final Lo3PlPersoonRecord lo3PlPersoonRecord, final Clock clock) {
+        var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
+        var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
+
         Map<String, String> values = new HashMap<>();
-        values.put(BSN, Objects.toString(lo3PlPersoonRecord.getBurgerServiceNr(), null));
+        values.put(BSN, burgerServiceNrAsString);
         values.put(VOORNAMEN, lo3PlPersoonRecord.getVoorNaam());
         values.put(VOORVOEGSEL, lo3PlPersoonRecord.getGeslachtsNaamVoorvoegsel());
         values.put(GESLACHTSNAAM, lo3PlPersoonRecord.getGeslachtsNaam());
