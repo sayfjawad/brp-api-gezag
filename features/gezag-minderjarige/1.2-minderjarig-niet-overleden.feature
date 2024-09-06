@@ -4,28 +4,22 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
 
 
     Achtergrond:
-      Gegeven de persoon 'P1' met burgerservicenummer '000000012'
-      * is meerderjarig
-      * heeft geslachtsnaam gevuld
-      En de persoon 'P2' met burgerservicenummer '000000024'
-      * is meerderjarig
-      * heeft geslachtsnaam gevuld
-      En persoon 'P1' heeft geregistreerd partnerschap met persoon 'P2'
-      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
-      | gisteren - 20 jaar                                                 |
+      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * heeft een ouder 'Ingrid' met met burgerservicenummer '000000012'
+      * heeft een ouder 'Henk' met met burgerservicenummer '000000024'
+      * 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
 
 
   Regel: Als de persoon ouder is dan 18 jaar is gezag niet van toepassing
 
-    Scenario: de persoon is minderjarig
-      Gegeven de persoon 'P3' met burgerservicenummer '000000036'
-      * is in Nederland geboren
-      * heeft de volgende geboorte gegevens
+    Abstract Scenario: de persoon is minderjarig
+      Gegeven is minderjarig
       | geboortedatum (03.10) |
       | <geboortedatum>       |
-      * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
-      * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
-      * is ingeschreven in de de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -51,15 +45,10 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
       | gisteren           |
       | vandaag            |
 
-    Scenario: de persoon is meerderjarig want is <omschrijving>
-      Gegeven de persoon 'P3' met burgerservicenummer '000000036'
-      * is in Nederland geboren
-      * heeft de volgende geboorte gegevens
+    Abstract Scenario: de persoon is meerderjarig want is <omschrijving>
+      Gegeven is meerderjarig
       | geboortedatum (03.10) |
       | <geboortedatum>       |
-      * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
-      * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
-      * is ingeschreven in de de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -80,14 +69,9 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
   Regel: Als de geboortedatum van de persoon volledig onbekend is wordt de persoon als meerderjarig beschouwd en is gezag niet van toepassing
 
     Scenario: geboortedatum is volledig onbekend
-      Gegeven de persoon 'P3' met burgerservicenummer '000000036'
-      * is in Nederland geboren
-      * heeft de volgende geboorte gegevens
+      Gegeven is meerderjarig
       | geboortedatum (03.10) |
       | 00000000              |
-      * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
-      * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
-      * is ingeschreven in de de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -99,15 +83,10 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
 
   Regel: Als de geboortedatum van de persoon gedeeltelijk bekend is wordt de leeftijd berekend met de 1e dag van de onzekerheidsperiode
 
-    Scenario: geboortedatum <omschrijving>
-      Gegeven de persoon 'P3' met burgerservicenummer '000000036'
-      * is in Nederland geboren
-      * heeft de volgende geboorte gegevens
+    Abstract Scenario: geboortedatum <omschrijving>
+      Gegeven is minderjarig
       | geboortedatum (03.10) |
       | <geboortedatum>       |
-      * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
-      * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
-      * is ingeschreven in de de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -132,15 +111,10 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
       | dit jaar - 17 jaar       | alleen jaar is bekend en persoon wordt volgend jaar 18 jaar oud      |
       | volgende maand - 18 jaar | jaar en maand is bekend en persoon wordt volgende maand 18 jaar oud  |
 
-    Scenario: geboortedatum <omschrijving>
-      Gegeven de persoon 'P3' met burgerservicenummer '000000036'
-      * is in Nederland geboren
-      * heeft de volgende geboorte gegevens
+    Abstract Scenario: geboortedatum <omschrijving>
+      Gegeven is meerderjarig
       | geboortedatum (03.10) |
       | <geboortedatum>       |
-      * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
-      * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
-      * is ingeschreven in de de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -160,15 +134,10 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
   Regel: Wanneer er onderzoek loopt naar de geboortedatum is gezag niet te bepalen
 
     Abstract Scenario: persoon is volgens geboortedatum <meer of minderjarig> en <onderzoek omschrijving> staat in onderzoek
-      Gegeven de persoon 'P3' met burgerservicenummer '000000036'
-      * is in Nederland geboren
-      * is <meer of minderjarig>
+      Gegeven is <meer of minderjarig>
       * heeft de volgende onderzoek gegevens
       | aanduiding in onderzoek (83.10) |
       | <aanduiding in onderzoek>       |
-      * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
-      * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
-      * is ingeschreven in de de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -188,15 +157,10 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
       | meerderjarig        | 010310                  | geboortedatum          | geboortedatum van de persoon                           |
 
     Abstract Scenario: bij minderjarige staat een ander gegeven dan geboortedatum, namelijk <onderzoek omschrijving> in onderzoek
-      Gegeven de persoon 'P3' met burgerservicenummer '000000036'
-      * is in Nederland geboren
-      * is minderjarig
+      Gegeven is minderjarig
       * heeft de volgende onderzoek gegevens
       | aanduiding in onderzoek (83.10) |
       | <aanduiding in onderzoek>       |
-      * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
-      * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
-      * is ingeschreven in de de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -222,15 +186,10 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
       | 010320                  | geboorteplaats         |
 
     Scenario: minderjarige heeft beëindigd onderzoek naar de geboortedatum
-      Gegeven de persoon 'P3' met burgerservicenummer '000000036'
-      * is in Nederland geboren
-      * is minderjarig
+      Gegeven is minderjarig
       * heeft de volgende onderzoek gegevens
       | aanduiding in onderzoek (83.10) | datum einde onderzoek (83.30) |
       | 010310                          | 20230526                      |
-      * heeft persoon 'P1' als ouder1 vanaf de geboorteaangifte
-      * heeft persoon 'P2' als ouder2 vanaf de geboorteaangifte
-      * is ingeschreven in de de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
