@@ -9,8 +9,8 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - ontkenning vadersch
       * is minderjarig
       * is niet geëmigreerd geweest
       * is in Nederland geboren
-      * heeft een ouder 'Ingrid' met met burgerservicenummer '000000012'
-      * heeft een ouder 'Henk' met met burgerservicenummer '000000024'
+      * heeft een ouder 'Ingrid' met burgerservicenummer '000000012'
+      * heeft een ouder 'Henk' met burgerservicenummer '000000024'
       * 'Ingrid' en 'Henk' zijn met elkaar gehuwd
       * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
 
