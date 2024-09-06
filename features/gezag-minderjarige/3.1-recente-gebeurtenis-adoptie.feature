@@ -145,7 +145,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | 1AW0200    | ander soort wijziging (naamswijziging) |
 
 
-  Regel: Als eerder opgegeven adoptie na de gerechtelijke uitspraak is gecorrigeerd wordt gezag bepaald volgens de gerechtelijke uitspraak over gezag
+  Regel: Onjuist opgenomen (gecorrigeerde) adoptiegegevens worden genegeerd
     # Als een historisch voorkomen van de persoonsgegevens een adoptie aangeeft - akteaanduiding (51.81.20) bevat de waarde Q - maar dat voorkomen heeft 
     # indicatie onjuist met een waarde, dan wordt het aktenummer in dat historisch voorkomen genegeerd
 

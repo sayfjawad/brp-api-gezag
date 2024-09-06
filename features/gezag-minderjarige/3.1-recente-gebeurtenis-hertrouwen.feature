@@ -12,7 +12,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       * heeft een ouder 'Ingrid' met met burgerservicenummer '000000012'
       * heeft een ouder 'Henk' met met burgerservicenummer '000000024'
       * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
-      En de persoon 'Joris' met burgerservicenummer '000000048'
+      En de persoon 'Geert' met burgerservicenummer '000000048'
       * is meerderjarig
       En de persoon 'Anne-Fleur' met burgerservicenummer '000000061'
       * is meerderjarig
@@ -26,7 +26,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
     # * datum aangaan huwelijk of geregistreerd partnerschap ligt na de ingangsdatum geldigheid van de gezagsverhouding 
 
     Abstract Scenario: gezag wordt van rechtswege bepaald voor minderjarige waarbij na gerechtelijke uitspraak tot gezag ouder<indicatie gezag> de ouders zijn getrouwd
-      Gegeven heeft gezag uitspraak
+      Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
       En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
@@ -54,11 +54,74 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 1               |
       | 2               |
 
-    Abstract Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige waarbij na gerechtelijke uitspraak tot gezag ouder1 de ouders getrouwd zijn met een andere derde persoon (niet de ander ouder)
+    Abstract Scenario: gezag wordt van rechtswege bepaald voor minderjarige waarbij na gerechtelijke uitspraak tot gezag ouder<indicatie gezag> de ouders zijn hertrouwd
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | <indicatie gezag>                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 20 jaar                                                 |
+      En 'Ingrid' en 'Henk' zijn gescheiden
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
+      | gisteren - 6 jaar                                            |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 2 jaar                                                  |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
+
+      Voorbeelden:
+      | indicatie gezag |
+      | 1               |
+      | 2               |
+
+    Abstract Scenario: geen 'recente gebeurtenis' omdat de ouders na het 'herstelhuwelijk' weer zijn gescheiden
+      # onduidelijk uit afleidingsregels of in dit geval er sprake is van een 'recente gebeurtenis'
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | <indicatie gezag>                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 4 jaar                                                 |
+      En 'Ingrid' en 'Henk' zijn gescheiden
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
+      | gisteren - 1 jaar                                            |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | <gezaghebbende ouder>    |
+
+      Voorbeelden:
+      | indicatie gezag | gezaghebbende ouder |
+      | 1               | 000000012           |
+      | 2               | 000000024           |
+
+    Abstract Scenario: geen 'recente gebeurtenis' omdat de ouders getrouwd zijn met een andere derde persoon (niet de ander ouder)
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Joris' zijn met elkaar gehuwd
+      En 'Ingrid' en 'Geert' zijn met elkaar gehuwd
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 4 jaar                                                  |
       En 'Henk' en 'Anne-Fleur' zijn met elkaar gehuwd
@@ -82,7 +145,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 1               | 000000012           |
       | 2               | 000000024           |
 
-    Abstract Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige waarbij voor gerechtelijke uitspraak tot gezag ouder<indicatie gezag> en tot nu de ouders met elkaar getrouwd zijn
+    Abstract Scenario: geen 'recente gebeurtenis' omdat de ouders al voor de uitspraak met elkaar getrouwd zijn
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
@@ -110,7 +173,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 1               | 000000012           |
       | 2               | 000000024           |
 
-    Abstract Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige waarbij na gerechtelijke uitspraak tot gezag <omschrijving uitspraak> de ouders zijn getrouwd
+    Abstract Scenario: geen 'recente gebeurtenis' omdat de gerechtelijke uitspraak tot gezag <omschrijving uitspraak> is
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
@@ -135,11 +198,107 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 1D              | ouder 1 en een derde   |
       | 2D              | ouder 2 en een derde   |
 
+  Regel: Onjuist opgenomen (gecorrigeerde) huwelijks- of partnerschapsgegevens worden genegeerd
+    # Als een historisch voorkomen van de partnergegevens een indicatie onjuist heeft met een waarde, dan wordt dat historisch 
+    # voorkomen genegeerd
+    
+    Abstract Scenario: geen 'recente gebeurtenis' omdat het huwelijk met een correctie volledig is verwijderd
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | <indicatie gezag>                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 4 jaar                                                  |
+      En is het huwelijk van 'Ingrid' en 'Henk' gecorrigeerd
+      | naam                                                                | waarde |
+      | burgerservicenummer (01.20)                                         |        |
+      | voornamen (02.10)                                                   |        |
+      | geslachtsnaam (02.40)                                               |        |
+      | geboortedatum (03.10)                                               |        |
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  |        |
+      | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) |        |
+      | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   |        |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | <gezaghebbende ouder>    |
 
-  Regel: Als de ouders met elkaar zijn hertrouwd na gerechtelijke uitspraak tot gezag voor één van beide ouders en de datum aangaan van het huwelijk of partnerschap staat in onderzoek, is het gezag niet te bepalen
+      Voorbeelden:
+      | indicatie gezag | gezaghebbende ouder |
+      | 1               | 000000012           |
+      | 2               | 000000024           |
+
+    Abstract Scenario: geen 'recente gebeurtenis' omdat de datum huwelijkssluiting is gecorrigeerd naar vóór de gezaguitspraak
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | <indicatie gezag>                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 4 jaar                                                  |
+      En is het huwelijk van 'Ingrid' en 'Henk' gecorrigeerd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 6 jaar                                                  |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | <gezaghebbende ouder>    |
+
+      Voorbeelden:
+      | indicatie gezag | gezaghebbende ouder |
+      | 1               | 000000012           |
+      | 2               | 000000024           |
+
+    Abstract Scenario: wel 'recente gebeurtenis' omdat de datum huwelijkssluiting is gecorrigeerd naar na de gezaguitspraak
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | <indicatie gezag>                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 6 jaar                                                  |
+      En is het huwelijk van 'Ingrid' en 'Henk' gecorrigeerd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 4 jaar                                                  |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
+
+      Voorbeelden:
+      | indicatie gezag | gezaghebbende ouder |
+      | 1               | 000000012           |
+      | 2               | 000000024           |
+
+
+  Regel: Als de ouders met elkaar zijn hertrouwd na gerechtelijke uitspraak tot gezag en de datum aangaan van het huwelijk of partnerschap staat in onderzoek, is het gezag niet te bepalen
     # kijk je ook naar onderzoek op burgerservicenummer of naam van partner op PL van ouder?
 
-    Abstract Scenario: gezag kan niet worden bepaald voor minderjarige waarvan de ouders met elkaar zijn hertrouwd na gerechtelijke uitspraak tot gezag en <omschrijving> van ouder1 staat in onderzoek
+    Abstract Scenario: <omschrijving> van ouder 1 staat in onderzoek
 
       Voorbeelden:
       | aanduiding onderzoek | omschrijving                                |
@@ -147,7 +306,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 050600               | hele groep aangaan huwelijk of partnerschap |
       | 050610               | datum aangaan huwelijk of partnerschap      |
 
-    Abstract Scenario: gezag kan niet worden bepaald voor minderjarige waarvan de ouders met elkaar zijn hertrouwd na gerechtelijke uitspraak tot gezag en <omschrijving> van ouder2 staat in onderzoek
+    Abstract Scenario: <omschrijving> van ouder 2 staat in onderzoek
 
       Voorbeelden:
       | aanduiding onderzoek | omschrijving                                |
@@ -156,9 +315,9 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 050610               | datum aangaan huwelijk of partnerschap      |
 
 
-    Scenario: gezag wordt van rechtswege bepaald voor minderjarige waarvan de ouders met elkaar zijn hertrouwd na de gerechtelijke uitspraak tot gezag en het onderzoek naar partnerschap van ouder1 is beëindigd
+    Scenario: het onderzoek naar datum aangaan huwelijk of partnerschap van ouder1 is beëindigd
 
-    Abstract Scenario: gezag wordt van rechtswege bepaald voor minderjarige waarvan de ouders met elkaar zijn hertrouwd na de gerechtelijke uitspraak tot gezag en <omschrijving> van ouder1 staat in onderzoek
+    Abstract Scenario: de ouders met elkaar zijn hertrouwd na de gerechtelijke uitspraak tot gezag en <omschrijving> van ouder1 staat in onderzoek
 
       Voorbeelden:
       | aanduiding onderzoek | omschrijving                    |
@@ -166,4 +325,6 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 050200               | hele groep naam van partner     |
       | 050240               | geslachtsnaam van partner       |
       | 050300               | hele groep geboorte van partner |
+
+    Abstract Scenario: de ouders zijn met een derde (niet de andere ouder) getrouwd na de gerechtelijke uitspraak tot gezag en <omschrijving> van ouder1 staat in onderzoek
 
