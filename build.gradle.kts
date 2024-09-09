@@ -95,7 +95,7 @@ sourceSets {
 
 group = "nl.rijksoverheid.mev"
 version = "1.7.0-snapshot"
-description = "gezag"
+description = "Het gezag component van BRP-API"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 tasks.withType<BootBuildImage> {
