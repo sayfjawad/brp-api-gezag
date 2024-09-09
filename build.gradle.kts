@@ -94,13 +94,19 @@ sourceSets {
 }
 
 group = "nl.rijksoverheid.mev"
-version = "1.7.0-SNAPSHOT"
+version = "1.7.0-snapshot"
 description = "gezag"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 tasks.withType<BootBuildImage> {
     builder.set("paketobuildpacks/builder-jammy-buildpackless-tiny")
     buildpacks.add("gcr.io/paketo-buildpacks/java")
+
+    imageName.set("ghcr.io/brp-api/${project.name}:latest")
+    tags.set(listOf(
+        "ghcr.io/brp-api/${project.name}:${project.version}",
+        "ghcr.io/brp-api/${project.name}:${LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))}",
+    ))
 }
 
 tasks.withType<JavaCompile> {
