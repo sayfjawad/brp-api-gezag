@@ -107,6 +107,13 @@ tasks.withType<BootBuildImage> {
         "ghcr.io/brp-api/${project.name}:${project.version}",
         "ghcr.io/brp-api/${project.name}:${LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))}",
     ))
+
+    docker {
+        publishRegistry {
+            username.set(System.getenv("GITHUB_ACTOR"))
+            password.set(System.getenv("GITHUB_TOKEN"))
+        }
+    }
 }
 
 tasks.withType<JavaCompile> {
