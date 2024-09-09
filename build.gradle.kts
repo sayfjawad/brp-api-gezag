@@ -1,5 +1,7 @@
 import io.freefair.gradle.plugins.lombok.tasks.LombokTask
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 plugins {
     application
@@ -97,7 +99,8 @@ description = "gezag"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 tasks.withType<BootBuildImage> {
-    builder = "dashaun/builder:tiny"
+    builder.set("paketobuildpacks/builder-jammy-buildpackless-tiny")
+    buildpacks.add("gcr.io/paketo-buildpacks/java")
 }
 
 tasks.withType<JavaCompile> {
