@@ -62,7 +62,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTestMeerderjarige {
             .expectHeader().contentType(MediaType.APPLICATION_JSON)
             .expectBody(GezagResponse.class).consumeWith(response -> {
                 GezagResponse result = response.getResponseBody();
-                List<Persoon> personen = new ArrayList<>();
                 GezagTransformer transformer = new GezagTransformer();
                 List<Persoon> expectedPersonen = transformer.fromGezagrelaties(new ArrayList<>(expected));
 
