@@ -1,8 +1,5 @@
 package nl.rijksoverheid.mev.gmapi;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import nl.rijksoverheid.mev.GezagApplication;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -14,13 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Stream;
-
-import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(
     classes = {GezagApplication.class, OpenApiGeneratorApplication.class},
@@ -38,19 +30,45 @@ class OpvragenBevoegdheidTotGezagMeerderjarigeAcceptanceTest {
             // (input, expected)
             Arguments.of(
                 "999998778", // meerderjarige
-                Set.of(
-                    new Gezagsrelatie("999998778", "999998316", "OG2", "999998778", null, false),
-                    new Gezagsrelatie("999998778", "999999746", "OG1", "999998778", null, false),
-                    new Gezagsrelatie("999998778", "999998341", "OG2", "999998778", null, false),
-                    new Gezagsrelatie("999998778", "999998328", "OG2", "999998778", null, false)
-                )
+                new GezagResponse()
+                    .personen(List.of(
+                        new Persoon()
+                            .burgerservicenummer("999998778")
+                            .gezag(List.of(
+                                new TweehoofdigOuderlijkGezag()
+                                    .type("TweehoofdigOuderlijkGezag")
+                                    .minderjarige(new Minderjarige().burgerservicenummer("999998316"))
+                                    .ouders(List.of(
+                                        new GezagOuder().burgerservicenummer("999998778"),
+                                        new GezagOuder().burgerservicenummer("999998791")
+                                    )),
+                                new EenhoofdigOuderlijkGezag()
+                                    .type("EenhoofdigOuderlijkGezag")
+                                    .minderjarige(new Minderjarige().burgerservicenummer("999999746"))
+                                    .ouder(new GezagOuder().burgerservicenummer("999998778")),
+                                new TweehoofdigOuderlijkGezag()
+                                    .type("TweehoofdigOuderlijkGezag")
+                                    .minderjarige(new Minderjarige().burgerservicenummer("999998341"))
+                                    .ouders(List.of(
+                                        new GezagOuder().burgerservicenummer("999998778"),
+                                        new GezagOuder().burgerservicenummer("999998791")
+                                    )),
+                                new TweehoofdigOuderlijkGezag()
+                                    .type("TweehoofdigOuderlijkGezag")
+                                    .minderjarige(new Minderjarige().burgerservicenummer("999998328"))
+                                    .ouders(List.of(
+                                        new GezagOuder().burgerservicenummer("999998778"),
+                                        new GezagOuder().burgerservicenummer("999998791")
+                                    ))
+                            ))
+                    ))
             )
         );
     }
 
     @ParameterizedTest
     @MethodSource
-    void opvragenBevoegdheidTotGezag(final String input, final Set<Gezagsrelatie> expected) {
+    void opvragenBevoegdheidTotGezag(final String input, final GezagResponse expected) {
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(input));
 
         webTestClient.post().uri("/api/v1/opvragenBevoegdheidTotGezag")
@@ -60,22 +78,6 @@ class OpvragenBevoegdheidTotGezagMeerderjarigeAcceptanceTest {
             .exchange()
             .expectStatus().isOk()
             .expectHeader().contentType(MediaType.APPLICATION_JSON)
-            .expectBody(GezagResponse.class).consumeWith(response -> {
-                GezagResponse result = response.getResponseBody();
-                GezagTransformer transformer = new GezagTransformer();
-                List<Persoon> expectedPersonen = transformer.fromGezagrelaties(new ArrayList<>(expected));
-
-                Persoon expectedPerson = expectedPersonen.get(0);
-                Persoon actualPerson = result.getPersonen().get(0);
-
-                assertEquals(expectedPerson.getBurgerservicenummer(), actualPerson.getBurgerservicenummer());
-                List<AbstractGezagsrelatie> actualGezagsrelaties = new ArrayList<>(actualPerson.getGezag());
-                for (AbstractGezagsrelatie gezagsrelatie : actualPerson.getGezag()) {
-                    assertTrue(expectedPerson.getGezag().contains(gezagsrelatie));
-                    actualGezagsrelaties.remove(gezagsrelatie);
-                }
-
-                assertTrue(actualGezagsrelaties.isEmpty());
-            });
+            .expectBody(GezagResponse.class).isEqualTo(expected);
     }
 }
