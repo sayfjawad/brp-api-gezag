@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
     classes = {GezagApplication.class, OpenApiGeneratorApplication.class},
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
-class OpvragenBevoegdheidTotGezagAcceptanceTestMeerderjarige {
+class OpvragenBevoegdheidTotGezagMeerderjarigeAcceptanceTest {
 
     private static final String OIN = "00000004003214345001";
 
