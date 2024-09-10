@@ -82,8 +82,9 @@ public class BevoegdheidTotGezagService {
 
     private Stream<Gezagsrelatie> vindGezagsrelatiesVoorKinderen(final String bevraagdePersoon, final Transaction transaction) throws GezagException {
         List<String> kinderen = brpService.getBsnsMinderjarigeKinderen(bevraagdePersoon, transaction);
-        return gezagService.getGezag(kinderen, transaction).stream()
-            .filter(gezagsrelatie -> bevraagdePersoon.equals(gezagsrelatie.getBsnMeerderjarige()));
+        List<Gezagsrelatie> gezagsrelaties = gezagService.getGezag(kinderen, transaction);
+        return gezagsrelaties.stream()
+            .filter(gezagsrelatie -> gezagsrelatie.isTweehoofdigOuderlijkGezag() || bevraagdePersoon.equals(gezagsrelatie.getBsnMeerderjarige()));
     }
 
 }
