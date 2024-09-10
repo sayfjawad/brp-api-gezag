@@ -76,9 +76,8 @@ public class BevoegdheidTotGezagService {
             persoonGezagsrelaties.forEach(gr -> gr.setBsnBevraagdePersoon(bevraagdePersoon));
             gezagsrelaties.addAll(persoonGezagsrelaties);
         }
-        List<Persoon> personen = gezagTransformer.fromGezagrelaties(gezagsrelaties);
 
-        return personen;
+        return gezagTransformer.fromGezagrelaties(gezagsrelaties);
     }
 
     private Stream<Gezagsrelatie> vindGezagsrelatiesVoorKinderen(final String bevraagdePersoon, final Transaction transaction) throws GezagException {
