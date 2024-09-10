@@ -30,6 +30,7 @@ jobs:
       run: ./gradlew build
 
     - name: Publish to GitHub Packages
+      if: github.ref == 'refs/heads/main'
       run: ./gradlew bootBuildImage --publishImage
       env:
         GITHUB_ACTOR: ${{ github.actor }}
