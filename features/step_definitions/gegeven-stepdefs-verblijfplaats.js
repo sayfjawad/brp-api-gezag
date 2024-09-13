@@ -10,6 +10,7 @@ const { createPersoonMetWoonadres,
         createVerblijfplaatsBuitenland,
         createVerblijfplaats,
         corrigeerVerblijfplaats } = require('./verblijfplaats');
+const { toDateOrString } = require('./brpDatum');
 
 Given(/^de persoon met burgerservicenummer '(\d*)' is ingeschreven op adres '(\w*)' met de volgende gegevens$/, function (burgerservicenummer, adresId, dataTable) {
     createPersoonMetWoonadres(this.context, burgerservicenummer, adresId, dataTable);
@@ -89,15 +90,14 @@ Given(/^(?:de persoon(?: '(.*)')? )?is niet geëmigreerd geweest/, function (_) 
     // doe niets
 });
 
-Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest(?: met de volgende gegevens)?$/, function (_, dataTable) {
-    
-    if (dataTable && dataTable instanceof DataTable) {
-        createVerblijfplaats(this.context, dataTable);
-    }else {
-        const data = [
-            ['naam', 'waarde'],
-            ['datum vestiging in Nederland (14.20)', toDateOrString('vandaag - 10 jaar', true)]
-        ];
-        createVerblijfplaats(this.context, new DataTable(data));
-    }
+Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest met de volgende gegevens?$/, function (_, dataTable) {
+    createVerblijfplaats(this.context,  dataTable);
+});
+
+Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['datum vestiging in Nederland (14.20)', toDateOrString('vandaag - 1 jaar', true)]
+    ];
+    createVerblijfplaats(this.context, new DataTable(data));
 });
