@@ -1,6 +1,10 @@
 package nl.rijksoverheid.mev;
 
+import nl.rijksoverheid.mev.exception.PersoonslijstNotFoundException;
+import org.openapitools.model.GezagResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
@@ -9,4 +13,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  */
 @ControllerAdvice
 public class ExceptionHandlers extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler
+    ResponseEntity<GezagResponse> handle(PersoonslijstNotFoundException ex) {
+        logger.error(ex.getMessage(), ex);
+
+        var body = new GezagResponse();
+        return ResponseEntity.ok(body);
+    }
 }
