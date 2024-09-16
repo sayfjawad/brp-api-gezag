@@ -10,7 +10,10 @@ import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import static nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst.isValideGeslachtsnaam;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
@@ -457,7 +460,6 @@ public class ARVragenModel {
     deze al lang opgehaald of was dit onnodig.
      */
     public void bepalenGezagdragers(final String bsn, final ARAntwoordenModel arAntwoordenModel, final List<Gezagsrelatie> gezagsrelaties) {
-        Set<String> gezagsdragers = new HashSet<>();
         if (arAntwoordenModel != null) {
             String uitleg = arAntwoordenModel.getUitleg();
             String soortGezag = arAntwoordenModel.getSoortGezag();
