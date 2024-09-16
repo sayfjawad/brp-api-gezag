@@ -37,18 +37,14 @@ class OpvragenBevoegdheidTotGezagMeerderjarigeAcceptanceTest {
                             .gezag(List.of(
                                 new TweehoofdigOuderlijkGezag()
                                     .type("TweehoofdigOuderlijkGezag")
-                                    .minderjarige(new Minderjarige().burgerservicenummer("999998316"))
+                                    .minderjarige(new Minderjarige().burgerservicenummer("999998341"))
                                     .ouders(List.of(
                                         new GezagOuder().burgerservicenummer("999998778"),
                                         new GezagOuder().burgerservicenummer("999998791")
                                     )),
-                                new EenhoofdigOuderlijkGezag()
-                                    .type("EenhoofdigOuderlijkGezag")
-                                    .minderjarige(new Minderjarige().burgerservicenummer("999999746"))
-                                    .ouder(new GezagOuder().burgerservicenummer("999998778")),
                                 new TweehoofdigOuderlijkGezag()
                                     .type("TweehoofdigOuderlijkGezag")
-                                    .minderjarige(new Minderjarige().burgerservicenummer("999998341"))
+                                    .minderjarige(new Minderjarige().burgerservicenummer("999998316"))
                                     .ouders(List.of(
                                         new GezagOuder().burgerservicenummer("999998778"),
                                         new GezagOuder().burgerservicenummer("999998791")
@@ -59,7 +55,11 @@ class OpvragenBevoegdheidTotGezagMeerderjarigeAcceptanceTest {
                                     .ouders(List.of(
                                         new GezagOuder().burgerservicenummer("999998778"),
                                         new GezagOuder().burgerservicenummer("999998791")
-                                    ))
+                                    )),
+                                new EenhoofdigOuderlijkGezag()
+                                    .type("EenhoofdigOuderlijkGezag")
+                                    .minderjarige(new Minderjarige().burgerservicenummer("999999746"))
+                                    .ouder(new GezagOuder().burgerservicenummer("999998778"))
                             ))
                     ))
             )
