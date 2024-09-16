@@ -19,18 +19,21 @@ public class Gezagsrelatie {
     private boolean isDerde;
 
     public Gezagsrelatie(
-            final String bsnMinderjarige,
-            final String soortGezag,
-            final String bsnMeerderjarige,
-            final String toelichting) {
+        final String bsnMinderjarige,
+        final String soortGezag,
+        final String bsnMeerderjarige,
+        final String toelichting
+    ) {
         this.bsnMinderjarige = bsnMinderjarige;
         this.soortGezag = soortGezag;
         this.bsnMeerderjarige = bsnMeerderjarige;
         this.toelichting = toelichting;
     }
 
-    public Gezagsrelatie(final String bsnMinderjarige,
-            final String soortGezag) {
+    public Gezagsrelatie(
+        final String bsnMinderjarige,
+        final String soortGezag
+    ) {
         this.bsnMinderjarige = bsnMinderjarige;
         this.soortGezag = soortGezag;
     }
@@ -42,9 +45,9 @@ public class Gezagsrelatie {
     @Override
     public String toString() {
         return "Gezagsrelatie{"
-                + ", bsnMinderjarige=" + bsnMinderjarige 
-                + ", soortGezag=" + soortGezag 
-                + ", bsnMeerderjarige=" + bsnMeerderjarige 
-                + ", toelichting=" + toelichting + '}';
+            + ", bsnMinderjarige=" + bsnMinderjarige
+            + ", soortGezag=" + soortGezag
+            + ", bsnMeerderjarige=" + bsnMeerderjarige
+            + ", toelichting=" + toelichting + '}';
     }
 }
