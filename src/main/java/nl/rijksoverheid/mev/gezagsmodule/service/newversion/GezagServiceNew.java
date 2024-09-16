@@ -110,7 +110,7 @@ public class GezagServiceNew implements GezagService {
         arAntwoordenModel.setRoute(route);
         setConfiguredValues(arAntwoordenModel);
 
-        String arAntwoordenModelUitleg = arAntwoordenModel.getUitleg();
+        String unformattedUitleg = arAntwoordenModel.getUitleg();
 
         if (hasVeldenInOnderzoek) {
             route = route + "i";
@@ -120,7 +120,7 @@ public class GezagServiceNew implements GezagService {
             arAntwoordenModel.setGezagOuder2(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
-            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModelUitleg, gezagBepaling.getVeldenInOnderzoek(), null));
+            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(unformattedUitleg, gezagBepaling.getVeldenInOnderzoek(), null));
         }
 
         if (gezagBepaling != null) {
@@ -128,18 +128,19 @@ public class GezagServiceNew implements GezagService {
             UUID errorTraceCode = gezagBepaling.getErrorTraceCode();
 
             if (!missendeGegegevens.isEmpty()) {
-                String toelichting = toelichtingService.decorateToelichting(arAntwoordenModelUitleg, null, missendeGegegevens);
+                String toelichting = toelichtingService.decorateToelichting(unformattedUitleg, null, missendeGegegevens);
                 arAntwoordenModel.setUitleg(toelichting);
             } else if (errorTraceCode != null) {
-                arAntwoordenModelUitleg = arAntwoordenModelUitleg.formatted(errorTraceCode.toString());
-                arAntwoordenModel.setUitleg(arAntwoordenModelUitleg);
+                unformattedUitleg = unformattedUitleg.formatted(errorTraceCode.toString());
+                arAntwoordenModel.setUitleg(unformattedUitleg);
             }
 
             gezagBepaling.bepalenGezagdragers(bsn, arAntwoordenModel, gezagRelaties);
         }
 
         if (gezagRelaties.isEmpty() && arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals(SOORT_GEZAG_NVT)) {
-            gezagRelaties.add(new Gezagsrelatie(bsn, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, arAntwoordenModelUitleg));
+            String uitleg = arAntwoordenModel.getUitleg();
+            gezagRelaties.add(new Gezagsrelatie(bsn, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, uitleg));
         }
 
         result = new GezagAfleidingsResultaat(gezagRelaties, arAntwoordenModel, route);
