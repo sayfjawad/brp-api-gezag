@@ -547,14 +547,20 @@ public class Persoonslijst {
     }
 
     public boolean adoptieNaIngangsGeldigheidsdatum() {
-        if (geadopteerdMetNlAkte()) {
-            boolean ouder1AdoptieNa = Integer.parseInt(getOuder1().getDatumIngangFamiliebetrekking())
-                    >= Integer.parseInt(getGezagsverhouding().getIngangsdatumGeldigheidGezag());
-            boolean ouder2AdoptieNa = Integer.parseInt(getOuder2().getDatumIngangFamiliebetrekking())
-                    >= Integer.parseInt(getGezagsverhouding().getIngangsdatumGeldigheidGezag());
-            return (ouder1AdoptieNa || ouder2AdoptieNa);
-        }
-        return false;
+        if (!geadopteerdMetNlAkte()) return false;
+
+        String ingangsdatumGeldigheidGezag = getGezagsverhouding().getIngangsdatumGeldigheidGezag();
+        if (ingangsdatumGeldigheidGezag == null) return false;
+
+        String datumIngangFamiliebetrekkingOuder1 = getOuder1().getDatumIngangFamiliebetrekking();
+        if (datumIngangFamiliebetrekkingOuder1 == null) return false;
+        boolean ouder1AdoptieNa = Integer.parseInt(datumIngangFamiliebetrekkingOuder1) >= Integer.parseInt(ingangsdatumGeldigheidGezag);
+
+        String datumIngangFamiliebetrekkingOuder2 = getOuder2().getDatumIngangFamiliebetrekking();
+        if (datumIngangFamiliebetrekkingOuder2 == null) return false;
+        boolean ouder2AdoptieNa = Integer.parseInt(datumIngangFamiliebetrekkingOuder2) >= Integer.parseInt(ingangsdatumGeldigheidGezag);
+
+        return ouder1AdoptieNa || ouder2AdoptieNa;
     }
 
     public boolean geadopteerdMetNlAkte() {
