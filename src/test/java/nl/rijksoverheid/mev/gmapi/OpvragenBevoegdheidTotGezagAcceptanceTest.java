@@ -691,7 +691,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 default ->
                     gezagsrelatie.setBsnMeerderjarige("");
             }
-            gezagsrelatie.setBsnBevraagdePersoon(commonValue);
             gezagsrelatie.setToelichting(UITLEG);
         }
         return Arguments.of(testcase, commonValue, gezagsrelaties);
@@ -704,7 +703,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 for (String bsnMeerderjarige : bsnsMeerderjarigen) {
                     Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsnMinderjarige, soortGezag);
                     gezagsrelatie.setBsnMeerderjarige(bsnMeerderjarige);
-                    gezagsrelatie.setBsnBevraagdePersoon(bsnMinderjarige);
                     gezagsrelatie.setToelichting(UITLEG);
                     if("GG".equals(soortGezag) && !gezagsrelaties.isEmpty()) {
                         gezagsrelatie.setDerde(true);
@@ -715,7 +713,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
             default -> {
                 Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsnMinderjarige, soortGezag);
                 gezagsrelatie.setBsnMeerderjarige("");
-                gezagsrelatie.setBsnBevraagdePersoon(bsnMinderjarige);
                 gezagsrelatie.setToelichting(UITLEG);
                 gezagsrelaties.add(gezagsrelatie);
             }
