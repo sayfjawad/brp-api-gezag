@@ -73,3 +73,9 @@ Given(/^heeft een ouder 2 '(.*)' met burgerservicenummer '(\d*)'/, function (aan
 Given(/^beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele/, function () {
    // doe niets
 });
+
+Given(/^zijn de volgende gegevens van ouder '(.*)' gewijzigd/, function (aanduiding, dataTable) {
+    let bsn = this.context.map.get(aanduiding);
+
+    aanvullenPersoonMetBsn(this.context, bsn, dataTable);
+});

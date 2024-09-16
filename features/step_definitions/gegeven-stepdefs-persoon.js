@@ -4,8 +4,7 @@ const { createPersoon,
     createInschrijving,
     updatePersoon,
     wijzigPersoon,
-    aanvullenPersoon, 
-    aanvullenPersoonMetBsn } = require('./persoon');
+    aanvullenPersoon} = require('./persoon');
 const { toDateOrString } = require('./brpDatum');
 
 Given(/^de persoon met burgerservicenummer '(\d*)' heeft de volgende gegevens$/, function (burgerservicenummer, dataTable) {
@@ -90,8 +89,10 @@ Given(/^is geadopteerd/, function (dataTable) {
     aanvullenPersoon(this.context, dataTable);
 });
 
-Given(/^zijn de volgende gegevens van ouder '(.*)' gewijzigd/, function (aanduiding, dataTable) {
-    let bsn = this.context.map.get(aanduiding);
+Given(/^zijn de volgende gegegevens gewijzigd$/, function (dataTable) {
+    wijzigPersoon(this.context, dataTable);
+});
 
-    aanvullenPersoonMetBsn(this.context, bsn, dataTable);
-  });
+Given(/^zijn de volgende gegegevens gecorrigeerd$/, function (dataTable) {
+    wijzigPersoon(this.context, dataTable, true);
+});
