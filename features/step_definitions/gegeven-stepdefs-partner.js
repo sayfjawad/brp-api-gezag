@@ -38,7 +38,7 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd/, function (aanduiding1, aanduid
         ['burgerservicenummer (01.20)', bsn2],
         ['geslachtsnaam (02.40)', aanduiding2],
         ['geboortedatum (03.10)', toDateOrString('morgen - 35 jaar', false)],
-        ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 20 jaar', false)],
+        ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 2 jaar', false)],
         ['plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20)', '0518'],
         ['land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)', '6030'],
     ];
@@ -48,7 +48,7 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd/, function (aanduiding1, aanduid
         ['burgerservicenummer (01.20)', bsn1],
         ['geslachtsnaam (02.40)', aanduiding1],
         ['geboortedatum (03.10)', toDateOrString('morgen - 35 jaar', false)],
-        ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 20 jaar', false)],
+        ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 2 jaar', false)],
         ['plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20)', '0518'],
         ['land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)', '6030'],
     ]
@@ -56,3 +56,7 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd/, function (aanduiding1, aanduid
     createGegevensgroepMetBsn(this.context, bsn1, 'partner', new DataTable(data1));
     createGegevensgroepMetBsn(this.context, bsn2, 'partner', new DataTable(data2));
 });
+
+Given('beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad', function () {
+    // doe niets
+  });
