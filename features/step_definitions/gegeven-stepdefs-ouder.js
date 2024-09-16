@@ -26,7 +26,6 @@ Given(/^(?:de persoon(?: '(.*)')? )?heeft een ouder '(\d)' met de volgende gegev
 });
 
 Given(/^heeft een ouder '(.*)' met burgerservicenummer '(\d*)'/, function (aanduiding, burgerservicenummer) {
-    // create nieuwe PL voor ouder met burgerservicenummer
     if (this.context.map === undefined) {
         this.context.map = new Map();
     }
@@ -38,21 +37,17 @@ Given(/^heeft een ouder '(.*)' met burgerservicenummer '(\d*)'/, function (aandu
         ['geslachtsnaam (02.40)', "Voorbeeld"],
     ];
 
-    // PL kind bijwerken met ouder gegevens
     createGegevensgroepCollectie(this.context, `ouder-1`, new DataTable(dataOuder));
 
-    // PL ouder aanmaken
     createPersoon(this.context, burgerservicenummer, new DataTable(dataOuder));
 
     let dataKind = [
         ['naam', 'waarde'],
-        ['burgerservicenummer (01.20)', this.context.latestBsn]
+        ['geboortedatum (03.10)', toDateOrString('gisteren - 17 jaar', false)]
     ];
 
-    // PL ouder bijwerken met kind gegevens
     createGegevensgroepCollectie(this.context, `kind`, new DataTable(dataKind));
 
-    // wissel PL ouder en kind zodat kind als laatste opgenomen is in de PL data
     let ouder = this.context.sqlData.pop();
     let kind = this.context.sqlData.pop();
     this.context.sqlData.push(ouder);
@@ -65,8 +60,6 @@ Given(/^heeft een ouder 2 '(.*)' met burgerservicenummer '(\d*)'/, function (aan
     }
     this.context.map.set(aanduiding, burgerservicenummer);
 
-    console.dir(this.context.map)
-
     let dataOuder = [
         ['naam', 'waarde'],
         ['geboortedatum (03.10)', toDateOrString('gisteren - 30 jaar', false)],
@@ -78,5 +71,5 @@ Given(/^heeft een ouder 2 '(.*)' met burgerservicenummer '(\d*)'/, function (aan
 });
 
 Given(/^beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele/, function () {
-    return 'pending';
+   // doe niets
 });

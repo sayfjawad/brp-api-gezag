@@ -49,6 +49,13 @@ Given(/^(?:de persoon(?: '(.*)')? )?met burgerservicenummer '(\d*)'$/, function 
     this.context.map.set(aanduiding, burgerservicenummer);
 
     createPersoon(this.context, burgerservicenummer);
+
+    let data = [
+        ['naam', 'waarde'],
+        ['voornamen (02.10)', aanduiding]
+    ];
+
+    aanvullenPersoon(this.context, new DataTable(data));
 });
 
 Given(/^is minderjarig/, function () {

@@ -249,8 +249,6 @@ function createGegevensgroepMetBsn(context, bsn, gegevensgroep, dataTable){
                     el[gegevensgroep][0].push(['persoon_type', persoonTypeMap.get(gegevensgroep)]);
                     el[gegevensgroep][0].push(['stapel_nr', 0]);
                 }
-
-                console.dir(el[gegevensgroep]);
             }
         });
     });
