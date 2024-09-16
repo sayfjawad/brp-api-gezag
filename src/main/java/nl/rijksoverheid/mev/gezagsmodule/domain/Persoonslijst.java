@@ -546,7 +546,7 @@ public class Persoonslijst {
         }
     }
 
-    public boolean adoptieNaIngangsGeldigheidsdatum() {
+    public boolean adoptieNaIngangGeldigheidsdatum() {
         if (!geadopteerdMetNlAkte()) return false;
 
         String ingangsdatumGeldigheidGezag = getGezagsverhouding().getIngangsdatumGeldigheidGezag();

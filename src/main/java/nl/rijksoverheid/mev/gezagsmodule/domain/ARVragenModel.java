@@ -325,7 +325,7 @@ public class ARVragenModel {
         }
         // Controleer op adoptie na uitspraak gezag, als adoptie heeft plaatsgevonden na de uitspraak
         // dan is er sprake van een recente gebeurtenis
-        if (plPersoon.adoptieNaIngangsGeldigheidsdatum()) {
+        if (plPersoon.adoptieNaIngangGeldigheidsdatum()) {
             return V3_1_JA;
         }
         // Controleer op reparatiehuwelijk alleen als gezag aan een van de ouders is toegewezen
