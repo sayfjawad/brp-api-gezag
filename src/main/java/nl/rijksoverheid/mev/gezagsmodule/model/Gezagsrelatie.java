@@ -12,7 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Gezagsrelatie {
 
-    private String bsnBevraagdePersoon;
     private String bsnMinderjarige;
     private String soortGezag;
     private String bsnMeerderjarige;
@@ -42,8 +41,7 @@ public class Gezagsrelatie {
 
     @Override
     public String toString() {
-        return "Gezagsrelatie{" 
-                + "bsnBevraagdePersoon=" + bsnBevraagdePersoon 
+        return "Gezagsrelatie{"
                 + ", bsnMinderjarige=" + bsnMinderjarige 
                 + ", soortGezag=" + soortGezag 
                 + ", bsnMeerderjarige=" + bsnMeerderjarige 

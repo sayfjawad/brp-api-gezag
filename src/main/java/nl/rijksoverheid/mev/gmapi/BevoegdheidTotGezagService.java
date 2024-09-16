@@ -6,12 +6,14 @@ import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
+import org.openapitools.model.GezagOuder;
 import org.openapitools.model.GezagRequest;
 import org.openapitools.model.Persoon;
+import org.openapitools.model.TweehoofdigOuderlijkGezag;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -23,17 +25,14 @@ public class BevoegdheidTotGezagService {
 
     private final BrpService brpService;
     private final GezagService gezagService;
-    private final GezagTransformer gezagTransformer;
     private final BSNValidator bsnValidator;
 
     public BevoegdheidTotGezagService(
         final BrpService brpService,
-        final GezagService gezagService,
-        final GezagTransformer gezagTransformer
+        final GezagService gezagService
     ) {
         this.brpService = brpService;
         this.gezagService = gezagService;
-        this.gezagTransformer = gezagTransformer;
         this.bsnValidator = new BSNValidator();
     }
 
@@ -60,24 +59,71 @@ public class BevoegdheidTotGezagService {
         final GezagRequest gezagRequest,
         final Transaction transaction
     ) throws GezagException {
-        List<String> bsns = gezagRequest.getBurgerservicenummer();
-        if (!bsnValidator.isValid(bsns)) {
+        List<String> burgerservicenummers = gezagRequest.getBurgerservicenummer();
+        if (!bsnValidator.isValid(burgerservicenummers)) {
             return Collections.emptyList();
         }
 
-        List<Gezagsrelatie> gezagsrelaties = new ArrayList<>();
-        for (String bevraagdePersoon : bsns) {
-            List<Gezagsrelatie> persoonGezagsrelaties = Stream
-                .concat(
-                    gezagService.getGezag(List.of(bevraagdePersoon), transaction).stream(),
-                    vindGezagsrelatiesVoorKinderen(bevraagdePersoon, transaction)
-                )
-                .toList();
-            persoonGezagsrelaties.forEach(gr -> gr.setBsnBevraagdePersoon(bevraagdePersoon));
-            gezagsrelaties.addAll(persoonGezagsrelaties);
-        }
+        return burgerservicenummers.stream()
+            .map(burgerservicenummer -> bepaalGezagVoorPersoon(burgerservicenummer, transaction))
+            .toList();
+    }
 
-        return gezagTransformer.fromGezagrelaties(gezagsrelaties);
+    private Persoon bepaalGezagVoorPersoon(String burgerservicenummer, Transaction transaction) {
+        var afzonderlijkeGezagsrelaties = Stream
+            .concat(
+                gezagService.getGezag(List.of(burgerservicenummer), transaction).stream(),
+                vindGezagsrelatiesVoorKinderen(burgerservicenummer, transaction)
+            )
+            .map(AbstractGezagsrelaties::from)
+            .toList();
+
+        // temporary solution to merge `TweehoofdigOuderlijkGezag` with the same minderjarige until
+        // gezagService#getGezag returns typed responses
+        var mergedTweehoofdigOuderlijkGezagsrelaties = afzonderlijkeGezagsrelaties.stream()
+            .filter(TweehoofdigOuderlijkGezag.class::isInstance)
+            .map(it -> (TweehoofdigOuderlijkGezag) it)
+            .reduce(
+                new HashMap<String, TweehoofdigOuderlijkGezag>(),
+                (acc, e) -> {
+                    var minderjarige = e.getMinderjarige().orElseThrow(); // not optional, should be fixed in OpenAPI Spec
+                    var key = minderjarige.getBurgerservicenummer();
+
+                    acc.merge(key, e, (e1, e2) -> new TweehoofdigOuderlijkGezag()
+                        .type(e1.getType())
+                        .minderjarige(e1.getMinderjarige().orElseThrow()) // not optional, should be fixed in OpenAPI Spec
+                        .ouders(List.of(
+                            new GezagOuder().burgerservicenummer(e1.getOuders().getFirst().getBurgerservicenummer()),
+                            new GezagOuder().burgerservicenummer(e2.getOuders().getFirst().getBurgerservicenummer())
+                        ))
+                    );
+                    return acc;
+                },
+                (acc1, acc2) -> {
+                    acc2.forEach((key, value) ->
+                        acc1.merge(key, value, (e1, e2) -> new TweehoofdigOuderlijkGezag()
+                            .type(e1.getType())
+                            .minderjarige(e1.getMinderjarige().orElseThrow()) // not optional, should be fixed in OpenAPI Spec
+                            .ouders(List.of(
+                                new GezagOuder().burgerservicenummer(e1.getOuders().getFirst().getBurgerservicenummer()),
+                                new GezagOuder().burgerservicenummer(e2.getOuders().getFirst().getBurgerservicenummer())
+                            ))
+                        )
+                    );
+                    return acc1;
+                }
+            )
+            .values()
+            .stream();
+        var gezagsrelatiesZonderTweehoofdigOuderlijkGezag = afzonderlijkeGezagsrelaties.stream()
+            .filter(it -> !(it instanceof TweehoofdigOuderlijkGezag));
+        var gezagsrelaties = Stream
+            .concat(mergedTweehoofdigOuderlijkGezagsrelaties, gezagsrelatiesZonderTweehoofdigOuderlijkGezag)
+            .toList();
+
+        return new Persoon()
+            .burgerservicenummer(burgerservicenummer)
+            .gezag(gezagsrelaties);
     }
 
     private Stream<Gezagsrelatie> vindGezagsrelatiesVoorKinderen(final String bevraagdePersoon, final Transaction transaction) throws GezagException {
@@ -86,5 +132,4 @@ public class BevoegdheidTotGezagService {
         return gezagsrelaties.stream()
             .filter(gezagsrelatie -> gezagsrelatie.isTweehoofdigOuderlijkGezag() || bevraagdePersoon.equals(gezagsrelatie.getBsnMeerderjarige()));
     }
-
 }
