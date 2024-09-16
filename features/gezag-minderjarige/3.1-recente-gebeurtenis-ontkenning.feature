@@ -29,37 +29,37 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - ontkenning vadersch
       En de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
       | naam                  | waarde   |
       | geslachtsnaam (02.40) | Henk     |
-      | geboortedatum (03.10) | 19820101 |
+      | geboortedatum (03.10) | 19800101 |
       En de persoon heeft de volgende 'verblijfplaats' gegevens
       | naam                              | waarde |
       | gemeente van inschrijving (09.10) | 518    |
       En de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
-      | naam                  | waarde   |
-      | geslachtsnaam (02.40) | Jaimy    |
-      | geboortedatum (03.10) | 20190401 |
-      | geboorteland (03.30)  | 6030     |
-      | aktenummer (81.20)    | 1AA0100  |
+      | naam                  | waarde           |
+      | geslachtsnaam (02.40) | Jaimy            |
+      | geboortedatum (03.10) | morgen - 16 jaar |
+      | geboorteland (03.30)  | 6030             |
+      | aktenummer (81.20)    | 1AA0100          |
       En de persoon heeft een ouder '1' met de volgende gegevens
-      | naam                                               | waarde    |
-      | burgerservicenummer (01.20)                        | 000000024 |
-      | geslachtsnaam (02.40)                              | Henk      |
-      | geboortedatum (03.10)                              | 19820101  |
-      | datum ingang familierechtelijke betrekking (62.10) | 20190401  |
+      | naam                                               | waarde           |
+      | burgerservicenummer (01.20)                        | 000000024        |
+      | geslachtsnaam (02.40)                              | Henk             |
+      | geboortedatum (03.10)                              | 19820101         |
+      | datum ingang familierechtelijke betrekking (62.10) | morgen - 16 jaar |
       En de ouder '1' is gewijzigd naar de volgende gegevens
-      | naam                                               | waarde   |
-      | datum ingang familierechtelijke betrekking (62.10) | 20190401 |
+      | naam                                               | waarde           |
+      | datum ingang familierechtelijke betrekking (62.10) | morgen - 16 jaar |
       En de persoon heeft een ouder '2' met de volgende gegevens
-      | naam                                               | waarde    |
-      | burgerservicenummer (01.20)                        | 000000012 |
-      | geslachtsnaam (02.40)                              | Ingrid    |
-      | datum ingang familierechtelijke betrekking (62.10) | 20190401  |
+      | naam                                               | waarde           |
+      | burgerservicenummer (01.20)                        | 000000012        |
+      | geslachtsnaam (02.40)                              | Ingrid           |
+      | datum ingang familierechtelijke betrekking (62.10) | morgen - 16 jaar |
       En de persoon heeft de volgende 'verblijfplaats' gegevens
       | naam                              | waarde |
       | gemeente van inschrijving (09.10) | 518    |
       En de persoon heeft de volgende 'gezagsverhouding' gegevens
       | naam                                 | waarde            |
       | indicatie gezag minderjarige (32.10) | <indicatie gezag> |
-      | ingangsdatum geldigheid (85.10)      | 20220401          |
+      | ingangsdatum geldigheid (85.10)      | morgen - 10 jaar  |
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
