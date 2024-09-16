@@ -1,25 +1,24 @@
 package nl.rijksoverheid.mev.gmapi;
 
-import java.util.ArrayList;
 import nl.rijksoverheid.mev.GezagApplication;
+import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.openapitools.OpenApiGeneratorApplication;
+import org.openapitools.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.openapitools.model.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import org.openapitools.OpenApiGeneratorApplication;
+
+import java.util.*;
 import java.util.stream.Stream;
-import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 @SpringBootTest(
     classes = {GezagApplication.class, OpenApiGeneratorApplication.class},
@@ -735,53 +734,49 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 .burgerservicenummer(input)
                 .gezag(gezagsrelaties);
 
-                Persoon expectedPerson = expectedPersonen.get(0);
-                assertThat(result.getPersonen()).isNotNull();
-                assertThat(result.getPersonen()).isNotEmpty();
-                Persoon actualPerson = result.getPersonen().get(0);
+            assertThat(result.getPersonen()).isNotNull();
+            assertThat(result.getPersonen()).isNotEmpty();
+            Persoon actualPerson = result.getPersonen().get(0);
 
-                assertEquals(expectedPerson.getBurgerservicenummer(), actualPerson.getBurgerservicenummer());
-                List<AbstractGezagsrelatie> actualGezagsrelaties = new ArrayList<>(actualPerson.getGezag());
-                for (AbstractGezagsrelatie gezagsrelatie : actualPerson.getGezag()) {
-                    String type = gezagsrelatie.getType();
-                    if (TYPE_NIET_TE_BEPALEN.equals(type)) {
-                        Optional<String> toelichting = ((GezagNietTeBepalen) gezagsrelatie).getToelichting();
-                        System.out.printf("\tTestcase: %s, niet te bepalen toelichting: %s%n", testcase, toelichting);
-                        assertTrue(toelichting.isPresent() && !toelichting.isEmpty());
-                        // FUTURE_WORK: issue #12 - controlleren dat de toelichting bij N de juiste informatie bevat
-                    } else if (TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG.equals(type)) {
-                        boolean correct = expectedPerson.getGezag().contains(gezagsrelatie);
-                        if (!correct) {
-                            /**
-                             * Wanneer een object meer dan 1 gezag ouder bevat
-                             * kan het object niet op object niveau worden
-                             * vergeleken. Dit komt omdat de volgorde van de
-                             * gezag ouders invloed heeft op de vergelijking als
-                             * object.
-                             *
-                             * De vergelijing is erg omslagtig vanwege de
-                             * abstractgezagrelatie in combinatie met de
-                             * gegenereerde objecten
-                             */
-                            TweehoofdigOuderlijkGezag actualTweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) gezagsrelatie;
-                            for (AbstractGezagsrelatie expectedEntry : expectedPerson.getGezag()) {
-                                if (TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG.equals(expectedEntry.getType())) {
-                                    TweehoofdigOuderlijkGezag expectedTweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) expectedEntry;
-                                    assertThat(expectedTweehoofdigOuderlijkGezag.getOuders())
-                                        .containsAnyElementsOf(actualTweehoofdigOuderlijkGezag.getOuders());
-                                }
+            assertEquals(expectedPerson.getBurgerservicenummer(), actualPerson.getBurgerservicenummer());
+            List<AbstractGezagsrelatie> actualGezagsrelaties = new ArrayList<>(actualPerson.getGezag());
+            for (AbstractGezagsrelatie gezagsrelatie : actualPerson.getGezag()) {
+                String type = gezagsrelatie.getType();
+                if (TYPE_NIET_TE_BEPALEN.equals(type)) {
+                    Optional<String> toelichting = ((GezagNietTeBepalen) gezagsrelatie).getToelichting();
+                    System.out.printf("\tTestcase: %s, niet te bepalen toelichting: %s%n", testcase, toelichting);
+                    assertTrue(toelichting.isPresent() && !toelichting.isEmpty());
+                    // FUTURE_WORK: issue #12 - controlleren dat de toelichting bij N de juiste informatie bevat
+                } else if (TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG.equals(type)) {
+                    boolean correct = expectedPerson.getGezag().contains(gezagsrelatie);
+                    if (!correct) {
+                        /**
+                         * Wanneer een object meer dan 1 gezag ouder bevat
+                         * kan het object niet op object niveau worden
+                         * vergeleken. Dit komt omdat de volgorde van de
+                         * gezag ouders invloed heeft op de vergelijking als
+                         * object.
+                         *
+                         * De vergelijing is erg omslagtig vanwege de
+                         * abstractgezagrelatie in combinatie met de
+                         * gegenereerde objecten
+                         */
+                        TweehoofdigOuderlijkGezag actualTweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) gezagsrelatie;
+                        for (AbstractGezagsrelatie expectedEntry : expectedPerson.getGezag()) {
+                            if (TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG.equals(expectedEntry.getType())) {
+                                TweehoofdigOuderlijkGezag expectedTweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) expectedEntry;
+                                assertThat(expectedTweehoofdigOuderlijkGezag.getOuders())
+                                    .containsAnyElementsOf(actualTweehoofdigOuderlijkGezag.getOuders());
                             }
                         }
-                    } else {
-                        assertTrue(expectedPerson.getGezag().contains(gezagsrelatie));
                     }
-                    actualGezagsrelaties.remove(gezagsrelatie);
+                } else {
+                    assertTrue(expectedPerson.getGezag().contains(gezagsrelatie));
                 }
-
-                assertTrue(actualGezagsrelaties.isEmpty());
-            } else {
-                assertTrue(result.getPersonen().isEmpty());
+                actualGezagsrelaties.remove(gezagsrelatie);
             }
+
+            assertTrue(actualGezagsrelaties.isEmpty());
         });
     }
 }
