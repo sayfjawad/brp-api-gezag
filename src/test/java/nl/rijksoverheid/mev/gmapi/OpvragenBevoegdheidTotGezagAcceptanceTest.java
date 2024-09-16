@@ -730,9 +730,10 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
             List<Persoon> personen = new ArrayList<>();
             System.out.printf("\tTestcase: %s, BSN: %s%n", testcase, input);
 
-            if (expected != null && !expected.isEmpty()) {
-                GezagTransformer transformer = new GezagTransformer();
-                List<Persoon> expectedPersonen = transformer.fromGezagrelaties(new ArrayList<>(expected));
+            var gezagsrelaties = expected.stream().map(AbstractGezagsrelaties::from).toList();
+            var expectedPerson = new Persoon()
+                .burgerservicenummer(input)
+                .gezag(gezagsrelaties);
 
                 Persoon expectedPerson = expectedPersonen.get(0);
                 assertThat(result.getPersonen()).isNotNull();
