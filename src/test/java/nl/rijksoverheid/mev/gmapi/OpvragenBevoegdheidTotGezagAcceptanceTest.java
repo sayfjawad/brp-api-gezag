@@ -726,7 +726,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
 
         webTestClient.post().uri("/api/v1/opvragenBevoegdheidTotGezag").contentType(MediaType.APPLICATION_JSON).header("OIN", OIN).bodyValue(request).exchange().expectStatus().isOk().expectHeader().contentType(MediaType.APPLICATION_JSON).expectBody(GezagResponse.class).consumeWith(response -> {
             GezagResponse result = response.getResponseBody();
-            List<Persoon> personen = new ArrayList<>();
             System.out.printf("\tTestcase: %s, BSN: %s%n", testcase, input);
 
             var gezagsrelaties = expected.stream().map(AbstractGezagsrelaties::from).toList();
