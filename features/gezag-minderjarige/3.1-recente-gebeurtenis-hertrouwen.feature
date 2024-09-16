@@ -198,6 +198,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 1D              | ouder 1 en een derde   |
       | 2D              | ouder 2 en een derde   |
 
+
   Regel: Onjuist opgenomen (gecorrigeerde) huwelijks- of partnerschapsgegevens worden genegeerd
     # Als een historisch voorkomen van de partnergegevens een indicatie onjuist heeft met een waarde, dan wordt dat historisch 
     # voorkomen genegeerd
@@ -298,26 +299,131 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
   Regel: Als de ouders met elkaar zijn hertrouwd na gerechtelijke uitspraak tot gezag en de datum aangaan van het huwelijk of partnerschap staat in onderzoek, is het gezag niet te bepalen
     # kijk je ook naar onderzoek op burgerservicenummer of naam van partner op PL van ouder?
 
-    Abstract Scenario: <omschrijving> van ouder 1 staat in onderzoek
+    Abstract Scenario: <omschrijving> van de ouders staat in onderzoek
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1                                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | aanduiding in onderzoek (83.10) |
+      | gisteren - 4 jaar                                                  | <aanduiding in onderzoek>       |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam        | waarde                                                                                          |
+      | type        | GezagNietTeBepalen                                                                              |
+      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
 
       Voorbeelden:
-      | aanduiding onderzoek | omschrijving                                |
-      | 050000               | hele categorie partnerschap                 |
-      | 050600               | hele groep aangaan huwelijk of partnerschap |
-      | 050610               | datum aangaan huwelijk of partnerschap      |
+      | aanduiding onderzoek | omschrijving                                | toelichting                                                                                            |
+      | 050000               | hele categorie partnerschap                 | partner van ouder 1, partner van ouder 2                                                               |
+      | 050600               | hele groep aangaan huwelijk of partnerschap | datum aangaan huwelijk of partnerschap van ouder 1, datum aangaan huwelijk of partnerschap van ouder 2 |
+      | 050610               | datum aangaan huwelijk of partnerschap      | datum aangaan huwelijk of partnerschap van ouder 1, datum aangaan huwelijk of partnerschap van ouder 2 |
 
-    Abstract Scenario: <omschrijving> van ouder 2 staat in onderzoek
+    Abstract Scenario: <omschrijving> staat in onderzoek
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1                                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 4 jaar                                                  |
+      En bij '<ouder>' zijn de volgende 'partner' gegevens opgenomen
+      | aanduiding in onderzoek (83.10) |
+      | <aanduiding in onderzoek>       |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam        | waarde                                                                                          |
+      | type        | GezagNietTeBepalen                                                                              |
+      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
 
       Voorbeelden:
-      | aanduiding onderzoek | omschrijving                                |
-      | 050000               | hele categorie partnerschap                 |
-      | 050600               | hele groep aangaan huwelijk of partnerschap |
-      | 050610               | datum aangaan huwelijk of partnerschap      |
+      | ouder  | aanduiding onderzoek | omschrijving                                | toelichting                                        |
+      | Ingrid | 050000               | hele categorie partnerschap                 | partner van ouder 1                                |
+      | Ingrid | 050600               | hele groep aangaan huwelijk of partnerschap | datum aangaan huwelijk of partnerschap van ouder 1 |
+      | Ingrid | 050610               | datum aangaan huwelijk of partnerschap      | datum aangaan huwelijk of partnerschap van ouder 1 |
+      | Henk   | 050000               | hele categorie partnerschap                 | partner van ouder 2                                |
+      | Henk   | 050600               | hele groep aangaan huwelijk of partnerschap | datum aangaan huwelijk of partnerschap van ouder 2 |
+      | Henk   | 050610               | datum aangaan huwelijk of partnerschap      | datum aangaan huwelijk of partnerschap van ouder 2 |
 
+    Scenario: het onderzoek naar datum aangaan huwelijk of partnerschap van de ouders is beëindigd
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1                                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | aanduiding in onderzoek (83.10) | datum einde onderzoek (83.30) |
+      | gisteren - 4 jaar                                                  | 050610                          | 20230526                      |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
 
-    Scenario: het onderzoek naar datum aangaan huwelijk of partnerschap van ouder1 is beëindigd
+    Scenario: het onderzoek naar datum aangaan huwelijk of partnerschap van een van de ouders is beëindigd maar loopt nog bij de andere ouder
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1                                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 4 jaar                                                  |
+      En bij 'Ingrid' zijn de volgende 'partner' gegevens opgenomen
+      | aanduiding in onderzoek (83.10) | datum einde onderzoek (83.30) |
+      | 050610                          | 20230526                      |
+      En bij 'Henk' zijn de volgende 'partner' gegevens opgenomen
+      | aanduiding in onderzoek (83.10) |
+      | 050610                          |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam        | waarde                                                                                                                               |
+      | type        | GezagNietTeBepalen                                                                                                                   |
+      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: datum aangaan huwelijk of partnerschap van ouder 2 |
 
-    Abstract Scenario: de ouders met elkaar zijn hertrouwd na de gerechtelijke uitspraak tot gezag en <omschrijving> van ouder1 staat in onderzoek
+    Abstract Scenario: de ouders met elkaar zijn hertrouwd na de gerechtelijke uitspraak tot gezag en <omschrijving> staat in onderzoek
+      Gegeven heeft gezag uitspraak 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1                                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | aanduiding in onderzoek (83.10) |
+      | gisteren - 4 jaar                                                  | <aanduiding in onderzoek>       |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
 
       Voorbeelden:
       | aanduiding onderzoek | omschrijving                    |
@@ -326,5 +432,24 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 050240               | geslachtsnaam van partner       |
       | 050300               | hele groep geboorte van partner |
 
-    Abstract Scenario: de ouders zijn met een derde (niet de andere ouder) getrouwd na de gerechtelijke uitspraak tot gezag en <omschrijving> van ouder1 staat in onderzoek
-
+    Scenario: de ouders zijn met een derde (niet de andere ouder) getrouwd na de gerechtelijke uitspraak tot gezag en datum aangaan huwelijk of partnerschap staat in onderzoek
+      Gegeven heeft gezag uitspraak
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1                                    | gisteren - 5 jaar               |
+      En 'Ingrid' en 'Geert' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | aanduiding in onderzoek (83.10) |
+      | gisteren - 4 jaar                                                  | 050610                          |
+      En 'Henk' en 'Anne-Fleur' zijn met elkaar gehuwd
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 4 jaar                                                  |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | <gezaghebbende ouder>    |
