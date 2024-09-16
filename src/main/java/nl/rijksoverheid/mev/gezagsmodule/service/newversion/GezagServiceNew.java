@@ -20,7 +20,10 @@ import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Service voor bepalen gezag
@@ -94,6 +97,9 @@ public class GezagServiceNew implements GezagService {
                 arAntwoordenModel = gezagBepaling.start();
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
+            arAntwoordenModel.setException(ex);
+        } catch (BrpException ex) {
+            log.error("Unable to find required data from BRP", ex);
             arAntwoordenModel.setException(ex);
         }
         boolean hasVeldenInOnderzoek = gezagBepaling != null && gezagBepaling.warenVeldenInOnderzoek();
