@@ -1,6 +1,5 @@
 const { createArrayFrom, getPlId } = require('./dataTable2Array');
 const { columnNameMap, persoonTypeMap } = require('./brp');
-const { DataTable } = require('@cucumber/cucumber');
 
 function getNextStapelNr(sqlData, gegevensgroep) {
     let stapelNr = 0;
@@ -98,6 +97,13 @@ function createGegevensgroepCollectie(context, relatieType, dataTable) {
     sqlData[`${relatieType}-${stapelNr}`] = [createPersoonTypeData(relatieType, dataTable, undefined, stapelNr)];
 }
 
+function createGegevensgroepCollectieMetBsn(context, relatieType, dataTable, burger_service_nr) {
+    let sqlData = context.sqlData.at(-1);
+
+    const stapelNr = getNextStapelNr(sqlData, relatieType);
+    sqlData[`${relatieType}-${stapelNr}`] = [createPersoonTypeData(relatieType, dataTable, burger_service_nr, stapelNr)];
+}
+
 function createPersoonMetGegevensgroepCollectie(context, burgerservicenummer, gegevensgroep, dataTable) {
     createPersoon(context, burgerservicenummer, undefined);
 
@@ -167,6 +173,31 @@ function wijzigGegevensgroep(context, gegevensgroep, dataTable, isCorrectie = fa
     }
 }
 
+function wijzigGegevensgroepMetBsn(context, gegevensgroep, dataTable, isCorrectie = false, burgerservicenummer) {
+    const sqlData = context.sqlData;
+
+    sqlData.forEach(el => {
+        let persoonData = el['persoon'][0];
+
+        persoonData.forEach(([key, value]) => {
+            if (key === 'burger_service_nr' && value === burgerservicenummer) {
+                foundRelatie = el[gegevensgroep];
+                console.dir(foundRelatie);
+                ophogenVolgnr(sqlData[foundRelatie], isCorrectie);
+            
+                const stapelNr = sqlData[foundRelatie][0].find(el => el[0] === 'stapel_nr');
+            
+                if (stapelNr !== undefined) {
+                    sqlData[foundRelatie].push(createPersoonTypeData(gegevensgroep, dataTable, burgerservicenummer, Number(stapelNr[1]) + 1));
+                }
+                else {
+                    sqlData[foundRelatie].push(createVoorkomenData(dataTable));
+                }
+            }
+        });
+    });
+}
+
 function aanvullenPersoon(context, dataTable) {
     const bsn = context.latestBsn;
     const latestSqlData = context.sqlData?.at(-1);
@@ -189,6 +220,24 @@ function aanvullenPersoonMetBsn(context, bsn, dataTable) {
 
             }
         });
+    });
+}
+
+function aanvullenRelatieMetBsn(context, bsn, dataTable) {
+    const sqlData = context.sqlData;
+    sqlData.forEach(el => {
+
+        if(el['partner']) {
+
+            let persoonData = el['partner'][0];
+
+            persoonData.forEach(([key, value]) => {
+                if (key === 'burger_service_nr' && value === bsn) {
+                    const dataArray = createArrayFrom(dataTable, columnNameMap);
+                    updateGegevens(persoonData, dataArray);
+                }
+            });
+        }
     });
 }
 
@@ -236,7 +285,7 @@ function berekenJaar(dateString, offset) {
     return `${newYear}${newMonth}${newDay}`;
 }
 
-function createGegevensgroepMetBsn(context, bsn, gegevensgroep, dataTable){
+function createGegevensgroepMetBsn(context, bsn, gegevensgroep, dataTable) {
     const sqlData = context.sqlData;
 
     sqlData.forEach(el => {
@@ -244,7 +293,7 @@ function createGegevensgroepMetBsn(context, bsn, gegevensgroep, dataTable){
         persoonData.forEach(([key, value]) => {
             if (key === 'burger_service_nr' && value === bsn) {
                 el[gegevensgroep] = [createVoorkomenData(dataTable)];
-            
+
                 if (persoonTypeMap.has(gegevensgroep)) {
                     el[gegevensgroep][0].push(['persoon_type', persoonTypeMap.get(gegevensgroep)]);
                     el[gegevensgroep][0].push(['stapel_nr', 0]);
@@ -270,5 +319,8 @@ module.exports = {
     aanvullenPersoonMetBsn,
     berekenJaar,
     updateGegevens,
-    createGegevensgroepMetBsn
+    createGegevensgroepMetBsn,
+    createGegevensgroepCollectieMetBsn,
+    aanvullenRelatieMetBsn,
+    wijzigGegevensgroepMetBsn
 }
