@@ -384,6 +384,6 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | naam                | waarde    |
     | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                               |
-    | type        | GezagNietTeBepalen                                                                   |
-    | toelichting | gezag kan niet worden bepaald omdat niet bepaald kan worden welke ouder gezag heeft. |
+    | naam        | waarde                                                                                            |
+    | type        | GezagNietTeBepalen                                                                                |
+    | toelichting | gezag kan niet worden bepaald omdat niet kan worden vastgesteld welke ouder de geboortemoeder is. |

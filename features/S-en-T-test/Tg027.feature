@@ -540,7 +540,26 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
-    En heeft de persoon geen gezag
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000048                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde                    |
+    | type                             | TweehoofdigOuderlijkGezag |
+    | minderjarige.burgerservicenummer | 000000085                 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000012 |
 
   Scenario: Lg01_146 - ongehuwde ouders met 6 kinderen geboren voor en na 01-01-2023, 5 kinderen erkend, 2 kinderen vaststelling vaderschap
     # Meerderjarig
@@ -565,7 +584,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | burgerservicenummer | 000000024 |
     En heeft 'gezag' een 'ouder' met de volgende gegevens
     | naam                | waarde    |
-    | burgerservicenummer | 999770501 |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -585,7 +604,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | burgerservicenummer | 000000024 |
     En heeft 'gezag' een 'ouder' met de volgende gegevens
     | naam                | waarde    |
-    | burgerservicenummer | 999770501 |
+    | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -628,7 +647,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | burgerservicenummer | 000000024 |
     En heeft 'gezag' een 'ouder' met de volgende gegevens
     | naam                | waarde    |
-    | burgerservicenummer | 999770501 |
+    | burgerservicenummer | 000000012 |
 
   Scenario: Lg01_149 - kind geboren uit ongehuwde ouders voor 01-01-2023, vaststelling ouderschap
     # Route: 54v1 - Wie heeft gezag?: moeder (OG1)
@@ -675,7 +694,7 @@ Functionaliteit: Tg027 - Janssen-Joosten- Erkenning voor, bij en na geboorteaang
     | burgerservicenummer | 000000024 |
     En heeft 'gezag' een 'ouder' met de volgende gegevens
     | naam                | waarde    |
-    | burgerservicenummer | 999770501 |
+    | burgerservicenummer | 000000012 |
 
   Scenario: Lg01_152 - kind geboren uit ongehuwde ouders voor 01-01-2023, erkenning voor 01-01-2023, geen aantekening gezag
     # Route: 54v1 - Wie heeft gezag?: moeder (OG1)

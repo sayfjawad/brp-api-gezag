@@ -748,7 +748,10 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
-    En heeft de persoon geen gezag
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam        | waarde                                                               |
+    | type        | GezagNietTeBepalen                                                   |
+    | toelichting | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
 
   Scenario: Lg01_045 - minderjarige, emigratie
     # Route: 1 - Wie heeft gezag?: niet te bepalen (N)
@@ -823,7 +826,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | burgerservicenummer | 000000073 |
 
   Scenario: Lg01_049 - minderjarige, juridisch geen vader, 2 vreemde nationaliteiten
-    # Route: 3 - Wie heeft gezag?: niet te bepalen (N)
+    # Route: 3a - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
     | naam                 | waarde    |
     | burgerservicenummer  | 000000103 |
@@ -831,6 +834,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | naam                | waarde    |
     | burgerservicenummer | 000000103 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                        |
-    | type        | GezagNietTeBepalen                                                            |
-    | toelichting | gezag is niet te bepalen omdat minderjarige buiten Nederland heeft verbleven. |
+    | naam        | waarde                                                                                                               |
+    | type        | GezagNietTeBepalen                                                                                                   |
+    | toelichting | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is. |

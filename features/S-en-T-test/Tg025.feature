@@ -359,7 +359,10 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
-    En heeft de persoon geen gezag
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam        | waarde                                                                                          |
+    | type        | GezagNietTeBepalen                                                                              |
+    | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: geboortedatum |
 
   Scenario: Lg01_135 - gehuwd, kinderen, in onderzoek 026210, 030000, 050200, 080000, 090330
     # Meerderjarig
