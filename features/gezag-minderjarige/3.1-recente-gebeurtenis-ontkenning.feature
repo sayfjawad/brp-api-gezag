@@ -16,9 +16,11 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - ontkenning vadersch
 
 
   Regel: Als vaderschap is ontkend of de erkenning is vernietigd en er was een uitspraak gezag voor die ouder, wordt het gezag van rechtswege bepaald
+    # Dit is het geval wanneer:
+    # * indicatie gezag is '12'
+    # * (ten minste) een van de ouders is verwijderd of is een 'puntouder'
 
-    Abstract Scenario: er is uitspraak gezag <indicatie gezag> en erkenning door ouder 1 is ontkend of vernietigd
-      # Eenouderlijk gezag voor ouder 2
+    Abstract Scenario: er is uitspraak gezag voor ouder 1 en ouder 2 en erkenning door ouder 1 is ontkend of vernietigd
       Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
       | naam                  | waarde   |
       | geslachtsnaam (02.40) | Ingrid   |
@@ -45,9 +47,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - ontkenning vadersch
       | geslachtsnaam (02.40)                              | Henk             |
       | geboortedatum (03.10)                              | 19820101         |
       | datum ingang familierechtelijke betrekking (62.10) | morgen - 16 jaar |
-      En de ouder '1' is gewijzigd naar de volgende gegevens
-      | naam                                               | waarde           |
-      | datum ingang familierechtelijke betrekking (62.10) | morgen - 16 jaar |
+      En de ouder '1' is <soort wijziging> naar de volgende gegevens
+      | naam                  | waarde       |
+      | geslachtsnaam (02.40) | <naam ouder> |
+      | aktenummer (81.20)    | 1AF0100      |
       En de persoon heeft een ouder '2' met de volgende gegevens
       | naam                                               | waarde           |
       | burgerservicenummer (01.20)                        | 000000012        |
@@ -57,9 +60,9 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - ontkenning vadersch
       | naam                              | waarde |
       | gemeente van inschrijving (09.10) | 518    |
       En de persoon heeft de volgende 'gezagsverhouding' gegevens
-      | naam                                 | waarde            |
-      | indicatie gezag minderjarige (32.10) | <indicatie gezag> |
-      | ingangsdatum geldigheid (85.10)      | morgen - 10 jaar  |
+      | naam                                 | waarde           |
+      | indicatie gezag minderjarige (32.10) | 12               |
+      | ingangsdatum geldigheid (85.10)      | morgen - 10 jaar |
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -73,11 +76,11 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - ontkenning vadersch
       | ouder.burgerservicenummer        | 000000012                |
 
       Voorbeelden:
-      | indicatie gezag | naam ouder |
-      | 1               |            |
-      | 1               | .          |
-      | 12              |            |
-      | 12              | .          |
+      | indicatie gezag | naam ouder | soort wijziging |
+      | 12              |            | gewijzigd       |
+      | 12              | .          | gewijzigd       |
+      | 12              |            | gecorrigeerd    |
+      | 12              | .          | gecorrigeerd    |
 
     Abstract Scenario: er is uitspraak gezag <indicatie gezag> en erkenning door ouder 2 is ontkend of vernietigd
       # Eenouderlijk gezag voor ouder 1
