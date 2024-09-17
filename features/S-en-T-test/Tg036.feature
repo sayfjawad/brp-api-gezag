@@ -216,7 +216,7 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
-    | minderjarige.burgerservicenummer | 000000036                |
+    | minderjarige.burgerservicenummer | 000000048                |
     | ouder.burgerservicenummer        | 000000012                |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
