@@ -49,7 +49,7 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | ingangsdatum geldigheid (85.10) | 20100316   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 999970331  |
+    | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Tamineh    |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 20100316   |
@@ -58,7 +58,7 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | ingangsdatum geldigheid (85.10) | 20100316   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000012  |
+    | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Tayeh      |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 20100316   |
@@ -67,7 +67,7 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | ingangsdatum geldigheid (85.10) | 20100316   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
+    | burgerservicenummer (01.20)     | 000000024  |
     | voornamen (02.10)               | Thurayya   |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 20100316   |
@@ -216,7 +216,7 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
-    | minderjarige.burgerservicenummer | 000000048                |
+    | minderjarige.burgerservicenummer | 000000036                |
     | ouder.burgerservicenummer        | 000000012                |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
