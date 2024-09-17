@@ -1,19 +1,24 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
 
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-@Slf4j
 public class GezagBepaling {
 
+    private static final Logger logger = LoggerFactory.getLogger(GezagBepaling.class);
+
+    @Getter
+    private UUID errorTraceCode;
     @Getter
     private final Persoonslijst plPersoon;
     private Persoonslijst plOuder1;
@@ -49,8 +54,9 @@ public class GezagBepaling {
     /**
      * Start de gezag bepaling
      */
-    public void start() {
-        vragenMap.get(0).step();
+    public ARAntwoordenModel start() {
+        vragenMap.get("v1.1").step();
+        return arAntwoordenModel;
     }
 
     public void next(final String currentQuestion, final String answer) {
@@ -59,7 +65,13 @@ public class GezagBepaling {
             if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
                 vragenMap.get(antwoordEnActieParen.get(answer)).step();
             }
+        } catch (AfleidingsregelException ex) {
+            addMissendeGegegevens(ex.getMissendVeld());
+            arAntwoordenModel.setException(ex);
         } catch (Exception ex) {
+            errorTraceCode = UUID.randomUUID();
+            logger.error("Programmeerfout tijdens het bepalen van gezag ({})", errorTraceCode, ex);
+
             arAntwoordenModel.setException(ex);
         }
     }
@@ -94,11 +106,12 @@ public class GezagBepaling {
      */
     public boolean warenVeldenInOnderzoek() {
         List<String> veldenInOnderzoek = plPersoon.getUsedVeldenInOnderzoek();
-        veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
-        veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
-        veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
 
-        log.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
+        if (plOuder1 != null) veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
+        if (plOuder2 != null) veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
+        if (plNietOuder != null) veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
+
+        logger.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
 
         veldenInOnderzoek = filterVelden(veldenInOnderzoek);
 
@@ -129,7 +142,6 @@ public class GezagBepaling {
      * deze al lang opgehaald of was dit onnodig.
      */
     public void bepalenGezagdragers(final String bsn, final ARAntwoordenModel arAntwoordenModel, final List<Gezagsrelatie> gezagsrelaties) {
-        Set<String> gezagsdragers = new HashSet<>();
         if (arAntwoordenModel != null) {
             String uitleg = arAntwoordenModel.getUitleg();
             String soortGezag = arAntwoordenModel.getSoortGezag();
@@ -154,7 +166,7 @@ public class GezagBepaling {
     }
 
     public void addMissendeGegegevens(final String missendGegegeven) {
-        if(missendeGegegevens == null) {
+        if (missendeGegegevens == null) {
             missendeGegegevens = new ArrayList<>();
         }
 

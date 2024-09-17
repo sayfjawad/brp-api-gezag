@@ -2,6 +2,8 @@ app:
   features:
     brp:
       dataset-path: src/test/resources/fixtures/persoonslijsten/GegenereerdUitExcelData/CGR_testbestand-20230525
+    refactored-gezag:
+      enabled: true
 
 logging:
   file:

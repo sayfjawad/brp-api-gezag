@@ -2,18 +2,20 @@ package nl.rijksoverheid.mev.gmapi;
 
 import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.exception.GezagException;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagServiceOld;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.openapitools.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
+
 import java.util.Collections;
 import java.util.List;
-import org.openapitools.model.*;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
@@ -43,7 +45,7 @@ class BevoegdheidTotGezagServiceTest {
     BevoegdheidTotGezagService subject;
 
     @MockBean
-    GezagServiceOld gezagService;
+    GezagService gezagService;
 
     @MockBean
     BrpService brpService;

@@ -41,12 +41,11 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
             }
             // Preconditie ingangsdatum geldigheid gezag moet een geldige datum zijn en niet de standaard waarde
             if (Objects.equals(ingangsdatumGeldigheidGezag, STANDAARD_WAARDE_INGANGSDATUM_GELDIGHEID_GEZAG)) {
-                gezagBepaling.addMissendeGegegevens("Ingangsdatum geldigheid gezag");
-                throw new AfleidingsregelException("Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten");
+                throw new AfleidingsregelException("Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten", "Ingangsdatum geldigheid gezag");
             }
             // Controleer op adoptie na uitspraak gezag, als adoptie heeft plaatsgevonden na de uitspraak
             // dan is er sprake van een recente gebeurtenis
-            if (plPersoon.adoptieNaIngangsGeldigheidsdatum()) {
+            if (plPersoon.adoptieNaIngangGeldigheidsdatum()) {
                 answer = V3_1_JA;
             }
             // Controleer op reparatiehuwelijk alleen als gezag aan een van de ouders is toegewezen

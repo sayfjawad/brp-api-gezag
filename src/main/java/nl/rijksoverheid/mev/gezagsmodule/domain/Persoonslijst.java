@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoudingRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
+import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
@@ -20,7 +21,6 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * De Persoonslijst is onderverdeeld in een aantal categorieën met bij elkaar
@@ -56,7 +56,7 @@ public class Persoonslijst {
     }
 
     public void addKind(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeld(Categorie.KIND, Kind.from(lo3PlPersoonRecord, clock));
+        addVeldToList(Categorie.KIND, Kind.from(lo3PlPersoonRecord, clock));
     }
 
     public void addOuder1(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
@@ -81,6 +81,10 @@ public class Persoonslijst {
 
     public void addPersoonGeschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
         addVeldToList(Categorie.GESCHIEDENIS_PERSOON, GeschiedenisPersoon.from(lo3PlPersoonRecord, clock));
+    }
+
+    public void addInschrijving(final Lo3PlRecord lo3PlRecord) {
+        addVeld(Categorie.INSCHRIJVING, Inschrijving.from(lo3PlRecord));
     }
 
     public <T extends PersoonslijstVeld> void addVeld(final String categorie, final T veld) {
@@ -542,15 +546,21 @@ public class Persoonslijst {
         }
     }
 
-    public boolean adoptieNaIngangsGeldigheidsdatum() {
-        if (geadopteerdMetNlAkte()) {
-            boolean ouder1AdoptieNa = Integer.parseInt(getOuder1().getDatumIngangFamiliebetrekking())
-                    >= Integer.parseInt(getGezagsverhouding().getIngangsdatumGeldigheidGezag());
-            boolean ouder2AdoptieNa = Integer.parseInt(getOuder2().getDatumIngangFamiliebetrekking())
-                    >= Integer.parseInt(getGezagsverhouding().getIngangsdatumGeldigheidGezag());
-            return (ouder1AdoptieNa || ouder2AdoptieNa);
-        }
-        return false;
+    public boolean adoptieNaIngangGeldigheidsdatum() {
+        if (!geadopteerdMetNlAkte()) return false;
+
+        String ingangsdatumGeldigheidGezag = getGezagsverhouding().getIngangsdatumGeldigheidGezag();
+        if (ingangsdatumGeldigheidGezag == null) return false;
+
+        String datumIngangFamiliebetrekkingOuder1 = getOuder1().getDatumIngangFamiliebetrekking();
+        if (datumIngangFamiliebetrekkingOuder1 == null) return false;
+        boolean ouder1AdoptieNa = Integer.parseInt(datumIngangFamiliebetrekkingOuder1) >= Integer.parseInt(ingangsdatumGeldigheidGezag);
+
+        String datumIngangFamiliebetrekkingOuder2 = getOuder2().getDatumIngangFamiliebetrekking();
+        if (datumIngangFamiliebetrekkingOuder2 == null) return false;
+        boolean ouder2AdoptieNa = Integer.parseInt(datumIngangFamiliebetrekkingOuder2) >= Integer.parseInt(ingangsdatumGeldigheidGezag);
+
+        return ouder1AdoptieNa || ouder2AdoptieNa;
     }
 
     public boolean geadopteerdMetNlAkte() {
@@ -577,9 +587,12 @@ public class Persoonslijst {
     public boolean minderjarig() throws AfleidingsregelException {
         // PL 1/2 : 01.03.10 
         Persoon persoon = getPersoon();
-        if (persoon == null || persoon.getGeboortedatum() == null) {
-            throw new AfleidingsregelException("Preconditie: Persoon en geboortedatum mogen niet leeg zijn");
+        if (persoon == null) {
+            throw new AfleidingsregelException("Preconditie: persoon mag niet leeg zijn", "persoon");
+        } else if (persoon.getGeboortedatum() == null) {
+            throw new AfleidingsregelException("Preconditie: geboortedatum mag niet leeg zijn", "geboortedatum");
         }
+
         int geboortedatum = Integer.parseInt(persoon.getGeboortedatum());
         int datumVolwassenVanaf = Integer.parseInt(LocalDate.now(clock).format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
         return geboortedatum > datumVolwassenVanaf;
