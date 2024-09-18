@@ -6,12 +6,11 @@ import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
-import org.openapitools.model.GezagRequest;
-import org.openapitools.model.Persoon;
+import org.openapitools.model.*;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -23,8 +22,8 @@ public class BevoegdheidTotGezagService {
 
     private final BrpService brpService;
     private final GezagService gezagService;
-    private final GezagTransformer gezagTransformer;
     private final BSNValidator bsnValidator;
+    private final GezagTransformer gezagTransformer;
 
     public BevoegdheidTotGezagService(
         final BrpService brpService,
@@ -33,8 +32,8 @@ public class BevoegdheidTotGezagService {
     ) {
         this.brpService = brpService;
         this.gezagService = gezagService;
-        this.gezagTransformer = gezagTransformer;
         this.bsnValidator = new BSNValidator();
+        this.gezagTransformer = gezagTransformer;
     }
 
     /**
@@ -60,24 +59,27 @@ public class BevoegdheidTotGezagService {
         final GezagRequest gezagRequest,
         final Transaction transaction
     ) throws GezagException {
-        List<String> bsns = gezagRequest.getBurgerservicenummer();
-        if (!bsnValidator.isValid(bsns)) {
+        List<String> burgerservicenummers = gezagRequest.getBurgerservicenummer();
+        if (!bsnValidator.isValid(burgerservicenummers)) {
             return Collections.emptyList();
         }
 
-        List<Gezagsrelatie> gezagsrelaties = new ArrayList<>();
-        for (String bevraagdePersoon : bsns) {
-            List<Gezagsrelatie> persoonGezagsrelaties = Stream
-                .concat(
-                    gezagService.getGezag(List.of(bevraagdePersoon), transaction).stream(),
-                    vindGezagsrelatiesVoorKinderen(bevraagdePersoon, transaction)
-                )
-                .toList();
-            persoonGezagsrelaties.forEach(gr -> gr.setBsnBevraagdePersoon(bevraagdePersoon));
-            gezagsrelaties.addAll(persoonGezagsrelaties);
-        }
+        return burgerservicenummers.stream()
+            .map(burgerservicenummer -> bepaalGezagVoorPersoon(burgerservicenummer, transaction))
+            .toList();
+    }
 
-        return gezagTransformer.fromGezagrelaties(gezagsrelaties);
+    private Persoon bepaalGezagVoorPersoon(final String burgerservicenummer, final Transaction transaction) {
+        var gezagsrelaties = Stream
+            .concat(
+                gezagService.getGezag(List.of(burgerservicenummer), transaction).stream(),
+                vindGezagsrelatiesVoorKinderen(burgerservicenummer, transaction)
+            )
+            .toList();
+
+        return new Persoon()
+            .burgerservicenummer(burgerservicenummer)
+            .gezag(gezagTransformer.from(gezagsrelaties));
     }
 
     private Stream<Gezagsrelatie> vindGezagsrelatiesVoorKinderen(final String bevraagdePersoon, final Transaction transaction) throws GezagException {
@@ -86,5 +88,4 @@ public class BevoegdheidTotGezagService {
         return gezagsrelaties.stream()
             .filter(gezagsrelatie -> gezagsrelatie.isTweehoofdigOuderlijkGezag() || bevraagdePersoon.equals(gezagsrelatie.getBsnMeerderjarige()));
     }
-
 }

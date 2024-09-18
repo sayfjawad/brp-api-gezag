@@ -691,7 +691,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 default ->
                     gezagsrelatie.setBsnMeerderjarige("");
             }
-            gezagsrelatie.setBsnBevraagdePersoon(commonValue);
             gezagsrelatie.setToelichting(UITLEG);
         }
         return Arguments.of(testcase, commonValue, gezagsrelaties);
@@ -704,7 +703,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 for (String bsnMeerderjarige : bsnsMeerderjarigen) {
                     Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsnMinderjarige, soortGezag);
                     gezagsrelatie.setBsnMeerderjarige(bsnMeerderjarige);
-                    gezagsrelatie.setBsnBevraagdePersoon(bsnMinderjarige);
                     gezagsrelatie.setToelichting(UITLEG);
                     if("GG".equals(soortGezag) && !gezagsrelaties.isEmpty()) {
                         gezagsrelatie.setDerde(true);
@@ -715,7 +713,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
             default -> {
                 Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsnMinderjarige, soortGezag);
                 gezagsrelatie.setBsnMeerderjarige("");
-                gezagsrelatie.setBsnBevraagdePersoon(bsnMinderjarige);
                 gezagsrelatie.setToelichting(UITLEG);
                 gezagsrelaties.add(gezagsrelatie);
             }
@@ -730,29 +727,24 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
 
         webTestClient.post().uri("/api/v1/opvragenBevoegdheidTotGezag").contentType(MediaType.APPLICATION_JSON).header("OIN", OIN).bodyValue(request).exchange().expectStatus().isOk().expectHeader().contentType(MediaType.APPLICATION_JSON).expectBody(GezagResponse.class).consumeWith(response -> {
             GezagResponse result = response.getResponseBody();
-            List<Persoon> personen = new ArrayList<>();
             System.out.printf("\tTestcase: %s, BSN: %s%n", testcase, input);
 
             if (expected != null && !expected.isEmpty()) {
                 GezagTransformer transformer = new GezagTransformer();
-                List<Persoon> expectedPersonen = transformer.fromGezagrelaties(new ArrayList<>(expected));
+                List<AbstractGezagsrelatie> expectedGezagsrelaties = transformer.from(expected.stream().toList());
 
-                Persoon expectedPerson = expectedPersonen.get(0);
-                assertThat(result.getPersonen()).isNotNull();
-                assertThat(result.getPersonen()).isNotEmpty();
-                Persoon actualPerson = result.getPersonen().get(0);
+                Persoon persoonResult = result.getPersonen().get(0);
+                assertThat(persoonResult).isNotNull();
 
-                assertEquals(expectedPerson.getBurgerservicenummer(), actualPerson.getBurgerservicenummer());
-                List<AbstractGezagsrelatie> actualGezagsrelaties = new ArrayList<>(actualPerson.getGezag());
-                for (AbstractGezagsrelatie gezagsrelatie : actualPerson.getGezag()) {
+                List<AbstractGezagsrelatie> actualGezagsrelaties = persoonResult.getGezag();
+                for (AbstractGezagsrelatie gezagsrelatie : actualGezagsrelaties) {
                     String type = gezagsrelatie.getType();
                     if (TYPE_NIET_TE_BEPALEN.equals(type)) {
                         Optional<String> toelichting = ((GezagNietTeBepalen) gezagsrelatie).getToelichting();
                         System.out.printf("\tTestcase: %s, niet te bepalen toelichting: %s%n", testcase, toelichting);
                         assertTrue(toelichting.isPresent() && !toelichting.isEmpty());
-                        // FUTURE_WORK: issue #12 - controlleren dat de toelichting bij N de juiste informatie bevat
                     } else if (TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG.equals(type)) {
-                        boolean correct = expectedPerson.getGezag().contains(gezagsrelatie);
+                        boolean correct = expectedGezagsrelaties.contains(gezagsrelatie);
                         if (!correct) {
                             /**
                              * Wanneer een object meer dan 1 gezag ouder bevat
@@ -766,7 +758,7 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                              * gegenereerde objecten
                              */
                             TweehoofdigOuderlijkGezag actualTweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) gezagsrelatie;
-                            for (AbstractGezagsrelatie expectedEntry : expectedPerson.getGezag()) {
+                            for (AbstractGezagsrelatie expectedEntry : expectedGezagsrelaties) {
                                 if (TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG.equals(expectedEntry.getType())) {
                                     TweehoofdigOuderlijkGezag expectedTweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) expectedEntry;
                                     assertThat(expectedTweehoofdigOuderlijkGezag.getOuders())
@@ -775,14 +767,13 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                             }
                         }
                     } else {
-                        assertTrue(expectedPerson.getGezag().contains(gezagsrelatie));
+                        assertTrue(expectedGezagsrelaties.contains(gezagsrelatie));
                     }
-                    actualGezagsrelaties.remove(gezagsrelatie);
                 }
 
-                assertTrue(actualGezagsrelaties.isEmpty());
+                assertTrue(actualGezagsrelaties.size() == expectedGezagsrelaties.size());
             } else {
-                assertTrue(result.getPersonen().isEmpty());
+                assertTrue(result.getPersonen().get(0).getGezag().isEmpty());
             }
         });
     }
