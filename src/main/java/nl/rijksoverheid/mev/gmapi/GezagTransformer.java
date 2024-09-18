@@ -78,10 +78,10 @@ public class GezagTransformer {
                         return result;
                     });
 
-                if (!gezagsrelatie.isDerde()) {
-                    gezamenlijkGezag.setOuder(Optional.of(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige())));
-                } else if (gezagsrelatie.isDerde()) {
+                if (gezagsrelatie.isDerde()) {
                     gezamenlijkGezag.setDerde(Optional.of(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige())));
+                } else {
+                    gezamenlijkGezag.setOuder(Optional.of(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige())));
                 }
             }
             case "V" -> {
