@@ -2,7 +2,7 @@
 <configuration>
     <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <include resource="co/elastic/logging/logback/boot/ecs-console-appender.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
     <appender name="DEFAULT-FILE" class="ch.qos.logback.core.FileAppender">
         <file>${LOG_FILE}.json</file>
@@ -10,7 +10,7 @@
         <encoder class="co.elastic.logging.logback.EcsEncoder">
             <serviceName>brp-api-gezag</serviceName>
             <messageLayout class="ch.qos.logback.classic.PatternLayout">
-                <pattern>%replace(%m){'\d{9}','xxxxxxxxx'} %rEx{full, org.springframework}</pattern>
+                <pattern>%replace(%m){'\d{9}','***MASKED***'} %rEx{full, org.springframework}</pattern>
             </messageLayout>
         </encoder>
     </appender>
@@ -27,7 +27,7 @@
 
     <springProfile name="default">
         <root level="INFO">
-            <appender-ref ref="ECS_JSON_CONSOLE"/>
+            <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
 
