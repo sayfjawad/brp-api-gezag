@@ -98,6 +98,7 @@ public class GezagTransformer {
             case "G" -> vertaaldeGezagsrelaties.add(new TijdelijkGeenGezag().type(TYPE_TIJDELIJK_GEEN_GEZAG));
             case "N" ->
                 vertaaldeGezagsrelaties.add(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(gezagsrelatie.getToelichting()));
+            default -> throw new IllegalStateException("Unexpected value: " + gezagsrelatie.getSoortGezag());
         }
     }
 
