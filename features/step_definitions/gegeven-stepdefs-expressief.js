@@ -9,6 +9,7 @@ const {
     createGegevensgroepCollectieMetBsn,
     wijzigPersoon,
 } = require('./persoon');
+const { createVerblijfplaats } = require('./verblijfplaats')
 const { toDateOrString } = require('./brpDatum');
 
 /**
@@ -209,4 +210,43 @@ Given(/^zijn de volgende gegevens van ouder '(.*)' gewijzigd/, function (aanduid
     let bsn = this.context.map.get(aanduiding);
 
     aanvullenPersoonMetBsn(this.context, bsn, dataTable);
+});
+
+/**
+ * Expressieve Gegeven-stappen voor Verblijfplaats
+ */
+
+
+Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de BRP?$/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['gemeente van inschrijving (09.10)', '0518']
+    ];
+
+    createVerblijfplaats(this.context, new DataTable(data));
+});
+
+Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de RNI/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['gemeente van inschrijving (09.10)', '1999']
+    ];
+
+    createVerblijfplaats(this.context, new DataTable(data));
+});
+
+Given(/^(?:de persoon(?: '(.*)')? )?is niet geëmigreerd geweest/, function (_) {
+    // doe niets
+});
+
+Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest met de volgende gegevens?$/, function (_, dataTable) {
+    createVerblijfplaats(this.context,  dataTable);
+});
+
+Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
+    const data = [
+        ['naam', 'waarde'],
+        ['datum vestiging in Nederland (14.20)', toDateOrString('vandaag - 1 jaar', true)]
+    ];
+    createVerblijfplaats(this.context, new DataTable(data));
 });
