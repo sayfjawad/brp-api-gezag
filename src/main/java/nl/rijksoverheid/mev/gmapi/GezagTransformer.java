@@ -43,52 +43,55 @@ public class GezagTransformer {
     }
 
     private void transformGezagrelatie(final Gezagsrelatie gezagsrelatie, final List<AbstractGezagsrelatie> vertaaldeGezagsrelaties) {
+        final String burgerservicenummerMeerderjarige = gezagsrelatie.getBsnMeerderjarige();
+        final String burgerservicenummerMinderjarige = gezagsrelatie.getBsnMinderjarige();
+
         switch (gezagsrelatie.getSoortGezag()) {
             case "OG1" -> {
                 AbstractGezagsrelatie gezag = new EenhoofdigOuderlijkGezag()
-                    .ouder(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
-                    .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
+                    .ouder(new GezagOuder().burgerservicenummer(burgerservicenummerMeerderjarige))
+                    .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummerMinderjarige))
                     .type(TYPE_EENHOOFDIG_OUDERLIJK_GEZAG);
 
                 vertaaldeGezagsrelaties.add(gezag);
             }
             case "OG2" -> {
-                TweehoofdigOuderlijkGezag huidigeVoorMinderjarige = getTweehoofdigOuderlijkGezagMinderjarige(gezagsrelatie, vertaaldeGezagsrelaties);
-                if (huidigeVoorMinderjarige != null) {
-                    huidigeVoorMinderjarige.addOudersItem(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()));
-                } else {
-                    AbstractGezagsrelatie gezag = new TweehoofdigOuderlijkGezag()
-                        .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
-                        .addOudersItem(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige()))
-                        .type(TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG);
+                var optionalTweehoofdigOuderlijkGezag = getTweehoofdigOuderlijkGezagMinderjarige(burgerservicenummerMinderjarige, vertaaldeGezagsrelaties);
+                optionalTweehoofdigOuderlijkGezag.ifPresentOrElse(
+                    huidigeVoorMinderjarige -> huidigeVoorMinderjarige.addOudersItem(new GezagOuder().burgerservicenummer(burgerservicenummerMeerderjarige)),
+                    () -> {
+                        AbstractGezagsrelatie gezag = new TweehoofdigOuderlijkGezag()
+                            .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummerMinderjarige))
+                            .addOudersItem(new GezagOuder().burgerservicenummer(burgerservicenummerMeerderjarige))
+                            .type(TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG);
 
-                    vertaaldeGezagsrelaties.add(gezag);
-                }
+                        vertaaldeGezagsrelaties.add(gezag);
+                    }
+                );
             }
             case "GG" -> {
-                GezamenlijkGezag gezag = getGezamenlijkGezagGezagMinderjarige(gezagsrelatie, vertaaldeGezagsrelaties);
-
-                if (gezag == null) {
-                    gezag = new GezamenlijkGezag()
-                        .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
-                        .type(TYPE_GEZAMELIJK_GEZAG);
-
-                    vertaaldeGezagsrelaties.add(gezag);
-                }
+                var gezamenlijkGezag = getGezamenlijkGezagGezagMinderjarige(burgerservicenummerMinderjarige, vertaaldeGezagsrelaties)
+                    .orElseGet(() -> {
+                        var result = new GezamenlijkGezag()
+                            .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummerMinderjarige))
+                            .type(TYPE_GEZAMELIJK_GEZAG);
+                        vertaaldeGezagsrelaties.add(result);
+                        return result;
+                    });
 
                 if (!gezagsrelatie.isDerde()) {
-                    gezag.setOuder(Optional.of(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige())));
+                    gezamenlijkGezag.setOuder(Optional.of(new GezagOuder().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige())));
                 } else if (gezagsrelatie.isDerde()) {
-                    gezag.setDerde(Optional.of(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige())));
+                    gezamenlijkGezag.setDerde(Optional.of(new Meerderjarige().burgerservicenummer(gezagsrelatie.getBsnMeerderjarige())));
                 }
             }
             case "V" -> {
                 Voogdij gezag = new Voogdij()
-                    .minderjarige(new Minderjarige().burgerservicenummer(gezagsrelatie.getBsnMinderjarige()))
+                    .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummerMinderjarige))
                     .type(TYPE_VOOGDIJ);
-                String bsnMeerderjarige = gezagsrelatie.getBsnMeerderjarige();
-                if (bsnMeerderjarige != null && !bsnMeerderjarige.isEmpty()) {
-                    gezag.addDerdenItem(new Meerderjarige().burgerservicenummer(bsnMeerderjarige));
+
+                if (burgerservicenummerMeerderjarige != null && !burgerservicenummerMeerderjarige.isEmpty()) {
+                    gezag.addDerdenItem(new Meerderjarige().burgerservicenummer(burgerservicenummerMeerderjarige));
                 }
 
                 vertaaldeGezagsrelaties.add(gezag);
@@ -99,25 +102,27 @@ public class GezagTransformer {
         }
     }
 
-    private TweehoofdigOuderlijkGezag getTweehoofdigOuderlijkGezagMinderjarige(final Gezagsrelatie gezagsrelatie, final List<AbstractGezagsrelatie> vertaaldeGezagsrelaties) {
-        AbstractGezagsrelatie current = vertaaldeGezagsrelaties.stream()
-            .filter(vertaaldeGezagsrelatie -> TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG.equals(vertaaldeGezagsrelatie.getType()) &&
-                gezagsrelatie.getBsnMinderjarige().equals(
-                    ((TweehoofdigOuderlijkGezag) vertaaldeGezagsrelatie).getMinderjarige().get().getBurgerservicenummer()))
-            .findFirst()
-            .orElse(null);
-
-        return (TweehoofdigOuderlijkGezag) current;
+    private Optional<TweehoofdigOuderlijkGezag> getTweehoofdigOuderlijkGezagMinderjarige(
+        final String burgerservicenummerMinderjarige,
+        final List<AbstractGezagsrelatie> abstractGezagsrelaties
+    ) {
+        return abstractGezagsrelaties.stream()
+            .filter(TweehoofdigOuderlijkGezag.class::isInstance)
+            .map(TweehoofdigOuderlijkGezag.class::cast)
+            .filter(tweehoofdigOuderlijkGezag -> tweehoofdigOuderlijkGezag.getMinderjarige().orElseThrow().getBurgerservicenummer() // not optional, should be fixed in OpenAPI Specgezagsrelatie.getBsnMinderjarige()
+                .equals(burgerservicenummerMinderjarige))
+            .findFirst();
     }
 
-    private GezamenlijkGezag getGezamenlijkGezagGezagMinderjarige(final Gezagsrelatie gezagsrelatie, final List<AbstractGezagsrelatie> vertaaldeGezagsrelaties) {
-        AbstractGezagsrelatie current = vertaaldeGezagsrelaties.stream()
-            .filter(vertaaldeGezagsrelatie -> TYPE_GEZAMELIJK_GEZAG.equals(vertaaldeGezagsrelatie.getType()) &&
-                gezagsrelatie.getBsnMinderjarige().equals(
-                    ((GezamenlijkGezag) vertaaldeGezagsrelatie).getMinderjarige().get().getBurgerservicenummer()))
-            .findFirst()
-            .orElse(null);
-
-        return (GezamenlijkGezag) current;
+    private Optional<GezamenlijkGezag> getGezamenlijkGezagGezagMinderjarige(
+        final String burgerservicenummerMinderjarige,
+        final List<AbstractGezagsrelatie> vertaaldeGezagsrelaties
+    ) {
+        return vertaaldeGezagsrelaties.stream()
+            .filter(GezamenlijkGezag.class::isInstance)
+            .map(GezamenlijkGezag.class::cast)
+            .filter(gezamenlijkGezag -> gezamenlijkGezag.getMinderjarige().orElseThrow().getBurgerservicenummer() // not optional, should be fixed in OpenAPI Spec
+                .equals(burgerservicenummerMinderjarige))
+            .findFirst();
     }
 }
