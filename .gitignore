@@ -1,7 +1,7 @@
 ### temp project files ###
 /tmp
 /brpstubs/GegenereerdUitBrpData/new
-brp-api-gezag.log.json
+brp-api-gezag.log*
 
 ### soaplog folder with generated wiremock stubs ###
 /soaplog
