@@ -35,8 +35,7 @@ public class GezagTransformer {
         List<AbstractGezagsrelatie> vertaaldeGezagsrelaties = new ArrayList<>();
 
         if (gezagsrelaties != null && !gezagsrelaties.isEmpty()) {
-            gezagsrelaties.stream()
-                .forEach(gezagsrelatie -> transformGezagrelatie(gezagsrelatie, vertaaldeGezagsrelaties));
+            gezagsrelaties.forEach(gezagsrelatie -> transformGezagrelatie(gezagsrelatie, vertaaldeGezagsrelaties));
         }
 
         return vertaaldeGezagsrelaties;
