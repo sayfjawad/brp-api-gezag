@@ -36,6 +36,10 @@ public class Gezagsrelatie {
         this.soortGezag = soortGezag;
     }
 
+    public boolean isTweehoofdigOuderlijkGezag() {
+        return soortGezag.equals("OG2");
+    }
+
     @Override
     public String toString() {
         return "Gezagsrelatie{" 

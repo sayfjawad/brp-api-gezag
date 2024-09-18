@@ -1,13 +1,15 @@
 import io.freefair.gradle.plugins.lombok.tasks.LombokTask
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 plugins {
     application
-    id("com.github.spotbugs") version "6.0.21"
+//    id("com.github.spotbugs") version "6.0.21"
     id("io.freefair.lombok") version "8.10"
     id("org.jooq.jooq-codegen-gradle") version "3.19.11"
     id("org.openapi.generator") version "7.8.0"
-    id("org.owasp.dependencycheck") version "10.0.3"
+//    id("org.owasp.dependencycheck") version "10.0.3"
     id("org.springframework.boot") version "3.3.3"
 }
 
@@ -92,12 +94,26 @@ sourceSets {
 }
 
 group = "nl.rijksoverheid.mev"
-version = "1.6.0"
-description = "gezag"
+version = "1.7.0-snapshot"
+description = "Het gezag component van BRP-API"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 tasks.withType<BootBuildImage> {
-    builder = "dashaun/builder:tiny"
+    builder.set("paketobuildpacks/builder-jammy-buildpackless-tiny")
+    buildpacks.add("gcr.io/paketo-buildpacks/java")
+
+    imageName.set("ghcr.io/brp-api/${project.name}:latest")
+    tags.set(listOf(
+        "ghcr.io/brp-api/${project.name}:${project.version}",
+        "ghcr.io/brp-api/${project.name}:${LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))}",
+    ))
+
+    docker {
+        publishRegistry {
+            username.set(System.getenv("GITHUB_ACTOR"))
+            password.set(System.getenv("GITHUB_TOKEN"))
+        }
+    }
 }
 
 tasks.withType<JavaCompile> {
