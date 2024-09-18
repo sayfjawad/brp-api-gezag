@@ -40,21 +40,12 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | ingangsdatum geldigheid (85.10)      | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Thaliya    |
+    | burgerservicenummer (01.20)     | 000000024  |
+    | voornamen (02.10)               | Thurayya   |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 20100316   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0153    |
-    | ingangsdatum geldigheid (85.10) | 20100316   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Tamineh    |
-    | geslachtsnaam (02.40)           | Taher      |
-    | geboortedatum (03.10)           | 20100316   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0152    |
+    | aktenummer (81.20)              | 1AA0150    |
     | ingangsdatum geldigheid (85.10) | 20100316   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
@@ -67,12 +58,21 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | ingangsdatum geldigheid (85.10) | 20100316   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
-    | voornamen (02.10)               | Thurayya   |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Tamineh    |
     | geslachtsnaam (02.40)           | Taher      |
     | geboortedatum (03.10)           | 20100316   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0150    |
+    | aktenummer (81.20)              | 1AA0152    |
+    | ingangsdatum geldigheid (85.10) | 20100316   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Thaliya    |
+    | geslachtsnaam (02.40)           | Taher      |
+    | geboortedatum (03.10)           | 20100316   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0153    |
     | ingangsdatum geldigheid (85.10) | 20100316   |
     
     # Lg01_189 - minderjarig kind, 010000 in onderzoek

@@ -73,6 +73,20 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Fabienne   |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Felsen     |
+    | geboortedatum (03.10)           | 20180601   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0106    |
+    | ingangsdatum geldigheid (85.10) | 20190201   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde   |
+    | aktenummer (81.20)              | 1AN0106  |
+    | ingangsdatum geldigheid (85.10) | 20190201 |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Felicia    |
     | voorvoegsel (02.30)             | van        |
@@ -81,10 +95,6 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0105    |
     | ingangsdatum geldigheid (85.10) | 20140801   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde   |
-    | aktenummer (81.20)              | 1AN0106  |
-    | ingangsdatum geldigheid (85.10) | 20190201 |
     
     # Lg01_131 - kind geboren tijdens huwelijk dat later nietig is verklaard, ander kind erkend en erkenning is vernietigd
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -151,16 +161,6 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Felicia    |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Felsen     |
-    | geboortedatum (03.10)           | 20140801   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0105    |
-    | ingangsdatum geldigheid (85.10) | 20140801   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Fabienne   |
     | geslachtsnaam (02.40)           | Freitag    |
@@ -168,6 +168,16 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0106    |
     | ingangsdatum geldigheid (85.10) | 20180601   |
+    En het 'kind' is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Fabienne   |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Felsen     |
+    | geboortedatum (03.10)           | 20180601   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0106    |
+    | ingangsdatum geldigheid (85.10) | 20190201   |
     En het 'kind' is gewijzigd naar de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
@@ -177,6 +187,16 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AN0106    |
     | ingangsdatum geldigheid (85.10) | 20190201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Felicia    |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Felsen     |
+    | geboortedatum (03.10)           | 20140801   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0105    |
+    | ingangsdatum geldigheid (85.10) | 20140801   |
     
     # Lg01_132 - geboren uit huwelijk ouders wat later nietig is verklaard
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
@@ -227,6 +247,17 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     | geslachtsaanduiding (04.10)     | V          |
     | aktenummer (81.20)              | 1AA0106    |
     | ingangsdatum geldigheid (85.10) | 20180601   |
+    En de persoon is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Fabienne   |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Felsen     |
+    | geboortedatum (03.10)           | 20180601   |
+    | geboorteland (03.30)            | 6030       |
+    | geslachtsaanduiding (04.10)     | V          |
+    | aktenummer (81.20)              | 1AC0106    |
+    | ingangsdatum geldigheid (85.10) | 20190201   |
     En de persoon is gewijzigd naar de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
@@ -252,6 +283,18 @@ Functionaliteit: Tg024 - Felsen-Freitag - Nietig verklaring huwelijk en Nietig v
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AA0106  |
     | ingangsdatum geldigheid (85.10) | 20180601 |
+    En de ouder '2' is gecorrigeerd naar de volgende gegevens
+    | naam                                               | waarde     |
+    | burgerservicenummer (01.20)                        | 000000012  |
+    | voornamen (02.10)                                  | Frederik   |
+    | voorvoegsel (02.30)                                | van        |
+    | geslachtsnaam (02.40)                              | Felsen     |
+    | geboortedatum (03.10)                              | 19711101   |
+    | geboorteland (03.30)                               | 6030       |
+    | geslachtsaanduiding (04.10)                        | M          |
+    | aktenummer (81.20)                                 | 1AC0106    |
+    | ingangsdatum geldigheid (85.10)                    | 20190201   |
+    | datum ingang familierechtelijke betrekking (62.10) | 20190201   |
     En de ouder '2' is gewijzigd naar de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AN0106  |

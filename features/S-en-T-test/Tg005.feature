@@ -152,22 +152,13 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
-    | voornamen (02.10)               | Ditmar     |
+    | burgerservicenummer (01.20)     | 000000097  |
+    | voornamen (02.10)               | Dorian     |
     | geslachtsnaam (02.40)           | Dass       |
-    | geboortedatum (03.10)           | 20160801   |
+    | geboortedatum (03.10)           | 20181201   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0150    |
-    | ingangsdatum geldigheid (85.10) | 20160801   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Darian     |
-    | geslachtsnaam (02.40)           | Dass       |
-    | geboortedatum (03.10)           | 20171201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0200    |
-    | ingangsdatum geldigheid (85.10) | 20171201   |
+    | aktenummer (81.20)              | 1AA0201    |
+    | ingangsdatum geldigheid (85.10) | 20181201   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
@@ -179,13 +170,22 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | ingangsdatum geldigheid (85.10) | 20181201   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000097  |
-    | voornamen (02.10)               | Dorian     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Darian     |
     | geslachtsnaam (02.40)           | Dass       |
-    | geboortedatum (03.10)           | 20181201   |
+    | geboortedatum (03.10)           | 20171201   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0201    |
-    | ingangsdatum geldigheid (85.10) | 20181201   |
+    | aktenummer (81.20)              | 1AA0200    |
+    | ingangsdatum geldigheid (85.10) | 20171201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000073  |
+    | voornamen (02.10)               | Ditmar     |
+    | geslachtsnaam (02.40)           | Dass       |
+    | geboortedatum (03.10)           | 20160801   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0150    |
+    | ingangsdatum geldigheid (85.10) | 20160801   |
     
     # Lg01_020 - gehuwd, 2 minderjarige kinderen geboren tijdens huwelijk ouders, zelf + 2 kinderen geëmigreerd (RNI), 1 kind weer teruggekeerd (immigratie).
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
@@ -239,22 +239,13 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | ingangsdatum geldigheid (85.10)        | 20200801          |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
-    | voornamen (02.10)               | Ditmar     |
+    | burgerservicenummer (01.20)     | 000000097  |
+    | voornamen (02.10)               | Dorian     |
     | geslachtsnaam (02.40)           | Dass       |
-    | geboortedatum (03.10)           | 20160801   |
+    | geboortedatum (03.10)           | 20181201   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0150    |
-    | ingangsdatum geldigheid (85.10) | 20160801   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Darian     |
-    | geslachtsnaam (02.40)           | Dass       |
-    | geboortedatum (03.10)           | 20171201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0200    |
-    | ingangsdatum geldigheid (85.10) | 20171201   |
+    | aktenummer (81.20)              | 1AA0201    |
+    | ingangsdatum geldigheid (85.10) | 20181201   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000085  |
@@ -266,13 +257,22 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     | ingangsdatum geldigheid (85.10) | 20181201   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000097  |
-    | voornamen (02.10)               | Dorian     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Darian     |
     | geslachtsnaam (02.40)           | Dass       |
-    | geboortedatum (03.10)           | 20181201   |
+    | geboortedatum (03.10)           | 20171201   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0201    |
-    | ingangsdatum geldigheid (85.10) | 20181201   |
+    | aktenummer (81.20)              | 1AA0200    |
+    | ingangsdatum geldigheid (85.10) | 20171201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000073  |
+    | voornamen (02.10)               | Ditmar     |
+    | geslachtsnaam (02.40)           | Dass       |
+    | geboortedatum (03.10)           | 20160801   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0150    |
+    | ingangsdatum geldigheid (85.10) | 20160801   |
     
     # Lg01_021 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, vader ingeschreven in RNI, kind Nederlandse nationaliteit
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens

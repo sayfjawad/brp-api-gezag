@@ -83,13 +83,13 @@ Functionaliteit: Tg026 - Hendriksman-Hamersma-Huisman - Erkenning voor, bij en n
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
-    | voornamen (02.10)               | Harry      |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Harold     |
     | geslachtsnaam (02.40)           | Hamersma   |
-    | geboortedatum (03.10)           | 20231118   |
+    | geboortedatum (03.10)           | 20230110   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0110    |
-    | ingangsdatum geldigheid (85.10) | 20230110   |
+    | aktenummer (81.20)              | 1AC0112    |
+    | ingangsdatum geldigheid (85.10) | 20231120   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
@@ -101,13 +101,13 @@ Functionaliteit: Tg026 - Hendriksman-Hamersma-Huisman - Erkenning voor, bij en n
     | ingangsdatum geldigheid (85.10) | 20231119   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Harold     |
+    | burgerservicenummer (01.20)     | 000000073  |
+    | voornamen (02.10)               | Harry      |
     | geslachtsnaam (02.40)           | Hamersma   |
-    | geboortedatum (03.10)           | 20230110   |
+    | geboortedatum (03.10)           | 20231118   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AC0112    |
-    | ingangsdatum geldigheid (85.10) | 20231120   |
+    | aktenummer (81.20)              | 1AA0110    |
+    | ingangsdatum geldigheid (85.10) | 20230110   |
     
     # Lg01_141 - 3 kinderen in 2023, 1 erkend als ongeboren vrucht, 1 erkend bij geboorteaangifte, 1 erkend na geboorteaangifte
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
@@ -145,13 +145,22 @@ Functionaliteit: Tg026 - Hendriksman-Hamersma-Huisman - Erkenning voor, bij en n
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
-    | voornamen (02.10)               | Harry      |
-    | geslachtsnaam (02.40)           | Hamersma   |
-    | geboortedatum (03.10)           | 20230110   |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Harold     |
+    | geslachtsnaam (02.40)           | Huisman    |
+    | geboortedatum (03.10)           | 20231118   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0110    |
-    | ingangsdatum geldigheid (85.10) | 20230110   |
+    | aktenummer (81.20)              | 1AA0112    |
+    | ingangsdatum geldigheid (85.10) | 20231118   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Harold     |
+    | geslachtsnaam (02.40)           | Hamersma   |
+    | geboortedatum (03.10)           | 20231118   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0112    |
+    | ingangsdatum geldigheid (85.10) | 20231120   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
@@ -172,22 +181,13 @@ Functionaliteit: Tg026 - Hendriksman-Hamersma-Huisman - Erkenning voor, bij en n
     | ingangsdatum geldigheid (85.10) | 20231119   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Harold     |
-    | geslachtsnaam (02.40)           | Huisman    |
-    | geboortedatum (03.10)           | 20231118   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0112    |
-    | ingangsdatum geldigheid (85.10) | 20231118   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Harold     |
+    | burgerservicenummer (01.20)     | 000000073  |
+    | voornamen (02.10)               | Harry      |
     | geslachtsnaam (02.40)           | Hamersma   |
-    | geboortedatum (03.10)           | 20231118   |
+    | geboortedatum (03.10)           | 20230110   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AC0112    |
-    | ingangsdatum geldigheid (85.10) | 20231120   |
+    | aktenummer (81.20)              | 1AA0110    |
+    | ingangsdatum geldigheid (85.10) | 20230110   |
     
     # Lg01_142 - kind geboren uit ongehuwde ouders in 2023, erkenning na de geboorteaangifte (akteaanduiding C)
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens

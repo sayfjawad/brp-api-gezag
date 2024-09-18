@@ -57,6 +57,15 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0100    |
     | ingangsdatum geldigheid (85.10) | 20140201   |
+    En het 'kind' is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Mark       |
+    | geslachtsnaam (02.40)           | Meindersma |
+    | geboortedatum (03.10)           | 20140201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0100    |
+    | ingangsdatum geldigheid (85.10) | 20140301   |
     En het 'kind' is gewijzigd naar de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -113,6 +122,15 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Mark       |
+    | geslachtsnaam (02.40)           | Meindersma |
+    | geboortedatum (03.10)           | 20140201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0100    |
+    | ingangsdatum geldigheid (85.10) | 20140301   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AN0100  |
     | ingangsdatum geldigheid (85.10) | 20140301 |
@@ -127,6 +145,16 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | geslachtsaanduiding (04.10)     | M          |
     | aktenummer (81.20)              | 1AA0100    |
     | ingangsdatum geldigheid (85.10) | 20140201   |
+    En de persoon is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Mark       |
+    | geslachtsnaam (02.40)           | Meindersma |
+    | geboortedatum (03.10)           | 20140201   |
+    | geboorteland (03.30)            | 6030       |
+    | geslachtsaanduiding (04.10)     | M          |
+    | aktenummer (81.20)              | 1AC0100    |
+    | ingangsdatum geldigheid (85.10) | 20140301   |
     En de persoon is gewijzigd naar de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
@@ -163,6 +191,17 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AA0100  |
     | ingangsdatum geldigheid (85.10) | 20140201 |
+    En de ouder '2' is gecorrigeerd naar de volgende gegevens
+    | naam                                               | waarde     |
+    | burgerservicenummer (01.20)                        | 000000024  |
+    | voornamen (02.10)                                  | Maurits    |
+    | geslachtsnaam (02.40)                              | Meindersma |
+    | geboortedatum (03.10)                              | 19800201   |
+    | geboorteland (03.30)                               | 6030       |
+    | geslachtsaanduiding (04.10)                        | M          |
+    | aktenummer (81.20)                                 | 1AC0100    |
+    | ingangsdatum geldigheid (85.10)                    | 20140301   |
+    | datum ingang familierechtelijke betrekking (62.10) | 20140301   |
     En de ouder '2' is gewijzigd naar de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AN0100  |
@@ -316,8 +355,36 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | geslachtsnaam (02.40)           | Maasland   |
     | geboortedatum (03.10)           | 20150201   |
     | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20150201   |
+    En het 'kind' is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000085  |
+    | voornamen (02.10)               | Mirthe     |
+    | geslachtsnaam (02.40)           | Mann       |
+    | geboortedatum (03.10)           | 20150201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20150201   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000085  |
+    | voornamen (02.10)               | Mirthe     |
+    | geslachtsnaam (02.40)           | Maasland   |
+    | geboortedatum (03.10)           | 20150201   |
+    | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AE0100    |
     | ingangsdatum geldigheid (85.10) | 20150201   |
+    En het 'kind' is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde      |
+    | burgerservicenummer (01.20)     | 000000085   |
+    | voornamen (02.10)               | Mirthe      |
+    | voorvoegsel (02.30)             | van de      |
+    | geslachtsnaam (02.40)           | Meulengraaf |
+    | geboortedatum (03.10)           | 20150201    |
+    | geboorteland (03.30)            | 6030        |
+    | aktenummer (81.20)              | 1AC0100     |
+    | ingangsdatum geldigheid (85.10) | 20150401    |
     En het 'kind' is gewijzigd naar de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000085   |
@@ -328,6 +395,33 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | geboorteland (03.30)            | 6030        |
     | aktenummer (81.20)              | 1AC0100     |
     | ingangsdatum geldigheid (85.10) | 20160801    |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000103  |
+    | voornamen (02.10)               | Maya       |
+    | geslachtsnaam (02.40)           | Mann       |
+    | geboortedatum (03.10)           | 20150201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0101    |
+    | ingangsdatum geldigheid (85.10) | 20150201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000115  |
+    | voornamen (02.10)               | Mira       |
+    | geslachtsnaam (02.40)           | Maasland   |
+    | geboortedatum (03.10)           | 20170101   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0102    |
+    | ingangsdatum geldigheid (85.10) | 20170101   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000127  |
+    | voornamen (02.10)               | Meike      |
+    | geslachtsnaam (02.40)           | Maasland   |
+    | geboortedatum (03.10)           | 20170101   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0103    |
+    | ingangsdatum geldigheid (85.10) | 20170101   |
     
     # Lg01_075 - ongehuwde man, kind erkend, geboorteakte kind gecorrigeerd (erkenning daardoor onjuist), na ontkenning vaderschap opnieuw erkend
     Gegeven de persoon met burgerservicenummer '000000073' heeft de volgende gegevens
@@ -366,6 +460,16 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
+    | naam                            | waarde      |
+    | burgerservicenummer (01.20)     | 000000085   |
+    | voornamen (02.10)               | Mirthe      |
+    | voorvoegsel (02.30)             | van de      |
+    | geslachtsnaam (02.40)           | Meulengraaf |
+    | geboortedatum (03.10)           | 20150201    |
+    | geboorteland (03.30)            | 6030        |
+    | aktenummer (81.20)              | 1AC0100     |
+    | ingangsdatum geldigheid (85.10) | 20150401    |
+    En het 'kind' is gewijzigd naar de volgende gegevens
     | naam                            | waarde                 |
     | beschrijving document (82.30)   | ten onrechte opgenomen |
     | ingangsdatum geldigheid (85.10) | 20150401               |
@@ -388,8 +492,39 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | geboortedatum (03.10)           | 20150201   |
     | geboorteland (03.30)            | 6030       |
     | geslachtsaanduiding (04.10)     | V          |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20150201   |
+    En de persoon is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000085  |
+    | voornamen (02.10)               | Mirthe     |
+    | geslachtsnaam (02.40)           | Mann       |
+    | geboortedatum (03.10)           | 20150201   |
+    | geboorteland (03.30)            | 6030       |
+    | geslachtsaanduiding (04.10)     | V          |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20150201   |
+    En de persoon is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000085  |
+    | voornamen (02.10)               | Mirthe     |
+    | geslachtsnaam (02.40)           | Maasland   |
+    | geboortedatum (03.10)           | 20150201   |
+    | geboorteland (03.30)            | 6030       |
+    | geslachtsaanduiding (04.10)     | V          |
     | aktenummer (81.20)              | 1AE0100    |
     | ingangsdatum geldigheid (85.10) | 20150201   |
+    En de persoon is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde      |
+    | burgerservicenummer (01.20)     | 000000085   |
+    | voornamen (02.10)               | Mirthe      |
+    | voorvoegsel (02.30)             | van de      |
+    | geslachtsnaam (02.40)           | Meulengraaf |
+    | geboortedatum (03.10)           | 20150201    |
+    | geboorteland (03.30)            | 6030        |
+    | geslachtsaanduiding (04.10)     | V           |
+    | aktenummer (81.20)              | 1AC0100     |
+    | ingangsdatum geldigheid (85.10) | 20150401    |
     En de persoon is gewijzigd naar de volgende gegevens
     | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000085   |
@@ -403,8 +538,34 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | ingangsdatum geldigheid (85.10) | 20160801    |
     En de persoon heeft een ouder '1' met de volgende gegevens
     | naam                            | waarde   |
+    | aktenummer (81.20)              | 1AA0100  |
+    | ingangsdatum geldigheid (85.10) | 20150201 |
+    En de ouder '1' is gecorrigeerd naar de volgende gegevens
+    | naam                                               | waarde       |
+    | voornamen (02.10)                                  | Manfred      |
+    | geslachtsnaam (02.40)                              | Mann         |
+    | geboortedatum (03.10)                              | 19750201     |
+    | geboorteland (03.30)                               | 9089         |
+    | geslachtsaanduiding (04.10)                        | M            |
+    | aktenummer (81.20)                                 | 1AA0100      |
+    | ingangsdatum geldigheid (85.10)                    | 20150201     |
+    | datum ingang familierechtelijke betrekking (62.10) | 20150201     |
+    En de ouder '1' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde   |
     | aktenummer (81.20)              | 1AE0100  |
     | ingangsdatum geldigheid (85.10) | 20150201 |
+    En de ouder '1' is gecorrigeerd naar de volgende gegevens
+    | naam                                               | waarde      |
+    | burgerservicenummer (01.20)                        | 000000073   |
+    | voornamen (02.10)                                  | Menno       |
+    | voorvoegsel (02.30)                                | van de      |
+    | geslachtsnaam (02.40)                              | Meulengraaf |
+    | geboortedatum (03.10)                              | 19870201    |
+    | geboorteland (03.30)                               | 6030        |
+    | geslachtsaanduiding (04.10)                        | M           |
+    | aktenummer (81.20)                                 | 1AC0100     |
+    | ingangsdatum geldigheid (85.10)                    | 20150401    |
+    | datum ingang familierechtelijke betrekking (62.10) | 20150401    |
     En de ouder '1' is gewijzigd naar de volgende gegevens
     | naam                                               | waarde      |
     | burgerservicenummer (01.20)                        | 000000073   |
@@ -498,13 +659,26 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | ingangsdatum geldigheid (85.10)      | 20160401 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000115  |
-    | voornamen (02.10)               | Mira       |
-    | geslachtsnaam (02.40)           | Maasland   |
-    | geboortedatum (03.10)           | 20170101   |
+    | burgerservicenummer (01.20)     | 000000103  |
+    | voornamen (02.10)               | Maya       |
+    | geslachtsnaam (02.40)           | Mann       |
+    | geboortedatum (03.10)           | 20150201   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AV0102    |
-    | ingangsdatum geldigheid (85.10) | 20170101   |
+    | aktenummer (81.20)              | 1AA0101    |
+    | ingangsdatum geldigheid (85.10) | 20150201   |
+    En het 'kind' is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000085  |
+    | voornamen (02.10)               | Mirthe     |
+    | geslachtsnaam (02.40)           | Mann       |
+    | geboortedatum (03.10)           | 20150201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20150201   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde   |
+    | aktenummer (81.20)              | 1AE0100  |
+    | ingangsdatum geldigheid (85.10) | 20150201 |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000127  |
@@ -515,13 +689,28 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | aktenummer (81.20)              | 1AV0103    |
     | ingangsdatum geldigheid (85.10) | 20170101   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde   |
-    | aktenummer (81.20)              | 1AE0100  |
-    | ingangsdatum geldigheid (85.10) | 20150201 |
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000115  |
+    | voornamen (02.10)               | Mira       |
+    | geslachtsnaam (02.40)           | Maasland   |
+    | geboortedatum (03.10)           | 20170101   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AV0102    |
+    | ingangsdatum geldigheid (85.10) | 20170101   |
     
     # Lg01_166 - ontkenning vaderschap, juridisch geen ouder1, wel ouder2
     Gegeven de persoon met burgerservicenummer '000000103' heeft de volgende gegevens
     | naam                            | waarde     |
+    | voornamen (02.10)               | Maya       |
+    | geslachtsnaam (02.40)           | Mann       |
+    | geboortedatum (03.10)           | 20150201   |
+    | geboorteland (03.30)            | 6030       |
+    | geslachtsaanduiding (04.10)     | V          |
+    | aktenummer (81.20)              | 1AA0101    |
+    | ingangsdatum geldigheid (85.10) | 20150201   |
+    En de persoon is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000103  |
     | voornamen (02.10)               | Maya       |
     | geslachtsnaam (02.40)           | Maasland   |
     | geboortedatum (03.10)           | 20150201   |
@@ -530,6 +719,17 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | aktenummer (81.20)              | 1AE0101    |
     | ingangsdatum geldigheid (85.10) | 20150201   |
     En de persoon heeft een ouder '1' met de volgende gegevens
+    | naam                                               | waarde       |
+    | burgerservicenummer (01.20)                        | 000000097    |
+    | voornamen (02.10)                                  | Manfred      |
+    | geslachtsnaam (02.40)                              | Mann         |
+    | geboortedatum (03.10)                              | 19750201     |
+    | geboorteland (03.30)                               | 9089         |
+    | geslachtsaanduiding (04.10)                        | M            |
+    | aktenummer (81.20)                                 | 1AA0101      |
+    | ingangsdatum geldigheid (85.10)                    | 20150201     |
+    | datum ingang familierechtelijke betrekking (62.10) | 20150201     |
+    En de ouder '1' is gewijzigd naar de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AE0101  |
     | ingangsdatum geldigheid (85.10) | 20150201 |
@@ -557,6 +757,16 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | geboortedatum (03.10)           | 20170101   |
     | geboorteland (03.30)            | 6030       |
     | geslachtsaanduiding (04.10)     | V          |
+    | aktenummer (81.20)              | 1AA0102    |
+    | ingangsdatum geldigheid (85.10) | 20170101   |
+    En de persoon is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000115  |
+    | voornamen (02.10)               | Mira       |
+    | geslachtsnaam (02.40)           | Maasland   |
+    | geboortedatum (03.10)           | 20170101   |
+    | geboorteland (03.30)            | 6030       |
+    | geslachtsaanduiding (04.10)     | V          |
     | aktenummer (81.20)              | 1AV0102    |
     | ingangsdatum geldigheid (85.10) | 20170101   |
     En de persoon heeft een ouder '1' met de volgende gegevens
@@ -571,6 +781,10 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | ingangsdatum geldigheid (85.10)                    | 20170101   |
     | datum ingang familierechtelijke betrekking (62.10) | 20170101   |
     En de persoon heeft een ouder '2' met de volgende gegevens
+    | naam                            | waarde   |
+    | aktenummer (81.20)              | 1AA0102  |
+    | ingangsdatum geldigheid (85.10) | 20170101 |
+    En de ouder '2' is gewijzigd naar de volgende gegevens
     | naam                                               | waarde       |
     | burgerservicenummer (01.20)                        | 000000097    |
     | voornamen (02.10)                                  | Manfred      |
@@ -594,6 +808,16 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | geboortedatum (03.10)           | 20170101   |
     | geboorteland (03.30)            | 6030       |
     | geslachtsaanduiding (04.10)     | V          |
+    | aktenummer (81.20)              | 1AA0103    |
+    | ingangsdatum geldigheid (85.10) | 20170101   |
+    En de persoon is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000127  |
+    | voornamen (02.10)               | Meike      |
+    | geslachtsnaam (02.40)           | Maasland   |
+    | geboortedatum (03.10)           | 20170101   |
+    | geboorteland (03.30)            | 6030       |
+    | geslachtsaanduiding (04.10)     | V          |
     | aktenummer (81.20)              | 1AV0103    |
     | ingangsdatum geldigheid (85.10) | 20170101   |
     En de persoon heeft een ouder '1' met de volgende gegevens
@@ -608,6 +832,10 @@ Functionaliteit: Tg013 - Maasland-Meindersma-Meer-Meulengraaf-Mann - Bijzondere 
     | ingangsdatum geldigheid (85.10)                    | 20170101   |
     | datum ingang familierechtelijke betrekking (62.10) | 20170101   |
     En de persoon heeft een ouder '2' met de volgende gegevens
+    | naam                            | waarde   |
+    | aktenummer (81.20)              | 1AA0103  |
+    | ingangsdatum geldigheid (85.10) | 20170101 |
+    En de ouder '2' is gewijzigd naar de volgende gegevens
     | naam                                               | waarde       |
     | burgerservicenummer (01.20)                        | 000000097    |
     | voornamen (02.10)                                  | Manfred      |

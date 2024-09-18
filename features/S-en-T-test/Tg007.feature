@@ -57,15 +57,6 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Frits      |
-    | geslachtsnaam (02.40)           | Frederiks  |
-    | geboortedatum (03.10)           | 20171201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0300    |
-    | ingangsdatum geldigheid (85.10) | 20171201   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Frans      |
     | geslachtsnaam (02.40)           | Frederiks  |
@@ -73,6 +64,15 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0300    |
     | ingangsdatum geldigheid (85.10) | 20181201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Frits      |
+    | geslachtsnaam (02.40)           | Frederiks  |
+    | geboortedatum (03.10)           | 20171201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0300    |
+    | ingangsdatum geldigheid (85.10) | 20171201   |
     
     # Lg01_029 - gehuwd, 1 minderjarig kind erkend vóór huwelijk, 1 minderjarig kind geboren ná huwelijk, onder curatele
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -123,15 +123,6 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Frits      |
-    | geslachtsnaam (02.40)           | Frederiks  |
-    | geboortedatum (03.10)           | 20171201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0300    |
-    | ingangsdatum geldigheid (85.10) | 20171201   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Frans      |
     | geslachtsnaam (02.40)           | Frederiks  |
@@ -139,6 +130,15 @@ Functionaliteit: Tg007 - Frederiks-Faassen
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0300    |
     | ingangsdatum geldigheid (85.10) | 20181201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Frits      |
+    | geslachtsnaam (02.40)           | Frederiks  |
+    | geboortedatum (03.10)           | 20171201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0300    |
+    | ingangsdatum geldigheid (85.10) | 20171201   |
     En de persoon heeft de volgende 'gezagsverhouding' gegevens
     | naam                               | waarde                      |
     | indicatie curateleregister (33.10) | 1                           |

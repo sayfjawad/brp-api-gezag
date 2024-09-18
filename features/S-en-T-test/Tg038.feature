@@ -48,25 +48,6 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Sjoukje    |
-    | geslachtsnaam (02.40)           | Savelskoul |
-    | geboortedatum (03.10)           | 20220601   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0300    |
-    | ingangsdatum geldigheid (85.10) | 20220601   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde      |
-    | burgerservicenummer (01.20)     | 000000036   |
-    | voornamen (02.10)               | Sjoukje     |
-    | voorvoegsel (02.30)             | van         |
-    | geslachtsnaam (02.40)           | Steenbergen |
-    | geboortedatum (03.10)           | 20220601    |
-    | geboorteland (03.30)            | 6030        |
-    | aktenummer (81.20)              | 1AJ0300     |
-    | ingangsdatum geldigheid (85.10) | 20220801    |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Sytse      |
     | geslachtsnaam (02.40)           | Savelskoul |
@@ -84,6 +65,25 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | geboorteland (03.30)            | 6030        |
     | aktenummer (81.20)              | 1AJ0301     |
     | ingangsdatum geldigheid (85.10) | 20230801    |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Sjoukje    |
+    | geslachtsnaam (02.40)           | Savelskoul |
+    | geboortedatum (03.10)           | 20220601   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0300    |
+    | ingangsdatum geldigheid (85.10) | 20220601   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde      |
+    | burgerservicenummer (01.20)     | 000000036   |
+    | voornamen (02.10)               | Sjoukje     |
+    | voorvoegsel (02.30)             | van         |
+    | geslachtsnaam (02.40)           | Steenbergen |
+    | geboortedatum (03.10)           | 20220601    |
+    | geboorteland (03.30)            | 6030        |
+    | aktenummer (81.20)              | 1AJ0300     |
+    | ingangsdatum geldigheid (85.10) | 20220801    |
     
     # Lg01_204 - ongehuwd, 2 kinderen (1 g erkend voor 01-01-2023 en 1 erkend na 01-01-2023
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -117,16 +117,6 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde      |
-    | burgerservicenummer (01.20)     | 000000036   |
-    | voornamen (02.10)               | Sjoukje     |
-    | voorvoegsel (02.30)             | van         |
-    | geslachtsnaam (02.40)           | Steenbergen |
-    | geboortedatum (03.10)           | 20220601    |
-    | geboorteland (03.30)            | 6030        |
-    | aktenummer (81.20)              | 1AJ0300     |
-    | ingangsdatum geldigheid (85.10) | 20220801    |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde      |
     | burgerservicenummer (01.20)     | 000000048   |
     | voornamen (02.10)               | Sytse       |
     | voorvoegsel (02.30)             | van         |
@@ -135,6 +125,16 @@ Functionaliteit: Tg038 - Savelskoul-Steenbergen - twee ongehuwde ouders  met 1 e
     | geboorteland (03.30)            | 6030        |
     | aktenummer (81.20)              | 1AJ0301     |
     | ingangsdatum geldigheid (85.10) | 20230801    |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde      |
+    | burgerservicenummer (01.20)     | 000000036   |
+    | voornamen (02.10)               | Sjoukje     |
+    | voorvoegsel (02.30)             | van         |
+    | geslachtsnaam (02.40)           | Steenbergen |
+    | geboortedatum (03.10)           | 20220601    |
+    | geboorteland (03.30)            | 6030        |
+    | aktenummer (81.20)              | 1AJ0300     |
+    | ingangsdatum geldigheid (85.10) | 20220801    |
     
     # Lg01_205 - geadopteerd door niet gehuwde ouders, indicatie gezag 12,  adoptiemoeder overleden,  indicatie gezag 12
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens

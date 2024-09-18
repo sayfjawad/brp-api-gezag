@@ -139,21 +139,21 @@ Functionaliteit: Tg016 - Petersen-Perquin & Peereboom-Peek & Pauwels-Platje
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Pascalle   |
-    | geslachtsnaam (02.40)           | Perquin    |
-    | geboortedatum (03.10)           | 20131201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0101    |
-    | ingangsdatum geldigheid (85.10) | 20131201   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Pierre     |
     | geslachtsnaam (02.40)           | Perquin    |
     | geboortedatum (03.10)           | 20131201   |
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20131201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Pascalle   |
+    | geslachtsnaam (02.40)           | Perquin    |
+    | geboortedatum (03.10)           | 20131201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0101    |
     | ingangsdatum geldigheid (85.10) | 20131201   |
     
     # Lg01_089 - niet erkend minderjarig kind, moeder geregistreerd partnerschap voor 01-04-2014, zowel moeder als geregistreerd partner moeder overleden

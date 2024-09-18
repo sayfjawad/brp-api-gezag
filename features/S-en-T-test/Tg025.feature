@@ -70,14 +70,16 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Gerdien    |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Gloria     |
     | voorvoegsel (02.30)             | de         |
     | geslachtsnaam (02.40)           | Geus       |
-    | geboortedatum (03.10)           | 20160607   |
+    | geboortedatum (03.10)           | 20211012   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0107    |
-    | ingangsdatum geldigheid (85.10) | 20160607   |
+    | aktenummer (81.20)              | 1AA0108    |
+    | aanduiding in onderzoek (83.10) | 90000      |
+    | datum ingang onderzoek (83.20)  | 20220825   |
+    | ingangsdatum geldigheid (85.10) | 20211012   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
@@ -91,16 +93,14 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | ingangsdatum geldigheid (85.10) | 20191205   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Gloria     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Gerdien    |
     | voorvoegsel (02.30)             | de         |
     | geslachtsnaam (02.40)           | Geus       |
-    | geboortedatum (03.10)           | 20211012   |
+    | geboortedatum (03.10)           | 20160607   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0108    |
-    | aanduiding in onderzoek (83.10) | 90000      |
-    | datum ingang onderzoek (83.20)  | 20220825   |
-    | ingangsdatum geldigheid (85.10) | 20211012   |
+    | aktenummer (81.20)              | 1AA0107    |
+    | ingangsdatum geldigheid (85.10) | 20160607   |
     
     # Lg01_135 - gehuwd, kinderen, in onderzoek 026210, 030000, 050200, 080000, 090330
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -154,14 +154,14 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Gerdien    |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Gloria     |
     | voorvoegsel (02.30)             | de         |
     | geslachtsnaam (02.40)           | Geus       |
-    | geboortedatum (03.10)           | 20160607   |
+    | geboortedatum (03.10)           | 20211012   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0107    |
-    | ingangsdatum geldigheid (85.10) | 20160607   |
+    | aktenummer (81.20)              | 1AA0108    |
+    | ingangsdatum geldigheid (85.10) | 20211012   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
@@ -175,14 +175,14 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | ingangsdatum geldigheid (85.10) | 20191205   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Gloria     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Gerdien    |
     | voorvoegsel (02.30)             | de         |
     | geslachtsnaam (02.40)           | Geus       |
-    | geboortedatum (03.10)           | 20211012   |
+    | geboortedatum (03.10)           | 20160607   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0108    |
-    | ingangsdatum geldigheid (85.10) | 20211012   |
+    | aktenummer (81.20)              | 1AA0107    |
+    | ingangsdatum geldigheid (85.10) | 20160607   |
     
     # Lg01_136 - kind geboren tijdens huwelijk, in onderzoek 010310, 026210, 030210, 080920, 613210
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens

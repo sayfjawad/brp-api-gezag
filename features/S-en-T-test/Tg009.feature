@@ -156,12 +156,24 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | voornamen (02.10)               | Helma      |
-    | geslachtsnaam (02.40)           | Hovink     |
-    | geboortedatum (03.10)           | 19931201   |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Hilde      |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Henegouwen |
+    | geboortedatum (03.10)           | 20131201   |
     | geboorteland (03.30)            | 6030       |
-    | beschrijving document (82.30)   | PK         |
-    | ingangsdatum geldigheid (85.10) | 19931201   |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20131201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Hanna      |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Hapert     |
+    | geboortedatum (03.10)           | 20101201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20101201   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | voornamen (02.10)               | Helena     |
@@ -181,24 +193,12 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | ingangsdatum geldigheid (85.10) | 19971210        |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Hanna      |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Hapert     |
-    | geboortedatum (03.10)           | 20101201   |
+    | voornamen (02.10)               | Helma      |
+    | geslachtsnaam (02.40)           | Hovink     |
+    | geboortedatum (03.10)           | 19931201   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0100    |
-    | ingangsdatum geldigheid (85.10) | 20101201   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Hilde      |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Henegouwen |
-    | geboortedatum (03.10)           | 20131201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0100    |
-    | ingangsdatum geldigheid (85.10) | 20131201   |
+    | beschrijving document (82.30)   | PK         |
+    | ingangsdatum geldigheid (85.10) | 19931201   |
     
     # Lg01_042 - gehuwd, 1 minderjarig kind
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -502,6 +502,15 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000097  |
+    | voornamen (02.10)               | Ioanna     |
+    | geslachtsnaam (02.40)           | Hanssen    |
+    | geboortedatum (03.10)           | 20130501   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0100    |
+    | ingangsdatum geldigheid (85.10) | 20131001   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
     | voornamen (02.10)               | Helena     |
     | geslachtsnaam (02.40)           | Hanssen    |
     | geboortedatum (03.10)           | 19971201   |
@@ -517,15 +526,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | geboorteland (03.30)            | 6030            |
     | beschrijving document (82.30)   | PL gerelateerde |
     | ingangsdatum geldigheid (85.10) | 19971210        |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000097  |
-    | voornamen (02.10)               | Ioanna     |
-    | geslachtsnaam (02.40)           | Hanssen    |
-    | geboortedatum (03.10)           | 20130501   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AC0100    |
-    | ingangsdatum geldigheid (85.10) | 20131001   |
     
     # Lg01_047 - actueel gehuwd, 1 minderjarige kind met 2 vreemde nationaliteiten, 1 minderjarig erkend kind met Nederlandse nationaliteit door erkenning
     Gegeven de persoon met burgerservicenummer '000000085' heeft de volgende gegevens
@@ -570,15 +570,6 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | ingangsdatum geldigheid (85.10)      | 20130101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000103  |
-    | voornamen (02.10)               | Isidoros   |
-    | geslachtsnaam (02.40)           | Iakovidis  |
-    | geboortedatum (03.10)           | 20110601   |
-    | geboorteland (03.30)            | 6003       |
-    | beschrijving document (82.30)   | PL kind    |
-    | ingangsdatum geldigheid (85.10) | 20130101   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
     | voornamen (02.10)               | Ioanna     |
     | geslachtsnaam (02.40)           | Iakovida   |
@@ -595,6 +586,15 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0100    |
     | ingangsdatum geldigheid (85.10) | 20131001   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000103  |
+    | voornamen (02.10)               | Isidoros   |
+    | geslachtsnaam (02.40)           | Iakovidis  |
+    | geboortedatum (03.10)           | 20110601   |
+    | geboorteland (03.30)            | 6003       |
+    | beschrijving document (82.30)   | PL kind    |
+    | ingangsdatum geldigheid (85.10) | 20130101   |
     
     # Lg01_048 - minderjarige, erkend, vervolgens ouders gehuwd, 2 beëindigde vreemde nationaliteiten, Nederlandse nationaliteit vanaf geboorte
     Gegeven de persoon met burgerservicenummer '000000097' heeft de volgende gegevens

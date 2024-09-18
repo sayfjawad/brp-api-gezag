@@ -38,24 +38,6 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde       |
-    | burgerservicenummer (01.20)     | 000000048    |
-    | voornamen (02.10)               | Niels        |
-    | geslachtsnaam (02.40)           | Nooitgedacht |
-    | geboortedatum (03.10)           | 20190101     |
-    | geboorteland (03.30)            | 6030         |
-    | aktenummer (81.20)              | 1AA0001      |
-    | ingangsdatum geldigheid (85.10) | 20190101     |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde       |
-    | burgerservicenummer (01.20)     | 000000048    |
-    | voornamen (02.10)               | Niels        |
-    | geslachtsnaam (02.40)           | Nooitgedacht |
-    | geboortedatum (03.10)           | 20190101     |
-    | geboorteland (03.30)            | 6030         |
-    | aktenummer (81.20)              | 1AN0001      |
-    | ingangsdatum geldigheid (85.10) | 20210101     |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde       |
     | burgerservicenummer (01.20)     | 000000036    |
     | voornamen (02.10)               | Nicolas      |
     | geslachtsnaam (02.40)           | Nooitgedacht |
@@ -73,6 +55,34 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AQ0001    |
     | ingangsdatum geldigheid (85.10) | 20221101   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde       |
+    | burgerservicenummer (01.20)     | 000000048    |
+    | voornamen (02.10)               | Niels        |
+    | geslachtsnaam (02.40)           | Nooitgedacht |
+    | geboortedatum (03.10)           | 20190101     |
+    | geboorteland (03.30)            | 6030         |
+    | aktenummer (81.20)              | 1AA0001      |
+    | ingangsdatum geldigheid (85.10) | 20190101     |
+    En het 'kind' is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Niels      |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Nimwegen   |
+    | geboortedatum (03.10)           | 20190101   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0001    |
+    | ingangsdatum geldigheid (85.10) | 20210101   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde       |
+    | burgerservicenummer (01.20)     | 000000048    |
+    | voornamen (02.10)               | Niels        |
+    | geslachtsnaam (02.40)           | Nooitgedacht |
+    | geboortedatum (03.10)           | 20190101     |
+    | geboorteland (03.30)            | 6030         |
+    | aktenummer (81.20)              | 1AN0001      |
+    | ingangsdatum geldigheid (85.10) | 20210101     |
     
     # Lg01_170 - man niet gehuwd/GP, 1 minderjarig kind geadopteerd, 1 minderjarig kind erkend en later erkenning vernietigd
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -105,10 +115,6 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
-    | naam                            | waarde   |
-    | aktenummer (81.20)              | 1AN0001  |
-    | ingangsdatum geldigheid (85.10) | 20210101 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Nicolas    |
@@ -118,6 +124,20 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AQ0001    |
     | ingangsdatum geldigheid (85.10) | 20221101   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Niels      |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Nimwegen   |
+    | geboortedatum (03.10)           | 20190101   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0001    |
+    | ingangsdatum geldigheid (85.10) | 20210101   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde   |
+    | aktenummer (81.20)              | 1AN0001  |
+    | ingangsdatum geldigheid (85.10) | 20210101 |
     
     # Lg01_171 - kind, geboren uit alleen moeder, vervolgens gezag 1D, later geactualiseerd in 1, en vervolgens 1-ouder adoptie
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
@@ -192,6 +212,17 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | geslachtsaanduiding (04.10)     | M            |
     | aktenummer (81.20)              | 1AA0001      |
     | ingangsdatum geldigheid (85.10) | 20190101     |
+    En de persoon is gecorrigeerd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Niels      |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Nimwegen   |
+    | geboortedatum (03.10)           | 20190101   |
+    | geboorteland (03.30)            | 6030       |
+    | geslachtsaanduiding (04.10)     | M          |
+    | aktenummer (81.20)              | 1AC0001    |
+    | ingangsdatum geldigheid (85.10) | 20210101   |
     En de persoon is gewijzigd naar de volgende gegevens
     | naam                            | waarde       |
     | burgerservicenummer (01.20)     | 000000048    |
@@ -217,6 +248,18 @@ Functionaliteit: Tg031 - Nooitgedacht-Nimwegen - Cat.11 en adoptie of ontkenning
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AA0001  |
     | ingangsdatum geldigheid (85.10) | 20190101 |
+    En de ouder '2' is gecorrigeerd naar de volgende gegevens
+    | naam                                               | waarde     |
+    | burgerservicenummer (01.20)                        | 000000024  |
+    | voornamen (02.10)                                  | Nicodemus  |
+    | voorvoegsel (02.30)                                | van        |
+    | geslachtsnaam (02.40)                              | Nimwegen   |
+    | geboortedatum (03.10)                              | 19900901   |
+    | geboorteland (03.30)                               | 6030       |
+    | geslachtsaanduiding (04.10)                        | M          |
+    | aktenummer (81.20)                                 | 1AC0001    |
+    | ingangsdatum geldigheid (85.10)                    | 20210101   |
+    | datum ingang familierechtelijke betrekking (62.10) | 20200101   |
     En de ouder '2' is gewijzigd naar de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AN0001  |
