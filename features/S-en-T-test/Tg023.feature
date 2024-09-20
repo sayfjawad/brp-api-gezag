@@ -62,6 +62,15 @@ Functionaliteit: Tg023 - Egberts-Ederveen Cat.11 = 12
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0102    |
     | ingangsdatum geldigheid (85.10) | 20161001   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Esmee      |
+    | geslachtsnaam (02.40)           | Ederveen   |
+    | geboortedatum (03.10)           | 20200501   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0104    |
+    | ingangsdatum geldigheid (85.10) | 20210301   |
     
     # Lg01_126 - 3 erkende kinderen
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens

@@ -397,9 +397,9 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                                                                                                                                                    |
-    | type        | GezagNietTeBepalen                                                                                                                                                                                                                                        |
-    | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: geboorteland, datum vestiging in Nederland, indicatie gezag minderjarige, datum huwelijkssluiting/aangaan geregistreerd partnerschap van ouder, geslachtsnaam van ouder |
+    | naam        | waarde                                                                                                         |
+    | type        | GezagNietTeBepalen                                                                                             |
+    | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: datum vestiging in Nederland |
 
   Scenario: Lg01_138 - kind geboren tijdens huwelijk, overleden, gezag is niet van toepassing
     # Route: 2o - Wie heeft gezag?: overleden, gezag is niet van toepassing (NVT)

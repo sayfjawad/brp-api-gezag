@@ -346,9 +346,7 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | type                             | GezamenlijkGezag |
     | minderjarige.burgerservicenummer | 000000036        |
     | ouder.burgerservicenummer        | 000000012        |
-    En heeft 'gezag' een 'derde' met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | derde.burgerservicenummer        | 000000024        |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
@@ -379,9 +377,7 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | type                             | GezamenlijkGezag |
     | minderjarige.burgerservicenummer | 000000036        |
     | ouder.burgerservicenummer        | 000000012        |
-    En heeft 'gezag' een 'derde' met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | derde.burgerservicenummer        | 000000024        |
 
   Scenario: Lg01_178 - 1 ouder, moeder gehuwd, gezamenlijk gezag moeder en meemoeder
     # Route: 41 - Wie heeft gezag?: moeder en meemoeder (GG)
@@ -396,9 +392,7 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | type                             | GezamenlijkGezag |
     | minderjarige.burgerservicenummer | 000000036        |
     | ouder.burgerservicenummer        | 000000012        |
-    En heeft 'gezag' een 'derde' met de volgende gegevens
-    | naam                | waarde    |
-    | burgerservicenummer | 000000024 |
+    | derde.burgerservicenummer        | 000000024        |
 
   Scenario: Lg01_179 - 1 ouder, moeder gehuwd, indicatie gezag 1D geen gezamenlijk gezag moeder en meemoeder
     # Route: 4 - Wie heeft gezag?: moeder en derde (V)

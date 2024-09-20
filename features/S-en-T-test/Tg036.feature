@@ -233,9 +233,9 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                                       |
-    | type        | GezagNietTeBepalen                                                                                                                           |
-    | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: geboortedatum, geboorteland, burgerservicenummer van ouder |
+    | naam        | waarde                                                                                                        |
+    | type        | GezagNietTeBepalen                                                                                            |
+    | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: geboortedatum, geboorteland |
 
   Scenario: Lg01_190 - minderjarig kind, 080000 in onderzoek
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
@@ -260,9 +260,9 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                   |
-    | type        | GezagNietTeBepalen                                                                                                       |
-    | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: ouder 1, burgerservicenummer van ouder |
+    | naam        | waarde                                                                                    |
+    | type        | GezagNietTeBepalen                                                                        |
+    | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: ouder 1 |
 
   Scenario: Lg01_192 - minderjarig kind, 010320 in onderzoek
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)

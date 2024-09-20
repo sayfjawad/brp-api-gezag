@@ -394,15 +394,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | ingangsdatum geldigheid (85.10) | 20200105   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
-    | voornamen (02.10)               | Jin        |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20150101   |
-    | geboorteland (03.30)            | 6022       |
-    | aktenummer (81.20)              | 1VQ0700    |
-    | ingangsdatum geldigheid (85.10) | 20190101   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Li         |
     | geslachtsnaam (02.40)           | Janssen    |
@@ -410,6 +401,15 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | geboorteland (03.30)            | 6022       |
     | aktenummer (81.20)              | 1VQ0700    |
     | ingangsdatum geldigheid (85.10) | 20180101   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000085  |
+    | voornamen (02.10)               | Jin        |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20150101   |
+    | geboorteland (03.30)            | 6022       |
+    | aktenummer (81.20)              | 1VQ0700    |
+    | ingangsdatum geldigheid (85.10) | 20190101   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
