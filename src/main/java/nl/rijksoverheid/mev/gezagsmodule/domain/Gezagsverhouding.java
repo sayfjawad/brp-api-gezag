@@ -26,13 +26,22 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
     private static final String INDICATIE_GEZAG_MINDERJARIGE = "113210";
     // Aanduiding dat de ingeschrevene onder curatele is gestel
     private static final String INDICATIE_CURATELE_REGISTER = "113310";
+    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "118310";
+    private static final String ONDERZOEK_START_DATUM = "118320";
+    private static final String ONDERZOEK_EIND_DATUM = "118330";
     // Datum waarop het geheel van gegevens geldig is geworden: yyyyMMdd formaat
     private static final String INGANGSDATUM_GELDIGHEID_GEZAG = "118510";
 
     public static Gezagsverhouding from(Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord, Clock clock) {
+        var onderzoekGegevensAanduiding = lo3PlGezagsverhoudingRecord.getOnderzoekGegevensAand();
+        var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
+
         Map<String, String> values = new HashMap<>();
         values.put(INDICATIE_GEZAG_MINDERJARIGE, lo3PlGezagsverhoudingRecord.getMinderjarigGezagInd());
         values.put(INDICATIE_CURATELE_REGISTER, Objects.toString(lo3PlGezagsverhoudingRecord.getCurateleRegisterInd(), null));
+        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
+        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlGezagsverhoudingRecord.getOnderzoekStartDatum(), null));
+        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlGezagsverhoudingRecord.getOnderzoekEindDatum(), null));
         values.put(INGANGSDATUM_GELDIGHEID_GEZAG, Objects.toString(lo3PlGezagsverhoudingRecord.getGeldigheidStartDatum(), null));
 
         return new Gezagsverhouding(values, clock);
