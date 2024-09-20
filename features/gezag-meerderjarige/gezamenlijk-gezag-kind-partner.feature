@@ -34,6 +34,4 @@ Functionaliteit: gezamenlijk gezag van een meerderjarige over een kind van een (
       | type                             | GezamenlijkGezag |
       | minderjarige.burgerservicenummer | 000000036        |
       | ouder.burgerservicenummer        | 000000024        |
-      En heeft 'gezag' een 'derde' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | derde.burgerservicenummer        | 000000012        |
