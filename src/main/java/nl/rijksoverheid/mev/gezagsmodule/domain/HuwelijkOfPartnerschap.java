@@ -62,9 +62,16 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
      */
     private static final String REDEN_ONTBINDING = "050740";
 
+    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "058310";
+    private static final String ONDERZOEK_START_DATUM = "058320";
+    private static final String ONDERZOEK_EIND_DATUM = "058330";
+
     public static HuwelijkOfPartnerschap from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
+
+        var onderzoekGegevensAanduiding = lo3PlPersoonRecord.getOnderzoekGegevensAand();
+        var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
         Map<String, String> values = new HashMap<>();
         values.put(BSN, burgerServiceNrAsString);
@@ -75,6 +82,9 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
         values.put(PLAATS_ONTBINDING, lo3PlPersoonRecord.getRelatieEindPlaats());
         values.put(LAND_ONTBINDING, Objects.toString(lo3PlPersoonRecord.getRelatieEindLandCode(), null));
         values.put(REDEN_ONTBINDING, lo3PlPersoonRecord.getRelatieEindReden());
+        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
+        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
+        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
 
         return new HuwelijkOfPartnerschap(values, clock);
     }
