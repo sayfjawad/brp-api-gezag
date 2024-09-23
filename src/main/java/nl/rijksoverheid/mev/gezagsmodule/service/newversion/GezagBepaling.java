@@ -6,7 +6,6 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -141,8 +140,9 @@ public class GezagBepaling {
      * Probeer hier niet de ouders of nietouders op te halen, in dit stadium zijn
      * deze al lang opgehaald of was dit onnodig.
      */
-    public void bepalenGezagdragers(final String bsn, final ARAntwoordenModel arAntwoordenModel, final List<Gezagsrelatie> gezagsrelaties) {
-        if (arAntwoordenModel != null) {
+    public void bepalenGezagdragers(final String burgerservicenummer, final String burgerservicenummerPersoon, final ARAntwoordenModel arAntwoordenModel, final List<Gezagsrelatie> gezagsrelaties) {
+        if (arAntwoordenModel != null){
+            //tenminsteEenRelatieMetPersoon(burgerservicenummerPersoon)) {
             String uitleg = arAntwoordenModel.getUitleg();
             String soortGezag = arAntwoordenModel.getSoortGezag();
 
@@ -153,26 +153,36 @@ public class GezagBepaling {
             boolean nietOuderGezag = (((arAntwoordenModel.getGezagNietOuder1() != null && arAntwoordenModel.getGezagNietOuder1().equals("Ja"))
                 || (arAntwoordenModel.getGezagNietOuder2() != null && arAntwoordenModel.getGezagNietOuder2().equals("Ja")))
                 && (plNietOuder != null));
+
+            System.out.println(ouder1Gezag);
+            System.out.println(ouder2Gezag);
+            System.out.println(nietOuderGezag);
             if (ouder1Gezag) {
-                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, plOuder1.getPersoon().getBsn(), uitleg);
+                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(burgerservicenummer, soortGezag, plOuder1.getPersoon().getBsn(), uitleg);
                 if (nietOuderGezag) {
                     gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
                 }
                 gezagsrelaties.add(gezagsrelatie);
             }
             if (ouder2Gezag) {
-                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, plOuder2.getPersoon().getBsn(), uitleg);
+                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(burgerservicenummer, soortGezag, plOuder2.getPersoon().getBsn(), uitleg);
                 if (nietOuderGezag) {
                     gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
                 }
                 gezagsrelaties.add(gezagsrelatie);
             }
             if (!ouder1Gezag && !ouder2Gezag && nietOuderGezag) {
-                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, null, uitleg);
+                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(burgerservicenummer, soortGezag, null, uitleg);
                 gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
                 gezagsrelaties.add(gezagsrelatie);
             }
         }
+    }
+
+    private boolean tenminsteEenRelatieMetPersoon(final String burgerservicenummerPersoon) {
+        return (plOuder1 != null && plOuder1.getPersoon() != null && plOuder1.getPersoon().getBsn().equals(burgerservicenummerPersoon)) ||
+            (plOuder2 != null && plOuder2.getPersoon() != null && plOuder2.getPersoon().getBsn().equals(burgerservicenummerPersoon)) ||
+            (plNietOuder != null && plNietOuder.getPersoon() != null && plNietOuder.getPersoon().getBsn().equals(burgerservicenummerPersoon));
     }
 
     public void addMissendeGegegevens(final String missendGegegeven) {

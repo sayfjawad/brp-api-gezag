@@ -1,23 +1,26 @@
-package nl.rijksoverheid.mev.gezagsmodule.service;
+package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.common.util.BSNValidator;
-import nl.rijksoverheid.mev.exception.AfleidingsregelException;
-import nl.rijksoverheid.mev.exception.BrpException;
-import nl.rijksoverheid.mev.exception.GezagException;
-import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
-import nl.rijksoverheid.mev.gezagsmodule.domain.*;
+import nl.rijksoverheid.mev.exception.*;
+import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
+import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
+import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
+import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
+import nl.rijksoverheid.mev.gezagsmodule.service.*;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.function.Supplier;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Service voor bepalen gezag
@@ -25,8 +28,7 @@ import java.util.function.Supplier;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "app.features.refactored-gezag.enabled", havingValue = "false", matchIfMissing = true)
-public class GezagServiceOld implements GezagService {
+public class GezagService {
 
     private final VragenlijstService vragenlijstService;
     private final TransactionHandler transactionHandler;
@@ -37,26 +39,25 @@ public class GezagServiceOld implements GezagService {
     private static final String SOORT_GEZAG_NVT = "NVT";
     private static final String SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD = "N";
     private static final String BSN_MEERDERJARIGE_LEEG = "";
-    private static final String EINDE = "Einde";
 
     /**
      * Bepaal gezag van kind
      *
-     * @param bsns        de bsn(s)
+     * @param burgerservicenummers        de burgerservicenummers om gezag voor te bepalen
+     * @param burgerservicenummerPersoon  het burgerservicenummer van de persoon waar de gezag bepaling voor plaats vind
      * @param transaction de transactie zoals gemaakt bij het ontvangen van het
      *                    request
      * @return lijst gezagsrelaties of lijst gezagsrelatie 'N'
      */
-    @Override
-    public List<Gezagsrelatie> getGezag(final List<String> bsns, final Transaction transaction) throws BrpException {
+    public List<Gezagsrelatie> getGezag(final List<String> burgerservicenummers, final String burgerservicenummerPersoon, final Transaction transaction) throws BrpException {
         List<Gezagsrelatie> gezagRelaties = new ArrayList<>();
-        for (String bsn : bsns) {
+        for (String burgerservicenummer : burgerservicenummers) {
             try {
-                gezagRelaties.addAll(getGezagAfleidingsResultaat(bsn, transaction).getGezagsrelaties());
+                gezagRelaties.addAll(getGezagAfleidingsResultaat(burgerservicenummer, burgerservicenummerPersoon, transaction).getGezagsrelaties());
             } catch (AfleidingsregelException ex) {
                 log.error("Gezagsrelatie kon niet worden bepaald, dit is een urgent probleem! Resultaat 'N' wordt als antwoord gegeven", ex);
                 transactionHandler.saveGezagmoduleTransaction(null, null, null, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, null, transaction);
-                gezagRelaties.add(new Gezagsrelatie(bsn, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, BSN_MEERDERJARIGE_LEEG,
+                gezagRelaties.add(new Gezagsrelatie(burgerservicenummer, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, BSN_MEERDERJARIGE_LEEG,
                     "Gezagsrelatie kon niet worden bepaald vanwege een onverwachte exceptie, resultaat 'N' wordt als antwoord gegeven"));
             }
         }
@@ -64,164 +65,48 @@ public class GezagServiceOld implements GezagService {
         return gezagRelaties;
     }
 
-    private Map<String, Supplier<String>> initializeVragenMap(ARVragenModel arVragenModel, ARAntwoordenModel arAntwoordenModel) {
-        Map<String, Supplier<String>> map = new HashMap<>();
-        map.put("v1.1", () -> {
-            String antwoord = arVragenModel.v11isPersoonIngezeteneInBRP();
-            arAntwoordenModel.setV0101(antwoord);
-            return antwoord;
-        });
-        map.put("v1.2", () -> {
-            String antwoord = arVragenModel.v12IsPersoonMinderjarigEnNietOverleden();
-            arAntwoordenModel.setV0102(antwoord);
-            return antwoord;
-        });
-        map.put("v1.3", () -> {
-            String antwoord = arVragenModel.v13isNaarHetBuitenlandGeemigreerdGeweest();
-            arAntwoordenModel.setV0103(antwoord);
-            return antwoord;
-        });
-        map.put("v1.3a", () -> {
-            String antwoord = arVragenModel.v13aisGeborenInBuitenland();
-            arAntwoordenModel.setV0103A(antwoord);
-            return antwoord;
-        });
-        map.put("v1.3b", () -> {
-            String antwoord = arVragenModel.v13bIsGeadopteerdMetNlAkte();
-            arAntwoordenModel.setV0103B(antwoord);
-            return antwoord;
-        });
-        map.put("v1.4", () -> {
-            String antwoord = arVragenModel.v14IsUitspraakGezagAanwezig();
-            arAntwoordenModel.setV0104(antwoord);
-            return antwoord;
-        });
-        map.put("v2.1", () -> {
-            String antwoord = arVragenModel.v21HoeveelJuridischeOudersHeeftMinderjarige();
-            arAntwoordenModel.setV0201(antwoord);
-            return antwoord;
-        });
-        map.put("v2a.1", () -> {
-            String antwoord = arVragenModel.v2a1ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners();
-            arAntwoordenModel.setV02A01(antwoord);
-            return antwoord;
-        });
-        map.put("v2a.2", () -> {
-            String antwoord = arVragenModel.v2a2AdoptiefOuders();
-            arAntwoordenModel.setV02A02(antwoord);
-            return antwoord;
-        });
-        map.put("v2a.3", () -> {
-            String antwoord = arVragenModel.v2a3ErkenningNa01012023();
-            arAntwoordenModel.setV02A03(antwoord);
-            return antwoord;
-        });
-        map.put("v2b.1", () -> {
-            String antwoord = arVragenModel.v2b1IsStaandeHuwelijkOfPartnerschapGeboren();
-            arAntwoordenModel.setV02B01(antwoord);
-            return antwoord;
-        });
-        map.put("v3.1", () -> {
-            String antwoord = arVragenModel.v31IsErSprakeVanEenRecenteGebeurtenis();
-            arAntwoordenModel.setV0301(antwoord);
-            return antwoord;
-        });
-        map.put("v3.2", () -> {
-            String antwoord = arVragenModel.v32IndicatieGezagMinderjarige();
-            arAntwoordenModel.setV0302(antwoord);
-            return antwoord;
-        });
-        map.put("v4a.2", () -> {
-            String antwoord = arVragenModel.v4a2OudersOverledenOfOnbevoegdTotGezag();
-            arAntwoordenModel.setV04A02(antwoord);
-            return antwoord;
-        });
-        map.put("v4a.3", () -> {
-            String antwoord = arVragenModel.v4a3OuderOverledenOfOnbevoegdTotGezag();
-            arAntwoordenModel.setV04A03(antwoord);
-            return antwoord;
-        });
-        map.put("v4b.1", () -> {
-            String antwoord = arVragenModel.v4b1OuderOfPartnerOverledenOfOnbevoegdTotGezag();
-            arAntwoordenModel.setV04B01(antwoord);
-            return antwoord;
-        });
-        return map;
-    }
-
-    private String processVraag(Map<String, Supplier<String>> vragenMap, String vraagCode) {
-        Supplier<String> vraagProcessor = vragenMap.get(vraagCode);
-        if (vraagProcessor != null) {
-            return vraagProcessor.get();
-        } else {
-            return "EINDE";
-        }
-    }
-
-    private void processAlleVragen(ARVragenModel arVragenModel, ARAntwoordenModel arAntwoordenModel) throws BrpException {
-        try {
-            String huidigeVraag = "v1.1";
-            Map<String, Map<String, String>> hoofdstroomschema = vragenlijstService.getVragenMap();
-            Map<String, Supplier<String>> vragenMap = initializeVragenMap(arVragenModel, arAntwoordenModel);
-            String antwoord;
-            while (!huidigeVraag.equals(EINDE)) {
-                antwoord = processVraag(vragenMap, huidigeVraag);
-                // Logica om de volgende vraag te bepalen uit het hoofdstroomschema
-                Map<String, String> antwoordEnActieParen = hoofdstroomschema.get(huidigeVraag);
-                if (antwoordEnActieParen == null) {
-                    huidigeVraag = EINDE;
-                } else {
-                    // 4. De actie uitvoeren die is gekoppeld aan het antwoord en doorgaan naar de volgende vraag.
-                    huidigeVraag = antwoordEnActieParen.getOrDefault(antwoord, EINDE);
-                }
-            }
-        } catch (AfleidingsregelException e) {
-            arAntwoordenModel.setException(e);
-        } catch (BrpException e) {
-            throw new BrpException();
-        }
-    }
-
     /**
      * Bepaal gezag afleidingsresultaat
      *
-     * @param bsn         bsn van kind
+     * @param burgerservicenummer         het burgerservicenummers om gezag voor te bepalen
+     * @param burgerservicenummerPersoon  het burgerservicenummer van de persoon waar de gezag bepaling voor plaats vind
      * @param transaction originele transactie
      * @return gezagsafleidingsresultaat
      * @throws AfleidingsregelException wanneer gezag niet kan worden bepaald
      */
-    @Override
-    public GezagAfleidingsResultaat getGezagAfleidingsResultaat(final String bsn, final Transaction transaction) throws GezagException {
-        ARVragenModel arVragenModel = null;
-        final ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
+    public GezagAfleidingsResultaat getGezagAfleidingsResultaat(final String burgerservicenummer, final String burgerservicenummerPersoon, final Transaction transaction) throws GezagException {
+        ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
         GezagAfleidingsResultaat result;
         List<Gezagsrelatie> gezagRelaties = new ArrayList<>();
         String route;
         Persoonslijst plPersoon = null;
+        GezagBepaling gezagBepaling = null;
         try {
-            if (new BSNValidator().isValid(bsn)) {
-                plPersoon = brpService.getPersoonslijst(bsn, transaction);
+            if (new BSNValidator().isValid(burgerservicenummer)) {
+                plPersoon = brpService.getPersoonslijst(burgerservicenummer, transaction);
                 transactionHandler.saveGezagmoduleTransaction(
                     PersoonlijstType.PERSOON,
                     plPersoon.getReceivedId(),
                     null, null, null, transaction);
-                // Implementatie van de logica van de vragenlijst
-                arVragenModel = new ARVragenModel(plPersoon, this, transaction);
-                processAlleVragen(arVragenModel, arAntwoordenModel);
+
+                gezagBepaling = new GezagBepaling(plPersoon, this, vragenlijstService.getVragenMap(), transaction);
+                arAntwoordenModel = gezagBepaling.start();
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
         } catch (BrpException ex) {
-            log.error("Unable to find required data from BRP", ex);
-            arAntwoordenModel.setException(ex);
+            throw new PersoonslijstNotFoundException("Persoonslijst kan niet gevonden worden", ex);
         }
-        boolean hasVeldenInOnderzoek = arVragenModel != null && arVragenModel.warenVeldenInOnderzoek();
+        boolean hasVeldenInOnderzoek = gezagBepaling != null && gezagBepaling.warenVeldenInOnderzoek();
         if (hasVeldenInOnderzoek) {
             arAntwoordenModel.setException(new VeldInOnderzoekException("Preconditie: Velden mogen niet in onderzoek staan"));
         }
         route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel);
         arAntwoordenModel.setRoute(route);
+        System.out.println(route);
         setConfiguredValues(arAntwoordenModel);
+
+        String unformattedUitleg = arAntwoordenModel.getUitleg();
 
         if (hasVeldenInOnderzoek) {
             route = route + "i";
@@ -231,16 +116,33 @@ public class GezagServiceOld implements GezagService {
             arAntwoordenModel.setGezagOuder2(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
-            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), arVragenModel.getVeldenInOnderzoek(), null));
+            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(unformattedUitleg, gezagBepaling.getVeldenInOnderzoek(), null));
         }
 
-        if(arVragenModel != null) {
-            arVragenModel.bepalenGezagdragers(bsn, arAntwoordenModel, gezagRelaties);
+        if (gezagBepaling != null) {
+            List<String> missendeGegegevens = gezagBepaling.getMissendeGegegevens();
+            UUID errorTraceCode = gezagBepaling.getErrorTraceCode();
+
+            if (!missendeGegegevens.isEmpty()) {
+                String toelichting = toelichtingService.decorateToelichting(unformattedUitleg, null, missendeGegegevens);
+                arAntwoordenModel.setUitleg(toelichting);
+            } else if (errorTraceCode != null) {
+                unformattedUitleg = unformattedUitleg.formatted(errorTraceCode.toString());
+                arAntwoordenModel.setUitleg(unformattedUitleg);
+            }
+
+            System.out.println(burgerservicenummer);
+            System.out.println(burgerservicenummerPersoon);
+            System.out.println(arAntwoordenModel);
+            gezagBepaling.bepalenGezagdragers(burgerservicenummer, burgerservicenummerPersoon, arAntwoordenModel, gezagRelaties);
         }
 
+        /*
         if (gezagRelaties.isEmpty() && arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals(SOORT_GEZAG_NVT)) {
-            gezagRelaties.add(new Gezagsrelatie(bsn, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, arAntwoordenModel.getUitleg()));
+            String uitleg = arAntwoordenModel.getUitleg();
+            gezagRelaties.add(new Gezagsrelatie(burgerservicenummer, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, uitleg));
         }
+        */
 
         result = new GezagAfleidingsResultaat(gezagRelaties, arAntwoordenModel, route);
 
@@ -250,7 +152,7 @@ public class GezagServiceOld implements GezagService {
             persoonReceivedId,
             route,
             arAntwoordenModel.getSoortGezag(),
-            (arVragenModel != null ? arVragenModel.getVeldenInOnderzoek() : null),
+            (gezagBepaling != null ? gezagBepaling.getVeldenInOnderzoek() : null),
             transaction);
         if (transaction.getReceivedId() == null) {
             transaction.setReceivedId(persoonReceivedId);
@@ -273,7 +175,6 @@ public class GezagServiceOld implements GezagService {
      *                            van het request
      * @return ouder 1 of null
      */
-    @Override
     public Persoonslijst ophalenOuder1(final Persoonslijst plPersoon, final Transaction originalTransaction) {
         Persoonslijst plOuder1 = null;
         try {
@@ -307,7 +208,6 @@ public class GezagServiceOld implements GezagService {
      *                            van het request
      * @return ouder2 of null
      */
-    @Override
     public Persoonslijst ophalenOuder2(final Persoonslijst plPersoon, final Transaction originalTransaction) {
         Persoonslijst plOuder2 = null;
         try {
@@ -345,7 +245,6 @@ public class GezagServiceOld implements GezagService {
      *                            van het request entry of the request
      * @return de niet ouder of null
      */
-    @Override
     public Persoonslijst ophalenNietOuder(final Persoonslijst plPersoon, final Persoonslijst plOuder1, final Persoonslijst plOuder2, final Transaction originalTransaction) {
         try {
             if (!isValidPersoon(plPersoon) || !isOneParentPresent(plOuder1, plOuder2)) {

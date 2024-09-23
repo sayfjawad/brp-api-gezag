@@ -2,7 +2,7 @@ package nl.rijksoverheid.mev.gmapi;
 
 import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.exception.GezagException;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.newversion.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,11 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -56,7 +54,6 @@ class BevoegdheidTotGezagServiceTest {
     @BeforeEach
     void setup() throws GezagException {
         setupFamilieRelaties();
-        setupGezagRelaties();
     }
 
     void setupFamilieRelaties() throws GezagException {
@@ -65,55 +62,41 @@ class BevoegdheidTotGezagServiceTest {
         when(brpService.getBsnsMinderjarigeKinderenOuderEnPartners(BSN_MEERDERJARIGE_OUDER, transaction)).thenReturn(List.of(BSN_KIND_1, BSN_KIND_2));
     }
 
-    void setupGezagRelaties() {
-        geenGezaghebbendenVanMeerderjarigen();
-        grootOuderAlsGezaghebbendeVanMinderjarigeOuder();
-        grootOuderEnMeerderjarigeOuderAlsGezaghebbendenVanKind1();
-        voogdEnMeerderjarigeOuderAlsGezaghebbendenVanKind2();
-    }
-
-    void geenGezaghebbendenVanMeerderjarigen() {
-        doReturn(Collections.emptyList()).when(gezagService).getGezag(List.of(BSN_OUDER_VAN_MINDERJARIGE_OUDER), transaction);
-        doReturn(Collections.emptyList()).when(gezagService).getGezag(List.of(BSN_MEERDERJARIGE_OUDER), transaction);
-        doReturn(Collections.emptyList()).when(gezagService).getGezag(List.of(BSN_VOOGD_KIND_2), transaction);
-    }
-
-    void grootOuderAlsGezaghebbendeVanMinderjarigeOuder() {
+    void grootOuderAlsGezaghebbendeVanMinderjarigeOuder(final String bevraagdePersoon) {
         var gezagsrelatieMinderjarigeOuderMetDiensOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_MINDERJARIGE_OUDER, "OG1", BSN_OUDER_VAN_MINDERJARIGE_OUDER, UITLEG, null);
         var gezagsrelatiesMinderjarigeOuderMetDiensOuder = List.of(gezagsrelatieMinderjarigeOuderMetDiensOuder);
 
-        when(gezagService.getGezag(List.of(BSN_MINDERJARIGE_OUDER), transaction)).thenReturn(gezagsrelatiesMinderjarigeOuderMetDiensOuder);
+        when(gezagService.getGezag(List.of(BSN_MINDERJARIGE_OUDER), bevraagdePersoon, transaction)).thenReturn(gezagsrelatiesMinderjarigeOuderMetDiensOuder);
     }
 
-    void grootOuderEnMeerderjarigeOuderAlsGezaghebbendenVanKind1() {
+    void grootOuderEnMeerderjarigeOuderAlsGezaghebbendenVanKind1(final String bevraagdePersoon) {
         var gezagsrelatieKind1MetGrootouder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_OUDER_VAN_MINDERJARIGE_OUDER, UITLEG, null);
         var gezagsrelatieKind1MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, null);
         var gezagsrelatiesKind1 = List.of(gezagsrelatieKind1MetGrootouder, gezagsrelatieKind1MetMeerderjarigeOuder);
 
-        when(gezagService.getGezag(List.of(BSN_KIND_1), transaction)).thenReturn(gezagsrelatiesKind1);
+        when(gezagService.getGezag(List.of(BSN_KIND_1), bevraagdePersoon, transaction)).thenReturn(gezagsrelatiesKind1);
     }
 
     void voogdEnMeerderjarigeOuderAlsGezaghebbendenVanKind2() {
-        var gezagsrelatieKind2MetVoogd = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "V", BSN_VOOGD_KIND_2, UITLEG, null);
+        var gezagsrelatieKind2MetVoogd = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "V", BSN_VOOGD_KIND_2, UITLEG, BSN_VOOGD_KIND_2);
         var gezagsrelatieKind2MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, null);
         var gezagsrelatiesKind2 = List.of(gezagsrelatieKind2MetVoogd, gezagsrelatieKind2MetMeerderjarigeOuder);
 
-        when(gezagService.getGezag(List.of(BSN_KIND_2), transaction)).thenReturn(gezagsrelatiesKind2);
+        when(gezagService.getGezag(List.of(BSN_KIND_2), BSN_KIND_2, transaction)).thenReturn(gezagsrelatiesKind2);
     }
 
-    void gezagRelatiesKind1EnKind2() {
-        var gezagsrelatieKind1MetGrootouder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_OUDER_VAN_MINDERJARIGE_OUDER, UITLEG, null);
+    void gezagRelatiesKind1EnKind2(final String bevraagdePersoon) {
         var gezagsrelatieKind1MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, null);
-        var gezagsrelatieKind2MetVoogd = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "V", BSN_VOOGD_KIND_2, UITLEG, null);
         var gezagsrelatieKind2MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, null);
-        var gezagsrelaties = List.of(gezagsrelatieKind1MetGrootouder, gezagsrelatieKind1MetMeerderjarigeOuder, gezagsrelatieKind2MetVoogd, gezagsrelatieKind2MetMeerderjarigeOuder);
+        var gezagsrelaties = List.of(gezagsrelatieKind1MetMeerderjarigeOuder, gezagsrelatieKind2MetMeerderjarigeOuder);
 
-        when(gezagService.getGezag(List.of(BSN_KIND_1, BSN_KIND_2), transaction)).thenReturn(gezagsrelaties);
+        when(gezagService.getGezag(List.of(BSN_KIND_1, BSN_KIND_2), bevraagdePersoon, transaction)).thenReturn(gezagsrelaties);
     }
 
     @Test
     void kanBevoegdheidTotGezagOpvragenVoorMinderjarigKind1() throws GezagException {
         // Hier worden alle gezagsrelaties voor het kind opgehaald
+        grootOuderEnMeerderjarigeOuderAlsGezaghebbendenVanKind1(BSN_KIND_1);
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(BSN_KIND_1));
         List<Persoon> results = subject.bepaalBevoegdheidTotGezag(gezagRequest, transaction);
 
@@ -139,6 +122,7 @@ class BevoegdheidTotGezagServiceTest {
     @Test
     void kanBevoegdheidTotGezagOpvragenVoorMinderjarigKind2() throws GezagException {
         // Hier worden alle gezagsrelaties voor het kind opgehaald
+        voogdEnMeerderjarigeOuderAlsGezaghebbendenVanKind2();
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(BSN_KIND_2));
         List<Persoon> results = subject.bepaalBevoegdheidTotGezag(gezagRequest, transaction);
 
@@ -163,6 +147,7 @@ class BevoegdheidTotGezagServiceTest {
 
     @Test
     void kanBevoegdheidTotGezagOpvragenVoorMeerderjarigeGrootouder() throws GezagException {
+        grootOuderAlsGezaghebbendeVanMinderjarigeOuder(BSN_OUDER_VAN_MINDERJARIGE_OUDER);
         // Hier worden enkel de gezagsrelaties van de kinderen van de meerderjarige opgehaald
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(BSN_OUDER_VAN_MINDERJARIGE_OUDER));
         List<Persoon> results = subject.bepaalBevoegdheidTotGezag(gezagRequest, transaction);
@@ -181,8 +166,7 @@ class BevoegdheidTotGezagServiceTest {
 
     @Test
     void kanBevoegdheidTotGezagOpvragenVoorMeerderjarigeOuder() throws GezagException {
-        gezagRelatiesKind1EnKind2();
-
+        gezagRelatiesKind1EnKind2(BSN_MEERDERJARIGE_OUDER);
         // Hier worden enkel de gezagsrelaties van de kinderen van de meerderjarige opgehaald
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(BSN_MEERDERJARIGE_OUDER));
         List<Persoon> results = subject.bepaalBevoegdheidTotGezag(gezagRequest, transaction);
@@ -208,6 +192,7 @@ class BevoegdheidTotGezagServiceTest {
 
     @Test
     void bevoegdhedenTotGezagVanMinderjarigeOuderBevattenOokNietDirectGerelateerdeGezagsrelatiesVanKinderen() throws GezagException {
+        grootOuderAlsGezaghebbendeVanMinderjarigeOuder(BSN_MINDERJARIGE_OUDER);
         // Hier worden alleen de gezagsrelaties voor de minderjarige ouder
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(BSN_MINDERJARIGE_OUDER));
         List<Persoon> results = subject.bepaalBevoegdheidTotGezag(gezagRequest, transaction);
