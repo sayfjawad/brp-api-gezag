@@ -32,10 +32,17 @@ public class Gezagsrelatie {
 
     public Gezagsrelatie(
         final String bsnMinderjarige,
+        final String soortGezag,
+        final String bsnMeerderjarige
+    ) {
+        this(bsnMinderjarige, soortGezag, bsnMeerderjarige, null);
+    }
+
+    public Gezagsrelatie(
+        final String bsnMinderjarige,
         final String soortGezag
     ) {
-        this.bsnMinderjarige = bsnMinderjarige;
-        this.soortGezag = soortGezag;
+        this(bsnMinderjarige, soortGezag, null, null);
     }
 
     public boolean isGezamenlijkGezag() {
