@@ -38,6 +38,10 @@ public class Gezagsrelatie {
         this.soortGezag = soortGezag;
     }
 
+    public boolean isGezamenlijkGezag() {
+        return soortGezag.equals("GG");
+    }
+
     public boolean isTweehoofdigOuderlijkGezag() {
         return soortGezag.equals("OG2");
     }

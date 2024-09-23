@@ -6,11 +6,11 @@ import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
-import org.openapitools.model.*;
+import org.openapitools.model.GezagRequest;
+import org.openapitools.model.Persoon;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -86,6 +86,9 @@ public class BevoegdheidTotGezagService {
         List<String> kinderen = brpService.getBsnsMinderjarigeKinderen(bevraagdePersoon, transaction);
         List<Gezagsrelatie> gezagsrelaties = gezagService.getGezag(kinderen, transaction);
         return gezagsrelaties.stream()
-            .filter(gezagsrelatie -> gezagsrelatie.isTweehoofdigOuderlijkGezag() || bevraagdePersoon.equals(gezagsrelatie.getBsnMeerderjarige()));
+            .filter(gezagsrelatie -> gezagsrelatie.isTweehoofdigOuderlijkGezag()
+                || gezagsrelatie.isGezamenlijkGezag()
+                || bevraagdePersoon.equals(gezagsrelatie.getBsnMeerderjarige())
+            );
     }
 }
