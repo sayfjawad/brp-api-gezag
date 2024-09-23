@@ -77,8 +77,8 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
         if (hopListOuder1.isEmpty() || hopListOuder2.isEmpty()) {
             return false;
         }
-        String hopOuder1Actueel = hopListOuder1.get(0).getDatumVoltrokken();
-        String hopOuder2Actueel = hopListOuder2.get(0).getDatumVoltrokken();
+        String hopOuder1Actueel = hopListOuder1.getFirst().getDatumVoltrokken();
+        String hopOuder2Actueel = hopListOuder2.getFirst().getDatumVoltrokken();
         return (org.apache.commons.lang3.StringUtils.isNotBlank(hopOuder1Actueel) && org.apache.commons.lang3.StringUtils.isNotBlank(hopOuder2Actueel))
             && (Integer.parseInt(geldigheidsdatum) <= Integer.parseInt(hopOuder1Actueel))
             && (Integer.parseInt(geldigheidsdatum) <= Integer.parseInt(hopOuder2Actueel))
