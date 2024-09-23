@@ -5,12 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.soap.BrpClient;
 import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.GezagException;
+import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Service voor BRP functionaliteit
@@ -28,7 +30,7 @@ public class BrpService {
     /**
      * Ophalen persoonslijst
      *
-     * @param bsn de bsn om de persoonslijst voor op te halen
+     * @param bsn         de bsn om de persoonslijst voor op te halen
      * @param transaction de originele transactie
      * @return de persoonslijst
      * @throws GezagException wanneer BRP communicatie misgaat
@@ -46,17 +48,29 @@ public class BrpService {
     /**
      * Ophalen bsns van minderjarige kinderen
      *
-     * @param bsn de bsn om de persoonslijst voor op te halen
+     * @param bsn         de bsn om de persoonslijst voor op te halen
      * @param transaction de originele transactie
      * @return de BSNs van de kinderen
      * @throws GezagException wanneer BRP communicatie misgaat
      */
-    public List<String> getBsnsMinderjarigeKinderen(final String bsn, final Transaction transaction) throws BrpException {
+    public List<String> getBsnsMinderjarigeKinderenOuderEnPartners(final String bsn, final Transaction transaction) throws BrpException {
         Persoonslijst persoonslijstOuder = client.opvragenPersoonslijst(bsn, transaction);
+        List<Persoonslijst> partners = persoonslijstOuder.getHuwelijkOfPartnerschappen().stream()
+            .filter(hop -> hop.getBsnPartner() != null)
+            .map(HuwelijkOfPartnerschap::getBsnPartner)
+            .map(bsnPartner -> client.opvragenPersoonslijst(bsnPartner, transaction))
+            .toList();
 
         transaction.setReceivedId(persoonslijstOuder.getReceivedId());
         transactionHandler.saveBrpServiceTransaction(BRP_SERVICE_GET_BSNS_MINDERJARIGE_KINDEREN, persoonslijstOuder.getReceivedId(), transaction);
 
-        return persoonslijstOuder.getBurgerservicenummersVanMinderjarigeKinderen();
+        List<String> kinderen = persoonslijstOuder.getBurgerservicenummersVanMinderjarigeKinderen();
+        kinderen.addAll(partners.stream().map(Persoonslijst::getBurgerservicenummersVanMinderjarigeKinderen)
+            .mapMulti((final List<String> list, final Consumer<String> consumer) -> {
+                list.forEach(consumer::accept);
+            }).toList());
+
+        return kinderen.stream()
+            .distinct().toList();
     }
 }

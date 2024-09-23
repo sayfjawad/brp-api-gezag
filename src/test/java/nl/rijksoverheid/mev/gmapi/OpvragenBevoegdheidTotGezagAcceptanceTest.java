@@ -705,7 +705,7 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                     gezagsrelatie.setBsnMeerderjarige(bsnMeerderjarige);
                     gezagsrelatie.setToelichting(UITLEG);
                     if("GG".equals(soortGezag) && !gezagsrelaties.isEmpty()) {
-                        gezagsrelatie.setDerde(true);
+                        gezagsrelatie.setBsnDerde(bsnMeerderjarige);
                     }
                     gezagsrelaties.add(gezagsrelatie);
                 }

@@ -476,8 +476,8 @@ public class ARVragenModel {
             if ((((arAntwoordenModel.getGezagNietOuder1() != null && arAntwoordenModel.getGezagNietOuder1().equals("Ja"))
                 || (arAntwoordenModel.getGezagNietOuder2() != null && arAntwoordenModel.getGezagNietOuder2().equals("Ja")))
                 && (plNietOuder != null))) {
-                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, plNietOuder.getPersoon().getBsn(), uitleg);
-                gezagsrelatie.setDerde(true);
+                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, null, uitleg);
+                gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
                 gezagsrelaties.add(gezagsrelatie);
             }
         }

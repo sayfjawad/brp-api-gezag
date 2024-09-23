@@ -16,7 +16,7 @@ public class Gezagsrelatie {
     private String soortGezag;
     private String bsnMeerderjarige;
     private String toelichting;
-    private boolean isDerde;
+    private String bsnDerde;
 
     public Gezagsrelatie(
         final String bsnMinderjarige,
@@ -45,9 +45,10 @@ public class Gezagsrelatie {
     @Override
     public String toString() {
         return "Gezagsrelatie{"
-            + ", bsnMinderjarige=" + bsnMinderjarige
+            + "bsnMinderjarige=" + bsnMinderjarige
             + ", soortGezag=" + soortGezag
             + ", bsnMeerderjarige=" + bsnMeerderjarige
-            + ", toelichting=" + toelichting + '}';
+            + ", toelichting=" + toelichting
+            + ", bsnDerde= " + bsnDerde + '}';
     }
 }

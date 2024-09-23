@@ -145,21 +145,31 @@ public class GezagBepaling {
         if (arAntwoordenModel != null) {
             String uitleg = arAntwoordenModel.getUitleg();
             String soortGezag = arAntwoordenModel.getSoortGezag();
-            if (arAntwoordenModel.getGezagOuder1() != null && arAntwoordenModel.getGezagOuder1().equals("Ja")
-                && (plOuder1 != null)) {
-                gezagsrelaties.add(
-                    new Gezagsrelatie(bsn, soortGezag, plOuder1.getPersoon().getBsn(), uitleg));
-            }
-            if (arAntwoordenModel.getGezagOuder2() != null && arAntwoordenModel.getGezagOuder2().equals("Ja")
-                && (plOuder2 != null)) {
-                gezagsrelaties.add(
-                    new Gezagsrelatie(bsn, soortGezag, plOuder2.getPersoon().getBsn(), uitleg));
-            }
-            if ((((arAntwoordenModel.getGezagNietOuder1() != null && arAntwoordenModel.getGezagNietOuder1().equals("Ja"))
+
+            boolean ouder1Gezag = arAntwoordenModel.getGezagOuder1() != null && arAntwoordenModel.getGezagOuder1().equals("Ja")
+                && (plOuder1 != null);
+            boolean ouder2Gezag = arAntwoordenModel.getGezagOuder2() != null && arAntwoordenModel.getGezagOuder2().equals("Ja")
+                && (plOuder2 != null);
+            boolean nietOuderGezag = (((arAntwoordenModel.getGezagNietOuder1() != null && arAntwoordenModel.getGezagNietOuder1().equals("Ja"))
                 || (arAntwoordenModel.getGezagNietOuder2() != null && arAntwoordenModel.getGezagNietOuder2().equals("Ja")))
-                && (plNietOuder != null))) {
-                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, plNietOuder.getPersoon().getBsn(), uitleg);
-                gezagsrelatie.setDerde(true);
+                && (plNietOuder != null));
+            if (ouder1Gezag) {
+                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, plOuder1.getPersoon().getBsn(), uitleg);
+                if (nietOuderGezag) {
+                    gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
+                }
+                gezagsrelaties.add(gezagsrelatie);
+            }
+            if (ouder2Gezag) {
+                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, plOuder2.getPersoon().getBsn(), uitleg);
+                if (nietOuderGezag) {
+                    gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
+                }
+                gezagsrelaties.add(gezagsrelatie);
+            }
+            if (!ouder1Gezag && !ouder2Gezag && nietOuderGezag) {
+                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsn, soortGezag, null, uitleg);
+                gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
                 gezagsrelaties.add(gezagsrelatie);
             }
         }

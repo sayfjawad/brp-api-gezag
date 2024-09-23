@@ -60,9 +60,9 @@ class BevoegdheidTotGezagServiceTest {
     }
 
     void setupFamilieRelaties() throws GezagException {
-        when(brpService.getBsnsMinderjarigeKinderen(BSN_OUDER_VAN_MINDERJARIGE_OUDER, transaction)).thenReturn(List.of(BSN_MINDERJARIGE_OUDER));
-        when(brpService.getBsnsMinderjarigeKinderen(BSN_MINDERJARIGE_OUDER, transaction)).thenReturn(List.of(BSN_KIND_1, BSN_KIND_2));
-        when(brpService.getBsnsMinderjarigeKinderen(BSN_MEERDERJARIGE_OUDER, transaction)).thenReturn(List.of(BSN_KIND_1, BSN_KIND_2));
+        when(brpService.getBsnsMinderjarigeKinderenOuderEnPartners(BSN_OUDER_VAN_MINDERJARIGE_OUDER, transaction)).thenReturn(List.of(BSN_MINDERJARIGE_OUDER));
+        when(brpService.getBsnsMinderjarigeKinderenOuderEnPartners(BSN_MINDERJARIGE_OUDER, transaction)).thenReturn(List.of(BSN_KIND_1, BSN_KIND_2));
+        when(brpService.getBsnsMinderjarigeKinderenOuderEnPartners(BSN_MEERDERJARIGE_OUDER, transaction)).thenReturn(List.of(BSN_KIND_1, BSN_KIND_2));
     }
 
     void setupGezagRelaties() {
@@ -79,33 +79,33 @@ class BevoegdheidTotGezagServiceTest {
     }
 
     void grootOuderAlsGezaghebbendeVanMinderjarigeOuder() {
-        var gezagsrelatieMinderjarigeOuderMetDiensOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_MINDERJARIGE_OUDER, "OG1", BSN_OUDER_VAN_MINDERJARIGE_OUDER, UITLEG, false);
+        var gezagsrelatieMinderjarigeOuderMetDiensOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_MINDERJARIGE_OUDER, "OG1", BSN_OUDER_VAN_MINDERJARIGE_OUDER, UITLEG, null);
         var gezagsrelatiesMinderjarigeOuderMetDiensOuder = List.of(gezagsrelatieMinderjarigeOuderMetDiensOuder);
 
         when(gezagService.getGezag(List.of(BSN_MINDERJARIGE_OUDER), transaction)).thenReturn(gezagsrelatiesMinderjarigeOuderMetDiensOuder);
     }
 
     void grootOuderEnMeerderjarigeOuderAlsGezaghebbendenVanKind1() {
-        var gezagsrelatieKind1MetGrootouder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_OUDER_VAN_MINDERJARIGE_OUDER, UITLEG, false);
-        var gezagsrelatieKind1MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, false);
+        var gezagsrelatieKind1MetGrootouder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_OUDER_VAN_MINDERJARIGE_OUDER, UITLEG, null);
+        var gezagsrelatieKind1MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, null);
         var gezagsrelatiesKind1 = List.of(gezagsrelatieKind1MetGrootouder, gezagsrelatieKind1MetMeerderjarigeOuder);
 
         when(gezagService.getGezag(List.of(BSN_KIND_1), transaction)).thenReturn(gezagsrelatiesKind1);
     }
 
     void voogdEnMeerderjarigeOuderAlsGezaghebbendenVanKind2() {
-        var gezagsrelatieKind2MetVoogd = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "V", BSN_VOOGD_KIND_2, UITLEG, false);
-        var gezagsrelatieKind2MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, false);
+        var gezagsrelatieKind2MetVoogd = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "V", BSN_VOOGD_KIND_2, UITLEG, null);
+        var gezagsrelatieKind2MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, null);
         var gezagsrelatiesKind2 = List.of(gezagsrelatieKind2MetVoogd, gezagsrelatieKind2MetMeerderjarigeOuder);
 
         when(gezagService.getGezag(List.of(BSN_KIND_2), transaction)).thenReturn(gezagsrelatiesKind2);
     }
 
     void gezagRelatiesKind1EnKind2() {
-        var gezagsrelatieKind1MetGrootouder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_OUDER_VAN_MINDERJARIGE_OUDER, UITLEG, false);
-        var gezagsrelatieKind1MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, false);
-        var gezagsrelatieKind2MetVoogd = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "V", BSN_VOOGD_KIND_2, UITLEG, false);
-        var gezagsrelatieKind2MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, false);
+        var gezagsrelatieKind1MetGrootouder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_OUDER_VAN_MINDERJARIGE_OUDER, UITLEG, null);
+        var gezagsrelatieKind1MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_1, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, null);
+        var gezagsrelatieKind2MetVoogd = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "V", BSN_VOOGD_KIND_2, UITLEG, null);
+        var gezagsrelatieKind2MetMeerderjarigeOuder = new nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie(BSN_KIND_2, "OG1", BSN_MEERDERJARIGE_OUDER, UITLEG, null);
         var gezagsrelaties = List.of(gezagsrelatieKind1MetGrootouder, gezagsrelatieKind1MetMeerderjarigeOuder, gezagsrelatieKind2MetVoogd, gezagsrelatieKind2MetMeerderjarigeOuder);
 
         when(gezagService.getGezag(List.of(BSN_KIND_1, BSN_KIND_2), transaction)).thenReturn(gezagsrelaties);

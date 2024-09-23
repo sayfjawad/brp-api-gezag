@@ -18,6 +18,7 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -263,7 +264,7 @@ public class Persoonslijst {
                 .filter(Kind::isMinderjarig)
                 .map(Kind::getBsn)
                 .filter(Objects::nonNull)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**
