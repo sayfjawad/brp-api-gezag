@@ -23,8 +23,8 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
 
     /**
      * v3.1
-     *
-     * @return Ja, als er sprake is van een recente gebeurtenis anders Nee
+     *<p>
+     * Ja, als er sprake is van een recente gebeurtenis anders Nee
      */
     @Override
     public void perform() {
