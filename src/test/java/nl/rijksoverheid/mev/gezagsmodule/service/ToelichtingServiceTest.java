@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,11 +16,9 @@ class ToelichtingServiceTest {
 
     private static final String BASE_TOELICHTING = "mock";
     private static final String BASE_MISSENDE_VELDEN_TOELICHTING = "missende gegevens: %s";
+    private static final String EXPECTED = "Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. %s";
     private static final String FIELD_1 = "field 1";
     private static final String FIELD_2 = "field 2";
-    private static final String IN_ONDERZOEK_NEEDLE = "waardes in onderzoek waren gedetecteerd";
-    private static final String IN_ONDERZOEK_PERSOONSVELDEN = "Persoonsvelden";
-    private static final String IN_ONDERZOEK_OUDER_1 = "ouder 1";
 
     @BeforeEach
     public void setup() {
@@ -84,37 +81,30 @@ class ToelichtingServiceTest {
     }
 
     @Test
-    void baseToelichtingAndOneVeldenInOnderzoekForPersoonExpectingBaseWithVeldInOnderzoek() {
-        String toelichting = BASE_TOELICHTING;
+    void baseToelichtingAndOneVeldenInOnderzoekForPersoonExpectingVeldInOnderzoek() {
+        var expected = EXPECTED.formatted("Velden van persoon: field 1.");
+
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
         veldenInOnderzoek.setPersoon(List.of(FIELD_1));
         List<String> missendeGegevens = new ArrayList<>();
 
-        String result = classUnderTest.decorateToelichting(toelichting, veldenInOnderzoek, missendeGegevens);
+        String result = classUnderTest.decorateToelichting(BASE_TOELICHTING, veldenInOnderzoek, missendeGegevens);
 
-        assertTrue(result.startsWith(toelichting));
-        assertTrue(result.contains(IN_ONDERZOEK_NEEDLE));
-        assertTrue(result.contains(IN_ONDERZOEK_PERSOONSVELDEN));
-        assertTrue(result.contains(FIELD_1));
+        assertEquals(expected, result);
     }
 
     @Test
-    void baseToelichtingAndTwoVeldenInOnderzoekOnePersoonAndOneOuder1ExpectingBaseWithVeldenInOnderzoek() {
-        String toelichting = BASE_TOELICHTING;
-        long expectedTimesFieldInResult = 2;
+    void baseToelichtingAndTwoVeldenInOnderzoekOnePersoonAndOneOuder1ExpectingVeldenInOnderzoek() {
+        var expected = EXPECTED.formatted("Velden van persoon: field 1. Velden van ouder 1: field 1.");
+
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
         veldenInOnderzoek.setPersoon(List.of(FIELD_1));
         veldenInOnderzoek.setOuder1(List.of(FIELD_1));
         List<String> missendeGegevens = new ArrayList<>();
 
-        String result = classUnderTest.decorateToelichting(toelichting, veldenInOnderzoek, missendeGegevens);
+        String result = classUnderTest.decorateToelichting(BASE_TOELICHTING, veldenInOnderzoek, missendeGegevens);
 
-        assertTrue(result.startsWith(toelichting));
-        assertTrue(result.contains(IN_ONDERZOEK_NEEDLE));
-        assertTrue(result.contains(IN_ONDERZOEK_PERSOONSVELDEN));
-        assertTrue(result.contains(IN_ONDERZOEK_OUDER_1));
-        long occurrencesOfFieldInResult = Pattern.compile(FIELD_1).matcher(result).results().count();
-        assertEquals(expectedTimesFieldInResult, occurrencesOfFieldInResult);
+        assertEquals(expected, result);
     }
     
     @Test
@@ -144,21 +134,16 @@ class ToelichtingServiceTest {
     }
     
     @Test
-    void baseToelichtingAndTwoVeldenInOnderzoekAndTwoMissendeGegevensExpectingBaseWithVeldenInOnderzoek() {
-        String toelichting = BASE_TOELICHTING;
-        long expectedTimesFieldInResult = 2;
+    void baseToelichtingAndTwoVeldenInOnderzoekAndTwoMissendeGegevensExpectingVeldenInOnderzoek() {
+        var expected = EXPECTED.formatted("Velden van persoon: field 1. Velden van ouder 1: field 1.");
+
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
         veldenInOnderzoek.setPersoon(List.of(FIELD_1));
         veldenInOnderzoek.setOuder1(List.of(FIELD_1));
         List<String> missendeGegevens = List.of(FIELD_1, FIELD_2);
 
-        String result = classUnderTest.decorateToelichting(toelichting, veldenInOnderzoek, missendeGegevens);
+        String result = classUnderTest.decorateToelichting(BASE_TOELICHTING, veldenInOnderzoek, missendeGegevens);
 
-        assertTrue(result.startsWith(toelichting));
-        assertTrue(result.contains(IN_ONDERZOEK_NEEDLE));
-        assertTrue(result.contains(IN_ONDERZOEK_PERSOONSVELDEN));
-        assertTrue(result.contains(IN_ONDERZOEK_OUDER_1));
-        long occurrencesOfFieldInResult = Pattern.compile(FIELD_1).matcher(result).results().count();
-        assertEquals(expectedTimesFieldInResult, occurrencesOfFieldInResult);
+        assertEquals(expected, result);
     }
 }

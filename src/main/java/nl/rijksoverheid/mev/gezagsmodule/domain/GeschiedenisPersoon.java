@@ -24,10 +24,16 @@ public class GeschiedenisPersoon extends PotentieelInOnderzoek {
     private static final String RNI_DEELNEMER = "518810";
     private static final String AKTENUMMER = "518120";
     private static final String DOCUMENT_BESCHRIJVING = "518230";
+    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "518310";
+    private static final String ONDERZOEK_START_DATUM = "518320";
+    private static final String ONDERZOEK_EIND_DATUM = "518330";
 
     public static GeschiedenisPersoon from(final Lo3PlPersoonRecord lo3PlPersoonRecord, final Clock clock) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
+
+        var onderzoekGegevensAanduiding = lo3PlPersoonRecord.getOnderzoekGegevensAand();
+        var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
         Map<String, String> values = new HashMap<>();
         values.put(BSN, burgerServiceNrAsString);
@@ -39,6 +45,9 @@ public class GeschiedenisPersoon extends PotentieelInOnderzoek {
         values.put(RNI_DEELNEMER, Objects.toString(lo3PlPersoonRecord.getRniDeelnemer(), null));
         values.put(AKTENUMMER, lo3PlPersoonRecord.getAkteNr());
         values.put(DOCUMENT_BESCHRIJVING, lo3PlPersoonRecord.getDocBeschrijving());
+        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
+        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
+        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
 
         return new GeschiedenisPersoon(values, clock);
     }

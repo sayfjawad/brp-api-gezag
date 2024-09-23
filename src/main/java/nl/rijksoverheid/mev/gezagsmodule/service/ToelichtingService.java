@@ -11,14 +11,12 @@ import java.util.List;
 @Service
 public class ToelichtingService {
 
-    private static final String IN_ONDERZOEK = "Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: \n ";
-    private static final String IN_ONDERZOEK_PERSOONSVELDEN = "Persoonsvelden: ";
+    private static final String IN_ONDERZOEK = "Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan.";
+    private static final String IN_ONDERZOEK_PERSOONSVELDEN = " Velden van persoon: ";
     private static final String IN_ONDERZOEK_VELDEN_OUDER_1 = " Velden van ouder 1: ";
     private static final String IN_ONDERZOEK_VELDEN_OUDER_2 = " Velden van ouder 2: ";
     private static final String IN_ONDERZOEK_VELDEN_NIET_OUDER = " Velden van niet ouder: ";
     private static final String PLACEHOLDER = "%s";
-    private static final String SPACE = " ";
-    private static final String DOT_ENDLINE = ".\n";
 
     /**
      * Past de basis toelichting zoals opgenomen in het antwoordenmodel aan op basis van of velden in onderzoek of missende gegevens.
@@ -32,8 +30,6 @@ public class ToelichtingService {
         StringBuilder sb = new StringBuilder();
         if (baseToelichting != null && !baseToelichting.isEmpty()) {
             if (veldenInOnderzoek != null && veldenInOnderzoek.hasValues()) {
-                sb.append(baseToelichting);
-                sb.append(SPACE);
                 setInOnderzoek(sb, veldenInOnderzoek);
             } else if (missendeGegevens != null && !missendeGegevens.isEmpty()) {
                 setMissendeGegevens(sb, baseToelichting, missendeGegevens);
@@ -49,25 +45,25 @@ public class ToelichtingService {
         if (!persoonInOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_PERSOONSVELDEN);
             sb.append(String.join(", ", persoonInOnderzoekVelden));
-            sb.append(DOT_ENDLINE);
+            sb.append(".");
         }
         List<String> ouder1InOnderzoekVelden = veldenInOnderzoek.getOuder1();
         if (!ouder1InOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_VELDEN_OUDER_1);
             sb.append(String.join(", ", ouder1InOnderzoekVelden));
-            sb.append(DOT_ENDLINE);
+            sb.append(".");
         }
         List<String> ouder2InOnderzoekVelden = veldenInOnderzoek.getOuder2();
         if (!ouder2InOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_VELDEN_OUDER_2);
             sb.append(String.join(", ", ouder2InOnderzoekVelden));
-            sb.append(DOT_ENDLINE);
+            sb.append(".");
         }
         List<String> nietOuderInOnderzoekVelden = veldenInOnderzoek.getNietOuder();
         if (!nietOuderInOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_VELDEN_NIET_OUDER);
             sb.append(String.join(", ", nietOuderInOnderzoekVelden));
-            sb.append(DOT_ENDLINE);
+            sb.append(".");
         }
     }
 
