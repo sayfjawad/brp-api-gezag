@@ -260,9 +260,9 @@ Functionaliteit: Tg036 - Taher – Gegevens in onderzoek
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                     |
-    | type        | GezagNietTeBepalen                                                                                                         |
-    | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Velden van ouder 1: geslachtsnaam, bsn. |
+    | naam        | waarde                                                                                                                                     |
+    | type        | GezagNietTeBepalen                                                                                                                         |
+    | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Velden van ouder 1: geslachtsnaam, burgerservicenummer. |
 
   Scenario: Lg01_192 - minderjarig kind, 010320 in onderzoek
     # Route: 40o1 - Wie heeft gezag?: moeder (OG1)
