@@ -248,18 +248,6 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam                             | waarde           |
-    | type                             | GezamenlijkGezag |
-    | minderjarige.burgerservicenummer | 000000036        |
-    | ouder.burgerservicenummer        | 000000024        |
-    | derde.burgerservicenummer        | 000000012        |
-    En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam                             | waarde           |
-    | type                             | GezamenlijkGezag |
-    | minderjarige.burgerservicenummer | 000000048        |
-    | ouder.burgerservicenummer        | 000000024        |
-    | derde.burgerservicenummer        | 000000012        |
-    En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                    |
     | type                             | TweehoofdigOuderlijkGezag |
     | minderjarige.burgerservicenummer | 000000061                 |

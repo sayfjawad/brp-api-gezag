@@ -372,12 +372,7 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
-    En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam                             | waarde           |
-    | type                             | GezamenlijkGezag |
-    | minderjarige.burgerservicenummer | 000000036        |
-    | ouder.burgerservicenummer        | 000000012        |
-    | derde.burgerservicenummer        | 000000024        |
+    En heeft de persoon geen gezag
 
   Scenario: Lg01_178 - 1 ouder, moeder gehuwd, gezamenlijk gezag moeder en meemoeder
     # Route: 41 - Wie heeft gezag?: moeder en meemoeder (GG)
