@@ -32,6 +32,8 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
     // Datum waarop het geheel van gegevens geldig is geworden: yyyyMMdd formaat
     private static final String INGANGSDATUM_GELDIGHEID_GEZAG = "118510";
 
+    private static final String INGANGSDATUM_GELDIGHEID_GEZAG_DEFAULT_VALUE = "0";
+
     public static Gezagsverhouding from(Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord, Clock clock) {
         var onderzoekGegevensAanduiding = lo3PlGezagsverhoudingRecord.getOnderzoekGegevensAand();
         var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
@@ -49,6 +51,20 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
 
     public Gezagsverhouding(final Map<String, String> values, final Clock clock) {
         super(Categorie.GEZAGSVERHOUDING, values, clock);
+    }
+
+    /**
+     * Returns true if <i>ingangsdatum geldigheid gezag</i> is valid; otherwise false.
+     * <p>
+     * <i>Ingangsdatum geldigheid gezag</i> is valid if it is nonnull and does not contain the default value {@code 0}.
+     *
+     * @return true if <i>ingangsdatum geldigheid gezag</i> is valid; otherwise false.
+     */
+    public boolean hasIngangsdatumGeldigheidGezag() {
+        String ingangsdatumGeldigheidGezag = getIngangsdatumGeldigheidGezag();
+        if (ingangsdatumGeldigheidGezag == null) return false;
+
+        return !ingangsdatumGeldigheidGezag.equals(INGANGSDATUM_GELDIGHEID_GEZAG_DEFAULT_VALUE);
     }
 
     public String getIndicatieGezagMinderjarige() {

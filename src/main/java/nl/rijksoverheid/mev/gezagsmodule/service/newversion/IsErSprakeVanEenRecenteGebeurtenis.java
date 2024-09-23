@@ -7,7 +7,6 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
 
@@ -16,7 +15,6 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
     private static final String INDICATIE_GEZAG_BEIDE_OUDERS = "12";
     private static final String INDICATIE_GEZAG_OUDER1 = "1";
     private static final String INDICATIE_GEZAG_OUDER2 = "2";
-    private static final String STANDAARD_WAARDE_INGANGSDATUM_GELDIGHEID_GEZAG = "00000000";
 
     protected IsErSprakeVanEenRecenteGebeurtenis(final GezagBepaling gezagBepaling) {
         super(gezagBepaling);
@@ -39,9 +37,9 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
             if ((indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_BEIDE_OUDERS)) && (!plPersoon.heeftTweeOuders())) {
                 answer = V3_1_JA;
             }
-            // Preconditie ingangsdatum geldigheid gezag moet een geldige datum zijn en niet de standaard waarde
-            if (Objects.equals(ingangsdatumGeldigheidGezag, STANDAARD_WAARDE_INGANGSDATUM_GELDIGHEID_GEZAG)) {
-                throw new AfleidingsregelException("Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten", "Ingangsdatum geldigheid gezag");
+
+            if (!gezagsverhouding.hasIngangsdatumGeldigheidGezag()) {
+                throw new AfleidingsregelException("Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten", "ingangsdatum geldigheid van gezagsverhouding");
             }
             // Controleer op adoptie na uitspraak gezag, als adoptie heeft plaatsgevonden na de uitspraak
             // dan is er sprake van een recente gebeurtenis
