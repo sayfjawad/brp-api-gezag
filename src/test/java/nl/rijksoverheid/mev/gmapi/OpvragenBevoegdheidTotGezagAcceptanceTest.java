@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(
@@ -779,7 +780,7 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                     }
                 }
 
-                assertTrue(actualGezagsrelaties.size() == expectedGezagsrelaties.size());
+                assertEquals(expectedGezagsrelaties.size(), actualGezagsrelaties.size());
             } else {
                 assertTrue(result.getPersonen().get(0).getGezag().isEmpty());
             }
