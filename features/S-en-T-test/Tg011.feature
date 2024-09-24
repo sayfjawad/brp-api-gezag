@@ -285,7 +285,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | ingangsdatum geldigheid (85.10) | 20200301   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000138  |
+    | burgerservicenummer (01.20)     | 000000139  |
     | voornamen (02.10)               | Kaylee     |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Krabben    |
@@ -747,7 +747,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     | ingangsdatum geldigheid (85.10)   | 20210201 |
     
     # Lg01_208 - geboren tussen verschillende (ontbonden) huwelijken moeder, juridisch 1 ouder. Moeder in categorie 03
-    Gegeven de persoon met burgerservicenummer '000000138' heeft de volgende gegevens
+    Gegeven de persoon met burgerservicenummer '000000139' heeft de volgende gegevens
     | naam                            | waarde     |
     | voornamen (02.10)               | Kaylee     |
     | voorvoegsel (02.30)             | van        |
@@ -836,7 +836,7 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
-    | minderjarige.burgerservicenummer | 000000138                |
+    | minderjarige.burgerservicenummer | 000000139                |
     | ouder.burgerservicenummer        | 000000024                |
 
   Scenario: Lg01_057 - onder gezag derde, geldigheid vóór scheiding ouders
@@ -971,12 +971,12 @@ Functionaliteit: Tg011 - Kornelissen-Krabben-Krelissen
     # Route: 40o2 - Wie heeft gezag?: moeder (OG1)
     Als gezag wordt gezocht met de volgende parameters
     | naam                 | waarde    |
-    | burgerservicenummer  | 000000138 |
+    | burgerservicenummer  | 000000139 |
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
-    | burgerservicenummer | 000000138 |
+    | burgerservicenummer | 000000139 |
     En heeft de persoon een 'gezag' met de volgende gegevens
     | naam                             | waarde                   |
     | type                             | EenhoofdigOuderlijkGezag |
-    | minderjarige.burgerservicenummer | 000000138                |
+    | minderjarige.burgerservicenummer | 000000139                |
     | ouder.burgerservicenummer        | 000000024                |
