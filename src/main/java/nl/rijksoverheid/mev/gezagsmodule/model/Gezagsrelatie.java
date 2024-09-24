@@ -12,7 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Gezagsrelatie {
 
-    private String bsnBevraagdePersoon;
     private String bsnMinderjarige;
     private String soortGezag;
     private String bsnMeerderjarige;
@@ -20,20 +19,34 @@ public class Gezagsrelatie {
     private boolean isDerde;
 
     public Gezagsrelatie(
-            final String bsnMinderjarige,
-            final String soortGezag,
-            final String bsnMeerderjarige,
-            final String toelichting) {
+        final String bsnMinderjarige,
+        final String soortGezag,
+        final String bsnMeerderjarige,
+        final String toelichting
+    ) {
         this.bsnMinderjarige = bsnMinderjarige;
         this.soortGezag = soortGezag;
         this.bsnMeerderjarige = bsnMeerderjarige;
         this.toelichting = toelichting;
     }
 
-    public Gezagsrelatie(final String bsnMinderjarige,
-            final String soortGezag) {
-        this.bsnMinderjarige = bsnMinderjarige;
-        this.soortGezag = soortGezag;
+    public Gezagsrelatie(
+        final String bsnMinderjarige,
+        final String soortGezag,
+        final String bsnMeerderjarige
+    ) {
+        this(bsnMinderjarige, soortGezag, bsnMeerderjarige, null);
+    }
+
+    public Gezagsrelatie(
+        final String bsnMinderjarige,
+        final String soortGezag
+    ) {
+        this(bsnMinderjarige, soortGezag, null, null);
+    }
+
+    public boolean isGezamenlijkGezag() {
+        return soortGezag.equals("GG");
     }
 
     public boolean isTweehoofdigOuderlijkGezag() {
@@ -42,11 +55,10 @@ public class Gezagsrelatie {
 
     @Override
     public String toString() {
-        return "Gezagsrelatie{" 
-                + "bsnBevraagdePersoon=" + bsnBevraagdePersoon 
-                + ", bsnMinderjarige=" + bsnMinderjarige 
-                + ", soortGezag=" + soortGezag 
-                + ", bsnMeerderjarige=" + bsnMeerderjarige 
-                + ", toelichting=" + toelichting + '}';
+        return "Gezagsrelatie{"
+            + ", bsnMinderjarige=" + bsnMinderjarige
+            + ", soortGezag=" + soortGezag
+            + ", bsnMeerderjarige=" + bsnMeerderjarige
+            + ", toelichting=" + toelichting + '}';
     }
 }

@@ -1,25 +1,26 @@
 package nl.rijksoverheid.mev.gmapi;
 
-import java.util.ArrayList;
 import nl.rijksoverheid.mev.GezagApplication;
+import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.openapitools.OpenApiGeneratorApplication;
+import org.openapitools.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.openapitools.model.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import org.openapitools.OpenApiGeneratorApplication;
 import java.util.stream.Stream;
-import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(
     classes = {GezagApplication.class, OpenApiGeneratorApplication.class},
@@ -376,10 +377,14 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 new Gezagsrelatie("999999825", "OG2"))),
             // lg01_115 meerderjarige geregistreerd partnerschap vóór 01-04-2014, 2 minderjarige kinderen vóór 01-04-2014
             // en 1 minderjarig kind daarna
-            meerderjarigeArguments("Lg01_115", "999999795", Set.of(
-                new Gezagsrelatie("999999825", "OG2"),
-                new Gezagsrelatie("999999813", "GG"),
-                new Gezagsrelatie("999999801", "GG"))),
+            Arguments.of("Lg01_115", "999999795", Set.of(
+                new Gezagsrelatie("999999825", "OG2", "999999795"),
+                new Gezagsrelatie("999999825", "OG2", "999999783"),
+                new Gezagsrelatie("999999813", "GG", "999999795"),
+                new Gezagsrelatie("999999813", "GG", "999999783", UITLEG, true),
+                new Gezagsrelatie("999999801", "GG", "999999795"),
+                new Gezagsrelatie("999999801", "GG", "999999783", UITLEG, true)
+            )),
             // lg01_116 minderjarige, ouders geregistreerd partnerschap vóór 01-04-204, alleen Ouder1 gevuld
             minderjarigeArguments("Lg01_116", "999999801", "GG", List.of("999999795", "999999783")),
             // lg01_117 minderjarige, ouders geregistreerd partnerschap vóór 01-04-204, alleen Ouder2 gevuld
@@ -389,8 +394,10 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
             // lg01_119 meerderjarige geregistreerd partnerschap omgezet in huwelijk
             meerderjarigeArguments("Lg01_119", "999999837", Set.of()),
             // lg01_120 meerderjarige geregistreerd partnerschap omgezet in huwelijk
-            meerderjarigeArguments("Lg01_120", "999999849", Set.of(
-                new Gezagsrelatie("999999850", "GG"))),
+            Arguments.of("Lg01_120", "999999849", Set.of(
+                new Gezagsrelatie("999999850", "GG", "999999849"),
+                new Gezagsrelatie("999999850", "GG", "999999837", UITLEG, true)
+            )),
             // lg01_121 minderjarige, ouders geregistreerd partnerschap vóór 01-04-2014, alleen Ouder1 gevuld.
             // Na geboorte kind hebben ouders geregistreerd partnerschap omgezet in een huwelijk.
             minderjarigeArguments("Lg01_121", "999999850", "GG", List.of("999999849", "999999837")),
@@ -566,10 +573,12 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
             minderjarigeArguments("Lg01_175", "999970112", "V", List.of("")),
             // lg01_176 meerderjarige vrouw gehuwd met vrouw, 4 kinderen (2 van bekende donor tijdens huwelijken
             // 1 voor het huwelijk en 1 na 01-01-2023 erkend voor geboorte door ander dan partner
-            meerderjarigeArguments("Lg01_176", "999970124", Set.of(
-                new Gezagsrelatie("999970409", "OG2"),
-                new Gezagsrelatie("999970161", "GG"),
-                new Gezagsrelatie("999970185", "OG1"))),
+            Arguments.of("Lg01_176", "999970124", Set.of(
+                new Gezagsrelatie("999970409", "OG2", "999970124"),
+                new Gezagsrelatie("999970161", "GG", "999970124"),
+                new Gezagsrelatie("999970161", "GG", "999970136", UITLEG, true),
+                new Gezagsrelatie("999970185", "OG1", "999970124")
+            )),
             // lg01_177 meerderjarige huwelijkspartner van vrouw, geen meemoeder van de kinderen,
             // bij 1 kind gezamenlijk gezag
             meerderjarigeArguments("Lg01_177", "999970136", Set.of()),
@@ -691,7 +700,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 default ->
                     gezagsrelatie.setBsnMeerderjarige("");
             }
-            gezagsrelatie.setBsnBevraagdePersoon(commonValue);
             gezagsrelatie.setToelichting(UITLEG);
         }
         return Arguments.of(testcase, commonValue, gezagsrelaties);
@@ -704,7 +712,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 for (String bsnMeerderjarige : bsnsMeerderjarigen) {
                     Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsnMinderjarige, soortGezag);
                     gezagsrelatie.setBsnMeerderjarige(bsnMeerderjarige);
-                    gezagsrelatie.setBsnBevraagdePersoon(bsnMinderjarige);
                     gezagsrelatie.setToelichting(UITLEG);
                     if("GG".equals(soortGezag) && !gezagsrelaties.isEmpty()) {
                         gezagsrelatie.setDerde(true);
@@ -715,7 +722,6 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
             default -> {
                 Gezagsrelatie gezagsrelatie = new Gezagsrelatie(bsnMinderjarige, soortGezag);
                 gezagsrelatie.setBsnMeerderjarige("");
-                gezagsrelatie.setBsnBevraagdePersoon(bsnMinderjarige);
                 gezagsrelatie.setToelichting(UITLEG);
                 gezagsrelaties.add(gezagsrelatie);
             }
@@ -730,29 +736,24 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
 
         webTestClient.post().uri("/api/v1/opvragenBevoegdheidTotGezag").contentType(MediaType.APPLICATION_JSON).header("OIN", OIN).bodyValue(request).exchange().expectStatus().isOk().expectHeader().contentType(MediaType.APPLICATION_JSON).expectBody(GezagResponse.class).consumeWith(response -> {
             GezagResponse result = response.getResponseBody();
-            List<Persoon> personen = new ArrayList<>();
             System.out.printf("\tTestcase: %s, BSN: %s%n", testcase, input);
 
             if (expected != null && !expected.isEmpty()) {
                 GezagTransformer transformer = new GezagTransformer();
-                List<Persoon> expectedPersonen = transformer.fromGezagrelaties(new ArrayList<>(expected));
+                List<AbstractGezagsrelatie> expectedGezagsrelaties = transformer.from(expected.stream().toList());
 
-                Persoon expectedPerson = expectedPersonen.get(0);
-                assertThat(result.getPersonen()).isNotNull();
-                assertThat(result.getPersonen()).isNotEmpty();
-                Persoon actualPerson = result.getPersonen().get(0);
+                Persoon persoonResult = result.getPersonen().get(0);
+                assertThat(persoonResult).isNotNull();
 
-                assertEquals(expectedPerson.getBurgerservicenummer(), actualPerson.getBurgerservicenummer());
-                List<AbstractGezagsrelatie> actualGezagsrelaties = new ArrayList<>(actualPerson.getGezag());
-                for (AbstractGezagsrelatie gezagsrelatie : actualPerson.getGezag()) {
+                List<AbstractGezagsrelatie> actualGezagsrelaties = persoonResult.getGezag();
+                for (AbstractGezagsrelatie gezagsrelatie : actualGezagsrelaties) {
                     String type = gezagsrelatie.getType();
                     if (TYPE_NIET_TE_BEPALEN.equals(type)) {
                         Optional<String> toelichting = ((GezagNietTeBepalen) gezagsrelatie).getToelichting();
                         System.out.printf("\tTestcase: %s, niet te bepalen toelichting: %s%n", testcase, toelichting);
                         assertTrue(toelichting.isPresent() && !toelichting.isEmpty());
-                        // FUTURE_WORK: issue #12 - controlleren dat de toelichting bij N de juiste informatie bevat
                     } else if (TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG.equals(type)) {
-                        boolean correct = expectedPerson.getGezag().contains(gezagsrelatie);
+                        boolean correct = expectedGezagsrelaties.contains(gezagsrelatie);
                         if (!correct) {
                             /**
                              * Wanneer een object meer dan 1 gezag ouder bevat
@@ -766,7 +767,7 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                              * gegenereerde objecten
                              */
                             TweehoofdigOuderlijkGezag actualTweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) gezagsrelatie;
-                            for (AbstractGezagsrelatie expectedEntry : expectedPerson.getGezag()) {
+                            for (AbstractGezagsrelatie expectedEntry : expectedGezagsrelaties) {
                                 if (TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG.equals(expectedEntry.getType())) {
                                     TweehoofdigOuderlijkGezag expectedTweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) expectedEntry;
                                     assertThat(expectedTweehoofdigOuderlijkGezag.getOuders())
@@ -775,14 +776,13 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                             }
                         }
                     } else {
-                        assertTrue(expectedPerson.getGezag().contains(gezagsrelatie));
+                        assertThat(gezagsrelatie).isIn(expectedGezagsrelaties);
                     }
-                    actualGezagsrelaties.remove(gezagsrelatie);
                 }
 
-                assertTrue(actualGezagsrelaties.isEmpty());
+                assertEquals(expectedGezagsrelaties.size(), actualGezagsrelaties.size());
             } else {
-                assertTrue(result.getPersonen().isEmpty());
+                assertTrue(result.getPersonen().get(0).getGezag().isEmpty());
             }
         });
     }
