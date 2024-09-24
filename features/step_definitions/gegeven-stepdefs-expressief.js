@@ -86,7 +86,6 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd/, function (aanduiding1, aanduid
         ['naam', 'waarde'],
         ['burgerservicenummer (01.20)', bsn2],
         ['geslachtsnaam (02.40)', aanduiding2],
-        ['geboortedatum (03.10)', toDateOrString('morgen - 35 jaar', false)],
         ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 2 jaar', false)],
         ['plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20)', '0518'],
         ['land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)', '6030'],
@@ -96,7 +95,6 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd/, function (aanduiding1, aanduid
         ['naam', 'waarde'],
         ['burgerservicenummer (01.20)', bsn1],
         ['geslachtsnaam (02.40)', aanduiding1],
-        ['geboortedatum (03.10)', toDateOrString('morgen - 35 jaar', false)],
         ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 2 jaar', false)],
         ['plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20)', '0518'],
         ['land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)', '6030'],
@@ -152,8 +150,7 @@ Given(/^heeft een ouder 1 '(.*)' met burgerservicenummer '(\d*)'/, function (aan
 
     let dataOuder = [
         ['naam', 'waarde'],
-        ['geboortedatum (03.10)', toDateOrString('gisteren - 30 jaar', false)],
-        ['geslachtsnaam (02.40)', "Voorbeeld"],
+        ['geslachtsnaam (02.40)', aanduiding],
     ];
 
     createGegevensgroepCollectieMetBsn(this.context, `ouder-1`, new DataTable(dataOuder), burgerservicenummer); // met burgerservicenr
@@ -181,8 +178,7 @@ Given(/^heeft een ouder 2 '(.*)' met burgerservicenummer '(\d*)'/, function (aan
 
     let dataOuder = [
         ['naam', 'waarde'],
-        ['geboortedatum (03.10)', toDateOrString('gisteren - 30 jaar', false)],
-        ['geslachtsnaam (02.40)', "Voorbeeld"],
+        ['geslachtsnaam (02.40)', aanduiding],
     ];
 
     createGegevensgroepCollectieMetBsn(this.context, `ouder-2`, new DataTable(dataOuder), burgerservicenummer); // met burgerservicenr
