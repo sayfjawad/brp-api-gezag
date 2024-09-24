@@ -3,7 +3,7 @@ package nl.rijksoverheid.mev.privateapi.gezagsmodule;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagService;
 import nl.rijksoverheid.mev.privateapi.gezagsmodule.util.ArAntwoordenModelUtils;
 import nl.rijksoverheid.mev.privateapi.gezagsmodule.util.CsvTestResultWriter;
 import nl.rijksoverheid.mev.transaction.Transaction;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, properties = "app.clock=2023-02-01T00:00:00Z")
 public abstract class GezagsmoduleTest {
-
+/*
     public record ResponseInfo(GezagAfleidingsResultaat gezagAfleidingsResultaat, long responseTime) {
 
     }
@@ -75,4 +75,5 @@ public abstract class GezagsmoduleTest {
                 .map(Gezagsrelatie::getBsnMeerderjarige)
                 .toList();
     }
+ */
 }

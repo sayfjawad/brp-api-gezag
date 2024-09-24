@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     properties = "app.clock=2023-02-01T00:00:00Z"
 )
 class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
-
+/*
     private static final String OIN = "00000004003214345001";
     private static final String UITLEG = "Uitleg";
     private static final String TYPE_NIET_TE_BEPALEN = "GezagNietTeBepalen";

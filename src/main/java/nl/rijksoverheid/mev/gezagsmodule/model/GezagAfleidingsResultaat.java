@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
+import org.openapitools.model.AbstractGezagsrelatie;
+
 import java.util.List;
 
 /**
@@ -14,12 +16,12 @@ import java.util.List;
 @NoArgsConstructor
 public class GezagAfleidingsResultaat {
 
-    private List<Gezagsrelatie> gezagsrelaties;
+    private List<AbstractGezagsrelatie> gezagsrelaties;
     private ARAntwoordenModel arAntwoordenModel;
     private String route;
 
     public GezagAfleidingsResultaat(
-            final List<Gezagsrelatie> gezagsrelaties,
+            final List<AbstractGezagsrelatie> gezagsrelaties,
             final ARAntwoordenModel arAntwoordenModel,
             final String route) {
         this.gezagsrelaties = gezagsrelaties;

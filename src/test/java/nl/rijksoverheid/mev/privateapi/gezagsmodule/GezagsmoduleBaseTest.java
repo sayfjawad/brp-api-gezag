@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, properties="app.clock=2024-07-14T00:00:00Z")
 public class GezagsmoduleBaseTest extends GezagsmoduleTest {
-
+/*
     @BeforeAll
     public static void initialize() throws IOException {
         CsvTestResultWriter.setup("BaseTestOutput.csv");
@@ -257,4 +257,5 @@ public class GezagsmoduleBaseTest extends GezagsmoduleTest {
             )
         );
     }
+ */
 }

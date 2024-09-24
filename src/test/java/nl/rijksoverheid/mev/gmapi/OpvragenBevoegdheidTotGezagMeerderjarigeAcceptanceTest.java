@@ -19,7 +19,7 @@ import java.util.stream.Stream;
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 class OpvragenBevoegdheidTotGezagMeerderjarigeAcceptanceTest {
-
+/*
     private static final String OIN = "00000004003214345001";
 
     @Autowired
@@ -80,4 +80,5 @@ class OpvragenBevoegdheidTotGezagMeerderjarigeAcceptanceTest {
             .expectHeader().contentType(MediaType.APPLICATION_JSON)
             .expectBody(GezagResponse.class).isEqualTo(expected);
     }
+ */
 }

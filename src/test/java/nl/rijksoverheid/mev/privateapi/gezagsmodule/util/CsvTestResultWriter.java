@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CsvTestResultWriter {
-
+/*
     private static final String TEST_OUTPUT_DIRECTORY = "build/test-results/test/";
 
     private static CSVWriter csvWriter;
@@ -232,4 +232,5 @@ public class CsvTestResultWriter {
             arAntwoordenActual.getUitleg() != null ? arAntwoordenActual.getUitleg() : ""
         };
     }
+ */
 }

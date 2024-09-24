@@ -7,6 +7,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
 import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.transaction.Transaction;
+import org.openapitools.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -136,14 +137,17 @@ public class GezagBepaling {
         return velden;
     }
 
-    /*
-     * Probeer hier niet de ouders of nietouders op te halen, in dit stadium zijn
-     * deze al lang opgehaald of was dit onnodig.
-     */
-    public void bepalenGezagdragers(final String burgerservicenummer, final String burgerservicenummerPersoon, final ARAntwoordenModel arAntwoordenModel, final List<Gezagsrelatie> gezagsrelaties) {
-        if (arAntwoordenModel != null){
-            //tenminsteEenRelatieMetPersoon(burgerservicenummerPersoon)) {
-            String uitleg = arAntwoordenModel.getUitleg();
+    private static final String TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG = "TweehoofdigOuderlijkGezag";
+    private static final String TYPE_EENHOOFDIG_OUDERLIJK_GEZAG = "EenhoofdigOuderlijkGezag";
+    private static final String TYPE_GEZAMELIJK_GEZAG = "GezamenlijkGezag";
+    private static final String TYPE_VOOGDIJ = "Voogdij";
+    private static final String TYPE_TIJDELIJK_GEEN_GEZAG = "TijdelijkGeenGezag";
+    private static final String TYPE_GEZAG_NIET_TE_BEPALEN = "GezagNietTeBepalen";
+
+    public void bepalenGezagdragers(final String burgerservicenummer, final String burgerservicenummerPersoon, final ARAntwoordenModel arAntwoordenModel, final List<AbstractGezagsrelatie> gezagsrelaties) {
+        boolean bevraagdePersoonIsDeMinderjarige = burgerservicenummer.equals(burgerservicenummerPersoon);
+        if (arAntwoordenModel != null &&
+            (bevraagdePersoonIsDeMinderjarige || tenminsteEenRelatieMetPersoon(burgerservicenummerPersoon))) {
             String soortGezag = arAntwoordenModel.getSoortGezag();
 
             boolean ouder1Gezag = arAntwoordenModel.getGezagOuder1() != null && arAntwoordenModel.getGezagOuder1().equals("Ja")
@@ -154,29 +158,109 @@ public class GezagBepaling {
                 || (arAntwoordenModel.getGezagNietOuder2() != null && arAntwoordenModel.getGezagNietOuder2().equals("Ja")))
                 && (plNietOuder != null));
 
-            System.out.println(ouder1Gezag);
-            System.out.println(ouder2Gezag);
-            System.out.println(nietOuderGezag);
-            if (ouder1Gezag) {
-                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(burgerservicenummer, soortGezag, plOuder1.getPersoon().getBsn(), uitleg);
-                if (nietOuderGezag) {
-                    gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
+
+            switch (soortGezag) {
+                case "OG1" -> {
+                    String burgerservicenummerOuder1 = (plOuder1 != null ? plOuder1.getPersoon().getBsn() : null);
+                    String burgerservicenummerOuder2 = (plOuder2 != null ? plOuder2.getPersoon().getBsn() : null);
+                    if (ouder1Gezag && (bevraagdePersoonIsDeMinderjarige || burgerservicenummerPersoon.equals(burgerservicenummerOuder1))) {
+                        AbstractGezagsrelatie gezag = new EenhoofdigOuderlijkGezag()
+                            .ouder(new GezagOuder().burgerservicenummer(burgerservicenummerOuder1))
+                            .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
+                            .type(TYPE_EENHOOFDIG_OUDERLIJK_GEZAG);
+
+                        gezagsrelaties.add(gezag);
+                    }
+
+                    if (ouder2Gezag && (bevraagdePersoonIsDeMinderjarige || burgerservicenummerPersoon.equals(burgerservicenummerOuder2))) {
+                        AbstractGezagsrelatie gezag = new EenhoofdigOuderlijkGezag()
+                            .ouder(new GezagOuder().burgerservicenummer(burgerservicenummerOuder2))
+                            .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
+                            .type(TYPE_EENHOOFDIG_OUDERLIJK_GEZAG);
+
+                        gezagsrelaties.add(gezag);
+                    }
                 }
-                gezagsrelaties.add(gezagsrelatie);
-            }
-            if (ouder2Gezag) {
-                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(burgerservicenummer, soortGezag, plOuder2.getPersoon().getBsn(), uitleg);
-                if (nietOuderGezag) {
-                    gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
+                case "OG2" -> {
+                    AbstractGezagsrelatie gezag = new TweehoofdigOuderlijkGezag()
+                        .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
+                        .addOudersItem(new GezagOuder().burgerservicenummer(plOuder1.getPersoon().getBsn()))
+                        .addOudersItem(new GezagOuder().burgerservicenummer(plOuder2.getPersoon().getBsn()))
+                        .type(TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG);
+
+                    gezagsrelaties.add(gezag);
                 }
-                gezagsrelaties.add(gezagsrelatie);
+                case "GG" -> {
+                    GezamenlijkGezag gezag = new GezamenlijkGezag()
+                        .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
+                        .derde(new Meerderjarige().burgerservicenummer(plNietOuder.getPersoon().getBsn()))
+                        .type(TYPE_GEZAMELIJK_GEZAG);
+
+                    if (ouder1Gezag) {
+                        gezag.ouder(new GezagOuder().burgerservicenummer(plOuder1.getPersoon().getBsn()));
+                    } else {
+                        gezag.ouder(new GezagOuder().burgerservicenummer(plOuder2.getPersoon().getBsn()));
+                    }
+
+                    gezagsrelaties.add(gezag);
+                }
+                case "V" -> {
+                    Voogdij gezag = new Voogdij()
+                        .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
+                        .type(TYPE_VOOGDIJ);
+
+                    if(nietOuderGezag && plNietOuder != null) {
+                        gezag.addDerdenItem(new Meerderjarige().burgerservicenummer(plNietOuder.getPersoon().getBsn()));
+                    }
+
+                    gezagsrelaties.add(gezag);
+                }
+                case "G" -> gezagsrelaties.add(new TijdelijkGeenGezag().type(TYPE_TIJDELIJK_GEEN_GEZAG));
+                case "N" ->
+                    gezagsrelaties.add(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(arAntwoordenModel.getUitleg()));
+                default -> System.out.println(soortGezag);
             }
-            if (!ouder1Gezag && !ouder2Gezag && nietOuderGezag) {
-                Gezagsrelatie gezagsrelatie = new Gezagsrelatie(burgerservicenummer, soortGezag, null, uitleg);
-                gezagsrelatie.setBsnDerde(plNietOuder.getPersoon().getBsn());
-                gezagsrelaties.add(gezagsrelatie);
+
+            System.out.println("-------------------TIJDELIJK-");
+            Set<String> gezagsdragers = new HashSet<>();
+            gezagsdragers = bepalenGezagdragers(arAntwoordenModel);
+            System.out.println(gezagsdragers);
+            List<Gezagsrelatie> relaties = new ArrayList<>();
+            if (!gezagsdragers.isEmpty()) {
+                relaties = gezagsdragers.stream().map(gezagdrager -> new Gezagsrelatie(burgerservicenummer,
+                    arAntwoordenModel.getSoortGezag(), gezagdrager, null)).toList();
+            } else if (arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals("NVT")) {
+                relaties.add(new Gezagsrelatie(burgerservicenummer, arAntwoordenModel.getSoortGezag(), "", null));
+            }
+
+            System.out.println(relaties);
+            System.out.println("-----------__!!!!!!!!!!!!!__----------------");
+        }
+    }
+
+    private Set<String> bepalenGezagdragers(final ARAntwoordenModel arAntwoordenModel) {
+        System.out.println("Bepalen");
+        Set<String> gezagsdragers = new HashSet<>();
+        if (arAntwoordenModel != null) {
+            if (arAntwoordenModel.getGezagOuder1() != null && arAntwoordenModel.getGezagOuder1().equals("Ja")
+                && (plOuder1 != null)) {
+                System.out.println("plOuder1: " + plOuder1.getPersoon().getBsn());
+                gezagsdragers.add(plOuder1.getPersoon().getBsn());
+            }
+            if (arAntwoordenModel.getGezagOuder2() != null && arAntwoordenModel.getGezagOuder2().equals("Ja")
+                && (plOuder2 != null)) {
+                System.out.println("plOuder2: " + plOuder2.getPersoon().getBsn());
+                gezagsdragers.add(plOuder2.getPersoon().getBsn());
+            }
+            if ((((arAntwoordenModel.getGezagNietOuder1() != null && arAntwoordenModel.getGezagNietOuder1().equals("Ja"))
+                || (arAntwoordenModel.getGezagNietOuder2() != null && arAntwoordenModel.getGezagNietOuder2().equals("Ja")))
+                && (plNietOuder != null))) {
+                System.out.println("plNietOuder: " + plNietOuder.getPersoon().getBsn());
+                gezagsdragers.add(plNietOuder.getPersoon().getBsn());
             }
         }
+
+        return gezagsdragers;
     }
 
     private boolean tenminsteEenRelatieMetPersoon(final String burgerservicenummerPersoon) {

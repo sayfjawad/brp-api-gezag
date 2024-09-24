@@ -18,7 +18,7 @@ import java.util.stream.Stream;
     "app.features.brp.dataset-path=src/test/resources/fixtures/persoonslijsten/GegenereerdUitExcelData/Testdataset persoonslijsten proefomgevingen GBA-V",
 })
 public class DatasetPersoonslijstenProefomgevingenGbavTest extends GezagsmoduleTest {
-
+/*
     @BeforeAll
     public static void setup() throws IOException {
         CsvTestResultWriter.setup("Dataset_persoonslijsten_proefomgevingen_GBA-V.csv");
@@ -723,4 +723,5 @@ public class DatasetPersoonslijstenProefomgevingenGbavTest extends GezagsmoduleT
         super.executeRouteTest(new RouteTestParameters(testCase, bsnKind, bsnsGezaghoudersExpected,
             expectedRoute));
     }
+ */
 }

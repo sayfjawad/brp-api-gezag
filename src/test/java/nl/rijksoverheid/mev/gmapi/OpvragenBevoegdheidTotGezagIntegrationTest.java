@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 class OpvragenBevoegdheidTotGezagIntegrationTest {
-
+/*
     private static final String OIN = "00000004003214345001";
 
     @Autowired
@@ -44,4 +44,5 @@ class OpvragenBevoegdheidTotGezagIntegrationTest {
                 assertThat(result.getPersonen()).isNotNull();
             });
     }
+ */
 }

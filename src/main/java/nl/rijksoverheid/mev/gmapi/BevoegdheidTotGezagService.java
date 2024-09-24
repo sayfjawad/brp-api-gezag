@@ -76,14 +76,16 @@ public class BevoegdheidTotGezagService {
             )
             .toList();
 
+        System.out.println(gezagsrelaties);
+
         return new Persoon()
             .burgerservicenummer(burgerservicenummerPersoon)
-            .gezag(gezagTransformer.from(gezagsrelaties));
+            .gezag(gezagsrelaties);
     }
 
-    private Stream<Gezagsrelatie> vindGezagsrelatiesVoorKinderen(final String burgerservicenummerPersoon, final Transaction transaction) throws GezagException {
+    private Stream<AbstractGezagsrelatie> vindGezagsrelatiesVoorKinderen(final String burgerservicenummerPersoon, final Transaction transaction) throws GezagException {
         List<String> kinderen = brpService.getBsnsMinderjarigeKinderenOuderEnPartners(burgerservicenummerPersoon, transaction);
-        List<Gezagsrelatie> gezagsrelaties = gezagService.getGezag(kinderen, burgerservicenummerPersoon, transaction);
+        List<AbstractGezagsrelatie> gezagsrelaties = gezagService.getGezag(kinderen, burgerservicenummerPersoon, transaction);
 
         System.out.println("JAAT");
         System.out.println(gezagsrelaties);
