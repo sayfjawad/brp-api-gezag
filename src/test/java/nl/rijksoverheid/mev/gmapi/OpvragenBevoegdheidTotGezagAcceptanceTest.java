@@ -1,25 +1,26 @@
 package nl.rijksoverheid.mev.gmapi;
 
-import java.util.ArrayList;
 import nl.rijksoverheid.mev.GezagApplication;
+import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.openapitools.OpenApiGeneratorApplication;
+import org.openapitools.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.openapitools.model.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import org.openapitools.OpenApiGeneratorApplication;
 import java.util.stream.Stream;
-import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(
     classes = {GezagApplication.class, OpenApiGeneratorApplication.class},
@@ -376,10 +377,14 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                 new Gezagsrelatie("999999825", "OG2"))),
             // lg01_115 meerderjarige geregistreerd partnerschap vóór 01-04-2014, 2 minderjarige kinderen vóór 01-04-2014
             // en 1 minderjarig kind daarna
-            meerderjarigeArguments("Lg01_115", "999999795", Set.of(
-                new Gezagsrelatie("999999825", "OG2"),
-                new Gezagsrelatie("999999813", "GG"),
-                new Gezagsrelatie("999999801", "GG"))),
+            Arguments.of("Lg01_115", "999999795", Set.of(
+                new Gezagsrelatie("999999825", "OG2", "999999795"),
+                new Gezagsrelatie("999999825", "OG2", "999999783"),
+                new Gezagsrelatie("999999813", "GG", "999999795"),
+                new Gezagsrelatie("999999813", "GG", "999999783", UITLEG, true),
+                new Gezagsrelatie("999999801", "GG", "999999795"),
+                new Gezagsrelatie("999999801", "GG", "999999783", UITLEG, true)
+            )),
             // lg01_116 minderjarige, ouders geregistreerd partnerschap vóór 01-04-204, alleen Ouder1 gevuld
             minderjarigeArguments("Lg01_116", "999999801", "GG", List.of("999999795", "999999783")),
             // lg01_117 minderjarige, ouders geregistreerd partnerschap vóór 01-04-204, alleen Ouder2 gevuld
@@ -389,8 +394,10 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
             // lg01_119 meerderjarige geregistreerd partnerschap omgezet in huwelijk
             meerderjarigeArguments("Lg01_119", "999999837", Set.of()),
             // lg01_120 meerderjarige geregistreerd partnerschap omgezet in huwelijk
-            meerderjarigeArguments("Lg01_120", "999999849", Set.of(
-                new Gezagsrelatie("999999850", "GG"))),
+            Arguments.of("Lg01_120", "999999849", Set.of(
+                new Gezagsrelatie("999999850", "GG", "999999849"),
+                new Gezagsrelatie("999999850", "GG", "999999837", UITLEG, true)
+            )),
             // lg01_121 minderjarige, ouders geregistreerd partnerschap vóór 01-04-2014, alleen Ouder1 gevuld.
             // Na geboorte kind hebben ouders geregistreerd partnerschap omgezet in een huwelijk.
             minderjarigeArguments("Lg01_121", "999999850", "GG", List.of("999999849", "999999837")),
@@ -566,10 +573,12 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
             minderjarigeArguments("Lg01_175", "999970112", "V", List.of("")),
             // lg01_176 meerderjarige vrouw gehuwd met vrouw, 4 kinderen (2 van bekende donor tijdens huwelijken
             // 1 voor het huwelijk en 1 na 01-01-2023 erkend voor geboorte door ander dan partner
-            meerderjarigeArguments("Lg01_176", "999970124", Set.of(
-                new Gezagsrelatie("999970409", "OG2"),
-                new Gezagsrelatie("999970161", "GG"),
-                new Gezagsrelatie("999970185", "OG1"))),
+            Arguments.of("Lg01_176", "999970124", Set.of(
+                new Gezagsrelatie("999970409", "OG2", "999970124"),
+                new Gezagsrelatie("999970161", "GG", "999970124"),
+                new Gezagsrelatie("999970161", "GG", "999970136", UITLEG, true),
+                new Gezagsrelatie("999970185", "OG1", "999970124")
+            )),
             // lg01_177 meerderjarige huwelijkspartner van vrouw, geen meemoeder van de kinderen,
             // bij 1 kind gezamenlijk gezag
             meerderjarigeArguments("Lg01_177", "999970136", Set.of()),
@@ -767,11 +776,11 @@ class OpvragenBevoegdheidTotGezagAcceptanceTest {
                             }
                         }
                     } else {
-                        assertTrue(expectedGezagsrelaties.contains(gezagsrelatie));
+                        assertThat(gezagsrelatie).isIn(expectedGezagsrelaties);
                     }
                 }
 
-                assertTrue(actualGezagsrelaties.size() == expectedGezagsrelaties.size());
+                assertEquals(expectedGezagsrelaties.size(), actualGezagsrelaties.size());
             } else {
                 assertTrue(result.getPersonen().get(0).getGezag().isEmpty());
             }

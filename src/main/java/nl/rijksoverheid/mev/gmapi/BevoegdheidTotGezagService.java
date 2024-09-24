@@ -10,7 +10,6 @@ import org.openapitools.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -76,16 +75,50 @@ public class BevoegdheidTotGezagService {
                 vindGezagsrelatiesVoorKinderen(burgerservicenummer, transaction)
             )
             .toList();
+        var abstractGezagsrelaties = gezagTransformer.from(gezagsrelaties).stream()
+            .filter(gezagsrelatie -> bevatPersoon(gezagsrelatie, burgerservicenummer))
+            .toList();
 
         return new Persoon()
             .burgerservicenummer(burgerservicenummer)
-            .gezag(gezagTransformer.from(gezagsrelaties));
+            .gezag(abstractGezagsrelaties);
     }
 
     private Stream<Gezagsrelatie> vindGezagsrelatiesVoorKinderen(final String bevraagdePersoon, final Transaction transaction) throws GezagException {
         List<String> kinderen = brpService.getBsnsMinderjarigeKinderen(bevraagdePersoon, transaction);
         List<Gezagsrelatie> gezagsrelaties = gezagService.getGezag(kinderen, transaction);
         return gezagsrelaties.stream()
-            .filter(gezagsrelatie -> gezagsrelatie.isTweehoofdigOuderlijkGezag() || bevraagdePersoon.equals(gezagsrelatie.getBsnMeerderjarige()));
+            .filter(gezagsrelatie -> gezagsrelatie.isTweehoofdigOuderlijkGezag()
+                || gezagsrelatie.isGezamenlijkGezag()
+                || bevraagdePersoon.equals(gezagsrelatie.getBsnMeerderjarige())
+            );
+    }
+
+    private boolean bevatPersoon(
+        final AbstractGezagsrelatie abstractGezagsrelatie,
+        final String bevraagdePersoonBurgerservicenummer
+    ) {
+        return switch (abstractGezagsrelatie) {
+            case GezamenlijkGezag gezamenlijkGezag -> {
+                String minderjarigeBurgerservicenummer = gezamenlijkGezag.getMinderjarige().orElseThrow().getBurgerservicenummer(); // not optional, should be fixed in OpenAPI Spec
+                if (minderjarigeBurgerservicenummer.equals(bevraagdePersoonBurgerservicenummer)) yield true;
+
+                var isOuder = gezamenlijkGezag.getOuder()
+                    .map(ouder -> ouder.getBurgerservicenummer().equals(bevraagdePersoonBurgerservicenummer))
+                    .orElse(false);
+                var isDerde = gezamenlijkGezag.getDerde()
+                    .map(derde -> derde.getBurgerservicenummer().orElseThrow().equals(bevraagdePersoonBurgerservicenummer)) // not optional, should be fixed in OpenAPI Spec
+                    .orElse(false);
+                yield isOuder || isDerde;
+            }
+            case Voogdij voogdij -> {
+                String minderjarigeBurgerservicenummer = voogdij.getMinderjarige().orElseThrow().getBurgerservicenummer(); // not optional, should be fixed in OpenAPI Spec
+                if (minderjarigeBurgerservicenummer.equals(bevraagdePersoonBurgerservicenummer)) yield true;
+
+                yield voogdij.getDerden().stream()
+                    .anyMatch(derde -> derde.getBurgerservicenummer().orElseThrow().equals(bevraagdePersoonBurgerservicenummer));  // not optional, should be fixed in OpenAPI Spec
+            }
+            default -> true;
+        };
     }
 }
