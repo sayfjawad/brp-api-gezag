@@ -1,4 +1,4 @@
-package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
+package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Verblijfplaats;

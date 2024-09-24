@@ -1,4 +1,4 @@
-package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
+package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import lombok.Getter;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;

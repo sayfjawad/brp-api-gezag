@@ -1,10 +1,8 @@
-package nl.rijksoverheid.mev.gezagsmodule.service.newversion;
+package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
-
-import java.util.Map;
 
 public abstract class GezagVraag {
 
