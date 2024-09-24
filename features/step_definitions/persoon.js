@@ -33,19 +33,19 @@ function createInschrijving(context, dataTable, defaultGeheim = false, defaultPl
 
 function createPersoonTypeData(persoonType, dataTable, burgerservicenummer, stapelNr) {
     let data = [
-        ['stapel_nr', stapelNr - 1 + ''],
-        ['volg_nr', '0'],
+        [ 'stapel_nr', stapelNr-1 + ''],
+        [ 'volg_nr', '0'],
     ];
 
-    if (persoonTypeMap.has(persoonType)) {
-        data.push(['persoon_type', persoonTypeMap.get(persoonType)]);
+    if(persoonTypeMap.has(persoonType)){
+        data.push([ 'persoon_type', persoonTypeMap.get(persoonType)]);
     }
 
-    if (burgerservicenummer !== undefined) {
-        data.push(['burger_service_nr', burgerservicenummer]);
+    if(burgerservicenummer !== undefined) {
+        data.push([ 'burger_service_nr', burgerservicenummer]);
     }
 
-    if (dataTable !== undefined) {
+    if(dataTable !== undefined) {
         data = data.concat(createArrayFrom(dataTable, columnNameMap))
     };
 
@@ -184,9 +184,9 @@ function wijzigGegevensgroepMetBsn(context, gegevensgroep, dataTable, isCorrecti
                 foundRelatie = el[gegevensgroep];
                 console.dir(foundRelatie);
                 ophogenVolgnr(sqlData[foundRelatie], isCorrectie);
-            
+
                 const stapelNr = sqlData[foundRelatie][0].find(el => el[0] === 'stapel_nr');
-            
+
                 if (stapelNr !== undefined) {
                     sqlData[foundRelatie].push(createPersoonTypeData(gegevensgroep, dataTable, burgerservicenummer, Number(stapelNr[1]) + 1));
                 }
@@ -227,7 +227,7 @@ function aanvullenRelatieMetBsn(context, bsn, dataTable) {
     const sqlData = context.sqlData;
     sqlData.forEach(el => {
 
-        if(el['partner']) {
+        if (el['partner']) {
 
             let persoonData = el['partner'][0];
 

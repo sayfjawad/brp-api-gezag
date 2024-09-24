@@ -140,7 +140,7 @@ Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd/, function (aanduiding
  * Expressieve Gegeven-stappen voor Ouder
  */
 
-Given(/^(?:de persoon(?: '(.*)')? )?heeft een ouder '(\d)' met de volgende gegevens$/, function (_, ouderType, dataTable) {
+Given(/^heeft een ouder '(\d)' met de volgende gegevens$/, function (_, ouderType, dataTable) {
     createGegevensgroepCollectie(this.context, `ouder-${ouderType}`, dataTable);
 });
 
@@ -240,7 +240,7 @@ Given(/^(?:de persoon(?: '(.*)')? )?is niet geëmigreerd geweest/, function (_) 
 });
 
 Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest met de volgende gegevens?$/, function (_, dataTable) {
-    createVerblijfplaats(this.context,  dataTable);
+    createVerblijfplaats(this.context, dataTable);
 });
 
 Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
