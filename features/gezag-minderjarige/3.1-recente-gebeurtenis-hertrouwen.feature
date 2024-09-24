@@ -9,8 +9,8 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       * is minderjarig
       * is niet geëmigreerd geweest
       * is in Nederland geboren
-      * heeft een ouder 'Ingrid' met burgerservicenummer '000000012'
-      * heeft een ouder 'Henk' met burgerservicenummer '000000024'
+      * heeft een ouder 1 'Ingrid' met burgerservicenummer '000000012'
+      * heeft een ouder 2 'Henk' met burgerservicenummer '000000024'
       * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
       En de persoon 'Geert' met burgerservicenummer '000000048'
       * is meerderjarig
