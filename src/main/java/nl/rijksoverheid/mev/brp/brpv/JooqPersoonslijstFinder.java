@@ -120,7 +120,7 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
             .where(LO3_PL_PERSOON.PL_ID.equal(plId)
                 .and(LO3_PL_PERSOON.PERSOON_TYPE.notEqual(PERSOON))
             )
-            .orderBy(LO3_PL_PERSOON.PERSOON_TYPE.asc(), LO3_PL_PERSOON.STAPEL_NR.asc(), LO3_PL_PERSOON.VOLG_NR.asc())
+            .orderBy(LO3_PL_PERSOON.PERSOON_TYPE.asc(), LO3_PL_PERSOON.STAPEL_NR.desc(), LO3_PL_PERSOON.VOLG_NR.asc())
             .fetchStreamInto(Lo3PlPersoonRecord.class)
             .collect(Collectors.groupingBy(Lo3PlPersoonRecord::getPersoonType));
     }
