@@ -211,6 +211,9 @@ public class GezagServiceOld implements GezagService {
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
+        } catch (BrpException ex) {
+            log.error("Unable to find required data from BRP", ex);
+            arAntwoordenModel.setException(ex);
         }
         boolean hasVeldenInOnderzoek = arVragenModel != null && arVragenModel.warenVeldenInOnderzoek();
         if (hasVeldenInOnderzoek) {

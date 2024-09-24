@@ -3,9 +3,27 @@
     <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-    <include resource="org/springframework/boot/logging/logback/file-appender.xml"/>
-    <include resource="co/elastic/logging/logback/boot/ecs-console-appender.xml"/>
-    <include resource="co/elastic/logging/logback/boot/ecs-file-appender.xml"/>
+
+    <appender name="DEFAULT-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_FILE}.json</file>
+        <append>true</append>
+        <encoder class="co.elastic.logging.logback.EcsEncoder">
+            <serviceName>brp-api-gezag</serviceName>
+            <messageLayout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%replace(%m){'\d{9}','***MASKED***'} %rEx{full, org.springframework}</pattern>
+            </messageLayout>
+        </encoder>
+    </appender>
+    <appender name="SECURE-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_FILE}-secure.json</file>
+        <append>true</append>
+        <encoder class="co.elastic.logging.logback.EcsEncoder">
+            <serviceName>brp-api-gezag</serviceName>
+            <messageLayout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%m %rEx{full, org.springframework}</pattern>
+            </messageLayout>
+        </encoder>
+    </appender>
 
     <springProfile name="default">
         <root level="INFO">
@@ -15,7 +33,8 @@
 
     <springProfile name="!default">
         <root level="INFO">
-            <appender-ref ref="ECS_JSON_FILE"/>
+            <appender-ref ref="DEFAULT-FILE"/>
+            <appender-ref ref="SECURE-FILE"/>
         </root>
     </springProfile>
 </configuration>

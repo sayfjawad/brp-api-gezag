@@ -2,5 +2,6 @@
 :!package-lock.json
 :!.docker/scripts/schema.sql
 :!.docker/db.yml
+:!features/docs/*.*
 :!features/step_definitions/*.*
 *

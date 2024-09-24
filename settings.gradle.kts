@@ -1,1 +1,1 @@
-rootProject.name = "gezag"
+rootProject.name = "brp-api-gezag"
