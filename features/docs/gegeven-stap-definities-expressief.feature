@@ -25,7 +25,6 @@
       | 1    | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *          | 0                                    |
       |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,voor_naam,geboorte_land_code,akte_nr) VALUES($1,$2,$3,$4,$5,$6,$7,$8) | 9999,0,0,P,000000036,P1,6030,1AA0100 |
 
-  # ouder 1 is meerderjarig met geboorte_datum [gisteren - 30 jaar]
   Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 1 met burgerservicenummer '[bsn]'
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * heeft een ouder 1 'P2' met burgerservicenummer '000000012'
@@ -38,7 +37,6 @@
       |      | kind-1       | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr) VALUES($1,$2,$3,$4,$5,$6)                                   | 10000,0,0,K,000000036,2007092 |
       | 2    | ouder-1-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,1,000000012,P2        |
 
-  # ouder 2 is meerderjarig met geboorte_datum [gisteren - 30 jaar]
   Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 2 met burgerservicenummer '[bsn]'
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * heeft een ouder 2 'P2' met burgerservicenummer '000000012'
