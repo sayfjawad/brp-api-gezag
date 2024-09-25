@@ -134,13 +134,6 @@ public class GezagService {
             gezagBepaling.bepalenGezagdragers(burgerservicenummer, burgerservicenummerPersoon, arAntwoordenModel, gezagRelaties);
         }
 
-        /*
-        if (gezagRelaties.isEmpty() && arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals(SOORT_GEZAG_NVT)) {
-            String uitleg = arAntwoordenModel.getUitleg();
-            gezagRelaties.add(new Gezagsrelatie(burgerservicenummer, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, uitleg));
-        }
-        */
-
         result = new GezagAfleidingsResultaat(gezagRelaties, arAntwoordenModel, route);
 
         String persoonReceivedId = (plPersoon != null ? plPersoon.getReceivedId() : "");

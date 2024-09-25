@@ -76,8 +76,6 @@ public class BevoegdheidTotGezagService {
             )
             .toList();
 
-        System.out.println(gezagsrelaties);
-
         return new Persoon()
             .burgerservicenummer(burgerservicenummerPersoon)
             .gezag(gezagsrelaties);
@@ -87,8 +85,6 @@ public class BevoegdheidTotGezagService {
         List<String> kinderen = brpService.getBsnsMinderjarigeKinderenOuderEnPartners(burgerservicenummerPersoon, transaction);
         List<AbstractGezagsrelatie> gezagsrelaties = gezagService.getGezag(kinderen, burgerservicenummerPersoon, transaction);
 
-        System.out.println("JAAT");
-        System.out.println(gezagsrelaties);
         return gezagsrelaties.stream();
     }
 }

@@ -209,58 +209,25 @@ public class GezagBepaling {
                         .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
                         .type(TYPE_VOOGDIJ);
 
-                    if(nietOuderGezag && plNietOuder != null) {
+                    if (nietOuderGezag && plNietOuder != null) {
                         gezag.addDerdenItem(new Meerderjarige().burgerservicenummer(plNietOuder.getPersoon().getBsn()));
                     }
 
                     gezagsrelaties.add(gezag);
                 }
-                case "G" -> gezagsrelaties.add(new TijdelijkGeenGezag().type(TYPE_TIJDELIJK_GEEN_GEZAG));
-                case "N" ->
-                    gezagsrelaties.add(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(arAntwoordenModel.getUitleg()));
-                default -> System.out.println(soortGezag);
-            }
-
-            System.out.println("-------------------TIJDELIJK-");
-            Set<String> gezagsdragers = new HashSet<>();
-            gezagsdragers = bepalenGezagdragers(arAntwoordenModel);
-            System.out.println(gezagsdragers);
-            List<Gezagsrelatie> relaties = new ArrayList<>();
-            if (!gezagsdragers.isEmpty()) {
-                relaties = gezagsdragers.stream().map(gezagdrager -> new Gezagsrelatie(burgerservicenummer,
-                    arAntwoordenModel.getSoortGezag(), gezagdrager, null)).toList();
-            } else if (arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals("NVT")) {
-                relaties.add(new Gezagsrelatie(burgerservicenummer, arAntwoordenModel.getSoortGezag(), "", null));
-            }
-
-            System.out.println(relaties);
-            System.out.println("-----------__!!!!!!!!!!!!!__----------------");
-        }
-    }
-
-    private Set<String> bepalenGezagdragers(final ARAntwoordenModel arAntwoordenModel) {
-        System.out.println("Bepalen");
-        Set<String> gezagsdragers = new HashSet<>();
-        if (arAntwoordenModel != null) {
-            if (arAntwoordenModel.getGezagOuder1() != null && arAntwoordenModel.getGezagOuder1().equals("Ja")
-                && (plOuder1 != null)) {
-                System.out.println("plOuder1: " + plOuder1.getPersoon().getBsn());
-                gezagsdragers.add(plOuder1.getPersoon().getBsn());
-            }
-            if (arAntwoordenModel.getGezagOuder2() != null && arAntwoordenModel.getGezagOuder2().equals("Ja")
-                && (plOuder2 != null)) {
-                System.out.println("plOuder2: " + plOuder2.getPersoon().getBsn());
-                gezagsdragers.add(plOuder2.getPersoon().getBsn());
-            }
-            if ((((arAntwoordenModel.getGezagNietOuder1() != null && arAntwoordenModel.getGezagNietOuder1().equals("Ja"))
-                || (arAntwoordenModel.getGezagNietOuder2() != null && arAntwoordenModel.getGezagNietOuder2().equals("Ja")))
-                && (plNietOuder != null))) {
-                System.out.println("plNietOuder: " + plNietOuder.getPersoon().getBsn());
-                gezagsdragers.add(plNietOuder.getPersoon().getBsn());
+                case "G" -> {
+                    if (bevraagdePersoonIsDeMinderjarige) {
+                        gezagsrelaties.add(new TijdelijkGeenGezag().type(TYPE_TIJDELIJK_GEEN_GEZAG));
+                    }
+                }
+                case "N" -> {
+                    if (bevraagdePersoonIsDeMinderjarige) {
+                        gezagsrelaties.add(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(arAntwoordenModel.getUitleg()));
+                    }
+                }
+                default -> logger.warn("Onverwachte gezagsoort ontvangen: " + soortGezag);
             }
         }
-
-        return gezagsdragers;
     }
 
     private boolean tenminsteEenRelatieMetPersoon(final String burgerservicenummerPersoon) {

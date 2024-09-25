@@ -12,6 +12,7 @@ import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
@@ -58,7 +59,15 @@ public class BrpService {
         List<Persoonslijst> partners = persoonslijstOuder.getHuwelijkOfPartnerschappen().stream()
             .filter(hop -> hop.getBsnPartner() != null)
             .map(HuwelijkOfPartnerschap::getBsnPartner)
-            .map(bsnPartner -> client.opvragenPersoonslijst(bsnPartner, transaction))
+            .map(bsnPartner -> {
+                try {
+                    return client.opvragenPersoonslijst(bsnPartner, transaction);
+                } catch (BrpException ex) {
+                    log.info("Opgevraagde persoon bestaat niet");
+                    return null;
+                }
+            })
+            .filter(Objects::nonNull)
             .toList();
 
         transaction.setReceivedId(persoonslijstOuder.getReceivedId());
