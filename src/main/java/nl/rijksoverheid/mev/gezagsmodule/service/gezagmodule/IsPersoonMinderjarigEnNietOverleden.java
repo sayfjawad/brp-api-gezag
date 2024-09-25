@@ -1,7 +1,6 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 
-import nl.rijksoverheid.mev.gezagsmodule.domain.ARVragenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
 public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {

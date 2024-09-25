@@ -3,7 +3,6 @@ package nl.rijksoverheid.mev.gmapi;
 import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.common.util.BSNValidator;
 import nl.rijksoverheid.mev.exception.GezagException;
-import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import org.openapitools.model.*;

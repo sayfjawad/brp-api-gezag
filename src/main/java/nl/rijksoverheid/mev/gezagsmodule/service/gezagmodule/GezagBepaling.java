@@ -5,7 +5,6 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
-import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import org.openapitools.model.*;
 import org.slf4j.Logger;
@@ -223,6 +222,9 @@ public class GezagBepaling {
                     if (bevraagdePersoonIsDeMinderjarige) {
                         gezagsrelaties.add(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(arAntwoordenModel.getUitleg()));
                     }
+                }
+                case "NVT" -> {
+                    logger.info("Gezag uitkomst is NVT");
                 }
                 default -> logger.warn("Onverwachte gezagsoort ontvangen: " + soortGezag);
             }

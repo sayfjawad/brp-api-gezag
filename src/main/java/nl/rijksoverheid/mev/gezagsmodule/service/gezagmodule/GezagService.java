@@ -10,7 +10,6 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
-import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
 import nl.rijksoverheid.mev.gezagsmodule.service.*;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import nl.rijksoverheid.mev.transaction.TransactionHandler;
