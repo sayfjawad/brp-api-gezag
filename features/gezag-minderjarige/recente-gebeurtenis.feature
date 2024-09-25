@@ -30,8 +30,6 @@
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
       En is geadopteerd
-      | aktenummer (81.20) |
-      | 1AQ0100            |
       En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
       | datum ingang familierechtelijke betrekking (62.10) |
       | morgen - 4 jaar                                    |
@@ -158,8 +156,6 @@
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
       En is geadopteerd
-      | aktenummer (81.20) |
-      | 1AQ0100            |
       En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
       | datum ingang familierechtelijke betrekking (62.10) |
       | morgen - 4 jaar                                    |

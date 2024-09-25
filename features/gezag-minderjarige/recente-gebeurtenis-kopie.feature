@@ -22,7 +22,7 @@
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
-      En is geadopteerd
+      En is geadopteerd met de volgende gegevens
       | aktenummer (81.20) |
       | 1AQ0100            |
       En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
