@@ -2,6 +2,12 @@ package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * sv2_1
+ *
+ * @return EEN OUDER/TWEE OUDERS/GEEN OUDERS/2 PUNTOUDERS/ONBEKEND of
+ * IN_ONDERZOEK
+ */
 public class HoeveelJuridischeOudersHeeftMinderjarige extends GezagVraag {
 
     protected HoeveelJuridischeOudersHeeftMinderjarige(final GezagBepaling gezagBepaling) {
@@ -9,12 +15,6 @@ public class HoeveelJuridischeOudersHeeftMinderjarige extends GezagVraag {
         currentQuestion = "v2.1";
     }
 
-    /**
-     * sv2_1
-     *
-     * @return EEN OUDER/TWEE OUDERS/GEEN OUDERS/2 PUNTOUDERS/ONBEKEND of
-     * IN_ONDERZOEK
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();

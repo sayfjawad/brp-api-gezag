@@ -3,6 +3,12 @@ package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * v2a_1
+ *
+ * @return JA GEHUWD OF PARTNERS/NEE NA GEBOORTE NOOIT GEHUWD PARTNERS
+ * GEWEEST MET ELKAAR / NEE GESCHEIDEN NA GEBOORTE
+ */
 public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag {
 
     private static final String V2A_1_JA_GEHUWD_OF_PARTNERS = "Ja";
@@ -14,12 +20,6 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag 
         currentQuestion = "v2a.1";
     }
 
-    /**
-     * v2a_1
-     *
-     * @return JA GEHUWD OF PARTNERS/NEE NA GEBOORTE NOOIT GEHUWD PARTNERS
-     * GEWEEST MET ELKAAR / NEE GESCHEIDEN NA GEBOORTE
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();

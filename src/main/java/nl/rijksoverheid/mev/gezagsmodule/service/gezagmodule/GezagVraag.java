@@ -4,6 +4,9 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * Een vraag om uit te voeren bij het bepalen van gezag
+ */
 public abstract class GezagVraag {
 
     protected String currentQuestion;

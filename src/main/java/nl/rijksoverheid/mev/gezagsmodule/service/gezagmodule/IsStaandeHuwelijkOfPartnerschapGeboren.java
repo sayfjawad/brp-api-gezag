@@ -6,6 +6,12 @@ import java.util.List;
 
 import static nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst.isValideGeslachtsnaam;
 
+/**
+ * v2b_1
+ *
+ * @return "Ja" als is staande huwelijk of partnerschap geboren, anders
+ * "Nee"
+ */
 public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
 
     private static final String V2B_1_JA = "Ja";
@@ -18,12 +24,6 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
         currentQuestion = "v2b.1";
     }
 
-    /**
-     * v2b_1
-     *
-     * @return "Ja" als is staande huwelijk of partnerschap geboren, anders
-     * "Nee"
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();

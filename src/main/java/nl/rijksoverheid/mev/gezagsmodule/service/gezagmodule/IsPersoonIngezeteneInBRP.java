@@ -1,8 +1,13 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
-
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * Sets the answer to {@code "Ja"} if <i>persoon is ingezetene</i>, otherwise {@code "Nee"}.
+ *
+ * <p>
+ * This is question 1_1.
+ */
 public class IsPersoonIngezeteneInBRP extends GezagVraag {
 
     private static final String V1_1_NEE = "Nee";
@@ -14,12 +19,6 @@ public class IsPersoonIngezeteneInBRP extends GezagVraag {
         currentQuestion = "v1.1";
     }
 
-    /**
-     * Sets the answer to {@code "Ja"} if <i>persoon is ingezetene</i>, otherwise {@code "Nee"}.
-     *
-     * <p>
-     * This is question 1_1.
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();

@@ -8,6 +8,11 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * v3.1
+ * <p>
+ * Ja, als er sprake is van een recente gebeurtenis anders Nee
+ */
 public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
 
     private static final String V3_1_JA = "Ja";
@@ -21,11 +26,6 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
         currentQuestion = "v3.1";
     }
 
-    /**
-     * v3.1
-     *<p>
-     * Ja, als er sprake is van een recente gebeurtenis anders Nee
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();

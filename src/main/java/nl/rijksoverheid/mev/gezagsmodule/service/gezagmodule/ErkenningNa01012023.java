@@ -5,6 +5,11 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder1;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder2;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * v2a_3
+ *
+ * @return VOOR of NA
+ */
 public class ErkenningNa01012023 extends GezagVraag {
 
     private static final String V2A_3_VOOR = "Voor";
@@ -18,11 +23,6 @@ public class ErkenningNa01012023 extends GezagVraag {
         currentQuestion = "v2a.3";
     }
 
-    /**
-     * v2a_3
-     *
-     * @return VOOR of NA
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
@@ -56,7 +56,7 @@ public class ErkenningNa01012023 extends GezagVraag {
             answer = V2A_3_VOOR;
         }
 
-        if(answer != null) {
+        if (answer != null) {
             gezagBepaling.getArAntwoordenModel().setV02A03(answer);
         } else {
             throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen", "Geboortemoeder van bevraagde persoon niet te bepalen");

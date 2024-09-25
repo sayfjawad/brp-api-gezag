@@ -2,6 +2,11 @@ package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * sv1_4
+ *
+ * @return JA/NEE of IN_ONDERZOEK
+ */
 public class IsUitspraakGezagAanwezig extends GezagVraag {
 
     private static final String V1_4_JA = "Ja";
@@ -12,11 +17,6 @@ public class IsUitspraakGezagAanwezig extends GezagVraag {
         currentQuestion = "v1.4";
     }
 
-    /**
-     * sv1_4
-     *
-     * @return JA/NEE of IN_ONDERZOEK
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();

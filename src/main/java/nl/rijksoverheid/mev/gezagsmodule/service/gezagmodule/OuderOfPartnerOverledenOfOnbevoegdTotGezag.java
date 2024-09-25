@@ -5,6 +5,13 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
 import java.util.Map;
 
+/**
+ * v4b1
+ * <p>
+ * OuderOfPartnerOverledenOfOnbevoegdTotGezag
+ *
+ * @return if ouder of partner overleden of onbevoegd tot gezag is
+ */
 public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
 
     private static final String V4B_1_NEE = "Nee";
@@ -33,13 +40,6 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
         currentQuestion = "v4b.1";
     }
 
-    /**
-     * v4b1
-     * <p>
-     * OuderOfPartnerOverledenOfOnbevoegdTotGezag
-     *
-     * @return if ouder of partner overleden of onbevoegd tot gezag is
-     */
     @Override
     public void perform() {
         String key;

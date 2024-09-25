@@ -2,6 +2,12 @@ package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * Sets the answer to {@code "Ja"} if <i>persoon is in buitenland geboren</i>, otherwise {@code "Nee"}.
+ *
+ * <p>
+ * This is question 1_3A.
+ */
 public class IsGeborenInBuitenland extends GezagVraag {
 
     private static final String GEBOORTELAND_CODE_NEDERLAND = "6030";
@@ -13,12 +19,6 @@ public class IsGeborenInBuitenland extends GezagVraag {
         currentQuestion = "v1.3a";
     }
 
-    /**
-     * Sets the answer to {@code "Ja"} if <i>persoon is in buitenland geboren</i>, otherwise {@code "Nee"}.
-     *
-     * <p>
-     * This is question 1_3A.
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();

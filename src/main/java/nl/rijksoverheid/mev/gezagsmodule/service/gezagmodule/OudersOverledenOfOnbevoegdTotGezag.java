@@ -1,5 +1,10 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
+/**
+ * v4a_2
+ *
+ * @return JA_OUDER1/JA_OUDER2/NEE/BEIDEN/ONBEKEND
+ */
 public class OudersOverledenOfOnbevoegdTotGezag extends GezagVraag {
 
     private static final String V4A_2_JA_BEIDEN = "Ja_beiden";
@@ -12,11 +17,6 @@ public class OudersOverledenOfOnbevoegdTotGezag extends GezagVraag {
         currentQuestion = "v4a.2";
     }
 
-    /**
-     * v4a_2
-     *
-     * @return JA_OUDER1/JA_OUDER2/NEE/BEIDEN/ONBEKEND
-     */
     @Override
     public void perform() {
         preconditieCheckOudersGeregistreerd();

@@ -12,6 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
+/**
+ * Gezag bepaling bevat alle informatie voor een gezag bepaling voor een persoon
+ */
 public class GezagBepaling {
 
     @Getter
@@ -116,8 +119,10 @@ public class GezagBepaling {
         if (plOuder2 != null) veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
         if (plNietOuder != null) veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
 
-        logger.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
-
+        if (!veldenInOnderzoek.isEmpty()) {
+            logger.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
+        }
+        
         veldenInOnderzoek = filterVelden(veldenInOnderzoek);
 
         return !veldenInOnderzoek.isEmpty();

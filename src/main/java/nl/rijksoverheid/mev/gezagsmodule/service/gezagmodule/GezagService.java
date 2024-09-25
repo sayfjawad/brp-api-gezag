@@ -45,10 +45,10 @@ public class GezagService {
     /**
      * Bepaal gezag van kind
      *
-     * @param burgerservicenummers        de burgerservicenummers om gezag voor te bepalen
-     * @param burgerservicenummerPersoon  het burgerservicenummer van de persoon waar de gezag bepaling voor plaats vind
-     * @param transaction de transactie zoals gemaakt bij het ontvangen van het
-     *                    request
+     * @param burgerservicenummers       de burgerservicenummers om gezag voor te bepalen
+     * @param burgerservicenummerPersoon het burgerservicenummer van de persoon waar de gezag bepaling voor plaats vind
+     * @param transaction                de transactie zoals gemaakt bij het ontvangen van het
+     *                                   request
      * @return lijst gezagsrelaties of lijst gezagsrelatie 'N'
      */
     public List<AbstractGezagsrelatie> getGezag(final List<String> burgerservicenummers, final String burgerservicenummerPersoon, final Transaction transaction) throws BrpException {
@@ -70,9 +70,9 @@ public class GezagService {
     /**
      * Bepaal gezag afleidingsresultaat
      *
-     * @param burgerservicenummer         het burgerservicenummers om gezag voor te bepalen
-     * @param burgerservicenummerPersoon  het burgerservicenummer van de persoon waar de gezag bepaling voor plaats vind
-     * @param transaction originele transactie
+     * @param burgerservicenummer        het burgerservicenummers om gezag voor te bepalen
+     * @param burgerservicenummerPersoon het burgerservicenummer van de persoon waar de gezag bepaling voor plaats vind
+     * @param transaction                originele transactie
      * @return gezagsafleidingsresultaat
      * @throws AfleidingsregelException wanneer gezag niet kan worden bepaald
      */

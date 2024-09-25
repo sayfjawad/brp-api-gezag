@@ -1,8 +1,15 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
-
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * v1_2
+ * <p>
+ * Vraag {@link IsPersoonIngezeteneInBRP} in combinatie met {@code isAlsMinderjarigOpgeschort}
+ * leidt ertoe dat het enige mogelijke antwoord {@code V1_2_NEE_OVERLEDEN} is.
+ *
+ * @return of minderjarig en niet overleden is
+ */
 public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
 
     private static final String V1_2_JA = "Ja";
@@ -14,14 +21,6 @@ public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
         currentQuestion = "v1.2";
     }
 
-    /**
-     * v1_2
-     * <p>
-     * Vraag {@link ARVragenModel#v11isPersoonIngezeteneInBRP()} in combinatie met {@code isAlsMinderjarigOpgeschort}
-     * leidt ertoe dat het enige mogelijke antwoord {@code V1_2_NEE_OVERLEDEN} is.
-     *
-     * @return of minderjarig en niet overleden is
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();

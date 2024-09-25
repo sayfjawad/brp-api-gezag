@@ -2,6 +2,11 @@ package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * v1_3b
+ *
+ * @return "Ja" als is geadopteerd met nederlandse akte anders "Nee"
+ */
 public class IsGeadopteerdMetNlAkte extends GezagVraag {
 
     private static final String V1_3B_JA = "Ja";
@@ -12,11 +17,6 @@ public class IsGeadopteerdMetNlAkte extends GezagVraag {
         currentQuestion = "v1.3b";
     }
 
-    /**
-     * v1_3b
-     *
-     * @return "Ja" als is geadopteerd met nederlandse akte anders "Nee"
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();

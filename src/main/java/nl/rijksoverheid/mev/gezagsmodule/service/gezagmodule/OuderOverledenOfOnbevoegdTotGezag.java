@@ -5,6 +5,11 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder1;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder2;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 
+/**
+ * sv4a_3
+ *
+ * @return JA/NEE
+ */
 public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
 
     private static final String V4A_3_NEE_OUDER1 = "Nee_ouder1";
@@ -17,11 +22,6 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
         currentQuestion = "v4a.3";
     }
 
-    /**
-     * sv4a_3
-     *
-     * @return JA/NEE
-     */
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
