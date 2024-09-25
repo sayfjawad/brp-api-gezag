@@ -5,7 +5,9 @@ import nl.rijksoverheid.mev.common.util.BSNValidator;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
-import org.openapitools.model.*;
+import org.openapitools.model.AbstractGezagsrelatie;
+import org.openapitools.model.GezagRequest;
+import org.openapitools.model.Persoon;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;

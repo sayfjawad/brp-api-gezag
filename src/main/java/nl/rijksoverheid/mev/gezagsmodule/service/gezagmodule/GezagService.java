@@ -9,8 +9,10 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
-import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
-import nl.rijksoverheid.mev.gezagsmodule.service.*;
+import nl.rijksoverheid.mev.gezagsmodule.service.BeslissingsmatrixService;
+import nl.rijksoverheid.mev.gezagsmodule.service.PersoonlijstType;
+import nl.rijksoverheid.mev.gezagsmodule.service.ToelichtingService;
+import nl.rijksoverheid.mev.gezagsmodule.service.VragenlijstService;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.openapitools.model.AbstractGezagsrelatie;
@@ -53,7 +55,7 @@ public class GezagService {
         List<AbstractGezagsrelatie> gezagRelaties = new ArrayList<>();
         for (String burgerservicenummer : burgerservicenummers) {
             try {
-                gezagRelaties.addAll(getGezagAfleidingsResultaat(burgerservicenummer, burgerservicenummerPersoon, transaction).getGezagsrelaties());
+                gezagRelaties.addAll(getGezagResultaat(burgerservicenummer, burgerservicenummerPersoon, transaction));
             } catch (AfleidingsregelException ex) {
                 log.error("Gezagsrelatie kon niet worden bepaald, dit is een urgent probleem! Resultaat 'N' wordt als antwoord gegeven", ex);
                 transactionHandler.saveGezagmoduleTransaction(null, null, null, SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD, null, transaction);
@@ -74,9 +76,8 @@ public class GezagService {
      * @return gezagsafleidingsresultaat
      * @throws AfleidingsregelException wanneer gezag niet kan worden bepaald
      */
-    public GezagAfleidingsResultaat getGezagAfleidingsResultaat(final String burgerservicenummer, final String burgerservicenummerPersoon, final Transaction transaction) throws GezagException {
+    public List<AbstractGezagsrelatie> getGezagResultaat(final String burgerservicenummer, final String burgerservicenummerPersoon, final Transaction transaction) throws GezagException {
         ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
-        GezagAfleidingsResultaat result;
         List<AbstractGezagsrelatie> gezagRelaties = new ArrayList<>();
         String route;
         Persoonslijst plPersoon = null;
@@ -133,8 +134,6 @@ public class GezagService {
             gezagBepaling.bepalenGezagdragers(burgerservicenummer, burgerservicenummerPersoon, arAntwoordenModel, gezagRelaties);
         }
 
-        result = new GezagAfleidingsResultaat(gezagRelaties, arAntwoordenModel, route);
-
         String persoonReceivedId = (plPersoon != null ? plPersoon.getReceivedId() : "");
         transactionHandler.saveGezagmoduleTransaction(
             null,
@@ -147,7 +146,7 @@ public class GezagService {
             transaction.setReceivedId(persoonReceivedId);
         }
 
-        return result;
+        return gezagRelaties;
     }
 
     /*
