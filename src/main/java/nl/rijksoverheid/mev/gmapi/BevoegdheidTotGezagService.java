@@ -22,17 +22,14 @@ public class BevoegdheidTotGezagService {
     private final BrpService brpService;
     private final GezagService gezagService;
     private final BSNValidator bsnValidator;
-    private final GezagTransformer gezagTransformer;
 
     public BevoegdheidTotGezagService(
         final BrpService brpService,
-        final GezagService gezagService,
-        final GezagTransformer gezagTransformer
+        final GezagService gezagService
     ) {
         this.brpService = brpService;
         this.gezagService = gezagService;
         this.bsnValidator = new BSNValidator();
-        this.gezagTransformer = gezagTransformer;
     }
 
     /**
@@ -83,8 +80,7 @@ public class BevoegdheidTotGezagService {
 
     private Stream<AbstractGezagsrelatie> vindGezagsrelatiesVoorKinderen(final String burgerservicenummerPersoon, final Transaction transaction) throws GezagException {
         List<String> kinderen = brpService.getBsnsMinderjarigeKinderenOuderEnPartners(burgerservicenummerPersoon, transaction);
-        List<AbstractGezagsrelatie> gezagsrelaties = gezagService.getGezag(kinderen, burgerservicenummerPersoon, transaction);
 
-        return gezagsrelaties.stream();
+        return gezagService.getGezag(kinderen, burgerservicenummerPersoon, transaction).stream();
     }
 }

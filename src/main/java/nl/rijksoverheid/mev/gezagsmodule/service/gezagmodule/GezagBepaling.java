@@ -15,8 +15,6 @@ import java.util.*;
 
 public class GezagBepaling {
 
-    private static final Logger logger = LoggerFactory.getLogger(GezagBepaling.class);
-
     @Getter
     private UUID errorTraceCode;
     @Getter
@@ -33,6 +31,14 @@ public class GezagBepaling {
     private final Transaction transaction;
     @Getter
     private final ARAntwoordenModel arAntwoordenModel;
+
+    private static final String TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG = "TweehoofdigOuderlijkGezag";
+    private static final String TYPE_EENHOOFDIG_OUDERLIJK_GEZAG = "EenhoofdigOuderlijkGezag";
+    private static final String TYPE_GEZAMELIJK_GEZAG = "GezamenlijkGezag";
+    private static final String TYPE_VOOGDIJ = "Voogdij";
+    private static final String TYPE_TIJDELIJK_GEEN_GEZAG = "TijdelijkGeenGezag";
+    private static final String TYPE_GEZAG_NIET_TE_BEPALEN = "GezagNietTeBepalen";
+    private static final Logger logger = LoggerFactory.getLogger(GezagBepaling.class);
 
     public GezagBepaling(
         final Persoonslijst plPersoon,
@@ -136,13 +142,6 @@ public class GezagBepaling {
 
         return velden;
     }
-
-    private static final String TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG = "TweehoofdigOuderlijkGezag";
-    private static final String TYPE_EENHOOFDIG_OUDERLIJK_GEZAG = "EenhoofdigOuderlijkGezag";
-    private static final String TYPE_GEZAMELIJK_GEZAG = "GezamenlijkGezag";
-    private static final String TYPE_VOOGDIJ = "Voogdij";
-    private static final String TYPE_TIJDELIJK_GEEN_GEZAG = "TijdelijkGeenGezag";
-    private static final String TYPE_GEZAG_NIET_TE_BEPALEN = "GezagNietTeBepalen";
 
     public void bepalenGezagdragers(final String burgerservicenummer, final String burgerservicenummerPersoon, final ARAntwoordenModel arAntwoordenModel, final List<AbstractGezagsrelatie> gezagsrelaties) {
         boolean bevraagdePersoonIsDeMinderjarige = burgerservicenummer.equals(burgerservicenummerPersoon);
