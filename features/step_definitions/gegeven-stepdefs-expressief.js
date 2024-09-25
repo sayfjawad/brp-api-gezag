@@ -28,7 +28,7 @@ Given(/^(?:de persoon(?: '(.*)')? )?met burgerservicenummer '(\d*)'$/, function 
 
     let data = [
         ['naam', 'waarde'],
-        ['voornamen (02.10)', aanduiding]
+        ['geslachtsnaam (02.40)', aanduiding],
     ];
 
     aanvullenPersoon(this.context, new DataTable(data));
@@ -53,7 +53,7 @@ Given(/^is meerderjarig/, function () {
 });
 
 Given(/^is in Nederland geboren/, function () {
-    const data = [
+    let data = [
         ['naam', 'waarde'],
         ['geboorteland (03.30)', '6030'],
         ['aktenummer (81.20)', '1AA0100']
@@ -62,15 +62,20 @@ Given(/^is in Nederland geboren/, function () {
     aanvullenPersoon(this.context, new DataTable(data));
 });
 
-Given(/^is geadopteerd/, function (dataTable) {
-    aanvullenPersoon(this.context, dataTable);
+Given(/^is geadopteerd/, function () {
+    let data = [
+        ['naam', 'waarde'],
+        ['aktenummer (81.20)', '1AQ0100']
+    ];
+
+    aanvullenPersoon(this.context, new DataTable(data));
 });
 
-Given(/^zijn de volgende gegegevens gewijzigd$/, function (dataTable) {
+Given(/^zijn de volgende gegevens gewijzigd$/, function (dataTable) {
     wijzigPersoon(this.context, dataTable);
 });
 
-Given(/^zijn de volgende gegegevens gecorrigeerd$/, function (dataTable) {
+Given(/^zijn de volgende gegevens gecorrigeerd$/, function (dataTable) {
     wijzigPersoon(this.context, dataTable, true);
 });
 
@@ -198,6 +203,11 @@ Given(/^heeft een ouder 2 '(.*)' met burgerservicenummer '(\d*)'/, function (aan
     this.context.sqlData.push(kind);
 });
 
+// Given(/^zijn de volgende gegevens van ouder '(.*)' gewijzigd/, function (aanduiding, dataTable) {
+//     // Write code here that turns the phrase above into concrete actions
+//     return 'pending';
+//   });
+
 Given(/^beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele/, function () {
     // doe niets
 });
@@ -214,7 +224,7 @@ Given(/^zijn de volgende gegevens van ouder '(.*)' gewijzigd/, function (aanduid
 
 
 Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de BRP?$/, function (_) {
-    const data = [
+    let data = [
         ['naam', 'waarde'],
         ['gemeente van inschrijving (09.10)', '0518']
     ];
@@ -223,7 +233,7 @@ Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de BRP?$/, function (_) {
 });
 
 Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de RNI/, function (_) {
-    const data = [
+    let data = [
         ['naam', 'waarde'],
         ['gemeente van inschrijving (09.10)', '1999']
     ];
@@ -240,7 +250,7 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest met de volgende gege
 });
 
 Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
-    const data = [
+    let data = [
         ['naam', 'waarde'],
         ['datum vestiging in Nederland (14.20)', toDateOrString('vandaag - 1 jaar', true)]
     ];
