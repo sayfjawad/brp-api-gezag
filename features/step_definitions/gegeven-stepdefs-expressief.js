@@ -159,7 +159,7 @@ Given(/^heeft een ouder 1 '(.*)' met burgerservicenummer '(\d*)'/, function (aan
 
     let dataKind = [
         ['naam', 'waarde'],
-        ['geboortedatum (03.10)', toDateOrString('gisteren - 17 jaar', false)]
+        ['geboortedatum (03.10)', '']
     ];
 
     createGegevensgroepCollectieMetBsn(this.context, `kind`, new DataTable(dataKind), this.context.latestBsn);
@@ -178,7 +178,7 @@ Given(/^heeft een ouder 2 '(.*)' met burgerservicenummer '(\d*)'/, function (aan
 
     let dataOuder = [
         ['naam', 'waarde'],
-        ['geslachtsnaam (02.40)', aanduiding],
+        ['geslachtsnaam (02.40)', aanduiding]
     ];
 
     createGegevensgroepCollectieMetBsn(this.context, `ouder-2`, new DataTable(dataOuder), burgerservicenummer); // met burgerservicenr
@@ -187,7 +187,7 @@ Given(/^heeft een ouder 2 '(.*)' met burgerservicenummer '(\d*)'/, function (aan
 
     let dataKind = [
         ['naam', 'waarde'],
-        ['geboortedatum (03.10)', toDateOrString('gisteren - 17 jaar', false)]
+        ['geboortedatum (03.10)', '']
     ];
 
     createGegevensgroepCollectieMetBsn(this.context, `kind`, new DataTable(dataKind), this.context.latestBsn);
