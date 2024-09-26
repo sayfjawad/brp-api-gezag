@@ -10,7 +10,7 @@
     En de persoon 'P2' met burgerservicenummer '000000024'
     * is minderjarig
     * is in Nederland geboren
-    * heeft uitspraak gezag met de volgende gegevens
+    * heeft gezag uitspraak
       | naam                                 | waarde |
       | indicatie gezag minderjarige (32.10) | 1      |
 
