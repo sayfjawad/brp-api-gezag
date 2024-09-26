@@ -119,6 +119,8 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden/, function (aanduiding1, aanduiding2) {
 
     const data1 = [
         ['naam', 'waarde'],
+        ['burgerservicenummer (01.20)', bsn2],
+        ['geslachtsnaam (02.40)', aanduiding2],
         ['datum ontbinding huwelijk/geregistreerd partnerschap (07.10)', toDateOrString('gisteren - 1 jaar', false)],
         ['plaats ontbinding huwelijk/geregistreerd partnerschap (07.20)', '0518'],
         ['land ontbinding huwelijk/geregistreerd partnerschap (07.30)', '6030']
@@ -126,13 +128,16 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden/, function (aanduiding1, aanduiding2) {
 
     const data2 = [
         ['naam', 'waarde'],
+        ['burgerservicenummer (01.20)', bsn1],
+        ['geslachtsnaam (02.40)', aanduiding1],
         ['datum ontbinding huwelijk/geregistreerd partnerschap (07.10)', toDateOrString('gisteren - 1 jaar', false)],
         ['plaats ontbinding huwelijk/geregistreerd partnerschap (07.20)', '0518'],
         ['land ontbinding huwelijk/geregistreerd partnerschap (07.30)', '6030']
     ]
 
-    aanvullenRelatieMetBsn(this.context, bsn1, new DataTable(data1));
-    aanvullenRelatieMetBsn(this.context, bsn2, new DataTable(data2));
+
+    createGegevensgroepMetBsn(this.context, bsn1, 'partner', new DataTable(data1));
+    createGegevensgroepMetBsn(this.context, bsn2, 'partner', new DataTable(data2));
 });
 
 Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd/, function (aanduiding1, aanduiding2, dataTable) {
