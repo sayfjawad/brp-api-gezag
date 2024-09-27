@@ -82,7 +82,7 @@ class ToelichtingServiceTest {
 
     @Test
     void baseToelichtingAndOneVeldenInOnderzoekForPersoonExpectingVeldInOnderzoek() {
-        var expected = EXPECTED.formatted("Velden van persoon: field 1.");
+        var expected = EXPECTED.formatted("Persoonslijst van persoon: field 1.");
 
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
         veldenInOnderzoek.setPersoon(List.of(FIELD_1));
@@ -95,7 +95,7 @@ class ToelichtingServiceTest {
 
     @Test
     void baseToelichtingAndTwoVeldenInOnderzoekOnePersoonAndOneOuder1ExpectingVeldenInOnderzoek() {
-        var expected = EXPECTED.formatted("Velden van persoon: field 1. Velden van ouder 1: field 1.");
+        var expected = EXPECTED.formatted("Persoonslijst van persoon: field 1. Persoonslijst van ouder 1: field 1.");
 
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
         veldenInOnderzoek.setPersoon(List.of(FIELD_1));
@@ -135,7 +135,7 @@ class ToelichtingServiceTest {
     
     @Test
     void baseToelichtingAndTwoVeldenInOnderzoekAndTwoMissendeGegevensExpectingVeldenInOnderzoek() {
-        var expected = EXPECTED.formatted("Velden van persoon: field 1. Velden van ouder 1: field 1.");
+        var expected = EXPECTED.formatted("Persoonslijst van persoon: field 1. Persoonslijst van ouder 1: field 1.");
 
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
         veldenInOnderzoek.setPersoon(List.of(FIELD_1));
