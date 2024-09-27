@@ -109,13 +109,22 @@
       |      | ouder-1-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                           | 10001,0,0,1,000000012,P2                              |
       |      | ouder-2-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                           | 10001,0,0,2,000000024,P3                              |
 
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' is geadopteerd
+  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 1 '[aanduiding]' met burgerservicenummer '[bsn]' en is geadopteerd door ouder '[aanduiding]'
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
-    * is geadopteerd
+    * is minderjarig
+    En heeft ouder 1 'P2' met burgerservicenummer '000000012'
+    * is geadopteerd door ouder 'P2'
       Dan zijn de gegenereerde SQL statements
-      | stap | categorie    | text                                                                                                                                                  | values                          |
-      | 1    | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                               |
-      |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,akte_nr) VALUES($1,$2,$3,$4,$5,$6,$7)         | 9999,0,0,P,000000036,P1,1AQ0100 |
+      | stap | categorie    | text                                                                                                                                                                        | values                                              |
+      | 1    | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *                       | 0                                                   |
+      |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                          | 9999,0,0,P,000000012,P2                             |
+      |      | ouder-1-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,geslachts_naam,familie_betrek_start_datum) VALUES($1,$2,$3,$4,$5,$6)                                 | 9999,0,1,1,P2,gisteren - 17 jaar                    |
+      |      | ouder-1-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,familie_betrek_start_datum,akte_nr) VALUES($1,$2,$3,$4,$5,$6,$7,$8) | 9999,0,0,1,000000012,P2,gisteren - 4 jaar,1AQ0100   |
+      | 2    | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *                       | 0                                                   |
+      |      | kind         | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                          | 10000,0,0,K,000000036,P1                            |
+      |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,geboorte_datum) VALUES($1,$2,$3,$4,$5,$6,$7)                        | 10000,0,1,P,000000036,P1,gisteren - 17 jaar         |
+      |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,geboorte_datum,akte_nr) VALUES($1,$2,$3,$4,$5,$6,$7,$8)             | 10000,0,0,P,000000036,P1,gisteren - 17 jaar,1AQ0100 |
+
 
   Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 1 en gegevens van de ouder zijn gewijzigd
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
