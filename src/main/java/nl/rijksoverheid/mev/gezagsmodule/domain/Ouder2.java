@@ -75,6 +75,11 @@ public class Ouder2 extends PotentieelInOnderzoek {
     }
 
     @Override
+    public String getCategorieName() {
+        return "ouder 2";
+    }
+
+    @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }

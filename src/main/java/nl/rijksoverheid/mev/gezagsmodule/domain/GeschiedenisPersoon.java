@@ -93,6 +93,11 @@ public class GeschiedenisPersoon extends PotentieelInOnderzoek {
     }
 
     @Override
+    public String getCategorieName() {
+        return "persoon (historie)";
+    }
+
+    @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }

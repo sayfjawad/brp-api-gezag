@@ -1,11 +1,12 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
-import java.time.Clock;
-import java.util.Map;
-import java.util.Objects;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+
+import java.time.Clock;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Geschiedenis huwelijk of partnerschap
@@ -64,6 +65,11 @@ public class GeschiedenisHuwelijkOfPartnerschap extends PotentieelInOnderzoek {
 
     public String getRedenOntbinding() {
         return get(REDEN_ONTBINDING, "reden ontbinding van relatie (historie)");
+    }
+
+    @Override
+    public String getCategorieName() {
+        return "relatie (historie)";
     }
 
     @Override

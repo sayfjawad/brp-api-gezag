@@ -93,6 +93,11 @@ public class GeschiedenisOuder2 extends PotentieelInOnderzoek {
     }
 
     @Override
+    public String getCategorieName() {
+        return "ouder 2 (historie)";
+    }
+
+    @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }

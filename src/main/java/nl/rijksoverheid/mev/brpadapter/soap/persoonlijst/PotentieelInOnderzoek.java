@@ -55,19 +55,23 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
 
             if (inOnderzoek.equals(key) || inOnderzoek.equals(formattedVeldName)) {
                 String datumEindeOnderzoekValue = values.get(datumEindeOnderzoek);
+                String veldInOnderzoek = formattedVeldName.endsWith("0000") ? getCategorieName() : fieldName;
+
                 if (datumEindeOnderzoekValue != null && !datumEindeOnderzoekValue.isEmpty()) {
                     int datumEindeOnderzoekInt = Integer.parseInt(datumEindeOnderzoekValue);
                     int datumVandaag = Integer.parseInt(LocalDate.now(clock).format(FORMATTER));
 
                     if (datumVandaag <= datumEindeOnderzoekInt) {
-                        veldenInOnderzoek.add(fieldName);
+                        veldenInOnderzoek.add(veldInOnderzoek);
                     }
                 } else {
-                    veldenInOnderzoek.add(fieldName);
+                    veldenInOnderzoek.add(veldInOnderzoek);
                 }
             }
         }
     }
+
+    protected abstract String getCategorieName();
 
     @Override
     public String get(final String key) {

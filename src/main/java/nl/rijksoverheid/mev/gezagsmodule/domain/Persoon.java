@@ -94,6 +94,11 @@ public class Persoon extends PotentieelInOnderzoek {
     }
 
     @Override
+    public String getCategorieName() {
+        return "persoon";
+    }
+
+    @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }

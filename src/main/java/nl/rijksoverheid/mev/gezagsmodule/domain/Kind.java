@@ -81,6 +81,11 @@ public class Kind extends PotentieelInOnderzoek {
     }
 
     @Override
+    public String getCategorieName() {
+        return "kind";
+    }
+
+    @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }

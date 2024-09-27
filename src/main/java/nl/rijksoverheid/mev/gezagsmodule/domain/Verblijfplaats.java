@@ -79,6 +79,11 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
     }
 
     @Override
+    public String getCategorieName() {
+        return "verblijfplaats";
+    }
+
+    @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }

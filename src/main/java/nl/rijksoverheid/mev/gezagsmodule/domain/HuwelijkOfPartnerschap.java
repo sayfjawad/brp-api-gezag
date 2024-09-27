@@ -126,6 +126,11 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
     }
 
     @Override
+    public String getCategorieName() {
+        return "relatie";
+    }
+
+    @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }
