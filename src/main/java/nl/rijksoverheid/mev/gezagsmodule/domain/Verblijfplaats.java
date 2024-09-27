@@ -56,9 +56,6 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
 
     @Override
     public String get(final String key, final String fieldName) {
-        // Onderstaande heeft invloed op: https://github.com/BRP-API/brp-api-gezag/issues/17
-        //inOnderzoek(key, fieldName);
-
         return values.get(key);
     }
 
