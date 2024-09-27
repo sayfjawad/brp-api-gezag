@@ -18,7 +18,6 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -256,16 +255,13 @@ public class Persoonslijst {
             .toList();
     }
 
-    public List<String> getBurgerservicenummersVanMinderjarigeKinderen() {
-        if (getKinderen() == null) {
-            return Collections.emptyList();
-        }
+    public Stream<String> getBurgerservicenummersVanMinderjarigeKinderen() {
+        if (getKinderen() == null) return Stream.empty();
 
         return getKinderen().stream()
             .filter(Kind::isMinderjarig)
             .map(Kind::getBsn)
-            .filter(Objects::nonNull)
-            .collect(Collectors.toList());
+            .filter(Objects::nonNull);
     }
 
     /**

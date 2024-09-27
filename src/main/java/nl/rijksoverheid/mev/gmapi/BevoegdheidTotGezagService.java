@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -69,7 +70,7 @@ public class BevoegdheidTotGezagService {
     private Persoon bepaalGezagVoorPersoon(final String burgerservicenummerPersoon, final Transaction transaction) {
         var gezagsrelaties = Stream
             .concat(
-                gezagService.getGezag(List.of(burgerservicenummerPersoon), burgerservicenummerPersoon, transaction).stream(),
+                gezagService.getGezag(Set.of(burgerservicenummerPersoon), burgerservicenummerPersoon, transaction).stream(),
                 vindGezagsrelatiesVoorKinderen(burgerservicenummerPersoon, transaction)
             )
             .toList();
@@ -80,7 +81,7 @@ public class BevoegdheidTotGezagService {
     }
 
     private Stream<AbstractGezagsrelatie> vindGezagsrelatiesVoorKinderen(final String burgerservicenummerPersoon, final Transaction transaction) throws GezagException {
-        List<String> kinderen = brpService.getBsnsMinderjarigeKinderenOuderEnPartners(burgerservicenummerPersoon, transaction);
+        Set<String> kinderen = brpService.getBsnsMinderjarigeKinderenOuderEnPartners(burgerservicenummerPersoon, transaction);
 
         return gezagService.getGezag(kinderen, burgerservicenummerPersoon, transaction).stream();
     }

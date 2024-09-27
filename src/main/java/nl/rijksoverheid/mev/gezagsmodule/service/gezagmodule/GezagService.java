@@ -19,10 +19,7 @@ import org.openapitools.model.AbstractGezagsrelatie;
 import org.openapitools.model.GezagNietTeBepalen;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Service voor bepalen gezag
@@ -51,7 +48,7 @@ public class GezagService {
      *                                   request
      * @return lijst gezagsrelaties of lijst gezagsrelatie 'N'
      */
-    public List<AbstractGezagsrelatie> getGezag(final List<String> burgerservicenummers, final String burgerservicenummerPersoon, final Transaction transaction) throws BrpException {
+    public List<AbstractGezagsrelatie> getGezag(final Set<String> burgerservicenummers, final String burgerservicenummerPersoon, final Transaction transaction) throws BrpException {
         List<AbstractGezagsrelatie> gezagRelaties = new ArrayList<>();
         for (String burgerservicenummer : burgerservicenummers) {
             try {

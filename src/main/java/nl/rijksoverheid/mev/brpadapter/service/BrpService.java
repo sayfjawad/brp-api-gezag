@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Service voor BRP functionaliteit
@@ -54,7 +56,7 @@ public class BrpService {
      * @return de BSNs van de kinderen
      * @throws GezagException wanneer BRP communicatie misgaat
      */
-    public List<String> getBsnsMinderjarigeKinderenOuderEnPartners(final String bsn, final Transaction transaction) throws BrpException {
+    public Set<String> getBsnsMinderjarigeKinderenOuderEnPartners(final String bsn, final Transaction transaction) throws BrpException {
         Persoonslijst persoonslijstOuder = client.opvragenPersoonslijst(bsn, transaction);
         List<Persoonslijst> partners = persoonslijstOuder.getHuwelijkOfPartnerschappen().stream()
             .filter(hop -> hop.getBsnPartner() != null)
@@ -73,13 +75,14 @@ public class BrpService {
         transaction.setReceivedId(persoonslijstOuder.getReceivedId());
         transactionHandler.saveBrpServiceTransaction(BRP_SERVICE_GET_BSNS_MINDERJARIGE_KINDEREN, persoonslijstOuder.getReceivedId(), transaction);
 
-        List<String> kinderen = persoonslijstOuder.getBurgerservicenummersVanMinderjarigeKinderen();
-        kinderen.addAll(partners.stream().map(Persoonslijst::getBurgerservicenummersVanMinderjarigeKinderen)
-            .mapMulti((final List<String> list, final Consumer<String> consumer) -> {
-                list.forEach(consumer::accept);
-            }).toList());
+        Stream<String> burgerservicenummersVanKinderenVanOuder = persoonslijstOuder.getBurgerservicenummersVanMinderjarigeKinderen();
+        Stream<String> burgerservicenummersVanKinderenVanPartners = partners.stream()
+            .flatMap(Persoonslijst::getBurgerservicenummersVanMinderjarigeKinderen);
 
-        return kinderen.stream()
-            .distinct().toList();
+        return Stream.concat(
+                burgerservicenummersVanKinderenVanOuder,
+                burgerservicenummersVanKinderenVanPartners
+            )
+            .collect(Collectors.toSet());
     }
 }
