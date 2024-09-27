@@ -51,23 +51,23 @@ public class Kind extends PotentieelInOnderzoek {
     }
 
     public String getBsn() {
-        return get(BSN, "bsn");
+        return get(BSN, "burgerservicenummer van kind");
     }
 
     public String getVoornamen() {
-        return get(VOORNAMEN, "voornamen");
+        return get(VOORNAMEN, "voornamen van kind");
     }
 
     public String getVoorvoegsel() {
-        return get(VOORVOEGSEL, "voorvoegsel");
+        return get(VOORVOEGSEL, "voorvoegsel van kind");
     }
 
     public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM, "geslachtsnaam");
+        return get(GESLACHTSNAAM, "geslachtsnaam van kind");
     }
 
     public String getGeboortedatum() {
-        return get(GEBOORTEDATUM, "geboortedatum");
+        return get(GEBOORTEDATUM, "geboortedatum van kind");
     }
 
     public boolean isMinderjarig() {

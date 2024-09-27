@@ -51,27 +51,27 @@ public class Ouder1 extends PotentieelInOnderzoek {
     }
 
     public String getBsn() {
-        return get(BSN, "bsn");
+        return get(BSN, "burgerservicenummer van ouder 1");
     }
 
     public String getVoornamen() {
-        return get(VOORNAMEN, "voornamen");
+        return get(VOORNAMEN, "voornamen van ouder 1");
     }
 
     public String getVoorvoegsel() {
-        return get(VOORVOEGSEL, "voorvoegsel");
+        return get(VOORVOEGSEL, "voorvoegsel van ouder 1");
     }
 
     public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM, "geslachtsnaam");
+        return get(GESLACHTSNAAM, "geslachtsnaam van ouder 1");
     }
 
     public String getDatumIngangFamiliebetrekking() {
-        return get(DATUM_INGANG_FAMILIEBETREKKING, "datum ingang familiebetrekking");
+        return get(DATUM_INGANG_FAMILIEBETREKKING, "datum ingang familiebetrekking van ouder 1");
     }
 
     public String getAktenummer() {
-        return get(AKTENUMMER, "aktenummer");
+        return get(AKTENUMMER, "aktenummer van ouder 1");
     }
 
     @Override

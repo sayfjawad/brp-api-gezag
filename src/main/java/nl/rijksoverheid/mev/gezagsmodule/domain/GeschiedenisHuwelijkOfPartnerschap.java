@@ -35,35 +35,35 @@ public class GeschiedenisHuwelijkOfPartnerschap extends PotentieelInOnderzoek {
     }
 
     public String getBsnPartner() {
-        return get(BSN, "BSN partner");
+        return get(BSN, "burgerservicenummer partner van relatie (historie)");
     }
 
     public String getDatumVoltrokken() {
-        return get(DATUM_VOLTROKKEN, "datum voltrokken");
+        return get(DATUM_VOLTROKKEN, "datum voltrokken van relatie (historie)");
     }
 
     public String getPlaatsVoltrokken() {
-        return get(PLAATS_VOLTROKKEN, "plaats voltrokken");
+        return get(PLAATS_VOLTROKKEN, "plaats voltrokken van relatie (historie)");
     }
 
     public String getLandVoltrokken() {
-        return get(LAND_VOLTROKKEN, "land voltrokken");
+        return get(LAND_VOLTROKKEN, "land voltrokken van relatie (historie)");
     }
 
     public String getDatumOntbinding() {
-        return get(DATUM_ONTBINDING, "datum ontbinding");
+        return get(DATUM_ONTBINDING, "datum ontbinding van relatie (historie)");
     }
 
     public String getPlaatsOntbinding() {
-        return get(PLAATS_ONTBINDING, "plaats ontbinding");
+        return get(PLAATS_ONTBINDING, "plaats ontbinding van relatie (historie)");
     }
 
     public String getLandOntbinding() {
-        return get(LAND_ONTBINDING, "land ontbinding");
+        return get(LAND_ONTBINDING, "land ontbinding van relatie (historie)");
     }
 
     public String getRedenOntbinding() {
-        return get(REDEN_ONTBINDING, "reden ontbinding");
+        return get(REDEN_ONTBINDING, "reden ontbinding van relatie (historie)");
     }
 
     @Override

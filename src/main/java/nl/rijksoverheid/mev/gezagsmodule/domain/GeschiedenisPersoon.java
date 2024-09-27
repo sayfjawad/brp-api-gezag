@@ -57,39 +57,39 @@ public class GeschiedenisPersoon extends PotentieelInOnderzoek {
     }
 
     public String getBsn() {
-        return get(BSN, "BSN");
+        return get(BSN, "burgerservicenummer van persoon (historie)");
     }
 
     public String getVoornamen() {
-        return get(VOORNAMEN, "voornamen");
+        return get(VOORNAMEN, "voornamen van persoon (historie)");
     }
 
     public String getVoorvoegsel() {
-        return get(VOORVOEGSEL, "voorvoegsel");
+        return get(VOORVOEGSEL, "voorvoegsel van persoon (historie)");
     }
 
     public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM, "geslachtsnaam");
+        return get(GESLACHTSNAAM, "geslachtsnaam van persoon (historie)");
     }
 
     public String getGeboortedatum() {
-        return get(GEBOORTEDATUM, "geboortedatum");
+        return get(GEBOORTEDATUM, "geboortedatum van persoon (historie)");
     }
 
     public String getGeboorteland() {
-        return get(GEBOORTELAND, "geboorteland");
+        return get(GEBOORTELAND, "geboorteland van persoon (historie)");
     }
 
     public String getAktenummer() {
-        return get(AKTENUMMER, "aktenummer");
+        return get(AKTENUMMER, "aktenummer van persoon (historie)");
     }
 
     public String getDocumentBeschrijving() {
-        return get(DOCUMENT_BESCHRIJVING, "document beschrijving");
+        return get(DOCUMENT_BESCHRIJVING, "document beschrijving van persoon (historie)");
     }
 
     public String getRniDeelnemer() {
-        return get(RNI_DEELNEMER, "RNI deelnemer");
+        return get(RNI_DEELNEMER, "RNI deelnemer van persoon (historie)");
     }
 
     @Override
