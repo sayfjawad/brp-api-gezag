@@ -59,8 +59,8 @@ public class BrpService {
     public Set<String> getBsnsMinderjarigeKinderenOuderEnPartners(final String bsn, final Transaction transaction) throws BrpException {
         Persoonslijst persoonslijstOuder = client.opvragenPersoonslijst(bsn, transaction);
         List<Persoonslijst> partners = persoonslijstOuder.getHuwelijkOfPartnerschappen().stream()
-            .filter(hop -> hop.getBsnPartner() != null)
             .map(HuwelijkOfPartnerschap::getBsnPartner)
+            .filter(Objects::nonNull)
             .map(bsnPartner -> {
                 try {
                     return client.opvragenPersoonslijst(bsnPartner, transaction);
