@@ -8,6 +8,21 @@
   En de 2e 'SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl' statement heeft als resultaat '10000'
   En de 3e 'SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl' statement heeft als resultaat '10001'
 
+  Scenario: de persoon met burgerservicenummer '[bsn]'
+    Gegeven de persoon met burgerservicenummer '000000012'
+    Dan zijn de gegenereerde SQL statements
+    | stap | categorie    | text                                                                                                                                                  | values               |
+    | 1    | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                    |
+    |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr) VALUES($1,$2,$3,$4,$5)                                      | 9999,0,0,P,000000012 |
+
+  Scenario: is minderjarig
+    Gegeven de persoon met burgerservicenummer '000000012'
+    * is minderjarig
+    Dan zijn de gegenereerde SQL statements
+    | stap | categorie    | text                                                                                                                                                  | values                                  |
+    | 1    | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                                       |
+    |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geboorte_datum) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000012,gisteren - 17 jaar |
+
   Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft inschrijving
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * is ingeschreven in de BRP
@@ -119,9 +134,9 @@
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
-      | D                                    | 20220701         |
+      | D                                    | 20220701                        |
       Dan zijn de gegenereerde SQL statements
       | stap | categorie        | text                                                                                                                                                  | values                  |
       | 1    | inschrijving     | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
       |      | persoon          | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
-      |      | gezagsverhouding | INSERT INTO public.lo3_pl_gezagsverhouding(pl_id,volg_nr,minderjarig_gezag_ind,geldigheid_start_datum) VALUES($1,$2,$3,$4)                            | 9999,0,D,20220701 |
+      |      | gezagsverhouding | INSERT INTO public.lo3_pl_gezagsverhouding(pl_id,volg_nr,minderjarig_gezag_ind,geldigheid_start_datum) VALUES($1,$2,$3,$4)                            | 9999,0,D,20220701       |

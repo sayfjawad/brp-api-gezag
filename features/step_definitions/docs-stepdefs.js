@@ -8,6 +8,7 @@ const { insertIntoAdresStatement,
         insertIntoStatement } = require('./parameterizedSqlStatementFactory');
 const { stringifyValues } = require('./stringify');
 const { queryRowCount, queryLastRow, executeSqlStatements } = require('./postgresqlHelpers');
+const { toDateOrString } = require('./brpDatum');
 
 Given(/^de (\d)e '(.*)' statement heeft als resultaat '(\d*)'$/, function (index, statement, result) {
     if(this.context.sqlDataIds == undefined) {
@@ -111,7 +112,13 @@ function vergelijkActualMetExpectedStatements(categorie, expected, actual, sqlDa
     }
 
     statement.text.should.equal(expected.text, `${expected.categorie}:\n${statement.text}\n!=\n${expected.text}`);
-    stringifyValues(statement.values).should.deep.equalInAnyOrder(expected.values.split(','),
+
+    let expectedValues = expected.values.split(',');
+    expectedValues.forEach((val, index) =>{
+        expectedValues[index] = toDateOrString(val, false);
+    });
+
+    stringifyValues(statement.values).should.deep.equalInAnyOrder(expectedValues,
                                                  `${expected.categorie}: ${statement.values} != ${expected.values}`);
 }
 
