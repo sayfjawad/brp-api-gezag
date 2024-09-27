@@ -91,7 +91,7 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd/, function (aanduiding1, aanduid
         ['naam', 'waarde'],
         ['burgerservicenummer (01.20)', bsn2],
         ['geslachtsnaam (02.40)', aanduiding2],
-        ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 2 jaar', false)],
+        ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 20 jaar', false)],
         ['plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20)', '0518'],
         ['land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)', '6030'],
     ];
@@ -100,7 +100,7 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd/, function (aanduiding1, aanduid
         ['naam', 'waarde'],
         ['burgerservicenummer (01.20)', bsn1],
         ['geslachtsnaam (02.40)', aanduiding1],
-        ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 2 jaar', false)],
+        ['datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)', toDateOrString('gisteren - 20 jaar', false)],
         ['plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20)', '0518'],
         ['land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)', '6030'],
     ]
@@ -119,7 +119,6 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden/, function (aanduiding1, aanduiding2) {
 
     const data1 = [
         ['naam', 'waarde'],
-        ['burgerservicenummer (01.20)', bsn2],
         ['geslachtsnaam (02.40)', aanduiding2],
         ['datum ontbinding huwelijk/geregistreerd partnerschap (07.10)', toDateOrString('gisteren - 1 jaar', false)],
         ['plaats ontbinding huwelijk/geregistreerd partnerschap (07.20)', '0518'],
@@ -128,13 +127,11 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden/, function (aanduiding1, aanduiding2) {
 
     const data2 = [
         ['naam', 'waarde'],
-        ['burgerservicenummer (01.20)', bsn1],
         ['geslachtsnaam (02.40)', aanduiding1],
         ['datum ontbinding huwelijk/geregistreerd partnerschap (07.10)', toDateOrString('gisteren - 1 jaar', false)],
         ['plaats ontbinding huwelijk/geregistreerd partnerschap (07.20)', '0518'],
         ['land ontbinding huwelijk/geregistreerd partnerschap (07.30)', '6030']
     ]
-
 
     createGegevensgroepMetBsn(this.context, bsn1, 'partner', new DataTable(data1));
     createGegevensgroepMetBsn(this.context, bsn2, 'partner', new DataTable(data2));

@@ -33,19 +33,19 @@ function createInschrijving(context, dataTable, defaultGeheim = false, defaultPl
 
 function createPersoonTypeData(persoonType, dataTable, burgerservicenummer, stapelNr) {
     let data = [
-        [ 'stapel_nr', stapelNr-1 + ''],
-        [ 'volg_nr', '0'],
+        ['stapel_nr', stapelNr - 1 + ''],
+        ['volg_nr', '0'],
     ];
 
-    if(persoonTypeMap.has(persoonType)){
-        data.push([ 'persoon_type', persoonTypeMap.get(persoonType)]);
+    if (persoonTypeMap.has(persoonType)) {
+        data.push(['persoon_type', persoonTypeMap.get(persoonType)]);
     }
 
-    if(burgerservicenummer !== undefined) {
-        data.push([ 'burger_service_nr', burgerservicenummer]);
+    if (burgerservicenummer !== undefined) {
+        data.push(['burger_service_nr', burgerservicenummer]);
     }
 
-    if(dataTable !== undefined) {
+    if (dataTable !== undefined) {
         data = data.concat(createArrayFrom(dataTable, columnNameMap))
     };
 
@@ -285,18 +285,21 @@ function berekenJaar(dateString, offset) {
     return `${newYear}${newMonth}${newDay}`;
 }
 
-function createGegevensgroepMetBsn(context, bsn, gegevensgroep, dataTable) {
+function createGegevensgroepMetBsn(context, burgerservicenummer, gegevensgroep, dataTable) {
     const sqlData = context.sqlData;
 
     sqlData.forEach(el => {
         let persoonData = el['persoon'][0];
         persoonData.forEach(([key, value]) => {
-            if (key === 'burger_service_nr' && value === bsn) {
-                el[gegevensgroep] = [createVoorkomenData(dataTable)];
-
-                if (persoonTypeMap.has(gegevensgroep)) {
+            if (key === 'burger_service_nr' && value === burgerservicenummer) {
+                if (el[gegevensgroep] == undefined) {
+                    el[gegevensgroep] = [createVoorkomenData(dataTable)]
                     el[gegevensgroep][0].push(['persoon_type', persoonTypeMap.get(gegevensgroep)]);
-                    el[gegevensgroep][0].push(['stapel_nr', 0]);
+                    el[gegevensgroep][0].push(['stapel_nr', '0']);
+                } else {
+                    const stapelNr = el[gegevensgroep][0].find(el => el[0] === 'stapel_nr');
+                    ophogenVolgnr(el[gegevensgroep], false);
+                    el[gegevensgroep].push(createPersoonTypeData(gegevensgroep, dataTable, burgerservicenummer, Number(stapelNr[1]) + 1));
                 }
             }
         });
