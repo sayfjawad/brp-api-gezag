@@ -23,7 +23,7 @@
       | 1    | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                                       |
       |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geboorte_datum) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000012,gisteren - 17 jaar |
 
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft inschrijving
+  Scenario: is ingeschreven in de BRP
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * is ingeschreven in de BRP
       Dan zijn de gegenereerde SQL statements
@@ -32,7 +32,7 @@
       |      | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
       |      | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code) VALUES($1,$2,$3)                                                   | 9999,0,0518             |
 
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' is in Nederland geboren
+  Scenario: is in Nederland geboren
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * is in Nederland geboren
       Dan zijn de gegenereerde SQL statements
@@ -40,7 +40,7 @@
       | 1    | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *               | 0                                    |
       |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,geboorte_land_code,akte_nr) VALUES($1,$2,$3,$4,$5,$6,$7,$8) | 9999,0,0,P,000000036,P1,6030,1AA0100 |
 
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 1 met burgerservicenummer '[bsn]'
+  Scenario: heeft ouder 1 met burgerservicenummer
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * heeft een ouder 1 'P2' met burgerservicenummer '000000012'
       Dan zijn de gegenereerde SQL statements
@@ -52,7 +52,7 @@
       |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 10000,0,0,P,000000036,P1 |
       |      | ouder-1-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 10000,0,0,1,000000012,P2 |
 
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 2 met burgerservicenummer '[bsn]'
+  Scenario: heeft ouder 2 met burgerservicenummer
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * heeft een ouder 2 'P2' met burgerservicenummer '000000012'
       Dan zijn de gegenereerde SQL statements
@@ -65,7 +65,7 @@
       |      | ouder-2-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 10000,0,0,2,000000012,P2 |
 
   #  relatie_start_datum = gisteren - 2 jaar
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 1 en 2 en ouders zijn met elkaar gehuwd
+  Scenario: is gehuwd
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * heeft een ouder 1 'P2' met burgerservicenummer '000000012'
     * heeft een ouder 2 'P3' met burgerservicenummer '000000024'
@@ -86,7 +86,7 @@
       |      | ouder-2-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                           | 10001,0,0,2,000000024,P3                              |
 
   #  relatie_eind_datum = gisteren - 1 jaar
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 1 en 2 en ouders zijn met elkaar gehuwd en vervolgens gescheiden
+  Scenario: is gescheiden
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * heeft een ouder 1 'P2' met burgerservicenummer '000000012'
     * heeft een ouder 2 'P3' met burgerservicenummer '000000024'
@@ -109,7 +109,7 @@
       |      | ouder-1-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                           | 10001,0,0,1,000000012,P2                              |
       |      | ouder-2-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                           | 10001,0,0,2,000000024,P3                              |
 
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 1 '[aanduiding]' met burgerservicenummer '[bsn]' en is geadopteerd door ouder '[aanduiding]'
+  Scenario: is geadopteerd door ouder 1
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * is minderjarig
     En heeft ouder 1 'P2' met burgerservicenummer '000000012'
@@ -126,7 +126,7 @@
       |      | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,geboorte_datum,akte_nr) VALUES($1,$2,$3,$4,$5,$6,$7,$8)             | 10000,0,0,P,000000036,P1,gisteren - 17 jaar,1AQ0100 |
 
 
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft ouder 1 en gegevens van de ouder zijn gewijzigd
+  Scenario: heeft ouder 1 met burgerservicenummer en gewijzigde gegevens
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * heeft een ouder 1 'P2' met burgerservicenummer '000000012'
       En zijn de volgende gegevens van ouder 'P2' gewijzigd
@@ -143,7 +143,7 @@
       |      |              | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                               | 10000,0,1,1,000000012,P2          |
 
 
-  Scenario: de persoon '[aanduiding]' met burgerservicenummer '[bsn]' heeft gezag uitspraak
+  Scenario: heeft gezag uitspraak
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
