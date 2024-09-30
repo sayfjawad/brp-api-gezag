@@ -122,7 +122,7 @@ public class GezagBepaling {
         if (!veldenInOnderzoek.isEmpty()) {
             logger.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
         }
-        
+
         veldenInOnderzoek = filterVelden(veldenInOnderzoek);
 
         return !veldenInOnderzoek.isEmpty();
@@ -208,15 +208,18 @@ public class GezagBepaling {
                     gezagsrelaties.add(gezag);
                 }
                 case "V" -> {
-                    Voogdij gezag = new Voogdij()
-                        .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
-                        .type(TYPE_VOOGDIJ);
+                    String burgerservicenummerNietOuder = (plNietOuder != null ? plNietOuder.getPersoon().getBsn() : null);
+                    if(bevraagdePersoonIsDeMinderjarige || burgerservicenummerNietOuder.equals(burgerservicenummerPersoon)) {
+                        Voogdij gezag = new Voogdij()
+                            .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
+                            .type(TYPE_VOOGDIJ);
 
-                    if (nietOuderGezag && plNietOuder != null) {
-                        gezag.addDerdenItem(new Meerderjarige().burgerservicenummer(plNietOuder.getPersoon().getBsn()));
+                        if (nietOuderGezag && plNietOuder != null) {
+                            gezag.addDerdenItem(new Meerderjarige().burgerservicenummer(burgerservicenummerNietOuder));
+                        }
+
+                        gezagsrelaties.add(gezag);
                     }
-
-                    gezagsrelaties.add(gezag);
                 }
                 case "G" -> {
                     if (bevraagdePersoonIsDeMinderjarige) {
