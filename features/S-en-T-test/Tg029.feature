@@ -73,36 +73,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Karo       |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Kootwijk   |
-    | geboortedatum (03.10)           | 20221205   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0700    |
-    | ingangsdatum geldigheid (85.10) | 20221205   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Karo       |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Kootwijk   |
-    | geboortedatum (03.10)           | 20221205   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AC0700    |
-    | ingangsdatum geldigheid (85.10) | 20230120   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Karolina   |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Kootwijk   |
-    | geboortedatum (03.10)           | 20221205   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AM0700    |
-    | ingangsdatum geldigheid (85.10) | 20230201   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Kira       |
     | voorvoegsel (02.30)             | van        |
@@ -131,6 +101,36 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0900    |
     | ingangsdatum geldigheid (85.10) | 20230120   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Karo       |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Kootwijk   |
+    | geboortedatum (03.10)           | 20221205   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0700    |
+    | ingangsdatum geldigheid (85.10) | 20221205   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Karo       |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Kootwijk   |
+    | geboortedatum (03.10)           | 20221205   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0700    |
+    | ingangsdatum geldigheid (85.10) | 20230120   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Karolina   |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Kootwijk   |
+    | geboortedatum (03.10)           | 20221205   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AM0700    |
+    | ingangsdatum geldigheid (85.10) | 20230201   |
     
     # Lg01_157 - vrouw, huwelijk met vrouw, echtgenote krijgt 2 kinderen (geen anonieme donor), overleden
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -292,6 +292,16 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Kyrolina   |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Kootwijk   |
+    | geboortedatum (03.10)           | 20211030   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0900    |
+    | ingangsdatum geldigheid (85.10) | 20230120   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Karo       |
     | voorvoegsel (02.30)             | van        |
@@ -310,16 +320,6 @@ Functionaliteit: Tg029 - Kootwijk-Kruiswijk-Klapwijk - Huwelijk tussen vrouwen e
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AM0700    |
     | ingangsdatum geldigheid (85.10) | 20230201   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Kyrolina   |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Kootwijk   |
-    | geboortedatum (03.10)           | 20211030   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AC0900    |
-    | ingangsdatum geldigheid (85.10) | 20230120   |
     
     # Lg01_160 - alleen moeder, moeder wel gehuwd maar geen anonieme donor, na overlijden huwelijkspartner moeder erkend in 2023, akteaanduiding C in historische categorie bij persoon en ouder2
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens

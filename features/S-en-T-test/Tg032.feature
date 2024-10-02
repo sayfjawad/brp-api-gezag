@@ -38,21 +38,21 @@ Functionaliteit: Tg032 - Oostingh - Alleen maar minderjarigen incl. moeder
     | ingangsdatum geldigheid (85.10)   | morgen - 18 jaar |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
-    | voornamen (02.10)               | Olle       |
-    | geslachtsnaam (02.40)           | Oostingh   |
-    | geboortedatum (03.10)           | 20220202   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0010    |
-    | ingangsdatum geldigheid (85.10) | 20220202   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Onne       |
     | geslachtsnaam (02.40)           | Oostingh   |
     | geboortedatum (03.10)           | 20220202   |
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0011    |
+    | ingangsdatum geldigheid (85.10) | 20220202   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000024  |
+    | voornamen (02.10)               | Olle       |
+    | geslachtsnaam (02.40)           | Oostingh   |
+    | geboortedatum (03.10)           | 20220202   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0010    |
     | ingangsdatum geldigheid (85.10) | 20220202   |
     
     # Lg01_174 - minderjarige moeder, geen categorie 11

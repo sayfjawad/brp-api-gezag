@@ -59,19 +59,6 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
-    | voornamen (02.10)               | Harry      |
-    | geslachtsnaam (02.40)           | Hanssen    |
-    | geboortedatum (03.10)           | 20161201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0100    |
-    | ingangsdatum geldigheid (85.10) | 20161201   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde   |
-    | aktenummer (81.20)              | 1AQ0100  |
-    | ingangsdatum geldigheid (85.10) | 20191201 |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | William    |
     | geslachtsnaam (02.40)           | Hanssen    |
@@ -82,6 +69,19 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     En het 'kind' is gewijzigd naar de volgende gegevens
     | naam                            | waarde   |
     | aktenummer (81.20)              | 1AQ0101  |
+    | ingangsdatum geldigheid (85.10) | 20191201 |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000024  |
+    | voornamen (02.10)               | Harry      |
+    | geslachtsnaam (02.40)           | Hanssen    |
+    | geboortedatum (03.10)           | 20161201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20161201   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde   |
+    | aktenummer (81.20)              | 1AQ0100  |
     | ingangsdatum geldigheid (85.10) | 20191201 |
     
     # Lg01_051 - minderjarig kind, geadopteerd + voornaamswijziging, onder gezag Derde (vóór adoptie).
@@ -210,68 +210,23 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
-    | voornamen (02.10)               | Harry      |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20161201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AQ0100    |
-    | ingangsdatum geldigheid (85.10) | 20191201   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
-    | voornamen (02.10)               | Jorik      |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20161201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AM0100    |
-    | ingangsdatum geldigheid (85.10) | 20200105   |
+    | naam                            | waarde       |
+    | burgerservicenummer (01.20)     | 000000115    |
+    | voornamen (02.10)               | Jinthe Jiang |
+    | geslachtsnaam (02.40)           | Janssen      |
+    | geboortedatum (03.10)           | 20150101     |
+    | geboorteland (03.30)            | 6022         |
+    | aktenummer (81.20)              | 1VQ0700      |
+    | ingangsdatum geldigheid (85.10) | 20180101     |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
-    | voornamen (02.10)               | William    |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20161201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AQ0101    |
-    | ingangsdatum geldigheid (85.10) | 20191201   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
-    | voornamen (02.10)               | Jasper     |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20161201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AM0101    |
-    | ingangsdatum geldigheid (85.10) | 20200105   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Li         |
+    | burgerservicenummer (01.20)     | 000000103  |
+    | voornamen (02.10)               | Jia        |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 20150101   |
     | geboorteland (03.30)            | 6022       |
-    | aktenummer (81.20)              | 1VQ0700    |
-    | ingangsdatum geldigheid (85.10) | 20180101   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
-    | voornamen (02.10)               | Jin        |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20150101   |
-    | geboorteland (03.30)            | 6022       |
-    | aktenummer (81.20)              | 1VQ0700    |
+    | aktenummer (81.20)              | 1VQ0701    |
     | ingangsdatum geldigheid (85.10) | 20190101   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
-    | voornamen (02.10)               | Jasmin-Jin |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20150101   |
-    | geboorteland (03.30)            | 6022       |
-    | aktenummer (81.20)              | 1VM0700    |
-    | ingangsdatum geldigheid (85.10) | 20190510   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000097  |
@@ -292,22 +247,67 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | ingangsdatum geldigheid (85.10) | 20190510   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000103  |
-    | voornamen (02.10)               | Jia        |
+    | burgerservicenummer (01.20)     | 000000085  |
+    | voornamen (02.10)               | Jin        |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 20150101   |
     | geboorteland (03.30)            | 6022       |
-    | aktenummer (81.20)              | 1VQ0701    |
+    | aktenummer (81.20)              | 1VQ0700    |
     | ingangsdatum geldigheid (85.10) | 20190101   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000085  |
+    | voornamen (02.10)               | Jasmin-Jin |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20150101   |
+    | geboorteland (03.30)            | 6022       |
+    | aktenummer (81.20)              | 1VM0700    |
+    | ingangsdatum geldigheid (85.10) | 20190510   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde       |
-    | burgerservicenummer (01.20)     | 000000115    |
-    | voornamen (02.10)               | Jinthe Jiang |
-    | geslachtsnaam (02.40)           | Janssen      |
-    | geboortedatum (03.10)           | 20150101     |
-    | geboorteland (03.30)            | 6022         |
-    | aktenummer (81.20)              | 1VQ0700      |
-    | ingangsdatum geldigheid (85.10) | 20180101     |
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Li         |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20150101   |
+    | geboorteland (03.30)            | 6022       |
+    | aktenummer (81.20)              | 1VQ0700    |
+    | ingangsdatum geldigheid (85.10) | 20180101   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000073  |
+    | voornamen (02.10)               | William    |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20161201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AQ0101    |
+    | ingangsdatum geldigheid (85.10) | 20191201   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000073  |
+    | voornamen (02.10)               | Jasper     |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20161201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AM0101    |
+    | ingangsdatum geldigheid (85.10) | 20200105   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000024  |
+    | voornamen (02.10)               | Harry      |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20161201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AQ0100    |
+    | ingangsdatum geldigheid (85.10) | 20191201   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000024  |
+    | voornamen (02.10)               | Jorik      |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20161201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AM0100    |
+    | ingangsdatum geldigheid (85.10) | 20200105   |
     
     # Lg01_053 - gehuwd + 7 adoptiekinderen
     Gegeven de persoon met burgerservicenummer '000000048' heeft de volgende gegevens
@@ -357,58 +357,22 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | gemeente van inschrijving (09.10) | 518      |
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
-    | voornamen (02.10)               | Harry      |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20161201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AQ0100    |
-    | ingangsdatum geldigheid (85.10) | 20191201   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000024  |
-    | voornamen (02.10)               | Jorik      |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20161201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AM0100    |
-    | ingangsdatum geldigheid (85.10) | 20200105   |
+    | naam                            | waarde       |
+    | burgerservicenummer (01.20)     | 000000115    |
+    | voornamen (02.10)               | Jinthe Jiang |
+    | geslachtsnaam (02.40)           | Janssen      |
+    | geboortedatum (03.10)           | 20150101     |
+    | geboorteland (03.30)            | 6022         |
+    | aktenummer (81.20)              | 1VQ0700      |
+    | ingangsdatum geldigheid (85.10) | 20180101     |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
-    | voornamen (02.10)               | William    |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20161201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AQ0101    |
-    | ingangsdatum geldigheid (85.10) | 20191201   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
-    | voornamen (02.10)               | Jasper     |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20161201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AM0101    |
-    | ingangsdatum geldigheid (85.10) | 20200105   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Li         |
+    | burgerservicenummer (01.20)     | 000000103  |
+    | voornamen (02.10)               | Jia        |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 20150101   |
     | geboorteland (03.30)            | 6022       |
-    | aktenummer (81.20)              | 1VQ0700    |
-    | ingangsdatum geldigheid (85.10) | 20180101   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000085  |
-    | voornamen (02.10)               | Jin        |
-    | geslachtsnaam (02.40)           | Janssen    |
-    | geboortedatum (03.10)           | 20150101   |
-    | geboorteland (03.30)            | 6022       |
-    | aktenummer (81.20)              | 1VQ0700    |
+    | aktenummer (81.20)              | 1VQ0701    |
     | ingangsdatum geldigheid (85.10) | 20190101   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
@@ -430,22 +394,58 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     | ingangsdatum geldigheid (85.10) | 20190510   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000103  |
-    | voornamen (02.10)               | Jia        |
+    | burgerservicenummer (01.20)     | 000000085  |
+    | voornamen (02.10)               | Jin        |
     | geslachtsnaam (02.40)           | Janssen    |
     | geboortedatum (03.10)           | 20150101   |
     | geboorteland (03.30)            | 6022       |
-    | aktenummer (81.20)              | 1VQ0701    |
+    | aktenummer (81.20)              | 1VQ0700    |
     | ingangsdatum geldigheid (85.10) | 20190101   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde       |
-    | burgerservicenummer (01.20)     | 000000115    |
-    | voornamen (02.10)               | Jinthe Jiang |
-    | geslachtsnaam (02.40)           | Janssen      |
-    | geboortedatum (03.10)           | 20150101     |
-    | geboorteland (03.30)            | 6022         |
-    | aktenummer (81.20)              | 1VQ0700      |
-    | ingangsdatum geldigheid (85.10) | 20180101     |
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Li         |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20150101   |
+    | geboorteland (03.30)            | 6022       |
+    | aktenummer (81.20)              | 1VQ0700    |
+    | ingangsdatum geldigheid (85.10) | 20180101   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000073  |
+    | voornamen (02.10)               | William    |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20161201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AQ0101    |
+    | ingangsdatum geldigheid (85.10) | 20191201   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000073  |
+    | voornamen (02.10)               | Jasper     |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20161201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AM0101    |
+    | ingangsdatum geldigheid (85.10) | 20200105   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000024  |
+    | voornamen (02.10)               | Harry      |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20161201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AQ0100    |
+    | ingangsdatum geldigheid (85.10) | 20191201   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000024  |
+    | voornamen (02.10)               | Jorik      |
+    | geslachtsnaam (02.40)           | Janssen    |
+    | geboortedatum (03.10)           | 20161201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AM0100    |
+    | ingangsdatum geldigheid (85.10) | 20200105   |
     
     # Lg01_054 - minderjarig kind, geadopteerd uit buitenland, Nederlandse adoptieakte
     Gegeven de persoon met burgerservicenummer '000000061' heeft de volgende gegevens

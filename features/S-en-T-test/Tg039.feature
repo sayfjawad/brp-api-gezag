@@ -75,16 +75,6 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Trinette   |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Tubbergen  |
-    | geboortedatum (03.10)           | 20230201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0300    |
-    | ingangsdatum geldigheid (85.10) | 20230201   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Trudetty   |
     | voorvoegsel (02.30)             | van        |
@@ -92,6 +82,16 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     | geboortedatum (03.10)           | 20230201   |
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0301    |
+    | ingangsdatum geldigheid (85.10) | 20230201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Trinette   |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Tubbergen  |
+    | geboortedatum (03.10)           | 20230201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0300    |
     | ingangsdatum geldigheid (85.10) | 20230201   |
     
     # Lg01_210 - geregistreerd partnerschap met vrouw, overleden
@@ -156,16 +156,6 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Tim        |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Tintelen   |
-    | geboortedatum (03.10)           | 20221001   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0400    |
-    | ingangsdatum geldigheid (85.10) | 20221001   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000073  |
     | voornamen (02.10)               | Tom        |
     | voorvoegsel (02.30)             | van        |
@@ -173,6 +163,16 @@ Functionaliteit: Tg039 - Tubbergen-Tintelen – 2 vrouwen met geregistreerd part
     | geboortedatum (03.10)           | 20221001   |
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0401    |
+    | ingangsdatum geldigheid (85.10) | 20221001   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Tim        |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Tintelen   |
+    | geboortedatum (03.10)           | 20221001   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0400    |
     | ingangsdatum geldigheid (85.10) | 20221001   |
     
     # Lg01_211 - juridisch alleen moeder, geregistreerd partner van moeder overleden, moeder categorie 02

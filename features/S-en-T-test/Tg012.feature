@@ -46,13 +46,13 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Lux        |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Luc        |
     | geslachtsnaam (02.40)           | Liebeek    |
-    | geboortedatum (03.10)           | 20160501   |
+    | geboortedatum (03.10)           | 20120501   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0100    |
-    | ingangsdatum geldigheid (85.10) | 20160501   |
+    | aktenummer (81.20)              | 1AQ0100    |
+    | ingangsdatum geldigheid (85.10) | 20120501   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
@@ -73,13 +73,13 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | ingangsdatum geldigheid (85.10) | 20140502   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Luc        |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Lux        |
     | geslachtsnaam (02.40)           | Liebeek    |
-    | geboortedatum (03.10)           | 20120501   |
+    | geboortedatum (03.10)           | 20160501   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AQ0100    |
-    | ingangsdatum geldigheid (85.10) | 20120501   |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20160501   |
     
     # Lg01_066 - ongehuwde vrouw, 3 minderjarige kinderen samen met ongehuwde vrouw
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -117,24 +117,6 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Lux        |
-    | geslachtsnaam (02.40)           | Liebeek    |
-    | geboortedatum (03.10)           | 20160501   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0100    |
-    | ingangsdatum geldigheid (85.10) | 20160501   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Lex        |
-    | geslachtsnaam (02.40)           | Liebeek    |
-    | geboortedatum (03.10)           | 20140501   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AB0100    |
-    | ingangsdatum geldigheid (85.10) | 20140502   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000036  |
     | voornamen (02.10)               | Luc        |
     | geslachtsnaam (02.40)           | Liebeek    |
@@ -151,6 +133,24 @@ Functionaliteit: Tg012 - Loon-Liebeek
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AQ0100    |
     | ingangsdatum geldigheid (85.10) | 20120501   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Lex        |
+    | geslachtsnaam (02.40)           | Liebeek    |
+    | geboortedatum (03.10)           | 20140501   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AB0100    |
+    | ingangsdatum geldigheid (85.10) | 20140502   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Lux        |
+    | geslachtsnaam (02.40)           | Liebeek    |
+    | geboortedatum (03.10)           | 20160501   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20160501   |
     
     # Lg01_067 - geboorte uit ongehuwde vrouw, adoptie met terugwerkende kracht tot geboortedatum door duo-moeder
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens

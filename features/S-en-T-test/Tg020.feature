@@ -114,13 +114,13 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Christiaan |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Cecilia    |
     | geslachtsnaam (02.40)           | Charbon    |
-    | geboortedatum (03.10)           | 20150901   |
+    | geboortedatum (03.10)           | 20110601   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0103    |
-    | ingangsdatum geldigheid (85.10) | 20150901   |
+    | aktenummer (81.20)              | 1AA0101    |
+    | ingangsdatum geldigheid (85.10) | 20110601   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
@@ -132,13 +132,13 @@ Functionaliteit: Tg020 - Carolussen-Charbon
     | ingangsdatum geldigheid (85.10) | 20120801   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Cecilia    |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Christiaan |
     | geslachtsnaam (02.40)           | Charbon    |
-    | geboortedatum (03.10)           | 20110601   |
+    | geboortedatum (03.10)           | 20150901   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0101    |
-    | ingangsdatum geldigheid (85.10) | 20110601   |
+    | aktenummer (81.20)              | 1AA0103    |
+    | ingangsdatum geldigheid (85.10) | 20150901   |
     
     # Lg01_116 - ouders geregistreerd partnerschap vóór 01-04-204, alleen Ouder1 gevuld
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens

@@ -58,25 +58,6 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Larissa    |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Leeuwen    |
-    | geboortedatum (03.10)           | 20220901   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0600    |
-    | ingangsdatum geldigheid (85.10) | 20220901   |
-    En het 'kind' is gewijzigd naar de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000048  |
-    | voornamen (02.10)               | Larissa    |
-    | geslachtsnaam (02.40)           | Leijten    |
-    | geboortedatum (03.10)           | 20220901   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AC0600    |
-    | ingangsdatum geldigheid (85.10) | 20230131   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000061  |
     | voornamen (02.10)               | Laeticia   |
     | voorvoegsel (02.30)             | van        |
@@ -94,6 +75,25 @@ Functionaliteit: Tg030 - Leeuwen-Luiten-Leijten - Cat.11 en latere erkenning
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AC0601    |
     | ingangsdatum geldigheid (85.10) | 20230125   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Larissa    |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Leeuwen    |
+    | geboortedatum (03.10)           | 20220901   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0600    |
+    | ingangsdatum geldigheid (85.10) | 20220901   |
+    En het 'kind' is gewijzigd naar de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000048  |
+    | voornamen (02.10)               | Larissa    |
+    | geslachtsnaam (02.40)           | Leijten    |
+    | geboortedatum (03.10)           | 20220901   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AC0600    |
+    | ingangsdatum geldigheid (85.10) | 20230131   |
     
     # Lg01_162 - voogd van 2 minderjarige kinderen (1D), 1 kind door hem later erkend
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens

@@ -72,15 +72,6 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Eline      |
-    | geslachtsnaam (02.40)           | Eizenga    |
-    | geboortedatum (03.10)           | 20131001   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0150    |
-    | ingangsdatum geldigheid (85.10) | 20131001   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Emilia     |
     | geslachtsnaam (02.40)           | Eizenga    |
@@ -88,6 +79,15 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0150    |
     | ingangsdatum geldigheid (85.10) | 20111001   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Eline      |
+    | geslachtsnaam (02.40)           | Eizenga    |
+    | geboortedatum (03.10)           | 20131001   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0150    |
+    | ingangsdatum geldigheid (85.10) | 20131001   |
     
     # Lg01_025 - gehuwd, 2 minderjarige kinderen, overleden
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
@@ -148,15 +148,6 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Eline      |
-    | geslachtsnaam (02.40)           | Eizenga    |
-    | geboortedatum (03.10)           | 20131001   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0150    |
-    | ingangsdatum geldigheid (85.10) | 20131001   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
     | voornamen (02.10)               | Emilia     |
     | geslachtsnaam (02.40)           | Eizenga    |
@@ -164,6 +155,15 @@ Functionaliteit: Tg006 - Elbertsen-Eizenga
     | geboorteland (03.30)            | 6030       |
     | aktenummer (81.20)              | 1AA0150    |
     | ingangsdatum geldigheid (85.10) | 20111001   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Eline      |
+    | geslachtsnaam (02.40)           | Eizenga    |
+    | geboortedatum (03.10)           | 20131001   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0150    |
+    | ingangsdatum geldigheid (85.10) | 20131001   |
     
     # Lg01_026 - minderjarig kind, geboren tijdens huwelijk ouders, vader (Ouder2) overleden, onder voogdij D
     Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens

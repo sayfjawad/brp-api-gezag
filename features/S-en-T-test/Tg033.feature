@@ -64,24 +64,14 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | ingangsdatum geldigheid (85.10)   | 20111101 |
     En de persoon heeft een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000073  |
-    | voornamen (02.10)               | Pero       |
+    | burgerservicenummer (01.20)     | 000000061  |
+    | voornamen (02.10)               | Pep        |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Paassen    |
-    | geboortedatum (03.10)           | 20230201   |
+    | geboortedatum (03.10)           | 20160501   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0100    |
-    | ingangsdatum geldigheid (85.10) | 20230201   |
-    En de persoon heeft nog een 'kind' met de volgende gegevens
-    | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000036  |
-    | voornamen (02.10)               | Peet       |
-    | voorvoegsel (02.30)             | van        |
-    | geslachtsnaam (02.40)           | Paassen    |
-    | geboortedatum (03.10)           | 20181201   |
-    | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0100    |
-    | ingangsdatum geldigheid (85.10) | 20181201   |
+    | aktenummer (81.20)              | 1AA0102    |
+    | ingangsdatum geldigheid (85.10) | 20160501   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
     | burgerservicenummer (01.20)     | 000000048  |
@@ -94,14 +84,24 @@ Functionaliteit: Tg033 - Paassen-Pauw - Twee gehuwde vrouwen met 4 kinderen
     | ingangsdatum geldigheid (85.10) | 20170901   |
     En de persoon heeft nog een 'kind' met de volgende gegevens
     | naam                            | waarde     |
-    | burgerservicenummer (01.20)     | 000000061  |
-    | voornamen (02.10)               | Pep        |
+    | burgerservicenummer (01.20)     | 000000036  |
+    | voornamen (02.10)               | Peet       |
     | voorvoegsel (02.30)             | van        |
     | geslachtsnaam (02.40)           | Paassen    |
-    | geboortedatum (03.10)           | 20160501   |
+    | geboortedatum (03.10)           | 20181201   |
     | geboorteland (03.30)            | 6030       |
-    | aktenummer (81.20)              | 1AA0102    |
-    | ingangsdatum geldigheid (85.10) | 20160501   |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20181201   |
+    En de persoon heeft nog een 'kind' met de volgende gegevens
+    | naam                            | waarde     |
+    | burgerservicenummer (01.20)     | 000000073  |
+    | voornamen (02.10)               | Pero       |
+    | voorvoegsel (02.30)             | van        |
+    | geslachtsnaam (02.40)           | Paassen    |
+    | geboortedatum (03.10)           | 20230201   |
+    | geboorteland (03.30)            | 6030       |
+    | aktenummer (81.20)              | 1AA0100    |
+    | ingangsdatum geldigheid (85.10) | 20230201   |
     
     # Lg01_177 - huwelijkspartner van vrouw, geen meemoeder van de kinderen, bij 1 kind gezamenlijk gezag
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
