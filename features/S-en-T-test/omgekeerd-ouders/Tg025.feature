@@ -360,9 +360,9 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                |
-    | type        | GezagNietTeBepalen                                                                                                    |
-    | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Velden van persoon: geboortedatum. |
+    | naam        | waarde                                                                                                                                   |
+    | type        | GezagNietTeBepalen                                                                                                                       |
+    | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: geboortedatum van persoon. |
 
   Scenario: Lg01_135 - gehuwd, kinderen, in onderzoek 026210, 030000, 050200, 080000, 090330
     # Meerderjarig
@@ -384,9 +384,9 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | naam                | waarde    |
     | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                                                                   |
-    | type        | GezagNietTeBepalen                                                                                                                                       |
-    | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Velden van persoon: geboortedatum. Velden van ouder 1: geboortedatum. |
+    | naam        | waarde                                                                                                                                                                                         |
+    | type        | GezagNietTeBepalen                                                                                                                                                                             |
+    | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: geboortedatum van persoon. Persoonslijst van ouder 1: geboortedatum van persoon. |
 
   Scenario: Lg01_137 - kind geboren tijdens huwelijk in onderzoek 010330 (voorvoegsel ontbreekt), 040510, 081420, 113210
     # Route: 3ai - Wie heeft gezag?: niet te bepalen (N )
@@ -397,9 +397,9 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
     | naam                | waarde    |
     | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-    | naam        | waarde                                                                                                               |
-    | type        | GezagNietTeBepalen                                                                                                   |
-    | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Velden van persoon: geboorteland. |
+    | naam        | waarde                                                                                                                                  |
+    | type        | GezagNietTeBepalen                                                                                                                      |
+    | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: geboorteland van persoon. |
 
   Scenario: Lg01_138 - kind geboren tijdens huwelijk, overleden, gezag is niet van toepassing
     # Route: 2o - Wie heeft gezag?: overleden, gezag is niet van toepassing (NVT)
