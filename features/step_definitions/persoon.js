@@ -241,6 +241,21 @@ function aanvullenRelatieMetBsn(context, bsn, dataTable) {
     });
 }
 
+function aanvullenGegevensgroepMetBsn(context, bsn, dataTable, gegevensgroep) {
+    const sqlData = context.sqlData;
+    sqlData.forEach(el => {
+        if (el['persoon']) {
+            let persoonData = el['persoon'][0];
+            persoonData.forEach(([key, value]) => {
+                if (key === 'burger_service_nr' && value === bsn) {
+                    const dataArray = createArrayFrom(dataTable, columnNameMap);
+                    updateGegevens(el[gegevensgroep][0], dataArray);
+                }
+            });
+        }
+    });
+}
+
 function valideerEnOphalenGegevens(sqlData, bsn) {
     if (!sqlData) {
         throw new Error("No valid sqlData found.");
@@ -320,6 +335,7 @@ module.exports = {
     wijzigGegevensgroep,
     aanvullenPersoon,
     aanvullenPersoonMetBsn,
+    aanvullenGegevensgroepMetBsn,
     berekenJaar,
     updateGegevens,
     createGegevensgroepMetBsn,
