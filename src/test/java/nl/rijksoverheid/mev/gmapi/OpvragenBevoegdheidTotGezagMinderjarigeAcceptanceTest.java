@@ -2,6 +2,7 @@ package nl.rijksoverheid.mev.gmapi;
 
 import java.util.List;
 import java.util.Optional;
+
 import nl.rijksoverheid.mev.GezagApplication;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,16 +15,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
+
 import java.util.Set;
 import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(
-        classes = {GezagApplication.class, OpenApiGeneratorApplication.class},
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        properties = "app.clock=2023-02-01T00:00:00Z"
+    classes = {GezagApplication.class, OpenApiGeneratorApplication.class},
+    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+    properties = "app.clock=2023-02-01T00:00:00Z"
 )
 class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
 
@@ -132,44 +135,44 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
         "999970768", // Lg01_204
     })
     @DisplayName("""
-        Gegeven bsns als input,
-        bij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
-        verwacht wordt dat in geen enkele response de input bsn terug gegeven wordt als minderjarige`
-        """)
+            Gegeven bsns als input,
+            bij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
+            verwacht wordt dat in geen enkele response de input bsn terug gegeven wordt als minderjarige`
+            """)
     void opvragenBevoegdheidTotGezagMinderjarige1(final String input) {
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(input));
 
         webTestClient.post().uri("/api/v1/opvragenBevoegdheidTotGezag")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header("OIN", OIN)
-                .bodyValue(gezagRequest)
-                .exchange()
-                .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(GezagResponse.class).consumeWith(response -> {
-            GezagResponse result = response.getResponseBody();
-            List<Persoon> personen = result.getPersonen();
+            .contentType(MediaType.APPLICATION_JSON)
+            .header("OIN", OIN)
+            .bodyValue(gezagRequest)
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON)
+            .expectBody(GezagResponse.class).consumeWith(response -> {
+                GezagResponse result = response.getResponseBody();
+                List<Persoon> personen = result.getPersonen();
 
-            assertThat(result.getPersonen()).isNotNull();
-            for (Persoon persoon : personen) {
-                for (AbstractGezagsrelatie gezagsrelatie : persoon.getGezag()) {
-                    switch (gezagsrelatie.getType()) {
-                        case TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG -> {
-                            TweehoofdigOuderlijkGezag tweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) gezagsrelatie;
-                            assertFalse(input.equals(tweehoofdigOuderlijkGezag.getMinderjarige().get()));
-                        }
-                        case TYPE_EENHOOFDIG_OUDERLIJK_GEZAG -> {
-                            EenhoofdigOuderlijkGezag eenhoofdigOuderlijkGezag = (EenhoofdigOuderlijkGezag) gezagsrelatie;
-                            assertFalse(input.equals(eenhoofdigOuderlijkGezag.getMinderjarige().get()));
-                        }
-                        case TYPE_GEZAMELIJK_GEZAG -> {
-                            GezamenlijkGezag gezamenlijkGezag = (GezamenlijkGezag) gezagsrelatie;
-                            assertFalse(input.equals(gezamenlijkGezag.getMinderjarige().get()));
+                assertThat(result.getPersonen()).isNotNull();
+                for (Persoon persoon : personen) {
+                    for (AbstractGezagsrelatie gezagsrelatie : persoon.getGezag()) {
+                        switch (gezagsrelatie.getType()) {
+                            case TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG -> {
+                                TweehoofdigOuderlijkGezag tweehoofdigOuderlijkGezag = (TweehoofdigOuderlijkGezag) gezagsrelatie;
+                                assertFalse(input.equals(tweehoofdigOuderlijkGezag.getMinderjarige().get()));
+                            }
+                            case TYPE_EENHOOFDIG_OUDERLIJK_GEZAG -> {
+                                EenhoofdigOuderlijkGezag eenhoofdigOuderlijkGezag = (EenhoofdigOuderlijkGezag) gezagsrelatie;
+                                assertFalse(input.equals(eenhoofdigOuderlijkGezag.getMinderjarige().get()));
+                            }
+                            case TYPE_GEZAMELIJK_GEZAG -> {
+                                GezamenlijkGezag gezamenlijkGezag = (GezamenlijkGezag) gezagsrelatie;
+                                assertFalse(input.equals(gezamenlijkGezag.getMinderjarige().get()));
+                            }
                         }
                     }
                 }
-            }
-        });
+            });
     }
 
     @ParameterizedTest
@@ -200,35 +203,35 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
         "999970392", // Lg01_197
     })
     @DisplayName("""
-        gegeven bsns al input,
-        bij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
-        moet het antwoord een gezagsrelatie met `soortGezag: N` en lege `bsnMeerderjarige` bevatten
-        """)
+            gegeven bsns al input,
+            bij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
+            moet het antwoord een gezagsrelatie met `soortGezag: N` en lege `bsnMeerderjarige` bevatten
+            """)
     void opvragenBevoegdheidTotGezagMinderjarige2(final String input) {
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(input));
 
         webTestClient.post().uri("/api/v1/opvragenBevoegdheidTotGezag")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header("OIN", OIN)
-                .bodyValue(gezagRequest)
-                .exchange()
-                .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(GezagResponse.class).consumeWith(response -> {
-            GezagResponse result = response.getResponseBody();
-            List<Persoon> personen = result.getPersonen();
+            .contentType(MediaType.APPLICATION_JSON)
+            .header("OIN", OIN)
+            .bodyValue(gezagRequest)
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON)
+            .expectBody(GezagResponse.class).consumeWith(response -> {
+                GezagResponse result = response.getResponseBody();
+                List<Persoon> personen = result.getPersonen();
 
-            assertThat(result.getPersonen()).isNotNull();
-            for (Persoon persoon : personen) {
-                List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
+                assertThat(result.getPersonen()).isNotNull();
+                for (Persoon persoon : personen) {
+                    List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
 
-                assertThat(gezagsrelaties).isNotNull();
-                assertThat(gezagsrelaties).hasSize(1);
-                for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
-                    assertEquals(TYPE_NIET_TE_BEPALEN, gezagsrelatie.getType());
+                    assertThat(gezagsrelaties).isNotNull();
+                    assertThat(gezagsrelaties).hasSize(1);
+                    for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
+                        assertEquals(TYPE_NIET_TE_BEPALEN, gezagsrelatie.getType());
+                    }
                 }
-            }
-        });
+            });
     }
 
     @ParameterizedTest
@@ -245,271 +248,270 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
         "999970227", // Lg01_184
     })
     @DisplayName("""
-        gegeven een bsn als input,
-        bij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
-        moet het antwoord een gezagsrelatie bevatten met `soortGezag: G` en een lege `bsnMeerderjarige`
-        """)
+            gegeven een bsn als input,
+            bij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
+            moet het antwoord een gezagsrelatie bevatten met `soortGezag: G` en een lege `bsnMeerderjarige`
+            """)
     void opvragenBevoegdheidTotGezagMinderjarige3(final String input) {
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(input));
 
         webTestClient
-                .post().uri("/api/v1/opvragenBevoegdheidTotGezag")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header("OIN", OIN)
-                .bodyValue(gezagRequest)
-                .exchange()
-                .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(GezagResponse.class).consumeWith(response -> {
-            GezagResponse result = response.getResponseBody();
-            List<Persoon> personen = result.getPersonen();
+            .post().uri("/api/v1/opvragenBevoegdheidTotGezag")
+            .contentType(MediaType.APPLICATION_JSON)
+            .header("OIN", OIN)
+            .bodyValue(gezagRequest)
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON)
+            .expectBody(GezagResponse.class).consumeWith(response -> {
+                GezagResponse result = response.getResponseBody();
+                List<Persoon> personen = result.getPersonen();
 
-            assertThat(result.getPersonen()).isNotNull();
-            for (Persoon persoon : personen) {
-                List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
+                assertThat(result.getPersonen()).isNotNull();
+                for (Persoon persoon : personen) {
+                    List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
 
-                assertThat(gezagsrelaties).isNotNull();
-                assertThat(gezagsrelaties).hasSize(1);
-                for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
-                    assertEquals(TYPE_TIJDELIJK_GEEN_GEZAG, gezagsrelatie.getType());
+                    assertThat(gezagsrelaties).isNotNull();
+                    assertThat(gezagsrelaties).hasSize(1);
+                    for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
+                        assertEquals(TYPE_TIJDELIJK_GEEN_GEZAG, gezagsrelatie.getType());
+                    }
                 }
-            }
-        });
+            });
     }
 
     static Stream<Arguments> opvragenBevoegdheidTotGezagMinderjarige4() {
         return Stream.of(
-                // (input, expected)
-                Arguments.of("999999266", "999998390"), // Lg01_011
-                Arguments.of("999999278", "999998390"), // Lg01_012
-                Arguments.of("999998456", "999998444"), // Lg01_016
-                Arguments.of("999998560", "999998547"), // Lg01_027
-                Arguments.of("999998602", "999998584"), // Lg01_030
-                Arguments.of("999998614", "999998584"), // Lg01_031
-                Arguments.of("999998699", "999998675"), // Lg01_038
-                Arguments.of("999998936", "999998912"), // Lg01_059
-                Arguments.of("999998985", "999998912"), // Lg01_062
-                Arguments.of("999999023", "999999011"), // Lg01_064
+            // (input, expected)
+            Arguments.of("999999266", "999998390"), // Lg01_011
+            Arguments.of("999999278", "999998390"), // Lg01_012
+            Arguments.of("999998456", "999998444"), // Lg01_016
+            Arguments.of("999998560", "999998547"), // Lg01_027
+            Arguments.of("999998602", "999998584"), // Lg01_030
+            Arguments.of("999998614", "999998584"), // Lg01_031
+            Arguments.of("999998699", "999998675"), // Lg01_038
+            Arguments.of("999998936", "999998912"), // Lg01_059
+            Arguments.of("999998985", "999998912"), // Lg01_062
+            Arguments.of("999999023", "999999011"), // Lg01_064
 
-                Arguments.of("999999102", "999999084"), // Lg01_072
-                Arguments.of("999999151", "999999126"), // Lg01_076
+            Arguments.of("999999102", "999999084"), // Lg01_072
+            Arguments.of("999999151", "999999126"), // Lg01_076
 
-                Arguments.of("999999540", "999999527"), // Lg01_093
-                Arguments.of("999999734", "999998791"), // Lg01_110
-                Arguments.of("999999746", "999998778"), // Lg01_111
-                Arguments.of("999999989", "999999965"), // Lg01_133
-                Arguments.of("999970525", "999970513"), // Lg01_147
-                Arguments.of("999970549", "999970513"), // Lg01_149
-                Arguments.of("999970550", "999970513"), // Lg01_150
-                Arguments.of("999970574", "999970513"), // Lg01_152
-                Arguments.of("999970021", "999999126"), // Lg01_166
-                Arguments.of("999970033", "999999126"), // Lg01_167
-                Arguments.of("999970082", "999970057"), // Lg01_172
-                Arguments.of("999970185", "999970124"), // Lg01_180
-                //Arguments.of("999970276", "999970318"), // Lg01_190 - velden in onderzoek, controlleren met oude gezag
-                //Arguments.of("999970343", "999970318"), // Lg01_192 - velden in onderzoek, controlleren met oude gezag
-                Arguments.of("999970744", "999970732"), // Lg01_202
-                Arguments.of("999970781", "999970768"), // Lg01_205
-                Arguments.of("999970793", "999970768") // Lg01_206
+            Arguments.of("999999540", "999999527"), // Lg01_093
+            Arguments.of("999999734", "999998791"), // Lg01_110
+            Arguments.of("999999746", "999998778"), // Lg01_111
+            Arguments.of("999999989", "999999965"), // Lg01_133
+            Arguments.of("999970525", "999970513"), // Lg01_147
+            Arguments.of("999970549", "999970513"), // Lg01_149
+            Arguments.of("999970550", "999970513"), // Lg01_150
+            Arguments.of("999970574", "999970513"), // Lg01_152
+            Arguments.of("999970021", "999999126"), // Lg01_166
+            Arguments.of("999970033", "999999126"), // Lg01_167
+            Arguments.of("999970082", "999970057"), // Lg01_172
+            Arguments.of("999970185", "999970124"), // Lg01_180
+            //Arguments.of("999970276", "999970318"), // Lg01_190 - velden in onderzoek, controlleren met oude gezag
+            //Arguments.of("999970343", "999970318"), // Lg01_192 - velden in onderzoek, controlleren met oude gezag
+            Arguments.of("999970744", "999970732"), // Lg01_202
+            Arguments.of("999970781", "999970768"), // Lg01_205
+            Arguments.of("999970793", "999970768") // Lg01_206
         );
     }
 
     @ParameterizedTest
     @MethodSource
     @DisplayName("""
-        gegeven een bsn als input,
-        bij het sturen van een aanvraag op `/opvragenBevoegdheidTotGezag`,
-        bevat het antwoord een gezagsrelatie met `soortGezag: OG1` en de juiste `bsnMeerderjarige`
-        """)
+            gegeven een bsn als input,
+            bij het sturen van een aanvraag op `/opvragenBevoegdheidTotGezag`,
+            bevat het antwoord een gezagsrelatie met `soortGezag: OG1` en de juiste `bsnMeerderjarige`
+            """)
     void opvragenBevoegdheidTotGezagMinderjarige4(final String input, final String expected) {
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(input));
 
         webTestClient
-                .post().uri("/api/v1/opvragenBevoegdheidTotGezag")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header("OIN", OIN)
-                .bodyValue(gezagRequest)
-                .exchange()
-                .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(GezagResponse.class).consumeWith(response -> {
-            GezagResponse result = response.getResponseBody();
-            List<Persoon> personen = result.getPersonen();
+            .post().uri("/api/v1/opvragenBevoegdheidTotGezag")
+            .contentType(MediaType.APPLICATION_JSON)
+            .header("OIN", OIN)
+            .bodyValue(gezagRequest)
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON)
+            .expectBody(GezagResponse.class).consumeWith(response -> {
+                GezagResponse result = response.getResponseBody();
+                List<Persoon> personen = result.getPersonen();
 
-            assertThat(result.getPersonen()).isNotNull();
-            for (Persoon persoon : personen) {
-                List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
+                assertThat(result.getPersonen()).isNotNull();
+                for (Persoon persoon : personen) {
+                    List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
 
-                assertThat(gezagsrelaties).isNotNull();
-                assertThat(gezagsrelaties).hasSize(1);
-                for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
-                    assertEquals(TYPE_EENHOOFDIG_OUDERLIJK_GEZAG, gezagsrelatie.getType());
-                    EenhoofdigOuderlijkGezag gezag = (EenhoofdigOuderlijkGezag) gezagsrelatie;
-                    assertEquals(expected, gezag.getOuder().get().getBurgerservicenummer());
+                    assertThat(gezagsrelaties).isNotNull();
+                    assertThat(gezagsrelaties).hasSize(1);
+                    for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
+                        assertEquals(TYPE_EENHOOFDIG_OUDERLIJK_GEZAG, gezagsrelatie.getType());
+                        EenhoofdigOuderlijkGezag gezag = (EenhoofdigOuderlijkGezag) gezagsrelatie;
+                        assertEquals(expected, gezag.getOuder().get().getBurgerservicenummer());
+                    }
                 }
-            }
-        });
+            });
     }
 
     static Stream<Arguments> opvragenBevoegdheidTotGezagMinderjarige5() {
         return Stream.of(
-                // (input, expected)
-                Arguments.of("999998316", Set.of("999998778", "999998791")), // Lg01_003
-                Arguments.of("999998341", Set.of("999998778", "999998791")), // Lg01_005
-                Arguments.of("999998328", Set.of("999998778", "999998791")), // Lg01_006
-                Arguments.of("999998651", Set.of("999998626", "999998638")), // Lg01_034
-                Arguments.of("999998663", Set.of("999998626", "999998638")), // Lg01_035
-                Arguments.of("999998705", Set.of("999998675", "999998687")), // Lg01_039
-                Arguments.of("999998808", Set.of("999998742", "999998729")), // Lg01_043
-                Arguments.of("999998833", Set.of("999998821", "999998766")), // Lg01_048
-                Arguments.of("999998869", Set.of("999998870", "999998882")), // Lg01_051
-                Arguments.of("999998894", Set.of("999998870", "999998882")), // Lg01_054
-                Arguments.of("999998924", Set.of("999998912", "999998900")), // Lg01_060
-                Arguments.of("999999059", Set.of("999999047", "999999035")), // Lg01_067
-                Arguments.of("999999060", Set.of("999999035", "999999047")), // Lg01_068
-                Arguments.of("999999448", Set.of("999998870", "999998882")), // Lg01_084
-                Arguments.of("999999825", Set.of("999999795", "999999783")), // Lg01_118
-                Arguments.of("999999886", Set.of("999999862", "999999874")), // Lg01_124
-                Arguments.of("999999916", Set.of("999999904", "999999898")), // Lg01_127
-                Arguments.of("999999941", Set.of("999999904", "999999898")), // Lg01_129
-                Arguments.of("999999977", Set.of("999999953", "999999965")), // Lg01_132
-                Arguments.of("999970471", Set.of("999970458", "999970446")), // Lg01_142
-                Arguments.of("999970483", Set.of("999970458", "999970446")), // Lg01_143
-                Arguments.of("999970495", Set.of("999970458", "999970446")), // Lg01_144
-                Arguments.of("999970537", Set.of("999970513", "999970501")), // Lg01_148
-                Arguments.of("999970562", Set.of("999970513", "999970501")), // Lg01_151
-                Arguments.of("999970604", Set.of("999970598", "999970586")), // Lg01_155
-                Arguments.of("999970641", Set.of("999970616", "999970653")), // Lg01_158
-                Arguments.of("999970665", Set.of("999970616", "999970653")), // Lg01_160
-                Arguments.of("999970045", Set.of("999999126", "999999163")), // Lg01_168
-                Arguments.of("999970070", Set.of("999970057", "999970069")), // Lg01_171
-                Arguments.of("999970355", Set.of("999998870", "999998882")), // Lg01_193
-                Arguments.of("999970367", Set.of("999998870", "999998882")), // Lg01_194
-                Arguments.of("999970379", Set.of("999998870", "999998882")), // Lg01_195
-                Arguments.of("999970380", Set.of("999998870", "999998882")), // Lg01_196
-                Arguments.of("999970409", Set.of("999970124", "999970410")) // Lg01_198
+            // (input, expected)
+            Arguments.of("999998316", Set.of("999998778", "999998791")), // Lg01_003
+            Arguments.of("999998341", Set.of("999998778", "999998791")), // Lg01_005
+            Arguments.of("999998328", Set.of("999998778", "999998791")), // Lg01_006
+            Arguments.of("999998651", Set.of("999998626", "999998638")), // Lg01_034
+            Arguments.of("999998663", Set.of("999998626", "999998638")), // Lg01_035
+            Arguments.of("999998705", Set.of("999998675", "999998687")), // Lg01_039
+            Arguments.of("999998808", Set.of("999998742", "999998729")), // Lg01_043
+            Arguments.of("999998833", Set.of("999998821", "999998766")), // Lg01_048
+            Arguments.of("999998869", Set.of("999998870", "999998882")), // Lg01_051
+            Arguments.of("999998894", Set.of("999998870", "999998882")), // Lg01_054
+            Arguments.of("999998924", Set.of("999998912", "999998900")), // Lg01_060
+            Arguments.of("999999059", Set.of("999999047", "999999035")), // Lg01_067
+            Arguments.of("999999060", Set.of("999999035", "999999047")), // Lg01_068
+            Arguments.of("999999448", Set.of("999998870", "999998882")), // Lg01_084
+            Arguments.of("999999825", Set.of("999999795", "999999783")), // Lg01_118
+            Arguments.of("999999886", Set.of("999999862", "999999874")), // Lg01_124
+            Arguments.of("999999916", Set.of("999999904", "999999898")), // Lg01_127
+            Arguments.of("999999941", Set.of("999999904", "999999898")), // Lg01_129
+            Arguments.of("999999977", Set.of("999999953", "999999965")), // Lg01_132
+            Arguments.of("999970471", Set.of("999970458", "999970446")), // Lg01_142
+            Arguments.of("999970483", Set.of("999970458", "999970446")), // Lg01_143
+            Arguments.of("999970495", Set.of("999970458", "999970446")), // Lg01_144
+            Arguments.of("999970537", Set.of("999970513", "999970501")), // Lg01_148
+            Arguments.of("999970562", Set.of("999970513", "999970501")), // Lg01_151
+            Arguments.of("999970604", Set.of("999970598", "999970586")), // Lg01_155
+            Arguments.of("999970641", Set.of("999970616", "999970653")), // Lg01_158
+            Arguments.of("999970665", Set.of("999970616", "999970653")), // Lg01_160
+            Arguments.of("999970045", Set.of("999999126", "999999163")), // Lg01_168
+            Arguments.of("999970070", Set.of("999970057", "999970069")), // Lg01_171
+            Arguments.of("999970355", Set.of("999998870", "999998882")), // Lg01_193
+            Arguments.of("999970367", Set.of("999998870", "999998882")), // Lg01_194
+            Arguments.of("999970379", Set.of("999998870", "999998882")), // Lg01_195
+            Arguments.of("999970380", Set.of("999998870", "999998882")), // Lg01_196
+            Arguments.of("999970409", Set.of("999970124", "999970410")) // Lg01_198
         );
     }
 
     @ParameterizedTest
     @MethodSource
     @DisplayName("""
-        gegeven een bsn als input,
-        wbij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
-        bevat het antwoord een gezagsrelatie met `soortGezag: OG2` en de verwachte`bsnMeerderjarige`
-        """)
+            gegeven een bsn als input,
+            wbij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
+            bevat het antwoord een gezagsrelatie met `soortGezag: OG2` en de verwachte`bsnMeerderjarige`
+            """)
     void opvragenBevoegdheidTotGezagMinderjarige5(final String input, final Set<String> expected) {
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(input));
 
         webTestClient
-                .post().uri("/api/v1/opvragenBevoegdheidTotGezag")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header("OIN", OIN)
-                .bodyValue(gezagRequest)
-                .exchange()
-                .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(GezagResponse.class).consumeWith(response -> {
-            GezagResponse result = response.getResponseBody();
-            List<Persoon> personen = result.getPersonen();
+            .post().uri("/api/v1/opvragenBevoegdheidTotGezag")
+            .contentType(MediaType.APPLICATION_JSON)
+            .header("OIN", OIN)
+            .bodyValue(gezagRequest)
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON)
+            .expectBody(GezagResponse.class).consumeWith(response -> {
+                GezagResponse result = response.getResponseBody();
+                List<Persoon> personen = result.getPersonen();
 
-            assertThat(result.getPersonen()).isNotNull();
-            for (Persoon persoon : personen) {
-                List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
+                assertThat(result.getPersonen()).isNotNull();
+                for (Persoon persoon : personen) {
+                    List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
 
-                assertThat(gezagsrelaties).isNotNull();
-                assertThat(gezagsrelaties).hasSize(1);
-                for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
-                    assertEquals(TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG, gezagsrelatie.getType());
-                    TweehoofdigOuderlijkGezag gezag = (TweehoofdigOuderlijkGezag) gezagsrelatie;
+                    assertThat(gezagsrelaties).isNotNull();
+                    assertThat(gezagsrelaties).hasSize(1);
+                    for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
+                        assertEquals(TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG, gezagsrelatie.getType());
+                        TweehoofdigOuderlijkGezag gezag = (TweehoofdigOuderlijkGezag) gezagsrelatie;
 
-                    List<String> gezagshouders = gezag.getOuders().stream()
+                        List<String> gezagshouders = gezag.getOuders().stream()
                             .map(GezagOuder::getBurgerservicenummer)
                             .toList();
-                    assertThat(gezagshouders)
+                        assertThat(gezagshouders)
                             .containsExactlyInAnyOrderElementsOf(expected);
+                    }
                 }
-            }
-        });
+            });
     }
 
     static Stream<Arguments> opvragenBevoegdheidTotGezagMinderjarig6() {
         return Stream.of(
-                // (input, expected)
-                Arguments.of("999998572", Set.of()), // Lg01_026
-                Arguments.of("999998717", Set.of()), // Lg01_040
-                Arguments.of("999998961", Set.of()), // Lg01_057
-                Arguments.of("999999205", Set.of("999999199")), // Lg01_080
-                Arguments.of("999999515", Set.of()), // Lg01_090
-                Arguments.of("999999618", Set.of()), // Lg01_099
-                Arguments.of("999999680", Set.of()), // Lg01_105
-                Arguments.of("999999722", Set.of()), // Lg01_109
-                Arguments.of("999999758", Set.of()), // Lg01_112
-                Arguments.of("999999771", Set.of()), // Lg01_113
-                Arguments.of("999970707", Set.of()), // Lg01_164
-                Arguments.of("999970719", Set.of()), // Lg01_165
-                Arguments.of("999970112", Set.of()), // Lg01_175
-                Arguments.of("999970173", Set.of()), // Lg01_179
-                Arguments.of("999970215", Set.of("999970203")), // Lg01_183
-                Arguments.of("999970252", Set.of("999970240")) // Lg01_187
+            // (input, expected)
+            Arguments.of("999998572", Set.of()), // Lg01_026
+            Arguments.of("999998717", Set.of()), // Lg01_040
+            Arguments.of("999998961", Set.of()), // Lg01_057
+            Arguments.of("999999205", Set.of("999999199")), // Lg01_080
+            Arguments.of("999999515", Set.of()), // Lg01_090
+            Arguments.of("999999618", Set.of()), // Lg01_099
+            Arguments.of("999999680", Set.of()), // Lg01_105
+            Arguments.of("999999722", Set.of()), // Lg01_109
+            Arguments.of("999999758", Set.of()), // Lg01_112
+            Arguments.of("999999771", Set.of()), // Lg01_113
+            Arguments.of("999970707", Set.of()), // Lg01_164
+            Arguments.of("999970719", Set.of()), // Lg01_165
+            Arguments.of("999970112", Set.of()), // Lg01_175
+            Arguments.of("999970173", Set.of()), // Lg01_179
+            Arguments.of("999970215", Set.of("999970203")), // Lg01_183
+            Arguments.of("999970252", Set.of("999970240")) // Lg01_187
         );
     }
 
     @ParameterizedTest
     @MethodSource
     @DisplayName("""
-        gegeven bsn als input,
-        bij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
-        bevat het antwoord een gezagsrelatie met `soortGezag: V` en de verwachte `bsnMeerderjarige`
-        """)
+            gegeven bsn als input,
+            bij het sturen van een aanvraag naar `/opvragenBevoegdheidTotGezag`,
+            bevat het antwoord een gezagsrelatie met `soortGezag: V` en de verwachte `bsnMeerderjarige`
+            """)
     void opvragenBevoegdheidTotGezagMinderjarig6(final String input, final Set<String> expected) {
         GezagRequest gezagRequest = new GezagRequest().burgerservicenummer(List.of(input));
 
         webTestClient
-                .post().uri("/api/v1/opvragenBevoegdheidTotGezag")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header("OIN", OIN)
-                .bodyValue(gezagRequest)
-                .exchange()
-                .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                .expectBody(GezagResponse.class).consumeWith(response -> {
-            GezagResponse result = response.getResponseBody();
-            List<Persoon> personen = result.getPersonen();
+            .post().uri("/api/v1/opvragenBevoegdheidTotGezag")
+            .contentType(MediaType.APPLICATION_JSON)
+            .header("OIN", OIN)
+            .bodyValue(gezagRequest)
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON)
+            .expectBody(GezagResponse.class).consumeWith(response -> {
+                GezagResponse result = response.getResponseBody();
+                List<Persoon> personen = result.getPersonen();
 
-            assertThat(result.getPersonen()).isNotNull();
-            for (Persoon persoon : personen) {
-                List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
+                assertThat(result.getPersonen()).isNotNull();
+                for (Persoon persoon : personen) {
+                    List<AbstractGezagsrelatie> gezagsrelaties = persoon.getGezag();
 
-                assertThat(gezagsrelaties).isNotNull();
-                assertThat(gezagsrelaties).hasSize(1);
-                for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
-                    assertEquals(TYPE_VOOGDIJ, gezagsrelatie.getType());
-                    Voogdij gezag = (Voogdij) gezagsrelatie;
+                    assertThat(gezagsrelaties).isNotNull();
+                    assertThat(gezagsrelaties).hasSize(1);
+                    for (AbstractGezagsrelatie gezagsrelatie : gezagsrelaties) {
+                        assertEquals(TYPE_VOOGDIJ, gezagsrelatie.getType());
+                        Voogdij gezag = (Voogdij) gezagsrelatie;
 
-                    List<String> gezagshouders = gezag.getDerden().stream()
+                        List<String> gezagshouders = gezag.getDerden().stream()
                             .map(Meerderjarige::getBurgerservicenummer)
-                            .map(Optional::get)
+                            .flatMap(Optional::stream)
                             .toList();
-                    assertThat(gezagshouders)
+                        assertThat(gezagshouders)
                             .containsExactlyInAnyOrderElementsOf(expected);
+                    }
                 }
-            }
-        });
+            });
     }
 
     static Stream<Arguments> opvragenBevoegdheidTotGezagMinderjarig7() {
         return Stream.of(
-                // (input, expected)
+            // (input, expected)
 
-                Arguments.of("999999801", Set.of("999999795", "999999783")), // Lg01_116
-                Arguments.of("999999813", Set.of("999999795", "999999783")), // Lg01_117
-                Arguments.of("999999850", Set.of("999999849", "999999837")), // Lg01_121
-                Arguments.of("999970161", Set.of("999970124", "999970136")) // Lg01_178
+            Arguments.of("999999801", Set.of("999999795", "999999783")), // Lg01_116
+            Arguments.of("999999813", Set.of("999999795", "999999783")), // Lg01_117
+            Arguments.of("999999850", Set.of("999999849", "999999837")), // Lg01_121
+            Arguments.of("999970161", Set.of("999970124", "999970136")) // Lg01_178
         );
     }
-
-    /* FUTURE_WORK: Aanzetten wanneer de code de derde van de ouder kan scheiden
+/*
     @ParameterizedTest
     @MethodSource
     @DisplayName("""
@@ -556,5 +558,5 @@ class OpvragenBevoegdheidTotGezagMinderjarigeAcceptanceTest {
             }
         });
     }
-     */
+ */
 }

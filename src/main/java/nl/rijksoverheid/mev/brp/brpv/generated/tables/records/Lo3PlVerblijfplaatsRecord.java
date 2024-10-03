@@ -439,5 +439,6 @@ public class Lo3PlVerblijfplaatsRecord extends UpdatableRecordImpl<Lo3PlVerblijf
         setOpnemingDatum(opnemingDatum);
         setRniDeelnemer(rniDeelnemer);
         setVerdragOms(verdragOms);
+        resetChangedOnNotNull();
     }
 }

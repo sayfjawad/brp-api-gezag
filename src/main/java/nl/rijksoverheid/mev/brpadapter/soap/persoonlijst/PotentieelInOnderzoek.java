@@ -50,24 +50,29 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
      */
     protected void inOnderzoek(final String key, final String fieldName) {
         String inOnderzoek = values.get(aanduidingGegevensInOnderzoek);
-        if (inOnderzoek != null && !inOnderzoek.isEmpty()) {
-            String formattedVeldName = getFormattedVeldName(inOnderzoek, key);
+        if (inOnderzoek == null) return;
+        if (inOnderzoek.isEmpty()) return;
 
-            if (inOnderzoek.equals(key) || inOnderzoek.equals(formattedVeldName)) {
-                String datumEindeOnderzoekValue = values.get(datumEindeOnderzoek);
-                if (datumEindeOnderzoekValue != null && !datumEindeOnderzoekValue.isEmpty()) {
-                    int datumEindeOnderzoekInt = Integer.parseInt(datumEindeOnderzoekValue);
-                    int datumVandaag = Integer.parseInt(LocalDate.now(clock).format(FORMATTER));
+        String formattedVeldName = getFormattedVeldName(inOnderzoek, key);
 
-                    if (datumVandaag <= datumEindeOnderzoekInt) {
-                        veldenInOnderzoek.add(fieldName);
-                    }
-                } else {
-                    veldenInOnderzoek.add(fieldName);
+        if (inOnderzoek.equals(key) || inOnderzoek.equals(formattedVeldName)) {
+            String datumEindeOnderzoekValue = values.get(datumEindeOnderzoek);
+            String veldInOnderzoek = formattedVeldName.endsWith("0000") ? getCategorieName() : fieldName;
+
+            if (datumEindeOnderzoekValue != null && !datumEindeOnderzoekValue.isEmpty()) {
+                int datumEindeOnderzoekInt = Integer.parseInt(datumEindeOnderzoekValue);
+                int datumVandaag = Integer.parseInt(LocalDate.now(clock).format(FORMATTER));
+
+                if (datumVandaag <= datumEindeOnderzoekInt) {
+                    veldenInOnderzoek.add(veldInOnderzoek);
                 }
+            } else {
+                veldenInOnderzoek.add(veldInOnderzoek);
             }
         }
     }
+
+    protected abstract String getCategorieName();
 
     @Override
     public String get(final String key) {

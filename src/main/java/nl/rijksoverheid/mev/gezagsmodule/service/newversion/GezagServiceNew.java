@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.common.util.BSNValidator;
-import nl.rijksoverheid.mev.exception.AfleidingsregelException;
-import nl.rijksoverheid.mev.exception.BrpException;
-import nl.rijksoverheid.mev.exception.GezagException;
-import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
+import nl.rijksoverheid.mev.exception.*;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
@@ -20,7 +17,10 @@ import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Service voor bepalen gezag
@@ -95,6 +95,8 @@ public class GezagServiceNew implements GezagService {
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
+        } catch (BrpException ex) {
+            throw new PersoonslijstNotFoundException("Persoonslijst kan niet gevonden worden", ex);
         }
         boolean hasVeldenInOnderzoek = gezagBepaling != null && gezagBepaling.warenVeldenInOnderzoek();
         if (hasVeldenInOnderzoek) {
@@ -104,6 +106,8 @@ public class GezagServiceNew implements GezagService {
         arAntwoordenModel.setRoute(route);
         setConfiguredValues(arAntwoordenModel);
 
+        String unformattedUitleg = arAntwoordenModel.getUitleg();
+
         if (hasVeldenInOnderzoek) {
             route = route + "i";
             arAntwoordenModel.setRoute(arAntwoordenModel.getRoute() + "i");
@@ -112,21 +116,27 @@ public class GezagServiceNew implements GezagService {
             arAntwoordenModel.setGezagOuder2(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
-            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), gezagBepaling.getVeldenInOnderzoek(), null));
+            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(unformattedUitleg, gezagBepaling.getVeldenInOnderzoek(), null));
         }
 
         if (gezagBepaling != null) {
             List<String> missendeGegegevens = gezagBepaling.getMissendeGegegevens();
+            UUID errorTraceCode = gezagBepaling.getErrorTraceCode();
+
             if (!missendeGegegevens.isEmpty()) {
-                String toelichting = toelichtingService.decorateToelichting(arAntwoordenModel.getUitleg(), null, missendeGegegevens);
+                String toelichting = toelichtingService.decorateToelichting(unformattedUitleg, null, missendeGegegevens);
                 arAntwoordenModel.setUitleg(toelichting);
+            } else if (errorTraceCode != null) {
+                unformattedUitleg = unformattedUitleg.formatted(errorTraceCode.toString());
+                arAntwoordenModel.setUitleg(unformattedUitleg);
             }
 
             gezagBepaling.bepalenGezagdragers(bsn, arAntwoordenModel, gezagRelaties);
         }
 
         if (gezagRelaties.isEmpty() && arAntwoordenModel.getSoortGezag() != null && !arAntwoordenModel.getSoortGezag().equals(SOORT_GEZAG_NVT)) {
-            gezagRelaties.add(new Gezagsrelatie(bsn, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, arAntwoordenModel.getUitleg()));
+            String uitleg = arAntwoordenModel.getUitleg();
+            gezagRelaties.add(new Gezagsrelatie(bsn, arAntwoordenModel.getSoortGezag(), BSN_MEERDERJARIGE_LEEG, uitleg));
         }
 
         result = new GezagAfleidingsResultaat(gezagRelaties, arAntwoordenModel, route);

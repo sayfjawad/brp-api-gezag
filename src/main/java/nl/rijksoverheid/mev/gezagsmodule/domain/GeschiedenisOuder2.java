@@ -24,10 +24,16 @@ public class GeschiedenisOuder2 extends PotentieelInOnderzoek {
     private static final String RNI_DEELNEMER = "538810";
     private static final String AKTENUMMER = "538120";
     private static final String DOCUMENT_BESCHRIJVING = "538230";
+    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "538310";
+    private static final String ONDERZOEK_START_DATUM = "538320";
+    private static final String ONDERZOEK_EIND_DATUM = "538330";
 
     public static GeschiedenisOuder2 from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
+
+        var onderzoekGegevensAanduiding = lo3PlPersoonRecord.getOnderzoekGegevensAand();
+        var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
         Map<String, String> values = new HashMap<>();
         values.put(BSN, burgerServiceNrAsString);
@@ -39,6 +45,9 @@ public class GeschiedenisOuder2 extends PotentieelInOnderzoek {
         values.put(RNI_DEELNEMER, Objects.toString(lo3PlPersoonRecord.getRniDeelnemer(), null));
         values.put(AKTENUMMER, lo3PlPersoonRecord.getAkteNr());
         values.put(DOCUMENT_BESCHRIJVING, lo3PlPersoonRecord.getDocBeschrijving());
+        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
+        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
+        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
 
         return new GeschiedenisOuder2(values, clock);
     }
@@ -48,39 +57,44 @@ public class GeschiedenisOuder2 extends PotentieelInOnderzoek {
     }
 
     public String getBsn() {
-        return get(BSN, "BSN");
+        return get(BSN, "burgerservicenummer van ouder 2");
     }
 
     public String getVoornamen() {
-        return get(VOORNAMEN, "voornamen");
+        return get(VOORNAMEN, "voornamen van ouder 2");
     }
 
     public String getVoorvoegsel() {
-        return get(VOORVOEGSEL, "voorvoegsel");
+        return get(VOORVOEGSEL, "voorvoegsel van ouder 2");
     }
 
     public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM, "geslachtsnaam");
+        return get(GESLACHTSNAAM, "geslachtsnaam van ouder 2");
     }
 
     public String getGeboortedatum() {
-        return get(GEBOORTEDATUM, "geboortedatum");
+        return get(GEBOORTEDATUM, "geboortedatum van ouder 2");
     }
 
     public String getGeboorteland() {
-        return get(GEBOORTELAND, "geboorteland");
+        return get(GEBOORTELAND, "geboorteland van ouder 2");
     }
 
     public String getAktenummer() {
-        return get(AKTENUMMER, "aktenummer");
+        return get(AKTENUMMER, "aktenummer van ouder 2");
     }
 
     public String getDocumentBeschrijving() {
-        return get(DOCUMENT_BESCHRIJVING, "document beschrijving");
+        return get(DOCUMENT_BESCHRIJVING, "document beschrijving van ouder 2");
     }
 
     public String getRniDeelnemer() {
-        return get(RNI_DEELNEMER, "RNI deelnemer");
+        return get(RNI_DEELNEMER, "RNI deelnemer van ouder 2");
+    }
+
+    @Override
+    public String getCategorieName() {
+        return "ouder 2 (historie)";
     }
 
     @Override

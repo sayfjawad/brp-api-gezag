@@ -1,0 +1,28 @@
+# https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
+
+[versions]
+co-elastic-logging-logback-ecs-encoder = "1.6.0"
+com-fasterxml-jackson-dataformat-jackson-dataformat-yaml = "2.15.2"
+com-opencsv-opencsv = "5.7.1"
+io-micrometer-micrometer-registry-prometheus = "1.11.3"
+org-apache-commons-commons-lang3 = "3.13.0"
+org-json-json = "20240303"
+org-openapitools-jackson-databind-nullable = "0.2.6"
+org-postgresql-postgresql = "42.7.3"
+
+[libraries]
+co-elastic-logging-logback-ecs-encoder = { module = "co.elastic.logging:logback-ecs-encoder", version.ref = "co-elastic-logging-logback-ecs-encoder" }
+com-fasterxml-jackson-dataformat-jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "com-fasterxml-jackson-dataformat-jackson-dataformat-yaml" }
+com-opencsv-opencsv = { module = "com.opencsv:opencsv", version.ref = "com-opencsv-opencsv" }
+io-micrometer-micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus", version.ref = "io-micrometer-micrometer-registry-prometheus" }
+org-apache-commons-commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "org-apache-commons-commons-lang3" }
+org-json-json = { module = "org.json:json", version.ref = "org-json-json" }
+org-openapitools-jackson-databind-nullable = { module = "org.openapitools:jackson-databind-nullable", version.ref = "org-openapitools-jackson-databind-nullable" }
+org-postgresql-postgresql = { module = "org.postgresql:postgresql", version.ref = "org-postgresql-postgresql" }
+org-springframework-boot-spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+org-springframework-boot-spring-boot-starter-cache = { module = "org.springframework.boot:spring-boot-starter-cache" }
+org-springframework-boot-spring-boot-starter-jooq = { module = "org.springframework.boot:spring-boot-starter-jooq" }
+org-springframework-boot-spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+org-springframework-boot-spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+org-springframework-boot-spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+org-springframework-boot-spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }

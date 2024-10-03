@@ -10,8 +10,6 @@ import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaat
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.Burgerservicenummer;
 import org.jooq.DSLContext;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,10 +41,6 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
         this.create = create;
     }
 
-    @Caching(cacheable = {
-        @Cacheable(value = "persoonslijsten", unless = "#result == null"),
-        @Cacheable(value = "persoonslijstenNull", unless = "#result != null")
-    })
     @Override
     public Optional<Persoonslijst> findPersoonslijst(Burgerservicenummer burgerservicenummer) {
         var plPersoonPersoon = findPlPersoonByPersoonTypeIsPersoonAndBurgerservicenummer(burgerservicenummer);
@@ -126,7 +120,7 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
             .where(LO3_PL_PERSOON.PL_ID.equal(plId)
                 .and(LO3_PL_PERSOON.PERSOON_TYPE.notEqual(PERSOON))
             )
-            .orderBy(LO3_PL_PERSOON.PERSOON_TYPE.asc(), LO3_PL_PERSOON.STAPEL_NR.asc(), LO3_PL_PERSOON.VOLG_NR.asc())
+            .orderBy(LO3_PL_PERSOON.PERSOON_TYPE.asc(), LO3_PL_PERSOON.STAPEL_NR.desc(), LO3_PL_PERSOON.VOLG_NR.asc())
             .fetchStreamInto(Lo3PlPersoonRecord.class)
             .collect(Collectors.groupingBy(Lo3PlPersoonRecord::getPersoonType));
     }

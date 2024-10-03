@@ -14,6 +14,8 @@ import java.util.Objects;
 
 public class CsvTestResultWriter {
 
+    private static final String TEST_OUTPUT_DIRECTORY = "build/test-results/test/";
+
     private static CSVWriter csvWriter;
 
     private final GezagsmoduleTest.RouteTestParameters routeTestArguments;
@@ -24,7 +26,8 @@ public class CsvTestResultWriter {
 
 
     public static void setup(String fileName) throws IOException {
-        csvWriter = new CSVWriter(new FileWriter("target/" + fileName));
+        var pathAsString = TEST_OUTPUT_DIRECTORY + fileName;
+        csvWriter = new CSVWriter(new FileWriter(pathAsString));
         csvWriter.writeNext(getCsvHeaderRow());
     }
 
@@ -143,7 +146,7 @@ public class CsvTestResultWriter {
             long responseDuration,
             String soortGezagActual
     ) {
-        String[] data = {
+        return new String[]{
             testCase, bsnKind,
             String.valueOf(bsnsGezaghoudersExpected),
             String.valueOf(bsnsGezaghoudersActual),
@@ -228,6 +231,5 @@ public class CsvTestResultWriter {
             arAntwoordenActual.getException() != null ? arAntwoordenActual.getException().getMessage() : "",
             arAntwoordenActual.getUitleg() != null ? arAntwoordenActual.getUitleg() : ""
         };
-        return data;
     }
 }
