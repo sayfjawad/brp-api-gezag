@@ -1,7 +1,6 @@
 package nl.rijksoverheid.mev.brpadapter.soap;
 
 import nl.rijksoverheid.mev.brp.PersoonslijstFinder;
-import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.Burgerservicenummer;
 import nl.rijksoverheid.mev.transaction.Transaction;
@@ -20,9 +19,9 @@ public class BrpSqlClientAdapter implements BrpClient {
     }
 
     @Override
-    public Persoonslijst opvragenPersoonslijst(String bsn, Transaction transaction) throws BrpException {
+    public Persoonslijst opvragenPersoonslijst(String bsn, Transaction transaction) {
         var burgerservicenummer = new Burgerservicenummer(Long.parseLong(bsn));
         return persoonslijstFinder.findPersoonslijst(burgerservicenummer)
-            .orElseThrow(() -> new BrpException(HttpStatus.NOT_FOUND, "Persoonslijst niet gevonden"));
+            .orElse(null);
     }
 }

@@ -3,13 +3,13 @@ package nl.rijksoverheid.mev.brpadapter.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.soap.BrpClient;
-import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,12 +33,8 @@ public class BrpService {
      * @return de persoonslijst
      * @throws GezagException wanneer BRP communicatie misgaat
      */
-    public Persoonslijst getPersoonslijst(final String bsn, final Transaction transaction) throws BrpException {
+    public Persoonslijst getPersoonslijst(final String bsn, final Transaction transaction) {
         Persoonslijst persoonslijst = client.opvragenPersoonslijst(bsn, transaction);
-
-        if (persoonslijst == null || !persoonslijst.hasAnyValue()) {
-            throw new BrpException("Geen gezaghouders gevonden bij opgegeven BSN.");
-        }
 
         return persoonslijst;
     }
@@ -51,12 +47,15 @@ public class BrpService {
      * @return de BSNs van de kinderen
      * @throws GezagException wanneer BRP communicatie misgaat
      */
-    public List<String> getBsnsMinderjarigeKinderen(final String bsn, final Transaction transaction) throws BrpException {
+    public List<String> getBsnsMinderjarigeKinderen(final String bsn, final Transaction transaction) {
         Persoonslijst persoonslijstOuder = client.opvragenPersoonslijst(bsn, transaction);
+        if(persoonslijstOuder != null) {
+            transaction.setReceivedId(persoonslijstOuder.getReceivedId());
+            transactionHandler.saveBrpServiceTransaction(BRP_SERVICE_GET_BSNS_MINDERJARIGE_KINDEREN, persoonslijstOuder.getReceivedId(), transaction);
 
-        transaction.setReceivedId(persoonslijstOuder.getReceivedId());
-        transactionHandler.saveBrpServiceTransaction(BRP_SERVICE_GET_BSNS_MINDERJARIGE_KINDEREN, persoonslijstOuder.getReceivedId(), transaction);
-
-        return persoonslijstOuder.getBurgerservicenummersVanMinderjarigeKinderen();
+            return persoonslijstOuder.getBurgerservicenummersVanMinderjarigeKinderen();
+        } else {
+            return Collections.emptyList();
+        }
     }
 }

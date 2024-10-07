@@ -2,7 +2,6 @@ package nl.rijksoverheid.mev.gezagsmodule.service;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
-import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import org.springframework.stereotype.Component;
@@ -51,9 +50,6 @@ public class BeslissingsmatrixService {
      */
     public String findMatchingRoute(final ARAntwoordenModel arAntwoordenModel) {
         if ((arAntwoordenModel.getException() != null)
-            && (Objects.equals(arAntwoordenModel.getException().getClass(), BrpException.class))) {
-            return "-503i";
-        } else if ((arAntwoordenModel.getException() != null)
             && (Objects.equals(arAntwoordenModel.getException().getClass(), VeldInOnderzoekException.class))) {
             return getRouteFromVraagModel(arAntwoordenModel);
         } else {

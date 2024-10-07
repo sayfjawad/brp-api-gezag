@@ -40,6 +40,7 @@ public class GezagServiceNew implements GezagService {
     private static final String SOORT_GEZAG_NVT = "NVT";
     private static final String SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD = "N";
     private static final String BSN_MEERDERJARIGE_LEEG = "";
+    private static final String TOELICHTING_ONBEKEND_PERSOON = "Voor het opgegeven burgerservicenummer kon geen persoonslijst worden gevonden";
 
     /**
      * Bepaal gezag van kind
@@ -50,7 +51,7 @@ public class GezagServiceNew implements GezagService {
      * @return lijst gezagsrelaties of lijst gezagsrelatie 'N'
      */
     @Override
-    public List<Gezagsrelatie> getGezag(final List<String> bsns, final Transaction transaction) throws BrpException {
+    public List<Gezagsrelatie> getGezag(final List<String> bsns, final Transaction transaction) {
         List<Gezagsrelatie> gezagRelaties = new ArrayList<>();
         for (String bsn : bsns) {
             try {
@@ -85,18 +86,18 @@ public class GezagServiceNew implements GezagService {
         try {
             if (new BSNValidator().isValid(bsn)) {
                 plPersoon = brpService.getPersoonslijst(bsn, transaction);
-                transactionHandler.saveGezagmoduleTransaction(
-                    PersoonlijstType.PERSOON,
-                    plPersoon.getReceivedId(),
-                    null, null, null, transaction);
+                if(plPersoon != null) {
+                    transactionHandler.saveGezagmoduleTransaction(
+                        PersoonlijstType.PERSOON,
+                        plPersoon.getReceivedId(),
+                        null, null, null, transaction);
 
-                gezagBepaling = new GezagBepaling(plPersoon, this, vragenlijstService.getVragenMap(), transaction);
-                arAntwoordenModel = gezagBepaling.start();
+                    gezagBepaling = new GezagBepaling(plPersoon, this, vragenlijstService.getVragenMap(), transaction);
+                    arAntwoordenModel = gezagBepaling.start();
+                }
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
-        } catch (BrpException ex) {
-            throw new PersoonslijstNotFoundException("Persoonslijst kan niet gevonden worden", ex);
         }
         boolean hasVeldenInOnderzoek = gezagBepaling != null && gezagBepaling.warenVeldenInOnderzoek();
         if (hasVeldenInOnderzoek) {
@@ -104,7 +105,7 @@ public class GezagServiceNew implements GezagService {
         }
         route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel);
         arAntwoordenModel.setRoute(route);
-        setConfiguredValues(arAntwoordenModel);
+        setConfiguredValues(arAntwoordenModel, plPersoon);
 
         String unformattedUitleg = arAntwoordenModel.getUitleg();
 
@@ -293,13 +294,14 @@ public class GezagServiceNew implements GezagService {
         );
     }
 
-    private void setConfiguredValues(final ARAntwoordenModel arAntwoordenModel) throws AfleidingsregelException {
+    private void setConfiguredValues(final ARAntwoordenModel arAntwoordenModel, Persoonslijst plPersoon) throws AfleidingsregelException {
         ARAntwoordenModel configuredARAntwoordenModel = beslissingsmatrixService.getARAntwoordenModel(arAntwoordenModel);
         arAntwoordenModel.setSoortGezag(configuredARAntwoordenModel.getSoortGezag());
         arAntwoordenModel.setGezagOuder1(configuredARAntwoordenModel.getGezagOuder1());
         arAntwoordenModel.setGezagOuder2(configuredARAntwoordenModel.getGezagOuder2());
         arAntwoordenModel.setGezagNietOuder1(configuredARAntwoordenModel.getGezagNietOuder1());
         arAntwoordenModel.setGezagNietOuder2(configuredARAntwoordenModel.getGezagNietOuder2());
-        arAntwoordenModel.setUitleg(configuredARAntwoordenModel.getUitleg());
+        arAntwoordenModel.setUitleg((plPersoon == null ? TOELICHTING_ONBEKEND_PERSOON :
+            configuredARAntwoordenModel.getUitleg()));
     }
 }

@@ -1,6 +1,5 @@
 package nl.rijksoverheid.mev.brpadapter.soap;
 
-import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.transaction.Transaction;
 
@@ -16,8 +15,6 @@ public interface BrpClient {
      * opgevraagd
      * @param transaction de transactie zoals bij binnenkomst van het request
      * @return de persoonslijst
-     * @throws BrpException wanneer een exceptie optreed bij de communicatie met
-     * de BRP
      */
-    Persoonslijst opvragenPersoonslijst(final String bsn, final Transaction transaction) throws BrpException;
+    Persoonslijst opvragenPersoonslijst(final String bsn, final Transaction transaction);
 }
