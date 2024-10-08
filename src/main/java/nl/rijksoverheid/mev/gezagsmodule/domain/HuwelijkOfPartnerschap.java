@@ -94,35 +94,40 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
     }
 
     public String getBsnPartner() {
-        return get(BSN, "BSN");
+        return get(BSN, "burgerservicenummer partner van relatie");
     }
 
     public String getDatumVoltrokken() {
-        return get(DATUM_VOLTROKKEN, "datum voltrokken");
+        return get(DATUM_VOLTROKKEN, "datum voltrokken van relatie");
     }
 
     public String getPlaatsVoltrokken() {
-        return get(PLAATS_VOLTROKKEN, "plaats voltrokken");
+        return get(PLAATS_VOLTROKKEN, "plaats voltrokken van relatie");
     }
 
     public String getLandVoltrokken() {
-        return get(LAND_VOLTROKKEN, "land voltrokken");
+        return get(LAND_VOLTROKKEN, "land voltrokken van relatie");
     }
 
     public String getDatumOntbinding() {
-        return get(DATUM_ONTBINDING, "datum ontbinding");
+        return get(DATUM_ONTBINDING, "datum ontbinding van relatie");
     }
 
     public String getPlaatsOntbinding() {
-        return get(PLAATS_ONTBINDING, "plaats ontbinding");
+        return get(PLAATS_ONTBINDING, "plaats ontbinding van relatie");
     }
 
     public String getLandOntbinding() {
-        return get(LAND_ONTBINDING, "land ontbinding");
+        return get(LAND_ONTBINDING, "land ontbinding van relatie");
     }
 
     public String getRedenOntbinding() {
-        return get(REDEN_ONTBINDING, "reden ontbinding");
+        return get(REDEN_ONTBINDING, "reden ontbinding van relatie");
+    }
+
+    @Override
+    public String getCategorieName() {
+        return "relatie";
     }
 
     @Override

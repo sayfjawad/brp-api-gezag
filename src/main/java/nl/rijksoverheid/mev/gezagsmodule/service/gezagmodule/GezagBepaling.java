@@ -16,6 +16,11 @@ import java.util.*;
  * Gezag bepaling bevat alle informatie voor een gezag bepaling voor een persoon
  */
 public class GezagBepaling {
+    
+    private static final Set<String> TE_NEGEREN_VELDEN_IN_ONDERZOEK = Set.of(
+        "burgerservicenummer",
+        "gemeente van inschrijving"
+    );
 
     @Getter
     private UUID errorTraceCode;
@@ -123,9 +128,10 @@ public class GezagBepaling {
             logger.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
         }
 
-        veldenInOnderzoek = filterVelden(veldenInOnderzoek);
-
-        return !veldenInOnderzoek.isEmpty();
+        return veldenInOnderzoek.stream()
+            .anyMatch(veldInOnderzoek ->
+                TE_NEGEREN_VELDEN_IN_ONDERZOEK.stream().noneMatch(veldInOnderzoek::contains)
+            );
     }
 
     /**
@@ -270,16 +276,5 @@ public class GezagBepaling {
         vragenMap.put("v4a.2", new OudersOverledenOfOnbevoegdTotGezag(this));
         vragenMap.put("v4a.3", new OuderOverledenOfOnbevoegdTotGezag(this));
         vragenMap.put("v4b.1", new OuderOfPartnerOverledenOfOnbevoegdTotGezag(this));
-    }
-
-    /**
-     * Verwijder velden in onderzoek die we niet willen overwegen
-     *
-     * @param veldenInOnderzoek lijst met velden in onderzoek om te filteren
-     */
-    private List<String> filterVelden(final List<String> veldenInOnderzoek) {
-        return veldenInOnderzoek.stream()
-            .filter(v -> !v.equals("bsn") && !v.equals("gemeente van inschrijving"))
-            .toList();
     }
 }
