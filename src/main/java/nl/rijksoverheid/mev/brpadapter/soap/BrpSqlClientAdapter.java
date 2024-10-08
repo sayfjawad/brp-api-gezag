@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 @Profile("real-brp")
 public class BrpSqlClientAdapter implements BrpClient {
@@ -19,9 +21,8 @@ public class BrpSqlClientAdapter implements BrpClient {
     }
 
     @Override
-    public Persoonslijst opvragenPersoonslijst(String bsn, Transaction transaction) {
+    public Optional<Persoonslijst> opvragenPersoonslijst(String bsn, Transaction transaction) {
         var burgerservicenummer = new Burgerservicenummer(Long.parseLong(bsn));
-        return persoonslijstFinder.findPersoonslijst(burgerservicenummer)
-            .orElse(null);
+        return persoonslijstFinder.findPersoonslijst(burgerservicenummer);
     }
 }
