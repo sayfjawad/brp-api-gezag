@@ -339,7 +339,13 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
-    En heeft de persoon geen gezag
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde    |
+    | type                             | Voogdij   |
+    | minderjarige.burgerservicenummer | 000000036 |
+    En heeft 'gezag' een 'derde' met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
 
   Scenario: Lg01_080 - moeder geregistreerd partnerschap, niet erkend, geen categorie 11, moeder overleden geregistreerd partner van moeder automatisch gezag
     # Route: 43o1 - Wie heeft gezag?: geregistreerd partner van overleden moeder gezag (V)

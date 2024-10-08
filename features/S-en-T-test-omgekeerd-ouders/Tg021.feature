@@ -185,7 +185,12 @@ Functionaliteit: Tg021 - Doornenbal-Doodewaard
     Dan heeft de response een persoon met de volgende gegevens
     | naam                | waarde    |
     | burgerservicenummer | 000000012 |
-    En heeft de persoon geen gezag
+    En heeft de persoon een 'gezag' met de volgende gegevens
+    | naam                             | waarde           |
+    | type                             | GezamenlijkGezag |
+    | minderjarige.burgerservicenummer | 000000036        |
+    | ouder.burgerservicenummer        | 000000024        |
+    | derde.burgerservicenummer        | 000000012        |
 
   Scenario: Lg01_120 - geregistreerd partnerschap omgezet in huwelijk
     # Meerderjarig
