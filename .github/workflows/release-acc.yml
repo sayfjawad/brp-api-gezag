@@ -1,0 +1,23 @@
+on:
+  workflow_dispatch:
+    inputs:
+      commitSha:
+        description: 'commit sha'
+        required: true
+        default: ''
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: ${{ github.actor }},
+              repo: context.repo.repo,
+              ref: 'refs/tags/release',
+              sha: ${{ inputs.commitSha }}
+            })
