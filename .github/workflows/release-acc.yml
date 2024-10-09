@@ -10,7 +10,7 @@ on:
         type: string
 
 jobs:
-  build:
+  tag:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
