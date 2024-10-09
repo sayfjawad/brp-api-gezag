@@ -14,16 +14,15 @@ jobs:
     runs-on: ubuntu-latest      
     steps:  
       - name: Create tag
-        uses: actions/github-script@v7
+      - uses: actions/checkout@v4
         with:
-          script: | 
-              git status
-#              git tag -a acc ${{ inputs.commitSha }} -m "tag acc"
-#              git tag      
-#              git push --tags https://root:$secrets.GITHUB_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_PATH.git HEAD:main
-#      - uses: actions/checkout@v4
-#        with: 
-#          ref: ${{ inputs.commitSha }}            
+          ref:  ${{ inputs.commitSha }}
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git tag -a acc ${{ inputs.commitSha }} -m "tag acc"
+          git push --tags
+          
 #      - name: Build and tag image
 #        uses: actions/setup-java@v4
 #        with:
