@@ -10,19 +10,17 @@ on:
         type: string
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
+  tag-commit:
+    runs-on: ubuntu-latest      
+    steps:  
       - name: Create tag
         uses: actions/github-script@v7
         with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/acc',
-              sha: ${{ inputs.commitSha }}
-            }) 
+          script: | 
+              git status
+#              git tag -a acc ${{ inputs.commitSha }} -m "tag acc"
+#              git tag      
+#              git push --tags https://root:$secrets.GITHUB_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_PATH.git HEAD:main
 #      - uses: actions/checkout@v4
 #        with: 
 #          ref: ${{ inputs.commitSha }}            
