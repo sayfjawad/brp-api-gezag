@@ -1,3 +1,5 @@
+name: tag and release to acc 
+
 on:
   workflow_dispatch:
     inputs:
@@ -18,6 +20,6 @@ jobs:
             github.rest.git.createRef({
               owner: ${{ github.actor }},
               repo: context.repo.repo,
-              ref: 'refs/tags/release',
+              ref: 'refs/tags/acc',
               sha: ${{ inputs.commitSha }}
             })
