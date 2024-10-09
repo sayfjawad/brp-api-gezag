@@ -22,9 +22,3 @@ jobs:
           git config user.email github-actions@github.com
           git tag -a acc ${{ inputs.commitSha }} -m "tag acc"
           git push --tags
-          
-#      - name: Build and tag image
-#        uses: actions/setup-java@v4
-#        with:
-#          java-version: '21'
-#          distribution: 'temurin'
