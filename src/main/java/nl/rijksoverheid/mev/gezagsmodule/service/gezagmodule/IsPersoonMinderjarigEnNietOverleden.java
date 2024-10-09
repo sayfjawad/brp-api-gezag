@@ -1,6 +1,8 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * v1_2
@@ -11,6 +13,8 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
  * @return of minderjarig en niet overleden is
  */
 public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
+
+    private static final Logger logger = LoggerFactory.getLogger(IsPersoonMinderjarigEnNietOverleden.class);
 
     private static final String V1_2_JA = "Ja";
     private static final String V1_2_NEE_MEERDERJARIG = "Nee_meerderjarig";
@@ -39,6 +43,7 @@ public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
             answer = V1_2_NEE_MEERDERJARIG;
         }
 
+        logger.debug("Is persoon minderjarig en niet overleden? : {}", answer);
         gezagBepaling.getArAntwoordenModel().setV0102(answer);
     }
 }

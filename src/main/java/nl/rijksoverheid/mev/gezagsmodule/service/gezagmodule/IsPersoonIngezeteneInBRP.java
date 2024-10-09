@@ -1,6 +1,8 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Sets the answer to {@code "Ja"} if <i>persoon is ingezetene</i>, otherwise {@code "Nee"}.
@@ -9,6 +11,8 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
  * This is question 1_1.
  */
 public class IsPersoonIngezeteneInBRP extends GezagVraag {
+
+    private static final Logger logger = LoggerFactory.getLogger(IsPersoonIngezeteneInBRP.class);
 
     private static final String V1_1_NEE = "Nee";
     private static final String V1_1_JA = "Ja";
@@ -45,6 +49,7 @@ public class IsPersoonIngezeteneInBRP extends GezagVraag {
             answer = V1_1_JA;
         }
 
+        logger.debug("Staat persoon (minderjarige) als ingezetene in de BRP? : {}", answer);
         gezagBepaling.getArAntwoordenModel().setV0101(answer);
     }
 }

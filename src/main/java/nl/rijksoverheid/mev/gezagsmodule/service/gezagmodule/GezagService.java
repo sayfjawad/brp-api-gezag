@@ -144,6 +144,7 @@ public class GezagService {
             transaction.setReceivedId(persoonReceivedId);
         }
 
+        log.info("Gezag bepaald voor persoon {}: {}", burgerservicenummer, arAntwoordenModel);
         return gezagRelaties;
     }
 

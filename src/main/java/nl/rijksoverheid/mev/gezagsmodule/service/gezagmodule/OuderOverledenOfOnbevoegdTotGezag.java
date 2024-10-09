@@ -4,6 +4,8 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder1;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder2;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * sv4a_3
@@ -11,6 +13,8 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
  * @return JA/NEE
  */
 public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
+
+    private static final Logger logger = LoggerFactory.getLogger(OuderOverledenOfOnbevoegdTotGezag.class);
 
     private static final String V4A_3_NEE_OUDER1 = "Nee_ouder1";
     private static final String V4A_3_NEE_OUDER2 = "Nee_ouder2";
@@ -52,6 +56,7 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
             }
         }
 
+        logger.debug("Ouder overleden of onbevoegd tot gezag? : {}", answer);
         gezagBepaling.getArAntwoordenModel().setV04A03(answer);
     }
 }
