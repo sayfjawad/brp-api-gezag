@@ -13,11 +13,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with: 
-          ref: ${{ inputs.commitSha }}
       - name: Create tag
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         with:
           script: |
             github.rest.git.createRef({
@@ -26,7 +23,9 @@ jobs:
               ref: 'refs/tags/acc',
               sha: ${{ inputs.commitSha }}
             }) 
-            
+#      - uses: actions/checkout@v4
+#        with: 
+#          ref: ${{ inputs.commitSha }}            
 #      - name: Build and tag image
 #        uses: actions/setup-java@v4
 #        with:
