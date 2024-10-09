@@ -1,4 +1,5 @@
 name: tag and release to acc 
+permissions: write-all
 
 on:
   workflow_dispatch:
