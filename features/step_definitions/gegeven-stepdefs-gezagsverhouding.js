@@ -26,7 +26,3 @@ Given(/^(?:de persoon(?: '(.*)')? )?heeft geen uitspraak gezag/, function (_) {
 Given(/^(?:de persoon(?: '(.*)')? )?heeft uitspraak gezag met de volgende gegevens/, function (_, dataTable) {
     createGegevensgroep(this.context, 'gezagsverhouding', dataTable);
 });
-
-Given(/^heeft gezag uitspraak/, function (dataTable) {
-    createGegevensgroep(this.context, 'gezagsverhouding', dataTable);
-});
