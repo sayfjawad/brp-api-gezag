@@ -4,15 +4,16 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
 
 
     Achtergrond:
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
+      Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'
+      * is meerderjarig, niet overleden en staat niet onder curatele
+      En de persoon 'Henk' met burgerservicenummer '000000024'
+      * is meerderjarig, niet overleden en staat niet onder curatele
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      En de persoon 'Jaimy' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is niet geëmigreerd geweest
       * is in Nederland geboren
-      * heeft een ouder 1 'Ingrid' met burgerservicenummer '000000012'
-      * heeft een ouder 2 'Henk' met burgerservicenummer '000000024'
-      * 'Ingrid' en 'Henk' zijn met elkaar gehuwd
-      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
 
   Regel: Als adoptie heeft plaatsgevonden na de gerechtelijke uitspraak over gezag, wordt het gezag van rechtswege bepaald
     # Als de ingangsdatum gezag (11.85.10) kleiner is dan de datum ingang familierechtelijke betrekking (02.62.10 en 03.62.10) 
@@ -25,15 +26,12 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
-      En is geadopteerd
-      | aktenummer (81.20) |
-      | 1AQ0100            |
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
-      | datum ingang familierechtelijke betrekking (62.10) |
-      | morgen - 4 jaar                                    |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
-      | datum ingang familierechtelijke betrekking (62.10) |
-      | morgen - 4 jaar                                    |
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
+      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
+      | morgen - 4 jaar                                    | 1AQ0101            |
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
+      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
+      | morgen - 4 jaar                                    | 1AQ0101            |
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -64,10 +62,12 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder '<adoptie ouder>' gewijzigd
+      En heeft '<andere ouder>' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
-      | morgen - 4 jaar                                    |
+      | gisteren - 17 jaar                                 |
+      En is geadopteerd door '<adoptie ouder>' als ouder 2 met de volgende gegevens
+      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
+      | morgen - 4 jaar                                    | 1AQ0102            |
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -86,19 +86,18 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | burgerservicenummer | 000000024 |
 
       Voorbeelden:
-      | adoptie ouder |
-      | Ingrid        |
-      | Henk          |
+      | adoptie ouder | andere ouder | andere ouder bsn |
+      | Ingrid        | Henk         | 000000024        |
+      | Henk          | Ingrid       | 000000012        |
 
     Scenario: gezag wordt bepaald uit gerechtelijke uitspraak voor minderjarige die is geadopteerd vóór de gerechtelijke uitspraak
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | morgen - 6 jaar                                    |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | morgen - 6 jaar                                    |
       Als gezag wordt gezocht met de volgende parameters
@@ -117,11 +116,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | morgen - 4 jaar                                    |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | morgen - 4 jaar                                    |
       En zijn de volgende gegevens gewijzigd
@@ -153,16 +151,19 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
-      En is geadopteerd
-      | aktenummer (81.20) |
-      | 1AQ0100            |
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
-      | datum ingang familierechtelijke betrekking (62.10) |
-      | morgen - 4 jaar                                    |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
-      | datum ingang familierechtelijke betrekking (62.10) |
-      | morgen - 4 jaar                                    |
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
+      | aktenummer (81.20) | datum ingang familierechtelijke betrekking (62.10) |
+      | 1AQ0100            | morgen - 4 jaar                                    |
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
+      | aktenummer (81.20) | datum ingang familierechtelijke betrekking (62.10) |
+      | 1AQ0100            | morgen - 4 jaar                                    |
       En zijn de volgende gegevens gecorrigeerd
+      | aktenummer (81.20) |
+      | 1AR0200            |
+      En zijn van ouder 1 de volgende gegevens gecorrigeerd
+      | aktenummer (81.20) |
+      | 1AR0200            |
+      En zijn van ouder 2 de volgende gegevens gecorrigeerd
       | aktenummer (81.20) |
       | 1AR0200            |
       Als gezag wordt gezocht met de volgende parameters
@@ -180,15 +181,14 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
 
   Regel: Als de datum van de gerechtelijke uitspraak over gezag volledig onbekend is, wordt het gezag van rechtswege bepaald
 
-    Scenario: gezag wordt van rechtswege bepaald voor minderjarige die is geadopteerd na de gerechtelijke uitspraak
+    Scenario: gezag wordt van rechtswege bepaald voor minderjarige die is geadopteerd en datum ingang de gerechtelijke uitspraak is volledig onbekend
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | 00000000                        |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | morgen - 4 jaar                                    |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | morgen - 4 jaar                                    |
       Als gezag wordt gezocht met de volgende parameters
@@ -215,11 +215,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | <datum uitspraak gezag>         |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | 20210617                                           |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | 20210617                                           |
       Als gezag wordt gezocht met de volgende parameters
@@ -250,11 +249,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | <datum uitspraak gezag>         |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | 20210617                                           |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | 20210617                                           |
       Als gezag wordt gezocht met de volgende parameters
@@ -281,11 +279,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | 20210617                        |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | <datum adoptie door Ingrid>                        |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | <datum adoptie door Henk>                          |
       Als gezag wordt gezocht met de volgende parameters
@@ -306,39 +303,6 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | morgen - 17 jaar          | 00000000                |
       | 00000000                  | 00000000                |
 
-    Abstract Scenario: gezag wordt van rechtswege bepaald voor minderjarige die is geadopteerd na de gerechtelijke uitspraak en datum ingang familierechtelijke betrekking van de andere ouder is volledig onbekend
-      Gegeven heeft gezag uitspraak
-      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
-      | D                                    | 20210617                        |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
-      | datum ingang familierechtelijke betrekking (62.10) |
-      | <datum voor Ingrid>                                |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
-      | datum ingang familierechtelijke betrekking (62.10) |
-      | <datum voor Henk>                                  |
-      Als gezag wordt gezocht met de volgende parameters
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TweehoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000024 |
-      
-      Voorbeelden:
-      | datum voor Ingrid | datum voor Henk  |
-      | 00000000          | morgen - 17 jaar |
-      | 20230526          | 20230526         |
-
 
   Regel: Als de datum adoptie gedeeltelijk onbekend is, wordt de eerste dag van de maand van de onzekerheidsperiode aangenomen
 
@@ -346,11 +310,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | 20210617                        |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | <datum adoptie>                                    |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | <datum adoptie>                                    |
       Als gezag wordt gezocht met de volgende parameters
@@ -381,11 +344,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | <datum uitspraak gezag>         |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | <datum adoptie>                                    |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) |
       | <datum adoptie>                                    |
       Als gezag wordt gezocht met de volgende parameters
@@ -416,11 +378,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) | aanduiding in onderzoek (83.10) |
       | gisteren - 4 jaar                                  | <aanduiding onderzoek Ingrid>   |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) | aanduiding in onderzoek (83.10) |
       | gisteren - 4 jaar                                  | <aanduiding onderzoek Henk>     |
       Als gezag wordt gezocht met de volgende parameters
@@ -430,28 +391,27 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                          |
-      | type        | GezagNietTeBepalen                                                                              |
-      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
+      | naam        | waarde                                                                                                                       |
+      | type        | GezagNietTeBepalen                                                                                                           |
+      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
 
       Voorbeelden:
-      | aanduiding onderzoek Ingrid | aanduiding onderzoek Henk | omschrijving                                           | toelichting                               |
-      | 020000                      |                           | hele categorie ouder 1                                 | familierechtelijke betrekking van ouder 1 |
-      | 026200                      |                           | hele groep familierechtelijke betrekking van ouder 1   | familierechtelijke betrekking van ouder 1 |
-      | 026210                      |                           | datum ingang familierechtelijke betrekking van ouder 1 | familierechtelijke betrekking van ouder 1 |
-      |                             | 030000                    | hele categorie ouder 2                                 | familierechtelijke betrekking van ouder 2 |
-      |                             | 036200                    | hele groep familierechtelijke betrekking van ouder 2   | familierechtelijke betrekking van ouder 2 |
-      |                             | 036210                    | datum ingang familierechtelijke betrekking van ouder 2 | familierechtelijke betrekking van ouder 2 |
+      | aanduiding onderzoek Ingrid | aanduiding onderzoek Henk | omschrijving                                           | toelichting                                |
+      | 020000                      |                           | hele categorie ouder 1                                 | ouder 1                                    |
+      | 026200                      |                           | hele groep familierechtelijke betrekking van ouder 1   | datum ingang familiebetrekking van ouder 1 |
+      | 026210                      |                           | datum ingang familierechtelijke betrekking van ouder 1 | datum ingang familiebetrekking van ouder 1 |
+      |                             | 030000                    | hele categorie ouder 2                                 | ouder 2                                    |
+      |                             | 036200                    | hele groep familierechtelijke betrekking van ouder 2   | datum ingang familiebetrekking van ouder 2 |
+      |                             | 036210                    | datum ingang familierechtelijke betrekking van ouder 2 | datum ingang familiebetrekking van ouder 2 |
 
     Scenario: gezag kan wel worden bepaald als het onderzoek op de familierechtelijke betrekking is beëindigd
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) | aanduiding in onderzoek (83.10) | datum einde onderzoek (83.30) |
       | gisteren - 4 jaar                                  | 026210                          | gisteren                      |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) | aanduiding in onderzoek (83.10) | datum einde onderzoek (83.30) |
       | gisteren - 4 jaar                                  | 036210                          | gisteren                      |
       Als gezag wordt gezocht met de volgende parameters
@@ -475,11 +435,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
-      En is geadopteerd
-      En zijn de volgende gegevens van ouder 'Ingrid' gewijzigd
+      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) | aanduiding in onderzoek (83.10) | datum einde onderzoek (83.30) |
       | gisteren - 4 jaar                                  | 026210                          | <einde onderzoek Ingrid>      |
-      En zijn de volgende gegevens van ouder 'Henk' gewijzigd
+      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
       | datum ingang familierechtelijke betrekking (62.10) | aanduiding in onderzoek (83.10) | datum einde onderzoek (83.30) |
       | gisteren - 4 jaar                                  | 036210                          | <einde onderzoek Henk>        |
       Als gezag wordt gezocht met de volgende parameters
@@ -489,14 +448,14 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                          |
-      | type        | GezagNietTeBepalen                                                                              |
-      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
+      | naam        | waarde                                                                                                                       |
+      | type        | GezagNietTeBepalen                                                                                                           |
+      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
 
       Voorbeelden:
-      | einde onderzoek Ingrid | einde onderzoek Henk | toelichting                               |
-      | gisteren               |                      | familierechtelijke betrekking van ouder 2 |
-      |                        | gisteren             | familierechtelijke betrekking van ouder 1 |
+      | einde onderzoek Ingrid | einde onderzoek Henk | toelichting                                |
+      | gisteren               |                      | datum ingang familiebetrekking van ouder 2 |
+      |                        | gisteren             | datum ingang familiebetrekking van ouder 1 |
 
 
   Regel: Als indicatie gezag of ingangsdatum gezagsverhouding in onderzoek staan, is het gezag niet te bepalen
@@ -512,17 +471,17 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                          |
-      | type        | GezagNietTeBepalen                                                                              |
-      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
+      | naam        | waarde                                                                                                                       |
+      | type        | GezagNietTeBepalen                                                                                                           |
+      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
 
       Voorbeelden:
-      | aanduiding onderzoek | omschrijving                    | toelichting                                                                  |
-      | 110000               | hele categorie gezagsverhouding | indicatie gezag minderjarige,datum ingang geldigheid van de gezagsverhouding |
-      | 113200               | hele groep gezag minderjarige   | indicatie gezag minderjarige                                                 |
-      | 113210               | indicatie gezag minderjarige    | indicatie gezag minderjarige                                                 |
-      | 118500               | hele groep geldigheid           | datum ingang geldigheid van de gezagsverhouding                              |
-      | 118510               | datum ingang geldigheid         | datum ingang geldigheid van de gezagsverhouding                              |
+      | aanduiding onderzoek | omschrijving                    | toelichting                   |
+      | 110000               | hele categorie gezagsverhouding | gezagsverhouding              |
+      | 113200               | hele groep gezag minderjarige   | indicatie gezag minderjarige  |
+      | 113210               | indicatie gezag minderjarige    | indicatie gezag minderjarige  |
+      | 118500               | hele groep geldigheid           | ingangsdatum geldigheid gezag |
+      | 118510               | datum ingang geldigheid         | ingangsdatum geldigheid gezag |
 
     Scenario: gezag kan wel worden bepaald als het onderzoek op de gezagsverhouding is beëindigd
       Gegeven heeft gezag uitspraak
