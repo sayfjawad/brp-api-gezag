@@ -118,7 +118,15 @@ Given(/^zijn de volgende gegevens gewijzigd$/, function (dataTable) {
 });
 
 Given(/^zijn de volgende gegevens gecorrigeerd$/, function (dataTable) {
-    wijzigPersoon(this.context, dataTable, true);
+    const persoon = getPersoon(this.context, undefined);
+
+    const persoonData = { ...persoon[`persoon`].at(-1) };
+
+    wijzigPersoon(
+        persoon,
+        objectToDataTable(persoonData, dataTable),
+        true
+    );
 });
 
 /**

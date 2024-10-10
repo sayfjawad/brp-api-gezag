@@ -56,9 +56,12 @@ function aanvullenPersoon(persoon, dataTable) {
     mapDataTableToEntiteit(persoon.persoon.at(-1), dataTable);
 }
 
-function wijzigPersoon(persoon, dataTable) {
+function wijzigPersoon(persoon, dataTable, isCorrectie = false) {
     persoon.persoon.forEach(p => {
         p.volg_nr = Number(p.volg_nr) + 1 + '';
+        if(isCorrectie && p.volg_nr === '1') {
+            p.onjuist_ind = 'O';
+        }
     });
 
     persoon.persoon.push(createPersoonType('persoon', dataTable, 0));

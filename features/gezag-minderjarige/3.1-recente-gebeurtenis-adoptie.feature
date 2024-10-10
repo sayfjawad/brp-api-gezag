@@ -160,10 +160,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       En zijn de volgende gegevens gecorrigeerd
       | aktenummer (81.20) |
       | 1AR0200            |
-      En de ouder '1' is gecorrigeerd naar de volgende gegevens
+      En zijn van ouder 1 de volgende gegevens gecorrigeerd
       | aktenummer (81.20) |
       | 1AR0200            |
-      En de ouder '2' is gecorrigeerd naar de volgende gegevens
+      En zijn van ouder 2 de volgende gegevens gecorrigeerd
       | aktenummer (81.20) |
       | 1AR0200            |
       Als gezag wordt gezocht met de volgende parameters
