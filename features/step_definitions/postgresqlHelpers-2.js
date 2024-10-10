@@ -88,9 +88,14 @@ async function deleteAllRowsInAllTables(client) {
     }
 }
 
-async function rollback(sqlStatements) {
+async function rollback(sqlContext, sqlStatements) {
     if(!global.pool) {
         global.logger.info('geen pool');
+        return;
+    }
+
+    if(!sqlContext.cleanup) {
+        global.logger.info('geen cleanup');
         return;
     }
 
