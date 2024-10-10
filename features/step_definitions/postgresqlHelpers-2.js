@@ -88,7 +88,119 @@ async function deleteAllRowsInAllTables(client) {
     }
 }
 
-async function rollback(sqlContext, sqlStatements) {
+async function deleteInsertedRows(client, sqlData) {
+    global.logger.debug('delete inserted rows');
+
+    if(sqlData === undefined) {
+        return;
+    }
+
+    let adresData = [];
+
+    for(const sqlDataElement of sqlData) {
+        if (sqlDataElement['adres'] !== undefined) {
+            adresData.push(sqlDataElement);
+        }
+        else {
+            await deleteRecords(client, sqlDataElement, true);
+        }
+    }
+
+    for(const adrData of adresData) {
+        await deleteAdresRij(client, adrData);
+    }
+    await deleteGemeenteRijen(client, sqlData.find(el => el['gemeente'] !== undefined));
+    await deleteAutorisatieRecords(client, sqlData.find(el => el['autorisatie'] !== undefined));
+    await deleteProtocolleringRecords(client);
+}
+
+function getElementValue(data, elementName) {
+    const elem = data.find(e => e[0] === elementName);
+
+    return elem !== undefined
+        ? Number(elem[1])
+        : undefined;
+}
+
+async function deleteAdresRij(client, sqlData) {
+    const adresData = sqlData?.adres;
+    if(adresData === undefined) {
+        return;
+    }
+
+    for(const key of Object.keys(adresData)) {
+        const id = getElementValue(adresData[key].data, 'adres_id');
+        if(id === undefined) {
+            continue;
+        }
+
+        await executeAndLogDeleteStatement(client, 'adres', id);
+    }
+}
+
+async function deleteAutorisatieRecords(client, sqlData) {
+    if(sqlData === undefined || sqlData['autorisatie'] === undefined) {
+        return;
+    }
+    const autorisatieData = sqlData['autorisatie']; 
+
+    for(const rowData of autorisatieData) {
+        const id = getElementValue(rowData, 'afnemer_code');
+        if(id === undefined) {
+            continue;
+        }
+
+        await executeAndLogDeleteStatement(client, 'autorisatie', id);
+    }
+}
+
+async function deleteGemeenteRijen(client, sqlData) {
+    if(sqlData === undefined || sqlData['gemeente'] === undefined) {
+        return;
+    }
+    const gemeenteData = sqlData['gemeente'];
+
+    for(const key of Object.keys(gemeenteData)) {
+        const id = getElementValue(gemeenteData[key].data, 'gemeente_code');
+        if(id === undefined) {
+            continue;
+        }
+
+        await executeAndLogDeleteStatement(client, 'gemeente', id);
+    }
+}
+
+async function deleteProtocolleringRecords(client) {
+    await executeAndLogDeleteStatement(client, 'protocollering', undefined);
+}
+
+async function deleteRecords(client, sqlData, deleteIndividualRecords = true) {
+    const inschrijvingData = sqlData?.inschrijving;
+    if(inschrijvingData === undefined) {
+        return;
+    }
+
+    const id = deleteIndividualRecords
+        ? getElementValue(inschrijvingData[0], 'pl_id')
+        : undefined;
+
+    // bijhouden van reeds opgeschoonde tabellen, zodat deze niet opnieuw wordt opgeschoond met als gevolg rowCount == 0
+    let opgeschoondeTabellen = [];
+    for(const key of Object.keys(sqlData)) {
+        const tabelNaam = key.replace(/-\w*/g, '');
+
+        if(['autorisatie', 'ouder', 'kind', 'partner'].includes(tabelNaam)) {
+            continue;
+        }
+
+        if(tableNameMap.has(tabelNaam) && !opgeschoondeTabellen.includes(tabelNaam)) {
+            opgeschoondeTabellen.push(tabelNaam);
+            await executeAndLogDeleteStatement(client, tabelNaam, id);
+        }
+    }
+}
+
+async function rollback(sqlContext, sqlData) {
     if(!global.pool) {
         global.logger.info('geen pool');
         return;
@@ -99,8 +211,14 @@ async function rollback(sqlContext, sqlStatements) {
         return;
     }
 
+    const deleteIndividualRecords = sqlContext.deleteIndividualRecords;
+
     const client = await global.pool.connect();
+
     try {
+        if(deleteIndividualRecords) {
+            await deleteInsertedRows(client, sqlData);
+        }
         await deleteAllRowsInAllTables(client);
     }
     catch(ex) {
