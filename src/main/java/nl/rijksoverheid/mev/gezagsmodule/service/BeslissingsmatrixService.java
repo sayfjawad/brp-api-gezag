@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 @Component
 public class BeslissingsmatrixService {
 
+    private static final String ANTWOORDEN_MODEL_FILENAME = "AntwoordenModel_v2_2_2.csv";
+
     private Map<String, ARAntwoordenModel> routes;
 
     public BeslissingsmatrixService() {
@@ -64,7 +66,7 @@ public class BeslissingsmatrixService {
     private void determineRoutes() {
         List<String> antwoordenModelLines = new ArrayList<>();
         try (BufferedReader antwoordenModelCsvReader = new BufferedReader(
-            new InputStreamReader(BeslissingsmatrixService.class.getResourceAsStream("/AntwoordenModel_v2_2_2.csv")))) {
+            new InputStreamReader(BeslissingsmatrixService.class.getResourceAsStream(ANTWOORDEN_MODEL_FILENAME)))) {
             String line;
             while ((line = antwoordenModelCsvReader.readLine()) != null) {
                 antwoordenModelLines.add(line);
