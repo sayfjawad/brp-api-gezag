@@ -114,7 +114,14 @@ Given(/^heeft gezag uitspraak$/, function (dataTable) {
 });
 
 Given(/^zijn de volgende gegevens gewijzigd$/, function (dataTable) {
-    wijzigPersoon(this.context, dataTable);
+    const persoon = getPersoon(this.context, undefined);
+
+    const persoonData = { ...persoon[`persoon`].at(-1) };
+
+    wijzigPersoon(
+        persoon,
+        objectToDataTable(persoonData, dataTable)
+    );
 });
 
 Given(/^zijn de volgende gegevens gecorrigeerd$/, function (dataTable) {
