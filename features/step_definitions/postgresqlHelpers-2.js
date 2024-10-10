@@ -1,12 +1,20 @@
 const { tableNameMap } = require('./brp');
 
-async function executeInsertInschrijving(client, statement) {
-    global.logger.debug('execute', statement);
+function mustLog(result) {
+    return (result.rowCount === null || result.rowCount === 0) && global.scenario.tags.some(t => ['@protocollering'].includes(t));
+}
+
+async function executeAndLogStatement(client, statement) {
+    global.logger.info('execute', statement);
 
     try {
         const result = await client.query(statement.text, statement.values);
 
-        return result.rows[0]['pl_id'];
+        if(mustLog(result)) {
+            global.logger.warn(`${global.scenario.name}. 0 rows affected`, sqlStatement);
+        }
+
+        return result;
     }
     catch(ex) {
         global.logger.error(`exception in ${global.scenario.name}`, statement, ex);
@@ -14,16 +22,10 @@ async function executeInsertInschrijving(client, statement) {
     }
 }
 
-async function executeStatement(client, statement) {
-    global.logger.debug('execute', statement);
+async function executeInsertInschrijving(client, statement) {
+    const result = await executeAndLogStatement(client, statement);
 
-    try {
-        const result = await client.query(statement.text, statement.values);
-    }
-    catch(ex) {
-        global.logger.error(`exception in ${global.scenario.name}`, statement, ex);
-        throw ex;
-    }
+    return result.rows[0]['pl_id'];
 }
 
 async function executeStatements(client, statements) {
@@ -35,7 +37,7 @@ async function executeStatements(client, statements) {
         }
         else {
             statement.values[0] = pkId;
-            await executeStatement(client, statement);
+            await executeAndLogStatement(client, statement);
         }
     }
 
@@ -75,7 +77,7 @@ function deleteStatement(tabelNaam, id) {
 }
 
 async function executeAndLogDeleteStatement(client, tabelNaam, id=undefined) {
-    return await executeStatement(client, deleteStatement(tabelNaam, id));
+    return await executeAndLogStatement(client, deleteStatement(tabelNaam, id));
 }
 
 async function deleteAllRowsInAllTables(client) {

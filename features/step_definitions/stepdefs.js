@@ -58,7 +58,6 @@ After(async function({ pickle }) {
         return;
     }
     if(this.context.data) {
-        global.logger.warn('-----------');
         await rollback(null);
     }
     else {
