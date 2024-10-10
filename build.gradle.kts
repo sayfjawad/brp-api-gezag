@@ -105,7 +105,7 @@ tasks.withType<BootBuildImage> {
     imageName.set("ghcr.io/brp-api/${project.name}:latest")
     tags.set(listOf(
         "ghcr.io/brp-api/${project.name}:${project.version}",
-        "ghcr.io/brp-api/${project.name}:${LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))}",
+        "ghcr.io/brp-api/${project.name}:${project.version}-${LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))}",
     ))
 
     docker {

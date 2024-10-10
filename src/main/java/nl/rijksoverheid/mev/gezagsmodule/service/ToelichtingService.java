@@ -12,10 +12,10 @@ import java.util.List;
 public class ToelichtingService {
 
     private static final String IN_ONDERZOEK = "Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan.";
-    private static final String IN_ONDERZOEK_PERSOONSVELDEN = " Velden van persoon: ";
-    private static final String IN_ONDERZOEK_VELDEN_OUDER_1 = " Velden van ouder 1: ";
-    private static final String IN_ONDERZOEK_VELDEN_OUDER_2 = " Velden van ouder 2: ";
-    private static final String IN_ONDERZOEK_VELDEN_NIET_OUDER = " Velden van niet ouder: ";
+    private static final String IN_ONDERZOEK_PERSOONSVELDEN = " Persoonslijst van persoon: ";
+    private static final String IN_ONDERZOEK_VELDEN_OUDER_1 = " Persoonslijst van ouder 1: ";
+    private static final String IN_ONDERZOEK_VELDEN_OUDER_2 = " Persoonslijst van ouder 2: ";
+    private static final String IN_ONDERZOEK_VELDEN_NIET_OUDER = " Persoonslijst van niet ouder: ";
     private static final String PLACEHOLDER = "%s";
 
     /**
