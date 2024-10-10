@@ -1,0 +1,23 @@
+name: tag and release to acc 
+
+on:
+  workflow_dispatch:
+    inputs:
+      commitSha:
+        description: 'commit sha'
+        required: true
+        default: ''
+        type: string
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref:  ${{ inputs.commitSha }}
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git tag -a acc ${{ inputs.commitSha }} -m "tag acc"
+          git push --tags
