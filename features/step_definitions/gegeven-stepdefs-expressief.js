@@ -143,7 +143,7 @@ function gegevenDePersonenZijnGehuwd(context, aanduiding1, aanduiding2, dataTabl
     );
 }
 
-Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd/, function (aanduiding1, aanduiding2) {
+Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd$/, function (aanduiding1, aanduiding2) {
     const datumHuwelijk = 'gisteren - 20 jaar';
     const plaatsHuwelijk = '0518';
     const landHuwelijk = '6030';
@@ -155,6 +155,10 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd/, function (aanduiding1, aanduid
     ]);
 
     gegevenDePersonenZijnGehuwd(this.context, aanduiding1, aanduiding2, huwelijkData);
+});
+
+Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd met de volgende gegevens$/, function(aanduiding1, aanduiding2, dataTable) {
+    gegevenDePersonenZijnGehuwd(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
 Given('beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad', function () {
@@ -182,7 +186,7 @@ function gegevenDePersonenZijnGescheiden(context, aanduiding1, aanduiding2, data
     );
 }
 
-Given(/^'(.*)' en '(.*)' zijn gescheiden/, function (aanduiding1, aanduiding2) {
+Given(/^'(.*)' en '(.*)' zijn gescheiden$/, function (aanduiding1, aanduiding2) {
     const datumScheiding = 'gisteren - 1 jaar';
     const plaatsScheiding = '0518';
     const landScheiding = '6030';
@@ -194,6 +198,10 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden/, function (aanduiding1, aanduiding2) {
     ])
 
     gegevenDePersonenZijnGescheiden(this.context, aanduiding1, aanduiding2, scheidingData);
+});
+
+Given(/^'(.*)' en '(.*)' zijn gescheiden met de volgende gegevens$/, function(aanduiding1, aanduiding2, dataTable) {
+    gegevenDePersonenZijnGescheiden(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
 Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd/, function (aanduiding1, aanduiding2, dataTable) {
@@ -290,6 +298,19 @@ Given(/^zijn van ouder ([1-2]) de volgende gegevens gewijzigd$/, function (ouder
         ouderType,
         objectToDataTable(ouderData, dataTable),
         false
+    );
+});
+
+Given(/^zijn van ouder ([1-2]) de volgende gegevens gecorrigeerd$/, function (ouderType, dataTable) {
+    const persoon = getPersoon(this.context, undefined);
+
+    const ouderData = { ...persoon[`ouder-${ouderType}`].at(-1) };
+
+    wijzigOuder(
+        persoon,
+        ouderType,
+        objectToDataTable(ouderData, dataTable),
+        true
     );
 });
 
