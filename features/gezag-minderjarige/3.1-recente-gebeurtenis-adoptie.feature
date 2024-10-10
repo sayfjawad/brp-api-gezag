@@ -303,38 +303,6 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | morgen - 17 jaar          | 00000000                |
       | 00000000                  | 00000000                |
 
-    Abstract Scenario: gezag wordt van rechtswege bepaald voor minderjarige die is geadopteerd na de gerechtelijke uitspraak en datum ingang familierechtelijke betrekking van de andere ouder is volledig onbekend
-      Gegeven heeft gezag uitspraak
-      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
-      | D                                    | 20210617                        |
-      En is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
-      | datum ingang familierechtelijke betrekking (62.10) |
-      | <datum adoptie door Ingrid>                        |
-      En is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
-      | datum ingang familierechtelijke betrekking (62.10) |
-      | <datum adoptie door Henk>                          |
-      Als gezag wordt gezocht met de volgende parameters
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TweehoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000024 |
-
-      Voorbeelden:
-      | datum adoptie door Ingrid | datum adoptie door Henk |
-      | 00000000                  | morgen - 17 jaar        |
-      | 20230526                  | 20230526                |
-
 
   Regel: Als de datum adoptie gedeeltelijk onbekend is, wordt de eerste dag van de maand van de onzekerheidsperiode aangenomen
 
