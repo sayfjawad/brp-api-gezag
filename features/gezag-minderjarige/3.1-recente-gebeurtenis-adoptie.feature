@@ -391,18 +391,18 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                          |
-      | type        | GezagNietTeBepalen                                                                              |
-      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
+      | naam        | waarde                                                                                                                       |
+      | type        | GezagNietTeBepalen                                                                                                           |
+      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
 
       Voorbeelden:
-      | aanduiding onderzoek Ingrid | aanduiding onderzoek Henk | omschrijving                                           | toelichting                               |
-      | 020000                      |                           | hele categorie ouder 1                                 | familierechtelijke betrekking van ouder 1 |
-      | 026200                      |                           | hele groep familierechtelijke betrekking van ouder 1   | familierechtelijke betrekking van ouder 1 |
-      | 026210                      |                           | datum ingang familierechtelijke betrekking van ouder 1 | familierechtelijke betrekking van ouder 1 |
-      |                             | 030000                    | hele categorie ouder 2                                 | familierechtelijke betrekking van ouder 2 |
-      |                             | 036200                    | hele groep familierechtelijke betrekking van ouder 2   | familierechtelijke betrekking van ouder 2 |
-      |                             | 036210                    | datum ingang familierechtelijke betrekking van ouder 2 | familierechtelijke betrekking van ouder 2 |
+      | aanduiding onderzoek Ingrid | aanduiding onderzoek Henk | omschrijving                                           | toelichting                                |
+      | 020000                      |                           | hele categorie ouder 1                                 | ouder 1                                    |
+      | 026200                      |                           | hele groep familierechtelijke betrekking van ouder 1   | datum ingang familiebetrekking van ouder 1 |
+      | 026210                      |                           | datum ingang familierechtelijke betrekking van ouder 1 | datum ingang familiebetrekking van ouder 1 |
+      |                             | 030000                    | hele categorie ouder 2                                 | ouder 2                                    |
+      |                             | 036200                    | hele groep familierechtelijke betrekking van ouder 2   | datum ingang familiebetrekking van ouder 2 |
+      |                             | 036210                    | datum ingang familierechtelijke betrekking van ouder 2 | datum ingang familiebetrekking van ouder 2 |
 
     Scenario: gezag kan wel worden bepaald als het onderzoek op de familierechtelijke betrekking is beëindigd
       Gegeven heeft gezag uitspraak
@@ -448,14 +448,14 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                          |
-      | type        | GezagNietTeBepalen                                                                              |
-      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
+      | naam        | waarde                                                                                                                       |
+      | type        | GezagNietTeBepalen                                                                                                           |
+      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
 
       Voorbeelden:
-      | einde onderzoek Ingrid | einde onderzoek Henk | toelichting                               |
-      | gisteren               |                      | familierechtelijke betrekking van ouder 2 |
-      |                        | gisteren             | familierechtelijke betrekking van ouder 1 |
+      | einde onderzoek Ingrid | einde onderzoek Henk | toelichting                                |
+      | gisteren               |                      | datum ingang familiebetrekking van ouder 2 |
+      |                        | gisteren             | datum ingang familiebetrekking van ouder 1 |
 
 
   Regel: Als indicatie gezag of ingangsdatum gezagsverhouding in onderzoek staan, is het gezag niet te bepalen
@@ -471,17 +471,17 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - adoptie - het gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                          |
-      | type        | GezagNietTeBepalen                                                                              |
-      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens in onderzoek staan: <toelichting> |
+      | naam        | waarde                                                                                                                       |
+      | type        | GezagNietTeBepalen                                                                                                           |
+      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
 
       Voorbeelden:
-      | aanduiding onderzoek | omschrijving                    | toelichting                                                                  |
-      | 110000               | hele categorie gezagsverhouding | indicatie gezag minderjarige,datum ingang geldigheid van de gezagsverhouding |
-      | 113200               | hele groep gezag minderjarige   | indicatie gezag minderjarige                                                 |
-      | 113210               | indicatie gezag minderjarige    | indicatie gezag minderjarige                                                 |
-      | 118500               | hele groep geldigheid           | datum ingang geldigheid van de gezagsverhouding                              |
-      | 118510               | datum ingang geldigheid         | datum ingang geldigheid van de gezagsverhouding                              |
+      | aanduiding onderzoek | omschrijving                    | toelichting                   |
+      | 110000               | hele categorie gezagsverhouding | gezagsverhouding              |
+      | 113200               | hele groep gezag minderjarige   | indicatie gezag minderjarige  |
+      | 113210               | indicatie gezag minderjarige    | indicatie gezag minderjarige  |
+      | 118500               | hele groep geldigheid           | ingangsdatum geldigheid gezag |
+      | 118510               | datum ingang geldigheid         | ingangsdatum geldigheid gezag |
 
     Scenario: gezag kan wel worden bepaald als het onderzoek op de gezagsverhouding is beëindigd
       Gegeven heeft gezag uitspraak
