@@ -39,10 +39,10 @@ function getPartnerActueleGegevens(persoon, bsnPartner) {
     let partner;
 
     Object.keys(persoon).forEach(property => {
-        if(property.includes('partner') &&
-            persoon[property].at(-1).burger_service_nr === bsnPartner){
-                partner = persoon[property].at(-1);
-            }
+        if (property.includes('partner') &&
+            persoon[property].at(-1).burger_service_nr === bsnPartner) {
+            partner = persoon[property].at(-1);
+        }
     });
 
     return partner;
@@ -56,7 +56,7 @@ function gegevenDePersoonMetBsn(context, aanduiding, burgerservicenummer, dataTa
     const data = [
         ['burgerservicenummer (01.20)', burgerservicenummer],
     ];
-    if(aanduiding) {
+    if (aanduiding) {
         data.push(['geslachtsnaam (02.40)', aanduiding]);
     }
 
@@ -82,7 +82,7 @@ Given(/^is minderjarig/, function () {
     );
 });
 
-Given(/^is meerderjarig(?:, niet overleden en staat niet onder curatele)?$/, function() {
+Given(/^is meerderjarig(?:, niet overleden en staat niet onder curatele)?$/, function () {
     const datumGeboorte = 'gisteren - 45 jaar';
 
     aanvullenPersoon(
@@ -106,7 +106,7 @@ Given(/^is in Nederland geboren/, function () {
     );
 });
 
-Given(/^heeft gezag uitspraak$/, function(dataTable) {
+Given(/^heeft gezag uitspraak$/, function (dataTable) {
     createGezagsverhouding(
         getPersoon(this.context, undefined),
         dataTable
@@ -157,7 +157,7 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd$/, function (aanduiding1, aandui
     gegevenDePersonenZijnGehuwd(this.context, aanduiding1, aanduiding2, huwelijkData);
 });
 
-Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd met de volgende gegevens$/, function(aanduiding1, aanduiding2, dataTable) {
+Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd met de volgende gegevens$/, function (aanduiding1, aanduiding2, dataTable) {
     gegevenDePersonenZijnGehuwd(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
@@ -200,7 +200,7 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden$/, function (aanduiding1, aanduiding2) 
     gegevenDePersonenZijnGescheiden(this.context, aanduiding1, aanduiding2, scheidingData);
 });
 
-Given(/^'(.*)' en '(.*)' zijn gescheiden met de volgende gegevens$/, function(aanduiding1, aanduiding2, dataTable) {
+Given(/^'(.*)' en '(.*)' zijn gescheiden met de volgende gegevens$/, function (aanduiding1, aanduiding2, dataTable) {
     gegevenDePersonenZijnGescheiden(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
@@ -234,7 +234,7 @@ function gegevenHeeftPersoonAlsOuder(context, aanduiding, ouderType, dataTable) 
     )
 }
 
-Given(/^heeft '(.*)' als ouder ([1-2])$/, function(aanduiding, ouderType) {
+Given(/^heeft '(.*)' als ouder ([1-2])$/, function (aanduiding, ouderType) {
     const ouderData = arrayOfArraysToDataTable([
         ['datum ingang familierechtelijke betrekking (62.10)', 'gisteren - 17 jaar']
     ]);
@@ -242,7 +242,7 @@ Given(/^heeft '(.*)' als ouder ([1-2])$/, function(aanduiding, ouderType) {
     gegevenHeeftPersoonAlsOuder(this.context, aanduiding, ouderType, ouderData);
 });
 
-Given(/^heeft '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function(aanduiding, ouderType, dataTable) {
+Given(/^heeft '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function (aanduiding, ouderType, dataTable) {
     gegevenHeeftPersoonAlsOuder(this.context, aanduiding, ouderType, dataTable);
 });
 
@@ -276,7 +276,7 @@ function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduiding, ouderType,
     )
 }
 
-Given(/^is geadopteerd door '(.*)' als ouder ([1-2])$/, function(aanduiding, ouderType) {
+Given(/^is geadopteerd door '(.*)' als ouder ([1-2])$/, function (aanduiding, ouderType) {
     const adoptieOuderData = arrayOfArraysToDataTable([
         ['datum ingang familierechtelijke betrekking (62.10)', 'morgen - 4 jaar']
     ]);
@@ -284,7 +284,7 @@ Given(/^is geadopteerd door '(.*)' als ouder ([1-2])$/, function(aanduiding, oud
     gegevenIsGeadopteerdDoorPersoonAlsOuder(this.context, aanduiding, ouderType, adoptieOuderData);
 });
 
-Given(/^is geadopteerd door '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function(aanduiding, ouderType, dataTable) {
+Given(/^is geadopteerd door '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function (aanduiding, ouderType, dataTable) {
     gegevenIsGeadopteerdDoorPersoonAlsOuder(this.context, aanduiding, ouderType, dataTable);
 });
 
@@ -415,12 +415,14 @@ Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de BRP?$/, function (_) {
 });
 
 Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de RNI/, function (_) {
-    let data = [
-        ['naam', 'waarde'],
-        ['gemeente van inschrijving (09.10)', '1999']
-    ];
+    const gemeenteVanInschrijving = '1999';
 
-    createVerblijfplaats(this.context, new DataTable(data));
+    createVerblijfplaats(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['gemeente van inschrijving (09.10)', gemeenteVanInschrijving]
+        ])
+    );
 });
 
 Given(/^(?:de persoon(?: '(.*)')? )?is niet geëmigreerd geweest/, function (_) {
@@ -432,9 +434,11 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest met de volgende gege
 });
 
 Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
-    let data = [
-        ['naam', 'waarde'],
-        ['datum vestiging in Nederland (14.20)', toDateOrString('vandaag - 1 jaar', true)]
-    ];
-    createVerblijfplaats(this.context, new DataTable(data));
+    const datumVestiging = 'vandaag - 1 jaar';
+
+    createVerblijfplaats(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['datum vestiging in Nederland (14.20)', datumVestiging]
+        ]));
 });
