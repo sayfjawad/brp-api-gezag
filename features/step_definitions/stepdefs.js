@@ -58,7 +58,7 @@ After(async function({ pickle }) {
         return;
     }
     if(this.context.data) {
-        await rollback(null);
+        await rollback(this.context.sql, this.context.sqlData);
     }
     else {
         await rollbackSqlStatements(this.context.sql, this.context.sqlData, global.pool);
