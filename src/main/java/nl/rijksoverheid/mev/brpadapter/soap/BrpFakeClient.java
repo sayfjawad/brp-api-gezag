@@ -68,7 +68,7 @@ public class BrpFakeClient implements BrpClient {
     @Override
     public Optional<Persoonslijst> opvragenPersoonslijst(String bsn, Transaction transaction) throws GezagException {
         if (!new BSNValidator().isValid(bsn)) {
-            return null;
+            return Optional.empty();
         }
         if (fixtures.containsKey(bsn)){
             return Optional.of(fixtures.get(bsn).data);
