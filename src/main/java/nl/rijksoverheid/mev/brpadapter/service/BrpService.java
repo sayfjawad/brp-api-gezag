@@ -4,14 +4,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.soap.BrpClient;
 import nl.rijksoverheid.mev.exception.GezagException;
+import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Service voor BRP functionaliteit
@@ -46,17 +50,29 @@ public class BrpService {
      * @return de BSNs van de kinderen
      * @throws GezagException wanneer BRP communicatie misgaat
      */
-    public List<String> getBsnsMinderjarigeKinderen(final String bsn, final Transaction transaction) {
-        List<String> bsns = new ArrayList<>();
-
-        Optional<Persoonslijst> persoonslijstOuder = client.opvragenPersoonslijst(bsn, transaction);
-        persoonslijstOuder.ifPresent(persoonslijst -> {
-            transaction.setReceivedId(persoonslijst.getReceivedId());
-            transactionHandler.saveBrpServiceTransaction(BRP_SERVICE_GET_BSNS_MINDERJARIGE_KINDEREN, persoonslijst.getReceivedId(), transaction);
-
-            bsns.addAll(persoonslijst.getBurgerservicenummersVanMinderjarigeKinderen());
+    public Set<String> getBsnsMinderjarigeKinderenOuderEnPartners(final String bsn, final Transaction transaction) {
+        var optionalPersoonslijstOuder = client.opvragenPersoonslijst(bsn, transaction);
+        optionalPersoonslijstOuder.ifPresent(persoonslijstOuder -> {
+            transaction.setReceivedId(persoonslijstOuder.getReceivedId());
+            transactionHandler.saveBrpServiceTransaction(BRP_SERVICE_GET_BSNS_MINDERJARIGE_KINDEREN, persoonslijstOuder.getReceivedId(), transaction);
         });
+        List<Persoonslijst> partners = optionalPersoonslijstOuder.stream()
+            .map(Persoonslijst::getHuwelijkOfPartnerschappen)
+            .flatMap(List::stream)
+            .map(HuwelijkOfPartnerschap::getBsnPartner)
+            .filter(Objects::nonNull)
+            .flatMap(bsnPartner -> client.opvragenPersoonslijst(bsnPartner, transaction).stream())
+            .toList();
 
-        return bsns;
+        Stream<String> burgerservicenummersVanKinderenVanOuder = optionalPersoonslijstOuder.stream()
+            .flatMap(Persoonslijst::getBurgerservicenummersVanMinderjarigeKinderen);
+        Stream<String> burgerservicenummersVanKinderenVanPartners = partners.stream()
+            .flatMap(Persoonslijst::getBurgerservicenummersVanMinderjarigeKinderen);
+
+        return Stream.concat(
+                burgerservicenummersVanKinderenVanOuder,
+                burgerservicenummersVanKinderenVanPartners
+            )
+            .collect(Collectors.toSet());
     }
 }
