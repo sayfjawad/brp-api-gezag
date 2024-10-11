@@ -3,7 +3,6 @@ package nl.rijksoverheid.mev.brpadapter.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.soap.BrpClient;
-import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -38,14 +38,8 @@ public class BrpService {
      * @return de persoonslijst
      * @throws GezagException wanneer BRP communicatie misgaat
      */
-    public Persoonslijst getPersoonslijst(final String bsn, final Transaction transaction) throws BrpException {
-        Persoonslijst persoonslijst = client.opvragenPersoonslijst(bsn, transaction);
-
-        if (persoonslijst == null || !persoonslijst.hasAnyValue()) {
-            throw new BrpException("Geen gezaghouders gevonden bij opgegeven BSN.");
-        }
-
-        return persoonslijst;
+    public Optional<Persoonslijst> getPersoonslijst(final String bsn, final Transaction transaction) {
+        return client.opvragenPersoonslijst(bsn, transaction);
     }
 
     /**
@@ -56,26 +50,22 @@ public class BrpService {
      * @return de BSNs van de kinderen
      * @throws GezagException wanneer BRP communicatie misgaat
      */
-    public Set<String> getBsnsMinderjarigeKinderenOuderEnPartners(final String bsn, final Transaction transaction) throws BrpException {
-        Persoonslijst persoonslijstOuder = client.opvragenPersoonslijst(bsn, transaction);
-        List<Persoonslijst> partners = persoonslijstOuder.getHuwelijkOfPartnerschappen().stream()
+    public Set<String> getBsnsMinderjarigeKinderenOuderEnPartners(final String bsn, final Transaction transaction) {
+        var optionalPersoonslijstOuder = client.opvragenPersoonslijst(bsn, transaction);
+        optionalPersoonslijstOuder.ifPresent(persoonslijstOuder -> {
+            transaction.setReceivedId(persoonslijstOuder.getReceivedId());
+            transactionHandler.saveBrpServiceTransaction(BRP_SERVICE_GET_BSNS_MINDERJARIGE_KINDEREN, persoonslijstOuder.getReceivedId(), transaction);
+        });
+        List<Persoonslijst> partners = optionalPersoonslijstOuder.stream()
+            .map(Persoonslijst::getHuwelijkOfPartnerschappen)
+            .flatMap(List::stream)
             .map(HuwelijkOfPartnerschap::getBsnPartner)
             .filter(Objects::nonNull)
-            .map(bsnPartner -> {
-                try {
-                    return client.opvragenPersoonslijst(bsnPartner, transaction);
-                } catch (BrpException ex) {
-                    log.info("Opgevraagde persoon bestaat niet");
-                    return null;
-                }
-            })
-            .filter(Objects::nonNull)
+            .flatMap(bsnPartner -> client.opvragenPersoonslijst(bsnPartner, transaction).stream())
             .toList();
 
-        transaction.setReceivedId(persoonslijstOuder.getReceivedId());
-        transactionHandler.saveBrpServiceTransaction(BRP_SERVICE_GET_BSNS_MINDERJARIGE_KINDEREN, persoonslijstOuder.getReceivedId(), transaction);
-
-        Stream<String> burgerservicenummersVanKinderenVanOuder = persoonslijstOuder.getBurgerservicenummersVanMinderjarigeKinderen();
+        Stream<String> burgerservicenummersVanKinderenVanOuder = optionalPersoonslijstOuder.stream()
+            .flatMap(Persoonslijst::getBurgerservicenummersVanMinderjarigeKinderen);
         Stream<String> burgerservicenummersVanKinderenVanPartners = partners.stream()
             .flatMap(Persoonslijst::getBurgerservicenummersVanMinderjarigeKinderen);
 

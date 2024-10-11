@@ -48,3 +48,5 @@ nb-configuration.xml
 # Dependency directories
 
 node_modules/
+
+test-reports/
