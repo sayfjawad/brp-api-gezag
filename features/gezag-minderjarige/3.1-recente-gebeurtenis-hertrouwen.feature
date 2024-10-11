@@ -4,18 +4,26 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
 
 
     Achtergrond:
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
+      Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'
+      * is meerderjarig, niet overleden en staat niet onder curatele
+      En de persoon 'Henk' met burgerservicenummer '000000024'
+      * is meerderjarig, niet overleden en staat niet onder curatele
+      En de persoon 'Jaimy' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is niet geëmigreerd geweest
       * is in Nederland geboren
-      * heeft een ouder 1 'Ingrid' met burgerservicenummer '000000012'
-      * heeft een ouder 2 'Henk' met burgerservicenummer '000000024'
-      * beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele
       En de persoon 'Geert' met burgerservicenummer '000000048'
       * is meerderjarig
       En de persoon 'Anne-Fleur' met burgerservicenummer '000000061'
       * is meerderjarig
+      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is minderjarig
+      * is niet geëmigreerd geweest
+      * is in Nederland geboren
+      * heeft 'Ingrid' als ouder 1
+      * heeft 'Henk' als ouder 2
 
 
 
@@ -29,13 +37,13 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
-      En 'Ingrid' en 'Henk' zijn gescheiden
+      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 6 jaar                                            |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 2 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters
