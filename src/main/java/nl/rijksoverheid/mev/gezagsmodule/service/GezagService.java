@@ -1,6 +1,5 @@
 package nl.rijksoverheid.mev.gezagsmodule.service;
 
-import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.GezagAfleidingsResultaat;
@@ -11,7 +10,7 @@ import java.util.List;
 
 public interface GezagService {
 
-    List<Gezagsrelatie> getGezag(final List<String> bsns, final Transaction transaction) throws BrpException;
+    List<Gezagsrelatie> getGezag(final List<String> bsns, final Transaction transaction);
 
     GezagAfleidingsResultaat getGezagAfleidingsResultaat(final String bsn, final Transaction transaction) throws GezagException;
 

@@ -11,7 +11,6 @@ import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
-import nl.rijksoverheid.mev.exception.BrpException;
 
 import java.lang.reflect.Field;
 import java.time.Clock;
@@ -600,9 +599,9 @@ public class Persoonslijst {
 
     /**
      * @return of een van de velden een waarde heeft in de persoonslijst
-     * @throws BrpException als een invalide veld benaderd wordt
+     * @throws AfleidingsregelException als een invalide veld benaderd wordt
      */
-    public boolean hasAnyValue() throws BrpException {
+    public boolean hasAnyValue() throws AfleidingsregelException {
         try {
             for (Field f : this.getClass().getDeclaredFields()) {
                 if (f.getType() == List.class) {
@@ -618,7 +617,7 @@ public class Persoonslijst {
             }
             return false;
         } catch (IllegalAccessException ex) {
-            throw new BrpException(ex.getMessage());
+            throw new AfleidingsregelException(ex.getMessage(), "persoonslijst");
         }
     }
 }
