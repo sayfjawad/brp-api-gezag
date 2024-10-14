@@ -8,24 +8,20 @@ Functionaliteit: gezamenlijk gezag van een meerderjarige over een kind van een (
     # voor elke gezagsrelatie van de minderjarige kinderen wordt bepaald of de niet-ouder gezamenlijk gezag heeft over het kind
 
     Scenario: persoon heeft van rechtswege gezamenlijk gezag over het minderjarige kind van diens partner
-      Gegeven de persoon 'P1' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
       * is meerderjarig
-      * heeft geslachtsnaam gevuld
-      En de persoon 'P2' met burgerservicenummer '000000024'
+      En de persoon 'Ingrid' met burgerservicenummer '000000024'
       * is meerderjarig
-      * heeft geslachtsnaam gevuld
-      En persoon 'P1' heeft geregistreerd partnerschap met persoon 'P2'
-      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
-      | gisteren - 20 jaar                                                 |
-      En de persoon 'P3' met burgerservicenummer '000000036'
-      * is in Nederland geboren
+      En 'Henk' en 'Ingrid' zijn met elkaar gehuwd
+      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
       * is minderjarig
-      * heeft persoon 'P2' als ouder1 vanaf de geboorteaangifte
-      * is ingeschreven in de de BRP
-      En persoon 'P2' heeft een kind 'P3'
+      * is in Nederland geboren
+      * is niet geëmigreerd geweest
+      * heeft 'Ingrid' als ouder 1
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | burgerservicenummer | 000000036 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
