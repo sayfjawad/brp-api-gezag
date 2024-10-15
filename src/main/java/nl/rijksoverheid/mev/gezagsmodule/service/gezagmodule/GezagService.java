@@ -14,6 +14,7 @@ import nl.rijksoverheid.mev.gezagsmodule.service.BeslissingsmatrixService;
 import nl.rijksoverheid.mev.gezagsmodule.service.PersoonlijstType;
 import nl.rijksoverheid.mev.gezagsmodule.service.ToelichtingService;
 import nl.rijksoverheid.mev.gezagsmodule.service.VragenlijstService;
+import nl.rijksoverheid.mev.logging.LoggingContext;
 import nl.rijksoverheid.mev.transaction.Transaction;
 import nl.rijksoverheid.mev.transaction.TransactionHandler;
 import org.openapitools.model.AbstractGezagsrelatie;
@@ -34,6 +35,7 @@ public class GezagService {
     private final TransactionHandler transactionHandler;
     private final BrpService brpService;
     private final BeslissingsmatrixService beslissingsmatrixService;
+    private final LoggingContext loggingContext;
     private final ToelichtingService toelichtingService;
     private static final String DEFAULT_NEE = "Nee";
     private static final String SOORT_GEZAG_NVT = "NVT";
@@ -144,6 +146,9 @@ public class GezagService {
             transaction.setReceivedId(persoonReceivedId);
         }
 
+        loggingContext.addGezagType(arAntwoordenModel.getSoortGezag(), burgerservicenummer);
+        loggingContext.addRoute(route, burgerservicenummer);
+        loggingContext.addToelichting(arAntwoordenModel.getUitleg(), burgerservicenummer);
         log.info("Gezag bepaald voor persoon {}: {}", burgerservicenummer, arAntwoordenModel);
         return gezagRelaties;
     }

@@ -9,6 +9,7 @@ import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.Burgerservicenummer;
+import nl.rijksoverheid.mev.logging.LoggingContext;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,10 +36,12 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
 
     private final Clock clock;
     private final DSLContext create;
+    private final LoggingContext loggingContext;
 
-    public JooqPersoonslijstFinder(Clock clock, DSLContext create) {
+    public JooqPersoonslijstFinder(Clock clock, DSLContext create, LoggingContext loggingContext) {
         this.clock = clock;
         this.create = create;
+        this.loggingContext = loggingContext;
     }
 
     @Override
@@ -55,6 +58,7 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
             .forEach(result::addPersoonGeschiedenis);
 
         var plId = plPersoonPersoonRecent.getPlId();
+        loggingContext.addPlIdIfBurgerservicenummerMatches(plId, burgerservicenummer);
 
         var inschrijvingen = findInschrijvingen(plId);
         inschrijvingen.forEach(result::addInschrijving);
