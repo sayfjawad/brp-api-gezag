@@ -3,7 +3,6 @@
 Gezag bestaat uit een interface en gezagsmodule voor het kunnen bevragen van de gezagsrelaties van personen.
 De module kan worden bevraagd met een lijst van bsns, waarop de gezagsmodule de gezagsrelaties voor de opgegeven personen bepaald en teruggeeft. 
 
-```
 ## Getting Started
 Je kunt de Gezag applicatie lokaal opstarten via dit command:
 ```
