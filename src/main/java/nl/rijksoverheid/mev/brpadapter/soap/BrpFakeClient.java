@@ -3,7 +3,6 @@ package nl.rijksoverheid.mev.brpadapter.soap;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
-import nl.rijksoverheid.mev.common.util.BSNValidator;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.*;
 import nl.rijksoverheid.mev.transaction.Transaction;
@@ -67,9 +66,6 @@ public class BrpFakeClient implements BrpClient {
 
     @Override
     public Optional<Persoonslijst> opvragenPersoonslijst(String bsn, Transaction transaction) throws GezagException {
-        if (!new BSNValidator().isValid(bsn)) {
-            return Optional.empty();
-        }
         if (fixtures.containsKey(bsn)){
             return Optional.of(fixtures.get(bsn).data);
         }
