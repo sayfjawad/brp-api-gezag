@@ -10,7 +10,7 @@
         <encoder class="co.elastic.logging.logback.EcsEncoder">
             <serviceName>brp-api-gezag</serviceName>
             <messageLayout class="ch.qos.logback.classic.PatternLayout">
-                <pattern>%replace(%m){'\d{9}','***MASKED***'} %rEx{full, org.springframework}</pattern>
+                <pattern>%replace(%mdc %m){'\d{9}','***MASKED***'} %rEx{full, org.springframework}</pattern>
             </messageLayout>
         </encoder>
     </appender>
