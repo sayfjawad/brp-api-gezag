@@ -17,7 +17,6 @@ public class ToelichtingService {
     private static final String IN_ONDERZOEK_VELDEN_OUDER_2 = " Persoonslijst van ouder 2: ";
     private static final String IN_ONDERZOEK_VELDEN_NIET_OUDER = " Persoonslijst van niet ouder: ";
     private static final String PLACEHOLDER = "%s";
-    private static final String ERROR = "gezag is niet te bepalen. Neem contact op met RvIG via info@RvIG onder vermelding van BRP API gezag met de volgende foutcode: %s";
 
     /**
      * Past de basis toelichting zoals opgenomen in het antwoordenmodel aan op basis van of velden in onderzoek of missende gegevens.
@@ -36,12 +35,19 @@ public class ToelichtingService {
                 setMissendeGegevens(sb, baseToelichting, missendeGegevens);
             }
         }
-        
+
         return sb.toString();
     }
 
-    public String setErrorReferenceToelichting(final String errorTrace) {
-        return String.format(ERROR, errorTrace);
+    /**
+     * Maakt een toelichting op basis van een error trace code en de toelichting zoals opgenomen bij route 0 in het antwoordenmodel
+     *
+     * @param baseToelichting   de basis toelichting
+     * @param errorTrace        de error trace code
+     * @return de toelichting zoals uit het antwoorden model bewerkt met de error trace code
+     */
+    public String setErrorReferenceToelichting(final String baseToelichting, final String errorTrace) {
+        return String.format(baseToelichting, errorTrace);
     }
 
     private void setInOnderzoek(final StringBuilder sb, final VeldenInOnderzoek veldenInOnderzoek) {
