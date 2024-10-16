@@ -65,6 +65,14 @@ function aanvullenGezagsverhouding(persoon, dataTable) {
     mapDataTableToEntiteit(persoon.gezagsverhouding.at(-1), dataTable);
 }
 
+function aanvullenInschrijving(persoon, dataTable) {
+    if(!persoon.inschrijving) {
+        persoon.inschrijving = createInschrijving();
+    }
+
+    mapDataTableToEntiteit(persoon.inschrijving, dataTable);
+}
+
 function wijzigPersoon(persoon, dataTable, isCorrectie = false) {
     persoon.persoon.forEach(p => {
         p.volg_nr = Number(p.volg_nr) + 1 + '';
@@ -168,6 +176,21 @@ function createVerblijfplaats(persoon, dataTable) {
     persoon.verblijfplaats.push(verblijfplaats);
 }
 
+function createOverlijden(persoon, dataTable) {
+    if(!persoon.overlijden) {
+        persoon.overlijden = [];
+    }
+
+    let overlijden = {
+        pl_id: 'null',
+        volg_nr: '0'
+    };
+
+    mapDataTableToEntiteit(overlijden, dataTable);
+
+    persoon.overlijden.push(overlijden);
+}
+
 module.exports = {
     createPersoon,
     aanvullenPersoon,
@@ -179,5 +202,7 @@ module.exports = {
     wijzigPartner,
     createGezagsverhouding,
     aanvullenGezagsverhouding,
-    createVerblijfplaats
+    createVerblijfplaats,
+    createOverlijden,
+    aanvullenInschrijving
 }

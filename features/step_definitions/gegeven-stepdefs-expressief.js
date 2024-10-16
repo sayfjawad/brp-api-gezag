@@ -10,7 +10,9 @@ const { createPersoon,
         wijzigPartner,
         createGezagsverhouding,
         aanvullenGezagsverhouding,
-        createVerblijfplaats
+        createVerblijfplaats,
+        aanvullenInschrijving,
+        createOverlijden
 } = require('./persoon-2');
 const { toDbColumnName } = require('./brp');
 
@@ -121,6 +123,27 @@ Given(/^staat onder curatele/, function () {
         getPersoon(this.context, undefined),
         arrayOfArraysToDataTable([
             ['indicatie curateleregister (33.10)', curateleRegisterIndicatie]
+        ])
+    );
+});
+
+Given(/^is overleden/, function () {
+    const datumOpschortingBijhouden = 'gisteren - 2 jaar';
+    const indicatieGeheim = 'O';
+    const datumOverlijden = 'gisteren - 2 jaar';
+
+    aanvullenInschrijving(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['datum opschorting bijhouding (67.10)', datumOpschortingBijhouden],
+            ['reden opschorting bijhouding (67.20)', indicatieGeheim]
+        ])
+    );
+
+    createOverlijden(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['datum overlijden (08.10)', datumOverlijden]
         ])
     );
 });
