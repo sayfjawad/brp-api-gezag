@@ -9,6 +9,7 @@ const { createPersoon,
         createPartner,
         wijzigPartner,
         createGezagsverhouding,
+        aanvullenGezagsverhouding,
         createVerblijfplaats
 } = require('./persoon-2');
 const { toDbColumnName } = require('./brp');
@@ -110,6 +111,17 @@ Given(/^heeft gezag uitspraak$/, function (dataTable) {
     createGezagsverhouding(
         getPersoon(this.context, undefined),
         dataTable
+    );
+});
+
+Given(/^staat onder curatele/, function () {
+    const curateleRegisterIndicatie = '1';
+
+    aanvullenGezagsverhouding(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['indicatie curateleregister (33.10)', curateleRegisterIndicatie]
+        ])
     );
 });
 

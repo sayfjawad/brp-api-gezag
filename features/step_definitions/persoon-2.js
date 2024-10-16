@@ -56,6 +56,15 @@ function aanvullenPersoon(persoon, dataTable) {
     mapDataTableToEntiteit(persoon.persoon.at(-1), dataTable);
 }
 
+function aanvullenGezagsverhouding(persoon, dataTable) {
+    if(!persoon.gezagsverhouding) {
+        persoon.gezagsverhouding = [];
+        createGezagsverhouding(persoon, null);
+    }
+
+    mapDataTableToEntiteit(persoon.gezagsverhouding.at(-1), dataTable);
+}
+
 function wijzigPersoon(persoon, dataTable, isCorrectie = false) {
     persoon.persoon.forEach(p => {
         p.volg_nr = Number(p.volg_nr) + 1 + '';
@@ -169,5 +178,6 @@ module.exports = {
     createPartner,
     wijzigPartner,
     createGezagsverhouding,
+    aanvullenGezagsverhouding,
     createVerblijfplaats
 }
