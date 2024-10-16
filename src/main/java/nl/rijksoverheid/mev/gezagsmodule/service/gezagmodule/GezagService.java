@@ -128,8 +128,8 @@ public class GezagService {
                 String toelichting = toelichtingService.decorateToelichting(unformattedUitleg, null, missendeGegegevens);
                 arAntwoordenModel.setUitleg(toelichting);
             } else if (errorTraceCode != null) {
-                unformattedUitleg = unformattedUitleg.formatted(errorTraceCode.toString());
-                arAntwoordenModel.setUitleg(unformattedUitleg);
+                String toelichting = toelichtingService.setErrorReferenceToelichting(errorTraceCode.toString());
+                arAntwoordenModel.setUitleg(toelichting);
             }
 
             gezagBepaling.bepalenGezagdragers(burgerservicenummer, burgerservicenummerPersoon, arAntwoordenModel, gezagRelaties);

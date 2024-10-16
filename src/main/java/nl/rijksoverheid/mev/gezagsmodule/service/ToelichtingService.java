@@ -17,6 +17,7 @@ public class ToelichtingService {
     private static final String IN_ONDERZOEK_VELDEN_OUDER_2 = " Persoonslijst van ouder 2: ";
     private static final String IN_ONDERZOEK_VELDEN_NIET_OUDER = " Persoonslijst van niet ouder: ";
     private static final String PLACEHOLDER = "%s";
+    private static final String ERROR = "gezag is niet te bepalen. Neem contact op met RvIG via info@RvIG onder vermelding van BRP API gezag met de volgende foutcode: %s";
 
     /**
      * Past de basis toelichting zoals opgenomen in het antwoordenmodel aan op basis van of velden in onderzoek of missende gegevens.
@@ -37,6 +38,10 @@ public class ToelichtingService {
         }
         
         return sb.toString();
+    }
+
+    public String setErrorReferenceToelichting(final String errorTrace) {
+        return String.format(ERROR, errorTrace);
     }
 
     private void setInOnderzoek(final StringBuilder sb, final VeldenInOnderzoek veldenInOnderzoek) {
