@@ -21,7 +21,7 @@ Functionaliteit: gezamenlijk gezag van een meerderjarige over een kind van een (
       * heeft 'Ingrid' als ouder 1
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
+      | burgerservicenummer | 000000012 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
