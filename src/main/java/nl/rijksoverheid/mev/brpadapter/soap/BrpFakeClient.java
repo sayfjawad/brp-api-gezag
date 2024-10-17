@@ -66,15 +66,15 @@ public class BrpFakeClient implements BrpClient {
     }
 
     @Override
-    public Persoonslijst opvragenPersoonslijst(String bsn, Transaction transaction) throws GezagException {
+    public Optional<Persoonslijst> opvragenPersoonslijst(String bsn, Transaction transaction) throws GezagException {
         if (!new BSNValidator().isValid(bsn)) {
-            return null;
+            return Optional.empty();
         }
         if (fixtures.containsKey(bsn)){
-            return fixtures.get(bsn).data;
+            return Optional.of(fixtures.get(bsn).data);
         }
         log.info("Persoonslijst niet gevonden: " + bsn);
-        return createEmptyPersoonslijstFixture("", bsn).data;
+        return Optional.of(createEmptyPersoonslijstFixture("", bsn).data);
     }
 
     private PersoonslijstFixture readAsPersoonslijstFixture(final InputStream inputStream) {

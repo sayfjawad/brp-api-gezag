@@ -25,23 +25,10 @@ spring:
       prd: real-brp
 
 management:
-  health:
-    readinessstate:
-      enabled: true
-  endpoint:
-    metrics:
-      enabled: true
-    health:
-      group:
-        readiness:
-          include: "readinessState"
   endpoints:
     web:
       exposure:
         include: "*"
-  httpexchanges:
-    recording:
-      enabled: true
 
 correlation:
   component-id: 02

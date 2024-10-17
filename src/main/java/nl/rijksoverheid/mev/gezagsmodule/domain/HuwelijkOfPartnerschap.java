@@ -62,9 +62,19 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
      */
     private static final String REDEN_ONTBINDING = "050740";
 
+    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "058310";
+    private static final String ONDERZOEK_START_DATUM = "058320";
+    private static final String ONDERZOEK_EIND_DATUM = "058330";
+
     public static HuwelijkOfPartnerschap from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+        var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
+        var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
+
+        var onderzoekGegevensAanduiding = lo3PlPersoonRecord.getOnderzoekGegevensAand();
+        var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
+
         Map<String, String> values = new HashMap<>();
-        values.put(BSN, Objects.toString(lo3PlPersoonRecord.getBurgerServiceNr(), null));
+        values.put(BSN, burgerServiceNrAsString);
         values.put(DATUM_VOLTROKKEN, Objects.toString(lo3PlPersoonRecord.getRelatieStartDatum(), null));
         values.put(PLAATS_VOLTROKKEN, lo3PlPersoonRecord.getRelatieStartPlaats());
         values.put(LAND_VOLTROKKEN, Objects.toString(lo3PlPersoonRecord.getRelatieStartLandCode(), null));
@@ -72,6 +82,9 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
         values.put(PLAATS_ONTBINDING, lo3PlPersoonRecord.getRelatieEindPlaats());
         values.put(LAND_ONTBINDING, Objects.toString(lo3PlPersoonRecord.getRelatieEindLandCode(), null));
         values.put(REDEN_ONTBINDING, lo3PlPersoonRecord.getRelatieEindReden());
+        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
+        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
+        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
 
         return new HuwelijkOfPartnerschap(values, clock);
     }
@@ -81,35 +94,40 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
     }
 
     public String getBsnPartner() {
-        return get(BSN, "BSN");
+        return get(BSN, "burgerservicenummer partner van relatie");
     }
 
     public String getDatumVoltrokken() {
-        return get(DATUM_VOLTROKKEN, "datum voltrokken");
+        return get(DATUM_VOLTROKKEN, "datum voltrokken van relatie");
     }
 
     public String getPlaatsVoltrokken() {
-        return get(PLAATS_VOLTROKKEN, "plaats voltrokken");
+        return get(PLAATS_VOLTROKKEN, "plaats voltrokken van relatie");
     }
 
     public String getLandVoltrokken() {
-        return get(LAND_VOLTROKKEN, "land voltrokken");
+        return get(LAND_VOLTROKKEN, "land voltrokken van relatie");
     }
 
     public String getDatumOntbinding() {
-        return get(DATUM_ONTBINDING, "datum ontbinding");
+        return get(DATUM_ONTBINDING, "datum ontbinding van relatie");
     }
 
     public String getPlaatsOntbinding() {
-        return get(PLAATS_ONTBINDING, "plaats ontbinding");
+        return get(PLAATS_ONTBINDING, "plaats ontbinding van relatie");
     }
 
     public String getLandOntbinding() {
-        return get(LAND_ONTBINDING, "land ontbinding");
+        return get(LAND_ONTBINDING, "land ontbinding van relatie");
     }
 
     public String getRedenOntbinding() {
-        return get(REDEN_ONTBINDING, "reden ontbinding");
+        return get(REDEN_ONTBINDING, "reden ontbinding van relatie");
+    }
+
+    @Override
+    public String getCategorieName() {
+        return "relatie";
     }
 
     @Override

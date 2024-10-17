@@ -3,16 +3,16 @@ package nl.rijksoverheid.mev.gmapi;
 import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.common.util.BSNValidator;
 import nl.rijksoverheid.mev.exception.GezagException;
-import nl.rijksoverheid.mev.gezagsmodule.model.Gezagsrelatie;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
+import org.openapitools.model.AbstractGezagsrelatie;
 import org.openapitools.model.GezagRequest;
 import org.openapitools.model.Persoon;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -23,17 +23,14 @@ public class BevoegdheidTotGezagService {
 
     private final BrpService brpService;
     private final GezagService gezagService;
-    private final GezagTransformer gezagTransformer;
     private final BSNValidator bsnValidator;
 
     public BevoegdheidTotGezagService(
         final BrpService brpService,
-        final GezagService gezagService,
-        final GezagTransformer gezagTransformer
+        final GezagService gezagService
     ) {
         this.brpService = brpService;
         this.gezagService = gezagService;
-        this.gezagTransformer = gezagTransformer;
         this.bsnValidator = new BSNValidator();
     }
 
@@ -60,31 +57,32 @@ public class BevoegdheidTotGezagService {
         final GezagRequest gezagRequest,
         final Transaction transaction
     ) throws GezagException {
-        List<String> bsns = gezagRequest.getBurgerservicenummer();
-        if (!bsnValidator.isValid(bsns)) {
+        List<String> burgerservicenummers = gezagRequest.getBurgerservicenummer();
+        if (!bsnValidator.isValid(burgerservicenummers)) {
             return Collections.emptyList();
         }
 
-        List<Gezagsrelatie> gezagsrelaties = new ArrayList<>();
-        for (String bevraagdePersoon : bsns) {
-            List<Gezagsrelatie> persoonGezagsrelaties = Stream
-                .concat(
-                    gezagService.getGezag(List.of(bevraagdePersoon), transaction).stream(),
-                    vindGezagsrelatiesVoorKinderen(bevraagdePersoon, transaction)
-                )
-                .toList();
-            persoonGezagsrelaties.forEach(gr -> gr.setBsnBevraagdePersoon(bevraagdePersoon));
-            gezagsrelaties.addAll(persoonGezagsrelaties);
-        }
-        List<Persoon> personen = gezagTransformer.fromGezagrelaties(gezagsrelaties);
-
-        return personen;
+        return burgerservicenummers.stream()
+            .map(burgerservicenummer -> bepaalGezagVoorPersoon(burgerservicenummer, transaction))
+            .toList();
     }
 
-    private Stream<Gezagsrelatie> vindGezagsrelatiesVoorKinderen(final String bevraagdePersoon, final Transaction transaction) throws GezagException {
-        List<String> kinderen = brpService.getBsnsMinderjarigeKinderen(bevraagdePersoon, transaction);
-        return gezagService.getGezag(kinderen, transaction).stream()
-            .filter(gezagsrelatie -> bevraagdePersoon.equals(gezagsrelatie.getBsnMeerderjarige()));
+    private Persoon bepaalGezagVoorPersoon(final String burgerservicenummerPersoon, final Transaction transaction) {
+        var gezagsrelaties = Stream
+            .concat(
+                gezagService.getGezag(Set.of(burgerservicenummerPersoon), burgerservicenummerPersoon, transaction).stream(),
+                vindGezagsrelatiesVoorKinderen(burgerservicenummerPersoon, transaction)
+            )
+            .toList();
+
+        return new Persoon()
+            .burgerservicenummer(burgerservicenummerPersoon)
+            .gezag(gezagsrelaties);
     }
 
+    private Stream<AbstractGezagsrelatie> vindGezagsrelatiesVoorKinderen(final String burgerservicenummerPersoon, final Transaction transaction) throws GezagException {
+        Set<String> kinderen = brpService.getBsnsMinderjarigeKinderenOuderEnPartners(burgerservicenummerPersoon, transaction);
+
+        return gezagService.getGezag(kinderen, burgerservicenummerPersoon, transaction).stream();
+    }
 }

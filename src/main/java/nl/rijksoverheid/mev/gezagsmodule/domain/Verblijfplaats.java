@@ -24,13 +24,22 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
     // hield voor (her)vestiging in Nederland
     private static final String LAND_VANWAAR_INGESCHREVEN = "081410";
     private static final String DATUM_VESTIGING_IN_NEDERLAND = "081420";
+    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "088310";
+    private static final String ONDERZOEK_START_DATUM = "088320";
+    private static final String ONDERZOEK_EIND_DATUM = "088330";
     private static final String RNI_DEELNEMER = "088810";
 
     public static Verblijfplaats from(Lo3PlVerblijfplaatsRecord lo3PlVerblijfplaatsRecord, Clock clock) {
+        var onderzoekGegevensAanduiding = lo3PlVerblijfplaatsRecord.getOnderzoekGegevensAand();
+        var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
+
         Map<String, String> values = new HashMap<>();
         values.put(GEMEENTE_VAN_INSCHRIJVING, Objects.toString(lo3PlVerblijfplaatsRecord.getInschrijvingGemeenteCode(), null));
         values.put(LAND_VANWAAR_INGESCHREVEN, Objects.toString(lo3PlVerblijfplaatsRecord.getVestigingLandCode(), null));
         values.put(DATUM_VESTIGING_IN_NEDERLAND, Objects.toString(lo3PlVerblijfplaatsRecord.getVestigingDatum(), null));
+        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
+        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlVerblijfplaatsRecord.getOnderzoekStartDatum(), null));
+        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlVerblijfplaatsRecord.getOnderzoekEindDatum(), null));
         values.put(RNI_DEELNEMER, Objects.toString(lo3PlVerblijfplaatsRecord.getRniDeelnemer(), null));
 
         return new Verblijfplaats(values, clock);
@@ -47,9 +56,6 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
 
     @Override
     public String get(final String key, final String fieldName) {
-        // Onderstaande heeft invloed op: https://github.com/BRP-API/brp-api-gezag/issues/17
-        //inOnderzoek(key, fieldName);
-
         return values.get(key);
     }
 
@@ -67,6 +73,11 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
 
     public String getRniDeelnemer() {
         return get(RNI_DEELNEMER, "RNI deelnemer");
+    }
+
+    @Override
+    public String getCategorieName() {
+        return "verblijfplaats";
     }
 
     @Override

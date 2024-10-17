@@ -2,13 +2,11 @@ package nl.rijksoverheid.mev.gezagsmodule.service;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
-import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,6 +17,8 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class BeslissingsmatrixService {
+
+    private static final String ANTWOORDEN_MODEL_FILENAME = "/AntwoordenModel_v2_2_3.csv";
 
     private Map<String, ARAntwoordenModel> routes;
 
@@ -39,7 +39,7 @@ public class BeslissingsmatrixService {
             return routes.get(route);
         } else {
             log.error("Route kon niet worden gevonden, route is: {} en exceptie: {}", route, resultaat.getException());
-            throw new AfleidingsregelException("Route kon niet worden gevonden in het ingelezen antwoorden model, de route is: " + route);
+            throw new AfleidingsregelException("Route kon niet worden gevonden in het ingelezen antwoorden model, de route is: " + route, "onbekend");
         }
     }
 
@@ -51,9 +51,6 @@ public class BeslissingsmatrixService {
      */
     public String findMatchingRoute(final ARAntwoordenModel arAntwoordenModel) {
         if ((arAntwoordenModel.getException() != null)
-            && (Objects.equals(arAntwoordenModel.getException().getClass(), BrpException.class))) {
-            return "-503i";
-        } else if ((arAntwoordenModel.getException() != null)
             && (Objects.equals(arAntwoordenModel.getException().getClass(), VeldInOnderzoekException.class))) {
             return getRouteFromVraagModel(arAntwoordenModel);
         } else {
@@ -62,16 +59,9 @@ public class BeslissingsmatrixService {
     }
 
     private void determineRoutes() {
-        List<String> antwoordenModelLines = new ArrayList<>();
-        try (BufferedReader antwoordenModelCsvReader = new BufferedReader(
-            new InputStreamReader(BeslissingsmatrixService.class.getResourceAsStream("/AntwoordenModel_v2_2_2.csv")))) {
-            String line;
-            while ((line = antwoordenModelCsvReader.readLine()) != null) {
-                antwoordenModelLines.add(line);
-            }
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
+        var inputStream = BeslissingsmatrixService.class.getResourceAsStream(ANTWOORDEN_MODEL_FILENAME);
+        if (inputStream == null) throw new IllegalStateException("Unable to find AntwoordenModel");
+        List<String> antwoordenModelLines = new BufferedReader(new InputStreamReader(inputStream)).lines().toList();
 
         Map<String, ARAntwoordenModel> tempMap = antwoordenModelLines.stream()
             .skip(1) // Skip the first line with labels
