@@ -1,0 +1,26 @@
+name: Deployment CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'deploy OCI image with tag'
+        required: true
+        type: string
+      environment:
+        description: 'to environment (acc|lap|prd)'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy OCI image (no actual deployment, tags only)
+        run: |
+          docker pull ghcr.io/brp-api/brp-api-gezag:${{ inputs.tag }}
+          docker tag ghcr.io/brp-api/brp-api-gezag:${{ inputs.tag }} ghcr.io/brp-api/brp-api-gezag:${{ inputs.environment }}
+          docker push ghcr.io/brp-api/brp-api-gezag:${{ inputs.environment }}
+    env:
+      GITHUB_ACTOR: ${{ github.actor }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
