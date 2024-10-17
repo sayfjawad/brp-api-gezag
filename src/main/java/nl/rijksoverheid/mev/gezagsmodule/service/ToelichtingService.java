@@ -81,8 +81,6 @@ public class ToelichtingService {
     private void setMissendeGegevens(final StringBuilder sb, final String baseUitleg, final List<String> missendeGegevens) {
         if (baseUitleg.contains(PLACEHOLDER)) {
             sb.append(String.format(baseUitleg, String.join(", ", missendeGegevens)));
-        } else {
-            // toelichting bevat al volledige informatie en heeft geen formattering nodig
-        }
+        } // else bevat toelichting al volledige informatie en heeft geen formattering nodig
     }
 }
