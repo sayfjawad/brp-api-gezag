@@ -1,5 +1,6 @@
 import io.freefair.gradle.plugins.lombok.tasks.LombokTask
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
+import java.io.ByteArrayOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -106,6 +107,7 @@ tasks.withType<BootBuildImage> {
     tags.set(listOf(
         "ghcr.io/brp-api/${project.name}:${project.version}",
         "ghcr.io/brp-api/${project.name}:${project.version}-${LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))}",
+        "ghcr.io/brp-api/${project.name}:${getGitHash()}",
     ))
 
     docker {
@@ -132,4 +134,13 @@ tasks.withType<LombokTask> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+fun getGitHash(): String {
+    val stdout = ByteArrayOutputStream();
+    exec {
+        commandLine = listOf("git", "rev-parse", "HEAD")
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
 }
