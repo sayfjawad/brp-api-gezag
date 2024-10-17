@@ -42,12 +42,12 @@ public class ToelichtingService {
     /**
      * Maakt een toelichting op basis van een error trace code en de toelichting zoals opgenomen bij route 0 in het antwoordenmodel
      *
-     * @param baseToelichting   de basis toelichting
-     * @param errorTrace        de error trace code
+     * @param baseToelichting de basis toelichting
+     * @param errorTraceCode  de error trace code
      * @return de toelichting zoals uit het antwoorden model bewerkt met de error trace code
      */
-    public String setErrorReferenceToelichting(final String baseToelichting, final String errorTrace) {
-        return String.format(baseToelichting, errorTrace);
+    public String setErrorReferenceToelichting(final String baseToelichting, final String errorTraceCode) {
+        return String.format(baseToelichting, errorTraceCode);
     }
 
     private void setInOnderzoek(final StringBuilder sb, final VeldenInOnderzoek veldenInOnderzoek) {
