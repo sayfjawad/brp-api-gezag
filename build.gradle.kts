@@ -99,6 +99,10 @@ version = "1.7.0-snapshot"
 description = "Het gezag component van BRP-API"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
+val nonSnapshotVersion = project.version.toString().removeSuffix("-snapshot")
+val timestamp: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))
+val customVersion = "$nonSnapshotVersion-$timestamp"
+
 tasks.withType<BootBuildImage> {
     builder.set("paketobuildpacks/builder-jammy-buildpackless-tiny")
     buildpacks.add("gcr.io/paketo-buildpacks/java")
@@ -106,7 +110,7 @@ tasks.withType<BootBuildImage> {
     imageName.set("ghcr.io/brp-api/${project.name}:latest")
     tags.set(listOf(
         "ghcr.io/brp-api/${project.name}:${project.version}",
-        "ghcr.io/brp-api/${project.name}:${project.version}-${LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))}",
+        "ghcr.io/brp-api/${project.name}:$customVersion",
         "ghcr.io/brp-api/${project.name}:${getGitHash()}",
     ))
 
