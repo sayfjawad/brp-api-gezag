@@ -20,6 +20,7 @@ jobs:
         run: |
           docker pull ghcr.io/brp-api/brp-api-gezag:${{ inputs.tag }}
           docker tag ghcr.io/brp-api/brp-api-gezag:${{ inputs.tag }} ghcr.io/brp-api/brp-api-gezag:${{ inputs.environment }}
+          echo "Status: pushing ghcr.io/brp-api/brp-api-gezag:${{ inputs.environment }}"
           docker push ghcr.io/brp-api/brp-api-gezag:${{ inputs.environment }}
     env:
       GITHUB_ACTOR: ${{ github.actor }}
