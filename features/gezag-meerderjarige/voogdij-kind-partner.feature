@@ -10,8 +10,10 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       
     Scenario: de partner van ouder onder curatele heeft gezag over een binnen het huwelijk geboren niet-erkend kind
       Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
+      * is ingeschreven in de BRP
       * is meerderjarig
       En de persoon 'Ingrid' met burgerservicenummer '000000024'
+      * is ingeschreven in de BRP
       * is meerderjarig
       * staat onder curatele
       En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
@@ -37,8 +39,10 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       
     Scenario: de ex-partner van ouder onder curatele heeft gezag over een binnen het huwelijk geboren niet-erkend kind
       Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
+      * is ingeschreven in de BRP
       * is meerderjarig
       En de persoon 'Ingrid' met burgerservicenummer '000000024'
+      * is ingeschreven in de BRP
       * is meerderjarig
       * staat onder curatele
       En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
@@ -69,8 +73,10 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
 
     Scenario: de (ex)partner van overleden ouder heeft gezag over een binnen het huwelijk geboren niet-erkend kind
       Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
+      * is ingeschreven in de BRP
       * is meerderjarig
       En de persoon 'Ingrid' met burgerservicenummer '000000024'
+      * is ingeschreven in de BRP
       * is meerderjarig
       En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
       En de persoon 'Jaimy' met burgerservicenummer '000000036'
@@ -100,8 +106,10 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
 
     Scenario: de inmiddels met een ander getrouwde (ex)partner van overleden ouder heeft gezag over een binnen het huwelijk geboren niet-erkend kind
       Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
+      * is ingeschreven in de BRP
       * is meerderjarig
       En de persoon 'Ingrid' met burgerservicenummer '000000024'
+      * is ingeschreven in de BRP
       * is meerderjarig
       En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
       En de persoon 'Jaimy' met burgerservicenummer '000000036'

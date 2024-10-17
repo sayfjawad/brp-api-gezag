@@ -21,8 +21,10 @@ Regel: wanneer de persoon meerderjarig is en geen gezag heeft over minderjarige(
 
     Scenario: ouder staat onder curatele en heeft daarom geen gezag over het minderjarige kind
       Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'
+      * is ingeschreven in de BRP
       * is meerderjarig
       En de persoon 'Henk' met burgerservicenummer '000000024'
+      * is ingeschreven in de BRP
       * is meerderjarig
       * staat onder curatele
       En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
@@ -42,8 +44,10 @@ Regel: wanneer de persoon meerderjarig is en geen gezag heeft over minderjarige(
 
     Scenario: bij raadplegen van ouder wordt geen gezag geleverd voor kind waarvan gezag niet te bepalen is
       Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'
+      * is ingeschreven in de BRP
       * is meerderjarig
       En de persoon 'Henk' met burgerservicenummer '000000024'
+      * is ingeschreven in de BRP
       * is meerderjarig
       En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
       En de persoon 'Jaimy' met burgerservicenummer '000000036'
