@@ -1,7 +1,6 @@
 package nl.rijksoverheid.mev.gmapi;
 
 import nl.rijksoverheid.mev.brpadapter.service.BrpService;
-import nl.rijksoverheid.mev.common.util.BSNValidator;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagService;
 import nl.rijksoverheid.mev.transaction.Transaction;
@@ -10,7 +9,6 @@ import org.openapitools.model.GezagRequest;
 import org.openapitools.model.Persoon;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -23,7 +21,6 @@ public class BevoegdheidTotGezagService {
 
     private final BrpService brpService;
     private final GezagService gezagService;
-    private final BSNValidator bsnValidator;
 
     public BevoegdheidTotGezagService(
         final BrpService brpService,
@@ -31,7 +28,6 @@ public class BevoegdheidTotGezagService {
     ) {
         this.brpService = brpService;
         this.gezagService = gezagService;
-        this.bsnValidator = new BSNValidator();
     }
 
     /**
@@ -58,9 +54,6 @@ public class BevoegdheidTotGezagService {
         final Transaction transaction
     ) throws GezagException {
         List<String> burgerservicenummers = gezagRequest.getBurgerservicenummer();
-        if (!bsnValidator.isValid(burgerservicenummers)) {
-            return Collections.emptyList();
-        }
 
         return burgerservicenummers.stream()
             .map(burgerservicenummer -> bepaalGezagVoorPersoon(burgerservicenummer, transaction))
