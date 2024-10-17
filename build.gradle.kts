@@ -122,6 +122,16 @@ tasks.withType<BootBuildImage> {
     }
 }
 
+springBoot {
+    buildInfo {
+        properties {
+            additional = mapOf(
+                "customVersion" to customVersion
+            )
+        }
+    }
+}
+
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 
