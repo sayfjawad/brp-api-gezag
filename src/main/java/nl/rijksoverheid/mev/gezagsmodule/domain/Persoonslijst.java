@@ -11,7 +11,6 @@ import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
-import nl.rijksoverheid.mev.exception.BrpException;
 
 import java.lang.reflect.Field;
 import java.time.Clock;
@@ -93,10 +92,10 @@ public class Persoonslijst {
 
     public <T extends PersoonslijstVeld> void addVeldToList(final String categorie, final T veld) {
         listValues.merge(
-                categorie,
-                List.of(veld),
-                (list1, list2) -> Stream.of(list1, list2)
-                        .flatMap(Collection::stream).toList());
+            categorie,
+            List.of(veld),
+            (list1, list2) -> Stream.of(list1, list2)
+                .flatMap(Collection::stream).toList());
     }
 
     public List<String> getUsedVeldenInOnderzoek() {
@@ -206,6 +205,7 @@ public class Persoonslijst {
             return new ArrayList<>();
         }
     }
+
     public static final int MEERDERJARIGE_LEEFTIJD = 180000;
     public static final int AKTE_NUMMER_LENGTE = 3;
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -249,21 +249,18 @@ public class Persoonslijst {
         }
 
         return getKinderen().stream()
-                .map(Kind::getBsn)
-                .filter(Objects::nonNull)
-                .toList();
+            .map(Kind::getBsn)
+            .filter(Objects::nonNull)
+            .toList();
     }
 
-    public List<String> getBurgerservicenummersVanMinderjarigeKinderen() {
-        if (getKinderen() == null) {
-            return Collections.emptyList();
-        }
+    public Stream<String> getBurgerservicenummersVanMinderjarigeKinderen() {
+        if (getKinderen() == null) return Stream.empty();
 
         return getKinderen().stream()
-                .filter(Kind::isMinderjarig)
-                .map(Kind::getBsn)
-                .filter(Objects::nonNull)
-                .toList();
+            .filter(Kind::isMinderjarig)
+            .map(Kind::getBsn)
+            .filter(Objects::nonNull);
     }
 
     /**
@@ -275,7 +272,7 @@ public class Persoonslijst {
      * <li>Bij eigen overlijden wordt niets veranderd en lijkt het alsof de hop nog bestaat</li>
      * <li>Bij scheiding wordt alleen de scheiding in de actuele hop geregistreerd en
      * de voltrekking van de hop gaat naar de geschiedenis.</li>
-     *
+     * <p>
      * Voor het maken van een gebeurtenissen tijdlijn wordt voltrekking en ontbinding geregistreerd
      * als twee gebeurtenissen, daarom kan het gebeuren dat per hop twee gebeurtenissen worden geregistreerd
      * dit is het geval als de reden van ontbinding het overlijden van de partner betreft.
@@ -284,32 +281,32 @@ public class Persoonslijst {
         for (HuwelijkOfPartnerschap gebeurtenis : getHuwelijkOfPartnerschappen()) {
             if (gebeurtenis.getDatumOntbinding() != null) {
                 hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
-                        gebeurtenis.getBsnPartner(),
-                        gebeurtenis.getDatumOntbinding(),
-                        gebeurtenis.getRedenOntbinding()
+                    gebeurtenis.getBsnPartner(),
+                    gebeurtenis.getDatumOntbinding(),
+                    gebeurtenis.getRedenOntbinding()
                 );
             }
             if (gebeurtenis.getDatumVoltrokken() != null) {
                 hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
-                        gebeurtenis.getBsnPartner(),
-                        gebeurtenis.getDatumVoltrokken(),
-                        null);
+                    gebeurtenis.getBsnPartner(),
+                    gebeurtenis.getDatumVoltrokken(),
+                    null);
             }
         }
         if (getGeschiedenisHuwelijkOfPartnerschappen() != null) {
             for (GeschiedenisHuwelijkOfPartnerschap gebeurtenis : getGeschiedenisHuwelijkOfPartnerschappen()) {
                 if (gebeurtenis.getDatumVoltrokken() != null) {
                     hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
-                            gebeurtenis.getBsnPartner(),
-                            gebeurtenis.getDatumVoltrokken(),
-                            gebeurtenis.getRedenOntbinding()
+                        gebeurtenis.getBsnPartner(),
+                        gebeurtenis.getDatumVoltrokken(),
+                        gebeurtenis.getRedenOntbinding()
                     );
                 }
                 if (gebeurtenis.getDatumOntbinding() != null) {
                     hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
-                            gebeurtenis.getBsnPartner(),
-                            gebeurtenis.getDatumOntbinding(),
-                            gebeurtenis.getRedenOntbinding()
+                        gebeurtenis.getBsnPartner(),
+                        gebeurtenis.getDatumOntbinding(),
+                        gebeurtenis.getRedenOntbinding()
                     );
                 }
             }
@@ -322,7 +319,7 @@ public class Persoonslijst {
         // PL 1/2 : 07.67.10
         Inschrijving inschrijving = getInschrijving();
         return (inschrijving != null
-                && inschrijving.getDatumOpschortingBijhouding() != null);
+            && inschrijving.getDatumOpschortingBijhouding() != null);
     }
 
     @JsonIgnore
@@ -351,7 +348,7 @@ public class Persoonslijst {
     public boolean onderCurateleGesteld() {
         Gezagsverhouding gezagsverhouding = getGezagsverhouding();
         return gezagsverhouding != null
-                && isNotBlank(gezagsverhouding.getIndicatieCurateleRegister());
+            && isNotBlank(gezagsverhouding.getIndicatieCurateleRegister());
     }
 
     @JsonIgnore
@@ -360,10 +357,10 @@ public class Persoonslijst {
     }
 
     public boolean alsMinderjarigeOpgeschort() throws AfleidingsregelException {
-        if (isOpgeschort()){
+        if (isOpgeschort()) {
             int datumOpschorting = Integer.parseInt(getInschrijving().getDatumOpschortingBijhouding());
             int meerderjarigheidDatum = Integer.parseInt(getPersoon().getGeboortedatum())
-                    + MEERDERJARIGE_LEEFTIJD;
+                + MEERDERJARIGE_LEEFTIJD;
             return datumOpschorting < meerderjarigheidDatum;
         }
         return false;
@@ -377,18 +374,18 @@ public class Persoonslijst {
     }
 
     public static boolean isValideGeslachtsnaam(String str) {
-        return str != null && !str.isEmpty() && !str.isBlank() && !str.equals(PUNTOUDER_INDICATIE) ;
+        return str != null && !str.isEmpty() && !str.isBlank() && !str.equals(PUNTOUDER_INDICATIE);
     }
 
     /**
      * Controleert een lijst van aktenummers op geldige erkenningscodes.
      *
-     * @param akteNummers Een lijst van String objecten die de te controleren aktenummers bevat.
-     *                    Elk aktenummer moet minimaal {@value #AKTE_NUMMER_LENGTE} tekens lang zijn.
+     * @param akteNummers           Een lijst van String objecten die de te controleren aktenummers bevat.
+     *                              Elk aktenummer moet minimaal {@value #AKTE_NUMMER_LENGTE} tekens lang zijn.
      * @param geldigeErkenningCodes Een Set van Character objecten die de geldige erkenningscodes bevat.
-     *                                Deze codes worden vergeleken met het derde teken van elk aktenummer.
+     *                              Deze codes worden vergeleken met het derde teken van elk aktenummer.
      * @return {@code true} als er minstens één aktenummer is gevonden met een geldige erkenningscode,
-     *         {@code false} als er geen enkel aktenummer met een geldige erkenningscode is gevonden.
+     * {@code false} als er geen enkel aktenummer met een geldige erkenningscode is gevonden.
      * @throws NullPointerException als {@code akteNummers} of {@code geldigeErkenningCodes} null is.
      */
     public static boolean controleerAkteNummers(List<String> akteNummers, Set<Character> geldigeErkenningCodes) {
@@ -418,7 +415,6 @@ public class Persoonslijst {
     }
 
 
-
     public boolean geenOngeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling() {
         // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
         // voorbereiding, zet alle aktenummers in een lijst
@@ -427,7 +423,7 @@ public class Persoonslijst {
         List<GeschiedenisOuder1> geschiedenisOuder1 = getGeschiedenisOuder1();
         if (geschiedenisOuder1 != null) {
             for (GeschiedenisOuder1 p : geschiedenisOuder1) {
-                    akteNummers.add(p.getAktenummer());
+                akteNummers.add(p.getAktenummer());
             }
         }
         Set<Character> geldigeErkenningCodes = new HashSet<>(Arrays.asList(
@@ -535,7 +531,7 @@ public class Persoonslijst {
         String geslachtsnaamOuder1 = getOuder1() == null ? null : getOuder1().getGeslachtsnaam();
         String geslachtsnaamOuder2 = getOuder2() == null ? null : getOuder2().getGeslachtsnaam();
         if (Objects.equals(geslachtsnaamOuder1, GESLACHTNAAM_AANDUIDING_PUNTOUDER)
-                || Objects.equals(geslachtsnaamOuder2, GESLACHTNAAM_AANDUIDING_PUNTOUDER)) {
+            || Objects.equals(geslachtsnaamOuder2, GESLACHTNAAM_AANDUIDING_PUNTOUDER)) {
             return PUNTOUDERS;
         } else if (geslachtsnaamOuder1 == null && geslachtsnaamOuder2 == null) {
             return GEEN_OUDERS;
@@ -581,7 +577,7 @@ public class Persoonslijst {
     public boolean heefIndicatieGezag() {
         Gezagsverhouding gezagsverhouding = getGezagsverhouding();
         return gezagsverhouding != null
-                && INDICATIE_GEZAG_CODES.contains(gezagsverhouding.getIndicatieGezagMinderjarige());
+            && INDICATIE_GEZAG_CODES.contains(gezagsverhouding.getIndicatieGezagMinderjarige());
     }
 
     public boolean minderjarig() throws AfleidingsregelException {
@@ -600,9 +596,9 @@ public class Persoonslijst {
 
     /**
      * @return of een van de velden een waarde heeft in de persoonslijst
-     * @throws BrpException als een invalide veld benaderd wordt
+     * @throws AfleidingsregelException als een invalide veld benaderd wordt
      */
-    public boolean hasAnyValue() throws BrpException {
+    public boolean hasAnyValue() throws AfleidingsregelException {
         try {
             for (Field f : this.getClass().getDeclaredFields()) {
                 if (f.getType() == List.class) {
@@ -618,7 +614,7 @@ public class Persoonslijst {
             }
             return false;
         } catch (IllegalAccessException ex) {
-            throw new BrpException(ex.getMessage());
+            throw new AfleidingsregelException(ex.getMessage(), "persoonslijst");
         }
     }
 }
