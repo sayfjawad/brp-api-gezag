@@ -188,6 +188,9 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
     private Map<String, String> headersToMap(Collection<String> headerNames, UnaryOperator<String> headerValueResolver) {
         return headerNames.stream()
             .map(headerName -> Map.entry(headerName, headerValueResolver.apply(headerName)))
+            .map(entry ->
+                entry.getKey().equals("authorization") ? Map.entry("authorization", "***MASKED***") : entry
+            )
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
