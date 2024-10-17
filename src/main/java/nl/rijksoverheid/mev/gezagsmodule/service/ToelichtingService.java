@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Service voor het samenstellen van de toelichting bij de gezag uitspraak
+ * Service voor het samenstellen van de toelichting bij het gezag uitspraak.
  */
 @Service
 public class ToelichtingService {
@@ -22,8 +22,8 @@ public class ToelichtingService {
      * Past de basis toelichting zoals opgenomen in het antwoordenmodel aan op basis van of velden in onderzoek of missende gegevens.
      *
      * @param baseToelichting   de basis toelichting
-     * @param veldenInOnderzoek de velden die in onderzoek waren - of null
-     * @param missendeGegevens  de missende gegevens - of null
+     * @param veldenInOnderzoek de velden die in onderzoek waren, of null
+     * @param missendeGegevens  de missende gegevens, of null
      * @return de toelichting zoals uit het antwoorden model bewerkt met de additionele gegevens
      */
     public String decorateToelichting(final String baseToelichting, final VeldenInOnderzoek veldenInOnderzoek, final List<String> missendeGegevens) {
