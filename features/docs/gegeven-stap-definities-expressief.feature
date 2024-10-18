@@ -46,14 +46,44 @@
     | is meerderjarig                                              |
     | is meerderjarig, niet overleden en staat niet onder curatele |
 
-  Scenario: is ingeschreven in de BRP
+  Abstract Scenario: is ingeschreven
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
-    * is ingeschreven in de BRP
+    * is ingeschreven in de <inschrijving>
     Dan zijn de gegenereerde SQL statements
-    | stap       | categorie      | text                                                                                                                                                  | values                  |
-    | persoon-P1 | inschrijving   | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
-    |            | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
-    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code) VALUES($1,$2,$3)                                                   | 9999,0,0518             |
+    | stap       | categorie      | text                                                                                                                                                  | values                              |
+    | persoon-P1 | inschrijving   | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                                   |
+    |            | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1             |
+    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code) VALUES($1,$2,$3)                                                   | 9999,0,<inschrijving_gemeente_code> |
+
+    Voorbeelden:
+    | inschrijving  | inschrijving_gemeente_code |
+    | BRP           | 0518                       |
+    | RNI           | 1999                       |
+
+    Abstract Scenario: is ingeschreven en geëmigreerd geweest
+    Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+    * is ingeschreven in de <inschrijving>
+    * is geëmigreerd geweest
+    Dan zijn de gegenereerde SQL statements
+    | stap       | categorie      | text                                                                                                                                                  | values                                               |
+    | persoon-P1 | inschrijving   | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                                                    |
+    |            | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1                              |
+    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,vestiging_datum,inschrijving_gemeente_code) VALUES($1,$2,$3,$4)                                | 9999,0,vandaag - 1 jaar,<inschrijving_gemeente_code> |
+    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code) VALUES($1,$2,$3)                                                   | 9999,1,0518                                          |
+
+    Voorbeelden:
+    | inschrijving  | inschrijving_gemeente_code |
+    | BRP           | 0518                       |
+    | RNI           | 1999                       |
+
+  Scenario: persoon is geëmigreerd geweest (zonder inschrijving)
+    Gegeven de persoon 'P1' met burgerservicenummer '000000012'
+    * is geëmigreerd geweest
+    Dan zijn de gegenereerde SQL statements    
+      | stap          | categorie       | text                                                                                                                                                    | values                       |
+      | persoon-P1    | inschrijving    | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *   | 0                            |
+      |               | persoon         | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                      | 9999,0,0,P,000000012,P1      |
+      |               | verblijfplaats  | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,vestiging_datum,inschrijving_gemeente_code) VALUES($1,$2,$3,$4)                                  | 9999,0,vandaag - 1 jaar,0518 |
 
   Scenario: is in Nederland geboren
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
