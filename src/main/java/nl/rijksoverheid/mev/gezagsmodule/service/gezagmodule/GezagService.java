@@ -3,7 +3,6 @@ package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.service.BrpService;
-import nl.rijksoverheid.mev.common.util.BSNValidator;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
@@ -83,18 +82,16 @@ public class GezagService {
         Optional<Persoonslijst> plPersoon = Optional.empty();
         GezagBepaling gezagBepaling = null;
         try {
-            if (new BSNValidator().isValid(burgerservicenummer)) {
-                plPersoon = brpService.getPersoonslijst(burgerservicenummer, transaction);
-                if (plPersoon.isPresent()) {
-                    Persoonslijst persoon = plPersoon.get();
-                    transactionHandler.saveGezagmoduleTransaction(
-                        PersoonlijstType.PERSOON,
-                        persoon.getReceivedId(),
-                        null, null, null, transaction);
+            plPersoon = brpService.getPersoonslijst(burgerservicenummer, transaction);
+            if (plPersoon.isPresent()) {
+                Persoonslijst persoon = plPersoon.get();
+                transactionHandler.saveGezagmoduleTransaction(
+                    PersoonlijstType.PERSOON,
+                    persoon.getReceivedId(),
+                    null, null, null, transaction);
 
-                    gezagBepaling = new GezagBepaling(persoon, this, vragenlijstService.getVragenMap(), transaction);
-                    arAntwoordenModel = gezagBepaling.start();
-                }
+                gezagBepaling = new GezagBepaling(persoon, this, vragenlijstService.getVragenMap(), transaction);
+                arAntwoordenModel = gezagBepaling.start();
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
