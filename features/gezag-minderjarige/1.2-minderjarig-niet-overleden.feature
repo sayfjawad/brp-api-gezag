@@ -5,14 +5,18 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
 
     Achtergrond:
       Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'
-      * is meerderjarig, niet overleden en staat niet onder curatele
+      * is ingeschreven in de BRP
+      * is meerderjarig
       En de persoon 'Henk' met burgerservicenummer '000000024'
-      * is meerderjarig, niet overleden en staat niet onder curatele
+      * is ingeschreven in de BRP
+      * is meerderjarig
       En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
       En de persoon 'Jaimy' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is niet geëmigreerd geweest
       * is in Nederland geboren
+      * heeft 'Ingrid' als ouder 1
+      * heeft 'Henk' als ouder 2
 
 
   Regel: Als de persoon ouder is dan 18 jaar is gezag niet van toepassing
