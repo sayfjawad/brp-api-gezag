@@ -676,5 +676,6 @@ public class Lo3PlPersoonRecord extends UpdatableRecordImpl<Lo3PlPersoonRecord> 
         setRniDeelnemer(rniDeelnemer);
         setVerdragOms(verdragOms);
         setRegistratieBetrekking(registratieBetrekking);
+        resetChangedOnNotNull();
     }
 }

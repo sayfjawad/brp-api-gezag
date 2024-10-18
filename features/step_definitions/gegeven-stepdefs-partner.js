@@ -1,7 +1,8 @@
 const { Given } = require('@cucumber/cucumber');
 const { createPersoonMetGegevensgroepCollectie,
-        createGegevensgroepCollectie,
-        wijzigGegevensgroep } = require('./persoon');
+    createGegevensgroepCollectie,
+    wijzigGegevensgroep
+} = require('./persoon');
 
 Given(/^de persoon met burgerservicenummer '(\d*)' heeft een 'partner' met de volgende gegevens$/, function (burgerservicenummer, dataTable) {
     createPersoonMetGegevensgroepCollectie(this.context, burgerservicenummer, 'partner', dataTable);
