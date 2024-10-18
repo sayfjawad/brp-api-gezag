@@ -8,9 +8,6 @@ const { insertIntoAdresStatement,
         insertIntoStatement } = require('./parameterizedSqlStatementFactory');
 const { stringifyValues } = require('./stringify');
 const { queryRowCount, queryLastRow, executeSqlStatements } = require('./postgresqlHelpers');
-const { toDateOrString } = require('./brpDatum');
-
-const { generateSqlStatementsFrom } = require('./sqlStatementsFactory');
 
 Given(/^de (\d)e '(.*)' statement heeft als resultaat '(\d*)'$/, function (index, statement, result) {
     if(this.context.sqlDataIds == undefined) {
@@ -114,97 +111,38 @@ function vergelijkActualMetExpectedStatements(categorie, expected, actual, sqlDa
     }
 
     statement.text.should.equal(expected.text, `${expected.categorie}:\n${statement.text}\n!=\n${expected.text}`);
-
-    let expectedValues = expected.values.split(',');
-    expectedValues.forEach((val, index) =>{
-        expectedValues[index] = toDateOrString(val, false);
-    });
-
-    stringifyValues(statement.values).should.deep.equalInAnyOrder(expectedValues,
+    stringifyValues(statement.values).should.deep.equalInAnyOrder(expected.values.split(','),
                                                  `${expected.categorie}: ${statement.values} != ${expected.values}`);
-}
-
-function vulPrimaryEnForeignKeys(sqlData, ids){
-    sqlData.personen.forEach((persoon, index) => {
-
-        delete persoon.plId;
-
-        persoon.statements.forEach(statement => {
-            if(statement.categorie !== 'inschrijving') {
-                statement.values[0] = ids.plIds[index] + '';
-            }
-        });
-    });
-}
-
-function dataTableToSqlStatements(dataTable) {
-    let retval = {
-        personen: []
-    }
-
-    dataTable.hashes().forEach(row => {
-        if(row.stap !== '') {
-            retval.personen.push({
-                stap: row.stap,
-                statements: []
-            }) 
-        }
-
-        let expectedValues = row.values.split(',');
-        expectedValues.forEach((val, index) => {
-            expectedValues[index] = toDateOrString(val, false);
-        });
-
-        let persoon = retval.personen.at(-1);
-        persoon.statements.push({
-            text: row.text,
-            categorie: row.categorie,
-            values: expectedValues
-        });
-    });
-
-    return retval;
 }
 
 Then(/^zijn de gegenereerde SQL statements$/, function(dataTable) {
     this.context.verifyResponse = false;
+    
+    const { sqlData, sqlDataIds } = this.context;
+    const expected = groepeerQueriesPerStap(dataTable);
 
-    if(this.context.data) {
-        let actual = generateSqlStatementsFrom(this.context.data);
+    for(const queries of expected) {
 
-        vulPrimaryEnForeignKeys(actual, this.context.sqlDataIds);
+        let currentStap;
+        for(const categorie of Object.keys(queries)) {
+            queries[categorie].forEach(function(query, index) {
+                if(query.stap !== '') {
+                    currentStap = Number(query.stap) - 1;
+                }
 
-        let expected = dataTableToSqlStatements(dataTable);
+                const re = /(?<type>.*)-(?<typeid>\w?\d{1,2})$/;
+                const found = re.exec(categorie);
 
-        actual.should.deep.equalInAnyOrder(expected, `${JSON.stringify(actual, null, '\t')} != ${JSON.stringify(expected, null, '\t')}`);
-    }
-    else {
-        const { sqlData, sqlDataIds } = this.context;
-        const expected = groepeerQueriesPerStap(dataTable);
-    
-        for(const queries of expected) {
-    
-            let currentStap;
-            for(const categorie of Object.keys(queries)) {
-                queries[categorie].forEach(function(query, index) {
-                    if(query.stap !== '') {
-                        currentStap = Number(query.stap) - 1;
-                    }
-    
-                    const re = /(?<type>.*)-(?<typeid>\w?\d{1,2})$/;
-                    const found = re.exec(categorie);
-    
-                    const actual = found && !['kind', 'nationaliteit', 'ouder-1', 'ouder-2', 'partner','reisdocument'].find((i) => i === found.groups.type)
-                        ? sqlData[currentStap][found.groups.type][found.groups.typeid]?.data
-                        : sqlData[currentStap][categorie][index];
-                    should.exist(actual, `categorie: ${categorie}`);
-    
-                    vergelijkActualMetExpectedStatements(categorie,
-                                                         query,
-                                                         actual,
-                                                         sqlDataIds);
-                });
-            }
+                const actual = found && !['kind', 'nationaliteit', 'ouder-1', 'ouder-2', 'partner','reisdocument'].find((i) => i === found.groups.type)
+                    ? sqlData[currentStap][found.groups.type][found.groups.typeid]?.data
+                    : sqlData[currentStap][categorie][index];
+                should.exist(actual, `categorie: ${categorie}`);
+
+                vergelijkActualMetExpectedStatements(categorie,
+                                                     query,
+                                                     actual,
+                                                     sqlDataIds);
+            });
         }
     }
 });

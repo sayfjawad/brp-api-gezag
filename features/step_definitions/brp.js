@@ -8,12 +8,6 @@ const persoonTypeMap = new Map([
 
 ]);
 
-function toDbPersoonType(naam) {
-    return persoonTypeMap.has(naam)
-        ? persoonTypeMap.get(naam)
-        : naam;
-}
-
 const collectionNameMap = new Map([
     ['bewoner', 'bewoners'],
     ['bewoning', 'bewoningen'],
@@ -58,12 +52,6 @@ const tableNameMap = new Map([
     ['verblijfstitel', 'lo3_pl_verblijfstitel'],
 
 ]);
-
-function toDbTableName(naam) {
-    return tableNameMap.has(naam)
-        ? tableNameMap.get(naam)
-        : naam;
-}
 
 const columnNameMap = new Map([
 
@@ -218,18 +206,9 @@ const columnNameMap = new Map([
 
 ]);
 
-function toDbColumnName(naam) {
-    return columnNameMap.has(naam)
-        ? columnNameMap.get(naam)
-        : naam;
-}
-
 module.exports = {
     columnNameMap,
     persoonTypeMap,
     tableNameMap,
     toCollectieNaam,
-    toDbPersoonType,
-    toDbTableName,
-    toDbColumnName
 };
