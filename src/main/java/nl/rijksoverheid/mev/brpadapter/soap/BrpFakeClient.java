@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.*;
-import nl.rijksoverheid.mev.transaction.Transaction;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -65,7 +64,7 @@ public class BrpFakeClient implements BrpClient {
     }
 
     @Override
-    public Optional<Persoonslijst> opvragenPersoonslijst(String bsn, Transaction transaction) throws GezagException {
+    public Optional<Persoonslijst> opvragenPersoonslijst(String bsn) throws GezagException {
         if (fixtures.containsKey(bsn)){
             return Optional.of(fixtures.get(bsn).data);
         }
