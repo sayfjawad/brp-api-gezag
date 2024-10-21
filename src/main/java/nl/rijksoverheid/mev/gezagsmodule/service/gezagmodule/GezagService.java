@@ -117,7 +117,6 @@ public class GezagService {
             arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(unformattedUitleg, gezagBepaling.getVeldenInOnderzoek(), null));
         }
 
-        System.out.println(route);
         if (gezagBepaling != null) {
             List<String> missendeGegegevens = gezagBepaling.getMissendeGegegevens();
             UUID errorTraceCode = gezagBepaling.getErrorTraceCode();

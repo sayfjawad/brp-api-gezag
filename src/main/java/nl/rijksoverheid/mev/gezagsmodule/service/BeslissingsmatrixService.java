@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 public class BeslissingsmatrixService {
 
     private static final String ANTWOORDEN_MODEL_FILENAME = "/AntwoordenModel_v2_2_3.csv";
+    private static final String ERROR_ROUTE = "0";
+    private static final String MISSENDE_GEGEVENS_ANNOTATIE = "m";
 
     private Map<String, ARAntwoordenModel> routes;
 
@@ -58,10 +60,10 @@ public class BeslissingsmatrixService {
             return getRouteFromVraagModel(arAntwoordenModel);
         } else {
             String route = getRouteFromVraagModel(arAntwoordenModel);
-            if ("0".equals(route)
+            if (ERROR_ROUTE.equals(route)
                 && gezagBepaling.getErrorTraceCode() == null
                 && !gezagBepaling.getMissendeGegegevens().isEmpty()) {
-                route = route + "m";
+                route = route + MISSENDE_GEGEVENS_ANNOTATIE;
             }
 
             return route;
