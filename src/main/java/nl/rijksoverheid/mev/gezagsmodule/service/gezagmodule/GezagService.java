@@ -121,12 +121,12 @@ public class GezagService {
             List<String> missendeGegegevens = gezagBepaling.getMissendeGegegevens();
             UUID errorTraceCode = gezagBepaling.getErrorTraceCode();
 
-            if (!missendeGegegevens.isEmpty()) {
+            if (errorTraceCode != null) {
+                String toelichting = toelichtingService.setErrorReferenceToelichting(unformattedUitleg, errorTraceCode.toString());
+                arAntwoordenModel.setUitleg(toelichting);
+            } else if (!missendeGegegevens.isEmpty()) {
                 String toelichting = toelichtingService.decorateToelichting(unformattedUitleg, null, missendeGegegevens);
                 arAntwoordenModel.setUitleg(toelichting);
-            } else if (errorTraceCode != null) {
-                unformattedUitleg = unformattedUitleg.formatted(errorTraceCode.toString());
-                arAntwoordenModel.setUitleg(unformattedUitleg);
             }
 
             gezagBepaling.bepalenGezagdragers(burgerservicenummer, burgerservicenummerPersoon, arAntwoordenModel, gezagRelaties);

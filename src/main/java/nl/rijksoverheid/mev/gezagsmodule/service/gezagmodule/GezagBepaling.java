@@ -85,6 +85,7 @@ public class GezagBepaling {
             errorTraceCode = UUID.randomUUID();
             logger.error("Programmeerfout tijdens het bepalen van gezag ({})", errorTraceCode, ex);
 
+            arAntwoordenModel.setRoute("0");
             arAntwoordenModel.setException(ex);
         }
     }

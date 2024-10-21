@@ -50,7 +50,9 @@ public class BeslissingsmatrixService {
      * @return de route of "-503i"
      */
     public String findMatchingRoute(final ARAntwoordenModel arAntwoordenModel) {
-        if ((arAntwoordenModel.getException() != null)
+        if (arAntwoordenModel.getRoute() != null) {
+            return arAntwoordenModel.getRoute();
+        } else if ((arAntwoordenModel.getException() != null)
             && (Objects.equals(arAntwoordenModel.getException().getClass(), VeldInOnderzoekException.class))) {
             return getRouteFromVraagModel(arAntwoordenModel);
         } else {
