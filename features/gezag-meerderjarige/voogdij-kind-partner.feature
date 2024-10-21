@@ -9,20 +9,20 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
 
       
     Scenario: de partner van ouder onder curatele heeft gezag over een binnen het huwelijk geboren niet-erkend kind
-      Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Ludo' met burgerservicenummer '000000012'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En de persoon 'Ingrid' met burgerservicenummer '000000024'
+      En de persoon 'Laura' met burgerservicenummer '000000024'
       * is ingeschreven in de BRP
       * is meerderjarig
       * staat onder curatele
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
-      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      En 'Laura' en 'Ludo' zijn met elkaar gehuwd
+      En de persoon 'Linda' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is in Nederland geboren
       * is niet geëmigreerd geweest
-      * heeft 'Ingrid' als ouder 1
+      * heeft 'Laura' als ouder 1
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
@@ -38,25 +38,25 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | burgerservicenummer | 000000012 |
       
     Scenario: de ex-partner van ouder onder curatele heeft gezag over een binnen het huwelijk geboren niet-erkend kind
-      Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Ludo' met burgerservicenummer '000000012'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En de persoon 'Ingrid' met burgerservicenummer '000000024'
+      En de persoon 'Laura' met burgerservicenummer '000000024'
       * is ingeschreven in de BRP
       * is meerderjarig
       * staat onder curatele
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Ludo' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 19 jaar                                                 |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Ludo' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 2 jaar                                            |
-      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      En de persoon 'Linda' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is in Nederland geboren
       * is niet geëmigreerd geweest
-      * heeft 'Ingrid' als ouder 1
+      * heeft 'Laura' als ouder 1
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
@@ -72,24 +72,24 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | burgerservicenummer | 000000012 |
 
     Scenario: de (ex)partner van overleden ouder heeft gezag over een binnen het huwelijk geboren niet-erkend kind
-      Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Ludo' met burgerservicenummer '000000012'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En de persoon 'Ingrid' met burgerservicenummer '000000024'
+      En de persoon 'Laura' met burgerservicenummer '000000024'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
-      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      En 'Laura' en 'Ludo' zijn met elkaar gehuwd
+      En de persoon 'Linda' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is in Nederland geboren
       * is niet geëmigreerd geweest
-      * heeft 'Ingrid' als ouder 1
-      En 'Ingrid'
+      * heeft 'Laura' als ouder 1
+      En 'Laura'
       * is overleden
-      En de persoon 'Femke' met burgerservicenummer '000000048'
+      En de persoon 'Janine' met burgerservicenummer '000000048'
       * is meerderjarig
-      En 'Henk' en 'Femke' zijn met elkaar gehuwd
+      En 'Ludo' en 'Janine' zijn met elkaar gehuwd
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
@@ -105,22 +105,22 @@ Regel: een meerderjarige die van rechtswege voogdij heeft over een minderjarig k
       | burgerservicenummer | 000000012 |
 
     Scenario: de inmiddels met een ander getrouwde (ex)partner van overleden ouder heeft gezag over een binnen het huwelijk geboren niet-erkend kind
-      Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Ludo' met burgerservicenummer '000000012'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En de persoon 'Ingrid' met burgerservicenummer '000000024'
+      En de persoon 'Laura' met burgerservicenummer '000000024'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
-      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      En 'Laura' en 'Ludo' zijn met elkaar gehuwd
+      En de persoon 'Linda' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is in Nederland geboren
-      * heeft 'Ingrid' als ouder 1
-      En 'Ingrid'
+      * heeft 'Laura' als ouder 1
+      En 'Laura'
       * is overleden
-      En de persoon 'Femke' met burgerservicenummer '000000048'
-      En 'Henk' en 'Femke' zijn met elkaar gehuwd met de volgende gegevens
+      En de persoon 'Janine' met burgerservicenummer '000000048'
+      En 'Ludo' en 'Janine' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 1 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters

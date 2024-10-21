@@ -20,20 +20,20 @@ Regel: wanneer de persoon meerderjarig is en geen gezag heeft over minderjarige(
       En heeft de persoon geen gezag
 
     Scenario: ouder staat onder curatele en heeft daarom geen gezag over het minderjarige kind
-      Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Laura' met burgerservicenummer '000000012'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En de persoon 'Henk' met burgerservicenummer '000000024'
+      En de persoon 'Ludo' met burgerservicenummer '000000024'
       * is ingeschreven in de BRP
       * is meerderjarig
       * staat onder curatele
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
-      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      En 'Laura' en 'Ludo' zijn met elkaar gehuwd
+      En de persoon 'Linda' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is in Nederland geboren
-      * heeft 'Ingrid' als ouder 1
-      * heeft 'Henk' als ouder 2
+      * heeft 'Laura' als ouder 1
+      * heeft 'Ludo' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -43,19 +43,19 @@ Regel: wanneer de persoon meerderjarig is en geen gezag heeft over minderjarige(
       En heeft de persoon geen gezag
 
     Scenario: bij raadplegen van ouder wordt geen gezag geleverd voor kind waarvan gezag niet te bepalen is
-      Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Laura' met burgerservicenummer '000000012'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En de persoon 'Henk' met burgerservicenummer '000000024'
+      En de persoon 'Ludo' met burgerservicenummer '000000024'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
-      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      En 'Laura' en 'Ludo' zijn met elkaar gehuwd
+      En de persoon 'Linda' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is in Nederland geboren
-      * heeft 'Ingrid' als ouder 1
-      * heeft 'Henk' als ouder 2
+      * heeft 'Laura' als ouder 1
+      * heeft 'Ludo' als ouder 2
       * is geëmigreerd geweest
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
