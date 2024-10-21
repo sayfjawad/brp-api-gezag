@@ -364,7 +364,6 @@ Given(/^zijn van ouder ([1-2]) de volgende gegevens gecorrigeerd$/, function (ou
     );
 });
 
-
 Given(/^beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele/, function () {
     // doe niets
 });
