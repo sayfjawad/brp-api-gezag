@@ -5,6 +5,10 @@ app:
     refactored-gezag:
       enabled: true
 
+logging:
+  level:
+    nl.rijksoverheid.mev: DEBUG
+
 server:
   port: 8080
 
