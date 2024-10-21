@@ -235,7 +235,7 @@ public class GezagBepaling {
                     }
                 }
                 case "NVT" -> logger.info("Gezag uitkomst is NVT");
-                default -> logger.warn("Onverwachte gezagsoort ontvangen: " + soortGezag);
+                default -> logger.warn("Onverwachte gezagsoort ontvangen: {}", soortGezag);
             }
         }
     }
