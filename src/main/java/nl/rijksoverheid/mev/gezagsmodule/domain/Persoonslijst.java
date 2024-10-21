@@ -460,10 +460,8 @@ public class Persoonslijst {
         if(ouder2 != null) {
             akteNummers.add(getOuder2().getAktenummer());
             List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
-            if (geschiedenisOuder2 != null) {
-                for (GeschiedenisOuder2 p : geschiedenisOuder2) {
-                    akteNummers.add(p.getAktenummer());
-                }
+            for (GeschiedenisOuder2 p : geschiedenisOuder2) {
+                akteNummers.add(p.getAktenummer());
             }
         }
         // controleer de lijst op de erkenningscodes uit de publieke tabel 39
