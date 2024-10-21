@@ -4,13 +4,13 @@ const { columnNameMap, persoonTypeMap } = require('./brp');
 function getNextStapelNr(sqlData, gegevensgroep) {
     let stapelNr = 0;
 
-    Object.keys(sqlData).forEach(function (key) {
-        if (key.startsWith(gegevensgroep)) {
+    Object.keys(sqlData).forEach(function(key) {
+        if(key.startsWith(gegevensgroep)){
             stapelNr = Number(key.replace(`${gegevensgroep}-`, ''));
         }
     });
 
-    return stapelNr + 1;
+    return stapelNr+1;
 }
 
 function createInschrijving(context, dataTable, defaultGeheim = false, defaultPlId = undefined) {
@@ -18,13 +18,13 @@ function createInschrijving(context, dataTable, defaultGeheim = false, defaultPl
 
     let data = [];
 
-    if (defaultPlId !== undefined) {
-        data.push(['pl_id', defaultPlId]);
+    if(defaultPlId !== undefined) {
+        data.push([ 'pl_id', defaultPlId]);
     }
-    if (defaultGeheim) {
-        data.push(['geheim_ind', '0']);
+    if(defaultGeheim) {
+        data.push([ 'geheim_ind', '0' ]);
     }
-    if (dataTable !== undefined) {
+    if(dataTable !== undefined) {
         data = data.concat(createArrayFrom(dataTable, columnNameMap));
     }
 
@@ -33,19 +33,19 @@ function createInschrijving(context, dataTable, defaultGeheim = false, defaultPl
 
 function createPersoonTypeData(persoonType, dataTable, burgerservicenummer, stapelNr) {
     let data = [
-        ['stapel_nr', stapelNr - 1 + ''],
-        ['volg_nr', '0'],
+        [ 'stapel_nr', stapelNr-1 + ''],
+        [ 'volg_nr', '0'],
     ];
 
-    if (persoonTypeMap.has(persoonType)) {
-        data.push(['persoon_type', persoonTypeMap.get(persoonType)]);
+    if(persoonTypeMap.has(persoonType)){
+        data.push([ 'persoon_type', persoonTypeMap.get(persoonType)]);
     }
 
-    if (burgerservicenummer !== undefined) {
-        data.push(['burger_service_nr', burgerservicenummer]);
+    if(burgerservicenummer !== undefined) {
+        data.push([ 'burger_service_nr', burgerservicenummer]);
     }
 
-    if (dataTable !== undefined) {
+    if(dataTable !== undefined) {
         data = data.concat(createArrayFrom(dataTable, columnNameMap))
     };
 
@@ -53,7 +53,7 @@ function createPersoonTypeData(persoonType, dataTable, burgerservicenummer, stap
 }
 
 function createPersoon(context, burgerservicenummer, dataTable = undefined) {
-    if (context.sqlData === undefined) {
+    if(context.sqlData === undefined) {
         context.sqlData = [];
     }
     context.sqlData.push({});
@@ -62,25 +62,25 @@ function createPersoon(context, burgerservicenummer, dataTable = undefined) {
 
     let sqlData = context.sqlData.at(-1);
 
-    sqlData['persoon'] = [createPersoonTypeData('persoon', dataTable, burgerservicenummer, 1)];
+    sqlData['persoon'] = [ createPersoonTypeData('persoon', dataTable, burgerservicenummer, 1) ];
 
     return sqlData;
 }
 
 function createVoorkomenData(dataTable) {
     return [
-        ['volg_nr', '0']
+        [ 'volg_nr', '0']
     ].concat(createArrayFrom(dataTable, columnNameMap));
 }
 
 function createGegevensgroep(context, gegevensgroep, dataTable) {
     let sqlData = context.sqlData.at(-1);
 
-    if (gegevensgroep === 'inschrijving' || gegevensgroep === 'kiesrecht') {
+    if(gegevensgroep === 'inschrijving' || gegevensgroep === 'kiesrecht') {
         createInschrijving(context, dataTable, gegevensgroep !== 'inschrijving');
     }
     else {
-        sqlData[gegevensgroep] = [createVoorkomenData(dataTable)];
+        sqlData[gegevensgroep] = [ createVoorkomenData(dataTable) ];
     }
 }
 
@@ -94,7 +94,7 @@ function createGegevensgroepCollectie(context, relatieType, dataTable) {
     let sqlData = context.sqlData.at(-1);
 
     const stapelNr = getNextStapelNr(sqlData, relatieType);
-    sqlData[`${relatieType}-${stapelNr}`] = [createPersoonTypeData(relatieType, dataTable, undefined, stapelNr)];
+    sqlData[`${relatieType}-${stapelNr}`] = [ createPersoonTypeData(relatieType, dataTable, undefined, stapelNr) ];
 }
 
 function createPersoonMetGegevensgroepCollectie(context, burgerservicenummer, gegevensgroep, dataTable) {
@@ -103,10 +103,10 @@ function createPersoonMetGegevensgroepCollectie(context, burgerservicenummer, ge
     createGegevensgroepCollectie(context, gegevensgroep, dataTable);
 }
 
-function createStapelData(dataTable, columnNameMap, stapelNr = 0) {
+function createStapelData(dataTable, columnNameMap, stapelNr=0) {
     return [
-        ['stapel_nr', stapelNr - 1 + '']
-    ].concat(createArrayFrom(dataTable, columnNameMap));
+        [ 'stapel_nr', stapelNr-1 + '']
+      ].concat(createArrayFrom(dataTable, columnNameMap));
 }
 
 function createStapel(context, gegevensgroep, dataTable) {
@@ -132,10 +132,10 @@ function updatePersoon(context, dataTable) {
 }
 
 function ophogenVolgnr(sqlData, isCorrectie = false) {
-    sqlData.forEach(function (data) {
+    sqlData.forEach(function(data) {
         let volgNr = data.find(el => el[0] === 'volg_nr');
-        if (volgNr[1] === '0' && isCorrectie) {
-            data.push(['onjuist_ind', 'O']);
+        if(volgNr[1] === '0' && isCorrectie) {
+            data.push(['onjuist_ind','O']);
         }
         volgNr[1] = Number(volgNr[1]) + 1 + '';
     });
@@ -158,8 +158,8 @@ function wijzigGegevensgroep(context, gegevensgroep, dataTable, isCorrectie = fa
 
     const stapelNr = sqlData[foundRelatie][0].find(el => el[0] === 'stapel_nr');
 
-    if (stapelNr !== undefined) {
-        sqlData[foundRelatie].push(createPersoonTypeData(gegevensgroep, dataTable, undefined, Number(stapelNr[1]) + 1));
+    if(stapelNr !== undefined) {
+        sqlData[foundRelatie].push(createPersoonTypeData(gegevensgroep, dataTable, undefined, Number(stapelNr[1])+1));
     }
     else {
         sqlData[foundRelatie].push(createVoorkomenData(dataTable));
