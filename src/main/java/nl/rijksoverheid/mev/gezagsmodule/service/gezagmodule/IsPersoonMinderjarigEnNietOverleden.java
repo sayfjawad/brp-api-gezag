@@ -43,7 +43,9 @@ public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
             answer = V1_2_NEE_MEERDERJARIG;
         }
 
-        logger.debug("Is persoon minderjarig en niet overleden? : {}", answer);
+        logger.debug("""
+            1.2 Is persoon minderjarig en niet overleden?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0102(answer);
     }
 }

@@ -40,7 +40,9 @@ public class IsNaarBuitenlandGeemigreerdGeweest extends GezagVraag {
             answer = V1_3_NEE;
         }
 
-        logger.debug("Is minderjarige naar het buitenland geëmigreerd geweest? : {}", answer);
+        logger.debug("""
+            1.3 Is minderjarige naar het buitenland geëmigreerd geweest?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0103(answer);
     }
 }

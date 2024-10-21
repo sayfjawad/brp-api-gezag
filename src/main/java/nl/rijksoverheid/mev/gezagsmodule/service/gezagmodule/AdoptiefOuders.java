@@ -27,7 +27,9 @@ public class AdoptiefOuders extends GezagVraag {
 
         answer = (plPersoon.geadopteerdMetNlAkte()) ? V2A_2_JA : V2A_2_NEE;
 
-        logger.debug("Adoptiefouder(s)? : {}", answer);
+        logger.debug("""
+            2a.2 Adoptiefouder(s)?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV02A02(answer);
     }
 }

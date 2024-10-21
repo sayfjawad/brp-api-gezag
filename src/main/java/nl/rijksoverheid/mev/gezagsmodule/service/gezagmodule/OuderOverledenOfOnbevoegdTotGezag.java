@@ -56,7 +56,9 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
             }
         }
 
-        logger.debug("Ouder overleden of onbevoegd tot gezag? : {}", answer);
+        logger.debug("""
+            4a.3 Ouder overleden of onbevoegd tot gezag?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV04A03(answer);
     }
 }

@@ -31,7 +31,9 @@ public class IsUitspraakGezagAanwezig extends GezagVraag {
             answer = V1_4_NEE;
         }
 
-        logger.debug("Uitspraak gezag aanwezig? : {}", answer);
+        logger.debug("""
+            1.4 Uitspraak gezag aanwezig?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0104(answer);
     }
 }

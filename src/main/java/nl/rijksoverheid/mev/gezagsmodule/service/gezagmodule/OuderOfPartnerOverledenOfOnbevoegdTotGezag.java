@@ -70,7 +70,9 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
             answer = ouderOfPartnerOverledenOfOnbevoegdTotGezagMap.get(key);
         }
 
-        logger.debug("Ouder, echtgenoot of partner overleden of onbevoegd tot gezag? : {}", answer);
+        logger.debug("""
+            4b.1 Ouder, echtgenoot of partner overleden of onbevoegd tot gezag?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV04B01(answer);
     }
 }

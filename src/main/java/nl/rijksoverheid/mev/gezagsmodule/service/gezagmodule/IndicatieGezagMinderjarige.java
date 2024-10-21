@@ -30,7 +30,9 @@ public class IndicatieGezagMinderjarige extends GezagVraag {
             gezagBepaling.addMissendeGegegevens("gezagsverhouding van bevraagde persoon");
         }
 
-        logger.debug("Wat is de indicatie gezag minderjarige? : {}", answer);
+        logger.debug("""
+            3.2 Wat is de indicatie gezag minderjarige?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0302(answer);
     }
 }

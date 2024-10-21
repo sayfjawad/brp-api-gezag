@@ -50,7 +50,9 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag 
             answer = V2A_1_NEE;
         }
 
-        logger.debug("Zijn beide juridische ouders nu met elkaar gehuwd/partners? : {}", answer);
+        logger.debug("""
+            2a.1 Zijn beide juridische ouders nu met elkaar gehuwd/partners?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV02A01(answer);
     }
 

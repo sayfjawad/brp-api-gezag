@@ -49,7 +49,9 @@ public class IsPersoonIngezeteneInBRP extends GezagVraag {
             answer = V1_1_JA;
         }
 
-        logger.debug("Staat persoon (minderjarige) als ingezetene in de BRP? : {}", answer);
+        logger.debug("""
+            1.1 Staat persoon (minderjarige) als ingezetene in de BRP?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0101(answer);
     }
 }

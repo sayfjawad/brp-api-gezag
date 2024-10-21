@@ -60,7 +60,9 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
             }
         }
 
-        logger.debug("Is het kind staande huwelijk of partnerschap geboren? : {}", answer);
+        logger.debug("""
+            2b.1 Is het kind staande huwelijk of partnerschap geboren?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV02B01(answer);
     }
 

@@ -37,7 +37,9 @@ public class OudersOverledenOfOnbevoegdTotGezag extends GezagVraag {
             answer = V4A_2_NEE;
         }
 
-        logger.debug("Ouders overleden of onbevoegd tot gezag? : {}", answer);
+        logger.debug("""
+            4a.2 Ouders overleden of onbevoegd tot gezag?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV04A02(answer);
     }
 }

@@ -61,7 +61,9 @@ public class ErkenningNa01012023 extends GezagVraag {
         }
 
         if (answer != null) {
-            logger.debug("Erkenning voor of na 1-1-2023? : {}", answer);
+            logger.debug("""
+                2a.3 Erkenning voor of na 1-1-2023?
+                {}""", answer);
             gezagBepaling.getArAntwoordenModel().setV02A03(answer);
         } else {
             throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen", "Geboortemoeder van bevraagde persoon niet te bepalen");

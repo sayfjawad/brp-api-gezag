@@ -31,7 +31,9 @@ public class IsGeadopteerdMetNlAkte extends GezagVraag {
             answer = V1_3B_NEE;
         }
 
-        logger.debug("Is deze minderjarige geadopteerd met een NL-akte? : {}", answer);
+        logger.debug("""
+            1.3b Is deze minderjarige geadopteerd met een NL-akte?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0103B(answer);
     }
 }

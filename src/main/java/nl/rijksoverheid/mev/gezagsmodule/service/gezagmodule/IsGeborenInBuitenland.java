@@ -53,7 +53,9 @@ public class IsGeborenInBuitenland extends GezagVraag {
             answer = V1_3A_JA;
         }
 
-        logger.debug("Is minderjarige geboren in het buitenland? : {}", answer);
+        logger.debug("""
+            1.3a Is minderjarige geboren in het buitenland?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0103A(answer);
     }
 }
