@@ -100,7 +100,7 @@ public class GezagService {
         if (hasVeldenInOnderzoek) {
             arAntwoordenModel.setException(new VeldInOnderzoekException("Preconditie: Velden mogen niet in onderzoek staan"));
         }
-        route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel);
+        route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel, gezagBepaling);
         arAntwoordenModel.setRoute(route);
         setConfiguredValues(arAntwoordenModel, plPersoon.isPresent());
 
@@ -117,6 +117,7 @@ public class GezagService {
             arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(unformattedUitleg, gezagBepaling.getVeldenInOnderzoek(), null));
         }
 
+        System.out.println(route);
         if (gezagBepaling != null) {
             List<String> missendeGegegevens = gezagBepaling.getMissendeGegegevens();
             UUID errorTraceCode = gezagBepaling.getErrorTraceCode();

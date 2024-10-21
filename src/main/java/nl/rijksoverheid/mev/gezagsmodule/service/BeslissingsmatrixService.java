@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
+import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagBepaling;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -49,14 +50,21 @@ public class BeslissingsmatrixService {
      * @param arAntwoordenModel het model om de route voor te bepalen
      * @return de route of "-503i"
      */
-    public String findMatchingRoute(final ARAntwoordenModel arAntwoordenModel) {
+    public String findMatchingRoute(final ARAntwoordenModel arAntwoordenModel, final GezagBepaling gezagBepaling) {
         if (arAntwoordenModel.getRoute() != null) {
             return arAntwoordenModel.getRoute();
         } else if ((arAntwoordenModel.getException() != null)
             && (Objects.equals(arAntwoordenModel.getException().getClass(), VeldInOnderzoekException.class))) {
             return getRouteFromVraagModel(arAntwoordenModel);
         } else {
-            return getRouteFromVraagModel(arAntwoordenModel);
+            String route = getRouteFromVraagModel(arAntwoordenModel);
+            if ("0".equals(route)
+                && gezagBepaling.getErrorTraceCode() == null
+                && !gezagBepaling.getMissendeGegegevens().isEmpty()) {
+                route = route + "m";
+            }
+
+            return route;
         }
     }
 
