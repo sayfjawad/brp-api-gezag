@@ -227,15 +227,15 @@
     | persoon-P1 | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *            | 0                                           |
     |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                               | 10000,0,0,P,000000036,P1                    |
     |            | ouder-1      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,familie_betrek_start_datum) VALUES($1,$2,$3,$4,$5,$6,$7) | 10000,0,1,1,000000012,P2,gisteren - 17 jaar |
-    |            | ouder-1      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,familie_betrek_start_datum) VALUES($1,$2,$3,$4,$5,$6,$7) | 10000,0,0,1,000000012,P2,20200101        |
+    |            | ouder-1      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,familie_betrek_start_datum) VALUES($1,$2,$3,$4,$5,$6,$7) | 10000,0,0,1,000000012,P2,20200101           |
 
   Scenario: zijn van ouder [1 of 2] de volgende gegevens gecorrigeerd
     Gegeven de persoon 'P1' met burgerservicenummer '000000012'
     En de persoon 'P2' met burgerservicenummer '000000024'
     * heeft 'P1' als ouder 1
     * zijn van ouder 1 de volgende gegevens gecorrigeerd
-      | datum ingang familierechtelijke betrekking (62.10) |
-      | 20200101                                           |
+      | datum ingang familierechtelijke betrekking (62.10) | geslachtsnaam (02.40) |
+      | 20200101                                           |                       |
     Dan zijn de gegenereerde SQL statements    
     | stap       | categorie    | text                                                                                                                                                                            | values                                        |
     | persoon-P1 | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *                           | 0                                             |
@@ -244,7 +244,7 @@
     | persoon-P2 | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *                           | 0                                             |
     |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                              | 10000,0,0,P,000000024,P2                      |
     |            | ouder-1      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,familie_betrek_start_datum,onjuist_ind) VALUES($1,$2,$3,$4,$5,$6,$7,$8) | 10000,0,1,1,000000012,P1,gisteren - 17 jaar,O |
-    |            | ouder-1      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,familie_betrek_start_datum) VALUES($1,$2,$3,$4,$5,$6,$7)                | 10000,0,0,1,000000012,P1,20200101             |
+    |            | ouder-1      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,familie_betrek_start_datum) VALUES($1,$2,$3,$4,$5,$6)                                  | 10000,0,0,1,000000012,20200101                |
 
   Abstract Scenario: is geadopteerd door '[aanduiding]' als ouder [1 of 2]
     Gegeven de persoon 'P1' met burgerservicenummer '000000012'
