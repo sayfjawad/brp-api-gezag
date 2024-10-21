@@ -4,17 +4,17 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
 
 
     Achtergrond:
-      Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Gerda' met burgerservicenummer '000000012'
       * is meerderjarig, niet overleden en staat niet onder curatele
-      En de persoon 'Henk' met burgerservicenummer '000000024'
+      En de persoon 'Bert' met burgerservicenummer '000000024'
       * is meerderjarig, niet overleden en staat niet onder curatele
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
-      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      En 'Gerda' en 'Bert' zijn met elkaar gehuwd
+      En de persoon 'Zoe' met burgerservicenummer '000000036'
       * is minderjarig
       * is niet geëmigreerd geweest
       * is in Nederland geboren
-      * heeft 'Ingrid' als ouder 1
-      * heeft 'Henk' als ouder 2
+      * heeft 'Gerda' als ouder 1
+      * heeft 'Bert' als ouder 2
 
 
   Regel: Als de gemeente van inschrijving is RNI kan het gezag van de persoon niet worden bepaald
