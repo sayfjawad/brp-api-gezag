@@ -148,6 +148,13 @@ Given(/^is overleden/, function () {
     );
 });
 
+Given(/^heeft de volgende gegevens$/, function (dataTable) {
+    aanvullenPersoon(
+        getPersoon(this.context, undefined),
+        dataTable
+    );
+});
+
 Given(/^zijn de volgende gegevens gewijzigd$/, function (dataTable) {
     const persoon = getPersoon(this.context, undefined);
 
