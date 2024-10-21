@@ -234,9 +234,7 @@ public class GezagBepaling {
                         gezagsrelaties.add(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(arAntwoordenModel.getUitleg()));
                     }
                 }
-                case "NVT" -> {
-                    logger.info("Gezag uitkomst is NVT");
-                }
+                case "NVT" -> logger.info("Gezag uitkomst is NVT");
                 default -> logger.warn("Onverwachte gezagsoort ontvangen: " + soortGezag);
             }
         }
