@@ -121,7 +121,7 @@ function createPartner(persoon, dataTable) {
     ];
 }
 
-function wijzigPartner(persoon, dataTable) {
+function wijzigPartner(persoon, dataTable, isCorrectie = false) {
     const partnerData = createPersoonType('partner', dataTable, 0);
 
     let partner;
@@ -139,6 +139,9 @@ function wijzigPartner(persoon, dataTable) {
 
     partner.forEach(p => {
         p.volg_nr = Number(p.volg_nr) + 1 + '';
+        if(isCorrectie && p.volg_nr === '1') {
+            p.onjuist_ind = 'O';
+        }
     });
 
     partnerData.stapel_nr = partner.at(-1).stapel_nr;
