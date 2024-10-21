@@ -55,6 +55,37 @@
     |            | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
     |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code) VALUES($1,$2,$3)                                                   | 9999,0,0518             |
 
+  Scenario: is ingeschreven in de BRP met de volgende gegevens
+    Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+    * is ingeschreven in de BRP met de volgende gegevens
+      | gemeente van inschrijving (09.10) | aanduiding in onderzoek (83.10) |
+      | 0518                              | 080000                          |
+    Dan zijn de gegenereerde SQL statements
+    | stap       | categorie      | text                                                                                                                                                  | values                  |
+    | persoon-P1 | inschrijving   | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
+    |            | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
+    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code,onderzoek_gegevens_aand) VALUES($1,$2,$3,$4)                        | 9999,0,0518,080000      |
+
+  Scenario: is ingeschreven in de RNI
+    Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+    * is ingeschreven in de RNI
+    Dan zijn de gegenereerde SQL statements
+    | stap       | categorie      | text                                                                                                                                                  | values                  |
+    | persoon-P1 | inschrijving   | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
+    |            | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
+    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code) VALUES($1,$2,$3)                                                   | 9999,0,1999             |
+
+  Scenario: is ingeschreven in de RNI met de volgende gegevens
+    Gegeven de persoon 'P1' met burgerservicenummer '000000036'
+    * is ingeschreven in de RNI met de volgende gegevens
+      | gemeente van inschrijving (09.10) | aanduiding in onderzoek (83.10) |
+      | 1999                              | 080000                          |
+    Dan zijn de gegenereerde SQL statements
+    | stap       | categorie      | text                                                                                                                                                  | values                  |
+    | persoon-P1 | inschrijving   | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
+    |            | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
+    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code,onderzoek_gegevens_aand) VALUES($1,$2,$3,$4)                        | 9999,0,1999,080000      |
+
   Scenario: is in Nederland geboren
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
     * is in Nederland geboren

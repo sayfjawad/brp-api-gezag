@@ -372,27 +372,39 @@ Given(/^beide ouders zijn meerderjarig, niet overleden en staan niet onder curat
  * Expressieve Gegeven-stappen voor Verblijfplaats
  */
 
-
-Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de BRP?$/, function (_) {
-    const gemeenteVanInschrijving = '0518';
-
+function gegevenPersoonIsIngeschrevenInGemeente(context, aanduiding, dataTable) {
     createVerblijfplaats(
-        getPersoon(this.context, undefined),
+        getPersoon(context, aanduiding),
+        dataTable
+    );
+}
+
+Given(/^is ingeschreven in de BRP$/, function () {
+    gegevenPersoonIsIngeschrevenInGemeente(
+        this.context,
+        undefined,
         arrayOfArraysToDataTable([
-            ['gemeente van inschrijving (09.10)', gemeenteVanInschrijving]
+            ['gemeente van inschrijving (09.10)', '0518']
         ])
     );
 });
 
-Given(/^(?:de persoon(?: '(.*)')? )?is ingeschreven in de RNI/, function (_) {
-    const gemeenteVanInschrijving = '1999';
+Given(/^is ingeschreven in de BRP met de volgende gegevens$/, function (dataTable) {
+    gegevenPersoonIsIngeschrevenInGemeente(this.context, undefined, dataTable);
+});
 
-    createVerblijfplaats(
-        getPersoon(this.context, undefined),
+Given(/^is ingeschreven in de RNI$/, function () {
+    gegevenPersoonIsIngeschrevenInGemeente(
+        this.context,
+        undefined,
         arrayOfArraysToDataTable([
-            ['gemeente van inschrijving (09.10)', gemeenteVanInschrijving]
+            ['gemeente van inschrijving (09.10)', '1999']
         ])
     );
+});
+
+Given(/^is ingeschreven in de RNI met de volgende gegevens$/, function (dataTable) {
+    gegevenPersoonIsIngeschrevenInGemeente(this.context, undefined, dataTable);
 });
 
 Given(/^(?:de persoon(?: '(.*)')? )?is niet geëmigreerd geweest/, function (_) {
