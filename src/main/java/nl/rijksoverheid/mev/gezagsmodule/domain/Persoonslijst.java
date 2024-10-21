@@ -458,7 +458,7 @@ public class Persoonslijst {
         List<String> akteNummers = new ArrayList<>();
         Ouder2 ouder2 = getOuder2();
         if(ouder2 != null) {
-            akteNummers.add(getOuder2().getAktenummer());
+            akteNummers.add(ouder2.getAktenummer());
             List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
             for (GeschiedenisOuder2 p : geschiedenisOuder2) {
                 akteNummers.add(p.getAktenummer());
