@@ -33,6 +33,7 @@
 
     <springProfile name="!default">
         <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
             <appender-ref ref="DEFAULT-FILE"/>
             <appender-ref ref="SECURE-FILE"/>
         </root>
