@@ -1,5 +1,6 @@
 v0101,v0102,v0103,v0103A,v0103B,v0104,v0201,v02A01,v02A02,v02A03,v02B01,v0301,v0302,v04A02,V04A03,V04B01,Exception,route,soortGezag,gezag_ouder1,gezag_ouder2,gezag_niet_ouder1,gezag_niet_ouder2,Index,Uitleg
 ,,,,,,,,,,,,,,,,,0,N,Nee,Nee,Nee,Nee,0,Gezag is niet te bepalen. Neem contact op met RvIG via info@RvIG onder vermelding van BRP API gezag met de volgende foutcode: %s
+,,,,,,,,,,,,,,,,,0m,N,Nee,Nee,Nee,Nee,0,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
 Nee,,,,,,,,,,,,,,,,,1,N,Nee,Nee,Nee,Nee,150,gezag is niet te bepalen omdat minderjarige niet in Nederland woont.
 Ja,,,,,,,,,,,,,,,,,2e,N,Nee,Nee,Nee,Nee,200,gezag is niet te bepalen omdat de geboortedatum van minderjarige niet bekend is.
 Ja,Nee_meerderjarig,,,,,,,,,,,,,,,,2m,NVT,Nee,Nee,Nee,Nee,210,Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing
