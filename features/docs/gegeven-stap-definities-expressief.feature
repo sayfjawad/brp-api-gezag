@@ -422,6 +422,25 @@ Scenario: persoon zonder partner is overleden
     |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                              | 9999,0,0,P,000000012,P1  |
     |            | overlijden   | INSERT INTO public.lo3_pl_overlijden(pl_id,volg_nr,overlijden_datum) VALUES($1,$2,$3)                                                                                                                           | 9999,0,gisteren - 2 jaar |
 
+Abstract Scenario: heeft '[aanduiding]' als ouder [1 of 2] en geboortedatum van het kind is bekend
+  Gegeven de persoon 'P2' met burgerservicenummer '000000012' 
+  En de persoon 'P1' met burgerservicenummer '000000036'
+  * is minderjarig
+  * heeft 'P2' als ouder <ouder type>
+    Dan zijn de gegenereerde SQL statements
+    | stap       | categorie          | text                                                                                                                                                             | values                                                 |
+    | persoon-P2 | inschrijving       | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *            | 0                                                      |
+    |            | persoon            | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                               | 9999,0,0,P,000000012,P2                                |
+    |            | kind-1             | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,geboorte_datum) VALUES($1,$2,$3,$4,$5,$6,$7)             | 9999,0,0,K,000000036,P1,gisteren - 17 jaar             |
+    | persoon-P1 | inschrijving       | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *            | 0                                                      |
+    |            | persoon            | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,geboorte_datum) VALUES($1,$2,$3,$4,$5,$6,$7)             | 10000,0,0,P,000000036,P1,gisteren - 17 jaar            |
+    |            | ouder-<ouder type> | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,familie_betrek_start_datum) VALUES($1,$2,$3,$4,$5,$6,$7) | 10000,0,0,<ouder type>,000000012,P2,gisteren - 17 jaar |
+
+    Voorbeelden:
+    | ouder type |
+    | 1          |
+    | 2          |
+
 Scenario: bijhouding van de persoonsgegevens van '[aanduiding]' is opgeschort met de volgende gegevens
   Gegeven de persoon 'P1' met burgerservicenummer '000000012'
   En bijhouding van de persoonsgegevens van 'P1' is opgeschort met de volgende gegevens

@@ -33,6 +33,10 @@ function getGeslachtsnaam(persoon) {
     return persoon.persoon.at(-1).geslachts_naam;
 }
 
+function getGeboortedatum(persoon) {
+    return persoon.persoon.at(-1).geboorte_datum;
+}
+
 function deleteHuwelijkProperties(entiteit) {
     delete entiteit.relatie_start_datum;
     delete entiteit.relatie_start_plaats;
@@ -317,6 +321,7 @@ function gegevenHeeftPersoonAlsOuder(context, aanduiding, ouderType, dataTable) 
         arrayOfArraysToDataTable([
             ['burgerservicenummer (01.20)', getBsn(kind)],
             ['geslachtsnaam (02.40)', getGeslachtsnaam(kind)],
+            ['geboortedatum (03.10)', getGeboortedatum(kind)]
         ])
     )
 }
