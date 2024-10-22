@@ -372,3 +372,13 @@ Scenario: persoon zonder partner is overleden
     | persoon-P1 | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind,bijhouding_opschort_datum,bijhouding_opschort_reden) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1,$2,$3) RETURNING * | 0,gisteren - 2 jaar,O    |
     |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                              | 9999,0,0,P,000000012,P1  |
     |            | overlijden   | INSERT INTO public.lo3_pl_overlijden(pl_id,volg_nr,overlijden_datum) VALUES($1,$2,$3)                                                                                                                           | 9999,0,gisteren - 2 jaar |
+
+Scenario: bijhouding van de persoonsgegevens van '[aanduiding]' is opgeschort met de volgende gegevens
+  Gegeven de persoon 'P1' met burgerservicenummer '000000012'
+  En bijhouding van de persoonsgegevens van 'P1' is opgeschort met de volgende gegevens
+  | datum opschorting bijhouding (67.10) |
+  | gisteren                             |
+  Dan zijn de gegenereerde SQL statements    
+  | stap       | categorie    | text                                                                                                                                                                               | values                  |
+  | persoon-P1 | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind,bijhouding_opschort_datum) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1,$2) RETURNING * | 0,gisteren              |
+  |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                 | 9999,0,0,P,000000012,P1 |

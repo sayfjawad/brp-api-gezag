@@ -96,7 +96,7 @@ Given(/^is meerderjarig(?:, niet overleden en staat niet onder curatele)?$/, fun
     );
 });
 
-Given(/^is in Nederland geboren/, function () {
+Given(/^is in Nederland geboren$/, function () {
     const landGeboorte = '6030';
     const nummerAkte = '1AA0100';
 
@@ -116,7 +116,7 @@ Given(/^heeft gezag uitspraak$/, function (dataTable) {
     );
 });
 
-Given(/^staat onder curatele/, function () {
+Given(/^staat onder curatele$/, function () {
     const curateleRegisterIndicatie = '1';
 
     aanvullenGezagsverhouding(
@@ -127,7 +127,7 @@ Given(/^staat onder curatele/, function () {
     );
 });
 
-Given(/^is overleden/, function () {
+Given(/^is overleden$/, function () {
     const datumOpschortingBijhouden = 'gisteren - 2 jaar';
     const indicatieGeheim = 'O';
     const datumOverlijden = 'gisteren - 2 jaar';
@@ -145,6 +145,13 @@ Given(/^is overleden/, function () {
         arrayOfArraysToDataTable([
             ['datum overlijden (08.10)', datumOverlijden]
         ])
+    );
+});
+
+Given(/^bijhouding van de persoonsgegevens van '(.*)' is opgeschort met de volgende gegevens$/, function (aanduiding, dataTable) {
+    aanvullenInschrijving(
+        getPersoon(this.context, aanduiding),
+        dataTable
     );
 });
 
@@ -218,7 +225,7 @@ Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd met de volgende gegevens$/, func
     gegevenDePersonenZijnGehuwd(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
-Given('beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad', function () {
+Given(/^beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad$/, function () {
     // doe niets
 });
 
@@ -261,7 +268,7 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden met de volgende gegevens$/, function (a
     gegevenDePersonenZijnGescheiden(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
-Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd/, function (aanduiding1, aanduiding2, dataTable) {
+Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd$/, function (aanduiding1, aanduiding2, dataTable) {
     return 'pending';
 });
 
@@ -371,7 +378,7 @@ Given(/^zijn van ouder ([1-2]) de volgende gegevens gecorrigeerd$/, function (ou
     );
 });
 
-Given(/^beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele/, function () {
+Given(/^beide ouders zijn meerderjarig, niet overleden en staan niet onder curatele$/, function () {
     // doe niets
 });
 
@@ -414,7 +421,7 @@ Given(/^is ingeschreven in de RNI met de volgende gegevens$/, function (dataTabl
     gegevenPersoonIsIngeschrevenInGemeente(this.context, undefined, dataTable);
 });
 
-Given(/^(?:de persoon(?: '(.*)')? )?is niet geëmigreerd geweest/, function (_) {
+Given(/^(?:de persoon(?: '(.*)')? )?is niet geëmigreerd geweest$/, function (_) {
     // doe niets
 });
 
