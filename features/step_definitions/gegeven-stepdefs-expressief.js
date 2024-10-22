@@ -470,3 +470,74 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
         false
     );
 });
+
+/**
+ * Hier volgt de gegeven stappen voor erkenning
+ */
+Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning bij geboorteaangifte$/, function (aanduidingOuder, ouderType) {
+    const ouderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', 'gisteren - 17 jaar']
+    ]);
+
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijGeboorteaangifte, ouderType, ouderData);
+});
+
+Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning na geboorteaangifte op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
+    const ouderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', `${jaar}${maand}${dag}`]
+    ]);
+
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijGeboorteaangifte, ouderType, ouderData);
+});
+
+/*
+Given(/^is erkend door (?:de persoon(?: '(.*)')? )?met erkenning bij notariële akte$/, function (string) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+Given(/^is erkend door (?:de persoon(?: '(.*)')? )?met gerechtelijke vaststelling ouderschap$/, function (string) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+*/
+const ErkenningsType = {
+    ErkenningBijGeboorteaangifte: 'B',
+    ErkenningNaGeboorteaangifte: 'C',
+    ErkenningBijNotarieleAkte: 'J',
+    GerechtelijkeVaststellingOuderschap: 'V'
+}
+
+function gegevenIsErkendDoorPersoonAlsOuder(context, aanduidingOuder, erkenningsType, ouderType, dataTable) {
+    if(!erkenningsType) {
+        erkenningsType = ErkenningsType.ErkenningBijGeboorteaangifte;
+    }
+
+    const kind = getPersoon(context, null);
+    const ouder = getPersoon(context, aanduidingOuder);
+
+    const kindData = { ...kind.persoon.at(-1) };
+    kindData[toDbColumnName('aktenummer (81.20)')] = `1A${erkenningsType}0100`
+
+    wijzigPersoon(
+        kind,
+        objectToDataTable(kindData)
+    );
+
+    createOuder(
+        kind,
+        ouderType,
+        arrayOfArraysToDataTable([
+            ['burgerservicenummer (01.20)', getBsn(ouder)],
+            ['geslachtsnaam (02.40)', getGeslachtsnaam(ouder)]
+        ], dataTable)
+    );
+
+    createKind(
+        ouder,
+        arrayOfArraysToDataTable([
+            ['burgerservicenummer (01.20)', getBsn(kind)],
+            ['geslachtsnaam (02.40)', getGeslachtsnaam(kind)],
+        ])
+    )
+}
