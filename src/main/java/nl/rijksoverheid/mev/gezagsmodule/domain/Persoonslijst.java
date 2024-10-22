@@ -456,9 +456,10 @@ public class Persoonslijst {
         // controleer dan op akte erkenning actueel en geschiedenis op E
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getOuder2().getAktenummer());
-        List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
-        if (geschiedenisOuder2 != null) {
+        Ouder2 ouder2 = getOuder2();
+        if(ouder2 != null) {
+            akteNummers.add(ouder2.getAktenummer());
+            List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
             for (GeschiedenisOuder2 p : geschiedenisOuder2) {
                 akteNummers.add(p.getAktenummer());
             }
