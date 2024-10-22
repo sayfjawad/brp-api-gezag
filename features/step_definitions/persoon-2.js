@@ -189,6 +189,17 @@ function createVerblijfplaats(persoon, dataTable) {
     persoon.verblijfplaats.push(verblijfplaats);
 }
 
+function wijzigVerblijfplaats(persoon, dataTable, isCorrectie) {
+    persoon.verblijfplaats?.forEach(p => {
+        p.volg_nr = Number(p.volg_nr) + 1 + '';
+        if(isCorrectie && p.volg_nr === '1') {
+            p.onjuist_ind = 'O';
+        }
+    });
+
+    createVerblijfplaats(persoon, dataTable);
+}
+
 function createOverlijden(persoon, dataTable) {
     if(!persoon.overlijden) {
         persoon.overlijden = [];
@@ -216,6 +227,7 @@ module.exports = {
     createGezagsverhouding,
     aanvullenGezagsverhouding,
     createVerblijfplaats,
+    wijzigVerblijfplaats,
     createOverlijden,
     aanvullenInschrijving
 }

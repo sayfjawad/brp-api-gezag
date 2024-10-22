@@ -11,6 +11,7 @@ const { createPersoon,
         createGezagsverhouding,
         aanvullenGezagsverhouding,
         createVerblijfplaats,
+        wijzigVerblijfplaats,
         aanvullenInschrijving,
         createOverlijden
 } = require('./persoon-2');
@@ -290,7 +291,7 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden met de volgende gegevens$/, function (a
     gegevenDePersonenZijnGescheiden(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
-Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd$/, function (aanduiding1, aanduiding2, dataTable) {
+Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd met de volgende gegevens$/, function (aanduiding1, aanduiding2, dataTable) {
     gegevenDePersonenZijnGehuwdGecorrigeerd(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
@@ -453,10 +454,14 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest met de volgende gege
 
 Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
     const datumVestiging = 'vandaag - 1 jaar';
+    const gemeenteVanInschrijving = '0518';
 
-    createVerblijfplaats(
+    wijzigVerblijfplaats(
         getPersoon(this.context, undefined),
         arrayOfArraysToDataTable([
-            ['datum vestiging in Nederland (14.20)', datumVestiging]
-        ]));
+            ['datum vestiging in Nederland (14.20)', datumVestiging],
+            ['gemeente van inschrijving (09.10)', gemeenteVanInschrijving]
+        ]),
+        false
+    );
 });
