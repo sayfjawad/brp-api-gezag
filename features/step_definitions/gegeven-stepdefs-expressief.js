@@ -207,6 +207,28 @@ function gegevenDePersonenZijnGehuwd(context, aanduiding1, aanduiding2, dataTabl
     );
 }
 
+function gegevenDePersonenZijnGehuwdGecorrigeerd(context, aanduiding1, aanduiding2, dataTable) {
+    wijzigPartner(
+        getPersoon(context, aanduiding1),
+        arrayOfArraysToDataTable([
+            ['burgerservicenummer (01.20)', getBsn(getPersoon(context, aanduiding2))],
+            ['geslachtsnaam (02.40)', aanduiding2]
+        ], dataTable),
+        true,
+        true
+    );
+
+    wijzigPartner(
+        getPersoon(context, aanduiding2),
+        arrayOfArraysToDataTable([
+            ['burgerservicenummer (01.20)', getBsn(getPersoon(context, aanduiding1))],
+            ['geslachtsnaam (02.40)', aanduiding1]
+        ], dataTable),
+        true,
+        true
+    );
+}
+
 Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd$/, function (aanduiding1, aanduiding2) {
     const datumHuwelijk = 'gisteren - 20 jaar';
     const plaatsHuwelijk = '0518';
@@ -269,7 +291,7 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden met de volgende gegevens$/, function (a
 });
 
 Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd$/, function (aanduiding1, aanduiding2, dataTable) {
-    return 'pending';
+    gegevenDePersonenZijnGehuwdGecorrigeerd(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
 /**

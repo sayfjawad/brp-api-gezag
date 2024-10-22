@@ -203,6 +203,25 @@
     |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                        | 10000,0,0,P,000000024,P2          |
     |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_start_datum) VALUES($1,$2,$3,$4,$5,$6,$7) | 10000,0,0,R,000000012,P1,20100401 |
 
+  Scenario: correctie van huwelijk
+    Gegeven de persoon 'P1' met burgerservicenummer '000000012'
+    En de persoon 'P2' met burgerservicenummer '000000024'
+    En 'P1' en 'P2' zijn met elkaar gehuwd
+    En is het huwelijk van 'P1' en 'P2' gecorrigeerd met de volgende gegevens
+    | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+    | gisteren - 10 jaar                                                 |
+    Dan zijn de gegenereerde SQL statements
+    | stap       | categorie    | text                                                                                                                                                                                                                         | values                                                  |
+    | persoon-P1 | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *                                                                        | 0                                                       |
+    |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                                           | 9999,0,0,P,000000012,P1                                 |
+    |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_start_datum,relatie_start_plaats,relatie_start_land_code,onjuist_ind) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) | 9999,0,1,R,000000024,P2,gisteren - 20 jaar,0518,6030,O  |
+    |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_start_datum,relatie_start_plaats,relatie_start_land_code) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)                 | 9999,0,0,R,000000024,P2,gisteren - 10 jaar,0518,6030    |
+    | persoon-P2 | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *                                                                        | 0                                                       |
+    |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                                           | 10000,0,0,P,000000024,P2                                |
+    |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_start_datum,relatie_start_plaats,relatie_start_land_code,onjuist_ind) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) | 10000,0,1,R,000000012,P1,gisteren - 20 jaar,0518,6030,O |
+    |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_start_datum,relatie_start_plaats,relatie_start_land_code) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)                 | 10000,0,0,R,000000012,P1,gisteren - 10 jaar,0518,6030   |
+
+
   Scenario: '[aanduiding 1]' en '[aanduiding 2]' zijn gescheiden
     Gegeven de persoon 'P2' met burgerservicenummer '000000012'
     En de persoon 'P3' met burgerservicenummer '000000024'
