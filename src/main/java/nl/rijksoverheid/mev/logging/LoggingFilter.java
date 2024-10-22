@@ -140,16 +140,11 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
     }
 
     private void processProcess() {
-        var pid = ProcessHandle.current().pid();
-
         var currentThread = Thread.currentThread();
         var threadId = currentThread.threadId();
-        var threadName = currentThread.getName();
 
         MDC.put("process", Map.of(
-            "pid", pid,
-            "thread.id", threadId,
-            "thread.name", threadName
+            "thread.id", threadId
         ));
     }
 

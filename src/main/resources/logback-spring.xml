@@ -4,25 +4,63 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
-    <appender name="DEFAULT-FILE" class="ch.qos.logback.core.FileAppender">
+    <springProperty scope="context" name="event.dataset" source="spring.application.name"/>
+    <springProperty scope="context" name="process.pid" source="PID"/>
+    <springProperty scope="context" name="service.name" source="spring.application.name"/>
+
+    <!-- derived from co/elastic/logging/logback/boot/ecs-file-appender.xml -->
+    <appender name="ECS_JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <version>ecs.version</version>
+                <level>log.level</level>
+                <levelValue>[ignore]</levelValue>
+                <logger>log.logger</logger>
+                <stackTrace>error.stack_trace</stackTrace>
+                <thread>process.thread.name</thread>
+            </fieldNames>
+            <version>1.2.0</version>
+        </encoder>
         <file>${LOG_FILE}.json</file>
-        <append>true</append>
-        <encoder class="co.elastic.logging.logback.EcsEncoder">
-            <serviceName>brp-api-gezag</serviceName>
-            <messageLayout class="ch.qos.logback.classic.PatternLayout">
-                <pattern>%replace(%mdc %m){'\d{9}','***MASKED***'} %rEx{full, org.springframework}</pattern>
-            </messageLayout>
-        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <cleanHistoryOnStart>${LOG_FILE_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE}.json.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY:-7}</maxHistory>
+            <totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+        </rollingPolicy>
     </appender>
-    <appender name="SECURE-FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${LOG_FILE}-secure.json</file>
-        <append>true</append>
-        <encoder class="co.elastic.logging.logback.EcsEncoder">
-            <serviceName>brp-api-gezag</serviceName>
-            <messageLayout class="ch.qos.logback.classic.PatternLayout">
-                <pattern>%m %rEx{full, org.springframework}</pattern>
-            </messageLayout>
+
+    <!-- derived from co/elastic/logging/logback/boot/ecs-file-appender.xml -->
+    <appender name="ECS_JSON_FILE_MASKED" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <version>ecs.version</version>
+                <level>log.level</level>
+                <levelValue>[ignore]</levelValue>
+                <logger>log.logger</logger>
+                <stackTrace>error.stack_trace</stackTrace>
+                <thread>process.thread.name</thread>
+            </fieldNames>
+
+            <jsonGeneratorDecorator class="net.logstash.logback.mask.MaskingJsonGeneratorDecorator">
+                <!-- burgerservicenummer mask -->
+                <valueMask>
+                    <value>"\d{9}"</value>
+                    <mask>"***MASKED***"</mask>
+                </valueMask>
+            </jsonGeneratorDecorator>
+
+            <version>1.2.0</version>
         </encoder>
+        <file>${LOG_FILE}.masked.json</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <cleanHistoryOnStart>${LOG_FILE_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE}.masked.json.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY:-7}</maxHistory>
+            <totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+        </rollingPolicy>
     </appender>
 
     <springProfile name="default">
@@ -34,8 +72,8 @@
     <springProfile name="!default">
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
-            <appender-ref ref="DEFAULT-FILE"/>
-            <appender-ref ref="SECURE-FILE"/>
+            <appender-ref ref="ECS_JSON_FILE"/>
+            <appender-ref ref="ECS_JSON_FILE_MASKED"/>
         </root>
     </springProfile>
 </configuration>
