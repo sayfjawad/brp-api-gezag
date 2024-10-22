@@ -297,10 +297,10 @@
     |            | ouder-1      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,familie_betrek_start_datum,onjuist_ind) VALUES($1,$2,$3,$4,$5,$6,$7,$8) | 10000,0,1,1,000000012,P1,gisteren - 17 jaar,O |
     |            | ouder-1      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,familie_betrek_start_datum) VALUES($1,$2,$3,$4,$5,$6)                                  | 10000,0,0,1,000000012,20200101                |
 
-  Abstract Scenario: is geadopteerd door '[aanduiding]' als ouder [1 of 2]
+  Abstract Scenario: '[aanduiding kind]' is geadopteerd door '[aanduiding ouder]' als ouder [1 of 2]
     Gegeven de persoon 'P1' met burgerservicenummer '000000012'
     En de persoon 'P2' met burgerservicenummer '000000024'
-    * is geadopteerd door 'P1' als ouder <ouder type>
+    En 'P2' is geadopteerd door 'P1' als ouder <ouder type>
     Dan zijn de gegenereerde SQL statements    
     | stap       | categorie          | text                                                                                                                                                             | values                                              |
     | persoon-P1 | inschrijving       | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *            | 0                                                   |
@@ -316,12 +316,12 @@
     | 1          |
     | 2          |
 
-  Scenario: is geadopteerd door '[aanduiding]' als ouder [1 of 2] met de volgende gegevens
+  Scenario: '[aanduiding kind]' is geadopteerd door '[aanduiding ouder]' als ouder [1 of 2] met de volgende gegevens
     Gegeven de persoon 'P1' met burgerservicenummer '000000012'
     En de persoon 'P2' met burgerservicenummer '000000024'
-    * is geadopteerd door 'P1' als ouder 1 met de volgende gegevens
-      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
-      | gisteren - 5 jaar                                  | 2BR1211            |
+    En 'P2' is geadopteerd door 'P1' als ouder 1 met de volgende gegevens
+    | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
+    | gisteren - 5 jaar                                  | 2BR1211            |
     Dan zijn de gegenereerde SQL statements    
     | stap       | categorie    | text                                                                                                                                                                        | values                                             |
     | persoon-P1 | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *                       | 0                                                  |
@@ -332,37 +332,37 @@
     |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,akte_nr) VALUES($1,$2,$3,$4,$5,$6,$7)                               | 10000,0,0,P,000000024,P2,1AQ0100                   |
     |            | ouder-1      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,familie_betrek_start_datum,akte_nr) VALUES($1,$2,$3,$4,$5,$6,$7,$8) | 10000,0,0,1,000000012,P1,gisteren - 5 jaar,2BR1211 |
 
-  Scenario: heeft gezag uitspraak
+  Scenario: voor '[aanduiding]' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
-    * heeft gezag uitspraak
-      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
-      | D                                    | 20220701                        |
-      Dan zijn de gegenereerde SQL statements
-      | stap       | categorie        | text                                                                                                                                                  | values                  |
-      | persoon-P1 | inschrijving     | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
-      |            | persoon          | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
-      |            | gezagsverhouding | INSERT INTO public.lo3_pl_gezagsverhouding(pl_id,volg_nr,minderjarig_gezag_ind,geldigheid_start_datum) VALUES($1,$2,$3,$4)                            | 9999,0,D,20220701       |
+    En voor 'P1' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+    | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+    | D                                    | 20220701                        |
+    Dan zijn de gegenereerde SQL statements
+    | stap       | categorie        | text                                                                                                                                                  | values                  |
+    | persoon-P1 | inschrijving     | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
+    |            | persoon          | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
+    |            | gezagsverhouding | INSERT INTO public.lo3_pl_gezagsverhouding(pl_id,volg_nr,minderjarig_gezag_ind,geldigheid_start_datum) VALUES($1,$2,$3,$4)                            | 9999,0,D,20220701       |
 
-  Scenario: onder curatele
+  Scenario: '[aanduiding]' is onder curatele gesteld
     Gegeven de persoon 'P1' met burgerservicenummer '000000012'
-    * staat onder curatele
+    En 'P1' is onder curatele gesteld
       Dan zijn de gegenereerde SQL statements
       | stap       | categorie        | text                                                                                                                                                  | values                  |
       | persoon-P1 | inschrijving     | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
       |            | persoon          | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000012,P1 |
       |            | gezagsverhouding | INSERT INTO public.lo3_pl_gezagsverhouding(pl_id,volg_nr,curatele_register_ind) VALUES($1,$2,$3)                                                      | 9999,0,1                |
 
-  Scenario: heeft gezag uitspraak en staat onder curatele
+  Scenario: heeft gezag uitspraak en is onder curatele gesteld
     Gegeven de persoon 'P1' met burgerservicenummer '000000036'
-    * heeft gezag uitspraak
-      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
-      | D                                    | 20220701                        |
-    * staat onder curatele
-      Dan zijn de gegenereerde SQL statements
-      | stap       | categorie        | text                                                                                                                                                  | values                  |
-      | persoon-P1 | inschrijving     | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
-      |            | persoon          | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
-      |            | gezagsverhouding | INSERT INTO public.lo3_pl_gezagsverhouding(pl_id,volg_nr,minderjarig_gezag_ind,geldigheid_start_datum,curatele_register_ind) VALUES($1,$2,$3,$4,$5)   | 9999,0,D,20220701,1     |
+    En voor 'P1' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+    | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+    | D                                    | 20220701                        |
+    En 'P1' is onder curatele gesteld
+    Dan zijn de gegenereerde SQL statements
+    | stap       | categorie        | text                                                                                                                                                  | values                  |
+    | persoon-P1 | inschrijving     | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                       |
+    |            | persoon          | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1 |
+    |            | gezagsverhouding | INSERT INTO public.lo3_pl_gezagsverhouding(pl_id,volg_nr,minderjarig_gezag_ind,geldigheid_start_datum,curatele_register_ind) VALUES($1,$2,$3,$4,$5)   | 9999,0,D,20220701,1     |
 
 Scenario: persoon zonder partner is overleden
   Gegeven de persoon 'P1' met burgerservicenummer '000000012'
