@@ -127,13 +127,13 @@ Given(/^staat onder curatele$/, function () {
     );
 });
 
-Given(/^is overleden$/, function () {
+Given(/^'(.*)' is overleden$/, function (aanduiding) {
     const datumOpschortingBijhouden = 'gisteren - 2 jaar';
     const indicatieGeheim = 'O';
     const datumOverlijden = 'gisteren - 2 jaar';
 
     aanvullenInschrijving(
-        getPersoon(this.context, undefined),
+        getPersoon(this.context, aanduiding),
         arrayOfArraysToDataTable([
             ['datum opschorting bijhouding (67.10)', datumOpschortingBijhouden],
             ['reden opschorting bijhouding (67.20)', indicatieGeheim]
@@ -141,12 +141,31 @@ Given(/^is overleden$/, function () {
     );
 
     createOverlijden(
-        getPersoon(this.context, undefined),
+        getPersoon(this.context, aanduiding),
         arrayOfArraysToDataTable([
             ['datum overlijden (08.10)', datumOverlijden]
         ])
     );
 });
+
+Given(/^'(.*)' is overleden met de volgende gegevens$/, function (aanduiding, dataTable) {
+    const datumOpschortingBijhouden = 'gisteren - 2 jaar';
+    const indicatieGeheim = 'O';
+
+    aanvullenInschrijving(
+        getPersoon(this.context, aanduiding),
+        arrayOfArraysToDataTable([
+            ['datum opschorting bijhouding (67.10)', datumOpschortingBijhouden],
+            ['reden opschorting bijhouding (67.20)', indicatieGeheim]
+        ])
+    );
+
+    createOverlijden(
+        getPersoon(this.context, aanduiding),
+        dataTable
+    );
+});
+
 
 Given(/^bijhouding van de persoonsgegevens van '(.*)' is opgeschort met de volgende gegevens$/, function (aanduiding, dataTable) {
     aanvullenInschrijving(
