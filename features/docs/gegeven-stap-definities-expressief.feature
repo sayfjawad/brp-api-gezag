@@ -88,8 +88,8 @@
     | stap       | categorie      | text                                                                                                                                                  | values                                               |
     | persoon-P1 | inschrijving   | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                                                    |
     |            | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                    | 9999,0,0,P,000000036,P1                              |
-    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,vestiging_datum,inschrijving_gemeente_code) VALUES($1,$2,$3,$4)                                | 9999,0,vandaag - 1 jaar,<inschrijving_gemeente_code> |
-    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code) VALUES($1,$2,$3)                                                   | 9999,1,0518                                          |
+    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,vestiging_datum,inschrijving_gemeente_code) VALUES($1,$2,$3,$4)                                | 9999,0,vandaag - 1 jaar,0518                         |
+    |            | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,volg_nr,inschrijving_gemeente_code) VALUES($1,$2,$3)                                                   | 9999,1,<inschrijving_gemeente_code>                  |                                          
 
     Voorbeelden:
     | inschrijving  | inschrijving_gemeente_code |

@@ -291,7 +291,7 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden met de volgende gegevens$/, function (a
     gegevenDePersonenZijnGescheiden(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
-Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd$/, function (aanduiding1, aanduiding2, dataTable) {
+Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd met de volgende gegevens$/, function (aanduiding1, aanduiding2, dataTable) {
     gegevenDePersonenZijnGehuwdGecorrigeerd(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
