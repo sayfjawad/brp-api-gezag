@@ -474,9 +474,19 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
 /**
  * Hier volgt de gegeven stappen voor erkenning
  */
+const ErkenningsType = {
+    ErkenningBijGeboorteaangifte: 'B',
+    ErkenningNaGeboorteaangifte: 'C',
+    ErkenningBijNotarieleAkte: 'J',
+    GerechtelijkeVaststellingOuderschap: 'V'
+}
+
 Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning bij geboorteaangifte$/, function (aanduidingOuder, ouderType) {
+    const kind = getPersoon(this.context, null);
+    const kindData = { ...kind.persoon.at(-1) };
+
     const ouderData = arrayOfArraysToDataTable([
-        ['datum ingang familierechtelijke betrekking (62.10)', 'gisteren - 17 jaar']
+        ['datum ingang familierechtelijke betrekking (62.10)', kindData.geboorte_datum]
     ]);
 
     gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijGeboorteaangifte, ouderType, ouderData);
@@ -490,23 +500,21 @@ Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning na geboorteaangift
     gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijGeboorteaangifte, ouderType, ouderData);
 });
 
-/*
-Given(/^is erkend door (?:de persoon(?: '(.*)')? )?met erkenning bij notariële akte$/, function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning bij notariële akte op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
+    const ouderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', `${jaar}${maand}${dag}`]
+    ]);
+
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijNotarieleAkte, ouderType, ouderData);
 });
 
-Given(/^is erkend door (?:de persoon(?: '(.*)')? )?met gerechtelijke vaststelling ouderschap$/, function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Given(/^is erkend door '(.*)' als ouder ([1-2]) met gerechtelijke vaststelling ouderschap op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
+    const ouderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', `${jaar}${maand}${dag}`]
+    ]);
+
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijNotarieleAkte, ouderType, ouderData);
 });
-*/
-const ErkenningsType = {
-    ErkenningBijGeboorteaangifte: 'B',
-    ErkenningNaGeboorteaangifte: 'C',
-    ErkenningBijNotarieleAkte: 'J',
-    GerechtelijkeVaststellingOuderschap: 'V'
-}
 
 function gegevenIsErkendDoorPersoonAlsOuder(context, aanduidingOuder, erkenningsType, ouderType, dataTable) {
     if(!erkenningsType) {
@@ -529,7 +537,8 @@ function gegevenIsErkendDoorPersoonAlsOuder(context, aanduidingOuder, erkennings
         ouderType,
         arrayOfArraysToDataTable([
             ['burgerservicenummer (01.20)', getBsn(ouder)],
-            ['geslachtsnaam (02.40)', getGeslachtsnaam(ouder)]
+            ['geslachtsnaam (02.40)', getGeslachtsnaam(ouder)],
+            ['aktenummer (81.20)', `1A${erkenningsType}0100`]
         ], dataTable)
     );
 
