@@ -4,21 +4,21 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
 
 
     Achtergrond:
-      Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Laura' met burgerservicenummer '000000012'
       * is meerderjarig, niet overleden en staat niet onder curatele
-      En de persoon 'Henk' met burgerservicenummer '000000024'
+      En de persoon 'Lido' met burgerservicenummer '000000024'
       * is meerderjarig, niet overleden en staat niet onder curatele
-      En de persoon 'Geert' met burgerservicenummer '000000048'
+      En de persoon 'Rik' met burgerservicenummer '000000048'
       * is meerderjarig
-      En de persoon 'Femke' met burgerservicenummer '000000061'
+      En de persoon 'Janine' met burgerservicenummer '000000061'
       * is meerderjarig
-      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      En de persoon 'Linda' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is niet geëmigreerd geweest
       * is in Nederland geboren
-      * heeft 'Ingrid' als ouder 1
-      * heeft 'Henk' als ouder 2
+      * heeft 'Laura' als ouder 1
+      * heeft 'Lido' als ouder 2
 
 
 
@@ -32,13 +32,13 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 6 jaar                                            |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 2 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters
@@ -67,13 +67,13 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | <datum aangaan 1e huwelijk>                                        |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | <datum ontbinding 1e huwelijk>                               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 2 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters
@@ -103,7 +103,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 3 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters
@@ -122,16 +122,16 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 6 jaar                                            |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 2 jaar                                                  |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 1 jaar                                            |
       Als gezag wordt gezocht met de volgende parameters
@@ -150,16 +150,16 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 6 jaar                                            |
-      En 'Ingrid' en 'Geert' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Rik' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 4 jaar                                                  |
-      En 'Henk' en 'Femke' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Lido' en 'Janine' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 4 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters
@@ -178,13 +178,13 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 12 jaar                                           |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 6 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters
@@ -203,13 +203,13 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 6 jaar                                            |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 2 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters
@@ -239,16 +239,16 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 6 jaar                                            |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 2 jaar                                                  |
-      En is het huwelijk van 'Ingrid' en 'Henk' gecorrigeerd met de volgende gegevens
+      En is het huwelijk van 'Laura' en 'Lido' gecorrigeerd met de volgende gegevens
       | naam                                                                | waarde |
       | burgerservicenummer (01.20)                                         |        |
       | voornamen (02.10)                                                   |        |
@@ -273,10 +273,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
-      En is het huwelijk van 'Ingrid' en 'Henk' gecorrigeerd met de volgende gegevens
+      En is het huwelijk van 'Laura' en 'Lido' gecorrigeerd met de volgende gegevens
       | naam                                                                | waarde |
       | burgerservicenummer (01.20)                                         |        |
       | voornamen (02.10)                                                   |        |
@@ -285,7 +285,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)  |        |
       | plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20) |        |
       | land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)   |        |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 2 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters
@@ -304,10 +304,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 2 jaar                                                  |
-      En is het huwelijk van 'Ingrid' en 'Henk' gecorrigeerd
+      En is het huwelijk van 'Laura' en 'Lido' gecorrigeerd
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | vandaag - 2 jaar                                                   |
       Als gezag wordt gezocht met de volgende parameters
@@ -331,13 +331,13 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       Gegeven heeft gezag uitspraak 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 20 jaar                                                 |
-      En 'Ingrid' en 'Henk' zijn gescheiden met de volgende gegevens
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | gisteren - 6 jaar                                            |
-      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | aanduiding in onderzoek (83.10) |
       | gisteren - 2 jaar                                                  | <aanduiding onderzoek>          |
       Als gezag wordt gezocht met de volgende parameters
