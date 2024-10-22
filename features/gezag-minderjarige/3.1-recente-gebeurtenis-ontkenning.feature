@@ -24,7 +24,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - ontkenning vadersch
     # * (ten minste) een van de ouders is verwijderd of is een 'puntouder'
 
     Abstract Scenario: er is uitspraak gezag voor ouder 1 en ouder 2 en erkenning door ouder <ouder> is ontkend of vernietigd
-      Gegeven heeft gezag uitspraak
+      Gegeven voor 'Kees' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 12                                   | morgen - 10 jaar                |
       En zijn van ouder <ouder> de volgende gegevens <soort wijziging>
@@ -58,7 +58,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - ontkenning vadersch
       | 2     | .          | gecorrigeerd    | 000000012 |
  
     Abstract Scenario: er is uitspraak gezag voogdij en erkenning door ouder 2 is ontkend of vernietigd
-      Gegeven heeft gezag uitspraak
+      Gegeven voor 'Kees' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | morgen - 10 jaar                |
       En zijn van ouder <ouder> de volgende gegevens <soort wijziging>
