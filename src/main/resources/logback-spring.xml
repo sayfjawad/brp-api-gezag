@@ -63,17 +63,9 @@
         </rollingPolicy>
     </appender>
 
-    <springProfile name="default">
-        <root level="INFO">
-            <appender-ref ref="CONSOLE"/>
-        </root>
-    </springProfile>
-
-    <springProfile name="!default">
-        <root level="INFO">
-            <appender-ref ref="CONSOLE"/>
-            <appender-ref ref="ECS_JSON_FILE"/>
-            <appender-ref ref="ECS_JSON_FILE_MASKED"/>
-        </root>
-    </springProfile>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ECS_JSON_FILE"/>
+        <appender-ref ref="ECS_JSON_FILE_MASKED"/>
+    </root>
 </configuration>

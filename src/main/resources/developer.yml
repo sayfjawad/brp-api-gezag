@@ -6,6 +6,8 @@ app:
       enabled: true
 
 logging:
+  file:
+    name: build/brp-api-gezag.log
   level:
     nl.rijksoverheid.mev: DEBUG
 
