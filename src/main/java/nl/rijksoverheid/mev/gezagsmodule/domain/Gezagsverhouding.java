@@ -85,6 +85,11 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
     }
 
     @Override
+    public String getCategorieName() {
+        return "gezagsverhouding";
+    }
+
+    @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }

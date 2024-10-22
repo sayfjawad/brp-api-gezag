@@ -99,7 +99,8 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
     private List<Lo3PlRecord> findInschrijvingen(final long plId) {
         return create.selectFrom(LO3_PL)
             .where(LO3_PL.PL_ID.equal(plId))
-            .fetchStreamInto(Lo3PlRecord.class)
+            .fetch()
+            .stream()
             .toList();
     }
 
@@ -109,9 +110,11 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
         return create.selectFrom(LO3_PL_PERSOON)
             .where(LO3_PL_PERSOON.BURGER_SERVICE_NR.equal(burgerservicenummer.value())
                 .and(LO3_PL_PERSOON.PERSOON_TYPE.equal(PERSOON))
+                .and(LO3_PL_PERSOON.ONJUIST_IND.isNull())
             )
             .orderBy(LO3_PL_PERSOON.STAPEL_NR.asc(), LO3_PL_PERSOON.VOLG_NR.asc())
-            .fetchStreamInto(Lo3PlPersoonRecord.class)
+            .fetch()
+            .stream()
             .toList();
     }
 
@@ -119,9 +122,11 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
         return create.selectFrom(LO3_PL_PERSOON)
             .where(LO3_PL_PERSOON.PL_ID.equal(plId)
                 .and(LO3_PL_PERSOON.PERSOON_TYPE.notEqual(PERSOON))
+                .and(LO3_PL_PERSOON.ONJUIST_IND.isNull())
             )
-            .orderBy(LO3_PL_PERSOON.PERSOON_TYPE.asc(), LO3_PL_PERSOON.STAPEL_NR.asc(), LO3_PL_PERSOON.VOLG_NR.asc())
-            .fetchStreamInto(Lo3PlPersoonRecord.class)
+            .orderBy(LO3_PL_PERSOON.PERSOON_TYPE.asc(), LO3_PL_PERSOON.STAPEL_NR.desc(), LO3_PL_PERSOON.VOLG_NR.asc())
+            .fetch()
+            .stream()
             .collect(Collectors.groupingBy(Lo3PlPersoonRecord::getPersoonType));
     }
 
@@ -129,6 +134,7 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
         return create.selectFrom(Lo3PlVerblijfplaats.LO3_PL_VERBLIJFPLAATS)
             .where(Lo3PlVerblijfplaats.LO3_PL_VERBLIJFPLAATS.PL_ID.equal(plId)
                 .and(Lo3PlVerblijfplaats.LO3_PL_VERBLIJFPLAATS.VOLG_NR.equal((short) 0))
+                .and(Lo3PlVerblijfplaats.LO3_PL_VERBLIJFPLAATS.ONJUIST_IND.isNull())
             )
             .fetchOptionalInto(Lo3PlVerblijfplaatsRecord.class);
     }
@@ -137,6 +143,7 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
         return create.selectFrom(Lo3PlGezagsverhouding.LO3_PL_GEZAGSVERHOUDING)
             .where(Lo3PlGezagsverhouding.LO3_PL_GEZAGSVERHOUDING.PL_ID.equal(plId)
                 .and(Lo3PlGezagsverhouding.LO3_PL_GEZAGSVERHOUDING.VOLG_NR.equal((short) 0))
+                .and(Lo3PlGezagsverhouding.LO3_PL_GEZAGSVERHOUDING.ONJUIST_IND.isNull())
             )
             .fetchOptionalInto(Lo3PlGezagsverhoudingRecord.class);
     }
