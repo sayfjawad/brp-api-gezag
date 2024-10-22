@@ -100,7 +100,7 @@ public class GezagService {
         if (hasVeldenInOnderzoek) {
             arAntwoordenModel.setException(new VeldInOnderzoekException("Preconditie: Velden mogen niet in onderzoek staan"));
         }
-        route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel);
+        route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel, gezagBepaling);
         arAntwoordenModel.setRoute(route);
         setConfiguredValues(arAntwoordenModel, plPersoon.isPresent());
 
@@ -121,12 +121,12 @@ public class GezagService {
             List<String> missendeGegegevens = gezagBepaling.getMissendeGegegevens();
             UUID errorTraceCode = gezagBepaling.getErrorTraceCode();
 
-            if (!missendeGegegevens.isEmpty()) {
+            if (errorTraceCode != null) {
+                String toelichting = toelichtingService.setErrorReferenceToelichting(unformattedUitleg, errorTraceCode.toString());
+                arAntwoordenModel.setUitleg(toelichting);
+            } else if (!missendeGegegevens.isEmpty()) {
                 String toelichting = toelichtingService.decorateToelichting(unformattedUitleg, null, missendeGegegevens);
                 arAntwoordenModel.setUitleg(toelichting);
-            } else if (errorTraceCode != null) {
-                unformattedUitleg = unformattedUitleg.formatted(errorTraceCode.toString());
-                arAntwoordenModel.setUitleg(unformattedUitleg);
             }
 
             gezagBepaling.bepalenGezagdragers(burgerservicenummer, burgerservicenummerPersoon, arAntwoordenModel, gezagRelaties);
