@@ -29,7 +29,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
     # * datum aangaan huwelijk of geregistreerd partnerschap ligt na de ingangsdatum geldigheid van de gezagsverhouding 
 
     Abstract Scenario: gezag wordt van rechtswege bepaald voor minderjarige waarbij na gerechtelijke uitspraak tot gezag ouder<indicatie gezag> de ouders zijn hertrouwd
-      Gegeven heeft gezag uitspraak 
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
       En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
@@ -64,7 +64,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | 2               |
 
     Abstract Scenario: gezag wordt van rechtswege bepaald voor minderjarige waarbij <omschrijving>
-      Gegeven heeft gezag uitspraak 
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
       En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
@@ -100,10 +100,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | gisteren - 4 jaar         | gisteren - 3 jaar            | ouders zijn getrouwd en gescheiden na de uitspraak en daarna hertrouwd                   |
 
     Scenario: geen 'recente gebeurtenis' omdat de ouders na de uitspraak voor het eerst met elkaar zijn getrouwd
-      Gegeven heeft gezag uitspraak 
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Laura' en 'Lido' zijn met elkaar gehuwd
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 3 jaar                                                  |
       Als gezag wordt gezocht met de volgende parameters
@@ -119,7 +119,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | ouder.burgerservicenummer        | 000000012                |
 
     Scenario: geen 'recente gebeurtenis' omdat de ouders na het 'herstelhuwelijk' weer zijn gescheiden
-      Gegeven heeft gezag uitspraak 
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
       En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
@@ -147,7 +147,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | ouder.burgerservicenummer        | 000000012                |
 
     Scenario: geen 'recente gebeurtenis' omdat de ouders getrouwd zijn met een andere derde persoon (niet de ander ouder)
-      Gegeven heeft gezag uitspraak
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
       En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
@@ -175,7 +175,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | ouder.burgerservicenummer        | 000000012                |
 
     Scenario: geen 'recente gebeurtenis' omdat de ouders al voor de uitspraak met elkaar hertrouwd zijn
-      Gegeven heeft gezag uitspraak
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
       En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
@@ -200,7 +200,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | ouder.burgerservicenummer        | 000000012                |
 
     Scenario: geen 'recente gebeurtenis' omdat de gerechtelijke uitspraak tot gezag <omschrijving uitspraak> is
-      Gegeven heeft gezag uitspraak
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | <indicatie gezag>                    | gisteren - 5 jaar               |
       En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
@@ -236,7 +236,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
     # voorkomen genegeerd
     
     Scenario: geen 'recente gebeurtenis' omdat het herstelhuwelijk met een correctie volledig is verwijderd
-      Gegeven heeft gezag uitspraak 
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
       En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
@@ -270,7 +270,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | ouder.burgerservicenummer        | 000000012                |
 
     Scenario: geen 'recente gebeurtenis' wanneer het eerste huwelijk met een correctie volledig is verwijderd
-      Gegeven heeft gezag uitspraak 
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
       En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
@@ -301,10 +301,10 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
       | ouder.burgerservicenummer        | 000000012                |
 
     Scenario: geen 'recente gebeurtenis' wanneer de datum huwelijkssluiting van het eerste en enige huwelijk is gecorrigeerd
-      Gegeven heeft gezag uitspraak 
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
-      En 'Laura' en 'Lido' zijn met elkaar gehuwd
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | gisteren - 2 jaar                                                  |
       En is het huwelijk van 'Laura' en 'Lido' gecorrigeerd
@@ -328,7 +328,7 @@ Functionaliteit:  3.1 - Is er door een recente gebeurtenis - hertrouwen - het ge
     # Het gezag kan dan normaal bepaald worden
 
     Abstract Scenario: Gezag wordt van rechtswege bepaald na reparatiehuwelijk en <omschrijving> staat in onderzoek
-      Gegeven heeft gezag uitspraak 
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens 
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | gisteren - 5 jaar               |
       En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
