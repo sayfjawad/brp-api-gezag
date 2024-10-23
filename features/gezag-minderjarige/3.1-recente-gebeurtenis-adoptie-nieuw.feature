@@ -1,0 +1,90 @@
+#language: nl
+
+Functionaliteit: Bepaling van gezag bij een geadopteerd minderjarige met een gerechtelijke uitspraak over zijn gezag
+
+  Als consumer van de gezag api
+  Wil ik weten of hoe api het gezag bepaald voor een minderjarige
+  - over wie een gerechtelijke uitspraak over zijn gezag is gedaan
+  - en vóór of ná de gerechtelijke uitspraak is geadopteerd
+
+  Zie:
+  - [personas](./personas.md) voor betekenis gebruikte personas
+  - [glossary](./glossary.md) voor terminologie
+
+  Regel: het gezag wordt van rechtswege bepaald als de adoptie na de gerechtelijke uitspraak over gezag heeft plaatsgevonden
+
+    Er is sprake van adoptie na opname van het gezag als:
+    - ingangsdatum gezag (11.85.10) vóór datum ingang familierechtelijke betrekking (02.62.10 en 03.62.10) van tenminste één adoptie ouder ligt én
+    - de actuele/historische akteaanduiding (01.81.20/05.81.20) bij de minderjarige de waarde Q op de 3e positie heeft
+
+    Scenario: adoptie door echtpaar na de gerechtelijke uitspraak (regel 25)
+      Gegeven de persoon 'Henk'
+      En de persoon 'Ingrid'
+      En de persoon 'Jaimy'
+      En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+  	  En voor 'Jaimy' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | D                                    | gisteren - 5 jaar               |
+      En 'Jaimy' is geadopteerd met de volgende gegevens
+      | ouder 1 | ouder 2 | datum ingang familierechtelijke betrekking (62.10) |
+      | Ingrid  | Henk    | morgen - 4 jaar                                    |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan is het gezag van rechtswege bepaald
+      En heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+
+    Scenario: adoptie door één persoon na de gerechtelijke uitspraak (regel 61)
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan is het gezag van rechtswege bepaald
+      En heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+
+    Scenario: adoptie door echtpaar vóór de gerechtelijke uitspraak (regel 93)
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan is het gezag aan de hand van het gerechtelijke uitspraak over het gezag bepaald
+      En heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+
+    Scenario: adoptie door één persoon na de gerechtelijke uitspraak én gegevens van de minderjarige zijn op/na de adoptie gewijzigd (regel 115)
+    # typo in 'oude' scenario titel. Die zegt vóór de gerechtelijke uitspraak maar beschrijft adoptie na de gerechtelijke uitspraak. Maar de response is wel weer wat je krijgt uit als het gezag uit de gerechtelijke uitspraak wordt geleverd
+  	  Gegeven voor 'Jaimy' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | D                                    | gisteren - 5 jaar               |
+      En is 'Jaimy' geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
+      | datum ingang familierechtelijke betrekking (62.10) |
+      | morgen - 4 jaar                                    |
+      En heeft 'Jaimy' zijn naam gewijzigd op 'morgen - 4 jaar'
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan is het gezag van rechtswege bepaald
+      En heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+
+  Regel: gecorrigeerde adoptiegegevens worden genegeerd bij het bepalen van het gezag
+
+    Scenario: er is ten onrechte adoptie geregistreerd bij de minderjarige (regel 150)
+  	  Gegeven voor 'Jaimy' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | D                                    | gisteren - 5 jaar               |
+      En is 'Jaimy' geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
+      | datum ingang familierechtelijke betrekking (62.10) |
+      | morgen - 4 jaar                                    |
+      En de adoptie wordt als ten onrechte geregistreerd
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan is het gezag aan de hand van het gerechtelijke uitspraak over het gezag bepaald
+      En heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
