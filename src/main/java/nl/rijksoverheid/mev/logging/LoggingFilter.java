@@ -85,7 +85,6 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         var event = processEvent();
         var http = processHttp(request, response);
         var url = processUrl(request);
-        processProcess();
 
         processMetadata(request, response);
 
@@ -140,13 +139,6 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
     }
 
     private record Url(String path) {
-    }
-
-    private void processProcess() {
-        var currentThread = Thread.currentThread();
-        var threadId = currentThread.threadId();
-
-        MDC.put("process.thread.id", threadId);
     }
 
     private void processMetadata(HttpServletRequest request, HttpServletResponse response) {
