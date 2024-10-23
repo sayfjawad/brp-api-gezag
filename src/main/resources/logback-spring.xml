@@ -5,6 +5,9 @@
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
     <springProperty scope="context" name="event.dataset" source="spring.application.name"/>
+    <springProperty scope="context" name="host.architecture" source="os.arch"/>
+    <springProperty scope="context" name="host.os.type" source="os.name"/>
+    <springProperty scope="context" name="host.os.kernel" source="os.version"/>
     <springProperty scope="context" name="process.pid" source="PID"/>
     <springProperty scope="context" name="service.name" source="spring.application.name"/>
     <springProperty scope="context" name="service.version" source="build.customVersion"/>
