@@ -10,6 +10,7 @@
     <springProperty scope="context" name="host.os.kernel" source="os.version"/>
     <springProperty scope="context" name="process.pid" source="PID"/>
     <springProperty scope="context" name="service.name" source="spring.application.name"/>
+    <springProperty scope="context" name="service.type" source="null" defaultValue="brp-api"/>
     <springProperty scope="context" name="service.version" source="build.customVersion"/>
 
     <!-- derived from co/elastic/logging/logback/boot/ecs-file-appender.xml -->
