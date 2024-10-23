@@ -56,6 +56,11 @@
                     <value>\\*"\d{9}\\*"</value>
                     <mask>"***MASKED***"</mask>
                 </valueMask>
+                <!-- authorization header mask -->
+                <valueMask>
+                    <value>\\*"authorization\\*":\\*".+?\\*"</value>
+                    <mask>"authorization":"***MASKED***"</mask>
+                </valueMask>
             </jsonGeneratorDecorator>
             <version>${ecs.version}</version>
         </encoder>
