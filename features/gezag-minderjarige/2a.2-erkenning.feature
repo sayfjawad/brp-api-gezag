@@ -11,16 +11,14 @@ Functionaliteit: 2a.3 - erkenning
   # | 2a.1 Zijn beide ouders nu met elkaar gehuwd of geregistreerd partners? | Nee nooit                                                                          |
   # | 2a.2 Is persoon geadopteerd met Nederlandse akte                       | Nee
 
-  # Aktenummers zoals vastgelecht in de BRP en opgenomen in de lijst erkenningscodes uit de publieke tabel 39. 
-  # Zie: https://publicaties.rvig.nl/Landelijke_tabellen/Landelijke_tabellen_32_t_m_61_excl_tabel_35/Landelijke_Tabellen_32_t_m_61_in_csv_formaat/Tabel_39_Akteaanduiding
-  # Weergeven een feit over de persoon danwel relatie met andere personen.
-  # ??
-
   # Hoe achterhalen of er erkenning is: Aktenummer Ouder1 of Ouder2 (02.81.20 of 03.81.20) bevat op de 3e positie de akteaanduiding B (erkenning bij
   # geboorteaangifte), C (erkenning), J (erkenning bij notariële akte) of V (gerechtelijke vaststelling ouderschap). Deze kan in de actuele categorie voorkomen maar ook 
   # in een historische categorie (52.81.20 of 53.81.20) omdat er later nog een ander rechtsfeit geregistreerd kan zijn. De datum van erkenning kan ontleend worden aan 
   # datum familierechtelijke betrekking (02.62.10 of 03.62.10) van dezelfde categorie als die waarin akteaanduiding B of C geconstateerd is. Kan dus ook in de
   # historie voorkomen (52.62.10 of 53.62.10).
+
+  # Aktenummers zoals vastgelecht in de BRP en opgenomen in de lijst erkenningscodes uit de publieke tabel 39. 
+  # Zie: https://publicaties.rvig.nl/Landelijke_tabellen/Landelijke_tabellen_32_t_m_61_excl_tabel_35/Landelijke_Tabellen_32_t_m_61_in_csv_formaat/Tabel_39_Akteaanduiding
 
   # Het bepalen of sprake is geweest van een erkenning ongeboren vrucht kan aan de hand van akteaanduiding A (01.81.20) terwijl de ouders op
   # moment geboorte niet met elkaar gehuwd zijn of een geregistreerd partnerschap hebben. Ook hierbij kan de akteaanduiding A in de historie
@@ -39,11 +37,6 @@ Functionaliteit: 2a.3 - erkenning
       * is meerderjarig, niet overleden en staat niet onder curatele
       En de persoon 'Dirk' met burgerservicenummer '000000024'
       * is meerderjarig, niet overleden en staat niet onder curatele
-
-  # voorbeeld als ouder 1 met gegevens:
-  # * heeft 'Lotte' als ouder 1 met de volgende gegevens
-  #    | naam                  | waarde            |
-  #    | geboortedatum (03.10) | 20221201          |
 
   Regel: Kind is geboren voor 01-01-2023
 
