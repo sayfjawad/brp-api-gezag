@@ -53,7 +53,7 @@
             <jsonGeneratorDecorator class="net.logstash.logback.mask.MaskingJsonGeneratorDecorator">
                 <!-- burgerservicenummer mask -->
                 <valueMask>
-                    <value>"\d{9}"</value>
+                    <value>\\*"\d{9}\\*"</value>
                     <mask>"***MASKED***"</mask>
                 </valueMask>
             </jsonGeneratorDecorator>

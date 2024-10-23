@@ -149,7 +149,7 @@ public class GezagService {
         loggingContext.addGezagType(arAntwoordenModel.getSoortGezag(), burgerservicenummer);
         loggingContext.addRoute(route, burgerservicenummer);
         loggingContext.addToelichting(arAntwoordenModel.getUitleg(), burgerservicenummer);
-        log.info("Gezag bepaald voor persoon {}: {}", burgerservicenummer, arAntwoordenModel);
+        log.info("Gezag bepaald voor persoon \"{}\": {}", burgerservicenummer, arAntwoordenModel);
         return gezagRelaties;
     }
 
