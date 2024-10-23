@@ -1,5 +1,7 @@
 package nl.rijksoverheid.mev.logging;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.filter.AbstractRequestLoggingFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
@@ -36,7 +39,13 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
 
     private static final String TIMEZONE = ZoneId.systemDefault().getId();
 
+    private final ObjectMapper objectMapper;
+
     private ApplicationContext applicationContext;
+
+    public LoggingFilter(Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder) {
+        this.objectMapper = jackson2ObjectMapperBuilder.build();
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -153,11 +162,10 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
 
         var requestHeaders = headersToMap(Collections.list(request.getHeaderNames()), request::getHeader);
         var cachedRequest = WebUtils.getNativeRequest(request, ContentCachingRequestWrapper.class);
-        var requestBodyAsString = cachedRequest == null ? null : cachedRequest.getContentAsString();
+        var requestBodyAsJsonString = cachedRequest == null ? null : cachedRequest.getContentAsString();
 
-        // 
         var cachedResponse = WebUtils.getNativeResponse(response, ContentCachingResponseWrapper.class);
-        var responseBodyAsString = cachedResponse == null ? null : new String(cachedResponse.getContentAsByteArray());
+        var responseBodyAsJsonString = cachedResponse == null ? null : new String(cachedResponse.getContentAsByteArray());
         if (cachedResponse != null) {
             try {
                 cachedResponse.copyBodyToResponse();
@@ -172,12 +180,18 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         var metadata = new HashMap<String, Object>();
         metadata.put("gezag_resultaten", loggingContext.getGezagResultaten());
         metadata.put("pl_ids", loggingContext.getPlIds());
-        if (isError) metadata.put("response.body", responseBodyAsString);
+        if (isError) metadata.put("response.body", responseBodyAsJsonString);
         metadata.put("response.headers", responseHeaders);
-        metadata.put("request.body", requestBodyAsString);
+        metadata.put("request.body", requestBodyAsJsonString);
         metadata.put("request.headers", requestHeaders);
 
-        MDC.put("metadata", metadata);
+        try {
+            var metadataAsJsonString = objectMapper.writeValueAsString(metadata);
+            MDC.put("metadata", metadataAsJsonString);
+        } catch (JsonProcessingException e) {
+            log.error("Failed to serialize headers to JSON; fallback to writing headers as Java object", e);
+            MDC.put("metadata", metadata);
+        }
     }
 
     private Map<String, String> headersToMap(Collection<String> headerNames, UnaryOperator<String> headerValueResolver) {
