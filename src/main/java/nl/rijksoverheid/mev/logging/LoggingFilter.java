@@ -102,13 +102,11 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         var eventStart = loggingContext.getEventStart();
         var eventDuration = Duration.between(eventStart, eventEnd);
 
-        MDC.put("event", Map.of(
-            "kind", "event",
-            "category", "api",
-            "duration", eventDuration.toNanos(),
-            "end", eventEnd,
-            "timezone", TIMEZONE
-        ));
+        MDC.put("event.kind", "event");
+        MDC.put("event.category", "api");
+        MDC.put("event.duration", eventDuration.toNanos());
+        MDC.put("event.end", eventEnd);
+        MDC.put("event.timezone", TIMEZONE);
 
         return new Event(eventStart, eventEnd, eventDuration);
     }
@@ -122,12 +120,10 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         var responseContentType = response.getContentType();
         var responseStatusCode = response.getStatus();
 
-        MDC.put("http", Map.of(
-            "request.method", requestMethod,
-            "request.mime_type", requestContentType,
-            "response.mime_type", responseContentType,
-            "response.status_code", responseStatusCode
-        ));
+        MDC.put("request.method", requestMethod);
+        MDC.put("request.mime_type", requestContentType);
+        MDC.put("response.mime_type", responseContentType);
+        MDC.put("response.status_code", responseStatusCode);
 
         return new Http(requestMethod, responseStatusCode);
     }
@@ -138,9 +134,7 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
     private Url processUrl(HttpServletRequest request) {
         var requestUri = request.getRequestURI();
 
-        MDC.put("url.path", Map.of(
-            "path", requestUri
-        ));
+        MDC.put("url.path", requestUri);
 
         return new Url(requestUri);
     }
@@ -152,9 +146,7 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         var currentThread = Thread.currentThread();
         var threadId = currentThread.threadId();
 
-        MDC.put("process", Map.of(
-            "thread.id", threadId
-        ));
+        MDC.put("process.thread.id", threadId);
     }
 
     private void processMetadata(HttpServletRequest request, HttpServletResponse response) {
