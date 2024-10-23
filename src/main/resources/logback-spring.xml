@@ -4,6 +4,8 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
+    <property name="ecs.version" value="8.11"/>
+
     <springProperty scope="context" name="event.dataset" source="spring.application.name"/>
     <springProperty scope="context" name="event.timezone" source="user.timezone"/>
     <springProperty scope="context" name="host.architecture" source="os.arch"/>
@@ -25,7 +27,7 @@
                 <stackTrace>error.stack_trace</stackTrace>
                 <thread>process.thread.name</thread>
             </fieldNames>
-            <version>1.2.0</version>
+            <version>${ecs.version}</version>
         </encoder>
         <file>${LOG_FILE}.json</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
@@ -48,7 +50,6 @@
                 <stackTrace>error.stack_trace</stackTrace>
                 <thread>process.thread.name</thread>
             </fieldNames>
-
             <jsonGeneratorDecorator class="net.logstash.logback.mask.MaskingJsonGeneratorDecorator">
                 <!-- burgerservicenummer mask -->
                 <valueMask>
@@ -56,8 +57,7 @@
                     <mask>"***MASKED***"</mask>
                 </valueMask>
             </jsonGeneratorDecorator>
-
-            <version>1.2.0</version>
+            <version>${ecs.version}</version>
         </encoder>
         <file>${LOG_FILE}.masked.json</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
