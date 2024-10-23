@@ -88,3 +88,38 @@ Functionaliteit: Bepaling van gezag bij een geadopteerd minderjarige met een ger
       En heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
+
+  Regel: gerechtelijke uitspraken over gezag met een volledig onbekend ingangsdatum worden genegeerd bij het bepalen van het gezag
+
+    Scenario: datum ingang gerechtelijke uitspraak is volledig onbekend (regel 184)
+  	  Gegeven voor 'Jaimy' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | D                                    | 00000000                        |
+      En is 'Jaimy' geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
+      | datum ingang familierechtelijke betrekking (62.10) |
+      | morgen - 4 jaar                                    |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan is het gezag van rechtswege bepaald
+      En heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+
+  Regel: bij gerechtelijke uitspraken over gezag met een deels onbekend ingangsdatum wordt de eerste dag van de onzekerheidsperiode als ingangsdatum gehanteerd
+
+    Scenario: ingangsdatum adoptie ligt na de eerste dag van de onzekerheidsperiode van datum ingang gerechtelijke uitspraak
+  	  Gegeven voor 'Jaimy' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | D                                    | 20210600                        |
+      En is 'Jaimy' geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
+      | datum ingang familierechtelijke betrekking (62.10) |
+      | 20210617                                           |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan wordt 20160601 als datum ingang gerechtelijke uitspraak gehanteerd
+      En is het gezag van rechtswege bepaald
+      En heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |

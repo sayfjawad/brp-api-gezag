@@ -2,19 +2,32 @@
 
 ## Adoptie
 
-Bij de persoonslijst wordt bij de persoon met type 'P' een aktenummer (81.20) met waarde '1AQ0101' geregistreerd.
-Bij de persoonslijst wordt een persoon met type '1' of '2' met datum ingang familierechtelijke betrekking is datum ingang adoptie geregistreerd
+bij persoonslijst van kind:
+- toevoegen van rij in lo3_pl_persoon met persoon_type = 'P', volg_nr = 0, akte_nr = '1AQ0101' + overige gegevens uit rij met volg_nr = 1
+- toevoegen van rij in lo3_pl_persoon met persoon_type = '1' of '2', volg_nr = 0, familie_betrek_start_datum = datum ingang adoptie + overige gegevens van ouder die bekend zijn 
 
-to do: persoon met kind registratie
+bij persoonslijst van ouder(s):
+- toevoegen van rij in lo3_pl_persoon met persoon_type = 'K', volg_nr = 0, stapel_nr = aantal kinderen - 1(, familie_betrek_start_datum = datum ingang adoptie?)
 
 ## Adoptie is ten onrechte geregistreerd
 
 Adoptie wordt ongedaan gemaakt door
 
-Bij de persoonslijst wordt bij persoon met type 'P' de adoptie als onjuist geregistreerd en wordt een aktenummer (81.20) met waarde '1AR0200' geregistreerd.
-Bij de persoonslijst wordt de persoon met type '1' en/of '2' als onjuist geregistreerd en wordt een aktenummer (81.20) met waarde '1AR0200' geregistreerd.
+bij persoonslijst van kind
+- toevoegen van rij in lo3_pl_persoon met persoon_type = 'P', volg_nr = 0, akte_nr = '1AR0200' + overige gegevens uit rij met volg_nr = 1
+- toevoegen van onjuist_ind = 'O' aan rij in lo3_pl_persoon met persoon_type = 'P', volg_nr=1
+- indien er een rij is in lo3_pl_persoon met persoon_type = '1'
+  - toevoegen van rij in lo3_pl_persoon met persoon_type = '1', volg_nr = 0, akte_nr = '1AR0200'
+  - toevoegen van onjuist_ind = 'O' aan rij in lo3_pl_persoon met persoon_type = '1', volg_nr=1
+- indien er een rij is in lo3_pl_persoon met persoon_type = '2'
+  - toevoegen van rij in lo3_pl_persoon met persoon_type = '2', volg_nr = 0, akte_nr = '1AR0200'
+  - toevoegen van onjuist_ind = 'O' aan rij in lo3_pl_persoon met persoon_type = '2', volg_nr=1
 
-to do: perso(o)n(en) met kind registratie
+bij persoonslijst van ouder(s)
+- toevoegen van rij in lo3_pl_persoon met persoon_type = 'K', volg_nr = 0, akte_nr = '1AR0200', stapel_nr = stapel_nr van kind met burgerservicenummer = burgerservicenummer van kind
+- toevoegen van onjuist_ind = 'O' aan rij in lo3_pl_persoon met persoon_type = 'K', volg_nr = 1, stapel_nr = stapel_nr van kind met burgerservicenummer = burgerservicenummer van kind
+
+**VRAAG: Volgens 3.1-recente-gebeurtenis-adoptie.feature:61 kan een kind een ouder en een adoptie ouder hebben. Echter zoals aangegeven in Adoptie kan adhv aktenummer '1AQ0101' worden afgeleid dat de persoon is geadopteerd, maar er kan niet worden afgeleid wie de adoptie ouder(s) zijn. In geval van hierboven beschreven scenario zou bij onterechte adoptie beide ouders worden geschrapt terwijl maar één van de ouders adoptie ouder is
 
 ## Naamswijziging
 Bij de persoonslijst wordt bij de persoon met type 'P' behalve de gewijzigde naam velden een aktenummer (81.20) met waarde '1AW0200' geregistreerd.
