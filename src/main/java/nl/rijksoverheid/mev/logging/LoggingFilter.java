@@ -22,7 +22,6 @@ import org.springframework.web.util.WebUtils;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -36,8 +35,6 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
      * SLF4J logger named "log" instead of "logger" to prevent hiding Apache logger `GenericFilterBean.logger`.
      */
     private static final Logger log = LoggerFactory.getLogger(LoggingFilter.class);
-
-    private static final String TIMEZONE = ZoneId.systemDefault().getId();
 
     private final ObjectMapper objectMapper;
 
@@ -105,7 +102,6 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         MDC.put("event.category", "api");
         MDC.put("event.duration", eventDuration.toNanos());
         MDC.put("event.end", eventEnd);
-        MDC.put("event.timezone", TIMEZONE);
 
         return new Event(eventStart, eventEnd, eventDuration);
     }
