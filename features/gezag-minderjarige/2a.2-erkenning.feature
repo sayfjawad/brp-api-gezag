@@ -12,7 +12,7 @@ Functionaliteit: 2a.3 - erkenning
   # | 2a.2 Is persoon geadopteerd met Nederlandse akte                       | Nee
 
   # Hoe achterhalen of er erkenning is: Aktenummer Ouder1 of Ouder2 (02.81.20 of 03.81.20) bevat op de 3e positie de akteaanduiding B (erkenning bij
-  # geboorteaangifte), C (erkenning), J (erkenning bij notariële akte) of V (gerechtelijke vaststelling ouderschap). Deze kan in de actuele categorie voorkomen maar ook 
+  # geboorteaangifte), C (erkenning na geboorte), J (erkenning bij notariële akte) of V (gerechtelijke vaststelling ouderschap). Deze kan in de actuele categorie voorkomen maar ook 
   # in een historische categorie (52.81.20 of 53.81.20) omdat er later nog een ander rechtsfeit geregistreerd kan zijn. De datum van erkenning kan ontleend worden aan 
   # datum familierechtelijke betrekking (02.62.10 of 03.62.10) van dezelfde categorie als die waarin akteaanduiding B of C geconstateerd is. Kan dus ook in de
   # historie voorkomen (52.62.10 of 53.62.10).
