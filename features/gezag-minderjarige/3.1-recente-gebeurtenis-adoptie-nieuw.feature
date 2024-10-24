@@ -123,3 +123,42 @@ Functionaliteit: Bepaling van gezag bij een geadopteerd minderjarige met een ger
       En heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
+
+  Regel: adopties met volledig onbekend ingangsdatum worden genegeerd bij het bepalen van het gezag
+
+    Scenario: ingangsdatum adoptie is volledig onbekend en de persoon heeft een gerechtelijke uitspraak over gezag
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan is het gezag aan de hand van het gerechtelijke uitspraak over het gezag bepaald
+      En heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+
+  Regel: bij adopties met een deels onbekend ingangsdatum wordt de eerste dag van de onzekerheidsperiode als ingangsdatum gehanteerd
+
+    Scenario: de eerste dag van de onzekerheidsperiode van datum ingang adoptie ligt na datum ingang gerechtelijke uitspraak
+
+  Regel: het gezag kan niet worden bepaald als de adoptie na de gerechtelijke uitspraak over gezag heeft plaatsgevonden en datum ingang adoptie van één of beide adoptie ouders staat in onderzoek
+
+    Scenario: alle gegevens van adoptie ouder 1 staan in onderzoek (regel 400 en 403)
+
+    Scenario: alle familierechtelijke betrekking gegevens van adoptie ouder 1 staan in onderzoek (regel 401 en 404)
+
+    Scenario: datum ingang adoptie van adoptie ouder 1 staan in onderzoek (regel 402 en 405)
+
+    Scenario: wat als de persoon een niet-adoptie ouder heeft die in onderzoek staat
+
+    Scenario: datum ingang adoptie van adoptie ouder(s) staan in onderzoek en het onderzoek is beëindigd (regel 407)
+
+    Scenario: datum ingang adoptie van adoptie ouders staan in onderzoek en het onderzoek is alleen bij één adoptie ouder beëindigd (regel 434)
+
+  Regel: het gezag kan niet worden bepaald als de adoptie vóór de gerechtelijke uitspraak over gezag heeft plaatsgevonden én de ingangsdatum of de indicatie van de gerechtelijke uitspraak staat in onderzoek
+
+    Scenario: alle gegevens van de gerechtelijke uitspraak staan in onderzoek (regel 480)
+
+    Scenario: de indicatie van het gezag van de gerechtelijke uitspraak staat in onderzoek (regel 482)
+
+    Scenario: de ingangsdatum van het gerechtelijke gezag staat in onderzoek (regel 484)
+
+    Scenario: de gehele gerechtelijke uitspraak staat in onderzoek en het onderzoek is beëindigd (regel 486)

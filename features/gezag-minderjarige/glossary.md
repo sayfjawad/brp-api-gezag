@@ -33,6 +33,10 @@ bij persoonslijst van ouder(s)
 
 **VRAAG: Volgens 3.1-recente-gebeurtenis-adoptie.feature:61 kan een kind een ouder en een adoptie ouder hebben. Echter zoals aangegeven in Adoptie kan adhv aktenummer '1AQ0101' worden afgeleid dat de persoon is geadopteerd, maar er kan niet worden afgeleid wie de adoptie ouder(s) zijn. In geval van hierboven beschreven scenario zou bij onterechte adoptie beide ouders worden geschrapt terwijl maar één van de ouders adoptie ouder is
 
+## Minderjarige
+
+Een persoon jonger dan 18 jaar (op het moment van bevraging)
+
 ## Naamswijziging
 Bij de persoonslijst wordt bij de persoon met type 'P' behalve de gewijzigde naam velden een aktenummer (81.20) met waarde '1AW0200' geregistreerd.
 
@@ -43,3 +47,10 @@ Bij de persoonslijst wordt een persoon met type '1' of '2' met datum ingang fami
 ## Gezag is van rechtswege bepaald
 
 Gezag wordt bepaald aan de hand van de geregistreerde persoonsgegevens. Hierbij wordt indien aanwezig het gezag bepaald door gerechtelijke uitspraak niet meegenomen
+
+## Gerechtelijke uitspraak voor gezag
+
+Door de rechter is bepaald wie gezag hebben over een persoon
+
+bij persoonslijst van persoon
+- toevoegen van rij in lo3_pl_gezagsverhouding met volg_nr = 0, minderjarig_gezag_ind = code gezag, geldigheid_start_datum = datum ingang gezag
