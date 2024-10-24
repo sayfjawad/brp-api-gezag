@@ -8,7 +8,8 @@ logging:
     name: brp-api-gezag.json
   file-masked:
     name: brp-api-gezag.masked.json
-
+  group:
+    gezag: nl.rijksoverheid.mev
 server:
   port: 8080
   error:
