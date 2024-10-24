@@ -7,7 +7,9 @@ app:
 
 logging:
   file:
-    name: build/brp-api-gezag.log
+    name: build/brp-api-gezag.json
+  file-masked:
+    name: build/brp-api-gezag.masked.json
   level:
     nl.rijksoverheid.mev: DEBUG
 

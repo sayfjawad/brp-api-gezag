@@ -5,7 +5,9 @@ app:
 
 logging:
   file:
-    name: brp-api-gezag.log
+    name: brp-api-gezag.json
+  file-masked:
+    name: brp-api-gezag.masked.json
 
 server:
   port: 8080

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+    <springProperty name="LOG_FILE_MASKED" source="logging.file-masked.name"/>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
@@ -29,10 +30,10 @@
             </fieldNames>
             <version>${ecs.version}</version>
         </encoder>
-        <file>${LOG_FILE}.json</file>
+        <file>${LOG_FILE}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <cleanHistoryOnStart>${LOG_FILE_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
-            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE}.json.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
             <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
             <maxHistory>${LOG_FILE_MAX_HISTORY:-7}</maxHistory>
             <totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP:-0}</totalSizeCap>
@@ -64,10 +65,10 @@
             </jsonGeneratorDecorator>
             <version>${ecs.version}</version>
         </encoder>
-        <file>${LOG_FILE}.masked.json</file>
+        <file>${LOG_FILE_MASKED}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <cleanHistoryOnStart>${LOG_FILE_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
-            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE}.masked.json.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE_MASKED}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
             <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
             <maxHistory>${LOG_FILE_MAX_HISTORY:-7}</maxHistory>
             <totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP:-0}</totalSizeCap>
