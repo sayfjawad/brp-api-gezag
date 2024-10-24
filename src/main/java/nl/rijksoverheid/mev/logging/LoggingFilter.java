@@ -6,9 +6,9 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.jboss.logging.MDC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -63,7 +63,7 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
             if (!isAsyncStarted(cachedRequest)) {
                 afterRequest(cachedRequest, cachedResponse);
             }
-            log.debug("MDC: {}", MDC.getMap());
+            log.debug("MDC: {}", MDC.getCopyOfContextMap());
             MDC.clear();
         }
     }
@@ -75,7 +75,7 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         var eventStart = loggingContext.getEventStart();
 
         MDC.put("trace.id", requestId);
-        MDC.put("event.start", eventStart);
+        MDC.put("event.start", eventStart.toString());
     }
 
     private void afterRequest(HttpServletRequest request, HttpServletResponse response) {
@@ -100,8 +100,8 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
 
         MDC.put("event.kind", "event");
         MDC.put("event.category", "api");
-        MDC.put("event.duration", eventDuration.toNanos());
-        MDC.put("event.end", eventEnd);
+        MDC.put("event.duration", String.valueOf(eventDuration.toNanos()));
+        MDC.put("event.end", eventEnd.toString());
 
         return new Event(eventStart, eventEnd, eventDuration);
     }
@@ -118,7 +118,7 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         MDC.put("request.method", requestMethod);
         MDC.put("request.mime_type", requestContentType);
         MDC.put("response.mime_type", responseContentType);
-        MDC.put("response.status_code", responseStatusCode);
+        MDC.put("response.status_code", String.valueOf(responseStatusCode));
 
         return new Http(requestMethod, responseStatusCode);
     }
@@ -170,7 +170,7 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
             MDC.put("metadata", metadataAsJsonString);
         } catch (JsonProcessingException e) {
             log.error("Failed to serialize headers to JSON; fallback to writing headers as Java object", e);
-            MDC.put("metadata", metadata);
+            MDC.put("metadata", metadata.toString());
         }
     }
 
