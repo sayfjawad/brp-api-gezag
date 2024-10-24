@@ -63,7 +63,6 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
             if (!isAsyncStarted(cachedRequest)) {
                 afterRequest(cachedRequest, cachedResponse);
             }
-            log.debug("MDC: {}", MDC.getCopyOfContextMap());
             MDC.clear();
         }
     }
