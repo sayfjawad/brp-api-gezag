@@ -3,28 +3,26 @@
 Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschreven
 
     Achtergrond:
-      Gegeven de persoon 'Henk' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Mark' met burgerservicenummer '000000012'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En de persoon 'Ingrid' met burgerservicenummer '000000024'
+      En de persoon 'Marlies' met burgerservicenummer '000000024'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En 'Henk' en 'Ingrid' zijn met elkaar gehuwd
+      En 'Mark' en 'Marlies' zijn met elkaar gehuwd
 
   Regel: een persoon die in RNI staat ingeschreven krijgt gezag niet te bepalen geleverd wanneer de leeftijd lager is dan 18 jaar
     # wanneer de persoon meerderjarig is, moet geen 'gezag niet te bepalen' worden geleverd
     # 'gezag niet te bepalen' wordt alleen geleverd wanneer de persoon minderjarig is
 
-    Abstract Scenario: minderjarig persoon in RNI
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
+    Scenario: minderjarig persoon in RNI
+      Gegeven de persoon 'Mees' met burgerservicenummer '000000036'
       * is ingeschreven in de RNI
-      * is minderjarig met de volgende gegevens
-      | geboortedatum (03.10) |
-      | <geboortedatum>       |
+      * is minderjarig
       * is in Nederland geboren
       * is niet geëmigreerd geweest
-      * heeft 'Ingrid' als ouder 1
-      * heeft 'Henk' als ouder 2
+      * heeft 'Marlies' als ouder 1
+      * heeft 'Mark' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -36,24 +34,14 @@ Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschrev
       | type        | GezagNietTeBepalen                                                   |
       | toelichting | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
 
-      Voorbeelden:
-      | geboortedatum    |
-      | 20180301         |
-      | vandaag          |
-      | gisteren         |
-      | morgen - 5 jaar  |
-      | morgen - 18 jaar |
-
-    Abstract Scenario: een meerderjarig persoon in RNI en zonder kinderen 
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
+    Scenario: een meerderjarig persoon in RNI en zonder kinderen 
+      Gegeven de persoon 'Mees' met burgerservicenummer '000000036'
       * is ingeschreven in de RNI
-      * is meerderjarig met de volgende gegevens
-      | geboortedatum (03.10) |
-      | <geboortedatum>       |
+      * is meerderjarig
       * is in Nederland geboren
       * is niet geëmigreerd geweest
-      * heeft 'Ingrid' als ouder 1
-      * heeft 'Henk' als ouder 2
+      * heeft 'Marlies' als ouder 1
+      * heeft 'Mark' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -62,27 +50,21 @@ Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschrev
       | burgerservicenummer | 000000036 |
       En heeft de persoon geen gezag
 
-      Voorbeelden:
-      | geboortedatum      |
-      | gisteren - 45 jaar |
-      | gisteren - 18 jaar |
-      | vandaag - 18 jaar  |
-
     Scenario: meerderjarige persoon in RNI met gezag over kind
-      Gegeven de persoon 'Geert' met burgerservicenummer '000000048'
+      Gegeven de persoon 'Michiel' met burgerservicenummer '000000048'
       * is ingeschreven in de BRP
       * is meerderjarig
-      En de persoon 'Femke' met burgerservicenummer '000000061'
+      En de persoon 'Marielle' met burgerservicenummer '000000061'
       * is ingeschreven in de RNI
       * is meerderjarig
-      En 'Geert' en 'Femke' zijn met elkaar gehuwd
-      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      En 'Michiel' en 'Marielle' zijn met elkaar gehuwd
+      En de persoon 'Maud' met burgerservicenummer '000000036'
       * is ingeschreven in de BRP
       * is minderjarig
       * is in Nederland geboren
       * is niet geëmigreerd geweest
-      * heeft 'Femke' als ouder 1
-      * heeft 'Geert' als ouder 2
+      * heeft 'Marielle' als ouder 1
+      * heeft 'Michiel' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
@@ -107,16 +89,16 @@ Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschrev
     # 'gezag niet te bepalen' wordt alleen geleverd wanneer de persoon nog minderjarig is
     
     Abstract Scenario: persoon in RNI <omschrijving>
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
+      Gegeven de persoon 'Mees' met burgerservicenummer '000000036'
       * is ingeschreven in de RNI
-      # * is meerderjarig met de volgende gegevens
-      # | geboortedatum (03.10) |
-      # | <geboortedatum>       |
+      * heeft de volgende gegevens
+      | geboortedatum (03.10) |
+      | <geboortedatum>       |
       * is meerderjarig
       * is in Nederland geboren
       * is niet geëmigreerd geweest
-      * heeft 'Ingrid' als ouder 1
-      * heeft 'Henk' als ouder 2
+      * heeft 'Marlies' als ouder 1
+      * heeft 'Mark' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -132,15 +114,15 @@ Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschrev
       | dit jaar - 17 jaar       | 16 of 17 jaar | met alleen jaar van geboortedatum bekend en is of wordt dit jaar 17 jaar                 |
 
     Abstract Scenario: persoon in RNI <omschrijving>
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
+      Gegeven de persoon 'Mees' met burgerservicenummer '000000036'
       * is ingeschreven in de RNI
-      * is meerderjarig met de volgende gegevens
+      * heeft de volgende gegevens
       | geboortedatum (03.10) |
       | <geboortedatum>       |
       * is in Nederland geboren
       * is niet geëmigreerd geweest
-      * heeft 'Ingrid' als ouder 1
-      * heeft 'Henk' als ouder 2
+      * heeft 'Marlies' als ouder 1
+      * heeft 'Mark' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -160,15 +142,15 @@ Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschrev
     # wanneer de geboortedatum is gelijk aan 00000000, is de persoon meerderjarig 
 
     Scenario: persoon in RNI en geboortedatum is volledig onbekend
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
+      Gegeven de persoon 'Mees' met burgerservicenummer '000000036'
       * is ingeschreven in de RNI
-      * is meerderjarig met de volgende gegevens
+      * heeft de volgende gegevens
       | geboortedatum (03.10) |
       | 00000000              |
       * is in Nederland geboren
       * is niet geëmigreerd geweest
-      * heeft 'Ingrid' als ouder 1
-      * heeft 'Henk' als ouder 2
+      * heeft 'Marlies' als ouder 1
+      * heeft 'Mark' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
