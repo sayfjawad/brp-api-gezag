@@ -497,7 +497,7 @@ Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning na geboorteaangift
         ['datum ingang familierechtelijke betrekking (62.10)', `${jaar}${maand}${dag}`]
     ]);
 
-    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijGeboorteaangifte, ouderType, ouderData);
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningNaGeboorteaangifte, ouderType, ouderData);
 });
 
 Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning bij notariële akte op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
@@ -513,7 +513,7 @@ Given(/^is erkend door '(.*)' als ouder ([1-2]) met gerechtelijke vaststelling o
         ['datum ingang familierechtelijke betrekking (62.10)', `${jaar}${maand}${dag}`]
     ]);
 
-    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijNotarieleAkte, ouderType, ouderData);
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.GerechtelijkeVaststellingOuderschap, ouderType, ouderData);
 });
 
 function gegevenIsErkendDoorPersoonAlsOuder(context, aanduidingOuder, erkenningsType, ouderType, dataTable) {
