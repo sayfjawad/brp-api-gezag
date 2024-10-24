@@ -58,7 +58,7 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
             .forEach(result::addPersoonGeschiedenis);
 
         var plId = plPersoonPersoonRecent.getPlId();
-        loggingContext.addPlIdIfBurgerservicenummerMatches(plId, burgerservicenummer);
+        loggingContext.addPlId(plId, burgerservicenummer);
 
         var inschrijvingen = findInschrijvingen(plId);
         inschrijvingen.forEach(result::addInschrijving);

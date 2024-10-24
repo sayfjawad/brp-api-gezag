@@ -43,7 +43,7 @@ public class LoggingContext {
         );
     }
 
-    public void addPlIdIfBurgerservicenummerMatches(long plId, Burgerservicenummer burgerservicenummer) {
+    public void addPlId(long plId, Burgerservicenummer burgerservicenummer) {
         gezagResultaten.computeIfPresent(burgerservicenummer.asString(), (unused, gezagResultaat) -> {
             gezagResultaat.setPlId(plId);
             return gezagResultaat;
