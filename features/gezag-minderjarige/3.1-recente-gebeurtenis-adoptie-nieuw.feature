@@ -17,11 +17,11 @@ Functionaliteit: Bepaling van gezag bij een geadopteerd minderjarige met een ger
     - ingangsdatum gezag (11.85.10) vóór datum ingang familierechtelijke betrekking (02.62.10 en 03.62.10) van tenminste één adoptie ouder ligt én
     - de actuele/historische akteaanduiding (01.81.20/05.81.20) bij de minderjarige de waarde Q op de 3e positie heeft
 
-    Scenario: adoptie door echtpaar na de gerechtelijke uitspraak (regel 25)
+    Scenario: persoon met gerechtelijke uitspraak en geen ouders wordt door een echtpaar na de gerechtelijke uitspraak geadopteerd (regel 25)
       Gegeven de persoon 'Henk'
       En de persoon 'Ingrid'
-      En de persoon 'Jaimy'
       En 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      En de persoon 'Jaimy'
   	  En voor 'Jaimy' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
@@ -36,7 +36,7 @@ Functionaliteit: Bepaling van gezag bij een geadopteerd minderjarige met een ger
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
 
-    Scenario: adoptie door één persoon na de gerechtelijke uitspraak (regel 61)
+    Scenario: persoon met gerechtelijke uitspraak en één ouder wordt door één persoon na de gerechtelijke uitspraak geadopteerd (regel 61)
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -45,7 +45,7 @@ Functionaliteit: Bepaling van gezag bij een geadopteerd minderjarige met een ger
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
 
-    Scenario: adoptie door echtpaar vóór de gerechtelijke uitspraak (regel 93)
+    Scenario: persoon met gerechtelijke uitspraak en geen ouders is door een echtpaar vóór de gerechtelijke uitspraak geadopteerd (regel 93)
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |

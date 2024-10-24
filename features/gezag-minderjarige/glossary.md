@@ -2,6 +2,10 @@
 
 ## Adoptie
 
+definitie: een persoon (minderjarige) wordt door één of twee (meerdere) personen erkend als kind. Deze personen zijn niet de biologische ouders
+
+VRAAG: kan de datum ingang adoptie niet gelijk zijn aan geboortedatum van het kind? Uit de scenarios en de implementatie van automation maak ik op dat enige de onderscheid tussen een (biologische) ouder en een adoptie ouder de datum ingang familierechtelijke betrekking is.
+
 bij persoonslijst van kind:
 - toevoegen van rij in lo3_pl_persoon met persoon_type = 'P', volg_nr = 0, akte_nr = '1AQ0101' + overige gegevens uit rij met volg_nr = 1
 - toevoegen van rij in lo3_pl_persoon met persoon_type = '1' of '2', volg_nr = 0, familie_betrek_start_datum = datum ingang adoptie + overige gegevens van ouder die bekend zijn 
