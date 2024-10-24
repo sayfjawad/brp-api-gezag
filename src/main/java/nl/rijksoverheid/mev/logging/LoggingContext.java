@@ -30,6 +30,7 @@ public class LoggingContext {
             case "V" -> "Voogdij";
             case "G" -> "TijdelijkGeenGezag";
             case "N" -> "GezagNietTeBepalen";
+            case "NVT" -> "GezagNietVanToepassing*";
             default -> { // should never happen
                 logger.error("Unknown gezag type: {}", gezagType);
                 yield "OnbekendGezagType";
