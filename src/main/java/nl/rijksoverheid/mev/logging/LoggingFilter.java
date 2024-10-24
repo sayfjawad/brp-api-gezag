@@ -182,8 +182,7 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        var requestUri = request.getRequestURI();
-        return requestUri.startsWith("/actuator");
+        return request.getRequestURI().startsWith("/actuator");
     }
 
     /**
