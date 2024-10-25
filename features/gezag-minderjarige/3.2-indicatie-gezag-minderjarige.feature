@@ -101,7 +101,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
 
   Regel: Uitspraak gezag met indicatie dat er sprake is van gezamelijk gezag is opgenomen vanuit het Gezagsregister
 
-    Scenario: De moeder heeft samen met de vader gezamelijk gezag over het kind resulteerd in Voogdij, zou moeten zijn GezamelijkGezag?
+    Scenario: De moeder heeft samen met de vader gezamelijk gezag over het kind resulteerd in Voogdij
       Gegeven voor 'Nathan' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1D                                    | 20230101                       |
@@ -117,7 +117,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | minderjarige.burgerservicenummer | 000000036                 |
       En heeft 'gezag' geen derden
 
-    Scenario: De vader heeft samen met een voogd gezamelijk gezag over het kind resulteerd in Voogdij, zou moeten zijn GezamelijkGezag?
+    Scenario: De vader heeft samen met een voogd gezamelijk gezag over het kind resulteerd in Voogdij
       Gegeven voor 'Nathan' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 2D                                    | 20230101                       |
