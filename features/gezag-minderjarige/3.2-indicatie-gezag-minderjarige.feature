@@ -42,7 +42,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
 
   Regel: Uitspraak gezag met indicatie dat beide ouders gezag hebben is opgenomen vanuit het Gezagsregister
 
-    Scenario: Vader ontkend het kind te erkennen er is sprake van EenhoofdigOuderlijkGezag 
+    Scenario: Beide ouders hebben gezag vanuit indicatie gezag
       Gegeven voor 'Nathan' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 12                                   | 20230101                        |
@@ -65,9 +65,9 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
 
   # FUTURE_WORK: geldigheid van gezagsverhouding controleren
 
-  Regel: Uitspraak gezag met indicatie dat één ouder, in dit geval de moeder gezag heeft, is opgenomen vanuit het Gezagsregister
+  Regel: Uitspraak gezag met indicatie dat één ouder gezag heeft is opgenomen vanuit het Gezagsregister
 
-    Scenario: Vader ontkend het kind te erkennen er is sprake van EenhoofdigOuderlijkGezag 
+    Scenario: Alleen de moeder heeft gezag over het kind
       Gegeven voor 'Nathan' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 1                                    | 20230101                        |
@@ -82,3 +82,19 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | type                             | EenhoofdigOuderlijkGezag  |
       | minderjarige.burgerservicenummer | 000000036                 |
       | ouder.burgerservicenummer        | 000000012                 |
+
+    Scenario: Alleen de vader heeft gezag over het kind
+      Gegeven voor 'Nathan' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 2                                    | 20230101                        |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | EenhoofdigOuderlijkGezag  |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      | ouder.burgerservicenummer        | 000000024                 |
