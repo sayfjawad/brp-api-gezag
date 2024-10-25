@@ -98,3 +98,40 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | type                             | EenhoofdigOuderlijkGezag  |
       | minderjarige.burgerservicenummer | 000000036                 |
       | ouder.burgerservicenummer        | 000000024                 |
+
+  Regel: Uitspraak gezag met indicatie dat er sprake is van gezamelijk gezag is opgenomen vanuit het Gezagsregister
+
+    Scenario: De moeder heeft samen met de vader gezamelijk gezag over het kind resulteerd in Voogdij, zou moeten zijn GezamelijkGezag
+      Gegeven voor 'Nathan' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1D                                    | 20230101                       |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | Voogdij                   |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' geen derden
+
+    Scenario: De vader heeft samen met een voogd gezamelijk gezag over het kind resulteerd in Voogdij, zou moeten zijn GezamelijkGezag
+      Gegeven voor 'Nathan' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 2D                                    | 20230101                       |
+      Gegeven de persoon 'Klaartje' met burgerservicenummer '000000064'
+      * is meerderjarig, niet overleden en staat niet onder curatele
+      Gegeven 'Nathan' is erkend door 'Klaartje' als ouder 1 met erkenning bij geboorteaangifte
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | Voogdij                   |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' geen derden
