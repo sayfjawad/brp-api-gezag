@@ -6,8 +6,9 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   # | 1.2 Is persoon a. minderjarig en b. niet overleden?                    | Ja                                                                                 |
   # | 1.3 Is minderjarige naar het buitenland geëmigreerd geweest?           | Nee                                                                                |
   # | 1.3a Is minderjarige in buitenland geboren?                            | Nee of geadopteerd met NL akte                                                     |
-  # | 1.4 Uitspraak gezag aanwezig?                                          | Ja                                                                                 |
-  # | 3.1 Is er sprake van een recente gebeurtenis?                          | Nee                                                                                 |
+  # | 1.4 Is uitspraak gezag aanwezig                                        | Nee                                                                                |
+  # | 2.1 Hoeveel juridische ouders heeft minderjarigen                      | Twee_ouders                                                                        |
+  # | 2a.1 Zijn juridische ouders nu met elkaar gehuwd of partners           | Ja                                                                                 |
 
   # Onbevoegd tot het gezag zijn minderjarigen, zij die onder curatele zijn gesteld en zij wier geestvermogens zodanig zijn gestoord, om het
   # gezag uit te kunnen oefenen (1:246 BW). Overleden ouder spreekt voor zich.
@@ -47,11 +48,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   # Opmerkingen
   # • Vraag 4a.2: Het antwoord op de vraag 4a.2 is mogelijk te beperkt om gezag juist te bepalen. de gevolgen van overlijden en curatele
   # voor gezag zijn verschillend. Of komt de situatie van curatele eigenlijk niet voor omdat er dan al een uitspraak gezag voorligt?
-  
-  # Aanbeveling
-  # Mogelijk moet autorisatie worden verleend voor 11.82.30 Beschrijving Document vanwege de instructie opnemen “van
-  # rechtswege, erkenning OV 2022”.
-  
+
     Achtergrond:
       Gegeven de persoon 'Trudy' met burgerservicenummer '000000012'
       * is meerderjarig, niet overleden en staat niet onder curatele
