@@ -66,8 +66,6 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-  # FUTURE_WORK: geldigheid van gezagsverhouding controleren
-
   Regel: Uitspraak gezag met indicatie dat één ouder gezag heeft is opgenomen vanuit het Gezagsregister
 
     Scenario: Alleen de moeder heeft gezag over het kind
