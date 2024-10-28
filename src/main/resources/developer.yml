@@ -11,9 +11,6 @@ logging:
   level:
     nl.rijksoverheid.mev: DEBUG
 
-server:
-  port: 8080
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/rvig_brp_api_testdata
