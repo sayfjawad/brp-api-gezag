@@ -39,7 +39,7 @@ Functionaliteit: 2a.3 - erkenning
     - Aktenummer ouder 2 -> 03.81.20
     - Actuele categorie -> 52.81.20
     - Historische categorie -> 53.81.20
-    - datum familierechtelijke betrekking -> 02.62.10 of 03.62.10
+    - Datum familierechtelijke betrekking -> 02.62.10 of 03.62.10
     - Historische datum familierechtelijke betrekking -> 52.62.10 of 53.62.10
 
     Achtergrond:
