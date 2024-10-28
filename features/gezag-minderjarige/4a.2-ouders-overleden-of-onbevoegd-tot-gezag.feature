@@ -32,7 +32,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   # Niet overleden: op de persoonslijst van de ouder(s) mag de datum opschorting bijhouding (07.67.10) niet voorkomen.
   # Meerderjarig: de geboortedatum van de ouder(s) (02.03.10 en 03.03.10) moet 18 jaar of hoger zijn.
   # Niet onder curatele: op de persoonslijst van de ouder(s) mag de indicatie curatele (11.33.10) niet voorkomen.
-  
+
   # Het wordt in de BRP niet geregistreerd dat de geestelijke vermogens van een ouder gestoord zijn.
   # Uitzondering genoemd in de wet Gezamenlijk gezag door erkenning: De moeder en de persoon die een kind heeft erkend oefenen het gezag over hun
   # kind gezamenlijk uit, tenzij
@@ -52,7 +52,9 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
 
   # Aanbeveling
   # • Meerderjarig verlkaring: ophalen meerderjarig verklaring uit de aantekening in het Gezagsregister
-
+  # • Mogelijk moet autorisatie worden verleend voor 11.82.30 Beschrijving Document vanwege de instructie opnemen “van
+  # rechtswege, erkenning OV 2022”.
+  
     Achtergrond:
       Gegeven de persoon 'Trudy' met burgerservicenummer '000000012'
       * is meerderjarig en staat niet onder curatele
@@ -63,9 +65,9 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       * is in Nederland geboren
       * is ingeschreven in de BRP
 
-  Regel: 
+  Regel: Eén van de ouders is opgeschort
 
-    Scenario: 
+    Scenario: Moeder is opgeschort
       Gegeven voor 'Nathan' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | 12                                   | 20230101                        |
@@ -86,3 +88,27 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
+    Scenario: Vader is opgeschort
+
+
+  Regel: Beide ouders zijn opgeschort
+
+  Regel: Eén van de ouders is minderjarig
+
+  Regel: Beide ouders zijn minderjarig
+
+  Regel: Eén van de ouders is onder curatele gesteld
+
+  Regel: Beide van de ouders zijn onder curatele gesteld
+
+  Regel: Eén van de ouders is als minderjarige opgeschort 
+
+  Regel: Beide ouders zijn als minderjarige opgeschort 
+  
+  Regel: Eén van de ouders is onder curatele gesteld en opgeschort 
+
+  Regel: Beide ouders zijn onder curatele gesteld en opgeschort 
+
+  Regel: Eén van de ouders is onder curatele gesteld, opgeschort en minderjarig
+
+  Regel: Beide ouders zijn onder curatele gesteld, opgeschort en minderjarig
