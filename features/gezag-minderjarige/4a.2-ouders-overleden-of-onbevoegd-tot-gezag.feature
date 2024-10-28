@@ -11,7 +11,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   # | 2a.1 Zijn juridische ouders nu met elkaar gehuwd of partners           | Ja                                                                                 |
 
   # Onbevoegd tot het gezag zijn minderjarigen, zij die onder curatele zijn gesteld en zij wier geestvermogens zodanig zijn gestoord, om het
-  # gezag uit te kunnen oefenen (1:246 BW). Overleden ouder spreekt voor zich.
+  # gezag uit te kunnen oefenen (1:246 BW). Daarnaast ook overleden ouders zijn Onbevoegd.
   # Uit de wet Gezamenlijk gezag door erkenning volgt dat beide ouders het gezag hebben, tenzij sprake is van de uitzonderingen genoemd in art. 1:251b
   # BW.
   
@@ -29,9 +29,10 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   # dit is wel zichtbaar als aantekening in het Gezagsregister.
 
   # Hoe achterhalen:
-  # Niet overleden: op de persoonslijst van de ouder(s) mag de reden opschorting (07.67.20) niet voorkomen of moet ongelijk zijn aan ‘O’.
-  # Meerderjarig: de geboortedatum van de ouder(s) (02.03.10 en 03.03.10) moet kleiner zijn dan de geboortedatum van het kind (01.03.10) – 18 jaar.
+  # Niet overleden: op de persoonslijst van de ouder(s) mag de datum opschorting bijhouding (07.67.10) niet voorkomen.
+  # Meerderjarig: de geboortedatum van de ouder(s) (02.03.10 en 03.03.10) moet 18 jaar of hoger zijn.
   # Niet onder curatele: op de persoonslijst van de ouder(s) mag de indicatie curatele (11.33.10) niet voorkomen.
+  
   # Het wordt in de BRP niet geregistreerd dat de geestelijke vermogens van een ouder gestoord zijn.
   # Uitzondering genoemd in de wet Gezamenlijk gezag door erkenning: De moeder en de persoon die een kind heeft erkend oefenen het gezag over hun
   # kind gezamenlijk uit, tenzij
@@ -49,11 +50,18 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   # • Vraag 4a.2: Het antwoord op de vraag 4a.2 is mogelijk te beperkt om gezag juist te bepalen. de gevolgen van overlijden en curatele
   # voor gezag zijn verschillend. Of komt de situatie van curatele eigenlijk niet voor omdat er dan al een uitspraak gezag voorligt?
 
+  # Aanbeveling
+  # • Meerderjarig verlkaring: ophalen meerderjarig verklaring uit de aantekening in het Gezagsregister
+
     Achtergrond:
       Gegeven de persoon 'Trudy' met burgerservicenummer '000000012'
-      * is meerderjarig, niet overleden en staat niet onder curatele
-      En de persoon 'Kess' met burgerservicenummer '000000024'
-      * is meerderjarig, niet overleden en staat niet onder curatele
+      * is meerderjarig en staat niet onder curatele
+      En de persoon 'Kees' met burgerservicenummer '000000024'
+      * is meerderjarig en staat niet onder curatele
+      En de persoon 'Lucas' met burgerservicenummer '000000036'
+      * is minderjarig
+      * is in Nederland geboren
+      * is ingeschreven in de BRP
 
   Regel: 
 
