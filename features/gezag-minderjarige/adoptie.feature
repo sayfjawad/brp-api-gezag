@@ -147,7 +147,7 @@ Functionaliteit: Adoptie en gezagsbepaling met behulp van Gherkin voor verschill
     - welke verplichte parameters moet opgegeven
     - wat zijn de namen van de verplichte parameters
 
-    Met een expressieve Als stap wordt bovengenoemde detail verborgen voor de lezer zonder dat er concessie wordt gedaan op begrijpbaarheid/leesbaarheid van de scenario.
+    Met een expressieve Als stap wordt bovengenoemde detail verborgen voor de lezer zonder dat er concessie wordt gedaan op begrijpbaarheid/leesbaarheid van het scenario.
 
     De scenario hierboven kan dan als volgt worden herschreven. Daaronder zijn andere adoptie scenarios te vinden.
 
