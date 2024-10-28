@@ -71,7 +71,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   Regel: Eén van de ouders is opgeschort
 
     Scenario: Moeder is opgeschort er is sprake van EenhoofdigOuderlijkGezag voor de vader
-      Gegeven de persoon 'Trudy' met burgerservicenummer '000000012'
+      Gegeven de persoon 'Trudy'
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -87,10 +87,41 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Vader is opgeschort
+    Scenario: Vader is opgeschort er is sprake van EenhoofdigOuderlijkGezag voor de moeder
+      Gegeven de persoon 'Kees'
+      * is overleden
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | EenhoofdigOuderlijkGezag  |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
 
   Regel: Beide ouders zijn opgeschort
 
+    Scenario: Moeder en vader zijn opgeschort er is TijdelijkGeenGezag
+      Gegeven de persoon 'Trudy'
+      * is overleden
+       Gegeven de persoon 'Kees'
+      * is overleden
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TijdelijkGeenGezag        |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      
   Regel: Eén van de ouders is minderjarig
 
   Regel: Beide ouders zijn minderjarig
