@@ -149,7 +149,7 @@ Functionaliteit: Adoptie en gezagsbepaling met behulp van Gherkin voor verschill
 
     Met een expressieve Als stap wordt bovengenoemde detail verborgen voor de lezer zonder dat er concessie wordt gedaan op begrijpbaarheid/leesbaarheid van het scenario.
 
-    De scenario hierboven kan dan als volgt worden herschreven. Daaronder zijn andere adoptie scenarios te vinden.
+    Het scenario hierboven kan dan als volgt worden herschreven. Daaronder zijn andere adoptie scenarios te vinden.
 
     Scenario: minderjarige is geadopteerd door één meerderjarige
       Gegeven de persoon 'Gerda' met burgerservicenummer '000000012'
