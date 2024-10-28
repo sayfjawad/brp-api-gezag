@@ -60,6 +60,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       * is meerderjarig
       En de persoon 'Kees' met burgerservicenummer '000000024'
       * is meerderjarig
+      Gegeven 'Trudy' en 'Kees' zijn met elkaar gehuwd
       En de persoon 'Lucas' met burgerservicenummer '000000036'
       * is minderjarig
       * is in Nederland geboren
@@ -87,7 +88,6 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | burgerservicenummer | 000000024 |
 
     Scenario: Vader is opgeschort
-
 
   Regel: Beide ouders zijn opgeschort
 
