@@ -23,7 +23,7 @@ Functionaliteit: Adoptie en gezagsbepaling met behulp van Gherkin voor verschill
     - toevoegen adoptie ouder als ouder 1 of 2 met familie_betrek_start_datum = ingangsdatum adoptie aan de geadopteerde persoon
     - toevoegen van kind aan persoon die adoptie ouder wordt
 
-    De scenario waarmee gezagsbepaling bij adoptie door één persoon wordt beschreven ziet er dan als volgt uit:
+    Het scenario waarmee gezagsbepaling bij adoptie door één persoon wordt beschreven ziet er dan als volgt uit:
 
     Scenario: minderjarige is geadopteerd door één meerderjarige
       Gegeven de persoon met burgerservicenummer '000000036' heeft de volgende gegevens
