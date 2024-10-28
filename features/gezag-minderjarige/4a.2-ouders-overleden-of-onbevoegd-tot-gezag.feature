@@ -64,6 +64,8 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       * is minderjarig
       * is in Nederland geboren
       * is ingeschreven in de BRP
+      * heeft 'Trudy' als ouder 1
+      * heeft 'Kees' als ouder 2
 
   Regel: Eén van de ouders is opgeschort
 
