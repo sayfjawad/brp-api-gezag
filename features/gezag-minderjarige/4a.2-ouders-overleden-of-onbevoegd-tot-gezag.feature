@@ -54,12 +54,12 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   # • Meerderjarig verlkaring: ophalen meerderjarig verklaring uit de aantekening in het Gezagsregister
   # • Mogelijk moet autorisatie worden verleend voor 11.82.30 Beschrijving Document vanwege de instructie opnemen “van
   # rechtswege, erkenning OV 2022”.
-  
+
     Achtergrond:
       Gegeven de persoon 'Trudy' met burgerservicenummer '000000012'
-      * is meerderjarig en staat niet onder curatele
+      * is meerderjarig
       En de persoon 'Kees' met burgerservicenummer '000000024'
-      * is meerderjarig en staat niet onder curatele
+      * is meerderjarig
       En de persoon 'Lucas' met burgerservicenummer '000000036'
       * is minderjarig
       * is in Nederland geboren
@@ -67,10 +67,9 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
 
   Regel: Eén van de ouders is opgeschort
 
-    Scenario: Moeder is opgeschort
-      Gegeven voor 'Nathan' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
-      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
-      | 12                                   | 20230101                        |
+    Scenario: Moeder is opgeschort er is sprake van EenhoofdigOuderlijkGezag voor de vader
+      Gegeven de persoon 'Trudy' met burgerservicenummer '000000012'
+      * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -79,11 +78,8 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
-      | type                             | TweehoofdigOuderlijkGezag |
+      | type                             | EenhoofdigOuderlijkGezag  |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
       En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
