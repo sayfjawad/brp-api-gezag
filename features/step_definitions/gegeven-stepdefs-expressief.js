@@ -75,9 +75,24 @@ function gegevenDePersoonMetBsn(context, aanduiding, burgerservicenummer, dataTa
     );
 }
 
+function wijzigContextNaarPersoonMetBsn(context, aanduiding) {
+    const persoonId = `persoon-${aanduiding}`;
+    const index = context.data.personen.findIndex(element => element.id === persoonId);
+    
+    if (index !== -1) {
+        const [element] = context.data.personen.splice(index, 1);
+        context.data.personen.push(element);
+    }
+}
+
+Given(/^persoon '(.*)'$/, function (aanduiding) {
+    wijzigContextNaarPersoonMetBsn(this.context, aanduiding);
+});
+
 Given(/^(?:de persoon(?: '(.*)')? )?met burgerservicenummer '(\d*)'$/, function (aanduiding, burgerservicenummer) {
     gegevenDePersoonMetBsn(this.context, aanduiding, burgerservicenummer, undefined);
 });
+
 
 Given(/^is minderjarig/, function () {
     const datumGeboorte = 'gisteren - 17 jaar';

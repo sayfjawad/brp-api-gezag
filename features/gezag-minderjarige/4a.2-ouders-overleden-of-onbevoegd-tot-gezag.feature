@@ -76,7 +76,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   Regel: Eén van de ouders is opgeschort
 
     Scenario: Moeder is opgeschort er is sprake van EenhoofdigOuderlijkGezag voor de vader
-      Gegeven de persoon 'Trudy'
+      Gegeven persoon 'Trudy'
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -88,12 +88,10 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | naam                             | waarde                    |
       | type                             | EenhoofdigOuderlijkGezag  |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000024 |
+      | ouder.burgerservicenummer        | 000000024                 |
 
     Scenario: Vader is opgeschort er is sprake van EenhoofdigOuderlijkGezag voor de moeder
-      Gegeven de persoon 'Kees'
+      Gegeven persoon 'Kees'
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -105,16 +103,14 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | naam                             | waarde                    |
       | type                             | EenhoofdigOuderlijkGezag  |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
+      | ouder.burgerservicenummer        | 000000012                 |
 
   Regel: Beide ouders zijn opgeschort
 
     Scenario: Moeder en vader zijn opgeschort er is TijdelijkGeenGezag
-      Gegeven de persoon 'Trudy'
+      Gegeven persoon 'Trudy'
       * is overleden
-       Gegeven de persoon 'Kees'
+       Gegeven persoon 'Kees'
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
