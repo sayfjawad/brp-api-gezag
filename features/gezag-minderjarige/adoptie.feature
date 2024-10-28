@@ -121,7 +121,7 @@ Functionaliteit: Adoptie en gezagsbepaling met behulp van Gherkin voor verschill
     Ook zijn niet alle lezers geïnteresseerd in welke gegevens worden toegevoegd aan de BRP bij het registreren van een adoptie.
     Consumer developers zullen meer geïnteresseerd zijn hoe gezag eruit ziet voor een geadopteerd persoon.
 
-    Door adoptie te encapsuleren in een expressieve adoptie stap definitie kan de scenario hierboven als volgt worden herschreven
+    Door adoptie te encapsuleren in een expressieve adoptie stap definitie kan het scenario hierboven als volgt worden herschreven
 
     Scenario: minderjarige is geadopteerd door één meerderjarige
       Gegeven de persoon 'Gerda' met burgerservicenummer '000000012'
