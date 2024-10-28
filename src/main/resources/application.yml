@@ -5,9 +5,9 @@ app:
 
 logging:
   file:
-    name: brp-api-gezag.json
+    name: /tmp/logs/brp-api-gezag.json
   file-masked:
-    name: brp-api-gezag.masked.json
+    name: /tmp/logs/brp-api-gezag.masked.json
   group:
     gezag: nl.rijksoverheid.mev
 server:
