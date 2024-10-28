@@ -12,8 +12,6 @@ logging:
     gezag: nl.rijksoverheid.mev
 server:
   port: 8080
-  error:
-    include-message: always
 
 spring:
   application:
