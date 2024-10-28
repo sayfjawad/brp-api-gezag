@@ -11,26 +11,36 @@ Functionaliteit: 2a.3 - erkenning
   | 2a.1 Zijn beide ouders nu met elkaar gehuwd of geregistreerd partners? | Nee nooit                                                                          |
   | 2a.2 Is persoon geadopteerd met Nederlandse akte                       | Nee
 
-  Hoe achterhalen of er erkenning is: Aktenummer Ouder1 of Ouder2 (02.81.20 of 03.81.20) bevat op de 3e positie de akteaanduiding B (erkenning bij
+  Hoe achterhalen of er erkenning is: Aktenummer Ouder1 of Ouder2 bevat op de 3e positie de akteaanduiding B (erkenning bij
   geboorteaangifte), C (erkenning na geboorte), J (erkenning bij notariële akte) of V (gerechtelijke vaststelling ouderschap). Deze kan in de actuele categorie voorkomen maar ook 
-  in een historische categorie (52.81.20 of 53.81.20) omdat er later nog een ander rechtsfeit geregistreerd kan zijn. De datum van erkenning kan ontleend worden aan 
-  datum familierechtelijke betrekking (02.62.10 of 03.62.10) van dezelfde categorie als die waarin akteaanduiding B of C geconstateerd is. Kan dus ook in de
-  historie voorkomen (52.62.10 of 53.62.10).
+  in een historische categorie omdat er later nog een ander rechtsfeit geregistreerd kan zijn. De datum van erkenning kan ontleend worden aan 
+  datum familierechtelijke betrekking van dezelfde categorie als die waarin akteaanduiding B of C geconstateerd is. Kan dus ook in de
+  historie voorkomen.
 
   Aktenummers zoals vastgelecht in de BRP en opgenomen in de lijst erkenningscodes uit de publieke tabel 39. 
   Zie: https://publicaties.rvig.nl/Landelijke_tabellen/Landelijke_tabellen_32_t_m_61_excl_tabel_35/Landelijke_Tabellen_32_t_m_61_in_csv_formaat/Tabel_39_Akteaanduiding
 
-  Het bepalen of sprake is geweest van een erkenning ongeboren vrucht kan aan de hand van akteaanduiding A (01.81.20) terwijl de ouders op
+  Het bepalen of sprake is geweest van een erkenning ongeboren vrucht kan aan de hand van akteaanduiding A terwijl de ouders op
   moment geboorte niet met elkaar gehuwd zijn of een geregistreerd partnerschap hebben. Ook hierbij kan de akteaanduiding A in de historie
-  voorkomen (51.81.20). Vervolgens moet dan wel uitgesloten worden dat ook niet een categorie voorkomt waarin akteaanduiding B, C of J voorkomt,
+  voorkomen. Vervolgens moet dan wel uitgesloten worden dat ook niet een categorie voorkomt waarin akteaanduiding B, C of J voorkomt,
   want dat zou betekenen dat het kind later erkend is. Ook akteaanduiding Q moet uitgesloten worden want dat zou betekenen dat het kind later
-  geadopteerd is. Ook hier geldt actueel en historisch (01.81.20 en 51.81.20) Voor wat betreft personen geboren voor 1-1-23 is duidelijk dat de
+  geadopteerd is. Ook hier geldt actueel en historisch voor wat betreft personen geboren voor 1-1-23 is duidelijk dat de
   erkenning ongeboren vrucht ook voor 1-1-23 geweest moet zijn, voor personen geboren na 1-1-23 is dat tot medio 10-2023 niet aan de BRP te
   herleiden.
 
   Wat betekend het wanneer een kind (of ongeboren vrucht) is erkend?
   - Indien het kind (of de ongeboren vrucht) is erkend voor 1-1-2023 is er sprake van 1 hoofdig gezag voor de moeder en volgt stap 4a Achterhalen bevoegdheid tot gezag (1 hoofdig gezag)
   - Indien het kind of de ongeboren vrucht is erkend na 1-1-2023 is er sprake van gezamenlijk ouderlijk gezag en volgt stap 4a Achterhalen bevoegdheid tot gezag (gezamenlijk ouderlijk gezag)
+
+  TODO: Verplaatsen naar developer testen - Gebruikte velden:
+    - Aktenummer persoon -> 01.81.20
+    - Historische aktenummer -> 51.81.20
+    - Aktenummer ouder 1 -> 02.81.20
+    - Aktenummer ouder 2 -> 03.81.20
+    - Actuele categorie -> 52.81.20
+    - Historische categorie -> 53.81.20
+    - datum familierechtelijke betrekking -> 02.62.10 of 03.62.10
+    - Historische datum familierechtelijke betrekking -> 52.62.10 of 53.62.10
 
     Achtergrond:
       Gegeven de persoon 'Lotte' met burgerservicenummer '000000012'
