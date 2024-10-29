@@ -235,24 +235,6 @@ Given(/^'(.*)' is overleden met de volgende gegevens$/, function (aanduiding, da
     );
 });
 
-Given(/^'(.*)' is overleden met de volgende gegevens$/, function (aanduiding, dataTable) {
-    const datumOpschortingBijhouden = 'gisteren - 2 jaar';
-    const redenOpschortingBijhouding = 'O';
-
-    aanvullenInschrijving(
-        getPersoon(this.context, aanduiding),
-        arrayOfArraysToDataTable([
-            ['datum opschorting bijhouding (67.10)', datumOpschortingBijhouden],
-            ['reden opschorting bijhouding (67.20)', redenOpschortingBijhouding]
-        ])
-    );
-
-    createOverlijden(
-        getPersoon(this.context, aanduiding),
-        dataTable
-    );
-});
-
 
 Given(/^bijhouding van de persoonsgegevens van '(.*)' is opgeschort met de volgende gegevens$/, function (aanduiding, dataTable) {
     aanvullenInschrijving(
