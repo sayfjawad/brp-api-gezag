@@ -145,7 +145,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       * is in Nederland geboren
       * is ingeschreven in de BRP
       * heeft 'Lieve' als ouder 1
-      * heeft 'Wijnand' als ouder 2
+      * is erkend door 'Wijnand' als ouder 2 met erkenning bij geboorteaangifte
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
@@ -168,7 +168,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       * is in Nederland geboren
       * is ingeschreven in de BRP
       * heeft 'Lieve' als ouder 1
-      * heeft 'Wijnand' als ouder 2
+      * is erkend door 'Wijnand' als ouder 2 met erkenning bij geboorteaangifte
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
