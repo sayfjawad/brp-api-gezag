@@ -2,6 +2,18 @@
 
 Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
 
+  De persoon (minderjarige) moet voorkomen in de BRP aangezien dit de bron is voor
+  het achterhalen van het gezag. Een niet ingezeten kind staat wel de RNI (ook
+  onderdeel van de BRP), maar hiervan zijn de gegevens (mogelijk) niet actueel. Een
+  gezagsmutatie wordt bijvoorbeeld niet bijgewerkt in de RNI.
+
+  Een persoon is "ingezetene" en "ingeschreven in de BRP" wanneer deze staat ingeschreven
+  in een Nederlandse gemeente. In dat geval gaat de gezagbepaling 
+  verder met vraag 1.2.
+
+  Een persoon is "niet ingezetene" wanneer deze staat ingeschreven in het RNI (Register Niet 
+  Ingezetenen). In dat gezal is het gezag niet te bepalen.
+
 
     Achtergrond:
       Gegeven de persoon 'Gerda' met burgerservicenummer '000000012'
@@ -17,14 +29,10 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       * heeft 'Bert' als ouder 2
 
 
-  Regel: Als de gemeente van inschrijving is RNI kan het gezag van de persoon niet worden bepaald
-    # een persoon staat in de RNI ingeschreven wanneer gemeente van inschrijving (09.10) gelijk is aan 1999.
-    # een persoon staat in de BRP ingeschreven wanneer gemeente van inschrijving (09.10) ongelijk is aan 1999.
+  Regel: Als de persoon staat ingeschreven in het RNI kan het gezag van de persoon niet worden bepaald
 
-    Scenario: minderjarige staat ingeschreven in RNI (route 1)
-      Gegeven is ingeschreven in de RNI met de volgende gegevens
-      | gemeente van inschrijving (09.10) |
-      | 1999                              |
+    Scenario: minderjarige staat ingeschreven in RNI
+      Gegeven persoon 'Zoe' is ingeschreven in de RNI
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -36,10 +44,8 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | type        | GezagNietTeBepalen                                                   |
       | toelichting | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
 
-    Scenario: minderjarige staat ingeschreven in Nederlandse gemeente
-      Gegeven is ingeschreven in de BRP met de volgende gegevens
-      | gemeente van inschrijving (09.10) |
-      | 0518                              |
+    Scenario: minderjarige staat ingeschreven in een Nederlandse gemeente
+      Gegeven persoon 'Zoe' is ingeschreven in de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -60,11 +66,9 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
 
   Regel: onderzoek op gemeente van inschrijving leidt niet tot uitval
 
-    Abstract Scenario: minderjarige staat ingeschreven in Nederlandse gemeente en <omschrijving> staat in onderzoek
-      Gegeven de persoon 'P3' met burgerservicenummer '000000036'
-      * is ingeschreven in de BRP met de volgende gegevens
-      | gemeente van inschrijving (09.10) | aanduiding in onderzoek (83.10) |
-      | 0518                              | <aanduiding in onderzoek>       |
+   Scenario: minderjarige staat ingeschreven in Nederlandse gemeente en de verblijfplaats staat in onderzoek
+      Gegeven persoon 'Zoe' is ingeschreven in de BRP
+      * de verblijfplaats staat in onderzoek
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -81,10 +85,3 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-
-      Voorbeelden:
-      | aanduiding in onderzoek | omschrijving                        |
-      | 080000                  | hele categorie verblijfplaats       |
-      | 080900                  | groep gemeente                      |
-      | 080910                  | gemeente van inschrijving           |
-      | 089999                  | vastgesteld verblijft niet op adres |
