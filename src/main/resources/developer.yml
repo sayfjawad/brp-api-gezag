@@ -5,6 +5,14 @@ app:
     refactored-gezag:
       enabled: true
 
+logging:
+  file:
+    name: build/brp-api-gezag.json
+  file-masked:
+    name: build/brp-api-gezag.masked.json
+  level:
+    nl.rijksoverheid.mev: DEBUG
+
 server:
   port: 8080
 

@@ -4,6 +4,8 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Gezagsverhouding;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,8 @@ import java.util.List;
  * Ja, als er sprake is van een recente gebeurtenis anders Nee
  */
 public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
+
+    private static final Logger logger = LoggerFactory.getLogger(IsErSprakeVanEenRecenteGebeurtenis.class);
 
     private static final String V3_1_JA = "Ja";
     private static final String V3_1_NEE = "Nee";
@@ -65,6 +69,9 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
             answer = V3_1_NEE;
         }
 
+        logger.debug("""
+            3.1 Is er door een recente gebeurtenis het gezag toch (weer) van rechtswege, ondanks dat er eerder een uitspraak is gedaan?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0301(answer);
     }
 
