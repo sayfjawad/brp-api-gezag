@@ -1,16 +1,11 @@
 ### temp project files ###
 /tmp
 /brpstubs/GegenereerdUitBrpData/new
-brp-api-gezag.log.json
 
 ### soaplog folder with generated wiremock stubs ###
 /soaplog
 
 HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -20,6 +15,9 @@ target/
 .settings
 .springBeans
 .sts4-cache
+
+### Gradle ###
+.gradle
 
 ### IntelliJ IDEA ###
 .idea
@@ -49,3 +47,5 @@ nb-configuration.xml
 # Dependency directories
 
 node_modules/
+
+test-reports/

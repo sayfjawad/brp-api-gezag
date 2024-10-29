@@ -5,8 +5,11 @@ app:
 
 logging:
   file:
-    name: brp-api-gezag.log
-
+    name: brp-api-gezag.json
+  file-masked:
+    name: brp-api-gezag.masked.json
+  group:
+    gezag: nl.rijksoverheid.mev
 server:
   port: 8080
   error:
@@ -15,6 +18,8 @@ server:
 spring:
   application:
     name: brp-api-gezag
+  config:
+    import: classpath:META-INF/build-info.properties
   jooq:
     sql-dialect: postgres
   profiles:
@@ -25,23 +30,10 @@ spring:
       prd: real-brp
 
 management:
-  health:
-    readinessstate:
-      enabled: true
-  endpoint:
-    metrics:
-      enabled: true
-    health:
-      group:
-        readiness:
-          include: "readinessState"
   endpoints:
     web:
       exposure:
         include: "*"
-  httpexchanges:
-    recording:
-      enabled: true
 
 correlation:
   component-id: 02

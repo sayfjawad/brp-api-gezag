@@ -6,41 +6,48 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Service voor het samenstellen van de toelichting bij de gezag uitspraak
+ * Service voor het samenstellen van de toelichting bij het gezag uitspraak.
  */
 @Service
 public class ToelichtingService {
 
-    private static final String IN_ONDERZOEK = "Uitspraak is gezag niet te bepalen, omdat er bij de gezagbepaling waardes in onderzoek waren gedetecteerd. Bij het bepalen van gezag werd het volgende veld gebruikt dat in onderzoek staat: \n ";
-    private static final String IN_ONDERZOEK_PERSOONSVELDEN = "Persoonsvelden: ";
-    private static final String IN_ONDERZOEK_VELDEN_OUDER_1 = " Velden van ouder 1: ";
-    private static final String IN_ONDERZOEK_VELDEN_OUDER_2 = " Velden van ouder 2: ";
-    private static final String IN_ONDERZOEK_VELDEN_NIET_OUDER = " Velden van niet ouder: ";
+    private static final String IN_ONDERZOEK = "Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan.";
+    private static final String IN_ONDERZOEK_PERSOONSVELDEN = " Persoonslijst van persoon: ";
+    private static final String IN_ONDERZOEK_VELDEN_OUDER_1 = " Persoonslijst van ouder 1: ";
+    private static final String IN_ONDERZOEK_VELDEN_OUDER_2 = " Persoonslijst van ouder 2: ";
+    private static final String IN_ONDERZOEK_VELDEN_NIET_OUDER = " Persoonslijst van niet ouder: ";
     private static final String PLACEHOLDER = "%s";
-    private static final String SPACE = " ";
-    private static final String DOT_ENDLINE = ".\n";
 
     /**
      * Past de basis toelichting zoals opgenomen in het antwoordenmodel aan op basis van of velden in onderzoek of missende gegevens.
      *
      * @param baseToelichting   de basis toelichting
-     * @param veldenInOnderzoek de velden die in onderzoek waren - of null
-     * @param missendeGegevens  de missende gegevens - of null
+     * @param veldenInOnderzoek de velden die in onderzoek waren, of null
+     * @param missendeGegevens  de missende gegevens, of null
      * @return de toelichting zoals uit het antwoorden model bewerkt met de additionele gegevens
      */
     public String decorateToelichting(final String baseToelichting, final VeldenInOnderzoek veldenInOnderzoek, final List<String> missendeGegevens) {
         StringBuilder sb = new StringBuilder();
         if (baseToelichting != null && !baseToelichting.isEmpty()) {
             if (veldenInOnderzoek != null && veldenInOnderzoek.hasValues()) {
-                sb.append(baseToelichting);
-                sb.append(SPACE);
                 setInOnderzoek(sb, veldenInOnderzoek);
             } else if (missendeGegevens != null && !missendeGegevens.isEmpty()) {
                 setMissendeGegevens(sb, baseToelichting, missendeGegevens);
             }
         }
-        
+
         return sb.toString();
+    }
+
+    /**
+     * Maakt een toelichting op basis van een error trace code en de toelichting zoals opgenomen bij route 0 in het antwoordenmodel
+     *
+     * @param baseToelichting de basis toelichting
+     * @param errorTraceCode  de error trace code
+     * @return de toelichting zoals uit het antwoorden model bewerkt met de error trace code
+     */
+    public String setErrorReferenceToelichting(final String baseToelichting, final String errorTraceCode) {
+        return String.format(baseToelichting, errorTraceCode);
     }
 
     private void setInOnderzoek(final StringBuilder sb, final VeldenInOnderzoek veldenInOnderzoek) {
@@ -49,25 +56,25 @@ public class ToelichtingService {
         if (!persoonInOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_PERSOONSVELDEN);
             sb.append(String.join(", ", persoonInOnderzoekVelden));
-            sb.append(DOT_ENDLINE);
+            sb.append(".");
         }
         List<String> ouder1InOnderzoekVelden = veldenInOnderzoek.getOuder1();
         if (!ouder1InOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_VELDEN_OUDER_1);
             sb.append(String.join(", ", ouder1InOnderzoekVelden));
-            sb.append(DOT_ENDLINE);
+            sb.append(".");
         }
         List<String> ouder2InOnderzoekVelden = veldenInOnderzoek.getOuder2();
         if (!ouder2InOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_VELDEN_OUDER_2);
             sb.append(String.join(", ", ouder2InOnderzoekVelden));
-            sb.append(DOT_ENDLINE);
+            sb.append(".");
         }
         List<String> nietOuderInOnderzoekVelden = veldenInOnderzoek.getNietOuder();
         if (!nietOuderInOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_VELDEN_NIET_OUDER);
             sb.append(String.join(", ", nietOuderInOnderzoekVelden));
-            sb.append(DOT_ENDLINE);
+            sb.append(".");
         }
     }
 
@@ -75,7 +82,7 @@ public class ToelichtingService {
         if (baseUitleg.contains(PLACEHOLDER)) {
             sb.append(String.format(baseUitleg, String.join(", ", missendeGegevens)));
         } else {
-            // toelichting bevat al volledige informatie en heeft geen formattering nodig
+            sb.append(baseUitleg);
         }
     }
 }

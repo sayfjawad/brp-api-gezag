@@ -2,13 +2,12 @@ package nl.rijksoverheid.mev.gezagsmodule.service;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
-import nl.rijksoverheid.mev.exception.BrpException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
+import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagBepaling;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,6 +18,10 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class BeslissingsmatrixService {
+
+    private static final String ANTWOORDEN_MODEL_FILENAME = "/AntwoordenModel_v2_2_3.csv";
+    private static final String ERROR_ROUTE = "0";
+    private static final String MISSENDE_GEGEVENS_ANNOTATIE = "e";
 
     private Map<String, ARAntwoordenModel> routes;
 
@@ -49,29 +52,28 @@ public class BeslissingsmatrixService {
      * @param arAntwoordenModel het model om de route voor te bepalen
      * @return de route of "-503i"
      */
-    public String findMatchingRoute(final ARAntwoordenModel arAntwoordenModel) {
-        if ((arAntwoordenModel.getException() != null)
-            && (Objects.equals(arAntwoordenModel.getException().getClass(), BrpException.class))) {
-            return "-503i";
+    public String findMatchingRoute(final ARAntwoordenModel arAntwoordenModel, final GezagBepaling gezagBepaling) {
+        if (arAntwoordenModel.getRoute() != null) {
+            return arAntwoordenModel.getRoute();
         } else if ((arAntwoordenModel.getException() != null)
             && (Objects.equals(arAntwoordenModel.getException().getClass(), VeldInOnderzoekException.class))) {
             return getRouteFromVraagModel(arAntwoordenModel);
         } else {
-            return getRouteFromVraagModel(arAntwoordenModel);
+            String route = getRouteFromVraagModel(arAntwoordenModel);
+            if (ERROR_ROUTE.equals(route)
+                && gezagBepaling.getErrorTraceCode() == null
+                && !gezagBepaling.getMissendeGegegevens().isEmpty()) {
+                route = route + MISSENDE_GEGEVENS_ANNOTATIE;
+            }
+
+            return route;
         }
     }
 
     private void determineRoutes() {
-        List<String> antwoordenModelLines = new ArrayList<>();
-        try (BufferedReader antwoordenModelCsvReader = new BufferedReader(
-            new InputStreamReader(BeslissingsmatrixService.class.getResourceAsStream("/AntwoordenModel_v2_2_2.csv")))) {
-            String line;
-            while ((line = antwoordenModelCsvReader.readLine()) != null) {
-                antwoordenModelLines.add(line);
-            }
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
+        var inputStream = BeslissingsmatrixService.class.getResourceAsStream(ANTWOORDEN_MODEL_FILENAME);
+        if (inputStream == null) throw new IllegalStateException("Unable to find AntwoordenModel");
+        List<String> antwoordenModelLines = new BufferedReader(new InputStreamReader(inputStream)).lines().toList();
 
         Map<String, ARAntwoordenModel> tempMap = antwoordenModelLines.stream()
             .skip(1) // Skip the first line with labels

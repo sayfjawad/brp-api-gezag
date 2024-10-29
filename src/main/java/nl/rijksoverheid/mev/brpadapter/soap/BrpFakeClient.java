@@ -3,10 +3,8 @@ package nl.rijksoverheid.mev.brpadapter.soap;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
-import nl.rijksoverheid.mev.common.util.BSNValidator;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.*;
-import nl.rijksoverheid.mev.transaction.Transaction;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -66,15 +64,12 @@ public class BrpFakeClient implements BrpClient {
     }
 
     @Override
-    public Persoonslijst opvragenPersoonslijst(String bsn, Transaction transaction) throws GezagException {
-        if (!new BSNValidator().isValid(bsn)) {
-            return null;
-        }
+    public Optional<Persoonslijst> opvragenPersoonslijst(String bsn) throws GezagException {
         if (fixtures.containsKey(bsn)){
-            return fixtures.get(bsn).data;
+            return Optional.of(fixtures.get(bsn).data);
         }
         log.info("Persoonslijst niet gevonden: " + bsn);
-        return createEmptyPersoonslijstFixture("", bsn).data;
+        return Optional.of(createEmptyPersoonslijstFixture("", bsn).data);
     }
 
     private PersoonslijstFixture readAsPersoonslijstFixture(final InputStream inputStream) {

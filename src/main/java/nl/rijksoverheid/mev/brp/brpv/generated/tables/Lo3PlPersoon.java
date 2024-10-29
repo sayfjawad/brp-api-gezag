@@ -5,6 +5,7 @@ package nl.rijksoverheid.mev.brp.brpv.generated.tables;
 
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import nl.rijksoverheid.mev.brp.brpv.generated.Indexes;
@@ -12,12 +13,16 @@ import nl.rijksoverheid.mev.brp.brpv.generated.Keys;
 import nl.rijksoverheid.mev.brp.brpv.generated.Public;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 
+import org.jooq.Condition;
 import org.jooq.Field;
-import org.jooq.ForeignKey;
 import org.jooq.Index;
 import org.jooq.Name;
-import org.jooq.Record;
+import org.jooq.PlainSQL;
+import org.jooq.QueryPart;
+import org.jooq.SQL;
 import org.jooq.Schema;
+import org.jooq.Select;
+import org.jooq.Stringly;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -260,11 +265,11 @@ public class Lo3PlPersoon extends TableImpl<Lo3PlPersoonRecord> {
     public final TableField<Lo3PlPersoonRecord, String> REGISTRATIE_BETREKKING = createField(DSL.name("registratie_betrekking"), SQLDataType.CHAR(1), this, "");
 
     private Lo3PlPersoon(Name alias, Table<Lo3PlPersoonRecord> aliased) {
-        this(alias, aliased, null);
+        this(alias, aliased, (Field<?>[]) null, null);
     }
 
-    private Lo3PlPersoon(Name alias, Table<Lo3PlPersoonRecord> aliased, Field<?>[] parameters) {
-        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+    private Lo3PlPersoon(Name alias, Table<Lo3PlPersoonRecord> aliased, Field<?>[] parameters, Condition where) {
+        super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table(), where);
     }
 
     /**
@@ -286,10 +291,6 @@ public class Lo3PlPersoon extends TableImpl<Lo3PlPersoonRecord> {
      */
     public Lo3PlPersoon() {
         this(DSL.name("lo3_pl_persoon"), null);
-    }
-
-    public <O extends Record> Lo3PlPersoon(Table<O> child, ForeignKey<O, Lo3PlPersoonRecord> key) {
-        super(child, key, LO3_PL_PERSOON);
     }
 
     @Override
@@ -344,5 +345,89 @@ public class Lo3PlPersoon extends TableImpl<Lo3PlPersoonRecord> {
     @Override
     public Lo3PlPersoon rename(Table<?> name) {
         return new Lo3PlPersoon(name.getQualifiedName(), null);
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlPersoon where(Condition condition) {
+        return new Lo3PlPersoon(getQualifiedName(), aliased() ? this : null, null, condition);
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlPersoon where(Collection<? extends Condition> conditions) {
+        return where(DSL.and(conditions));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlPersoon where(Condition... conditions) {
+        return where(DSL.and(conditions));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlPersoon where(Field<Boolean> condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlPersoon where(SQL condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlPersoon where(@Stringly.SQL String condition) {
+        return where(DSL.condition(condition));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlPersoon where(@Stringly.SQL String condition, Object... binds) {
+        return where(DSL.condition(condition, binds));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    @PlainSQL
+    public Lo3PlPersoon where(@Stringly.SQL String condition, QueryPart... parts) {
+        return where(DSL.condition(condition, parts));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlPersoon whereExists(Select<?> select) {
+        return where(DSL.exists(select));
+    }
+
+    /**
+     * Create an inline derived table from this table
+     */
+    @Override
+    public Lo3PlPersoon whereNotExists(Select<?> select) {
+        return where(DSL.notExists(select));
     }
 }
