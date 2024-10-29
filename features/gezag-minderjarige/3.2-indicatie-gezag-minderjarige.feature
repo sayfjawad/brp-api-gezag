@@ -25,8 +25,11 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   Voogdij (één of twee): indicatie gezag van de gezagsverhouding bevat de waarde ‘D’.
 
   Opmerkingen
-  • Er wordt niet (altijd) gecontrolleerd of een opgenomen gezagsverhouding is gecorrigeerd, gewijzigd, is ingegaan of is beindigd.
+  • Er wordt niet (altijd) gecontroleerd of een opgenomen gezagsverhouding is gecorrigeerd, gewijzigd, is ingegaan of is beëindigd.
   -> hiervoor is issue https://github.com/BRP-API/brp-api-gezag/issues/171 aangemaakt
+
+  Aanbevelingen
+  • Toevoegen van informatie over voogden in geval er sprake is van voogdij, dit zou worden kunnen opgehaald het Gezagsregister
 
  TODO: Verplaatsen naar developer testen - Gebruikte velden:
     - Indicatie gezag van de gezagsverhouding -> 11.32.10
