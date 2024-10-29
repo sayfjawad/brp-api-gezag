@@ -5,6 +5,7 @@ co-elastic-logging-logback-ecs-encoder = "1.6.0"
 com-fasterxml-jackson-dataformat-jackson-dataformat-yaml = "2.15.2"
 com-opencsv-opencsv = "5.7.1"
 io-micrometer-micrometer-registry-prometheus = "1.11.3"
+net-logstash-logback-logstash-logback-encoder = "8.0"
 org-apache-commons-commons-lang3 = "3.13.0"
 org-json-json = "20240303"
 org-openapitools-jackson-databind-nullable = "0.2.6"
@@ -15,6 +16,7 @@ co-elastic-logging-logback-ecs-encoder = { module = "co.elastic.logging:logback-
 com-fasterxml-jackson-dataformat-jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "com-fasterxml-jackson-dataformat-jackson-dataformat-yaml" }
 com-opencsv-opencsv = { module = "com.opencsv:opencsv", version.ref = "com-opencsv-opencsv" }
 io-micrometer-micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus", version.ref = "io-micrometer-micrometer-registry-prometheus" }
+net-logstash-logback-logstash-logback-encoder = { module = "net.logstash.logback:logstash-logback-encoder", version.ref = "net-logstash-logback-logstash-logback-encoder" }
 org-apache-commons-commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "org-apache-commons-commons-lang3" }
 org-json-json = { module = "org.json:json", version.ref = "org-json-json" }
 org-openapitools-jackson-databind-nullable = { module = "org.openapitools:jackson-databind-nullable", version.ref = "org-openapitools-jackson-databind-nullable" }

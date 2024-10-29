@@ -1,6 +1,8 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Sets the answer to {@code "Ja"} if <i>persoon is in buitenland geboren</i>, otherwise {@code "Nee"}.
@@ -9,6 +11,8 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
  * This is question 1_3A.
  */
 public class IsGeborenInBuitenland extends GezagVraag {
+
+    private static final Logger logger = LoggerFactory.getLogger(IsGeborenInBuitenland.class);
 
     private static final String GEBOORTELAND_CODE_NEDERLAND = "6030";
     private static final String V1_3A_JA = "Ja";
@@ -49,6 +53,9 @@ public class IsGeborenInBuitenland extends GezagVraag {
             answer = V1_3A_JA;
         }
 
+        logger.debug("""
+            1.3a Is minderjarige geboren in het buitenland?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0103A(answer);
     }
 }

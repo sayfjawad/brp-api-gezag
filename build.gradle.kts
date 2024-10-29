@@ -33,6 +33,8 @@ dependencies {
     implementation(libs.org.springframework.boot.spring.boot.starter.web)
     implementation(libs.org.springframework.boot.spring.boot.starter.webflux)
     implementation(libs.org.springframework.boot.spring.boot.starter.validation)
+    implementation(libs.net.logstash.logback.logstash.logback.encoder)
+
     implementation(libs.co.elastic.logging.logback.ecs.encoder)
     implementation(libs.org.json.json)
     implementation(libs.io.micrometer.micrometer.registry.prometheus)

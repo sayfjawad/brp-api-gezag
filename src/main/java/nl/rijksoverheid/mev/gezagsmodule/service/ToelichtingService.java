@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Service voor het samenstellen van de toelichting bij de gezag uitspraak
+ * Service voor het samenstellen van de toelichting bij het gezag uitspraak.
  */
 @Service
 public class ToelichtingService {
@@ -22,8 +22,8 @@ public class ToelichtingService {
      * Past de basis toelichting zoals opgenomen in het antwoordenmodel aan op basis van of velden in onderzoek of missende gegevens.
      *
      * @param baseToelichting   de basis toelichting
-     * @param veldenInOnderzoek de velden die in onderzoek waren - of null
-     * @param missendeGegevens  de missende gegevens - of null
+     * @param veldenInOnderzoek de velden die in onderzoek waren, of null
+     * @param missendeGegevens  de missende gegevens, of null
      * @return de toelichting zoals uit het antwoorden model bewerkt met de additionele gegevens
      */
     public String decorateToelichting(final String baseToelichting, final VeldenInOnderzoek veldenInOnderzoek, final List<String> missendeGegevens) {
@@ -35,8 +35,19 @@ public class ToelichtingService {
                 setMissendeGegevens(sb, baseToelichting, missendeGegevens);
             }
         }
-        
+
         return sb.toString();
+    }
+
+    /**
+     * Maakt een toelichting op basis van een error trace code en de toelichting zoals opgenomen bij route 0 in het antwoordenmodel
+     *
+     * @param baseToelichting de basis toelichting
+     * @param errorTraceCode  de error trace code
+     * @return de toelichting zoals uit het antwoorden model bewerkt met de error trace code
+     */
+    public String setErrorReferenceToelichting(final String baseToelichting, final String errorTraceCode) {
+        return String.format(baseToelichting, errorTraceCode);
     }
 
     private void setInOnderzoek(final StringBuilder sb, final VeldenInOnderzoek veldenInOnderzoek) {
@@ -71,7 +82,7 @@ public class ToelichtingService {
         if (baseUitleg.contains(PLACEHOLDER)) {
             sb.append(String.format(baseUitleg, String.join(", ", missendeGegevens)));
         } else {
-            // toelichting bevat al volledige informatie en heeft geen formattering nodig
+            sb.append(baseUitleg);
         }
     }
 }

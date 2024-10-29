@@ -1,10 +1,9 @@
 const { Given } = require('@cucumber/cucumber');
 const { createPersoon,
-    createPersoonMetGegevensgroep,
-    createInschrijving,
-    updatePersoon,
-    wijzigPersoon
-    } = require('./persoon');
+        createPersoonMetGegevensgroep,
+        createInschrijving,
+        updatePersoon,
+        wijzigPersoon } = require('./persoon');
 
 Given(/^de persoon met burgerservicenummer '(\d*)' heeft de volgende gegevens$/, function (burgerservicenummer, dataTable) {
     createPersoon(this.context, burgerservicenummer, dataTable);
