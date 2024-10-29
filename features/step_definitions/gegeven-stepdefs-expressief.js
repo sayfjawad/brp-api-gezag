@@ -17,7 +17,7 @@ const { createPersoon,
 } = require('./persoon-2');
 const { toDbColumnName } = require('./brp');
 
-const { toDateOrString } = require('./brpDatum');
+const { toBRPDate } = require('./brpDatum');
 
 function getPersoon(context, aanduiding) {
     return !aanduiding
@@ -77,6 +77,20 @@ function gegevenDePersoonMetBsn(context, aanduiding, burgerservicenummer, dataTa
 
 Given(/^(?:de persoon(?: '(.*)')? )?met burgerservicenummer '(\d*)'$/, function (aanduiding, burgerservicenummer) {
     gegevenDePersoonMetBsn(this.context, aanduiding, burgerservicenummer, undefined);
+});
+
+function wijzigPersoonContext(context, aanduiding) {
+    const persoonId = `persoon-${aanduiding}`;
+    const index = context.data.personen.findIndex(element => element.id === persoonId);
+
+    if (index !== -1) {
+        const [element] = context.data.personen.splice(index, 1);
+        context.data.personen.push(element);
+    }
+}
+
+Given(/^persoon '(.*)'$/, function (aanduiding) {
+    wijzigPersoonContext(this.context, aanduiding);
 });
 
 Given(/^is minderjarig/, function () {
@@ -494,7 +508,7 @@ Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning bij geboorteaangif
 
 Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning na geboorteaangifte op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
     const ouderData = arrayOfArraysToDataTable([
-        ['datum ingang familierechtelijke betrekking (62.10)', `${jaar}${maand}${dag}`]
+        ['datum ingang familierechtelijke betrekking (62.10)', toBRPDate(dag, maand, jaar)]
     ]);
 
     gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningNaGeboorteaangifte, ouderType, ouderData);
@@ -502,7 +516,7 @@ Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning na geboorteaangift
 
 Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning bij notariële akte op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
     const ouderData = arrayOfArraysToDataTable([
-        ['datum ingang familierechtelijke betrekking (62.10)', `${jaar}${maand}${dag}`]
+        ['datum ingang familierechtelijke betrekking (62.10)', toBRPDate(dag, maand, jaar)]
     ]);
 
     gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijNotarieleAkte, ouderType, ouderData);
@@ -510,10 +524,19 @@ Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning bij notariële akt
 
 Given(/^is erkend door '(.*)' als ouder ([1-2]) met gerechtelijke vaststelling ouderschap op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
     const ouderData = arrayOfArraysToDataTable([
-        ['datum ingang familierechtelijke betrekking (62.10)', `${jaar}${maand}${dag}`]
+        ['datum ingang familierechtelijke betrekking (62.10)', toBRPDate(dag, maand, jaar)]
     ]);
 
     gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.GerechtelijkeVaststellingOuderschap, ouderType, ouderData);
+});
+
+Given(/^is geboren op (\d*)-(\d*)-(\d*)$/, function (dag, maand, jaar) {
+    aanvullenPersoon(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['geboortedatum (03.10)', toBRPDate(dag, maand, jaar)]
+        ])
+    );
 });
 
 function gegevenIsErkendDoorPersoonAlsOuder(context, aanduidingOuder, erkenningsType, ouderType, dataTable) {
