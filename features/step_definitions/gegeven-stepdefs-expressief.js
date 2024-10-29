@@ -51,6 +51,32 @@ function getPartnerActueleGegevens(persoon, bsnPartner) {
     return partner;
 }
 
+function getPartner(persoon) {
+    let partner;
+
+    Object.keys(persoon).forEach(property => {
+        if (property.includes('partner')) {
+            partner = persoon[property].at(-1);
+        }
+    });
+
+    return partner;
+}
+
+function createOntbindingPartnerschap(context, aanduiding, dataTable) {
+    let overledenPersoon = getPersoon(context, aanduiding);
+
+    Object.keys(overledenPersoon).some(property => {
+        if (property.includes('partner')) {
+            const partner = { ...getPartner(overledenPersoon) };
+            const partnerPersoon = getPersoon(context, partner.geslachts_naam);
+            wijzigPartner(partnerPersoon, dataTable);
+            return true;
+        }
+        return false;
+    });
+}
+
 /**
  * Expressieve Gegeven-stappen voor Persoon
  */
@@ -128,15 +154,17 @@ Given(/^staat onder curatele$/, function () {
 });
 
 Given(/^'(.*)' is overleden$/, function (aanduiding) {
-    const datumOpschortingBijhouden = 'gisteren - 2 jaar';
-    const indicatieGeheim = 'O';
+    const datumOpschortingBijhouding = 'gisteren - 2 jaar';
+    const redenOpschortingBijhouding = 'O';
     const datumOverlijden = 'gisteren - 2 jaar';
+    const gemeenteCode = '0518';
+    const landCode = '6030';
 
     aanvullenInschrijving(
         getPersoon(this.context, aanduiding),
         arrayOfArraysToDataTable([
-            ['datum opschorting bijhouding (67.10)', datumOpschortingBijhouden],
-            ['reden opschorting bijhouding (67.20)', indicatieGeheim]
+            ['datum opschorting bijhouding (67.10)', datumOpschortingBijhouding],
+            ['reden opschorting bijhouding (67.20)', redenOpschortingBijhouding]
         ])
     );
 
@@ -146,17 +174,28 @@ Given(/^'(.*)' is overleden$/, function (aanduiding) {
             ['datum overlijden (08.10)', datumOverlijden]
         ])
     );
+
+    createOntbindingPartnerschap(this.context, aanduiding,
+        arrayOfArraysToDataTable([
+            ['burgerservicenummer (01.20)', getBsn(getPersoon(this.context, aanduiding))],
+            ['geslachtsnaam (02.40)', aanduiding],
+            ['datum ontbinding huwelijk/geregistreerd partnerschap (07.10)', datumOverlijden],
+            ['plaats ontbinding huwelijk/geregistreerd partnerschap (07.20)', gemeenteCode],
+            ['land ontbinding huwelijk/geregistreerd partnerschap (07.30)', landCode],
+            ['reden ontbinding huwelijk/geregistreerd partnerschap (07.40)', redenOpschortingBijhouding]
+        ])
+    );
 });
 
 Given(/^'(.*)' is overleden met de volgende gegevens$/, function (aanduiding, dataTable) {
     const datumOpschortingBijhouden = 'gisteren - 2 jaar';
-    const indicatieGeheim = 'O';
+    const redenOpschortingBijhouding = 'O';
 
     aanvullenInschrijving(
         getPersoon(this.context, aanduiding),
         arrayOfArraysToDataTable([
             ['datum opschorting bijhouding (67.10)', datumOpschortingBijhouden],
-            ['reden opschorting bijhouding (67.20)', indicatieGeheim]
+            ['reden opschorting bijhouding (67.20)', redenOpschortingBijhouding]
         ])
     );
 

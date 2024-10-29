@@ -384,11 +384,10 @@ Scenario: persoon met partner is overleden
     |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                                               | 9999,0,0,P,000000012,P1                                |
     |            | overlijden   | INSERT INTO public.lo3_pl_overlijden(pl_id,volg_nr,overlijden_datum) VALUES($1,$2,$3)                                                                                                                                            | 9999,0,gisteren - 2 jaar                               |
     |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_start_datum,relatie_start_plaats,relatie_start_land_code) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)                     | 9999,0,0,R,000000024,P2,gisteren - 20 jaar,0518,6030   |
-    # |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_eind_datum,relatie_eind_plaats,relatie_eind_land_code,relatie_eind_reden) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) | 9999,0,0,R,000000024,P2,gisteren - 2 jaar,0518,6030,O  |
     | persoon-P2 | inschrijving | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING *                                                                            | 0                                                      |
     |            | persoon      | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam) VALUES($1,$2,$3,$4,$5,$6)                                                                                               | 10000,0,0,P,000000024,P2                               |
-    |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_start_datum,relatie_start_plaats,relatie_start_land_code) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)                     | 10000,0,0,R,000000012,P1,gisteren - 20 jaar,0518,6030  |
-    # |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_eind_datum,relatie_eind_plaats,relatie_eind_land_code,relatie_eind_reden) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) | 10000,0,0,R,000000012,P1,gisteren - 2 jaar,0518,6030,O |
+    |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_start_datum,relatie_start_plaats,relatie_start_land_code) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)                     | 10000,0,1,R,000000012,P1,gisteren - 20 jaar,0518,6030  |
+    |            | partner-1    | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr,geslachts_naam,relatie_eind_datum,relatie_eind_plaats,relatie_eind_land_code,relatie_eind_reden) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) | 10000,0,0,R,000000012,P1,gisteren - 2 jaar,0518,6030,O |
 
 Scenario: persoon is overleden na scheiden van partner
   Gegeven de persoon 'P1' met burgerservicenummer '000000012'
@@ -398,7 +397,7 @@ Scenario: persoon is overleden na scheiden van partner
   | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
   | gisteren - 7 jaar                                            |
   En 'P1' is overleden met de volgende gegevens
-  | datum overlijden (08.10) |
+  | datum overlijden (08.10)                                     |
   | gisteren - 2 jaar                                            |
   Dan zijn de gegenereerde SQL statements
     | stap       | categorie    | text                                                                                                                                                                                                            | values                                                |
