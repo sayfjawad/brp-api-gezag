@@ -2,6 +2,8 @@ package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
@@ -13,6 +15,8 @@ import java.util.Map;
  * @return if ouder of partner overleden of onbevoegd tot gezag is
  */
 public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
+
+    private static final Logger logger = LoggerFactory.getLogger(OuderOfPartnerOverledenOfOnbevoegdTotGezag.class);
 
     private static final String V4B_1_NEE = "Nee";
     private static final String V4B_1_JA_BEIDEN = "Ja_beiden";
@@ -66,6 +70,9 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
             answer = ouderOfPartnerOverledenOfOnbevoegdTotGezagMap.get(key);
         }
 
+        logger.debug("""
+            4b.1 Ouder, echtgenoot of partner overleden of onbevoegd tot gezag?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV04B01(answer);
     }
 }
