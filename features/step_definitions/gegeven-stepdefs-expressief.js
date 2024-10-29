@@ -146,6 +146,17 @@ Given(/^'(.*)' is onder curatele gesteld$/, function (aanduiding) {
     );
 });
 
+Given(/^is onder curatele gesteld/, function () {
+    const curateleRegisterIndicatie = '1';
+
+    aanvullenGezagsverhouding(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['indicatie curateleregister (33.10)', curateleRegisterIndicatie]
+        ])
+    );
+  });
+
 Given(/^is overleden$/, function () {
     const datumOpschortingBijhouden = 'gisteren - 2 jaar';
     const indicatieGeheim = 'O';

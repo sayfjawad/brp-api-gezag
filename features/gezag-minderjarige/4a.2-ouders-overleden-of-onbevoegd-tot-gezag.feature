@@ -238,7 +238,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
 
     Scenario: Moeder en vader zijn onder curatele gesteld er is sprake van TijdelijkGeenGezag
       Gegeven 'Trudy' is onder curatele gesteld
-      Gegeven 'Kees' is onder curatele gesteld
+      En 'Kees' is onder curatele gesteld
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -327,8 +327,8 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   Regel: Eén van de ouders is onder curatele gesteld en opgeschort 
 
     Scenario: Moeder is onder curatele gesteld en overleden er is sprake van EenhoofdigOuderlijkGezag voor de vader
-      Gegeven 'Trudy' is onder curatele gesteld
       Gegeven persoon 'Trudy'
+      * is onder curatele gesteld
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -343,8 +343,8 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       | ouder.burgerservicenummer        | 000000024                 |
 
     Scenario: Vader is onder curatele gesteld en overleden er is sprake van EenhoofdigOuderlijkGezag voor de moeder
-      Gegeven 'Kees' is onder curatele gesteld
       Gegeven persoon 'Kees'
+      * is onder curatele gesteld
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -361,11 +361,11 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   Regel: Beide ouders zijn onder curatele gesteld en opgeschort 
 
     Scenario: Moeder en vader zijn onder curatele gesteld en overleden er is sprake van TijdelijkGeenGezag
-      Gegeven 'Trudy' is onder curatele gesteld
       Gegeven persoon 'Trudy'
+      * is onder curatele gesteld
       * is overleden
-      Gegeven 'Kees' is onder curatele gesteld
       Gegeven persoon 'Kees'
+      * is onder curatele gesteld
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -382,8 +382,8 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
     Scenario: Moeder is minderjarig, overleden en onder curatele er is sprake van EenhoofdigOuderlijkGezag voor de vader
       Gegeven de persoon 'Lieve' met burgerservicenummer '000000061'
       * is minderjarig
+      * is onder curatele gesteld
       * is overleden
-      Gegeven 'Lieve' is onder curatele gesteld
       Gegeven de persoon 'Wijnand' met burgerservicenummer '000000073'
       * is meerderjarig
       Gegeven de persoon 'Lana' met burgerservicenummer '000000048'
@@ -409,8 +409,8 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       * is meerderjarig
       Gegeven de persoon 'Wijnand' met burgerservicenummer '000000073'
       * is minderjarig
+      * is onder curatele gesteld
       * is overleden
-      Gegeven 'Wijnand' is onder curatele gesteld
       Gegeven de persoon 'Lana' met burgerservicenummer '000000048'
       * is geboren op 1-1-2023
       * is in Nederland geboren
@@ -434,12 +434,12 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       Scenario: Moeder en vader zijn minderjarig en overleden er is sprake van TijdelijkGeenGezag
       Gegeven de persoon 'Lieve' met burgerservicenummer '000000061'
       * is minderjarig
+      * is onder curatele gesteld
       * is overleden
-      Gegeven 'Lieve' is onder curatele gesteld
       Gegeven de persoon 'Wijnand' met burgerservicenummer '000000073'
       * is minderjarig
+      * is onder curatele gesteld
       * is overleden
-      Gegeven 'Wijnand' is onder curatele gesteld
       Gegeven de persoon 'Lana' met burgerservicenummer '000000048'
       * is geboren op 1-1-2023
       * is in Nederland geboren
