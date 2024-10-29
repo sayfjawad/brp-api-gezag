@@ -2,14 +2,25 @@
 
 Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   Precondities voor deze vraag:
-  | 1.1 Staat persoon (minderjarige) als ingezetene in de BRP?             | Ja                                                                                 |
-  | 1.2 Is persoon a. minderjarig en b. niet overleden?                    | Ja                                                                                 |
-  | 1.3 Is minderjarige naar het buitenland geëmigreerd geweest?           | Nee                                                                                |
-  | 1.3a Is minderjarige in buitenland geboren?                            | Nee of geadopteerd met NL akte                                                     |
-  | 1.4 Is uitspraak gezag aanwezig                                        | Nee                                                                                |
-  | 2.1 Hoeveel juridische ouders heeft minderjarigen                      | Twee_ouders                                                                        |
-  | 2a.1 Zijn juridische ouders nu met elkaar gehuwd of partners           | Ja                                                                                 |
-
+  | 1.1 Staat persoon (minderjarige) als ingezetene in de BRP?             | Ja                                                                       |
+  | 1.2 Is persoon a. minderjarig en b. niet overleden?                    | Ja                                                                       |
+  | 1.3 Is minderjarige naar het buitenland geëmigreerd geweest?           | Nee                                                                      |
+  | 1.3a Is minderjarige in buitenland geboren?                            | Nee of geadopteerd met NL akte                                           |
+  | 1.4 Is uitspraak gezag aanwezig                                        | Nee                                                                      |
+  | 2.1 Hoeveel juridische ouders heeft minderjarigen                      | Twee_ouders                                                              |
+  | 2a.1 Zijn juridische ouders nu met elkaar gehuwd of partners           | Ja / Nee                                                                 |
+  
+  Precondities voor deze vraag bij minderjarige ouder(s):
+  | 1.1 Staat persoon (minderjarige) als ingezetene in de BRP?             | Ja                                                                       |
+  | 1.2 Is persoon a. minderjarig en b. niet overleden?                    | Ja                                                                       |
+  | 1.3 Is minderjarige naar het buitenland geëmigreerd geweest?           | Nee                                                                      |
+  | 1.3a Is minderjarige in buitenland geboren?                            | Nee of geadopteerd met NL akte                                           |
+  | 1.4 Is uitspraak gezag aanwezig                                        | Nee                                                                      |
+  | 2.1 Hoeveel juridische ouders heeft minderjarigen                      | Twee_ouders                                                              |
+  | 2a.1 Zijn juridische ouders nu met elkaar gehuwd of partners           | Nee nooit                                                                |
+  | 2a.2 Is persoon geadopteerd met Nederlandse akte                       | Nee                                                                      |
+  | 2a.3 Erkenning voor of na 1-1-2023?                                    | Na                                                                       |
+  
   Onbevoegd tot het gezag zijn minderjarigen, zij die onder curatele zijn gesteld en zij wier geestvermogens zodanig zijn gestoord, om het
   gezag uit te kunnen oefenen (1:246 BW). Daarnaast ook overleden ouders zijn Onbevoegd.
   Uit de wet Gezamenlijk gezag door erkenning volgt dat beide ouders het gezag hebben, tenzij sprake is van de uitzonderingen genoemd in art. 1:251b BW.
@@ -67,7 +78,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       * is meerderjarig
       Gegeven 'Trudy' en 'Kees' zijn met elkaar gehuwd
       En de persoon 'Lucas' met burgerservicenummer '000000036'
-      * is minderjarig
+      * is geboren op 1-1-2023
       * is in Nederland geboren
       * is ingeschreven in de BRP
       * heeft 'Trudy' als ouder 1
@@ -121,9 +132,54 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TijdelijkGeenGezag        |
-      | minderjarige.burgerservicenummer | 000000036                 |
 
   Regel: Eén van de ouders is minderjarig
+
+    Scenario: Moeder is minderjarig er is sprake van EenhoofdigOuderlijkGezag voor de vader
+      Gegeven de persoon 'Lieve' met burgerservicenummer '000000061'
+      * is minderjarig
+      Gegeven de persoon 'Wijnand' met burgerservicenummer '000000073'
+      * is meerderjarig
+      Gegeven de persoon 'Lana' met burgerservicenummer '000000048'
+      * is geboren op 1-1-2023
+      * is in Nederland geboren
+      * is ingeschreven in de BRP
+      * heeft 'Lieve' als ouder 1
+      * heeft 'Wijnand' als ouder 2
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000048 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000048 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | EenhoofdigOuderlijkGezag  |
+      | minderjarige.burgerservicenummer | 000000048                 |
+      | ouder.burgerservicenummer        | 000000073                 |
+
+    Scenario: Vader is minderjarig er is sprake van EenhoofdigOuderlijkGezag voor de moeder
+      Gegeven de persoon 'Lieve' met burgerservicenummer '000000061'
+      * is meerderjarig
+      Gegeven de persoon 'Wijnand' met burgerservicenummer '000000073'
+      * is minderjarig
+      Gegeven de persoon 'Lana' met burgerservicenummer '000000048'
+      * is geboren op 1-1-2023
+      * is in Nederland geboren
+      * is ingeschreven in de BRP
+      * heeft 'Lieve' als ouder 1
+      * heeft 'Wijnand' als ouder 2
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000048 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000048 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | EenhoofdigOuderlijkGezag  |
+      | minderjarige.burgerservicenummer | 000000048                 |
+      | ouder.burgerservicenummer        | 000000061                 |
 
   Regel: Beide ouders zijn minderjarig
 
