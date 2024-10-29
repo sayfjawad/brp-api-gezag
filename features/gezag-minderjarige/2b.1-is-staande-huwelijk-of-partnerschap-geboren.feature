@@ -49,17 +49,15 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
       * is meerderjarig, niet overleden en staat niet onder curatele
       En de persoon 'Maarten' met burgerservicenummer '000000024'
       * is meerderjarig, niet overleden en staat niet onder curatele
+      En de persoon 'Rachel' met burgerservicenummer '000000036'
+      * heeft 'Saskia' als ouder 1 
+      * is geboren op 1-12-2022
+      * is in Nederland geboren
+      * is ingeschreven in de BRP
 
   Regel: Kind is geboren met ouders die op dit moment getrouwd zijn 
 
     Scenario: Huwelijk / partnerschap van ouders is nooit ontbonden geweest er is sprake van GezamenlijkGezag
-      Gegeven de persoon 'Rachel' met burgerservicenummer '000000036'
-      * heeft 'Saskia' als ouder 1 
-      * heeft de volgende gegevens
-      | naam                  | waarde            |
-      | geboortedatum (03.10) | 20221201          |
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
       Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100401                                                           |
@@ -77,13 +75,6 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
       | derde.burgerservicenummer        | 000000024                 |
 
     Scenario: Huwelijk / partnerschap van ouders heeft plaatsgevonden nadat het kind is geboren er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven de persoon 'Rachel' met burgerservicenummer '000000036'
-      * heeft 'Saskia' als ouder 1 
-      * heeft de volgende gegevens
-      | naam                  | waarde            |
-      | geboortedatum (03.10) | 20221201          |
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
       Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20231201                                                           |
@@ -102,13 +93,6 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
   Regel: Kind is geboren met ouders die niet langer getrouwd zijn 
 
     Scenario: Huwelijk / partnerschap van ouders was ontbonden voor dat het kind werd geboren er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven de persoon 'Rachel' met burgerservicenummer '000000036'
-      * heeft 'Saskia' als ouder 1 
-      * heeft de volgende gegevens
-      | naam                  | waarde            |
-      | geboortedatum (03.10) | 20221201          |
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
       Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100101                                                           |
@@ -128,13 +112,6 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
       | ouder.burgerservicenummer        | 000000012                 |
 
     Scenario: Huwelijk / partnerschap van ouders is ontbonden nadat het kind werd geboren er is sprake van GezamenlijkGezag
-      Gegeven de persoon 'Rachel' met burgerservicenummer '000000036'
-      * heeft 'Saskia' als ouder 1 
-      * heeft de volgende gegevens
-      | naam                  | waarde            |
-      | geboortedatum (03.10) | 20221201          |
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
       Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100101                                                           |
@@ -157,13 +134,6 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
   Regel: Kind is geboren met ouders die nooit getrouwd geweest zijn 
 
     Scenario: Kind werd geboren zonder huwelijk / partnerschap tussen ouders er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven de persoon 'Rachel' met burgerservicenummer '000000036'
-      * heeft 'Saskia' als ouder 1 
-      * heeft de volgende gegevens
-      | naam                  | waarde            |
-      | geboortedatum (03.10) | 20221201          |
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
       Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100101                                                           |
