@@ -9,5 +9,5 @@ else
 fi
 
 docker compose \
-    -f .docker/gezag-service.yml \
+    -f .docker/docker-compose.yml \
     up -d

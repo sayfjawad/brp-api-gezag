@@ -1,19 +1,12 @@
-app:
-  features:
-    refactored-gezag:
-      enabled: false
-
 logging:
   file:
-    name: brp-api-gezag.json
+    name: /tmp/logs/brp-api-gezag.json
   file-masked:
-    name: brp-api-gezag.masked.json
+    name: /tmp/logs/brp-api-gezag.masked.json
   group:
     gezag: nl.rijksoverheid.mev
 server:
   port: 8080
-  error:
-    include-message: always
 
 spring:
   application:
@@ -38,15 +31,6 @@ management:
 correlation:
   component-id: 02
 
-transaction-logging:
-  enabled: false
-
-transaction:
-  backup:
-    location: transaction-backup
-
-exceptie-bij-in-onderzoek: true
-
 ---
 
 spring:
@@ -54,127 +38,3 @@ spring:
     activate:
       on-profile: default
     import: classpath:developer.yml
-
----
-
-ca-brp-endpoint: "http://localhost/ brp connection disabled @ ont"
-
-spring:
-  config:
-    activate:
-      on-profile: ont
-
----
-
-server:
-  port: 8082
-
-spring:
-  config:
-    activate:
-      on-profile: it-test # default profile used for GezagITs integration-tests
-
-# IMPORTANT: services.certificates.key-store and services.certificates.trust-store must be stored in the working
-# directory from which the application JAR is started!
-services:
-  certificates:
-    key-store-type: JKS
-    key-store: KeyStore.jks
-    key-store-password: "test123"
-    key-password: "test123"
-    trust-store: client.truststore.jks
-    trust-store-password: "123test"
-
-ca-brp-endpoint: "https://localhost:9999/brp/opvragen-persoon/1.0"
-
-brp-credentials:
-  username: brp-username
-  password: brp-password
-
-ca-credentials:
-  Authorization: CA a1B2c3D4e5F6g7H8i9Ja1B2c3D4e5F6g7H8i9Ja1B2c3D4e5F6g7H8i9Ja1B2c3D4e5F6g7H8i9J
-  X-Origin-OIN: 000123456789
-
-transaction-logging:
-  enabled: false
-
----
-
-server:
-  port: 8082
-
-spring:
-  config:
-    activate:
-      on-profile: it-test-http # facilitates monitoring network traffic in GezagITs
-
-ca-brp-endpoint: "http://localhost:9999/brp/opvragen-persoon/1.0"
-
-brp-credentials:
-  username: brp-username
-  password: brp-password
-
-ca-credentials:
-  Authorization: CA a1B2c3D4e5F6g7H8i9Ja1B2c3D4e5F6g7H8i9Ja1B2c3D4e5F6g7H8i9Ja1B2c3D4e5F6g7H8i9J
-  X-Origin-OIN: 000123456789
-
-transaction-logging:
-  enabled: false
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: prd
-
-ca-brp-endpoint: "https://ca.logius.nl/brp/opvragen-persoon/1.0"
-
----
-# Gebruikt pre-prod BRP via Centraal Aansluitpunt
-# Deze Spring configuratie kan het beste d.m.v. een run-configuratie met --spring.config.location lokaal ingeladen worden.
-# Dit om te voorkomen dat secrets per ongeluk in version control terechtkomen.
-# Voor invullen secrets, zie readme.
-# Key- and truststores dienen ook gedownload te worden uit de secrets.
-
-# Onderstaande settings dienen enkel ter voorbeeld voor een lokaal, buiten vcs, in te laden versie van application.yml
-# met ingevulde secrets
-
-#server:
-#  port: 8082
-#
-#gezagmodule-api:
-#  endpoint: http://localhost:8082
-#  oin: '00000004003214345001'
-#  getgezagdragers-path: /api/v1/opvragenBevoegdheidTotGezagMinderjarige
-#
-#gezagmodule:
-#  endpoint: http://localhost:8080
-#  getGezagdragersPath: /engine-rest/process-definition/key/OuderlijkGezagProcess/start
-#
-#services:
-#  certificates:
-#    key-store-type: JKS
-#    key-store: services.certificates.key-store
-#    key-store-password: <invullen>
-#    key-password: <invullen>
-#    trust-store: services.certificates.trust-store
-#    trust-store-password: <invullen>
-#
-#brp-credentials:
-#  username: <invullen>
-#  password: <invullen>
-#
-#ca-credentials:
-#  Authorization: <invullen>
-#  X-Origin-OIN: <invullen>
-#
-#transaction-logging:
-#  enabled: false
-#
-#spring:
-#  config:
-#    activate:
-#      on-profile: to-ca-pre,get-testdata # testing against pre-prod BRP via CA and for generating BRP stubs for Wiremock
-                                          # and for generating stubs for the Gezagsmodule (for white-box ATs).
----
