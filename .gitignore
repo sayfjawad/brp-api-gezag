@@ -1,9 +1,5 @@
 ### temp project files ###
 /tmp
-/brpstubs/GegenereerdUitBrpData/new
-
-### soaplog folder with generated wiremock stubs ###
-/soaplog
 
 HELP.md
 
@@ -39,10 +35,6 @@ nb-configuration.xml
 ### VS Code ###
 .vscode/
 /nbproject/
-
-### Configuration files with confidential information ###
-
-/src/test/resources/pre-prod-credentials.yml
 
 # Dependency directories
 
