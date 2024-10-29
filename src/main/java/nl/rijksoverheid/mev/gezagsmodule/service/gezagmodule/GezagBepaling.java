@@ -5,7 +5,6 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
-import nl.rijksoverheid.mev.transaction.Transaction;
 import org.openapitools.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +34,6 @@ public class GezagBepaling {
     private final Map<String, Map<String, String>> hoofdstroomschema;
     private Map<String, GezagVraag> vragenMap;
     @Getter
-    private final Transaction transaction;
-    @Getter
     private final ARAntwoordenModel arAntwoordenModel;
 
     private static final String TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG = "TweehoofdigOuderlijkGezag";
@@ -50,12 +47,11 @@ public class GezagBepaling {
     public GezagBepaling(
         final Persoonslijst plPersoon,
         final GezagService gezagService,
-        final Map<String, Map<String, String>> hoofdstroomschema,
-        final Transaction transaction) {
+        final Map<String, Map<String, String>> hoofdstroomschema
+    ) {
         this.plPersoon = plPersoon;
         this.gezagService = gezagService;
         this.hoofdstroomschema = hoofdstroomschema;
-        this.transaction = transaction;
 
         arAntwoordenModel = new ARAntwoordenModel();
         vragenMap = new HashMap<>();
@@ -92,7 +88,7 @@ public class GezagBepaling {
 
     public Persoonslijst getPlOuder1() {
         if (plOuder1 == null && gezagService != null) {
-            plOuder1 = gezagService.ophalenOuder1(plPersoon, transaction);
+            plOuder1 = gezagService.ophalenOuder1(plPersoon);
         }
 
         return plOuder1;
@@ -100,7 +96,7 @@ public class GezagBepaling {
 
     public Persoonslijst getPlOuder2() {
         if (plOuder2 == null && gezagService != null) {
-            plOuder2 = gezagService.ophalenOuder2(plPersoon, transaction);
+            plOuder2 = gezagService.ophalenOuder2(plPersoon);
         }
 
         return plOuder2;
@@ -108,7 +104,7 @@ public class GezagBepaling {
 
     public Persoonslijst getPlNietOuder() {
         if (plNietOuder == null && gezagService != null) {
-            plNietOuder = gezagService.ophalenNietOuder(plPersoon, plOuder1, plOuder2, transaction);
+            plNietOuder = gezagService.ophalenNietOuder(plPersoon, plOuder1, plOuder2);
         }
 
         return plNietOuder;
@@ -228,20 +224,12 @@ public class GezagBepaling {
                         gezagsrelaties.add(gezag);
                     }
                 }
-                case "G" -> {
-                    if (bevraagdePersoonIsDeMinderjarige) {
-                        gezagsrelaties.add(new TijdelijkGeenGezag().type(TYPE_TIJDELIJK_GEEN_GEZAG));
-                    }
-                }
-                case "N" -> {
-                    if (bevraagdePersoonIsDeMinderjarige) {
-                        gezagsrelaties.add(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(arAntwoordenModel.getUitleg()));
-                    }
-                }
-                case "NVT" -> {
-                    logger.info("Gezag uitkomst is NVT");
-                }
-                default -> logger.warn("Onverwachte gezagsoort ontvangen: " + soortGezag);
+                case String s when s.equals("G") && bevraagdePersoonIsDeMinderjarige ->
+                    gezagsrelaties.add(new TijdelijkGeenGezag().type(TYPE_TIJDELIJK_GEEN_GEZAG));
+                case String s when s.equals("N") && bevraagdePersoonIsDeMinderjarige ->
+                    gezagsrelaties.add(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(arAntwoordenModel.getUitleg()));
+                case "NVT" -> logger.info("Gezag uitkomst is NVT");
+                default -> logger.warn("Onverwachte gezagsoort ontvangen: {}", soortGezag);
             }
         }
     }

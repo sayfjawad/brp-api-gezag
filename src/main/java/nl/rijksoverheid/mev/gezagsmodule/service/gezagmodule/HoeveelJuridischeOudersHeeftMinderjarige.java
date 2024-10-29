@@ -1,6 +1,8 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * sv2_1
@@ -9,6 +11,8 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
  * IN_ONDERZOEK
  */
 public class HoeveelJuridischeOudersHeeftMinderjarige extends GezagVraag {
+
+    private static final Logger logger = LoggerFactory.getLogger(HoeveelJuridischeOudersHeeftMinderjarige.class);
 
     protected HoeveelJuridischeOudersHeeftMinderjarige(final GezagBepaling gezagBepaling) {
         super(gezagBepaling);
@@ -21,6 +25,9 @@ public class HoeveelJuridischeOudersHeeftMinderjarige extends GezagVraag {
 
         answer = plPersoon.hoeveelJuridischeOuders();
 
+        logger.debug("""
+            2.1 Hoeveel juridische ouders heeft de minderjarige?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV0201(answer);
     }
 }

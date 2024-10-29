@@ -11,12 +11,13 @@ const { createPersoon,
         createGezagsverhouding,
         aanvullenGezagsverhouding,
         createVerblijfplaats,
+        wijzigVerblijfplaats,
         aanvullenInschrijving,
         createOverlijden
 } = require('./persoon-2');
 const { toDbColumnName } = require('./brp');
 
-const { toDateOrString } = require('./brpDatum');
+const { toBRPDate } = require('./brpDatum');
 
 function getPersoon(context, aanduiding) {
     return !aanduiding
@@ -30,6 +31,10 @@ function getBsn(persoon) {
 
 function getGeslachtsnaam(persoon) {
     return persoon.persoon.at(-1).geslachts_naam;
+}
+
+function getGeboortedatum(persoon) {
+    return persoon.persoon.at(-1).geboorte_datum;
 }
 
 function deleteHuwelijkProperties(entiteit) {
@@ -100,6 +105,20 @@ Given(/^(?:de persoon(?: '(.*)')? )?met burgerservicenummer '(\d*)'$/, function 
     gegevenDePersoonMetBsn(this.context, aanduiding, burgerservicenummer, undefined);
 });
 
+function wijzigPersoonContext(context, aanduiding) {
+    const persoonId = `persoon-${aanduiding}`;
+    const index = context.data.personen.findIndex(element => element.id === persoonId);
+
+    if (index !== -1) {
+        const [element] = context.data.personen.splice(index, 1);
+        context.data.personen.push(element);
+    }
+}
+
+Given(/^persoon '(.*)'$/, function (aanduiding) {
+    wijzigPersoonContext(this.context, aanduiding);
+});
+
 Given(/^is minderjarig/, function () {
     const datumGeboorte = 'gisteren - 17 jaar';
 
@@ -135,18 +154,18 @@ Given(/^is in Nederland geboren$/, function () {
     );
 });
 
-Given(/^heeft gezag uitspraak$/, function (dataTable) {
+Given(/^voor '(.*)' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens$/, function (aanduiding, dataTable) {
     createGezagsverhouding(
-        getPersoon(this.context, undefined),
+        getPersoon(this.context, aanduiding),
         dataTable
     );
 });
 
-Given(/^staat onder curatele$/, function () {
+Given(/^'(.*)' is onder curatele gesteld$/, function (aanduiding) {
     const curateleRegisterIndicatie = '1';
 
     aanvullenGezagsverhouding(
-        getPersoon(this.context, undefined),
+        getPersoon(this.context, aanduiding),
         arrayOfArraysToDataTable([
             ['indicatie curateleregister (33.10)', curateleRegisterIndicatie]
         ])
@@ -265,6 +284,28 @@ function gegevenDePersonenZijnGehuwd(context, aanduiding1, aanduiding2, dataTabl
     );
 }
 
+function gegevenDePersonenZijnGehuwdGecorrigeerd(context, aanduiding1, aanduiding2, dataTable) {
+    wijzigPartner(
+        getPersoon(context, aanduiding1),
+        arrayOfArraysToDataTable([
+            ['burgerservicenummer (01.20)', getBsn(getPersoon(context, aanduiding2))],
+            ['geslachtsnaam (02.40)', aanduiding2]
+        ], dataTable),
+        true,
+        true
+    );
+
+    wijzigPartner(
+        getPersoon(context, aanduiding2),
+        arrayOfArraysToDataTable([
+            ['burgerservicenummer (01.20)', getBsn(getPersoon(context, aanduiding1))],
+            ['geslachtsnaam (02.40)', aanduiding1]
+        ], dataTable),
+        true,
+        true
+    );
+}
+
 Given(/^'(.*)' en '(.*)' zijn met elkaar gehuwd$/, function (aanduiding1, aanduiding2) {
     const datumHuwelijk = 'gisteren - 20 jaar';
     const plaatsHuwelijk = '0518';
@@ -326,8 +367,8 @@ Given(/^'(.*)' en '(.*)' zijn gescheiden met de volgende gegevens$/, function (a
     gegevenDePersonenZijnGescheiden(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
-Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd$/, function (aanduiding1, aanduiding2, dataTable) {
-    return 'pending';
+Given(/^is het huwelijk van '(.*)' en '(.*)' gecorrigeerd met de volgende gegevens$/, function (aanduiding1, aanduiding2, dataTable) {
+    gegevenDePersonenZijnGehuwdGecorrigeerd(this.context, aanduiding1, aanduiding2, dataTable);
 });
 
 /**
@@ -352,6 +393,7 @@ function gegevenHeeftPersoonAlsOuder(context, aanduiding, ouderType, dataTable) 
         arrayOfArraysToDataTable([
             ['burgerservicenummer (01.20)', getBsn(kind)],
             ['geslachtsnaam (02.40)', getGeslachtsnaam(kind)],
+            ['geboortedatum (03.10)', getGeboortedatum(kind)]
         ])
     )
 }
@@ -368,9 +410,9 @@ Given(/^heeft '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function (aan
     gegevenHeeftPersoonAlsOuder(this.context, aanduiding, ouderType, dataTable);
 });
 
-function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduiding, ouderType, dataTable) {
-    const kind = getPersoon(context, undefined);
-    const ouder = getPersoon(context, aanduiding);
+function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduidingKind, aanduidingOuder, ouderType, dataTable) {
+    const kind = getPersoon(context, aanduidingKind);
+    const ouder = getPersoon(context, aanduidingOuder);
 
     const kindData = { ...kind.persoon.at(-1) };
     kindData[toDbColumnName('aktenummer (81.20)')] = '1AQ0100'
@@ -398,16 +440,16 @@ function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduiding, ouderType,
     )
 }
 
-Given(/^is geadopteerd door '(.*)' als ouder ([1-2])$/, function (aanduiding, ouderType) {
+Given(/^'(.*)' is geadopteerd door '(.*)' als ouder ([1-2])$/, function (aanduidingKind, aanduidingOuder, ouderType) {
     const adoptieOuderData = arrayOfArraysToDataTable([
         ['datum ingang familierechtelijke betrekking (62.10)', 'morgen - 4 jaar']
     ]);
 
-    gegevenIsGeadopteerdDoorPersoonAlsOuder(this.context, aanduiding, ouderType, adoptieOuderData);
+    gegevenIsGeadopteerdDoorPersoonAlsOuder(this.context, aanduidingKind, aanduidingOuder, ouderType, adoptieOuderData);
 });
 
-Given(/^is geadopteerd door '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function (aanduiding, ouderType, dataTable) {
-    gegevenIsGeadopteerdDoorPersoonAlsOuder(this.context, aanduiding, ouderType, dataTable);
+Given(/^'(.*)' is geadopteerd door '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function (aanduidingKind, aanduidingOuder, ouderType, dataTable) {
+    gegevenIsGeadopteerdDoorPersoonAlsOuder(this.context, aanduidingKind, aanduidingOuder, ouderType, dataTable);
 });
 
 Given(/^zijn van ouder ([1-2]) de volgende gegevens gewijzigd$/, function (ouderType, dataTable) {
@@ -489,10 +531,103 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest met de volgende gege
 
 Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
     const datumVestiging = 'vandaag - 1 jaar';
+    const gemeenteVanInschrijving = '0518';
 
-    createVerblijfplaats(
+    wijzigVerblijfplaats(
         getPersoon(this.context, undefined),
         arrayOfArraysToDataTable([
-            ['datum vestiging in Nederland (14.20)', datumVestiging]
-        ]));
+            ['datum vestiging in Nederland (14.20)', datumVestiging],
+            ['gemeente van inschrijving (09.10)', gemeenteVanInschrijving]
+        ]),
+        false
+    );
 });
+
+/**
+ * Hier volgt de gegeven stappen voor erkenning
+ */
+const ErkenningsType = {
+    ErkenningBijGeboorteaangifte: 'B',
+    ErkenningNaGeboorteaangifte: 'C',
+    ErkenningBijNotarieleAkte: 'J',
+    GerechtelijkeVaststellingOuderschap: 'V'
+}
+
+Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning bij geboorteaangifte$/, function (aanduidingOuder, ouderType) {
+    const kind = getPersoon(this.context, null);
+    const kindData = { ...kind.persoon.at(-1) };
+
+    const ouderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', kindData.geboorte_datum]
+    ]);
+
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijGeboorteaangifte, ouderType, ouderData);
+});
+
+Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning na geboorteaangifte op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
+    const ouderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', toBRPDate(dag, maand, jaar)]
+    ]);
+
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningNaGeboorteaangifte, ouderType, ouderData);
+});
+
+Given(/^is erkend door '(.*)' als ouder ([1-2]) met erkenning bij notariële akte op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
+    const ouderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', toBRPDate(dag, maand, jaar)]
+    ]);
+
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.ErkenningBijNotarieleAkte, ouderType, ouderData);
+});
+
+Given(/^is erkend door '(.*)' als ouder ([1-2]) met gerechtelijke vaststelling ouderschap op (\d*)-(\d*)-(\d*)$/, function (aanduidingOuder, ouderType, dag, maand, jaar) {
+    const ouderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', toBRPDate(dag, maand, jaar)]
+    ]);
+
+    gegevenIsErkendDoorPersoonAlsOuder(this.context, aanduidingOuder, ErkenningsType.GerechtelijkeVaststellingOuderschap, ouderType, ouderData);
+});
+
+Given(/^is geboren op (\d*)-(\d*)-(\d*)$/, function (dag, maand, jaar) {
+    aanvullenPersoon(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['geboortedatum (03.10)', toBRPDate(dag, maand, jaar)]
+        ])
+    );
+});
+
+function gegevenIsErkendDoorPersoonAlsOuder(context, aanduidingOuder, erkenningsType, ouderType, dataTable) {
+    if(!erkenningsType) {
+        erkenningsType = ErkenningsType.ErkenningBijGeboorteaangifte;
+    }
+
+    const kind = getPersoon(context, null);
+    const ouder = getPersoon(context, aanduidingOuder);
+
+    const kindData = { ...kind.persoon.at(-1) };
+    kindData[toDbColumnName('aktenummer (81.20)')] = `1A${erkenningsType}0100`
+
+    wijzigPersoon(
+        kind,
+        objectToDataTable(kindData)
+    );
+
+    createOuder(
+        kind,
+        ouderType,
+        arrayOfArraysToDataTable([
+            ['burgerservicenummer (01.20)', getBsn(ouder)],
+            ['geslachtsnaam (02.40)', getGeslachtsnaam(ouder)],
+            ['aktenummer (81.20)', `1A${erkenningsType}0100`]
+        ], dataTable)
+    );
+
+    createKind(
+        ouder,
+        arrayOfArraysToDataTable([
+            ['burgerservicenummer (01.20)', getBsn(kind)],
+            ['geslachtsnaam (02.40)', getGeslachtsnaam(kind)],
+        ])
+    )
+}
