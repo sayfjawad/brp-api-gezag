@@ -22,18 +22,25 @@ function cloneEntityToDataTableArray(arrayOfArrays, entiteit) {
 
 function mapNaamWaardeDataTableToEntiteit(entiteit, dataTable) {
     dataTable.hashes().forEach(hash => {
-        if(hash.waarde && hash.waarde !== '') {
+        if(hash.waarde) {
             entiteit[toDbColumnName(hash.naam)] = toDateOrString(hash.waarde, false);
         }
-    });
+        else {
+            delete entiteit[toDbColumnName(hash.naam)];
+        }
+});
 }
 
 function mapHashToEntiteit(entiteit, hash) {
     Object.keys(hash).forEach(naam => {
-        if(hash[naam] && hash[naam] !== '') {
+        if(hash[naam]) {
             entiteit[toDbColumnName(naam)] = toDateOrString(hash[naam], false);
         }
+        else {
+            delete entiteit[toDbColumnName(naam)];
+        }
     });
+
 }
 
 function mapDataTableToEntiteit(entiteit, dataTable) {

@@ -45,4 +45,34 @@ public class ARAntwoordenModel {
     private String index = null;
     @EqualsAndHashCode.Exclude
     private String uitleg = null;
+
+    @Override
+    public String toString() {
+        return "ARAntwoordenModel{" +
+            "soortGezag='" + soortGezag + '\'' +
+            ", gezagOuder1='" + gezagOuder1 + '\'' +
+            ", gezagOuder2='" + gezagOuder2 + '\'' +
+            ", gezagNietOuder1='" + gezagNietOuder1 + '\'' +
+            ", gezagNietOuder2='" + gezagNietOuder2 + '\'' +
+            ", route='" + route + '\'' +
+            ", uitleg='" + uitleg + '\'' +
+            ", exception=" + exception +
+            ", v0101='" + v0101 + '\'' +
+            ", v0102='" + v0102 + '\'' +
+            ", v0103='" + v0103 + '\'' +
+            ", v0103A='" + v0103A + '\'' +
+            ", v0103B='" + v0103B + '\'' +
+            ", v0104='" + v0104 + '\'' +
+            ", v0201='" + v0201 + '\'' +
+            ", v02A01='" + v02A01 + '\'' +
+            ", v02A02='" + v02A02 + '\'' +
+            ", v02A03='" + v02A03 + '\'' +
+            ", v02B01='" + v02B01 + '\'' +
+            ", v0301='" + v0301 + '\'' +
+            ", v0302='" + v0302 + '\'' +
+            ", v04A02='" + v04A02 + '\'' +
+            ", v04A03='" + v04A03 + '\'' +
+            ", v04B01='" + v04B01 + '\'' +
+            '}';
+    }
 }
