@@ -1,6 +1,6 @@
 #language: nl
 
-Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
+Functionaliteit: 4a.2 - Ouders overleden of onbevoegd tot gezag
   Precondities voor deze vraag:
   | 1.1 Staat persoon (minderjarige) als ingezetene in de BRP?             | Ja                                                                       |
   | 1.2 Is persoon a. minderjarig en b. niet overleden?                    | Ja                                                                       |
