@@ -9,7 +9,7 @@ Functionaliteit: 2a.3 - erkenning
   | 1.4 Uitspraak gezag aanwezig?                                          | Nee of door een recente gebeurtenis het gezag toch (weer) van rechtswege verkregen |
   | 2.1 Hoeveel juridische ouders heeft de minderjarige?                   | 2                                                                                  |
   | 2a.1 Zijn beide ouders nu met elkaar gehuwd of geregistreerd partners? | Nee nooit                                                                          |
-  | 2a.2 Is persoon geadopteerd met Nederlandse akte                       | Nee
+  | 2a.2 Is persoon geadopteerd met Nederlandse akte                       | Nee                                                                                |
 
   Hoe achterhalen of er erkenning is: Aktenummer Ouder1 of Ouder2 bevat op de 3e positie de akteaanduiding B (erkenning bij
   geboorteaangifte), C (erkenning na geboorte), J (erkenning bij notariële akte) of V (gerechtelijke vaststelling ouderschap). Deze kan in de actuele categorie voorkomen maar ook 
