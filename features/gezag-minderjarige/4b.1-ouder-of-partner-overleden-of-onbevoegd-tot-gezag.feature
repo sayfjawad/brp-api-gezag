@@ -53,12 +53,12 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       * is meerderjarig
       Gegeven 'Quincy' en 'Mees' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
-      | 20220101                                                           |
+      | 20230101                                                           |
       Gegeven 'Quincy' en 'Mees' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
-      | 20221230                                                     |
+      | 20231230                                                     |
       En de persoon 'Maarten' met burgerservicenummer '000000024'
-      * is geboren op 4-4-2022
+      * is geboren op 4-4-2023
       * is in Nederland geboren
       * is ingeschreven in de BRP
       * heeft 'Quincy' als ouder 1

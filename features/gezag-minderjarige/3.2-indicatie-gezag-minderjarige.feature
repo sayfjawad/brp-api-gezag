@@ -134,18 +134,18 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       * is meerderjarig
       Gegeven 'Iefke' en 'Paul' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
-      | 20220101                                                           |
+      | 20230101                                                           |
       Gegeven 'Iefke' en 'Paul' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
-      | 20221230                                                     |
+      | 20231230                                                     |
       En de persoon 'Bea' met burgerservicenummer '000000091'
-      * is geboren op 4-4-2022
+      * is geboren op 4-4-2023
       * is in Nederland geboren
       * is ingeschreven in de BRP
       * heeft 'Iefke' als ouder 1
       Gegeven voor 'Bea' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
-      | 1D                                    | 20230101                       |
+      | 1D                                    | 20230404                       |
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000091 |
@@ -193,18 +193,18 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       * is meerderjarig
       Gegeven 'Iefke' en 'Paul' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
-      | 20220101                                                           |
+      | 20230101                                                           |
       Gegeven 'Iefke' en 'Paul' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
-      | 20221230                                                     |
+      | 20231230                                                     |
       En de persoon 'Bea' met burgerservicenummer '000000091'
-      * is geboren op 4-4-2022
+      * is geboren op 4-4-2023
       * is in Nederland geboren
       * is ingeschreven in de BRP
       * heeft 'Paul' als ouder 2
       Gegeven voor 'Bea' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
-      | 2D                                   | 20230101                        |
+      | 2D                                   | 20230404                        |
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000091 |
