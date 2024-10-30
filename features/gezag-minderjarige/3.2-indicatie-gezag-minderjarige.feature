@@ -115,10 +115,53 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
+#      En heeft de persoon een 'gezag' met de volgende gegevens
+#      | naam                             | waarde                    |
+#      | type                             | GezamenlijkGezag          |
+#      | minderjarige.burgerservicenummer | 000000036                 |
+#      | ouder.burgerservicenummer        | 000000012                 |
+#      | derde.burgerservicenummer        | 000000024                 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | Voogdij                   |
       | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' geen derden
+
+    Scenario: De moeder heeft samen met de vader als niet ouder gezamelijk gezag over het kind resulteerd in Voogdij
+      Gegeven de persoon 'Iefke' met burgerservicenummer '000000061'
+      * is meerderjarig
+      Gegeven de persoon 'Paul' met burgerservicenummer '000000085'
+      * is meerderjarig
+      Gegeven 'Iefke' en 'Paul' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20220101                                                           |
+      Gegeven 'Iefke' en 'Paul' zijn gescheiden met de volgende gegevens
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
+      | 20221230                                                     |
+      En de persoon 'Bea' met burgerservicenummer '000000091'
+      * is geboren op 4-4-2022
+      * is in Nederland geboren
+      * is ingeschreven in de BRP
+      * heeft 'Iefke' als ouder 1
+      Gegeven voor 'Bea' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1D                                    | 20230101                       |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000091 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000091 |
+#      En heeft de persoon een 'gezag' met de volgende gegevens
+#      | naam                             | waarde                    |
+#      | type                             | GezamenlijkGezag          |
+#      | minderjarige.burgerservicenummer | 000000091                 |
+#      | ouder.burgerservicenummer        | 000000061                 |
+#      | derde.burgerservicenummer        | 000000085                 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | Voogdij                   |
+      | minderjarige.burgerservicenummer | 000000091                 |
       En heeft 'gezag' geen derden
 
     Scenario: De vader heeft samen met een voogd gezamelijk gezag over het kind resulteerd in Voogdij
@@ -131,10 +174,53 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
+#      En heeft de persoon een 'gezag' met de volgende gegevens
+#      | naam                             | waarde                    |
+#      | type                             | GezamenlijkGezag          |
+#      | minderjarige.burgerservicenummer | 000000036                 |
+#      | ouder.burgerservicenummer        | 000000012                 |
+#      | derde.burgerservicenummer        | 000000024                 |
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | Voogdij                   |
       | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' geen derden
+
+    Scenario: De vader als niet ouder heeft gezag over het kind resulteerd in Voogdij
+      Gegeven de persoon 'Iefke' met burgerservicenummer '000000061'
+      * is meerderjarig
+      Gegeven de persoon 'Paul' met burgerservicenummer '000000085'
+      * is meerderjarig
+      Gegeven 'Iefke' en 'Paul' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20220101                                                           |
+      Gegeven 'Iefke' en 'Paul' zijn gescheiden met de volgende gegevens
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
+      | 20221230                                                     |
+      En de persoon 'Bea' met burgerservicenummer '000000091'
+      * is geboren op 4-4-2022
+      * is in Nederland geboren
+      * is ingeschreven in de BRP
+      * heeft 'Paul' als ouder 2
+      Gegeven voor 'Bea' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 2D                                   | 20230101                        |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000091 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000091 |
+#      En heeft de persoon een 'gezag' met de volgende gegevens
+#      | naam                             | waarde                    |
+#      | type                             | GezamenlijkGezag          |
+#      | minderjarige.burgerservicenummer | 000000091                 |
+#      | ouder.burgerservicenummer        | 000000061                 |
+#      | derde.burgerservicenummer        | 000000085                 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | Voogdij                   |
+      | minderjarige.burgerservicenummer | 000000091                 |
       En heeft 'gezag' geen derden
 
   Regel: Uitspraak gezag met indicatie dat er sprake is van voogdij opgenomen vanuit het Gezagsregister
