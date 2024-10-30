@@ -22,7 +22,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   | 2a.3 Erkenning voor of na 1-1-2023?                                    | Na                                                                       |
   
   Onbevoegd tot het gezag zijn minderjarigen, zij die onder curatele zijn gesteld en zij wier geestvermogens zodanig zijn gestoord, om het
-  gezag uit te kunnen oefenen (1:246 BW). Daarnaast ook overleden ouders zijn Onbevoegd.
+  gezag uit te kunnen oefenen (1:246 BW). Daarnaast zijn overleden ouders ook onbevoegd tot het gezag.
   Uit de wet Gezamenlijk gezag door erkenning volgt dat beide ouders het gezag hebben, tenzij sprake is van de uitzonderingen genoemd in art. 1:251b BW.
   
   Mogelijke uitkomsten:
@@ -57,13 +57,12 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   bedoeld onder a, of de erkenning met vervangende toestemming, bedoeld onder b, in het register, bedoeld in artikel 244.
 
   Opmerkingen
-  • Vraag 4a.2: Het antwoord op de vraag 4a.2 is mogelijk te beperkt om gezag juist te bepalen. de gevolgen van overlijden en curatele
+  • Vraag 4a.2: Het antwoord op de vraag 4a.2 is mogelijk te beperkt om gezag juist te bepalen. De gevolgen van overlijden en curatele
     voor gezag zijn verschillend. Of komt de situatie van curatele eigenlijk niet voor omdat er dan al een uitspraak gezag voorligt?
 
   Aanbeveling
-  • Meerderjarig verlkaring: ophalen meerderjarig verklaring uit de aantekening in het Gezagsregister
-  • Mogelijk moet autorisatie worden verleend voor Beschrijving Document vanwege de instructie opnemen “van
-    rechtswege, erkenning OV 2022”.
+  • Meerderjarig verklaring: ophalen meerderjarig verklaring uit de aantekening in het Gezagsregister
+  • Mogelijk moet autorisatie worden verleend voor Beschrijving Document vanwege de instructie opnemen “van rechtswege, erkenning OV 2022”.
 
  TODO: Verplaatsen naar developer testen - Gebruikte velden:
     - Datum opschorting bijhouding -> 07.67.10
