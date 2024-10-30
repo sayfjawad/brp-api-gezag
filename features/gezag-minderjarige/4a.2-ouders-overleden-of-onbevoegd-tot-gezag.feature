@@ -64,7 +64,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   • Meerderjarig verklaring: ophalen meerderjarig verklaring uit de aantekening in het Gezagsregister
   • Mogelijk moet autorisatie worden verleend voor Beschrijving Document vanwege de instructie opnemen “van rechtswege, erkenning OV 2022”.
 
- TODO: Verplaatsen naar developer testen - Gebruikte velden:
+  Gebruikte velden:
     - Datum opschorting bijhouding -> 07.67.10
     - De geboortedatum van de ouder(s)n -> 02.03.10 en 03.03.10
     - Indicatie curatele -> 11.33.10

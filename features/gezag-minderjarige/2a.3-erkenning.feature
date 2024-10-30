@@ -32,7 +32,7 @@ Functionaliteit: 2a.3 - erkenning
   - Indien het kind (of de ongeboren vrucht) is erkend voor 1-1-2023 is er sprake van 1 hoofdig gezag voor de moeder en volgt stap 4a Achterhalen bevoegdheid tot gezag (1 hoofdig gezag)
   - Indien het kind of de ongeboren vrucht is erkend na 1-1-2023 is er sprake van gezamenlijk ouderlijk gezag en volgt stap 4a Achterhalen bevoegdheid tot gezag (gezamenlijk ouderlijk gezag)
 
-  TODO: Verplaatsen naar developer testen - Gebruikte velden:
+  Gebruikte velden:
     - Aktenummer persoon -> 01.81.20
     - Historische aktenummer -> 51.81.20
     - Aktenummer ouder 1 -> 02.81.20
