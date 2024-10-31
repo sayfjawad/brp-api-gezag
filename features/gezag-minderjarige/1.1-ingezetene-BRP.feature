@@ -12,7 +12,7 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
   verder met vraag 1.2.
 
   Een persoon is "niet ingezetene" wanneer deze staat ingeschreven in het RNI (Register Niet 
-  Ingezetenen). In dat gezal is het gezag niet te bepalen.
+  Ingezetenen). In dat geval is het gezag niet te bepalen.
 
 
     Achtergrond:
