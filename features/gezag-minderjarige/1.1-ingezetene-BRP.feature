@@ -17,13 +17,12 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
 
     Achtergrond:
       Gegeven de persoon 'Gerda' met burgerservicenummer '000000012'
-      * is meerderjarig, niet overleden en staat niet onder curatele
+      * is meerderjarig
       En de persoon 'Bert' met burgerservicenummer '000000024'
-      * is meerderjarig, niet overleden en staat niet onder curatele
+      * is meerderjarig
       En 'Gerda' en 'Bert' zijn met elkaar gehuwd
       En de persoon 'Zoe' met burgerservicenummer '000000036'
       * is minderjarig
-      * is niet geëmigreerd geweest
       * is in Nederland geboren
       * heeft 'Gerda' als ouder 1
       * heeft 'Bert' als ouder 2
