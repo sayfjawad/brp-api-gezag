@@ -34,8 +34,8 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
   de overgebleven ouder een relatie had tijdens de geboorte van de minderjarige kan het voorkomen dat de partner van de ouder
   uitgerekend de persoon is waar de nietig verklaarde erkenning betrekking op heeft. In zo’n geval heeft de partner geen gezag over de
   minderjarige dus geen gezamenlijk gezag. De huidige afleiding voorziet hier niet in.
+ 
   Aanbevelingen
-
   Voorstel is ook te kijken naar een nietig verklaarde erkenning in de aktenummers van de ouders. Daarmee wordt het antwoord Nee
   aangevuld met “of nietig verklaarde erkenning” en krijgt de partner met nietig verklaarde erkenning geen gezag.
 
