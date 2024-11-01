@@ -73,7 +73,7 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
   Regel: Ouders zijn nooit met elkaar gehuwd of geregistreerd partners geweest
 
     Scenario: Geen sprake van huwelijk of partnerschap, officeel is er sprake van EenhoofdigOuderlijkGezag maar 
-              er kan op dit moment niet worden bepaald welke ouder de geboortemoeder is er is sprake van GezagNietTeBepalen
+              er kan op dit moment niet worden bepaald welke ouder de geboortemoeder (route 54) is er is sprake van GezagNietTeBepalen
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -163,24 +163,242 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
 
   Regel: Ouders zijn getrouwd geweest en gescheiden na de geboorte van het kind
 
-    Scenario: Huwelijk / partnerschap van ouders is beëindigd door scheiding
+    Scenario: Huwelijk / partnerschap van ouders is beëindigd door scheiding er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20100401                                                           |
+      Gegeven 'Rianne' en 'Richard' zijn gescheiden met de volgende gegevens
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
+      | 20230101                                                     |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000012           |
+      En heeft het 'gezag' nog een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000024           |
 
-    Scenario: Huwelijk / partnerschap van ouders is nietig verklaard 
+    Scenario: Huwelijk / partnerschap van ouders is nietig verklaard er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20100401                                                           |
+      Gegeven 'Rianne' en 'Richard' zijn gescheiden met de volgende gegevens
+      | naam                                                         | waarde    |
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) | 20230101  |
+      | reden ontbinding huwelijk/geregistreerd partnerschap (07.40) | N         |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000012           |
+      En heeft het 'gezag' nog een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000024           |
 
-    Scenario: Huwelijk / partnerschap van ouders is beëindigd door overlijden van vader
-    
+    Scenario: Huwelijk / partnerschap van ouders is beëindigd door overlijden van vader er is sprake van EenhoofdigOuderlijkGezag
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens 
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20100401                                                           |
+      En 'Richard' is overleden met de volgende gegevens
+      | datum overlijden (08.10)                                     |
+      | 01012023                                                     |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | EenhoofdigOuderlijkGezag  |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      | ouder.burgerservicenummer        | 000000012                 |
+
   Regel: Ouders zijn altijd en nu nog getrouwd geweest
 
-    Scenario: Huwelijk / partnerschap van ouders is actueel
+    Scenario: Huwelijk / partnerschap van ouders is actueel er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20100401                                                           |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000012           |
+      En heeft het 'gezag' nog een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000024           |
 
   Regel: Ouders waren getrouwd, zijn gescheiden en daarna hertrouwd
 
-    Scenario: Kind is geboren tijdens het eerst huwelijk
+    Scenario: Kind is geboren tijdens het eerste huwelijk er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven persoon 'Robin'
+      * is geboren op 06-06-2020
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20200401                                                           |
+      Gegeven 'Rianne' en 'Richard' zijn gescheiden met de volgende gegevens
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
+      | 20210101                                                     |
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20220401                                                           |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000012           |
+      En heeft het 'gezag' nog een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000024           |
 
-    Scenario: Kind is geboren terwijl de ouders gescheiden waren
+    Scenario: Kind is geboren terwijl de ouders gescheiden waren er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven persoon 'Robin'
+      * is geboren op 06-06-2021
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20200401                                                           |
+      Gegeven 'Rianne' en 'Richard' zijn gescheiden met de volgende gegevens
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
+      | 20210101                                                     |
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20220401                                                           |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000012           |
+      En heeft het 'gezag' nog een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000024           |
 
-    Scenario: Kind is geboren terwijl het huwelijk van de ouders nietig is verklaard
+    Scenario: Kind is geboren terwijl het huwelijk van de ouders nietig was verklaard er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven persoon 'Robin'
+      * is geboren op 06-06-2021
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20200401                                                           |
+      Gegeven 'Rianne' en 'Richard' zijn gescheiden met de volgende gegevens
+      | naam                                                         | waarde    |
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) | 20210101  |
+      | reden ontbinding huwelijk/geregistreerd partnerschap (07.40) | N         |
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20220401                                                           |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000012           |
+      En heeft het 'gezag' nog een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000024           |
 
-    Scenario: Kind is geboren tijdens het tweede (herstel) huwelijk van de ouders nadat ouders waren gescheiden
+    Scenario: Kind is geboren tijdens het tweede (herstel) huwelijk van de ouders nadat ouders waren gescheiden er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven persoon 'Robin'
+      * is geboren op 06-06-2022
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20200401                                                           |
+      Gegeven 'Rianne' en 'Richard' zijn gescheiden met de volgende gegevens
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
+      | 20210101                                                     |
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20220401                                                           |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000012           |
+      En heeft het 'gezag' nog een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000024           |
 
-    Scenario: Kind is geboren tijdens het tweede (herstel) huwelijk van de ouders nadat het huwelijk was nietig verklaard
+    Scenario: Kind is geboren tijdens het tweede (herstel) huwelijk van de ouders nadat het huwelijk was nietig verklaard er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven persoon 'Robin'
+      * is geboren op 06-06-2022
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20200401                                                           |
+      Gegeven 'Rianne' en 'Richard' zijn gescheiden met de volgende gegevens
+      | naam                                                         | waarde    |
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) | 20210101  |
+      | reden ontbinding huwelijk/geregistreerd partnerschap (07.40) | N         |
+      Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | 20220401                                                           |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000012           |
+      En heeft het 'gezag' nog een 'ouder' met de volgende gegevens
+      | burgerservicenummer |
+      | 000000024           |
