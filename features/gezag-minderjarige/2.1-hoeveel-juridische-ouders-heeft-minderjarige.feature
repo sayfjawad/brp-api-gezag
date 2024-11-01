@@ -62,7 +62,7 @@ Functionaliteit: 2.1 - hoeveel juridische ouders heeft minderjarige
 
   Regel: Kind heeft een juridisch ouder 
 
-    Scenario: Voor het kind is 1 ouder bekend er is sprake van EenhoofdigOuderlijkGezag
+    Scenario: Voor het kind is 1 ouder bekend als ouder 1 er is sprake van EenhoofdigOuderlijkGezag
       Gegeven  persoon 'Gert'
       * heeft 'Gertruda' als ouder 1
       Als gezag wordt gezocht met de volgende parameters
@@ -76,6 +76,21 @@ Functionaliteit: 2.1 - hoeveel juridische ouders heeft minderjarige
       | type                             | EenhoofdigOuderlijkGezag  |
       | minderjarige.burgerservicenummer | 000000036                 |
       | ouder.burgerservicenummer        | 000000012                 |
+
+    Scenario: Voor het kind is 1 ouder bekend als ouder 2 er is sprake van EenhoofdigOuderlijkGezag
+      Gegeven  persoon 'Gert'
+      * heeft 'Gerrit' als ouder 2
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | EenhoofdigOuderlijkGezag  |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      | ouder.burgerservicenummer        | 000000024                 |
 
   Regel: Kind heeft geen juridische ouders
 
