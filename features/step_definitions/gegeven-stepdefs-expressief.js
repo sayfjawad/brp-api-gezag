@@ -557,6 +557,33 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
 });
 
 /**
+ * Op dit moment wordt standaard landcode 6003 gebruikt.
+ * Deze gegeven stap is voor testen waar het niet relevant is uit welk land de persoon geadopteerd is,
+ * alleen dat de persoon in het buitenland is geboren.
+ */
+Given(/^is geboren in het buitenland/, function () {
+    const codeVanLand = '6003';
+
+    aanvullenPersoon(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['geboorteland (03.30)', codeVanLand]
+        ])
+    );
+});
+
+Given(/^verblijft in Nederland/, function () {
+    const verblijfplaats = arrayOfArraysToDataTable([
+        ['datum vestiging in Nederland (14.20)', 'vandaag - 1 jaar'],
+        ['gemeente van inschrijving (09.10)', '0518']
+    ])
+    createVerblijfplaats(
+        getPersoon(this.context, undefined),
+        verblijfplaats
+    );
+});
+
+/**
  * Hier volgt de gegeven stappen voor erkenning
  */
 const ErkenningsType = {
