@@ -74,9 +74,11 @@ function createOntbindingPartnerschap(context, aanduiding, dataTable) {
     Object.keys(overledenPersoon).some(property => {
         if (property.includes('partner')) {
             const partner = { ...getPartner(overledenPersoon) };
-            const partnerPersoon = getPersoon(context, partner.geslachts_naam);
-            wijzigPartner(partnerPersoon, dataTable);
-            return true;
+            if(partner.relatie_start_datum) {
+                const partnerPersoon = getPersoon(context, partner.geslachts_naam);
+                wijzigPartner(partnerPersoon, dataTable);
+                return true;
+            }
         }
         return false;
     });
@@ -172,7 +174,18 @@ Given(/^'(.*)' is onder curatele gesteld$/, function (aanduiding) {
     );
 });
 
-Given(/^'(.*)' is overleden$/, function (aanduiding) {
+Given(/^is onder curatele gesteld/, function () {
+    const curateleRegisterIndicatie = '1';
+
+    aanvullenGezagsverhouding(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['indicatie curateleregister (33.10)', curateleRegisterIndicatie]
+        ])
+    );
+});
+
+Given(/^(?:'(.*)' )?is overleden$/, function (aanduiding) {
     const datumOpschortingBijhouding = 'gisteren - 2 jaar';
     const redenOpschortingBijhouding = 'O';
     const datumOverlijden = 'gisteren - 2 jaar';
