@@ -39,7 +39,7 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
   Voorstel is ook te kijken naar een nietig verklaarde erkenning in de aktenummers van de ouders. Daarmee wordt het antwoord Nee
   aangevuld met “of nietig verklaarde erkenning” en krijgt de partner met nietig verklaarde erkenning geen gezag.
 
-  TODO: Verplaatsen naar developer testen - Gebruikte velden:
+  Gebruikte velden:
     - Geboortedatum -> 01.03.10
     - Hhuwelijk/geregistreerd partnerschap -> 05.06.20 of 55.06.20
     - Aktenummer ouder 1 -> 02.81.20

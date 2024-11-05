@@ -31,7 +31,7 @@ Functionaliteit: 3.2 - Achterhalen gezag na uitspraak
   Aanbevelingen
   • Toevoegen van informatie over voogden in geval er sprake is van voogdij, dit zou worden kunnen opgehaald het Gezagsregister
 
- TODO: Verplaatsen naar developer testen - Gebruikte velden:
+  Gebruikte velden:
     - Indicatie gezag van de gezagsverhouding -> 11.32.10
 
     Achtergrond:

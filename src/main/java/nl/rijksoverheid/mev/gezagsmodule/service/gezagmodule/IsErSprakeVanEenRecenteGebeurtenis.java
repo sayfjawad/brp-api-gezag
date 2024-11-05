@@ -6,9 +6,10 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Comparator.*;
 
 /**
  * v3.1
@@ -81,11 +82,13 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
         }
         List<HuwelijkOfPartnerschap> hopListOuder1 = getHuwelijkOfPartnerschap(plOuder1, plOuder2.getPersoon().getBsn());
         List<HuwelijkOfPartnerschap> hopListOuder2 = getHuwelijkOfPartnerschap(plOuder2, plOuder1.getPersoon().getBsn());
+
         if (hopListOuder1.isEmpty() || hopListOuder2.isEmpty()) {
             return false;
         }
-        String hopOuder1Actueel = hopListOuder1.getFirst().getDatumVoltrokken();
-        String hopOuder2Actueel = hopListOuder2.getFirst().getDatumVoltrokken();
+        String hopOuder1Actueel = hopListOuder1.getLast().getDatumVoltrokken();
+        String hopOuder2Actueel = hopListOuder2.getLast().getDatumVoltrokken();
+
         return (org.apache.commons.lang3.StringUtils.isNotBlank(hopOuder1Actueel) && org.apache.commons.lang3.StringUtils.isNotBlank(hopOuder2Actueel))
             && (Integer.parseInt(geldigheidsdatum) <= Integer.parseInt(hopOuder1Actueel))
             && (Integer.parseInt(geldigheidsdatum) <= Integer.parseInt(hopOuder2Actueel))
@@ -101,6 +104,7 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
                 }
             }
         }
+        hopList.sort(comparing(HuwelijkOfPartnerschap::getDatumVoltrokken, nullsFirst(naturalOrder())));
         return hopList;
     }
 }
