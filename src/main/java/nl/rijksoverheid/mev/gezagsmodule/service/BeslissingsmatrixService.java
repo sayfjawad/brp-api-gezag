@@ -60,7 +60,7 @@ public class BeslissingsmatrixService {
             return getRouteFromVraagModel(arAntwoordenModel);
         } else {
             String route = getRouteFromVraagModel(arAntwoordenModel);
-            if (ERROR_ROUTE.equals(route)
+            if (gezagBepaling != null && ERROR_ROUTE.equals(route)
                 && gezagBepaling.getErrorTraceCode() == null
                 && !gezagBepaling.getMissendeGegegevens().isEmpty()) {
                 route = route + MISSENDE_GEGEVENS_ANNOTATIE;
