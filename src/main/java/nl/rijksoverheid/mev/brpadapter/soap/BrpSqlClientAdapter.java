@@ -3,9 +3,7 @@ package nl.rijksoverheid.mev.brpadapter.soap;
 import nl.rijksoverheid.mev.brp.PersoonslijstFinder;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.model.Burgerservicenummer;
-import nl.rijksoverheid.mev.transaction.Transaction;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -21,7 +19,7 @@ public class BrpSqlClientAdapter implements BrpClient {
     }
 
     @Override
-    public Optional<Persoonslijst> opvragenPersoonslijst(String bsn, Transaction transaction) {
+    public Optional<Persoonslijst> opvragenPersoonslijst(String bsn) {
         var burgerservicenummer = new Burgerservicenummer(Long.parseLong(bsn));
         return persoonslijstFinder.findPersoonslijst(burgerservicenummer);
     }

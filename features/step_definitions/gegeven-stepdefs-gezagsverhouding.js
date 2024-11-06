@@ -18,11 +18,3 @@ Given(/^de 'gezagsverhouding' is gewijzigd naar de volgende gegevens$/, function
 Given(/^de 'gezagsverhouding' is gecorrigeerd naar de volgende gegevens$/, function (dataTable) {
     wijzigGegevensgroep(this.context, 'gezagsverhouding', dataTable, true);
 });
-
-Given(/^(?:de persoon(?: '(.*)')? )?heeft geen uitspraak gezag/, function (_) {
-    // doe niets
-});
-
-Given(/^(?:de persoon(?: '(.*)')? )?heeft uitspraak gezag met de volgende gegevens/, function (_, dataTable) {
-    createGegevensgroep(this.context, 'gezagsverhouding', dataTable);
-});

@@ -1,40 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+    <springProperty name="LOG_FILE_MASKED" source="logging.file-masked.name"/>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
-    <appender name="DEFAULT-FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${LOG_FILE}.json</file>
-        <append>true</append>
-        <encoder class="co.elastic.logging.logback.EcsEncoder">
-            <serviceName>brp-api-gezag</serviceName>
-            <messageLayout class="ch.qos.logback.classic.PatternLayout">
-                <pattern>%replace(%m){'\d{9}','***MASKED***'} %rEx{full, org.springframework}</pattern>
-            </messageLayout>
+    <property name="ecs.version" value="8.11"/>
+
+    <springProperty scope="context" name="event.dataset" source="spring.application.name"/>
+    <springProperty scope="context" name="event.timezone" source="user.timezone"/>
+    <springProperty scope="context" name="host.architecture" source="os.arch"/>
+    <springProperty scope="context" name="host.os.type" source="os.name"/>
+    <springProperty scope="context" name="host.os.kernel" source="os.version"/>
+    <springProperty scope="context" name="process.pid" source="PID"/>
+    <springProperty scope="context" name="service.name" source="spring.application.name"/>
+    <springProperty scope="context" name="service.type" source="null" defaultValue="brp-api"/>
+    <springProperty scope="context" name="service.version" source="build.customVersion"/>
+
+    <!-- derived from co/elastic/logging/logback/boot/ecs-file-appender.xml -->
+    <appender name="ECS_JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <version>ecs.version</version>
+                <level>log.level</level>
+                <levelValue>[ignore]</levelValue>
+                <logger>log.logger</logger>
+                <stackTrace>error.stack_trace</stackTrace>
+                <thread>process.thread.name</thread>
+            </fieldNames>
+            <version>${ecs.version}</version>
         </encoder>
-    </appender>
-    <appender name="SECURE-FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${LOG_FILE}-secure.json</file>
-        <append>true</append>
-        <encoder class="co.elastic.logging.logback.EcsEncoder">
-            <serviceName>brp-api-gezag</serviceName>
-            <messageLayout class="ch.qos.logback.classic.PatternLayout">
-                <pattern>%m %rEx{full, org.springframework}</pattern>
-            </messageLayout>
-        </encoder>
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <cleanHistoryOnStart>${LOG_FILE_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY:-7}</maxHistory>
+            <totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+        </rollingPolicy>
     </appender>
 
-    <springProfile name="default">
-        <root level="INFO">
-            <appender-ref ref="CONSOLE"/>
-        </root>
-    </springProfile>
+    <!-- derived from co/elastic/logging/logback/boot/ecs-file-appender.xml -->
+    <appender name="ECS_JSON_FILE_MASKED" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <version>ecs.version</version>
+                <level>log.level</level>
+                <levelValue>[ignore]</levelValue>
+                <logger>log.logger</logger>
+                <stackTrace>error.stack_trace</stackTrace>
+                <thread>process.thread.name</thread>
+            </fieldNames>
+            <jsonGeneratorDecorator class="net.logstash.logback.mask.MaskingJsonGeneratorDecorator">
+                <!-- burgerservicenummer mask -->
+                <valueMask>
+                    <value>\\*"\d{9}\\*"</value>
+                    <mask>"***MASKED***"</mask>
+                </valueMask>
+                <!-- authorization header mask -->
+                <valueMask>
+                    <value>\\*"authorization\\*":\\*".+?\\*"</value>
+                    <mask>"authorization":"***MASKED***"</mask>
+                </valueMask>
+            </jsonGeneratorDecorator>
+            <version>${ecs.version}</version>
+        </encoder>
+        <file>${LOG_FILE_MASKED}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <cleanHistoryOnStart>${LOG_FILE_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE_MASKED}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY:-7}</maxHistory>
+            <totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+        </rollingPolicy>
+    </appender>
 
-    <springProfile name="!default">
-        <root level="INFO">
-            <appender-ref ref="DEFAULT-FILE"/>
-            <appender-ref ref="SECURE-FILE"/>
-        </root>
-    </springProfile>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ECS_JSON_FILE"/>
+        <appender-ref ref="ECS_JSON_FILE_MASKED"/>
+    </root>
 </configuration>

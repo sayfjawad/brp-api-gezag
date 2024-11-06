@@ -2,6 +2,8 @@ package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * v2a_1
@@ -10,6 +12,8 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
  * GEWEEST MET ELKAAR / NEE GESCHEIDEN NA GEBOORTE
  */
 public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag {
+
+    private static final Logger logger = LoggerFactory.getLogger(ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners.class);
 
     private static final String V2A_1_JA_GEHUWD_OF_PARTNERS = "Ja";
     private static final String V2A_1_NEE = "Nee";
@@ -46,6 +50,9 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag 
             answer = V2A_1_NEE;
         }
 
+        logger.debug("""
+            2a.1 Zijn beide juridische ouders nu met elkaar gehuwd/partners?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV02A01(answer);
     }
 
