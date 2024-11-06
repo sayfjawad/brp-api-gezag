@@ -28,7 +28,6 @@ dependencies {
     implementation(libs.com.fasterxml.jackson.dataformat.jackson.dataformat.yaml)
     implementation(libs.org.openapitools.jackson.databind.nullable)
     implementation(libs.org.springframework.boot.spring.boot.starter.actuator)
-    implementation(libs.org.springframework.boot.spring.boot.starter.cache)
     implementation(libs.org.springframework.boot.spring.boot.starter.jooq)
     implementation(libs.org.springframework.boot.spring.boot.starter.web)
     implementation(libs.org.springframework.boot.spring.boot.starter.webflux)
