@@ -1,6 +1,6 @@
 #language: nl
 
-Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
+Functionaliteit: 1.1 - Staat het kind (minderjarige) als ingezetene in de BRP?
 
   De persoon (minderjarige) moet voorkomen in de BRP aangezien dit de bron is voor
   het achterhalen van het gezag. Een niet ingezeten kind staat wel de RNI (ook
@@ -8,12 +8,11 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
   gezagsmutatie wordt bijvoorbeeld niet bijgewerkt in de RNI.
 
   Een persoon is "ingezetene" en "ingeschreven in de BRP" wanneer deze staat ingeschreven
-  in een Nederlandse gemeente. In dat geval gaat de gezagbepaling 
-  verder met vraag 1.2.
+  in een Nederlandse gemeente. Een persoon is "niet ingezetene" wanneer deze staat ingeschreven 
+  in het RNI (Register Niet Ingezetenen). In dat geval is het gezag niet te bepalen.
 
-  Een persoon is "niet ingezetene" wanneer deze staat ingeschreven in het RNI (Register Niet 
-  Ingezetenen). In dat geval is het gezag niet te bepalen.
-
+  Gebruikte velden:
+    - Gemeente van inschrijving -> 08.09.10
 
     Achtergrond:
       Gegeven de persoon 'Gerda' met burgerservicenummer '000000012'
@@ -27,11 +26,11 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       * heeft 'Gerda' als ouder 1
       * heeft 'Bert' als ouder 2
 
+  Regel: Het kind is niet ingezetene in de BRP
 
-  Regel: Als de persoon staat ingeschreven in het RNI kan het gezag van de persoon niet worden bepaald
-
-    Scenario: minderjarige staat ingeschreven in RNI
-      Gegeven persoon 'Zoe' is ingeschreven in de RNI
+    Scenario: het kind staat niet als ingezetene in de BRP er is sprake van GezagNietTeBepalen
+      Gegeven persoon 'Zoe' 
+      * is niet ingeschreven in de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -43,8 +42,11 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | type        | GezagNietTeBepalen                                                   |
       | toelichting | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
 
-    Scenario: minderjarige staat ingeschreven in een Nederlandse gemeente
-      Gegeven persoon 'Zoe' is ingeschreven in de BRP
+  Regel: Het kind is wel ingezetene in de BRP
+
+    Scenario: het kind staat niet als ingezetene in de BRP er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven persoon 'Zoe' 
+      * is ingeschreven in de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -62,12 +64,11 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
+  Regel: Het kan niet worden bepaald of het kind ingezetene in de BRP is
 
-  Regel: onderzoek op gemeente van inschrijving leidt niet tot uitval
-
-   Scenario: minderjarige staat ingeschreven in Nederlandse gemeente en de verblijfplaats staat in onderzoek
-      Gegeven persoon 'Zoe' is ingeschreven in de BRP
-      * de verblijfplaats staat in onderzoek
+    Scenario: Van het kind is niet bekend want zijn/haar verblijfplaats is er is sprake van GezagNietTeBepalen
+      Gegeven persoon 'Zoe' 
+      * heeft een onbekende verblijfplaats
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -75,12 +76,20 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TweehoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | naam        | waarde                                                                                                        |
+      | type        | GezagNietTeBepalen                                                                                            |
+      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: verblijfplaats van bevraagde persoon |
+
+    Scenario: Van het kind is niet bekend want zijn/haar gemeente van inschrijving is er is sprake van GezagNietTeBepalen
+      Gegeven persoon 'Zoe' 
+      * heeft een onbekende gemeente van inschrijving
+      Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
-      | burgerservicenummer | 000000024 |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam        | waarde                                                                                                                   |
+      | type        | GezagNietTeBepalen                                                                                                       |
+      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: gemeente van inschrijving van bevraagde persoon |

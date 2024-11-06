@@ -516,6 +516,16 @@ Given(/^is ingeschreven in de BRP$/, function () {
     );
 });
 
+Given(/^is niet ingeschreven in de BRP$/, function () {
+    gegevenPersoonIsIngeschrevenInGemeente(
+        this.context,
+        undefined,
+        arrayOfArraysToDataTable([
+            ['gemeente van inschrijving (09.10)', '1999']
+        ])
+    );
+});
+
 Given(/^is ingeschreven in de BRP met de volgende gegevens$/, function (dataTable) {
     gegevenPersoonIsIngeschrevenInGemeente(this.context, undefined, dataTable);
 });
@@ -551,6 +561,31 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
         arrayOfArraysToDataTable([
             ['datum vestiging in Nederland (14.20)', datumVestiging],
             ['gemeente van inschrijving (09.10)', gemeenteVanInschrijving]
+        ]),
+        false
+    );
+});
+
+Given(/^heeft een onbekende verblijfplaats$/, function () {
+    const persoon = getPersoon(this.context, undefined);
+    const verblijfplaats = persoon.verblijfplaats;
+
+    if(verblijfplaats) {
+        wijzigVerblijfplaats(
+            getPersoon(this.context, undefined),
+            undefined,
+            false
+        );
+    } else {
+        // Verblijfplaats is al onbekend
+    }
+});
+
+Given(/^heeft een onbekende gemeente van inschrijving$/, function () {
+    wijzigVerblijfplaats(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['gemeente van inschrijving (09.10)', '']
         ]),
         false
     );
