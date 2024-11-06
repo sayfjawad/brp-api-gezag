@@ -23,9 +23,9 @@ Functionaliteit: 2a.2 - adoptief ouders
     a. gehuwd/geregistreerd partnerschap (met een man/of een vrouw die niet de geboortemoeder of de adoptiemoeder is, 1:245 BW 
        alleen de adoptie-ouder (m/v) heeft het gezag er is sprake van eenhoofdig gezag
 
-       Uitleg: er zijn geen 2 juridische ouders, dus er ontstaat geen gezamenlijk gezag van rechtswege, ook niet op grond van 1:253sa BW, omdat het
-       kind niet ‘staande’ huwelijk/geregistreerd partnerschap is geboren. 
-       Voorbeeld: een echtpaar wil een kind adopteren, maar de man óf de vrouw voldoet niet aan de voorwaarden: partner krijgt geen beginseltoestemming of is te oud. 
+       Uitleg: 
+       Er zijn geen 2 juridische ouders, dus er ontstaat geen gezamenlijk gezag van rechtswege, ook niet op grond van 1:253sa BW, omdat het
+       kind niet staande huwelijk/geregistreerd partnerschap is geboren. Voorbeeld: een echtpaar wil een kind adopteren, maar de man óf de vrouw voldoet niet aan de voorwaarden: partner krijgt geen beginseltoestemming of is te oud. 
        Alleen de andere echtgenoot/partner kan dan dopteren en dan is er sprake van één juridische ouder, met eenhoofdig gezag.
     b. ongehuwd/geen geregistreerd partnerschap er is sprake van eenhoofdig gezag
         
@@ -69,22 +69,18 @@ Functionaliteit: 2a.2 - adoptief ouders
       * is meerderjarig
       En de persoon 'Henk' met burgerservicenummer '000000024'
       * is meerderjarig
+      En de persoon 'Jaimy' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
+      * is in Nederland geboren
+      * is minderjarig
 
-  Regel: Als de ouders nooit getrouwd zijn geweest en de minderjarige is geadopteerd hebben beide ouders gezag
+  Regel: Een kind is geadopteerd door twee personen
     
-    Scenario: Ouders zijn nooit met elkaar getrouwd of partners geweest en minderjarige is geadopteerd door beide ouders
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
-      * is ingeschreven in de BRP
-      * is minderjarig
-      * is niet geëmigreerd geweest
-      * is in Nederland geboren
-      * is geadopteerd door 'Ingrid' als ouder 1 met de volgende gegevens
-      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
-      | 20221231                                           | 1AQ0102            |
-      * is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
-      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
-      | 20221231                                           | 1AQ0102            |
-      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+    Scenario: het kind is geadopteerd door twee personen die met elkaar gehuwd zijn/partnerschap hebben er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven 'Ingrid' en 'Henk' zijn met elkaar gehuwd
+      Gegeven persoon 'Jaimy'
+      * is geadopteerd door 'Ingrid' als ouder 1
+      * is geadopteerd door 'Henk' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -102,19 +98,10 @@ Functionaliteit: 2a.2 - adoptief ouders
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Ouders zijn nooit met elkaar getrouwd of partners geweest en minderjarige is geadopteerd door ouder 2
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
-      * is ingeschreven in de BRP
-      * is minderjarig
-      * is niet geëmigreerd geweest
-      * is in Nederland geboren
-      * heeft 'Ingrid' als ouder 1 met de volgende gegevens
-      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
-      | 20221231                                           | 1AA0102            |
-      * is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
-      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
-      | 20221231                                           | 1AQ0102            |
-      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
+    Scenario: het kind is geadopteerd door twee personen die ongehuwd zijn/geen partnerschap hebben er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven persoon 'Jaimy'
+      * is geadopteerd door 'Ingrid' als ouder 1
+      * is geadopteerd door 'Henk' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -131,35 +118,8 @@ Functionaliteit: 2a.2 - adoptief ouders
       En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-
-
 
   Regel: Als de ouders nooit getrouwd zijn geweest en de minderjarige is niet geadopteerd ligt het gezag bij één ouder of beide afhankelijk van de datum van erkenning
-
-    Scenario: Ouders zijn nooit met elkaar getrouwd of partners geweest, minderjarige is niet geadopteerd maar na geboorte erkend door ouder 2
-      Gegeven de persoon 'Jaimy' met burgerservicenummer '000000036'
-      * is ingeschreven in de BRP
-      * is minderjarig
-      * is niet geëmigreerd geweest
-      * is in Nederland geboren
-      * heeft 'Ingrid' als ouder 1 met de volgende gegevens
-      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
-      | gisteren - 17 jaar                                 | 1AA0102            |
-      * heeft 'Henk' als ouder 2 met de volgende gegevens
-      | datum ingang familierechtelijke betrekking (62.10) | aktenummer (81.20) |
-      | 20221231                                           | 1AC0102            |
-      * beide ouders zijn nooit met elkaar getrouwd geweest en hebben nooit een geregistreerd partnerschap gehad
-      Als gezag wordt gezocht met de volgende parameters
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                   |
-      | type                             | EenhoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000036                |
-      | ouder.burgerservicenummer        | 000000012                |
 
 
   Regel: Als de adoptie is verwijderd wordt bevoegdheid tot 1-hoofdig ouderlijk gezag bepaald
