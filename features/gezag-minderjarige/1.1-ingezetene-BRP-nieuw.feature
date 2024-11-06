@@ -46,6 +46,9 @@ Functionaliteit: 1.1 - Staat persoon (minderjarige) als ingezetene in de BRP?
   Regel: Open vragen
 
     - Wat als de persoon dakloos is?
+    een ingechreven dakloze persoon heeft een briefadres (bijv. op het stadhuis)
     - Wat als de persoon een tijdelijk verblijfadres heeft?
+    een persoon met een tijdelijk verblijfadres is ingeschreven in de RNI
     - Wat als de geregistreerde verblijfplaats van de persoon een briefadres is?
+    @Patrick, @Frank weten jullie hoe de gezagsmodule hier mee omgaat? Kan het niet direct vinden in de documentatie.
     - Wat als bij de geregistreerde verblijfplaats van de persoon bij gemeente van inschrijving een Nederlandse gemeente is maar de buitenlandse adres velden zijn gevuld?
