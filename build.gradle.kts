@@ -152,7 +152,7 @@ tasks.withType<Test> {
 }
 
 fun getGitHash(): String {
-    val stdout = ByteArrayOutputStream();
+    val stdout = ByteArrayOutputStream()
     exec {
         commandLine = listOf("git", "rev-parse", "HEAD")
         standardOutput = stdout
