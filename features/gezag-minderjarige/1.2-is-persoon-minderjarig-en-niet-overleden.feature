@@ -46,7 +46,7 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
 
   Regel: gezag wordt niet bepaald wanneer het kind overleden is
 
-    Scenario: Wanneer gezag wordt opgevraagd van een overleden kind, wordt GezagNietVanToepassing teruggeven.
+    Scenario: Wanneer gezag wordt opgevraagd van een overleden kind, wordt geen gezag teruggeven.
       Gegeven persoon 'Linda'
       * is minderjarig
       En bijhouding van de persoonsgegevens van 'Linda' is opgeschort met de volgende gegevens
@@ -62,7 +62,7 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
 
   Regel: gezag wordt niet bepaald wanneer het kind meerderjarig is
 
-    Scenario: Wanneer gezag wordt opgevraagd van een kind die meerderjarig is, wordt GezagNietVanToepassing teruggeven.
+    Scenario: Wanneer gezag wordt opgevraagd van een kind die meerderjarig is, wordt geen gezag teruggeven.
       Gegeven persoon 'Linda'
       * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
@@ -75,7 +75,7 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
 
   Regel: gezag wordt niet bepaald wanneer leeftijd onbekend is
 
-    Scenario: Wanneer gezag wordt opgevraagd van een kind waarvan leeftijd onbekend is, wordt GezagNietVanToepassing teruggeven.
+    Scenario: Wanneer gezag wordt opgevraagd van een kind waarvan leeftijd onbekend is, wordt geen gezag teruggeven.
       Gegeven heeft de volgende gegevens
       | geboortedatum (03.10) |
       | 00000000              |
@@ -89,7 +89,7 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
 
   Regel: het bepalen van gezag gaat verder wanneer het kind minderjarig is
 
-    Scenario: Wanneer gezag wordt opgevraagd van een kind die minderjarig is, wordt TweehoofdigOuderlijkGezag teruggeven.
+    Scenario: Wanneer gezag wordt opgevraagd van een kind die minderjarig is, wordt tweehoofdig ouderlijk gezag teruggeven.
       Gegeven persoon 'Linda'
       * is minderjarig
       Als gezag wordt gezocht met de volgende parameters
