@@ -25,11 +25,12 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
 
   Aanbeveling
   Er is nog geen oplossing voor de meerderjarigheidsverklaring. Het idee is dat persoon de letter M krijgt bij indicatie
-  gezag. Zodra dit het geval is moet deze informatie worden meegenomen in de beoordeling en bij aanwezigheid van deze indicatie
+  gezag (11.32.10). Zodra dit het geval is moet deze informatie worden meegenomen in de beoordeling en bij aanwezigheid van deze indicatie
   wordt de persoon behandeld als meerderjarige.
 
   Gebruikte velden:
-  - Indicatie gezag -> 11.32.10
+  - datum opschorting bijhouding (67.10)
+  - geboortedatum (03.10)
 
   Achtergrond:
     Gegeven de persoon 'Laura' met burgerservicenummer '000000012'
