@@ -33,7 +33,7 @@ Functionaliteit: 1.3 - is naar buitenland geëmigreerd geweest
       * heeft 'Ruth' als ouder 1
       * heeft 'Maurice' als ouder 2
 
-  Regel: Kind is altijd in nederland gebleven
+  Regel: Kind is nooit geëmigreerd geweest
 
     Scenario: Het kind is geboren in Nederland en verblijft in Nederland er is sprake van TweehoofdigOuderlijkGezag
       Als gezag wordt gezocht met de volgende parameters
