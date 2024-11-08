@@ -66,11 +66,11 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
       Gegeven persoon 'Linda'
       * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
-        | naam                | waarde    |
-        | burgerservicenummer | 000000036 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
       Dan heeft de response een persoon met de volgende gegevens
-        | naam                | waarde    |
-        | burgerservicenummer | 000000036 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
       En heeft de persoon geen gezag
 
   Regel: het bepalen van gezag gaat verder wanneer het kind minderjarig is
@@ -79,18 +79,18 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
       Gegeven persoon 'Linda'
       * is minderjarig
       Als gezag wordt gezocht met de volgende parameters
-        | naam                | waarde    |
-        | burgerservicenummer | 000000036 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
       Dan heeft de response een persoon met de volgende gegevens
-        | naam                | waarde    |
-        | burgerservicenummer | 000000036 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-        | naam                             | waarde                    |
-        | type                             | TweehoofdigOuderlijkGezag |
-        | minderjarige.burgerservicenummer | 000000036                 |
+      | naam                             | waarde                    |
+      | type                             | TweehoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                 |
       En heeft 'gezag' een 'ouder' met de volgende gegevens
-        | naam                | waarde    |
-        | burgerservicenummer | 000000012 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000012 |
       En heeft 'gezag' een 'ouder' met de volgende gegevens
-        | naam                | waarde    |
-        | burgerservicenummer | 000000024 |
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
