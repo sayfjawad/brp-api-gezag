@@ -6,8 +6,7 @@ Functionaliteit: 1.3a - is geboren in het buitenland
   | 1.2 Is persoon a. minderjarig en b. niet overleden?                    | Ja                                       |
   | 1.3 Is minderjarige naar het buitenland geëmigreerd geweest?           | Nee                                      |
 
-  Een minderjarige geboren in het buitenland kan het gezag uit het buitenland hebben meegenomen. In die gevallen wordt het gezag niet
-  vastgelegd in BRP (ook niet in het Gezagsregister). Het gezag kan dus niet betrouwbaar worden achterhaald.
+  Een kind geboren in het buitenland kan het gezag uit het buitenland hebben meegenomen. Dit gezag kan niet betrouwbaar worden bepaald, omdat regelgeving uit het buitenland mogelijk niet bekend is bij de Nederlandse overheid.
   
 Een kind dat in het buitenland is geboren kan het gezag uit het buitenland hebben meegenomen. Het gezag kan niet betrouwbaar worden bepaald, omdat buitenlandse regelgeving van toepassing kan zijn die bij de Nederlandse overheid onbekend is. Uitzondering hierop zijn kinderen die in Nederland zijn geadopteerd.
   
