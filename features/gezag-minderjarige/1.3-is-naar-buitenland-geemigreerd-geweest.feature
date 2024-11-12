@@ -51,28 +51,6 @@ Functionaliteit: 1.3 - is naar buitenland geëmigreerd geweest
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
       
-  Regel: Het kind is naar het buitenland geëmigreerd
-
-    Scenario: Het kind is geboren in Nederland en is geëmigreerd er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Lisa'
-      * is geëmigreerd naar het buitenland
-      Als gezag wordt gezocht met de volgende parameters
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TweehoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000024 |
-      
   Regel: Het kind is naar het buitenland geëmigreerd geweest
 
     Scenario: Het kind is geboren in Nederland, is geëmigreerd geweest en daarna terug naar Nederland gekomen er is sprake van TweehoofdigOuderlijkGezag
