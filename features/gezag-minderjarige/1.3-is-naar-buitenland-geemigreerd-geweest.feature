@@ -31,9 +31,9 @@ Functionaliteit: 1.3 - is naar buitenland geëmigreerd geweest
       * heeft 'Ruth' als ouder 1
       * heeft 'Maurice' als ouder 2
 
-  Regel: Kind is nooit geëmigreerd geweest
+  Regel: Gezag wordt bepaald voor kinderen die onafgebroken in Nederland hebben gewoond
 
-    Scenario: Het kind is geboren in Nederland en verblijft in Nederland er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Een kind met twee ouders dat altijd in Nederland heeft gewoond heeft tweehoofdig ouderlijk gezag
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -50,10 +50,8 @@ Functionaliteit: 1.3 - is naar buitenland geëmigreerd geweest
       En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      
-  Regel: Het kind is naar het buitenland geëmigreerd geweest
 
-    Scenario: Het kind is geboren in Nederland, is geëmigreerd geweest en daarna terug naar Nederland gekomen er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Van een kind dat geëmigreerd is geweest kan geen gezag worden bepaald
       Gegeven persoon 'Lisa'
       * is geëmigreerd geweest
       Als gezag wordt gezocht met de volgende parameters
@@ -66,5 +64,3 @@ Functionaliteit: 1.3 - is naar buitenland geëmigreerd geweest
       | naam        | waarde                                                                         |
       | type        | GezagNietTeBepalen                                                             |
       | toelichting | gezag is niet te bepalen omdat minderjarige buiten Nederland heeft verbleven.  |
-
-            
