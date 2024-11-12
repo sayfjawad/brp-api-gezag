@@ -63,7 +63,7 @@ Functionaliteit: 1.3a - is geboren in het buitenland
       | type        | GezagNietTeBepalen                                                                                                                                                                                                 |
       | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: verblijfplaats van bevraagde persoon |
 
-  Regel: Kind is niet geboren in het buitenland
+  Regel: Kind is geboren in Nederland
 
     Scenario: Het kind is geboren in Nederland er is sprake van TweehoofdigOuderlijkGezag
       Gegeven persoon 'Nona' 
