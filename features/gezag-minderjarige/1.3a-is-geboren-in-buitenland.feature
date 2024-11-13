@@ -44,21 +44,6 @@ Een kind dat in het buitenland is geboren kan het gezag uit het buitenland hebbe
       | type        | GezagNietTeBepalen                                                                                                                                                                                                 |
       | toelichting | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is. |
 
-    Scenario: Het kind is geboren in China en verblijft niet in Nederland er is sprake van GezagNietTeBepalen
-              De toelichting komt niet overeen met de verwachting, de verblijfplaats zou niet nodig zijn bij de bepaling
-              Hier voor is issue: https://github.com/BRP-API/brp-api-gezag/issues/204 aangemaakt
-      Gegeven persoon 'Nona' 
-      * is geboren in het buitenland
-      Als gezag wordt gezocht met de volgende parameters
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                                                                                                                                             |
-      | type        | GezagNietTeBepalen                                                                                                                                                                                                 |
-      | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: verblijfplaats van bevraagde persoon |
 
   Regel: Kind is geboren in Nederland
 
