@@ -253,7 +253,7 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam        | waarde                                                                           |
       | type        | GezagNietTeBepalen                                                               |
-      | toelichting | gezag is niet te bepalen omdat de geboortedatum van minderjarige niet bekend is. |
+      | toelichting | gezag is niet te bepalen omdat de geboortedatum van persoon niet bekend is. |
 
 
   Regel: Als de persoon is overleden is gezag niet van toepassing
