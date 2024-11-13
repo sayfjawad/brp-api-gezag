@@ -23,15 +23,17 @@ Functionaliteit: 1.3a - is geboren in het buitenland
       * is meerderjarig
       En 'Regina' en 'Paul' zijn met elkaar gehuwd
       En de persoon 'Nona' met burgerservicenummer '000000036'
+      * is ingeschreven in de BRP
       * is minderjarig
       * heeft 'Regina' als ouder 1
       * heeft 'Paul' als ouder 2
 
-  Regel: Kind is geboren in het buitenland
+  Regel: Gezag wordt bepaald voor kinderen die in Nederland zijn geboren of geadopteerd
 
-    Scenario: Het kind is geboren in China er is sprake van GezagNietTeBepalen
+    Scenario: Van een kind die in het buitenland is geboren en niet is geadopteerd in Nederland kan gezag niet worden bepaald
       Gegeven persoon 'Nona' 
-      * is geboren in het buitenland
+      * is in het buitenland geboren
+      * is niet in Nederland geadopteerd
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -43,13 +45,9 @@ Functionaliteit: 1.3a - is geboren in het buitenland
       | type        | GezagNietTeBepalen                                                                                                                                                                                                 |
       | toelichting | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is. |
 
-
-  Regel: Kind is geboren in Nederland
-
-    Scenario: Het kind is geboren in Nederland er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Een in Nederland geboren kind met twee ouders heeft tweehoofdig ouder gezag
       Gegeven persoon 'Nona' 
       * is in Nederland geboren
-      * is ingeschreven in de BRP
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -66,11 +64,8 @@ Functionaliteit: 1.3a - is geboren in het buitenland
       En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      
-  Regel: Voor het kind is geboorteland onbekend
 
-    Scenario: Voor het kind is geen geboorteland bekend er is sprake van GezagNietTeBepalen
-      Gegeven persoon 'Nona' 
+    Scenario: Van een kind met onbekend geboorteland kan het gezag niet worden bepaald
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
