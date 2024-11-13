@@ -32,7 +32,6 @@ Functionaliteit: 1.3a - is geboren in het buitenland
     Scenario: Het kind is geboren in China er is sprake van GezagNietTeBepalen
       Gegeven persoon 'Nona' 
       * is geboren in het buitenland
-      * verblijft in Nederland
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
@@ -72,7 +71,6 @@ Functionaliteit: 1.3a - is geboren in het buitenland
 
     Scenario: Voor het kind is geen geboorteland bekend er is sprake van GezagNietTeBepalen
       Gegeven persoon 'Nona' 
-      * verblijft in Nederland
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
