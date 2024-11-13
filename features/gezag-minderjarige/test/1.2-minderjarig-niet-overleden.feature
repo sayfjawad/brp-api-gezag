@@ -46,7 +46,6 @@ Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
       * heeft 'Laura' als ouder 1
       * heeft 'Ludo' als ouder 2
 
-
   Regel: Als de persoon ouder is dan 18 jaar is gezag niet van toepassing
 
     Abstract Scenario: de persoon is minderjarig
