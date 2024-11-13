@@ -1,35 +1,6 @@
 #language: nl
 
 Functionaliteit: 1.2 - Is persoon a. minderjarig en b. niet overleden?
-   Precondities voor deze vraag:
-   | 1.1 Staat persoon (minderjarige) als ingezetene in de BRP?             | Ja                                                     |
-
-   Persoon moet minderjarig zijn, anders is er geen sprake van gezag (artikel 1:245 BW).
-   Als persoon is overleden als minderjarige, wordt het achterhalen van het gezag een stuk ingewikkelder, omdat je dan rekening moet houden met
-   oudere wetgeving. Voor nu ondersteund de gezagmodule gezag bepaling voor overleden personen niet.
-
-   Volgens de Nederlandse Wet (artikel 1:233 BW) is iemand minderjarig als geldt:
-   • Leeftijd van achttien jaar nog niet is bereikt.
-   • Niet meerderjarig verklaard (artikel 1:253ha BW).
-  
-   Als minderjarige in Nederland woont, in Nederland zijn gewone verblijfplaats heeft, is het Nederlands familierecht van toepassing en dus de
-   Nederlandse wettelijke voorschriften t.a.v. minder-/ meerderjarigheid en gezag. Een minderjarige volgens Nederlandse wetgeving, kan wel
-   meerderjarigheid uit het buitenland hebben meegenomen. Deze gevallen worden uitgesloten door vraag 1.3.
-   
-   Voor inwerkingtreding van de Wet Tegengaan Huwelijksdwang op 5-12-2015 kon iemand meerderjarig worden door afsluiten van een huwelijk of
-   geregistreerd partnerschap. Dit is bijna 5 jaar geleden. Iemand die nu 17 jaar is zou dan op 12 jarige leeftijd of eerder getrouwd moeten zijn, wil dit
-   nog van toepassing zijn hier wordt daarom geen rekening mee gehouden.
-
-   Hoe achterhalen:
-   De leeftijd van de persoon moet 17 jaar of minder zijn en de persoon moet niet zijn overleden.
-
-   Aanbeveling
-   Er is nog geen oplossing voor de meerderjarigheidsverklaring. Het idee is dat persoon de letter M krijgt bij indicatie
-   gezag. Zodra dit het geval is moet deze informatie worden meegenomen in de beoordeling en bij aanwezigheid van deze indicatie
-   wordt de persoon behandeld als meerderjarige.
-
-   Gebruikte velden:
-    - Indicatie gezag -> 11.32.10
 
     Achtergrond:
       Gegeven de persoon 'Laura' met burgerservicenummer '000000012'
