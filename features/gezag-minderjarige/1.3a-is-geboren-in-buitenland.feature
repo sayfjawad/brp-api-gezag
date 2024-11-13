@@ -8,7 +8,7 @@ Functionaliteit: 1.3a - is geboren in het buitenland
 
   Een kind geboren in het buitenland kan het gezag uit het buitenland hebben meegenomen. Dit gezag kan niet betrouwbaar worden bepaald, omdat regelgeving uit het buitenland mogelijk niet bekend is bij de Nederlandse overheid.
   
-Een kind dat in het buitenland is geboren kan het gezag uit het buitenland hebben meegenomen. Het gezag kan niet betrouwbaar worden bepaald, omdat buitenlandse regelgeving van toepassing kan zijn die bij de Nederlandse overheid onbekend is. Uitzondering hierop zijn kinderen die in Nederland zijn geadopteerd.
+  Een kind dat in het buitenland is geboren kan het gezag uit het buitenland hebben meegenomen. Het gezag kan niet betrouwbaar worden bepaald, omdat buitenlandse regelgeving van toepassing kan zijn die bij de Nederlandse overheid onbekend is. Uitzondering hierop zijn kinderen die in Nederland zijn geadopteerd.
   
   Hoe achterhalen:
   Bepaal of de persoon als geboorteland een ander land heeft dan Nederland.
