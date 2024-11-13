@@ -82,4 +82,4 @@ Functionaliteit: 1.3a - is geboren in het buitenland
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam        | waarde                                                                                                                                                                                                             |
       | type        | GezagNietTeBepalen                                                                                                                                                                                                 |
-      | toelichting | gezag is niet te bepalen omdat niet kan worden vastgesteld of de persoon naar het buitenland geemigreerd geweest is omdat de volgende relevante gegevens ontbreken: Geboorteland van bevraagde persoon |
+      | toelichting | gezag is niet te bepalen omdat niet kan worden vastgesteld of de persoon naar het buitenland geëmigreerd geweest is omdat de volgende relevante gegevens ontbreken: Geboorteland van bevraagde persoon |
