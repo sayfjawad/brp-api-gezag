@@ -50,9 +50,7 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
     Scenario: Wanneer gezag wordt opgevraagd van een overleden kind, wordt geen gezag teruggeven.
       Gegeven persoon 'Linda'
       * is minderjarig
-      En bijhouding van de persoonsgegevens van 'Linda' is opgeschort met de volgende gegevens
-      | datum opschorting bijhouding (67.10) |
-      | gisteren                             |
+      * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
