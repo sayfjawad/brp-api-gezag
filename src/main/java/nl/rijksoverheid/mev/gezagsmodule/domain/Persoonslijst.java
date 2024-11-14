@@ -583,14 +583,13 @@ public class Persoonslijst {
 
     public boolean minderjarig() throws AfleidingsregelException {
         // PL 1/2 : 01.03.10 
-        Persoon persoon = getPersoon();
-        if (persoon == null) {
-            throw new AfleidingsregelException("Preconditie: persoon mag niet leeg zijn", "persoon");
-        } else if (persoon.getGeboortedatum() == null) {
-            throw new AfleidingsregelException("Preconditie: geboortedatum mag niet leeg zijn", "geboortedatum");
-        }
+        var persoon = getPersoon();
+        if (persoon == null) throw new AfleidingsregelException("Preconditie: persoon mag niet leeg zijn", "persoon");
 
-        int geboortedatum = Integer.parseInt(persoon.getGeboortedatum());
+        var geboortedatumAsString = persoon.getGeboortedatum();
+        int geboortedatum = Optional.ofNullable(geboortedatumAsString).map(Integer::parseInt).orElse(0);
+        if (geboortedatum == 0) throw new AfleidingsregelException("Preconditie: geboortedatum mag niet onbekend zijn", "geboortedatum");
+
         int datumVolwassenVanaf = Integer.parseInt(LocalDate.now(clock).format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
         return geboortedatum > datumVolwassenVanaf;
     }
