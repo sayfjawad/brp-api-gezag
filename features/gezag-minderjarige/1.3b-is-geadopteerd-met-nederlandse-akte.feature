@@ -121,6 +121,28 @@ Functionaliteit: 1.3b - is geadopteerd met nederlandse akte
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
+    Scenario: Het kind is geëmigreerd geweest en geadopteerd door twee ouders er is sprake van TweehoofdigOuderlijkGezag
+      Gegeven 'Carlo' is geadopteerd door 'Fabia' als ouder 1
+      En 'Carlo' is geadopteerd door 'Mohammed' als ouder 2
+      En persoon 'Carlo'
+      * is geëmigreerd geweest
+      Als gezag wordt gezocht met de volgende parameters
+        | naam                | waarde    |
+        | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+        | naam                | waarde    |
+        | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+        | naam                             | waarde                    |
+        | type                             | TweehoofdigOuderlijkGezag |
+        | minderjarige.burgerservicenummer | 000000036                 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+        | naam                | waarde    |
+        | burgerservicenummer | 000000012 |
+      En heeft 'gezag' een 'ouder' met de volgende gegevens
+        | naam                | waarde    |
+        | burgerservicenummer | 000000024 |
+
   Regel: Kind is niet geadopteerd met nederlandse akte
 
     Scenario: Het kind niet geadopteerd er is sprake van GezagNietTeBepalen
