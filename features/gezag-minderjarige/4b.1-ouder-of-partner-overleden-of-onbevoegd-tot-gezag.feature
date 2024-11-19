@@ -25,8 +25,6 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
   4) Ja, beide ouders
   -> G: Er is (tijdelijk) geen gezag (1:253g lid 1 BW
 
-  Op het moment dat de moeder weer bevoegd wordt tot het gezag, verkrijgt zij van rechtswege het gezag, tenzij op dat tijdstip een ander met het
-  gezag is belast (art. 1:253b lid 2 BW). Dit geldt ook o.g.v. art. 1:253q lid 1 BW.
   Let op: De kinderrechter kan een minderjarige moeder o.b.v. artikel 1:253ha lid 1 BW meerderjarig verklaren. Dit is nu niet in de BRP te achterhalen,
   dit is wel zichtbaar als aantekening in het Gezagsregister.
 
