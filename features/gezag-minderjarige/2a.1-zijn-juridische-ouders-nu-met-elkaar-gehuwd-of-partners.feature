@@ -72,20 +72,13 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
 
   Regel: Ouders zijn nooit met elkaar gehuwd of geregistreerd partners geweest
 
-    Scenario: Geen sprake van huwelijk of partnerschap, officeel is er sprake van EenhoofdigOuderlijkGezag maar 
-              er kan op dit moment niet worden bepaald welke ouder de geboortemoeder (route 54) is er is sprake van GezagNietTeBepalen
+    Scenario: Geen sprake van huwelijk of partnerschap, wettelijk sprake van EenhoofdigOuderlijkGezag maar er kan niet worden bepaald welke ouder de geboortemoeder is er is sprake van GezagNietTeBepalen
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-#      En heeft de persoon een 'gezag' met de volgende gegevens
-#      | naam                             | waarde                    |
-#      | type                             | EenhoofdigOuderlijkGezag  |
-#      | minderjarige.burgerservicenummer | 000000036                 |
-#      | ouder.burgerservicenummer        | 000000012                 |
-#      En heeft de persoon een 'gezag' met de volgende gegevens
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam        | waarde                                                                                                               |
       | type        | GezagNietTeBepalen                                                                                                   |
