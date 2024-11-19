@@ -19,12 +19,14 @@ Functionaliteit: 2.1 - hoeveel juridische ouders heeft minderjarige
   4. Geen ouders
   -> Er is (tijdelijk) geen gezag
   5. Onbekende ouders (puntouders)
-  -> Gezag is onbekend (in BRP wordt vastgelegd dat er wel een ouder is, maar het is niet bekend wie, zgn Puntouders)
+  -> Gezag is onbekend (in BRP wordt vastgelegd dat er wel een ouder is, maar het is niet bekend wie)
 
-  Hoe achterhalen: Geslachtsnaam Ouder1 komt voor en is ongelijk aan ‘.’. Idem voor geslachtsnaam Ouder2.
+  Wat zijn puntouders?
   Geslachtsnaam ‘.’ bij een ouder geeft aan dat er nog geen documenten getoond zijn waaruit de juridische ouder afgeleid kan (en mag) worden. Dat zal
   voor 99,99% het geval zijn bij minderjarigen die in het buitenland geboren zijn en die vallen al af in regel 1.3. Komt de geslachtsnaam van de ouder
   niet voor dan is er juridisch geen ouder.
+  
+  Hoe achterhalen: Geslachtsnaam Ouder1 komt voor en is ongelijk aan ‘.’. Idem voor geslachtsnaam Ouder2.
 
     Achtergrond:
       Gegeven de persoon 'Gertruda' met burgerservicenummer '000000012'
@@ -105,9 +107,9 @@ Functionaliteit: 2.1 - hoeveel juridische ouders heeft minderjarige
       | naam                             | waarde                    |
       | type                             | TijdelijkGeenGezag        |
 
-  Regel: Kind heeft punt ouders 
+  Regel: Kind heeft puntouders
 
-    Scenario: Kind heeft een punt ouder als ouder 1
+    Scenario: Voor het kind is ouder 1 onbekend er is sprake van GezagNietTeBepalen
       Gegeven de persoon '.' met burgerservicenummer '000000048'
       Gegeven  persoon 'Gert'
       * heeft '.' als ouder 1
@@ -123,7 +125,7 @@ Functionaliteit: 2.1 - hoeveel juridische ouders heeft minderjarige
       | type        | GezagNietTeBepalen                                                              |
       | toelichting | gezag is niet te bepalen omdat één of meer ouders van minderjarige onbekend is. |
 
-    Scenario: Kind heeft een punt ouder als ouder 2
+    Scenario: Voor het kind is ouder 2 onbekend er is sprake van GezagNietTeBepalen
       Gegeven de persoon '.' met burgerservicenummer '000000048'
       Gegeven  persoon 'Gert'
       * heeft 'Gertruda' als ouder 1
@@ -139,12 +141,14 @@ Functionaliteit: 2.1 - hoeveel juridische ouders heeft minderjarige
       | type        | GezagNietTeBepalen                                                              |
       | toelichting | gezag is niet te bepalen omdat één of meer ouders van minderjarige onbekend is. |
 
-    Scenario: Kind heeft twee puntouders
-      Gegeven de persoon '.' met burgerservicenummer '000000048'
-      Gegeven de persoon '.2' met burgerservicenummer '000000061'
-      Gegeven  persoon 'Gert'
-      * heeft '.' als ouder 1
-      * heeft '.2' als ouder 2 met de volgende gegevens
+    Scenario: Voor het kind zijn beide ouders onbekend er is sprake van GezagNietTeBepalen
+      Gegeven de persoon 'Gertruda' met burgerservicenummer '000000048'
+      Gegeven de persoon 'Gerrit' met burgerservicenummer '000000061'
+      Gegeven persoon 'Gert'
+      * heeft 'Gertruda' als ouder 1 met de volgende gegevens
+      | naam                                               | waarde   |
+      | geslachtsnaam (02.40)                              | .        |
+      * heeft 'Gerrit' als ouder 2 met de volgende gegevens
       | naam                                               | waarde   |
       | geslachtsnaam (02.40)                              | .        |
       Als gezag wordt gezocht met de volgende parameters
