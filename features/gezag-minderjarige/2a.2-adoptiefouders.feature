@@ -174,7 +174,7 @@ Functionaliteit: 2a.2 - adoptief ouders
       | minderjarige.burgerservicenummer | 000000036                 |
       | ouder.burgerservicenummer        | 000000024                 |
 
-    Scenario: het kind is geadopteerd door een persoon die is gehuwd/geregistreerd partnerschap heeft er is sprake van EenhoofdigOuderlijkGezag
+    Scenario: het kind is geadopteerd door een persoon die is gehuwd er is sprake van EenhoofdigOuderlijkGezag
       Gegeven 'Ingrid' en 'Henk' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | morgen - 5 jaar                                                    |
