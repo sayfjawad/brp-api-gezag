@@ -97,7 +97,7 @@ Functionaliteit: 2a.2 - adoptief ouders
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: het kind is geadopteerd door twee personen die met elkaar gehuwd zijn/partnerschap hebben er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: het kind is geadopteerd door twee personen die met elkaar gehuwd zijn er is sprake van TweehoofdigOuderlijkGezag
       Gegeven 'Ingrid' en 'Henk' zijn met elkaar gehuwd
       Gegeven persoon 'Jaimy'
       * is geadopteerd door 'Ingrid' als ouder 1
