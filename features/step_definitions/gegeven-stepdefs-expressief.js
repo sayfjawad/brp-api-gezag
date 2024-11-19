@@ -425,6 +425,11 @@ Given(/^heeft '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function (aan
 
 function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduidingKind, aanduidingOuder, ouderType, dataTable) {
     const kind = getPersoon(context, aanduidingKind);
+    
+    gegevenKindIsGeadopteerdDoorPersoonAlsOuder(context, kind, aanduidingOuder, ouderType, dataTable);
+}
+
+function gegevenKindIsGeadopteerdDoorPersoonAlsOuder(context, kind, aanduidingOuder, ouderType, dataTable) {
     const ouder = getPersoon(context, aanduidingOuder);
 
     const kindData = { ...kind.persoon.at(-1) };
@@ -432,7 +437,8 @@ function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduidingKind, aandui
 
     wijzigPersoon(
         kind,
-        objectToDataTable(kindData)
+        objectToDataTable(kindData),
+        true
     );
 
     createOuder(
@@ -452,6 +458,16 @@ function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduidingKind, aandui
         ])
     )
 }
+
+Given(/^is geadopteerd door '(.*)' als ouder ([1-2])$/, function (aanduidingOuder, ouderType) {
+    const kind = getPersoon(this.context, undefined);
+    const adoptieOuderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', 'morgen - 4 jaar']
+    ]);
+
+    gegevenKindIsGeadopteerdDoorPersoonAlsOuder(this.context, kind, aanduidingOuder, ouderType, adoptieOuderData);
+});
+
 
 Given(/^'(.*)' is geadopteerd door '(.*)' als ouder ([1-2])$/, function (aanduidingKind, aanduidingOuder, ouderType) {
     const adoptieOuderData = arrayOfArraysToDataTable([
