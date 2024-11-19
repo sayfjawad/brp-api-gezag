@@ -2,7 +2,7 @@ v0101,v0102,v0103,v0103A,v0103B,v0104,v0201,v02A01,v02A02,v02A03,v02B01,v0301,v0
 ,,,,,,,,,,,,,,,,,0,N,Nee,Nee,Nee,Nee,0,Gezag is niet te bepalen. Neem contact op met RvIG via info@RvIG onder vermelding van BRP API gezag met de volgende foutcode: %s
 ,,,,,,,,,,,,,,,,,0e,N,Nee,Nee,Nee,Nee,0,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
 Nee,,,,,,,,,,,,,,,,,1,N,Nee,Nee,Nee,Nee,150,gezag is niet te bepalen omdat minderjarige niet in Nederland woont.
-Ja,,,,,,,,,,,,,,,,,2e,N,Nee,Nee,Nee,Nee,200,gezag is niet te bepalen omdat de geboortedatum van minderjarige niet bekend is.
+Ja,,,,,,,,,,,,,,,,,2e,N,Nee,Nee,Nee,Nee,200,gezag is niet te bepalen omdat de geboortedatum van persoon niet bekend is.
 Ja,Nee_meerderjarig,,,,,,,,,,,,,,,,2m,NVT,Nee,Nee,Nee,Nee,210,Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing
 Ja,Nee_overleden,,,,,,,,,,,,,,,,2o,NVT,Nee,Nee,Nee,Nee,220,Ingezeten - minderjarig overleden - soort gezag is NVT - gezag is niet van toepassing
 Ja,Ja,,,,,,,,,,,,,,,,3e,N,Nee,Nee,Nee,Nee,300,gezag is niet te bepalen omdat niet kan worden vastgesteld of de persoon naar het buitenland geëmigreerd geweest is omdat de volgende relevante gegevens ontbreken: %s
