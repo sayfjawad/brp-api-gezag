@@ -30,28 +30,13 @@ public class IsGeborenInBuitenland extends GezagVraag {
             gezagBepaling.addMissendeGegegevens("persoonlijst van bevraagde persoon");
             return;
         }
-
         String geboorteland = plPersoon.getPersoon().getGeboorteland();
         if (geboorteland == null) {
             gezagBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
             return;
         }
 
-        var verblijfplaats = plPersoon.getVerblijfplaats();
-        if (verblijfplaats == null) {
-            gezagBepaling.addMissendeGegegevens("Verblijfplaats van bevraagde persoon");
-            return;
-        }
-        String datumVestigingInNederland = verblijfplaats.getDatumVestigingInNederland();
-
-        if (datumVestigingInNederland == null
-            || datumVestigingInNederland.isEmpty()
-            || geboorteland.equals(GEBOORTELAND_CODE_NEDERLAND)
-        ) {
-            answer = V1_3A_NEE;
-        } else {
-            answer = V1_3A_JA;
-        }
+        answer = geboorteland.equals(GEBOORTELAND_CODE_NEDERLAND) ? V1_3A_NEE : V1_3A_JA;
 
         logger.debug("""
             1.3a Is minderjarige geboren in het buitenland?
