@@ -8,22 +8,22 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
   | 1.3a Is minderjarige in buitenland geboren?                            | Nee of geadopteerd met NL akte                                           |
   | 1.4 Is uitspraak gezag aanwezig                                        | Nee                                                                      |
   | 2.1 Hoeveel juridische ouders heeft minderjarigen                      | Een_ouder                                                                |
-  | 2b.1 is staande huwelijk of partnerschap geboren                       | Ja                                                                      |
+  | 2b.1 is staande huwelijk of partnerschap geboren                       | Ja                                                                       |
 
   Onbevoegd tot het gezag zijn minderjarigen, zij die onder curatele zijn gesteld en zij wier geestvermogens zodanig zijn gestoord, om het
   gezag uit te kunnen oefenen (1:246 BW). Daarnaast zijn overleden ouders ook onbevoegd tot het gezag.
 
   Mogelijke uitkomsten:
-  1) Nee
-  -> GG: Ouder en echtgenoot/partner hebben gezamenlijk het gezag (1:253sa BW)
-  a. meemoeders: kind tijdens huwelijk/gp geboren, niet erkend en er is geen sprake van een verklaring onbekende donor
-  b. kind vóór 1 april 2014 geboren tijdens geregistreerd partnerschap van paren verschillend geslacht, kind is niet erkend (Zie 2b.1 onder 1)
-  2) Ja, de niet-ouder
-  -> OG1: De ouder heeft alleen het gezag (1:253f BW)
-  3) Ja, de ouder
-  -> V: De niet-ouder heeft alleen het gezag (1:253x BW).
+  1) Nee, de ouder en partner zijn beiden niet overleden en bevoegd tot gezag
+  -> Gezamenlijk gezag: Ouder en echtgenoot/partner hebben gezamenlijk het gezag (1:253sa BW)
+  a. meemoeders: kind tijdens huwelijk of geregistreerd partnerschap geboren, niet erkend en er is geen sprake van een verklaring onbekende donor
+  b. kind is vóór 1 april 2014 geboren tijdens geregistreerd partnerschap van paren verschillend geslacht, kind is niet erkend (Zie 2b.1 onder 1)
+  2) Ja, de partner is overleden of onbevoegd tot gezag
+  -> De ouder heeft alleen het gezag (1:253f BW)
+  3) Ja, de ouder van het kind is overleden of onbevoegd tot gezag
+  -> De partner heeft als voogd het gezag (1:253x BW).
   4) Ja, beide ouders
-  -> G: Er is (tijdelijk) geen gezag (1:253g lid 1 BW
+  -> Er is tijdelijk geen gezag (1:253g lid 1 BW).
 
   Let op: De kinderrechter kan een minderjarige moeder o.b.v. artikel 1:253ha lid 1 BW meerderjarig verklaren. Dit is nu niet in de BRP te achterhalen,
   dit is wel zichtbaar als aantekening in het Gezagsregister.
@@ -40,7 +40,7 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
 
   Gebruikte velden:
     - Datum opschorting bijhouding -> 07.67.10
-    - De geboortedatum van de ouder(s)n -> 02.03.10 en 03.03.10
+    - De geboortedatum van de ouder(s) -> 02.03.10 en 03.03.10
     - Indicatie curatele -> 11.33.10
     - Beschrijving Document -> 11.82.30
 
