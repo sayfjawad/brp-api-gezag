@@ -557,6 +557,24 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
 });
 
 /**
+ * Op dit moment wordt standaard landcode 6014 gebruikt.
+ * Deze gegeven stap is voor testen waar het niet relevant naar welk land de persoon is geëmigreerd,
+ * alleen dat de persoon is geëmigreerd.
+ */
+Given(/^is geëmigreerd naar het buitenland/, function () {
+    const verblijfplaats = arrayOfArraysToDataTable([
+        ['land vanwaar ingeschreven (14.10)', '6014'],
+        ['datum aanvang adres buitenland (13.20)', '01012023'],
+        ['datum vestiging in Nederland (14.20)', ''],
+        ['gemeente van inschrijving (09.10)', '0518']
+    ])
+    wijzigVerblijfplaats(
+        getPersoon(this.context, undefined),
+        verblijfplaats
+    );
+});
+
+/**
  * Hier volgt de gegeven stappen voor erkenning
  */
 const ErkenningsType = {
