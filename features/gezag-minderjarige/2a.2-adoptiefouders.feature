@@ -220,7 +220,7 @@ Functionaliteit: 2a.2 - adoptief ouders
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: het kind wordt geadopteerd door de partner van de moeder zonder huwelijk/partnerschap er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: het kind wordt geadopteerd door de partner van de moeder zonder huwelijk er is sprake van TweehoofdigOuderlijkGezag
       Gegeven persoon 'Jaimy'
       * heeft 'Ingrid' als ouder 1
       Gegeven 'Jaimy' is geadopteerd door 'Henk' als ouder 2 met de volgende gegevens
