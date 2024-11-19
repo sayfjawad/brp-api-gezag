@@ -156,6 +156,19 @@ Given(/^is in Nederland geboren$/, function () {
     );
 });
 
+Given(/^is in het buitenland geboren$/, function () {
+    const landGeboorte = '9999'; // any code except 6030
+    const nummerAkte = '1AA0100';
+
+    aanvullenPersoon(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['geboorteland (03.30)', landGeboorte],
+            ['aktenummer (81.20)', nummerAkte]
+        ])
+    );
+});
+
 Given(/^voor '(.*)' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens$/, function (aanduiding, dataTable) {
     createGezagsverhouding(
         getPersoon(this.context, aanduiding),
@@ -479,6 +492,10 @@ Given(/^'(.*)' is geadopteerd door '(.*)' als ouder ([1-2])$/, function (aanduid
 
 Given(/^'(.*)' is geadopteerd door '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function (aanduidingKind, aanduidingOuder, ouderType, dataTable) {
     gegevenIsGeadopteerdDoorPersoonAlsOuder(this.context, aanduidingKind, aanduidingOuder, ouderType, dataTable);
+});
+
+Given(/^is niet in Nederland geadopteerd$/, function () {
+    // doe niets
 });
 
 Given(/^zijn van ouder ([1-2]) de volgende gegevens gewijzigd$/, function (ouderType, dataTable) {
