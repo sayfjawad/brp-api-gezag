@@ -33,7 +33,7 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
   Hoe achterhalen:
   Niet overleden: op de persoonslijst van de ouder(s) mag de datum opschorting bijhouding niet voorkomen.
   Meerderjarig: de geboortedatum van de ouder(s) moet 18 jaar of hoger zijn.
-  Niet onder curatele: op de persoonslijst van de ouder(s) mag de indicatie curatele niet voorkomen.
+  Niet onder curatele: in de gezagsverhouding op de persoonslijst van de ouder(s) mag de indicatie curatele niet voorkomen.
 
   Het wordt in de BRP niet geregistreerd dat de geestelijke vermogens van een ouder gestoord zijn.
 
@@ -48,15 +48,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
 
     Achtergrond:
       Gegeven de persoon 'Quincy' met burgerservicenummer '000000012'
-      * is meerderjarig
       Gegeven de persoon 'Mees' met burgerservicenummer '000000036'
-      * is meerderjarig
       Gegeven 'Quincy' en 'Mees' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20230101                                                           |
-      Gegeven 'Quincy' en 'Mees' zijn gescheiden met de volgende gegevens
-      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
-      | 20231230                                                     |
       En de persoon 'Maarten' met burgerservicenummer '000000024'
       * is geboren op 4-4-2023
       * is in Nederland geboren
@@ -66,6 +61,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
   Regel: De ouder en partner zijn niet opgeschort, niet minderjarig en staan niet onder curatele
 
     Scenario: De moeder en de partner hebben gezag er is sprake van GezamenlijkGezag
+      Gegeven persoon 'Quincy'
+      * is meerderjarig
+      En persoon 'Mees'
+      * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -83,7 +82,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
 
     Scenario: De moeder is overleden er is sprake van Voogdij
       Gegeven persoon 'Quincy'
+      * is meerderjarig
       * is overleden
+      En persoon 'Mees'
+      * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -98,8 +100,11 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | burgerservicenummer |
       | 000000036           |
 
-    Scenario: De vader is overleden er is sprake van EenhoofdigOuderlijkGezag
+    Scenario: De partner is overleden er is sprake van EenhoofdigOuderlijkGezag
+      En persoon 'Quincy'
+      * is meerderjarig
       Gegeven persoon 'Mees'
+      * is meerderjarig
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -117,8 +122,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
 
     Scenario: De moeder en partner zijn overleden er is sprake van TijdelijkGeenGezag
       Gegeven persoon 'Quincy'
+      * is meerderjarig
       * is overleden
       Gegeven persoon 'Mees'
+      * is meerderjarig
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -135,6 +142,8 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
     Scenario: De moeder is minderjarig er is sprake van Voogdij
       Gegeven persoon 'Quincy'
       * is minderjarig
+      En persoon 'Mees'
+      * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -149,8 +158,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | burgerservicenummer |
       | 000000036           |
 
-    Scenario: De vader is minderjarig er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Mees'
+    Scenario: De partner is minderjarig er is sprake van EenhoofdigOuderlijkGezag
+      Gegeven persoon 'Quincy'
+      * is meerderjarig
+      En persoon 'Mees'
       * is minderjarig
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -185,7 +196,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
 
     Scenario: De moeder is onder curatele er is sprake van Voogdij
       Gegeven persoon 'Quincy'
+      * is meerderjarig
       * is onder curatele gesteld
+      Gegeven persoon 'Mees'
+      * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -200,8 +214,11 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | burgerservicenummer |
       | 000000036           |
 
-    Scenario: De vader is onder curatele er is sprake van EenhoofdigOuderlijkGezag
+    Scenario: De partner is onder curatele er is sprake van EenhoofdigOuderlijkGezag
+      Gegeven persoon 'Quincy'
+      * is meerderjarig
       Gegeven persoon 'Mees'
+      * is meerderjarig
       * is onder curatele gesteld
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -219,8 +236,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
 
     Scenario: De moeder en partner zijn onder curatele er is sprake van TijdelijkGeenGezag
       Gegeven persoon 'Quincy'
+      * is meerderjarig
       * is onder curatele gesteld
       Gegeven persoon 'Mees'
+      * is meerderjarig
       * is onder curatele gesteld
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -238,6 +257,8 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       Gegeven persoon 'Quincy'
       * is minderjarig
       * is overleden
+      En persoon 'Mees'
+      * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -252,8 +273,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | burgerservicenummer |
       | 000000036           |
 
-    Scenario: De vader is minderjarig en overleden er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Mees'
+    Scenario: De partner is minderjarig en overleden er is sprake van EenhoofdigOuderlijkGezag
+      Gegeven persoon 'Quincy'
+      * is meerderjarig
+      En persoon 'Mees'
       * is minderjarig
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
@@ -293,6 +316,8 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       Gegeven persoon 'Quincy'
       * is minderjarig
       * is onder curatele gesteld
+      En persoon 'Mees'
+      * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -307,8 +332,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | burgerservicenummer |
       | 000000036           |
 
-    Scenario: De vader is minderjarig en onder curatele er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Mees'
+    Scenario: De partner is minderjarig en onder curatele er is sprake van EenhoofdigOuderlijkGezag
+      Gegeven persoon 'Quincy'
+      * is meerderjarig
+      En persoon 'Mees'
       * is minderjarig
       * is onder curatele gesteld
       Als gezag wordt gezocht met de volgende parameters
@@ -346,8 +373,11 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
 
     Scenario: De moeder is minderjarig en overleden er is sprake van Voogdij
       Gegeven persoon 'Quincy'
+      * is meerderjarig
       * is onder curatele gesteld
       * is overleden
+      En persoon 'Mees'
+      * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -362,8 +392,11 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | burgerservicenummer |
       | 000000036           |
 
-    Scenario: De vader is onder curatele en overleden er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Mees'
+    Scenario: De partner is onder curatele en overleden er is sprake van EenhoofdigOuderlijkGezag
+      Gegeven persoon 'Quincy'
+      * is meerderjarig
+      En persoon 'Mees'
+      * is meerderjarig
       * is onder curatele gesteld
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
@@ -380,11 +413,13 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
 
   Regel: De ouder en partner zijn onder curatele gesteld en overleden
 
-    Scenario: De moeder en vader zijn onder curatele en overleden er is sprake van TijdelijkGeenGezag
+    Scenario: De moeder en partner zijn onder curatele en overleden er is sprake van TijdelijkGeenGezag
       Gegeven persoon 'Quincy'
+      * is meerderjarig
       * is onder curatele gesteld
       * is overleden
       Gegeven persoon 'Mees'
+      * is meerderjarig
       * is onder curatele gesteld
       * is overleden
       Als gezag wordt gezocht met de volgende parameters
@@ -404,6 +439,8 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       * is minderjarig
       * is onder curatele gesteld
       * is overleden
+      Gegeven persoon 'Mees'
+      * is meerderjarig
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -418,7 +455,9 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | burgerservicenummer |
       | 000000036           |
 
-    Scenario: De vader is minderjarig, onder curatele en overleden er is sprake van EenhoofdigOuderlijkGezag
+    Scenario: De partner is minderjarig, onder curatele en overleden er is sprake van EenhoofdigOuderlijkGezag
+      Gegeven persoon 'Quincy'
+      * is meerderjarig
       Gegeven persoon 'Mees'
       * is minderjarig
       * is onder curatele gesteld
