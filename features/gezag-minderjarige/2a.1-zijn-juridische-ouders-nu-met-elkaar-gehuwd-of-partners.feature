@@ -91,9 +91,9 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | type        | GezagNietTeBepalen                                                                                                   |
       | toelichting | gezag kan niet worden bepaald omdat niet kan worden vastgesteld welke ouder de geboortemoeder is.                    |
 
-  Regel: Ouders zijn getrouwd geweest voor het kind is geboren
+  Regel: Ouders zijn gehuwd geweest voor het kind is geboren
 
-    Scenario: Huwelijk / partnerschap van ouders is beëindigd door scheiding er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Huwelijk / partnerschap van ouders is beëindigd door scheiding voor het kind geboren is er is sprake van TweehoofdigOuderlijkGezag
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100401                                                           |
@@ -117,7 +117,7 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | burgerservicenummer |
       | 000000024           |
 
-    Scenario: Huwelijk / partnerschap van ouders is nietig verklaard er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Huwelijk / partnerschap van ouders is nietig verklaard voor het kind geboren is er is sprake van TweehoofdigOuderlijkGezag
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100401                                                           |
@@ -142,7 +142,7 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | burgerservicenummer |
       | 000000024           |
 
-    Scenario: Huwelijk / partnerschap van ouders is beëindigd door overlijden van vader er is sprake van EenhoofdigOuderlijkGezag
+    Scenario: Huwelijk / partnerschap van ouders is beëindigd door overlijden van vader voor het kind geboren is er is sprake van EenhoofdigOuderlijkGezag
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100401                                                           |
@@ -161,9 +161,9 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | minderjarige.burgerservicenummer | 000000036                 |
       | ouder.burgerservicenummer        | 000000012                 |
 
-  Regel: Ouders zijn getrouwd geweest en gescheiden na de geboorte van het kind
+  Regel: Ouders zijn gehuwd geweest en gescheiden na de geboorte van het kind
 
-    Scenario: Huwelijk / partnerschap van ouders is beëindigd door scheiding er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Huwelijk / partnerschap van ouders is beëindigd door scheiding nadat het kind is geboren er is sprake van TweehoofdigOuderlijkGezag
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100401                                                           |
@@ -187,7 +187,7 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | burgerservicenummer |
       | 000000024           |
 
-    Scenario: Huwelijk / partnerschap van ouders is nietig verklaard er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Huwelijk / partnerschap van ouders is nietig verklaard nadat het kind is geboren er is sprake van TweehoofdigOuderlijkGezag
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100401                                                           |
@@ -212,7 +212,7 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | burgerservicenummer |
       | 000000024           |
 
-    Scenario: Huwelijk / partnerschap van ouders is beëindigd door overlijden van vader er is sprake van EenhoofdigOuderlijkGezag
+    Scenario: Huwelijk / partnerschap van ouders is beëindigd door overlijden van de vader nadat het kind is geboren er is sprake van EenhoofdigOuderlijkGezag
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens 
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100401                                                           |
@@ -231,7 +231,7 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | minderjarige.burgerservicenummer | 000000036                 |
       | ouder.burgerservicenummer        | 000000012                 |
 
-  Regel: Ouders zijn altijd en nu nog getrouwd geweest
+  Regel: Ouders waren en zijn nogsteeds gehuwd
 
     Scenario: Huwelijk / partnerschap van ouders is actueel er is sprake van TweehoofdigOuderlijkGezag
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
@@ -254,9 +254,9 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | burgerservicenummer |
       | 000000024           |
 
-  Regel: Ouders waren getrouwd, zijn gescheiden en daarna hertrouwd
+  Regel: Ouders waren gehuwd, zijn gescheiden en daarna hertrouwd
 
-    Scenario: Kind is geboren tijdens het eerste huwelijk er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Kind is geboren tijdens het eerste huwelijk / partnerschap er is sprake van TweehoofdigOuderlijkGezag
       Gegeven persoon 'Robin'
       * is geboren op 06-06-2020
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
@@ -314,7 +314,7 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | burgerservicenummer |
       | 000000024           |
 
-    Scenario: Kind is geboren terwijl het huwelijk van de ouders nietig was verklaard er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Kind is geboren terwijl het huwelijk / partnerschap van de ouders nietig was verklaard er is sprake van TweehoofdigOuderlijkGezag
       Gegeven persoon 'Robin'
       * is geboren op 06-06-2021
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
@@ -344,7 +344,7 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | burgerservicenummer |
       | 000000024           |
 
-    Scenario: Kind is geboren tijdens het tweede (herstel) huwelijk van de ouders nadat ouders waren gescheiden er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Kind is geboren tijdens het tweede (herstel)huwelijk van de ouders nadat ouders waren gescheiden er is sprake van TweehoofdigOuderlijkGezag
       Gegeven persoon 'Robin'
       * is geboren op 06-06-2022
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
@@ -373,7 +373,7 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | burgerservicenummer |
       | 000000024           |
 
-    Scenario: Kind is geboren tijdens het tweede (herstel) huwelijk van de ouders nadat het huwelijk was nietig verklaard er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: Kind is geboren tijdens het tweede (herstel)huwelijk van de ouders nadat het huwelijk was nietig verklaard er is sprake van TweehoofdigOuderlijkGezag
       Gegeven persoon 'Robin'
       * is geboren op 06-06-2022
       Gegeven 'Rianne' en 'Richard' zijn met elkaar gehuwd met de volgende gegevens
