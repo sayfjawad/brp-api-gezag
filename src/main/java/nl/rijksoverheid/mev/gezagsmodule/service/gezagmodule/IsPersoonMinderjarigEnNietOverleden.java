@@ -30,13 +30,10 @@ public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
         Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
 
         boolean isMinderjarig = plPersoon.minderjarig();
-        boolean isOpgeschort = plPersoon.isOpgeschort();
         boolean isAlsMinderjarigOpgeschort = plPersoon.alsMinderjarigeOpgeschort();
 
         if (isAlsMinderjarigOpgeschort) {
             answer = V1_2_NEE_OVERLEDEN;
-        } else if (isOpgeschort) {
-            answer = V1_2_NEE_MEERDERJARIG;
         } else if (isMinderjarig) {
             answer = V1_2_JA; // Minderjarig en niet overleden
         } else {
