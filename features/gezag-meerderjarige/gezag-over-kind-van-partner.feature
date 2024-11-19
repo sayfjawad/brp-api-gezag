@@ -7,20 +7,23 @@ Functionaliteit: gezamenlijk gezag van een meerderjarige over een kind van een (
 
   Het gezag krijgt u automatisch wanneer:
   • Het kind tijdens uw huwelijk of geregistreerd partnerschap is geboren.
-  • U bent geen ouder geworden (omdat er van een onbeken-de donor gebruik is gemaakt) en er is ook geen andere ouder.
+  • U bent geen ouder geworden (omdat er van een onbekende donor gebruik is gemaakt) en er is ook geen andere ouder.
 
   Soms moet u aan de rechter vragen om het gezamenlijk gezag te krijgen. Dat is zo als u ouder bent van een kind, maar uw
   partner niet. U hebt een advocaat nodig om het gezamenlijk gezag aan de rechter te vragen.
 
+  Voor erkenningen die zijn gedaan voor 1 januari 2023 geldt dat de erkenner niet automatisch het gezamenlijk gezag krijgt
+  met de moeder, ook niet als het kind na 1 januari 2023 wordt geboren.
+
   Dit kan bijvoorbeeld voorkomen in de volgende situatie:
   • U hebt als vader of moeder alleen het gezag. Bijvoorbeeld na een scheiding of overlijden van uw partner. 
-  En u wilt met uw nieuwe partner het gezamenlijk gezag hebben
+  • U wilt met uw nieuwe partner het gezamenlijk gezag hebben.
 
-  Wanneer je als partner GezamenlijkGezag hebt met de ouder van het kind is dit niet zichtbaar in uw eigen gegevens.
+  Wanneer je als partner gezamenlijk gezag hebt met de ouder van het kind is dit niet zichtbaar in uw eigen gegevens.
   De relatie is opgenomen in de gegevens van het kind en moet via deze gegevens worden bepaald.
   
-  Bij de gezag bepaling wordt daarom de gegevens van de kinderen opgehaald van u en de kinderen van uw partner. 
-  Vervolgens worden potentiele gezagrelaties bepaald vanuit de gegevens van de kinderen.
+  Bij de gezagbepaling worden daarom de gegevens van de kinderen opgehaald van u en de kinderen van uw partner. 
+  Vervolgens worden potentiële gezagsrelaties bepaald vanuit de gegevens van de kinderen. Hierbij is het belangrijk dat als een kind erkend is, de erkenning na 1 januari 2023 is gedaan.
 
     Achtergrond:
       Gegeven de persoon 'Ludo' met burgerservicenummer '000000012'
@@ -34,9 +37,9 @@ Functionaliteit: gezamenlijk gezag van een meerderjarige over een kind van een (
       * is in Nederland geboren
       * heeft 'Laura' als ouder 1
 
-  Regel: een meerderjarige die gezamenlijk gezag heeft over een minderjarig kind van de partner krijgt de gezagsrelatie geleverd
+  Regel: een meerderjarige die gezamenlijk gezag heeft over een kind van de partner krijgt de gezagsrelatie geleverd
 
-    Scenario: persoon heeft automatisch gezamenlijk gezag over het minderjarige kind van diens partner er is sprake van GezamenlijkGezag
+    Scenario: persoon heeft automatisch gezamenlijk gezag over het kind van diens partner er is sprake van GezamenlijkGezag
       Gegeven 'Ludo' en 'Laura' zijn met elkaar gehuwd
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
@@ -71,7 +74,7 @@ Functionaliteit: gezamenlijk gezag van een meerderjarige over een kind van een (
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
       
-Regel: wanneer de ouder komt te overlijden of onder curatele komt te staan heeft de partner alleen het gezag over het kind
+  Regel: wanneer de ouder komt te overlijden of onder curatele komt te staan heeft de partner alleen het gezag over het kind
       
     Scenario: de partner van ouder onder curatele heeft gezag over een binnen het huwelijk geboren niet-erkend kind er is sprake van Voogdij
       Gegeven persoon 'Laura'
