@@ -34,21 +34,21 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
   de overgebleven ouder een relatie had tijdens de geboorte van de minderjarige kan het voorkomen dat de partner van de ouder
   uitgerekend de persoon is waar de nietig verklaarde erkenning betrekking op heeft. In zo’n geval heeft de partner geen gezag over de
   minderjarige dus geen gezamenlijk gezag. De huidige afleiding voorziet hier niet in.
+ 
   Aanbevelingen
-
   Voorstel is ook te kijken naar een nietig verklaarde erkenning in de aktenummers van de ouders. Daarmee wordt het antwoord Nee
   aangevuld met “of nietig verklaarde erkenning” en krijgt de partner met nietig verklaarde erkenning geen gezag.
 
   Gebruikte velden:
     - Geboortedatum -> 01.03.10
-    - Hhuwelijk/geregistreerd partnerschap -> 05.06.20 of 55.06.20
+    - Huwelijk/geregistreerd partnerschap -> 05.06.20 of 55.06.20
     - Aktenummer ouder 1 -> 02.81.20
 
     Achtergrond:
       Gegeven de persoon 'Saskia' met burgerservicenummer '000000012'
-      * is meerderjarig, niet overleden en staat niet onder curatele
+      * is meerderjarig
       En de persoon 'Maarten' met burgerservicenummer '000000024'
-      * is meerderjarig, niet overleden en staat niet onder curatele
+      * is meerderjarig
       En de persoon 'Rachel' met burgerservicenummer '000000036'
       * heeft 'Saskia' als ouder 1 
       * is geboren op 1-12-2022
