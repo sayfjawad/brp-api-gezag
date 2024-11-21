@@ -176,6 +176,8 @@ components:
           properties:
             minderjarige:
               $ref: "#/components/schemas/Minderjarige"
+            toelichting:
+              type: string
     GezagNietTeBepalen:
       allOf:
         - $ref: "#/components/schemas/AbstractGezagsrelatie"
