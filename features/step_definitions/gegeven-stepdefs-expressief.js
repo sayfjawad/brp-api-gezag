@@ -74,9 +74,11 @@ function createOntbindingPartnerschap(context, aanduiding, dataTable) {
     Object.keys(overledenPersoon).some(property => {
         if (property.includes('partner')) {
             const partner = { ...getPartner(overledenPersoon) };
-            const partnerPersoon = getPersoon(context, partner.geslachts_naam);
-            wijzigPartner(partnerPersoon, dataTable);
-            return true;
+            if(partner.relatie_start_datum) {
+                const partnerPersoon = getPersoon(context, partner.geslachts_naam);
+                wijzigPartner(partnerPersoon, dataTable);
+                return true;
+            }
         }
         return false;
     });
@@ -154,6 +156,19 @@ Given(/^is in Nederland geboren$/, function () {
     );
 });
 
+Given(/^is in het buitenland geboren$/, function () {
+    const landGeboorte = '9999'; // any code except 6030
+    const nummerAkte = '1AA0100';
+
+    aanvullenPersoon(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['geboorteland (03.30)', landGeboorte],
+            ['aktenummer (81.20)', nummerAkte]
+        ])
+    );
+});
+
 Given(/^voor '(.*)' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens$/, function (aanduiding, dataTable) {
     createGezagsverhouding(
         getPersoon(this.context, aanduiding),
@@ -172,7 +187,18 @@ Given(/^'(.*)' is onder curatele gesteld$/, function (aanduiding) {
     );
 });
 
-Given(/^'(.*)' is overleden$/, function (aanduiding) {
+Given(/^is onder curatele gesteld/, function () {
+    const curateleRegisterIndicatie = '1';
+
+    aanvullenGezagsverhouding(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['indicatie curateleregister (33.10)', curateleRegisterIndicatie]
+        ])
+    );
+});
+
+Given(/^(?:'(.*)' )?is overleden$/, function (aanduiding) {
     const datumOpschortingBijhouding = 'gisteren - 2 jaar';
     const redenOpschortingBijhouding = 'O';
     const datumOverlijden = 'gisteren - 2 jaar';
@@ -412,6 +438,11 @@ Given(/^heeft '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function (aan
 
 function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduidingKind, aanduidingOuder, ouderType, dataTable) {
     const kind = getPersoon(context, aanduidingKind);
+
+    gegevenKindIsGeadopteerdDoorPersoonAlsOuder(context, kind, aanduidingOuder, ouderType, dataTable);
+}
+
+function gegevenKindIsGeadopteerdDoorPersoonAlsOuder(context, kind, aanduidingOuder, ouderType, dataTable) {
     const ouder = getPersoon(context, aanduidingOuder);
 
     const kindData = { ...kind.persoon.at(-1) };
@@ -419,7 +450,8 @@ function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduidingKind, aandui
 
     wijzigPersoon(
         kind,
-        objectToDataTable(kindData)
+        objectToDataTable(kindData),
+        true
     );
 
     createOuder(
@@ -440,6 +472,16 @@ function gegevenIsGeadopteerdDoorPersoonAlsOuder(context, aanduidingKind, aandui
     )
 }
 
+Given(/^is geadopteerd door '(.*)' als ouder ([1-2])$/, function (aanduidingOuder, ouderType) {
+    const kind = getPersoon(this.context, undefined);
+    const adoptieOuderData = arrayOfArraysToDataTable([
+        ['datum ingang familierechtelijke betrekking (62.10)', 'morgen - 4 jaar']
+    ]);
+
+    gegevenKindIsGeadopteerdDoorPersoonAlsOuder(this.context, kind, aanduidingOuder, ouderType, adoptieOuderData);
+});
+
+
 Given(/^'(.*)' is geadopteerd door '(.*)' als ouder ([1-2])$/, function (aanduidingKind, aanduidingOuder, ouderType) {
     const adoptieOuderData = arrayOfArraysToDataTable([
         ['datum ingang familierechtelijke betrekking (62.10)', 'morgen - 4 jaar']
@@ -450,6 +492,10 @@ Given(/^'(.*)' is geadopteerd door '(.*)' als ouder ([1-2])$/, function (aanduid
 
 Given(/^'(.*)' is geadopteerd door '(.*)' als ouder ([1-2]) met de volgende gegevens$/, function (aanduidingKind, aanduidingOuder, ouderType, dataTable) {
     gegevenIsGeadopteerdDoorPersoonAlsOuder(this.context, aanduidingKind, aanduidingOuder, ouderType, dataTable);
+});
+
+Given(/^is niet in Nederland geadopteerd$/, function () {
+    // doe niets
 });
 
 Given(/^zijn van ouder ([1-2]) de volgende gegevens gewijzigd$/, function (ouderType, dataTable) {
@@ -503,6 +549,16 @@ Given(/^is ingeschreven in de BRP$/, function () {
     );
 });
 
+Given(/^is niet ingeschreven in de BRP$/, function () {
+    gegevenPersoonIsIngeschrevenInGemeente(
+        this.context,
+        undefined,
+        arrayOfArraysToDataTable([
+            ['gemeente van inschrijving (09.10)', '1999']
+        ])
+    );
+});
+
 Given(/^is ingeschreven in de BRP met de volgende gegevens$/, function (dataTable) {
     gegevenPersoonIsIngeschrevenInGemeente(this.context, undefined, dataTable);
 });
@@ -540,6 +596,76 @@ Given(/^(?:de persoon(?: '(.*)')? )?is geëmigreerd geweest?$/, function (_) {
             ['gemeente van inschrijving (09.10)', gemeenteVanInschrijving]
         ]),
         false
+    );
+});
+
+Given(/^heeft een onbekende verblijfplaats$/, function () {
+    const persoon = getPersoon(this.context, undefined);
+    const verblijfplaats = persoon.verblijfplaats;
+
+    if(verblijfplaats) {
+        wijzigVerblijfplaats(
+            getPersoon(this.context, undefined),
+            undefined,
+            false
+        );
+    } else {
+        // Verblijfplaats is al onbekend
+    }
+});
+
+Given(/^heeft een onbekende gemeente van inschrijving$/, function () {
+    wijzigVerblijfplaats(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['gemeente van inschrijving (09.10)', '']
+        ]),
+        false
+    );
+});
+
+/**
+ * Op dit moment wordt standaard landcode 6014 gebruikt.
+ * Deze gegeven stap is voor testen waar het niet relevant naar welk land de persoon is geëmigreerd,
+ * alleen dat de persoon is geëmigreerd.
+ */
+Given(/^is geëmigreerd naar het buitenland/, function () {
+    const verblijfplaats = arrayOfArraysToDataTable([
+        ['land vanwaar ingeschreven (14.10)', '6014'],
+        ['datum aanvang adres buitenland (13.20)', '01012023'],
+        ['datum vestiging in Nederland (14.20)', ''],
+        ['gemeente van inschrijving (09.10)', '0518']
+    ])
+    wijzigVerblijfplaats(
+        getPersoon(this.context, undefined),
+        verblijfplaats
+    );
+});
+
+/**
+ * Op dit moment wordt standaard landcode 6003 gebruikt.
+ * Deze gegeven stap is voor testen waar het niet relevant is uit welk land de persoon geadopteerd is,
+ * alleen dat de persoon in het buitenland is geboren.
+ */
+Given(/^is geboren in het buitenland/, function () {
+    const codeVanLand = '6003';
+
+    aanvullenPersoon(
+        getPersoon(this.context, undefined),
+        arrayOfArraysToDataTable([
+            ['geboorteland (03.30)', codeVanLand]
+        ])
+    );
+});
+
+Given(/^verblijft in Nederland/, function () {
+    const verblijfplaats = arrayOfArraysToDataTable([
+        ['datum vestiging in Nederland (14.20)', 'vandaag - 1 jaar'],
+        ['gemeente van inschrijving (09.10)', '0518']
+    ])
+    createVerblijfplaats(
+        getPersoon(this.context, undefined),
+        verblijfplaats
     );
 });
 

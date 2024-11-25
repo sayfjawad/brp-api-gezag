@@ -1,0 +1,55 @@
+name: Run Cucumber
+description: Run Cucumber to verify the specification
+
+runs:
+
+  using: "composite"
+
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+      shell: bash
+
+    - name: Set permissions
+      uses: ./.github/actions/zet-run-bash-scripts-permission
+      with:
+        path-bash-file-or-folder: ./scripts/*
+
+    - name: Start containers
+      run: |
+        ./scripts/containers-start.sh ci
+      shell: bash
+    - name: Wait for DB restart
+      run: sleep 5s
+      shell: bash
+
+    - name: Validate functional specification
+      run: |
+        ./scripts/specs-verify.sh
+      shell: bash
+
+    - name: Stop containers
+      if: always()
+      run: |
+        ./scripts/containers-stop.sh ci
+      shell: bash
+
+    - name: Generate test report
+      if: always()
+      run: |
+        node ./scripts/generate-cucumber-reports.js
+      shell: bash
+
+    - name: Upload test report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: cucumber-test-reports
+        path: |
+          test-reports
+          test-data/logs
