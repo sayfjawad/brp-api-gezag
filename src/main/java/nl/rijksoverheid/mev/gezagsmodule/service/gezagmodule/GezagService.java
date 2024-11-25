@@ -34,9 +34,8 @@ public class GezagService {
     private final LoggingContext loggingContext;
     private final ToelichtingService toelichtingService;
     private static final String DEFAULT_NEE = "Nee";
-    private static final String SOORT_GEZAG_NVT = "NVT";
     private static final String SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD = "N";
-    private static final String BSN_MEERDERJARIGE_LEEG = "";
+    private static final String ROUTE_MEERDERJARIG = "2m";
     private static final String TOELICHTING_ONBEKEND_PERSOON = "Voor het opgegeven burgerservicenummer kon geen persoonslijst worden gevonden";
 
     /**
@@ -72,15 +71,19 @@ public class GezagService {
     public List<AbstractGezagsrelatie> getGezagResultaat(final String burgerservicenummer, final String burgerservicenummerPersoon) throws GezagException {
         ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
         List<AbstractGezagsrelatie> gezagRelaties = new ArrayList<>();
-        String route;
+        String route = null;
         Optional<Persoonslijst> plPersoon = Optional.empty();
         GezagBepaling gezagBepaling = null;
         try {
             plPersoon = brpService.getPersoonslijst(burgerservicenummer);
             if (plPersoon.isPresent()) {
                 Persoonslijst persoon = plPersoon.get();
-                gezagBepaling = new GezagBepaling(persoon, this, vragenlijstService.getVragenMap());
-                arAntwoordenModel = gezagBepaling.start();
+                if(persoon.minderjarig()) {
+                    gezagBepaling = new GezagBepaling(persoon, this, vragenlijstService.getVragenMap());
+                    arAntwoordenModel = gezagBepaling.start();
+                } else {
+                    route = ROUTE_MEERDERJARIG;
+                }
             }
         } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
@@ -89,7 +92,7 @@ public class GezagService {
         if (hasVeldenInOnderzoek) {
             arAntwoordenModel.setException(new VeldInOnderzoekException("Preconditie: Velden mogen niet in onderzoek staan"));
         }
-        route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel, gezagBepaling);
+        route = (route == null ? beslissingsmatrixService.findMatchingRoute(arAntwoordenModel, gezagBepaling) : route);
         arAntwoordenModel.setRoute(route);
         setConfiguredValues(arAntwoordenModel, plPersoon.isPresent());
 

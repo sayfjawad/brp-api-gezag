@@ -94,7 +94,6 @@ Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschrev
       * heeft de volgende gegevens
       | geboortedatum (03.10) |
       | <geboortedatum>       |
-      * is meerderjarig
       * is in Nederland geboren
       * is niet geëmigreerd geweest
       * heeft 'Marlies' als ouder 1
@@ -102,9 +101,13 @@ Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschrev
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | GezagNietTeBepalen |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam        | waarde                                                               |
+      | type        | GezagNietTeBepalen                                                   |
+      | toelichting | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
 
       Voorbeelden:
       | geboortedatum            | leeftijd      | omschrijving                                                                             |
@@ -126,7 +129,10 @@ Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschrev
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon zonder gezag
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon geen gezag
 
       Voorbeelden:
       | geboortedatum          | leeftijd      | omschrijving                                                                            |
@@ -154,4 +160,7 @@ Functionaliteit: gezag van een meerderjarige die niet in de BRP staat ingeschrev
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon zonder gezag
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon geen gezag
