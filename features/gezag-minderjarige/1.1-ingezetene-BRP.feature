@@ -26,7 +26,7 @@ Functionaliteit: 1.1 - Staat het kind (minderjarige) als ingezetene in de BRP?
       * heeft 'Gerda' als ouder 1
       * heeft 'Bert' als ouder 2
 
-  Regel: Het kind is niet ingezetene in de BRP
+  Regel: gezag kan niet worden bepaald voor kinderen de niet ingezetene zijn van de BRP
 
     Scenario: het kind staat niet als ingezetene in de BRP er is sprake van GezagNietTeBepalen
       Gegeven persoon 'Zoe' 
@@ -42,9 +42,9 @@ Functionaliteit: 1.1 - Staat het kind (minderjarige) als ingezetene in de BRP?
       | type        | GezagNietTeBepalen                                                   |
       | toelichting | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
 
-  Regel: Het kind is wel ingezetene in de BRP
+  Regel: gezag kan wel worden bepaald voor kinderen die ingezetene zijn van de BRP
 
-    Scenario: het kind staat niet als ingezetene in de BRP er is sprake van TweehoofdigOuderlijkGezag
+    Scenario: het kind staat als ingezetene in de BRP met twee ouders er is sprake van TweehoofdigOuderlijkGezag
       Gegeven persoon 'Zoe' 
       * is ingeschreven in de BRP
       Als gezag wordt gezocht met de volgende parameters
@@ -66,7 +66,7 @@ Functionaliteit: 1.1 - Staat het kind (minderjarige) als ingezetene in de BRP?
 
   Regel: Het kan niet worden bepaald of het kind ingezetene in de BRP is
 
-    Scenario: Van het kind is niet bekend want zijn/haar verblijfplaats is er is sprake van GezagNietTeBepalen
+    Scenario: Van een kind is de verblijfplaats onbekend is er is sprake van GezagNietTeBepalen
       Gegeven persoon 'Zoe' 
       * heeft een onbekende verblijfplaats
       Als gezag wordt gezocht met de volgende parameters
@@ -80,7 +80,7 @@ Functionaliteit: 1.1 - Staat het kind (minderjarige) als ingezetene in de BRP?
       | type        | GezagNietTeBepalen                                                                                            |
       | toelichting | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: verblijfplaats van bevraagde persoon |
 
-    Scenario: Van het kind is niet bekend want zijn/haar gemeente van inschrijving is er is sprake van GezagNietTeBepalen
+    Scenario: Van een kind is de gemeente van inschrijving onbekend is er is sprake van GezagNietTeBepalen
       Gegeven persoon 'Zoe' 
       * heeft een onbekende gemeente van inschrijving
       Als gezag wordt gezocht met de volgende parameters
