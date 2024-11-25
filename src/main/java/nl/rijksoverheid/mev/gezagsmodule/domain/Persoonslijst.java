@@ -456,9 +456,10 @@ public class Persoonslijst {
         // controleer dan op akte erkenning actueel en geschiedenis op E
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getOuder2().getAktenummer());
-        List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
-        if (geschiedenisOuder2 != null) {
+        Ouder2 ouder2 = getOuder2();
+        if(ouder2 != null) {
+            akteNummers.add(ouder2.getAktenummer());
+            List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
             for (GeschiedenisOuder2 p : geschiedenisOuder2) {
                 akteNummers.add(p.getAktenummer());
             }
@@ -582,14 +583,13 @@ public class Persoonslijst {
 
     public boolean minderjarig() throws AfleidingsregelException {
         // PL 1/2 : 01.03.10 
-        Persoon persoon = getPersoon();
-        if (persoon == null) {
-            throw new AfleidingsregelException("Preconditie: persoon mag niet leeg zijn", "persoon");
-        } else if (persoon.getGeboortedatum() == null) {
-            throw new AfleidingsregelException("Preconditie: geboortedatum mag niet leeg zijn", "geboortedatum");
-        }
+        var persoon = getPersoon();
+        if (persoon == null) throw new AfleidingsregelException("Preconditie: persoon mag niet leeg zijn", "persoon");
 
-        int geboortedatum = Integer.parseInt(persoon.getGeboortedatum());
+        var geboortedatumAsString = persoon.getGeboortedatum();
+        int geboortedatum = Optional.ofNullable(geboortedatumAsString).map(Integer::parseInt).orElse(0);
+        if (geboortedatum == 0) throw new AfleidingsregelException("Preconditie: geboortedatum mag niet onbekend zijn", "geboortedatum");
+
         int datumVolwassenVanaf = Integer.parseInt(LocalDate.now(clock).format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
         return geboortedatum > datumVolwassenVanaf;
     }

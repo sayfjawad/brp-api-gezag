@@ -1,14 +1,15 @@
 v0101,v0102,v0103,v0103A,v0103B,v0104,v0201,v02A01,v02A02,v02A03,v02B01,v0301,v0302,v04A02,V04A03,V04B01,Exception,route,soortGezag,gezag_ouder1,gezag_ouder2,gezag_niet_ouder1,gezag_niet_ouder2,Index,Uitleg
-,,,,,,,,,,,,,,,,,0,N,Nee,Nee,Nee,Nee,0,Er is iets fout gegaan. Gezag is niet te bepalen.
+,,,,,,,,,,,,,,,,,0,N,Nee,Nee,Nee,Nee,0,Gezag is niet te bepalen. Neem contact op met RvIG via info@RvIG onder vermelding van BRP API gezag met de volgende foutcode: %s
+,,,,,,,,,,,,,,,,,0e,N,Nee,Nee,Nee,Nee,0,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
 Nee,,,,,,,,,,,,,,,,,1,N,Nee,Nee,Nee,Nee,150,gezag is niet te bepalen omdat minderjarige niet in Nederland woont.
-Ja,,,,,,,,,,,,,,,,,2e,N,Nee,Nee,Nee,Nee,200,gezag is niet te bepalen omdat de geboortedatum van minderjarige niet bekend is.
+Ja,,,,,,,,,,,,,,,,,2e,N,Nee,Nee,Nee,Nee,200,gezag is niet te bepalen omdat de geboortedatum van persoon niet bekend is.
 Ja,Nee_meerderjarig,,,,,,,,,,,,,,,,2m,NVT,Nee,Nee,Nee,Nee,210,Ingezeten - meerderjarig - soort gezag is NVT - gezag is niet van toepassing
 Ja,Nee_overleden,,,,,,,,,,,,,,,,2o,NVT,Nee,Nee,Nee,Nee,220,Ingezeten - minderjarig overleden - soort gezag is NVT - gezag is niet van toepassing
-Ja,Ja,,,,,,,,,,,,,,,,3e,N,Nee,Nee,Nee,Nee,300,gezag is niet te bepalen. Neem contact op met RvIG via info@RvIG onder vermelding van BRP API route 3e. Vermeld de volgende foutcode: %s
+Ja,Ja,,,,,,,,,,,,,,,,3e,N,Nee,Nee,Nee,Nee,300,gezag is niet te bepalen omdat niet kan worden vastgesteld of de persoon naar het buitenland geëmigreerd geweest is omdat de volgende relevante gegevens ontbreken: %s
 Ja,Ja,Nee,Ja,,,,,,,,,,,,,,3ae,N,Nee,Nee,Nee,Nee,301,gezag is niet te bepalen omdat bij bepaling van adoptie van minderjarige relevante gegevens ontbreken
 Ja,Ja,Nee,,,,,,,,,,,,,,,3ee,N,Nee,Nee,Nee,Nee,310,gezag is niet te bepalen omdat geboortegegevens in onderzoek staan.
 Ja,Ja,Ja,,,,,,,,,,,,,,,3,N,Nee,Nee,Nee,Nee,350,gezag is niet te bepalen omdat minderjarige buiten Nederland heeft verbleven.
-Ja,Ja,Nee,Ja,Nee,,,,,,,,,,,,,3a,N,Nee,Nee,Nee,Nee,351,gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is.
+Ja,Ja,Nee,Ja,Nee,,,,,,,,,,,,,3a,N,Nee,Nee,Nee,Nee,351,gezag is niet te bepalen omdat minderjarige in het buitenland is geboren.
 Ja,Ja,Nee,Nee,,,,,,,,,,,,,,4e,N,Nee,Nee,Nee,Nee,400,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
 Ja,Ja,Nee,Ja,Ja,,,,,,,,,,,,,4ae,N,Nee,Nee,Nee,Nee,401,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
 Ja,Ja,Nee,Nee,,Ja,,,,,,,,,,,,4ee,N,Nee,Nee,Nee,Nee,420,gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: %s
@@ -226,8 +227,8 @@ Ja,Ja,Nee,Nee,,Nee,Twee_ouders,Nee_nooit,Nee,Voor,,,,,Ja,,,53,G,Nee,Nee,Nee,Nee,
 Ja,Ja,Nee,Ja,Ja,Nee,Twee_ouders,Nee_nooit,Nee,Voor_ouder1,,,,,Ja,,,53v1a,G,Nee,Nee,Nee,Nee,5351,Ingezeten - minderjarig - adoptie NL akte - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning  voor 20230101 door ouder2; ouder1 heeft van rechtswege het ouderlijk gezag - beide ouders onbevoegd - soort gezag is G 
 Ja,Ja,Nee,Ja,Ja,Nee,Twee_ouders,Nee_nooit,Nee,Voor_ouder2,,,,,Ja,,,53v2a,G,Nee,Nee,Nee,Nee,5351,Ingezeten - minderjarig - adoptie NL akte - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning voor 20230101 door ouder1; ouder2 heeft van rechtswege het ouderlijk gezag - beide ouders onbevoegd - soort gezag is G 
 Ja,Ja,Nee,Ja,Ja,Nee,Twee_ouders,Nee_nooit,Nee,Voor,,,,,Ja,,,53a,G,Nee,Nee,Nee,Nee,5351,Ingezeten - minderjarig - adoptie NL akte - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning voor 20230101 - beide ouders onbevoegd - soort gezag is G 
-Ja,Ja,Nee,Nee,,Nee,Twee_ouders,Nee_nooit,Nee,Na,,,,,,,,53ne,N,Nee,Nee,Nee,Nee,5360,gezag is niet te bepalen omdat bij het bepalen van bevoegdheid relevante gegevens ontbreken. Het gaat om de volgende gegevens: %s
-Ja,Ja,Nee,Ja,Ja,Nee,Twee_ouders,Nee_nooit,Nee,Na,,,,,,,,53ane,N,Nee,Nee,Nee,Nee,5361,gezag is niet te bepalen omdat bij het bepalen van bevoegdheid relevante gegevens ontbreken. Het gaat om de volgende gegevens: %s
+Ja,Ja,Nee,Nee,,Nee,Twee_ouders,Nee_nooit,Nee,Na,,,,,,,,53ne,N,Nee,Nee,Nee,Nee,5360,gezag is niet te bepalen omdat bij het bepalen van bevoegdheid van een ouder relevante gegevens ontbreken. Het gaat om de volgende gegevens: %s
+Ja,Ja,Nee,Ja,Ja,Nee,Twee_ouders,Nee_nooit,Nee,Na,,,,,,,,53ane,N,Nee,Nee,Nee,Nee,5361,gezag is niet te bepalen omdat bij het bepalen van bevoegdheid van een ouder relevante gegevens ontbreken. Het gaat om de volgende gegevens: %s
 Ja,Ja,Nee,Nee,,Nee,Twee_ouders,Nee_nooit,Nee,Na,,,,Ja_ouder1,,,,53n1,OG1,Nee,Ja,Nee,Nee,5370,Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning na 20230101 - ouder1 onbevoegd - soort gezag is OG1 
 Ja,Ja,Nee,Ja,Ja,Nee,Twee_ouders,Nee_nooit,Nee,Na,,,,Ja_ouder1,,,,53an1,OG1,Nee,Ja,Nee,Nee,5371,Ingezeten - minderjarig - adoptie NL akte - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning na 20230101 - ouder1 onbevoegd - soort gezag is OG1 
 Ja,Ja,Nee,Nee,,Nee,Twee_ouders,Nee_nooit,Nee,Na,,,,Ja_ouder2,,,,53n2,OG1,Ja,Nee,Nee,Nee,5380,Ingezeten - minderjarig - heeft twee ouders - ouders ongehuwd/geen partnerschap - erkenning na 20230101 - ouder2 is onbevoegd - soort gezag is OG1 

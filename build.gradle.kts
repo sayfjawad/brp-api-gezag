@@ -28,11 +28,12 @@ dependencies {
     implementation(libs.com.fasterxml.jackson.dataformat.jackson.dataformat.yaml)
     implementation(libs.org.openapitools.jackson.databind.nullable)
     implementation(libs.org.springframework.boot.spring.boot.starter.actuator)
-    implementation(libs.org.springframework.boot.spring.boot.starter.cache)
     implementation(libs.org.springframework.boot.spring.boot.starter.jooq)
     implementation(libs.org.springframework.boot.spring.boot.starter.web)
     implementation(libs.org.springframework.boot.spring.boot.starter.webflux)
     implementation(libs.org.springframework.boot.spring.boot.starter.validation)
+    implementation(libs.net.logstash.logback.logstash.logback.encoder)
+
     implementation(libs.co.elastic.logging.logback.ecs.encoder)
     implementation(libs.org.json.json)
     implementation(libs.io.micrometer.micrometer.registry.prometheus)
@@ -151,7 +152,7 @@ tasks.withType<Test> {
 }
 
 fun getGitHash(): String {
-    val stdout = ByteArrayOutputStream();
+    val stdout = ByteArrayOutputStream()
     exec {
         commandLine = listOf("git", "rev-parse", "HEAD")
         standardOutput = stdout

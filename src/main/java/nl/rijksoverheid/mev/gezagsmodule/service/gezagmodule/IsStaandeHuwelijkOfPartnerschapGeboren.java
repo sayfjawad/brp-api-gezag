@@ -1,6 +1,8 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -13,6 +15,8 @@ import static nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst.isValideGes
  * "Nee"
  */
 public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
+
+    private static final Logger logger = LoggerFactory.getLogger(IsStaandeHuwelijkOfPartnerschapGeboren.class);
 
     private static final String V2B_1_JA = "Ja";
     private static final String V2B_1_NEE = "Nee";
@@ -56,6 +60,9 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
             }
         }
 
+        logger.debug("""
+            2b.1 Is het kind staande huwelijk of partnerschap geboren?
+            {}""", answer);
         gezagBepaling.getArAntwoordenModel().setV02B01(answer);
     }
 
