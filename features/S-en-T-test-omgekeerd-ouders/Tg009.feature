@@ -749,9 +749,10 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                               |
-      | type        | GezagNietTeBepalen                                                   |
-      | toelichting | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
+      | naam                             | waarde                                                               |
+      | type                             | GezagNietTeBepalen                                                   |
+      | minderjarige.burgerservicenummer | 000000048                                                            |
+      | toelichting                      | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
 
   Scenario: Lg01_045 - minderjarige, emigratie
     # Route: 1 - Wie heeft gezag?: niet te bepalen (N)
@@ -762,9 +763,10 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                               |
-      | type        | GezagNietTeBepalen                                                   |
-      | toelichting | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
+      | naam                             | waarde                                                               |
+      | type                             | GezagNietTeBepalen                                                   |
+      | minderjarige.burgerservicenummer | 000000061                                                            |
+      | toelichting                      | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
 
   Scenario: Lg01_046 - actueel gehuwd en gescheiden, 1 meerderjarig kind, 1 minderjarig erkend kind
     # Meerderjarig
@@ -834,6 +836,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
       | naam                | waarde    |
       | burgerservicenummer | 000000103 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                                               |
-      | type        | GezagNietTeBepalen                                                                                                   |
-      | toelichting | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is. |
+      | naam                             | waarde                                                                                                               |
+      | type                             | GezagNietTeBepalen                                                                                                   |
+      | minderjarige.burgerservicenummer | 000000103                                                                                                            |
+      | toelichting                      | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is. |

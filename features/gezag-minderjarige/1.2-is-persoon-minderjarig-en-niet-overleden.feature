@@ -85,9 +85,10 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                      |
-      | type        | GezagNietTeBepalen                                                          |
-      | toelichting | gezag is niet te bepalen omdat de geboortedatum van persoon niet bekend is. |
+      | naam                             | waarde                                                                      |
+      | type                             | GezagNietTeBepalen                                                          |
+      | minderjarige.burgerservicenummer | 000000036                                                                   |
+      | toelichting                      | gezag is niet te bepalen omdat de geboortedatum van persoon niet bekend is. |
 
   Regel: het bepalen van gezag gaat verder wanneer het kind minderjarig is
 

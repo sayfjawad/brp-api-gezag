@@ -129,8 +129,9 @@ Functionaliteit: 4a.2 - Ouders overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | TijdelijkGeenGezag |
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000036          |
 
   Regel: Eén van de ouders is minderjarig
 
@@ -200,8 +201,9 @@ Functionaliteit: 4a.2 - Ouders overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | TijdelijkGeenGezag |
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000048          |
 
   Regel: Eén van de ouders is onder curatele gesteld
 
@@ -245,8 +247,9 @@ Functionaliteit: 4a.2 - Ouders overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | TijdelijkGeenGezag |
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000036          |
 
   Regel: Eén van de ouders is als minderjarige opgeschort
 
@@ -320,8 +323,9 @@ Functionaliteit: 4a.2 - Ouders overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | TijdelijkGeenGezag |
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000048          |
 
   Regel: Eén van de ouders is onder curatele gesteld en opgeschort
 
@@ -373,8 +377,9 @@ Functionaliteit: 4a.2 - Ouders overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | TijdelijkGeenGezag |
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000036          |
 
   Regel: Eén van de ouders is onder curatele gesteld, opgeschort en minderjarig
 
@@ -452,5 +457,6 @@ Functionaliteit: 4a.2 - Ouders overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | TijdelijkGeenGezag |
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000048          |

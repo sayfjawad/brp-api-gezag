@@ -41,9 +41,10 @@ Functionaliteit: 1.3a - is geboren in het buitenland
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                    |
-      | type        | GezagNietTeBepalen                                                        |
-      | toelichting | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren. |
+      | naam                             | waarde                                                                    |
+      | type                             | GezagNietTeBepalen                                                        |
+      | minderjarige.burgerservicenummer | 000000036                                                                 |
+      | toelichting                      | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren. |
 
   Scenario: Een in Nederland geboren kind met twee ouders heeft tweehoofdig ouder gezag
     Gegeven persoon 'Nona'
@@ -73,6 +74,7 @@ Functionaliteit: 1.3a - is geboren in het buitenland
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                                                                                                                                 |
-      | type        | GezagNietTeBepalen                                                                                                                                                                                     |
-      | toelichting | gezag is niet te bepalen omdat niet kan worden vastgesteld of de persoon naar het buitenland geëmigreerd geweest is omdat de volgende relevante gegevens ontbreken: Geboorteland van bevraagde persoon |
+      | naam                             | waarde                                                                                                                                                                                                 |
+      | type                             | GezagNietTeBepalen                                                                                                                                                                                     |
+      | minderjarige.burgerservicenummer | 000000036                                                                                                                                                                                              |
+      | toelichting                      | gezag is niet te bepalen omdat niet kan worden vastgesteld of de persoon naar het buitenland geëmigreerd geweest is omdat de volgende relevante gegevens ontbreken: Geboorteland van bevraagde persoon |

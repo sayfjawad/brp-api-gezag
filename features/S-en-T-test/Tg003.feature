@@ -444,8 +444,9 @@ Functionaliteit: Tg003 - Bloem-Berendsen-Bolder - Ongehuwd met niet-erkende kind
       | naam                | waarde    |
       | burgerservicenummer | 000000073 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam | waarde             |
-      | type | TijdelijkGeenGezag |
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000073          |
 
   Scenario: Lg01_109 - vader overleden, moeder onder curatele, kind categorie 11 gezag bij derde
     # Route: 6 - Wie heeft gezag?: voogdij (V)

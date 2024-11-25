@@ -80,9 +80,10 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                            |
-      | type        | GezagNietTeBepalen                                                                                |
-      | toelichting | gezag kan niet worden bepaald omdat niet kan worden vastgesteld welke ouder de geboortemoeder is. |
+      | naam                             | waarde                                                                                            |
+      | type                             | GezagNietTeBepalen                                                                                |
+      | minderjarige.burgerservicenummer | 000000036                                                                                         |
+      | toelichting                      | gezag kan niet worden bepaald omdat niet kan worden vastgesteld welke ouder de geboortemoeder is. |
 
   Regel: Ouders zijn gehuwd geweest voor het kind is geboren
 
