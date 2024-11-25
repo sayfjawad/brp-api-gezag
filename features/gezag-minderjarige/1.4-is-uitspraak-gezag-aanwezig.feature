@@ -24,60 +24,60 @@ Functionaliteit: 1.4 - is uitspraak gezag aanwezig
   meerderjarigheidsverklaring voorligt is de persoon minderjarig.
 
   Gebruikte velden:
-    - Indiatie gezag -> 11.32.10
+  - Indiatie gezag -> 11.32.10
 
-    Achtergrond:
-      Gegeven de persoon 'Rianne' met burgerservicenummer '000000012'
-      * is meerderjarig
-      En de persoon 'Adriaan' met burgerservicenummer '000000024'
-      * is meerderjarig
-      En 'Rianne' en 'Adriaan' zijn met elkaar gehuwd
-      En de persoon 'Babette' met burgerservicenummer '000000036'
-      * is minderjarig
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
-      * heeft 'Rianne' als ouder 1
-      * heeft 'Adriaan' als ouder 2
+  Achtergrond:
+    Gegeven de persoon 'Rianne' met burgerservicenummer '000000012'
+    * is meerderjarig
+    En de persoon 'Adriaan' met burgerservicenummer '000000024'
+    * is meerderjarig
+    En 'Rianne' en 'Adriaan' zijn met elkaar gehuwd
+    En de persoon 'Babette' met burgerservicenummer '000000036'
+    * is minderjarig
+    * is in Nederland geboren
+    * is ingeschreven in de BRP
+    * heeft 'Rianne' als ouder 1
+    * heeft 'Adriaan' als ouder 2
 
   Regel: Geen uitspraak gezag van toepassing
 
-    Scenario: Voor het kind is geen uitspraak gezag aanwezig er is sprake van TweehoofdigOuderlijkGezag
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Voor het kind is geen uitspraak gezag aanwezig er is sprake van TweehoofdigOuderlijkGezag
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Voor het kind een uitspraak gedaan maar is geen indicatie betreft gezag er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven voor 'Babette' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
-      | naam                               | waarde                      |
-      | indicatie curateleregister (33.10) | 1                           |
-      | ingangsdatum geldigheid (85.10)    | 20210701                    |
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Voor het kind een uitspraak gedaan maar is geen indicatie betreft gezag er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven voor 'Babette' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | naam                               | waarde   |
+      | indicatie curateleregister (33.10) | 1        |
+      | ingangsdatum geldigheid (85.10)    | 20210701 |
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
@@ -92,59 +92,59 @@ Functionaliteit: 1.4 - is uitspraak gezag aanwezig
 
   Regel: Uitspraak gezag is in onderzoek
 
-    Scenario: Voor het kind een uitspraak gedaan dat alleen ouder 1 gezag heeft, maar deze uitspraak staat op dit moment in onderzoek, resulteerd in GezagNietTeBepalen
-      Gegeven voor 'Babette' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
-      | naam                                 | waarde                          |
-      | indicatie gezag minderjarige (32.10) | 1                               |
-      | ingangsdatum geldigheid (85.10)      | 20230101                        |
-      | aanduiding in onderzoek (83.10)      | 113210                          |
-      | datum ingang onderzoek (83.20)       | 20230101                        |
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Voor het kind een uitspraak gedaan dat alleen ouder 1 gezag heeft, maar deze uitspraak staat op dit moment in onderzoek, resulteerd in GezagNietTeBepalen
+    Gegeven voor 'Babette' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | naam                                 | waarde   |
+      | indicatie gezag minderjarige (32.10) | 1        |
+      | ingangsdatum geldigheid (85.10)      | 20230101 |
+      | aanduiding in onderzoek (83.10)      | 113210   |
+      | datum ingang onderzoek (83.20)       | 20230101 |
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                                                                                                                                      |
-      | type                             | GezagNietTeBepalen                                                                                                                          |
-      | toelichting                      | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: indicatie gezag minderjarige. |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam        | waarde                                                                                                                                      |
+      | type        | GezagNietTeBepalen                                                                                                                          |
+      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: indicatie gezag minderjarige. |
 
-    Scenario: Voor het kind een uitspraak gedaan, deze uitspraak stond in onderzoek er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven voor 'Babette' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
-      | naam                                 | waarde                          |
-      | indicatie gezag minderjarige (32.10) | 1                               |
-      | ingangsdatum geldigheid (85.10)      | 20230101                        |
-      | aanduiding in onderzoek (83.10)      | 113210                          |
-      | datum ingang onderzoek (83.20)       | 20230101                        |
-      | datum einde onderzoek (83.30)        | 20231001                        |
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Voor het kind een uitspraak gedaan, deze uitspraak stond in onderzoek er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven voor 'Babette' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | naam                                 | waarde   |
+      | indicatie gezag minderjarige (32.10) | 1        |
+      | ingangsdatum geldigheid (85.10)      | 20230101 |
+      | aanduiding in onderzoek (83.10)      | 113210   |
+      | datum ingang onderzoek (83.20)       | 20230101 |
+      | datum einde onderzoek (83.30)        | 20231001 |
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                       |
-      | type                             | EenhoofdigOuderlijkGezag     |
-      | minderjarige.burgerservicenummer | 000000036                    |
-      | ouder.burgerservicenummer        | 000000012                    |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
 
   Regel: Uitspraak gezag is aanwezig
 
-    Scenario: Voor het kind een actuele uitspraak gedaan dat alleen ouder 2 gezag heeft er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven voor 'Babette' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
-      | naam                                 | waarde                          |
-      | indicatie gezag minderjarige (32.10) | 2                               |
-      | ingangsdatum geldigheid (85.10)      | 20230101                        |
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Voor het kind een actuele uitspraak gedaan dat alleen ouder 2 gezag heeft er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven voor 'Babette' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
+      | naam                                 | waarde   |
+      | indicatie gezag minderjarige (32.10) | 2        |
+      | ingangsdatum geldigheid (85.10)      | 20230101 |
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                       |
-      | type                             | EenhoofdigOuderlijkGezag     |
-      | minderjarige.burgerservicenummer | 000000036                    |
-      | ouder.burgerservicenummer        | 000000024                    |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000024                |
