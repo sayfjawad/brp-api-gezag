@@ -836,7 +836,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
       | naam                | waarde    |
       | burgerservicenummer | 000000103 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                                                                                                               |
-      | type                             | GezagNietTeBepalen                                                                                                   |
-      | minderjarige.burgerservicenummer | 000000103                                                                                                            |
-      | toelichting                      | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is. |
+      | naam                             | waarde                                                                    |
+      | type                             | GezagNietTeBepalen                                                        |
+      | minderjarige.burgerservicenummer | 000000103                                                                 |
+      | toelichting                      | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren. |
