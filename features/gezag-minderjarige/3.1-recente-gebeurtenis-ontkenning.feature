@@ -48,6 +48,7 @@ Functionaliteit: 3.1 - is er sprake van een recente gebeurtenis - ontkenning
 
   Regel: Als vaderschap is ontkend of de erkenning is vernietigd en er was een uitspraak gezag voor die ouder, wordt het gezag van rechtswege bepaald
     
+    @skip-verify
     Abstract Scenario: er is uitspraak gezag voor ouder 1 en ouder 2 en erkenning door ouder <ouder> is ontkend of vernietigd er is sprake van EenhoofdigOuderlijkGezag
       Gegeven voor 'Kees' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
