@@ -156,6 +156,12 @@ function wijzigPartner(persoon, dataTable, isCorrectie = false, mergeProperties 
         }
     });
 
+    Object.keys(partnerData).forEach(property => {
+        if(!partnerData[property]) {
+            delete partnerData[property];
+        }
+    });
+
     partner.push(partnerData);
 }
 
