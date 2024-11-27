@@ -29,6 +29,12 @@ function createPersoonType(persoonType, dataTable, stapelNr) {
 
     mapDataTableToEntiteit(persoon, dataTable);
 
+    Object.keys(persoon).forEach(property => {
+        if(!persoon[property]) {
+            delete persoon[property];
+        }
+    });
+
     return persoon;
 }
 
