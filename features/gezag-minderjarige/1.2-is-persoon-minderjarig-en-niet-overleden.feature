@@ -29,8 +29,8 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
   wordt de persoon behandeld als meerderjarige.
 
   Gebruikte velden:
-  - datum opschorting bijhouding (67.10)
-  - geboortedatum (03.10)
+  - Geboortedatum -> 03.10
+  - Datum opschorting bijhouding -> 07.67.10
 
   Achtergrond:
     Gegeven de persoon 'Laura' met burgerservicenummer '000000012'

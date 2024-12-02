@@ -35,10 +35,15 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
   • Meerderjarig verklaring: ophalen meerderjarig verklaring uit de aantekening in het Gezagsregister
 
   Gebruikte velden:
+  - Geboortedatum persoon -> 01.03.10
+  - Burgerservicenummer ouder 1 -> 02.01.20
+  - Burgerservicenummer ouder 1 -> 03.01.20
+  - Burgerservicenummer huwelijk/geregistreerd partnerschap -> 05.01.20
+  - Start datum huwelijk/geregistreerd partnerschap -> 05.06.10
+  - Eind datum huwelijk/geregistreerd partnerschap -> 05.07.10
+  - Eind reden huwelijk/geregistreerd partnerschap -> 05.07.40
   - Datum opschorting bijhouding -> 07.67.10
-  - De geboortedatum van de ouder(s)n -> 02.03.10 en 03.03.10
   - Indicatie curatele -> 11.33.10
-  - Beschrijving Document -> 11.82.30
 
   Achtergrond:
     Gegeven de persoon 'Lieke' met burgerservicenummer '000000012'

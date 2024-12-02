@@ -51,12 +51,17 @@ Functionaliteit: 2a.1 - Zijn juridische ouders nu met elkaar gehuwd of partners
   zijn.
 
   Gebruikte velden:
-  - BSN ouder 1 -> 02.01.20
-  - BSN ouder 2 -> 03.01.20
-  - BSN in huwelijk/geregistreerd partnerschap -> 05.01.20
-  - Datum huwelijkssluiting/aangaan geregistreerd partnerschap -> 05.06.10
-  - Datum ontbinding huwelijk/geregistreerd partnerschap -> 05.07.10
-  - Reden huwelijksontbinding -> 05.07.40
+  - Geboortedatum persoon -> 01.03.10
+  - Burgerservicenummer ouder 1 -> 02.01.20
+  - Geslachtsnaam ouder 1 -> 02.02.40
+  - Burgerservicenummer ouder 2 -> 03.01.20
+  - Geslachtsnaam ouder 2 -> 03.02.40
+  - Burgerservicenummer huwelijk/geregistreerd partnerschap -> 05.01.20
+  - Start datum huwelijk/geregistreerd partnerschap -> 05.06.10
+  - Eind datum huwelijk/geregistreerd partnerschap -> 05.07.10
+  - Eind reden huwelijk/geregistreerd partnerschap -> 05.07.40
+  - Datum opschorting bijhouding -> 07.67.10
+  - Reden opschorting bijhouding -> 07.67.20
 
   Achtergrond:
     Gegeven de persoon 'Rianne' met burgerservicenummer '000000012'
