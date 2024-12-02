@@ -17,7 +17,7 @@ import java.util.*;
 public class GezagBepaling {
     
     private static final Set<String> TE_NEGEREN_VELDEN_IN_ONDERZOEK = Set.of(
-        "burgerservicenummer",
+        "burgerservicenummer van persoon",
         "gemeente van inschrijving"
     );
 
