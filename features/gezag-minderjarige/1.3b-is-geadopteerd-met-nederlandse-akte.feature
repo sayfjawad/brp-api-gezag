@@ -155,5 +155,5 @@ Functionaliteit: 1.3b - is geadopteerd met nederlandse akte
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam        | waarde                                                                                                                                                                                                             |
       | type        | GezagNietTeBepalen                                                                                                                                                                                                 |
-      | toelichting | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is. |
+      | toelichting | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren. |
 
