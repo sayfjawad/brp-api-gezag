@@ -41,7 +41,7 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
 
   Gebruikte velden:
     - Geboortedatum -> 01.03.10
-    - Huwelijk/geregistreerd partnerschap -> 05.06.20 of 55.06.20
+    - Huwelijk/geregistreerd partnerschap -> 05.06.10 of 55.06.20
     - Aktenummer ouder 1 -> 02.81.20
 
     Achtergrond:
