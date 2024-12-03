@@ -43,7 +43,7 @@ Functionaliteit: 1.3a - is geboren in het buitenland
       En heeft de persoon een 'gezag' met de volgende gegevens
       | naam        | waarde                                                                                                                                                                                                             |
       | type        | GezagNietTeBepalen                                                                                                                                                                                                 |
-      | toelichting | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren en geen Nederlandse adoptie-akte bekend is. |
+      | toelichting | gezag is niet te bepalen omdat minderjarige in het buitenland is geboren. |
 
     Scenario: Een in Nederland geboren kind met twee ouders heeft tweehoofdig ouder gezag
       Gegeven persoon 'Nona' 
