@@ -68,7 +68,7 @@ Functionaliteit: 4a.2 - Ouders overleden of onbevoegd tot gezag
   - Burgerservicenummer ouder 1 -> 02.01.20
   - Geslachtsnaam ouder 1 -> 02.02.40
   - Burgerservicenummer ouder 1 -> 03.01.20
-  - Geslachtsnaam ouder 1 -> 03.02.40
+  - Geslachtsnaam ouder 2 -> 03.02.40
   - Burgerservicenummer huwelijk/geregistreerd partnerschap -> 05.01.20
   - Start datum huwelijk/geregistreerd partnerschap -> 05.06.10
   - Eind datum huwelijk/geregistreerd partnerschap -> 05.07.10
