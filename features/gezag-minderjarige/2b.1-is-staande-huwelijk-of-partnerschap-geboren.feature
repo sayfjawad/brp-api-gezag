@@ -23,131 +23,131 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
 
   Wat betekend het wanneer een kind is geboren tijdens staande huwelijk of partnerschap?
   1) Ja (staande huwelijk/partnerschap) -> GG: Ouder en echtgenoot/partner hebben gezamenlijk het gezag (1:253sa BW):
-    a. meemoeders: kind tijdens huwelijk/gp geboren, is niet erkend en er is geen sprake van een verklaring onbekende donor of
-    b. kind vóór 1 april 2014 geboren tijdens geregistreerd partnerschap van paren van verschillend geslacht en het kind is niet erkend.
+  a. meemoeders: kind tijdens huwelijk/gp geboren, is niet erkend en er is geen sprake van een verklaring onbekende donor of
+  b. kind vóór 1 april 2014 geboren tijdens geregistreerd partnerschap van paren van verschillend geslacht en het kind is niet erkend.
   2)
-    Nee -> OG1: Ouder heeft alleen het gezag (1:253b lid 1 BW) (Niet alleen de moeder uit wie het kind is geboren, maar ook in het geval van een
-    adoptiefouder. Het maakt hier dus niet uit wie die ene juridische ouder is.) →OG1; eenhoofdig gezag
+  Nee -> OG1: Ouder heeft alleen het gezag (1:253b lid 1 BW) (Niet alleen de moeder uit wie het kind is geboren, maar ook in het geval van een
+  adoptiefouder. Het maakt hier dus niet uit wie die ene juridische ouder is.) →OG1; eenhoofdig gezag
 
   Opmerkingen
   Bij deze vraag kan een erkenning nietig verklaard zijn en heeft de minderjarige nog maar één ouder. Echter, als gekeken wordt of
   de overgebleven ouder een relatie had tijdens de geboorte van de minderjarige kan het voorkomen dat de partner van de ouder
   uitgerekend de persoon is waar de nietig verklaarde erkenning betrekking op heeft. In zo’n geval heeft de partner geen gezag over de
   minderjarige dus geen gezamenlijk gezag. De huidige afleiding voorziet hier niet in.
- 
+
   Aanbevelingen
   Voorstel is ook te kijken naar een nietig verklaarde erkenning in de aktenummers van de ouders. Daarmee wordt het antwoord Nee
   aangevuld met “of nietig verklaarde erkenning” en krijgt de partner met nietig verklaarde erkenning geen gezag.
 
   Gebruikte velden:
-    - Geboortedatum -> 01.03.10
-    - Huwelijk/geregistreerd partnerschap -> 05.06.10 of 55.06.20
-    - Aktenummer ouder 1 -> 02.81.20
+  - Geboortedatum -> 01.03.10
+  - Huwelijk/geregistreerd partnerschap -> 05.06.10 of 55.06.20
+  - Aktenummer ouder 1 -> 02.81.20
 
-    Achtergrond:
-      Gegeven de persoon 'Saskia' met burgerservicenummer '000000012'
-      * is meerderjarig
-      En de persoon 'Maarten' met burgerservicenummer '000000024'
-      * is meerderjarig
-      En de persoon 'Rachel' met burgerservicenummer '000000036'
-      * heeft 'Saskia' als ouder 1 
-      * is geboren op 1-12-2022
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
+  Achtergrond:
+    Gegeven de persoon 'Saskia' met burgerservicenummer '000000012'
+    * is meerderjarig
+    En de persoon 'Maarten' met burgerservicenummer '000000024'
+    * is meerderjarig
+    En de persoon 'Rachel' met burgerservicenummer '000000036'
+    * heeft 'Saskia' als ouder 1
+    * is geboren op 1-12-2022
+    * is in Nederland geboren
+    * is ingeschreven in de BRP
 
-  Regel: Kind is geboren met ouders die op dit moment getrouwd zijn 
+  Regel: Kind is geboren met ouders die op dit moment getrouwd zijn
 
-    Scenario: Huwelijk / partnerschap van ouders is nooit ontbonden geweest er is sprake van GezamenlijkGezag
-      Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
+  Scenario: Huwelijk / partnerschap van ouders is nooit ontbonden geweest er is sprake van GezamenlijkGezag
+    Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100401                                                           |
-      Als gezag wordt gezocht met de volgende parameters
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | GezamenlijkGezag          |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
-      | derde.burgerservicenummer        | 000000024                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde           |
+      | type                             | GezamenlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036        |
+      | ouder.burgerservicenummer        | 000000012        |
+      | derde.burgerservicenummer        | 000000024        |
 
-    Scenario: Huwelijk / partnerschap van ouders heeft plaatsgevonden nadat het kind is geboren er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
+  Scenario: Huwelijk / partnerschap van ouders heeft plaatsgevonden nadat het kind is geboren er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20231201                                                           |
-      Als gezag wordt gezocht met de volgende parameters
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
 
-  Regel: Kind is geboren met ouders die niet langer getrouwd zijn 
+  Regel: Kind is geboren met ouders die niet langer getrouwd zijn
 
-    Scenario: Huwelijk / partnerschap van ouders was ontbonden voor dat het kind werd geboren er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
+  Scenario: Huwelijk / partnerschap van ouders was ontbonden voor dat het kind werd geboren er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100101                                                           |
-      Gegeven 'Saskia' en 'Maarten' zijn gescheiden met de volgende gegevens
+    Gegeven 'Saskia' en 'Maarten' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | 20221101                                                     |
-      Als gezag wordt gezocht met de volgende parameters
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
 
-    Scenario: Huwelijk / partnerschap van ouders is ontbonden nadat het kind werd geboren er is sprake van GezamenlijkGezag
-      Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
+  Scenario: Huwelijk / partnerschap van ouders is ontbonden nadat het kind werd geboren er is sprake van GezamenlijkGezag
+    Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100101                                                           |
-      Gegeven 'Saskia' en 'Maarten' zijn gescheiden met de volgende gegevens
+    Gegeven 'Saskia' en 'Maarten' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | 20221230                                                     |
-      Als gezag wordt gezocht met de volgende parameters
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | GezamenlijkGezag          |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
-      | derde.burgerservicenummer        | 000000024                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde           |
+      | type                             | GezamenlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036        |
+      | ouder.burgerservicenummer        | 000000012        |
+      | derde.burgerservicenummer        | 000000024        |
 
-  Regel: Kind is geboren met ouders die nooit getrouwd geweest zijn 
+  Regel: Kind is geboren met ouders die nooit getrouwd geweest zijn
 
-    Scenario: Kind werd geboren zonder huwelijk / partnerschap tussen ouders er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
+  Scenario: Kind werd geboren zonder huwelijk / partnerschap tussen ouders er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven 'Saskia' en 'Maarten' zijn met elkaar gehuwd met de volgende gegevens
       | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
       | 20100101                                                           |
-      Gegeven 'Saskia' en 'Maarten' zijn gescheiden met de volgende gegevens
+    Gegeven 'Saskia' en 'Maarten' zijn gescheiden met de volgende gegevens
       | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
       | 20221101                                                     |
-      Als gezag wordt gezocht met de volgende parameters
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
