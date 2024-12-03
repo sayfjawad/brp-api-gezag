@@ -37,7 +37,7 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
   Gebruikte velden:
   - Geboortedatum persoon -> 01.03.10
   - Burgerservicenummer ouder 1 -> 02.01.20
-  - Burgerservicenummer ouder 1 -> 03.01.20
+  - Burgerservicenummer ouder 2 -> 03.01.20
   - Burgerservicenummer huwelijk/geregistreerd partnerschap -> 05.01.20
   - Start datum huwelijk/geregistreerd partnerschap -> 05.06.10
   - Eind datum huwelijk/geregistreerd partnerschap -> 05.07.10
