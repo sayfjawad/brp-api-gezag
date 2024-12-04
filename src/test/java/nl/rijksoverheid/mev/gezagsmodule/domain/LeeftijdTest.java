@@ -14,7 +14,7 @@ class LeeftijdTest {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
 
     @Test
-    public void leeftijdZonderGeboortedatum() {
+    void leeftijdZonderGeboortedatum() {
         String geboorteDatum = null;
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
@@ -24,7 +24,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdMetLegeGeboortedatum() {
+    void leeftijdMetLegeGeboortedatum() {
         String geboorteDatum = "";
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
@@ -34,7 +34,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdMetOnbekendeGeboortedatum() {
+    void leeftijdMetOnbekendeGeboortedatum() {
         String geboorteDatum = ONBEKENDE_GEBOORTEDATUM_BRP;
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
@@ -44,7 +44,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorPersoonDieGisterenGeborenIs() {
+    void leeftijdVoorPersoonDieGisterenGeborenIs() {
         String geboorteDatum = getDateFor(0, 0, 1);
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
@@ -54,7 +54,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorPersoonDieMorgenMeerderjarigWordt() {
+    void leeftijdVoorPersoonDieMorgenMeerderjarigWordt() {
         String geboorteDatum = getDateFor(17, 11, 30);
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
@@ -64,7 +64,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorPersoonDieVandaagMeerderjarigIsGeworden() {
+    void leeftijdVoorPersoonDieVandaagMeerderjarigIsGeworden() {
         String geboorteDatum = getDateFor(18, 0, 0);
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
 
@@ -73,7 +73,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorPersoonDieGisterenMeerderjarigIsGeworden() {
+    void leeftijdVoorPersoonDieGisterenMeerderjarigIsGeworden() {
         String geboorteDatum = getDateFor(18, 0, 1);
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
@@ -83,7 +83,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorMinderjarigPersoonMetOnbekendeDag() {
+    void leeftijdVoorMinderjarigPersoonMetOnbekendeDag() {
         String geboorteDatum = makeDayUnknown(getDateFor(6, 1, 4));
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
@@ -93,7 +93,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorMinderjarigPersoonMetOnbekendeMaand() {
+    void leeftijdVoorMinderjarigPersoonMetOnbekendeMaand() {
         String geboorteDatum = makeMonthUnknown(getDateFor(6, 1, 4));
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
@@ -103,7 +103,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorMinderjarigPersoonMetOnbekendeDagEnMaand() {
+    void leeftijdVoorMinderjarigPersoonMetOnbekendeDagEnMaand() {
         String geboorteDatum = makeDayUnknown(getDateFor(6, 1, 4));
         geboorteDatum = makeMonthUnknown(geboorteDatum);
 
@@ -114,7 +114,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorPersoonMetOnbekendeDagEnMaandDieDitJaarMeerderjarigWordt() {
+    void leeftijdVoorPersoonMetOnbekendeDagEnMaandDieDitJaarMeerderjarigWordt() {
         String geboorteDatum = makeDayUnknown(getDateFor(17, 1, 4));
         geboorteDatum = makeMonthUnknown(geboorteDatum);
 
@@ -125,7 +125,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorPersoonMetOnbekendeDagDieDezeMaandMeerderjarigWordt() {
+    void leeftijdVoorPersoonMetOnbekendeDagDieDezeMaandMeerderjarigWordt() {
         String geboorteDatum = makeDayUnknown(getDateFor(18, 0, 0));
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
@@ -135,7 +135,7 @@ class LeeftijdTest {
     }
 
     @Test
-    public void leeftijdVoorPersoonMetOnbekendeDagDieDezeMaandMeerderjarigIsGeworden() {
+    void leeftijdVoorPersoonMetOnbekendeDagDieDezeMaandMeerderjarigIsGeworden() {
         String geboorteDatum = makeDayUnknown(getDateFor(18, 1, 0));
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
 
