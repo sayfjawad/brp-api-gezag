@@ -3,7 +3,6 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.time.Clock;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -14,8 +13,6 @@ import java.util.Objects;
 public class Ouder1 extends PotentieelInOnderzoek {
 
     private static final String BSN = "020120";
-    private static final String VOORNAMEN = "020210";
-    private static final String VOORVOEGSEL = "020230";// Voorvoegsel geslachtsnaam persoon
     private static final String GESLACHTSNAAM = "020240";
     private static final String AKTENUMMER = "028120";
     private static final String DATUM_INGANG_FAMILIEBETREKKING = "026210"; // yyyMMdd formaat
@@ -32,8 +29,6 @@ public class Ouder1 extends PotentieelInOnderzoek {
 
         Map<String, String> values = new HashMap<>();
         values.put(BSN, burgerServiceNrAsString);
-        values.put(VOORNAMEN, lo3PlPersoonRecord.getVoorNaam());
-        values.put(VOORVOEGSEL, lo3PlPersoonRecord.getGeslachtsNaamVoorvoegsel());
         values.put(GESLACHTSNAAM, lo3PlPersoonRecord.getGeslachtsNaam());
         values.put(AKTENUMMER, lo3PlPersoonRecord.getAkteNr());
         values.put(DATUM_INGANG_FAMILIEBETREKKING, Objects.toString(lo3PlPersoonRecord.getFamilieBetrekStartDatum(), null));
@@ -50,14 +45,6 @@ public class Ouder1 extends PotentieelInOnderzoek {
 
     public String getBsn() {
         return get(BSN, "burgerservicenummer van ouder 1");
-    }
-
-    public String getVoornamen() {
-        return get(VOORNAMEN, "voornamen van ouder 1");
-    }
-
-    public String getVoorvoegsel() {
-        return get(VOORVOEGSEL, "voorvoegsel van ouder 1");
     }
 
     public String getGeslachtsnaam() {
@@ -86,8 +73,6 @@ public class Ouder1 extends PotentieelInOnderzoek {
     public int hashCode() {
         return Objects.hash(
                 getBsn(),
-                getVoornamen(),
-                getVoorvoegsel(),
                 getGeslachtsnaam(),
                 getDatumIngangFamiliebetrekking(),
                 getAktenummer(),

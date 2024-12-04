@@ -3,7 +3,6 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.time.Clock;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -20,33 +19,12 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
      * yyyyMMdd formaat
      */
     private static final String DATUM_VOLTROKKEN = "050610";
-
-    /**
-     * Plaats waar het huwelijk is voltrokken of het partnerschap is aangegaan
-     */
-    private static final String PLAATS_VOLTROKKEN = "050620";
-
-    /**
-     * Land waar het huwelijk is voltrokken of het partnerschap is aangegaan
-     */
-    private static final String LAND_VOLTROKKEN = "050630";
-
     /**
      * Datum waarop het huwelijk/partnerschap is ontbonden of nietig verklaard.
      * <p>
      * yyyyMMdd formaat
      */
     private static final String DATUM_ONTBINDING = "050710";
-
-    /**
-     * Plaats waar huwelijk/partnerschap is ontbonden of nietig verklaard
-     */
-    private static final String PLAATS_ONTBINDING = "050720";
-
-    /**
-     * Land waar huwelijk/partnerschap is ontbonden of nietig verklaard
-     */
-    private static final String LAND_ONTBINDING = "050730";
 
     /**
      * Geeft aan om welke reden het partnerschap is ontbonden of nietig
@@ -74,11 +52,7 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
         Map<String, String> values = new HashMap<>();
         values.put(BSN, burgerServiceNrAsString);
         values.put(DATUM_VOLTROKKEN, Objects.toString(lo3PlPersoonRecord.getRelatieStartDatum(), null));
-        values.put(PLAATS_VOLTROKKEN, lo3PlPersoonRecord.getRelatieStartPlaats());
-        values.put(LAND_VOLTROKKEN, Objects.toString(lo3PlPersoonRecord.getRelatieStartLandCode(), null));
         values.put(DATUM_ONTBINDING, Objects.toString(lo3PlPersoonRecord.getRelatieEindDatum(), null));
-        values.put(PLAATS_ONTBINDING, lo3PlPersoonRecord.getRelatieEindPlaats());
-        values.put(LAND_ONTBINDING, Objects.toString(lo3PlPersoonRecord.getRelatieEindLandCode(), null));
         values.put(REDEN_ONTBINDING, lo3PlPersoonRecord.getRelatieEindReden());
         values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
         values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
@@ -99,24 +73,8 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
         return get(DATUM_VOLTROKKEN, "datum voltrokken van relatie");
     }
 
-    public String getPlaatsVoltrokken() {
-        return get(PLAATS_VOLTROKKEN, "plaats voltrokken van relatie");
-    }
-
-    public String getLandVoltrokken() {
-        return get(LAND_VOLTROKKEN, "land voltrokken van relatie");
-    }
-
     public String getDatumOntbinding() {
         return get(DATUM_ONTBINDING, "datum ontbinding van relatie");
-    }
-
-    public String getPlaatsOntbinding() {
-        return get(PLAATS_ONTBINDING, "plaats ontbinding van relatie");
-    }
-
-    public String getLandOntbinding() {
-        return get(LAND_ONTBINDING, "land ontbinding van relatie");
     }
 
     public String getRedenOntbinding() {
@@ -136,16 +94,12 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
     @Override
     public int hashCode() {
         return Objects.hash(
-                getBsnPartner(),
-                getDatumVoltrokken(),
-                getPlaatsVoltrokken(),
-                getLandVoltrokken(),
-                getDatumOntbinding(),
-                getPlaatsOntbinding(),
-                getLandOntbinding(),
-                getRedenOntbinding(),
-                getAanduidingGegevensInOnderzoek(),
-                getDatumIngangOnderzoek(),
-                getDatumEindeOnderzoek());
+            getBsnPartner(),
+            getDatumVoltrokken(),
+            getDatumOntbinding(),
+            getRedenOntbinding(),
+            getAanduidingGegevensInOnderzoek(),
+            getDatumIngangOnderzoek(),
+            getDatumEindeOnderzoek());
     }
 }

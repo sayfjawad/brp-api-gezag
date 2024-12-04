@@ -3,7 +3,6 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoudingRecord;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.time.Clock;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

@@ -3,7 +3,6 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.time.Clock;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,9 +14,6 @@ import java.util.Objects;
 public class Kind extends PotentieelInOnderzoek {
 
     public static final String BSN = "090120";
-    private static final String VOORNAMEN = "090210";
-    private static final String VOORVOEGSEL = "090230";// Voorvoegsel geslachtsnaam persoon
-    private static final String GESLACHTSNAAM = "090240";
     public static final String GEBOORTEDATUM = "090310";
     private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "098310";
     private static final String ONDERZOEK_START_DATUM = "098320";
@@ -33,9 +29,6 @@ public class Kind extends PotentieelInOnderzoek {
 
         Map<String, String> values = new HashMap<>();
         values.put(BSN, burgerServiceNrAsString);
-        values.put(VOORNAMEN, lo3PlPersoonRecord.getVoorNaam());
-        values.put(VOORVOEGSEL, lo3PlPersoonRecord.getGeslachtsNaamVoorvoegsel());
-        values.put(GESLACHTSNAAM, lo3PlPersoonRecord.getGeslachtsNaam());
         values.put(GEBOORTEDATUM, Objects.toString(lo3PlPersoonRecord.getGeboorteDatum(), null));
         values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
         values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
@@ -50,18 +43,6 @@ public class Kind extends PotentieelInOnderzoek {
 
     public String getBsn() {
         return get(BSN, "burgerservicenummer van kind");
-    }
-
-    public String getVoornamen() {
-        return get(VOORNAMEN, "voornamen van kind");
-    }
-
-    public String getVoorvoegsel() {
-        return get(VOORVOEGSEL, "voorvoegsel van kind");
-    }
-
-    public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM, "geslachtsnaam van kind");
     }
 
     public String getGeboortedatum() {
@@ -91,13 +72,10 @@ public class Kind extends PotentieelInOnderzoek {
     @Override
     public int hashCode() {
         return Objects.hash(
-                getBsn(),
-                getVoornamen(),
-                getVoorvoegsel(),
-                getGeslachtsnaam(),
-                getGeboortedatum(),
-                getAanduidingGegevensInOnderzoek(),
-                getDatumIngangOnderzoek(),
-                getDatumEindeOnderzoek());
+            getBsn(),
+            getGeboortedatum(),
+            getAanduidingGegevensInOnderzoek(),
+            getDatumIngangOnderzoek(),
+            getDatumEindeOnderzoek());
     }
 }
