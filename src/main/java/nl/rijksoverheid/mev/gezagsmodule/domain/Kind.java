@@ -24,7 +24,7 @@ public class Kind extends PotentieelInOnderzoek {
     private static final String ONDERZOEK_EIND_DATUM = "098330";
     private static final int MEERDERJARIGE_LEEFTIJD = 180000;
 
-    public static Kind from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+    public static Kind from(Lo3PlPersoonRecord lo3PlPersoonRecord) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
 
@@ -41,11 +41,11 @@ public class Kind extends PotentieelInOnderzoek {
         values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
         values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
 
-        return new Kind(values, clock);
+        return new Kind(values);
     }
 
-    public Kind(final Map<String, String> values, final Clock clock) {
-        super(Categorie.KIND, values, clock);
+    public Kind(final Map<String, String> values) {
+        super(Categorie.KIND, values);
     }
 
     public String getBsn() {
@@ -74,7 +74,7 @@ public class Kind extends PotentieelInOnderzoek {
             return false;
         }
         int minderjarigTotInt = Integer.parseInt(geboortedatum) + MEERDERJARIGE_LEEFTIJD;
-        int datumVandaag = Integer.parseInt(LocalDate.now(clock).format(FORMATTER));
+        int datumVandaag = Integer.parseInt(LocalDate.now().format(FORMATTER));
         return minderjarigTotInt > datumVandaag;
     }
 

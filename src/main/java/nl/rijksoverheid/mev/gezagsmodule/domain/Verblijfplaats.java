@@ -27,7 +27,7 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
     private static final String ONDERZOEK_EIND_DATUM = "088330";
     private static final String RNI_DEELNEMER = "088810";
 
-    public static Verblijfplaats from(Lo3PlVerblijfplaatsRecord lo3PlVerblijfplaatsRecord, Clock clock) {
+    public static Verblijfplaats from(Lo3PlVerblijfplaatsRecord lo3PlVerblijfplaatsRecord) {
         var onderzoekGegevensAanduiding = lo3PlVerblijfplaatsRecord.getOnderzoekGegevensAand();
         var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
@@ -40,11 +40,11 @@ public class Verblijfplaats extends PotentieelInOnderzoek {
         values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlVerblijfplaatsRecord.getOnderzoekEindDatum(), null));
         values.put(RNI_DEELNEMER, Objects.toString(lo3PlVerblijfplaatsRecord.getRniDeelnemer(), null));
 
-        return new Verblijfplaats(values, clock);
+        return new Verblijfplaats(values);
     }
 
-    public Verblijfplaats(final Map<String, String> values, final Clock clock) {
-        super(Categorie.VERBLIJFPLAATS, values, clock);
+    public Verblijfplaats(final Map<String, String> values) {
+        super(Categorie.VERBLIJFPLAATS, values);
     }
 
     @Override

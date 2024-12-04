@@ -64,7 +64,7 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
     private static final String ONDERZOEK_START_DATUM = "058320";
     private static final String ONDERZOEK_EIND_DATUM = "058330";
 
-    public static HuwelijkOfPartnerschap from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+    public static HuwelijkOfPartnerschap from(Lo3PlPersoonRecord lo3PlPersoonRecord) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
 
@@ -84,11 +84,11 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
         values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
         values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
 
-        return new HuwelijkOfPartnerschap(values, clock);
+        return new HuwelijkOfPartnerschap(values);
     }
 
-    public HuwelijkOfPartnerschap(final Map<String, String> values, final Clock clock) {
-        super(Categorie.HUWELIJK_OF_PARTNERSCHAP, values, clock);
+    public HuwelijkOfPartnerschap(final Map<String, String> values) {
+        super(Categorie.HUWELIJK_OF_PARTNERSCHAP, values);
     }
 
     public String getBsnPartner() {

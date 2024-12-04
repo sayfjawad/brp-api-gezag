@@ -18,7 +18,6 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
     private final String categorie;
     private final Set<String> veldenInOnderzoek;
 
-    protected final Clock clock;
     protected final Map<String, String> values;
 
     protected final String aanduidingGegevensInOnderzoek;
@@ -30,10 +29,9 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
 
     protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
 
-    protected PotentieelInOnderzoek(final String categorie, final Map<String, String> values, final Clock clock) {
+    protected PotentieelInOnderzoek(final String categorie, final Map<String, String> values) {
         this.categorie = categorie;
         this.values = values;
-        this.clock = clock;
 
         this.aanduidingGegevensInOnderzoek = categorie + "8310";
         this.datumIngangOnderzoek = categorie + "8320";
@@ -61,7 +59,7 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
 
             if (datumEindeOnderzoekValue != null && !datumEindeOnderzoekValue.isEmpty()) {
                 int datumEindeOnderzoekInt = Integer.parseInt(datumEindeOnderzoekValue);
-                int datumVandaag = Integer.parseInt(LocalDate.now(clock).format(FORMATTER));
+                int datumVandaag = Integer.parseInt(LocalDate.now().format(FORMATTER));
 
                 if (datumVandaag <= datumEindeOnderzoekInt) {
                     veldenInOnderzoek.add(veldInOnderzoek);

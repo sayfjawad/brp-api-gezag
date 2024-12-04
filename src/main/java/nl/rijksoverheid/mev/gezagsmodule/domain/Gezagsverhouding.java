@@ -33,7 +33,7 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
     private static final String INGANGSDATUM_GELDIGHEID_GEZAG_DEFAULT_VALUE = "0";
     private static final String INGANGSDATUM_GELDIGHEID_GEZAG_DEFAULT_VALUE_OLD = "00000000"; // only occurs during JSON-based acceptance tests
 
-    public static Gezagsverhouding from(Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord, Clock clock) {
+    public static Gezagsverhouding from(Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord) {
         var onderzoekGegevensAanduiding = lo3PlGezagsverhoudingRecord.getOnderzoekGegevensAand();
         var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
@@ -45,11 +45,11 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
         values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlGezagsverhoudingRecord.getOnderzoekEindDatum(), null));
         values.put(INGANGSDATUM_GELDIGHEID_GEZAG, Objects.toString(lo3PlGezagsverhoudingRecord.getGeldigheidStartDatum(), null));
 
-        return new Gezagsverhouding(values, clock);
+        return new Gezagsverhouding(values);
     }
 
-    public Gezagsverhouding(final Map<String, String> values, final Clock clock) {
-        super(Categorie.GEZAGSVERHOUDING, values, clock);
+    public Gezagsverhouding(final Map<String, String> values) {
+        super(Categorie.GEZAGSVERHOUDING, values);
     }
 
     /**

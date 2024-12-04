@@ -30,7 +30,7 @@ public class GeschiedenisHuwelijkOfPartnerschap extends PotentieelInOnderzoek {
     private static final String REDEN_ONTBINDING = "550740";
 
     public GeschiedenisHuwelijkOfPartnerschap(final Map<String, String> values, final Clock clock) {
-        super(Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP, values, clock);
+        super(Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP, values);
     }
 
     public String getBsnPartner() {

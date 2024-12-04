@@ -26,7 +26,7 @@ public class GeschiedenisOuder1 extends PotentieelInOnderzoek {
     private static final String ONDERZOEK_START_DATUM = "528320";
     private static final String ONDERZOEK_EIND_DATUM = "528330";
 
-    public static GeschiedenisOuder1 from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+    public static GeschiedenisOuder1 from(Lo3PlPersoonRecord lo3PlPersoonRecord) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
 
@@ -47,11 +47,11 @@ public class GeschiedenisOuder1 extends PotentieelInOnderzoek {
         values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
         values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
 
-        return new GeschiedenisOuder1(values, clock);
+        return new GeschiedenisOuder1(values);
     }
 
-    public GeschiedenisOuder1(final Map<String, String> values, final Clock clock) {
-        super(Categorie.GESCHIEDENIS_OUDER_1, values, clock);
+    public GeschiedenisOuder1(final Map<String, String> values) {
+        super(Categorie.GESCHIEDENIS_OUDER_1, values);
     }
 
     public String getBsn() {

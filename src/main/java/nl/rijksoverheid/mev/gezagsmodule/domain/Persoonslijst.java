@@ -30,53 +30,49 @@ public class Persoonslijst {
     private Map<String, PersoonslijstVeld> values;
     private Map<String, List<PersoonslijstVeld>> listValues;
 
-    private final Clock clock;
-
-    public Persoonslijst(final Clock clock) {
+    public Persoonslijst() {
         values = new HashMap<>();
         listValues = new HashMap<>();
-
-        this.clock = clock;
     }
 
     public void addGezagsverhouding(final Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord) {
-        addVeld(Categorie.GEZAGSVERHOUDING, Gezagsverhouding.from(lo3PlGezagsverhoudingRecord, clock));
+        addVeld(Categorie.GEZAGSVERHOUDING, Gezagsverhouding.from(lo3PlGezagsverhoudingRecord));
     }
 
     public void addVerblijfplaats(final Lo3PlVerblijfplaatsRecord lo3PlVerblijfplaatsRecord) {
-        addVeld(Categorie.VERBLIJFPLAATS, Verblijfplaats.from(lo3PlVerblijfplaatsRecord, clock));
+        addVeld(Categorie.VERBLIJFPLAATS, Verblijfplaats.from(lo3PlVerblijfplaatsRecord));
     }
 
     public void addRelatie(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.HUWELIJK_OF_PARTNERSCHAP, HuwelijkOfPartnerschap.from(lo3PlPersoonRecord, clock));
+        addVeldToList(Categorie.HUWELIJK_OF_PARTNERSCHAP, HuwelijkOfPartnerschap.from(lo3PlPersoonRecord));
     }
 
     public void addKind(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.KIND, Kind.from(lo3PlPersoonRecord, clock));
+        addVeldToList(Categorie.KIND, Kind.from(lo3PlPersoonRecord));
     }
 
     public void addOuder1(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeld(Categorie.OUDER_1, Ouder1.from(lo3PlPersoonRecord, clock));
+        addVeld(Categorie.OUDER_1, Ouder1.from(lo3PlPersoonRecord));
     }
 
     public void addOuder1Geschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.GESCHIEDENIS_OUDER_1, GeschiedenisOuder1.from(lo3PlPersoonRecord, clock));
+        addVeldToList(Categorie.GESCHIEDENIS_OUDER_1, GeschiedenisOuder1.from(lo3PlPersoonRecord));
     }
 
     public void addOuder2(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeld(Categorie.OUDER_2, Ouder2.from(lo3PlPersoonRecord, clock));
+        addVeld(Categorie.OUDER_2, Ouder2.from(lo3PlPersoonRecord));
     }
 
     public void addOuder2Geschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.GESCHIEDENIS_OUDER_2, GeschiedenisOuder2.from(lo3PlPersoonRecord, clock));
+        addVeldToList(Categorie.GESCHIEDENIS_OUDER_2, GeschiedenisOuder2.from(lo3PlPersoonRecord));
     }
 
     public void addPersoon(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeld(Categorie.PERSOON, Persoon.from(lo3PlPersoonRecord, clock));
+        addVeld(Categorie.PERSOON, Persoon.from(lo3PlPersoonRecord));
     }
 
     public void addPersoonGeschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.GESCHIEDENIS_PERSOON, GeschiedenisPersoon.from(lo3PlPersoonRecord, clock));
+        addVeldToList(Categorie.GESCHIEDENIS_PERSOON, GeschiedenisPersoon.from(lo3PlPersoonRecord));
     }
 
     public void addInschrijving(final Lo3PlRecord lo3PlRecord) {
@@ -587,7 +583,7 @@ public class Persoonslijst {
         int geboortedatum = Optional.ofNullable(geboortedatumAsString).map(Integer::parseInt).orElse(0);
         if (geboortedatum == 0) throw new AfleidingsregelException("Preconditie: geboortedatum mag niet onbekend zijn", "geboortedatum");
 
-        int datumVolwassenVanaf = Integer.parseInt(LocalDate.now(clock).format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
+        int datumVolwassenVanaf = Integer.parseInt(LocalDate.now().format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
         return geboortedatum > datumVolwassenVanaf;
     }
 

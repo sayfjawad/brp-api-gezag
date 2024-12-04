@@ -27,7 +27,7 @@ public class Persoon extends PotentieelInOnderzoek {
 
     private static final String RNI_DEELNEMER = "018810";
 
-    public static Persoon from(Lo3PlPersoonRecord lo3PlPersoonRecord, Clock clock) {
+    public static Persoon from(Lo3PlPersoonRecord lo3PlPersoonRecord) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
 
@@ -48,11 +48,11 @@ public class Persoon extends PotentieelInOnderzoek {
         values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
         values.put(RNI_DEELNEMER, Objects.toString(lo3PlPersoonRecord.getRniDeelnemer(), null));
 
-        return new Persoon(values, clock);
+        return new Persoon(values);
     }
 
-    public Persoon(final Map<String, String> values, final Clock clock) {
-        super(Categorie.PERSOON, values, clock);
+    public Persoon(final Map<String, String> values) {
+        super(Categorie.PERSOON, values);
     }
 
     public String getBsn() {

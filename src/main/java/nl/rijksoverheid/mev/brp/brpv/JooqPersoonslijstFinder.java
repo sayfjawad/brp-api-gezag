@@ -33,13 +33,10 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
     private static final String OUDER_2 = "2";
     private static final String KIND = "K";
     private static final String RELATIE = "R";
-
-    private final Clock clock;
     private final DSLContext create;
     private final LoggingContext loggingContext;
 
-    public JooqPersoonslijstFinder(Clock clock, DSLContext create, LoggingContext loggingContext) {
-        this.clock = clock;
+    public JooqPersoonslijstFinder(DSLContext create, LoggingContext loggingContext) {
         this.create = create;
         this.loggingContext = loggingContext;
     }
@@ -55,7 +52,7 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
         var plPersoonPersoon = findPlPersoonByPersoonTypeIsPersoonAndBurgerservicenummer(burgerservicenummer);
         if (plPersoonPersoon.isEmpty()) return Optional.empty();
 
-        var result = new Persoonslijst(clock);
+        var result = new Persoonslijst();
 
         var plPersoonPersoonRecent = plPersoonPersoon.getFirst();
         result.addPersoon(plPersoonPersoonRecent);
