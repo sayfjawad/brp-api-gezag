@@ -6,10 +6,7 @@ import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
-import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
-import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
-import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
-import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import nl.rijksoverheid.mev.gezagsmodule.domain.*;
 import nl.rijksoverheid.mev.gezagsmodule.service.BeslissingsmatrixService;
 import nl.rijksoverheid.mev.gezagsmodule.service.ToelichtingService;
 import nl.rijksoverheid.mev.gezagsmodule.service.VragenlijstService;
@@ -77,9 +74,10 @@ public class GezagService {
         try {
             plPersoon = brpService.getPersoonslijst(burgerservicenummer);
             if (plPersoon.isPresent()) {
-                Persoonslijst persoon = plPersoon.get();
-                if(persoon.minderjarig()) {
-                    gezagBepaling = new GezagBepaling(persoon, this, vragenlijstService.getVragenMap());
+                Persoonslijst persoonslijst = plPersoon.get();
+                Persoon persoon = persoonslijst.getPersoon();
+                if(persoon != null && Leeftijd.of(persoon.getGeboortedatum()).isMeerderjarig()) {
+                    gezagBepaling = new GezagBepaling(persoonslijst, this, vragenlijstService.getVragenMap());
                     arAntwoordenModel = gezagBepaling.start();
                 } else {
                     route = ROUTE_MEERDERJARIG;
