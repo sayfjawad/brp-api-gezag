@@ -12,12 +12,12 @@ Functionaliteit: 2a.3 - erkenning
   | 2a.2 Is persoon geadopteerd met Nederlandse akte                       | Nee                                                                                |
 
   Hoe achterhalen of er erkenning is: Aktenummer Ouder1 of Ouder2 bevat op de 3e positie de akteaanduiding B (erkenning bij
-  geboorteaangifte), C (erkenning na geboorte), J (erkenning bij notariële akte) of V (gerechtelijke vaststelling ouderschap). Deze kan in de actuele categorie voorkomen maar ook 
-  in een historische categorie omdat er later nog een ander rechtsfeit geregistreerd kan zijn. De datum van erkenning kan ontleend worden aan 
+  geboorteaangifte), C (erkenning na geboorte), J (erkenning bij notariële akte) of V (gerechtelijke vaststelling ouderschap). Deze kan in de actuele categorie voorkomen maar ook
+  in een historische categorie omdat er later nog een ander rechtsfeit geregistreerd kan zijn. De datum van erkenning kan ontleend worden aan
   datum familierechtelijke betrekking van dezelfde categorie als die waarin akteaanduiding B of C geconstateerd is. Kan dus ook in de
   historie voorkomen.
 
-  Aktenummers zoals vastgelecht in de BRP en opgenomen in de lijst erkenningscodes uit de publieke tabel 39. 
+  Aktenummers zoals vastgelecht in de BRP en opgenomen in de lijst erkenningscodes uit de publieke tabel 39.
   Zie: https://publicaties.rvig.nl/Landelijke_tabellen/Landelijke_tabellen_32_t_m_61_excl_tabel_35/Landelijke_Tabellen_32_t_m_61_in_csv_formaat/Tabel_39_Akteaanduiding
 
   Het bepalen of sprake is geweest van een erkenning ongeboren vrucht kan aan de hand van akteaanduiding A terwijl de ouders op
@@ -33,430 +33,430 @@ Functionaliteit: 2a.3 - erkenning
   - Indien het kind of de ongeboren vrucht is erkend na 1-1-2023 is er sprake van gezamenlijk ouderlijk gezag en volgt stap 4a Achterhalen bevoegdheid tot gezag (gezamenlijk ouderlijk gezag)
 
   Gebruikte velden:
-    - Aktenummer persoon -> 01.81.20
-    - Historische aktenummer -> 51.81.20
-    - Aktenummer ouder 1 -> 02.81.20
-    - Aktenummer ouder 2 -> 03.81.20
-    - Actuele categorie -> 52.81.20
-    - Historische categorie -> 53.81.20
-    - Datum familierechtelijke betrekking -> 02.62.10 of 03.62.10
-    - Historische datum familierechtelijke betrekking -> 52.62.10 of 53.62.10
+  - Aktenummer persoon -> 01.81.20
+  - Historische aktenummer -> 51.81.20
+  - Aktenummer ouder 1 -> 02.81.20
+  - Aktenummer ouder 2 -> 03.81.20
+  - Actuele categorie -> 52.81.20
+  - Historische categorie -> 53.81.20
+  - Datum familierechtelijke betrekking -> 02.62.10 of 03.62.10
+  - Historische datum familierechtelijke betrekking -> 52.62.10 of 53.62.10
 
-    Achtergrond:
-      Gegeven de persoon 'Lotte' met burgerservicenummer '000000012'
-      * is meerderjarig
-      En de persoon 'Dirk' met burgerservicenummer '000000024'
-      * is meerderjarig
-      En de persoon 'Filip' met burgerservicenummer '000000036'
-      * heeft 'Lotte' als ouder 1
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
+  Achtergrond:
+    Gegeven de persoon 'Lotte' met burgerservicenummer '000000012'
+    * is meerderjarig
+    En de persoon 'Dirk' met burgerservicenummer '000000024'
+    * is meerderjarig
+    En de persoon 'Filip' met burgerservicenummer '000000036'
+    * heeft 'Lotte' als ouder 1
+    * is in Nederland geboren
+    * is ingeschreven in de BRP
 
   Regel: Kind is geboren voor 01-01-2023
 
-    Scenario: Het kind is niet erkend er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Het kind is niet erkend er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
 
-    Scenario: Eén van de ouders heeft het kind erkend met de geboorteaangifte er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij geboorteaangifte
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind erkend met de geboorteaangifte er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij geboorteaangifte
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
 
-    Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 30-12-2022
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 30-12-2022
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
 
-    Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte op 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 01-01-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte op 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 01-01-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte na 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 01-02-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte na 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 01-02-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Eén van de ouders heeft het kind met een notariële akte erkend er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 30-12-2022
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind met een notariële akte erkend er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 30-12-2022
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
 
-    Scenario: Eén van de ouders heeft het kind met een notariële akte erkend op 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 01-01-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind met een notariële akte erkend op 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 01-01-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Eén van de ouders heeft het kind met een notariële akte erkend na 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 26-01-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind met een notariële akte erkend na 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 26-01-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met gerechtelijke vaststelling ouderschap op 30-12-2022
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders is sprake van EenhoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met gerechtelijke vaststelling ouderschap op 30-12-2022
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
 
-    Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders op 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 01-01-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders op 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 01-01-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders na 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-12-2022
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 03-03-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders na 01-01-2023 er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-12-2022
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 03-03-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
   Regel: Kind is geboren op 01-01-2023
-  
-    Scenario: Het kind is niet erkend er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-1-2023
-      Als gezag wordt gezocht met de volgende parameters
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
 
-    Scenario: Eén van de ouders heeft het kind erkend met de geboorteaangifte er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-1-2023
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij geboorteaangifte
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Het kind is niet erkend er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-1-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
+
+  Scenario: Eén van de ouders heeft het kind erkend met de geboorteaangifte er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-1-2023
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij geboorteaangifte
+    Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+    Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte  er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-1-2023
-      * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 29-01-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte  er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-1-2023
+    * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 29-01-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Eén van de ouders heeft het kind met een notariële akte erkend er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-1-2023
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 28-01-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind met een notariële akte erkend er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-1-2023
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 28-01-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 1-1-2023
-      * is erkend door 'Dirk' als ouder 2 met gerechtelijke vaststelling ouderschap op 01-02-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 1-1-2023
+    * is erkend door 'Dirk' als ouder 2 met gerechtelijke vaststelling ouderschap op 01-02-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
   Regel: Kind is geboren na 01-01-2023
 
-    Scenario: Het kind is niet erkend er is sprake van EenhoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 6-4-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Het kind is niet erkend er is sprake van EenhoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 6-4-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000036                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000036                |
+      | ouder.burgerservicenummer        | 000000012                |
 
-    Scenario: Eén van de ouders heeft het kind erkend met de geboorteaangifte er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 6-4-2023
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij geboorteaangifte
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind erkend met de geboorteaangifte er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 6-4-2023
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij geboorteaangifte
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte  er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 6-4-2023
-      * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 29-01-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind erkend na de geboorteaangifte  er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 6-4-2023
+    * is erkend door 'Dirk' als ouder 2 met erkenning na geboorteaangifte op 29-01-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Eén van de ouders heeft het kind met een notariële akte erkend er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 6-4-2023
-      * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 28-01-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Eén van de ouders heeft het kind met een notariële akte erkend er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 6-4-2023
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 28-01-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
 
-    Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders er is sprake van TweehoofdigOuderlijkGezag
-      Gegeven persoon 'Filip'
-      * is geboren op 6-4-2023
-      * is erkend door 'Dirk' als ouder 2 met gerechtelijke vaststelling ouderschap op 01-02-2023
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Er is een gerechtelijke vaststelling ouderschap door één van de ouders er is sprake van TweehoofdigOuderlijkGezag
+    Gegeven persoon 'Filip'
+    * is geboren op 6-4-2023
+    * is erkend door 'Dirk' als ouder 2 met gerechtelijke vaststelling ouderschap op 01-02-2023
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |

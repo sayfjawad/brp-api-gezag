@@ -224,10 +224,17 @@ public class GezagBepaling {
                         gezagsrelaties.add(gezag);
                     }
                 }
-                case String s when s.equals("G") && bevraagdePersoonIsDeMinderjarige ->
-                    gezagsrelaties.add(new TijdelijkGeenGezag().type(TYPE_TIJDELIJK_GEEN_GEZAG));
-                case String s when s.equals("N") && bevraagdePersoonIsDeMinderjarige ->
-                    gezagsrelaties.add(new GezagNietTeBepalen().type(TYPE_GEZAG_NIET_TE_BEPALEN).toelichting(arAntwoordenModel.getUitleg()));
+                case String s when s.equals("G") && bevraagdePersoonIsDeMinderjarige -> gezagsrelaties.add(
+                    new TijdelijkGeenGezag()
+                        .type(TYPE_TIJDELIJK_GEEN_GEZAG)
+                        .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
+                );
+                case String s when s.equals("N") && bevraagdePersoonIsDeMinderjarige -> gezagsrelaties.add(
+                    new GezagNietTeBepalen()
+                        .type(TYPE_GEZAG_NIET_TE_BEPALEN)
+                        .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
+                        .toelichting(arAntwoordenModel.getUitleg())
+                );
                 case "NVT" -> logger.info("Gezag uitkomst is NVT");
                 default -> logger.warn("Onverwachte gezagsoort ontvangen: {}", soortGezag);
             }
