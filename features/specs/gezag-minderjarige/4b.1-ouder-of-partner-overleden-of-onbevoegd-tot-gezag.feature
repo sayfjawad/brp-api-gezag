@@ -144,9 +144,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                                  |
+      | type                             | TijdelijkGeenGezag                                      |
+      | minderjarige.burgerservicenummer | 000000024                                               |
+      | toelichting                      | Tijdelijk geen gezag omdat beide ouders overleden zijn. |
 
   Regel: De ouder of partner is minderjarig
 
@@ -200,9 +201,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                                    |
+      | type                             | TijdelijkGeenGezag                                        |
+      | minderjarige.burgerservicenummer | 000000024                                                 |
+      | toelichting                      | Tijdelijk geen gezag omdat beide ouders minderjarig zijn. |
 
   Regel: De ouder of partner staat onder curatele
 
@@ -260,9 +262,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                                        |
+      | type                             | TijdelijkGeenGezag                                            |
+      | minderjarige.burgerservicenummer | 000000024                                                     |
+      | toelichting                      | Tijdelijk geen gezag omdat beide ouders onder curatele staan. |
 
   Regel: De ouder of partner is minderjarig en overleden
 
@@ -320,9 +323,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                                  |
+      | type                             | TijdelijkGeenGezag                                      |
+      | minderjarige.burgerservicenummer | 000000024                                               |
+      | toelichting                      | Tijdelijk geen gezag omdat beide ouders overleden zijn. |
 
   Regel: De ouder of partner is minderjarig en onder curatele
 
@@ -380,9 +384,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                                        |
+      | type                             | TijdelijkGeenGezag                                            |
+      | minderjarige.burgerservicenummer | 000000024                                                     |
+      | toelichting                      | Tijdelijk geen gezag omdat beide ouders onder curatele staan. |
 
   Regel: De ouder of partner is onder curatele en overleden
 
@@ -444,9 +449,10 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                                  |
+      | type                             | TijdelijkGeenGezag                                      |
+      | minderjarige.burgerservicenummer | 000000024                                               |
+      | toelichting                      | Tijdelijk geen gezag omdat beide ouders overleden zijn. |
 
   Regel: De ouder of partner is minderjarig, onder curatele en overleden
 
@@ -508,6 +514,7 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                                  |
+      | type                             | TijdelijkGeenGezag                                      |
+      | minderjarige.burgerservicenummer | 000000024                                               |
+      | toelichting                      | Tijdelijk geen gezag omdat beide ouders overleden zijn. |

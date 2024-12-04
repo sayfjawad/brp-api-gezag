@@ -109,9 +109,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                            |
+      | type                             | TijdelijkGeenGezag                                |
+      | minderjarige.burgerservicenummer | 000000024                                         |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
   Scenario: De vader (ouder 2 van 'Thea') is opgeschort er is TijdelijkGeenGezag
     Gegeven persoon 'Rik'
@@ -123,9 +124,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000061          |
+      | naam                             | waarde                                            |
+      | type                             | TijdelijkGeenGezag                                |
+      | minderjarige.burgerservicenummer | 000000061                                         |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
   Regel: De ouder is minderjarig
 
@@ -139,9 +141,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                              |
+      | type                             | TijdelijkGeenGezag                                  |
+      | minderjarige.burgerservicenummer | 000000024                                           |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder minderjarig is. |
 
   Scenario: De vader (ouder 2 van 'Thea') is minderjarig er is TijdelijkGeenGezag
     Gegeven persoon 'Rik'
@@ -153,9 +156,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000061          |
+      | naam                             | waarde                                              |
+      | type                             | TijdelijkGeenGezag                                  |
+      | minderjarige.burgerservicenummer | 000000061                                           |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder minderjarig is. |
 
   Regel: De ouder is onder curatele gesteld
 
@@ -169,9 +173,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                                    |
+      | type                             | TijdelijkGeenGezag                                        |
+      | minderjarige.burgerservicenummer | 000000024                                                 |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder onder curatele staat. |
 
   Scenario: De vader (ouder 2 van 'Thea') is onder curatele er is TijdelijkGeenGezag
     Gegeven persoon 'Rik'
@@ -183,9 +188,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000061          |
+      | naam                             | waarde                                                    |
+      | type                             | TijdelijkGeenGezag                                        |
+      | minderjarige.burgerservicenummer | 000000061                                                 |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder onder curatele staat. |
 
   Regel: De ouder is als minderjarige opgeschort
 
@@ -200,9 +206,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                            |
+      | type                             | TijdelijkGeenGezag                                |
+      | minderjarige.burgerservicenummer | 000000024                                         |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
   Scenario: De vader (ouder 2 van 'Thea') is als minderjarige overleden er is TijdelijkGeenGezag
     Gegeven persoon 'Rik'
@@ -215,9 +222,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000061          |
+      | naam                             | waarde                                            |
+      | type                             | TijdelijkGeenGezag                                |
+      | minderjarige.burgerservicenummer | 000000061                                         |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
   Regel: De ouder is onder curatele gesteld en opgeschort
 
@@ -232,9 +240,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                            |
+      | type                             | TijdelijkGeenGezag                                |
+      | minderjarige.burgerservicenummer | 000000024                                         |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
   Scenario: De vader (ouder 2 van 'Thea') is onder curatele en overleden er is TijdelijkGeenGezag
     Gegeven persoon 'Rik'
@@ -247,9 +256,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000061          |
+      | naam                             | waarde                                            |
+      | type                             | TijdelijkGeenGezag                                |
+      | minderjarige.burgerservicenummer | 000000061                                         |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
   Regel: De ouder is onder curatele gesteld, opgeschort en minderjarig
 
@@ -265,9 +275,10 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                            |
+      | type                             | TijdelijkGeenGezag                                |
+      | minderjarige.burgerservicenummer | 000000024                                         |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
   Scenario: De vader (ouder 2 van 'Thea') is onder curatele, overleden en minderjarig er is TijdelijkGeenGezag
     Gegeven persoon 'Rik'
@@ -281,6 +292,7 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000061          |
+      | naam                             | waarde                                            |
+      | type                             | TijdelijkGeenGezag                                |
+      | minderjarige.burgerservicenummer | 000000061                                         |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |

@@ -36,6 +36,17 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
         "ouder2,false,true", V4B_1_JA_NIET_OUDER2,
         "ouder2,false,false", V4B_1_NEE
     );
+    private static final Map<String, String> JA_BEIDEN_ANTWOORDEN = Map.of(
+        "cc", "Ja_beiden_onder_curatele",
+        "cm", "Ja_ouder_onder_curatele_en_niet_ouder_minderjarig",
+        "co", "Ja_ouder_onder_curatele_en_niet_ouder_overleden",
+        "mc", "Ja_ouder_minderjarig_en_niet_ouder_onder_curatele",
+        "mm", "Ja_beiden_minderjarig",
+        "mo", "Ja_ouder_minderjarig_en_niet_ouder_overleden",
+        "oc", "Ja_ouder_overleden_en_niet_ouder_onder_curatele",
+        "om", "Ja_ouder_overleden_en_niet_ouder_minderjarig",
+        "oo", "Ja_beiden_overleden"
+    );
 
     protected OuderOfPartnerOverledenOfOnbevoegdTotGezag(final GezagsBepaling gezagsBepaling) {
         super(gezagsBepaling);
@@ -44,28 +55,31 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
 
     @Override
     public void perform() {
-        String key;
-        // Preconditie: minimaal 1 ouder moet een BSN hebben
-        Persoonslijst lplOuder1 = gezagsBepaling.getPlOuder1();
-        Persoonslijst lplOuder2 = gezagsBepaling.getPlOuder2();
-        Persoonslijst lplNietOuder = gezagsBepaling.getPlNietOuder();
-        // Preconditie: minimaal 1 ouder moet geregistreerd staan in BRP
-        if (lplOuder1 == null && lplOuder2 == null) {
+        var persoonslijstOuder1 = gezagsBepaling.getPlOuder1();
+        var persoonslijstOuder2 = gezagsBepaling.getPlOuder2();
+        if (persoonslijstOuder1 == null && persoonslijstOuder2 == null) {
             throw new AfleidingsregelException("Preconditie: Minimaal 1 ouder moet geregistreerd staan in BRP", "voor de bevraagde persoon moet minimaal 1 ouder geregistreerd staan in BRP");
         }
 
-        if (lplNietOuder == null) {
+        var persoonslijstNietOuder = gezagsBepaling.getPlNietOuder();
+        if (persoonslijstNietOuder == null) {
             throw new AfleidingsregelException("Preconditie: niet_ouder moet geregistreerd staan in BRP", "voor de bevraagde persoon moet niet_ouder geregistreerd staan in BRP");
         }
 
-        if (lplOuder1 != null) {
-            key = "ouder1," + (lplOuder1.isOverledenOfOnbevoegd()) + "," + (lplNietOuder.isOverledenOfOnbevoegd());
-            answer = ouderOfPartnerOverledenOfOnbevoegdTotGezagMap.get(key);
-        }
+        var optionalIsNietOuderOverledenOfOnbevoegdToken = persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded();
+        boolean isNietOuderOverledenOfOnbevoegd = optionalIsNietOuderOverledenOfOnbevoegdToken.isPresent();
 
-        if (answer == null) {
-            key = "ouder2," + (lplOuder2.isOverledenOfOnbevoegd()) + "," + (lplNietOuder.isOverledenOfOnbevoegd());
-            answer = ouderOfPartnerOverledenOfOnbevoegdTotGezagMap.get(key);
+        String key = persoonslijstOuder1 != null
+            ? "ouder1," + persoonslijstOuder1.isOverledenOfOnbevoegd() + "," + isNietOuderOverledenOfOnbevoegd
+            : "ouder2," + persoonslijstOuder2.isOverledenOfOnbevoegd() + "," + isNietOuderOverledenOfOnbevoegd;
+        answer = ouderOfPartnerOverledenOfOnbevoegdTotGezagMap.get(key);
+
+        if (answer.equals(V4B_1_JA_BEIDEN)) {
+            var persoonslijstOuder = persoonslijstOuder1 == null ? persoonslijstOuder2 : persoonslijstOuder1;
+            var isOuderOverledenOfOnbevoegdToken = persoonslijstOuder.isOverledenOfOnbevoegdEncoded().orElseThrow();
+            var isNietOuderOverledenOfOnbevoegdToken = persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded().orElseThrow();
+            var key2 = "%c%c".formatted(isOuderOverledenOfOnbevoegdToken, isNietOuderOverledenOfOnbevoegdToken);
+            answer = JA_BEIDEN_ANTWOORDEN.get(key2);
         }
 
         logger.debug("""

@@ -188,9 +188,10 @@ Functionaliteit: Tg004 - Custers - Bij geboorte minderjarige moeders
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000024          |
+      | naam                             | waarde                                              |
+      | type                             | TijdelijkGeenGezag                                  |
+      | minderjarige.burgerservicenummer | 000000024                                           |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder minderjarig is. |
 
   Scenario: Lg01_015 - ongehuwde meerderjarige moeder met 1 minderjarig niet-erkend kind,bij geboorte minderjarig inmiddels meerderjarig
     # Meerderjarig
