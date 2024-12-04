@@ -76,7 +76,7 @@ public class GezagService {
             if (plPersoon.isPresent()) {
                 Persoonslijst persoonslijst = plPersoon.get();
                 Persoon persoon = persoonslijst.getPersoon();
-                if(persoon != null && Leeftijd.of(persoon.getGeboortedatum()).isMeerderjarig()) {
+                if(persoon != null && Leeftijd.of(persoon.getGeboortedatum()).isMinderjarig()) {
                     gezagBepaling = new GezagBepaling(persoonslijst, this, vragenlijstService.getVragenMap());
                     arAntwoordenModel = gezagBepaling.start();
                 } else {
