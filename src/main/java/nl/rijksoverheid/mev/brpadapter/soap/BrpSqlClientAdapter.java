@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-@Profile("real-brp")
 public class BrpSqlClientAdapter implements BrpClient {
 
     private final PersoonslijstFinder persoonslijstFinder;

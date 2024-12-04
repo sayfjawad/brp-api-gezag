@@ -15,12 +15,6 @@ spring:
     import: classpath:META-INF/build-info.properties
   jooq:
     sql-dialect: postgres
-  profiles:
-    group:
-      default: real-brp
-      ont: fake-brp
-      pre: real-brp
-      prd: real-brp
 
 management:
   endpoints:
