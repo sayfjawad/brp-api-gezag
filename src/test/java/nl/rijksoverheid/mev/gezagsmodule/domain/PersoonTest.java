@@ -24,8 +24,8 @@ class PersoonTest {
         var plPersoonRecord = new Lo3PlPersoonRecord();
         plPersoonRecord.setBurgerServiceNr(input);
 
-        var subject = Persoon.from(plPersoonRecord);
-        var result = subject.getBsn();
+        var subject = new Persoon(plPersoonRecord);
+        var result = subject.getBurgerservicenummer();
 
         assertEquals(9, result.length());
     }
