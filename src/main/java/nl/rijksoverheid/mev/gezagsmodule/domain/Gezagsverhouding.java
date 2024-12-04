@@ -3,13 +3,12 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoudingRecord;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
  * Gezags verhouding
  */
+@Categorie(number = "11", name = "gezagsverhouding")
 public class Gezagsverhouding extends PotentieelInOnderzoek {
     
     // Een aanduiding die aangeeft wie belast is met het gezag over de
@@ -20,35 +19,29 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
     // 1D = Ouder1 en een derde hebben het gezag
     // 2D = Ouder2 en een derde hebben het gezag
     // 12 = Ouder1 en Ouder2 hebben het gezag
-    private static final String INDICATIE_GEZAG_MINDERJARIGE = "113210";
+    @VeldNummer(number = "113210", name = "indicatie gezag minderjarige")
+    private final String indicatieGezagMinderjarige;
+
     // Aanduiding dat de ingeschrevene onder curatele is gestel
-    private static final String INDICATIE_CURATELE_REGISTER = "113310";
-    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "118310";
-    private static final String ONDERZOEK_START_DATUM = "118320";
-    private static final String ONDERZOEK_EIND_DATUM = "118330";
+    @VeldNummer(number = "113310", name = "indicatie curatele register")
+    private final String indicatieCurateleRegister;
+
     // Datum waarop het geheel van gegevens geldig is geworden: yyyyMMdd formaat
-    private static final String INGANGSDATUM_GELDIGHEID_GEZAG = "118510";
+    @VeldNummer(number = "118510", name = "ingangsdatum geldigheid gezag")
+    private final String ingangsDatumGeldigheidGezag;
 
     private static final String INGANGSDATUM_GELDIGHEID_GEZAG_DEFAULT_VALUE = "0";
     private static final String INGANGSDATUM_GELDIGHEID_GEZAG_DEFAULT_VALUE_OLD = "00000000"; // only occurs during JSON-based acceptance tests
 
-    public static Gezagsverhouding from(Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord) {
+    public Gezagsverhouding(final Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord) {
         var onderzoekGegevensAanduiding = lo3PlGezagsverhoudingRecord.getOnderzoekGegevensAand();
         var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
-        Map<String, String> values = new HashMap<>();
-        values.put(INDICATIE_GEZAG_MINDERJARIGE, lo3PlGezagsverhoudingRecord.getMinderjarigGezagInd());
-        values.put(INDICATIE_CURATELE_REGISTER, Objects.toString(lo3PlGezagsverhoudingRecord.getCurateleRegisterInd(), null));
-        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
-        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlGezagsverhoudingRecord.getOnderzoekStartDatum(), null));
-        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlGezagsverhoudingRecord.getOnderzoekEindDatum(), null));
-        values.put(INGANGSDATUM_GELDIGHEID_GEZAG, Objects.toString(lo3PlGezagsverhoudingRecord.getGeldigheidStartDatum(), null));
-
-        return new Gezagsverhouding(values);
-    }
-
-    public Gezagsverhouding(final Map<String, String> values) {
-        super(Categorie.GEZAGSVERHOUDING, values);
+        indicatieGezagMinderjarige = lo3PlGezagsverhoudingRecord.getMinderjarigGezagInd();
+        indicatieCurateleRegister = Objects.toString(lo3PlGezagsverhoudingRecord.getCurateleRegisterInd(), null);
+        aanduidingGegevensInOnderzoek = onderzoekGegevensAanduidingAsString;
+        datumEindeOnderzoek = Objects.toString(lo3PlGezagsverhoudingRecord.getOnderzoekEindDatum(), null);
+        ingangsDatumGeldigheidGezag = Objects.toString(lo3PlGezagsverhoudingRecord.getGeldigheidStartDatum(), null);
     }
 
     /**
@@ -70,20 +63,21 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
     }
 
     public String getIndicatieGezagMinderjarige() {
-        return get(INDICATIE_GEZAG_MINDERJARIGE, "indicatie gezag minderjarige");
+        registerIfInOnderzoek("indicatieGezagMinderjarige", getClass());
+
+        return indicatieGezagMinderjarige;
     }
 
     public String getIndicatieCurateleRegister() {
-        return get(INDICATIE_CURATELE_REGISTER, "indicatie curatele register");
+        registerIfInOnderzoek("indicatieCurateleRegister", getClass());
+
+        return indicatieCurateleRegister;
     }
 
     public String getIngangsdatumGeldigheidGezag() {
-        return get(INGANGSDATUM_GELDIGHEID_GEZAG, "ingangsdatum geldigheid gezag");
-    }
+        registerIfInOnderzoek("ingangsDatumGeldigheidGezag", getClass());
 
-    @Override
-    public String getCategorieName() {
-        return "gezagsverhouding";
+        return ingangsDatumGeldigheidGezag;
     }
 
     @Override
@@ -98,7 +92,6 @@ public class Gezagsverhouding extends PotentieelInOnderzoek {
                 getIndicatieCurateleRegister(),
                 getIngangsdatumGeldigheidGezag(),
                 getAanduidingGegevensInOnderzoek(),
-                getDatumIngangOnderzoek(),
                 getDatumEindeOnderzoek());
     }
 }

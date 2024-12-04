@@ -3,29 +3,30 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
  * Huwelijk of partnerschap
  */
+@Categorie(number = "05", name = "relatie")
 public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
 
-    private static final String BSN = "050120";
+    @VeldNummer(number = "050120", name = "burgerservicenummer partner van relatie")
+    private final String burgerservicenummer;
     /**
      * Datum waarop het huwelijk is voltrokken of het partnerschap is aangegaan.
      * <p>
      * yyyyMMdd formaat
      */
-    private static final String DATUM_VOLTROKKEN = "050610";
+    @VeldNummer(number = "050610", name = "datum voltrokken van relatie")
+    private final String datumVoltrokken;
     /**
      * Datum waarop het huwelijk/partnerschap is ontbonden of nietig verklaard.
      * <p>
      * yyyyMMdd formaat
      */
-    private static final String DATUM_ONTBINDING = "050710";
-
+    @VeldNummer(number = "050710", name = "datum ontbinding van relatie")
+    private final String datumOntbinding;
     /**
      * Geeft aan om welke reden het partnerschap is ontbonden of nietig
      * verklaard
@@ -36,54 +37,46 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
      * @see <a href="https://publicaties.rvig.nl/Landelijke_tabellen">Tabel
      * Reden ontbinding/nietigverklaring huwelijk/partnerschap</a>
      */
-    private static final String REDEN_ONTBINDING = "050740";
+    @VeldNummer(number = "050740", name = "reden ontbinding van relatie")
+    private final String redenOntbinding;
 
-    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "058310";
-    private static final String ONDERZOEK_START_DATUM = "058320";
-    private static final String ONDERZOEK_EIND_DATUM = "058330";
-
-    public static HuwelijkOfPartnerschap from(Lo3PlPersoonRecord lo3PlPersoonRecord) {
+    public HuwelijkOfPartnerschap(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
 
         var onderzoekGegevensAanduiding = lo3PlPersoonRecord.getOnderzoekGegevensAand();
         var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
-        Map<String, String> values = new HashMap<>();
-        values.put(BSN, burgerServiceNrAsString);
-        values.put(DATUM_VOLTROKKEN, Objects.toString(lo3PlPersoonRecord.getRelatieStartDatum(), null));
-        values.put(DATUM_ONTBINDING, Objects.toString(lo3PlPersoonRecord.getRelatieEindDatum(), null));
-        values.put(REDEN_ONTBINDING, lo3PlPersoonRecord.getRelatieEindReden());
-        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
-        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
-        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
-
-        return new HuwelijkOfPartnerschap(values);
-    }
-
-    public HuwelijkOfPartnerschap(final Map<String, String> values) {
-        super(Categorie.HUWELIJK_OF_PARTNERSCHAP, values);
+        burgerservicenummer = burgerServiceNrAsString;
+        datumVoltrokken = Objects.toString(lo3PlPersoonRecord.getRelatieStartDatum(), null);
+        datumOntbinding = Objects.toString(lo3PlPersoonRecord.getRelatieEindDatum(), null);
+        redenOntbinding = lo3PlPersoonRecord.getRelatieEindReden();
+        aanduidingGegevensInOnderzoek = onderzoekGegevensAanduidingAsString;
+        datumEindeOnderzoek = Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null);
     }
 
     public String getBsnPartner() {
-        return get(BSN, "burgerservicenummer partner van relatie");
+        registerIfInOnderzoek("burgerservicenummer", getClass());
+
+        return burgerservicenummer;
     }
 
     public String getDatumVoltrokken() {
-        return get(DATUM_VOLTROKKEN, "datum voltrokken van relatie");
+        registerIfInOnderzoek("datumVoltrokken", getClass());
+
+        return datumVoltrokken;
     }
 
     public String getDatumOntbinding() {
-        return get(DATUM_ONTBINDING, "datum ontbinding van relatie");
+        registerIfInOnderzoek("datumOntbinding", getClass());
+
+        return datumOntbinding;
     }
 
     public String getRedenOntbinding() {
-        return get(REDEN_ONTBINDING, "reden ontbinding van relatie");
-    }
+        registerIfInOnderzoek("redenOntbinding", getClass());
 
-    @Override
-    public String getCategorieName() {
-        return "relatie";
+        return redenOntbinding;
     }
 
     @Override
@@ -99,7 +92,6 @@ public class HuwelijkOfPartnerschap extends PotentieelInOnderzoek {
             getDatumOntbinding(),
             getRedenOntbinding(),
             getAanduidingGegevensInOnderzoek(),
-            getDatumIngangOnderzoek(),
             getDatumEindeOnderzoek());
     }
 }

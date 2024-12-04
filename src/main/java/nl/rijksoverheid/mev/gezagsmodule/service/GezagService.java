@@ -139,9 +139,9 @@ public class GezagService {
     public Persoonslijst ophalenOuder1(final Persoonslijst plPersoon) {
         Optional<Persoonslijst> plOuder1 = Optional.empty();
         try {
-            if (plPersoon.getOuder1() != null && plPersoon.getOuder1().getBsn() != null) {
+            if (plPersoon.getOuder1() != null && plPersoon.getOuder1().getBurgerservicenummer() != null) {
                 plOuder1 = brpService.getPersoonslijst(
-                    plPersoon.getOuder1().getBsn());
+                    plPersoon.getOuder1().getBurgerservicenummer());
                 plOuder1.ifPresent(ouder1-> {
                     ouder1.setHopRelaties(new HopRelaties());
                     ouder1.checkHopRelaties();
@@ -163,9 +163,9 @@ public class GezagService {
     public Persoonslijst ophalenOuder2(final Persoonslijst plPersoon) {
         Optional<Persoonslijst> plOuder2 = Optional.empty();
         try {
-            if (plPersoon.getOuder2() != null && plPersoon.getOuder2().getBsn() != null) {
+            if (plPersoon.getOuder2() != null && plPersoon.getOuder2().getBurgerservicenummer() != null) {
                 plOuder2 = brpService.getPersoonslijst(
-                    plPersoon.getOuder2().getBsn());
+                    plPersoon.getOuder2().getBurgerservicenummer());
                 plOuder2.ifPresent(ouder2 -> {
                     ouder2.setHopRelaties(new HopRelaties());
                     ouder2.checkHopRelaties();

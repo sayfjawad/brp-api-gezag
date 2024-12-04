@@ -168,8 +168,8 @@ public class GezagBepaling {
 
             switch (soortGezag) {
                 case "OG1" -> {
-                    String burgerservicenummerOuder1 = (plOuder1 != null ? plOuder1.getPersoon().getBsn() : null);
-                    String burgerservicenummerOuder2 = (plOuder2 != null ? plOuder2.getPersoon().getBsn() : null);
+                    String burgerservicenummerOuder1 = (plOuder1 != null ? plOuder1.getPersoon().getBurgerservicenummer() : null);
+                    String burgerservicenummerOuder2 = (plOuder2 != null ? plOuder2.getPersoon().getBurgerservicenummer() : null);
                     if (ouder1Gezag && (bevraagdePersoonIsDeMinderjarige || burgerservicenummerPersoon.equals(burgerservicenummerOuder1))) {
                         AbstractGezagsrelatie gezag = new EenhoofdigOuderlijkGezag()
                             .ouder(new GezagOuder().burgerservicenummer(burgerservicenummerOuder1))
@@ -191,8 +191,8 @@ public class GezagBepaling {
                 case "OG2" -> {
                     AbstractGezagsrelatie gezag = new TweehoofdigOuderlijkGezag()
                         .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
-                        .addOudersItem(new GezagOuder().burgerservicenummer(plOuder1.getPersoon().getBsn()))
-                        .addOudersItem(new GezagOuder().burgerservicenummer(plOuder2.getPersoon().getBsn()))
+                        .addOudersItem(new GezagOuder().burgerservicenummer(plOuder1.getPersoon().getBurgerservicenummer()))
+                        .addOudersItem(new GezagOuder().burgerservicenummer(plOuder2.getPersoon().getBurgerservicenummer()))
                         .type(TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG);
 
                     gezagsrelaties.add(gezag);
@@ -200,19 +200,19 @@ public class GezagBepaling {
                 case "GG" -> {
                     GezamenlijkGezag gezag = new GezamenlijkGezag()
                         .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
-                        .derde(new Meerderjarige().burgerservicenummer(plNietOuder.getPersoon().getBsn()))
+                        .derde(new Meerderjarige().burgerservicenummer(plNietOuder.getPersoon().getBurgerservicenummer()))
                         .type(TYPE_GEZAMELIJK_GEZAG);
 
                     if (ouder1Gezag) {
-                        gezag.ouder(new GezagOuder().burgerservicenummer(plOuder1.getPersoon().getBsn()));
+                        gezag.ouder(new GezagOuder().burgerservicenummer(plOuder1.getPersoon().getBurgerservicenummer()));
                     } else {
-                        gezag.ouder(new GezagOuder().burgerservicenummer(plOuder2.getPersoon().getBsn()));
+                        gezag.ouder(new GezagOuder().burgerservicenummer(plOuder2.getPersoon().getBurgerservicenummer()));
                     }
 
                     gezagsrelaties.add(gezag);
                 }
                 case "V" -> {
-                    String burgerservicenummerNietOuder = (plNietOuder != null ? plNietOuder.getPersoon().getBsn() : null);
+                    String burgerservicenummerNietOuder = (plNietOuder != null ? plNietOuder.getPersoon().getBurgerservicenummer() : null);
                     if(bevraagdePersoonIsDeMinderjarige || burgerservicenummerNietOuder.equals(burgerservicenummerPersoon)) {
                         Voogdij gezag = new Voogdij()
                             .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
@@ -243,9 +243,9 @@ public class GezagBepaling {
     }
 
     private boolean tenminsteEenRelatieMetPersoon(final String burgerservicenummerPersoon) {
-        return (plOuder1 != null && plOuder1.getPersoon() != null && plOuder1.getPersoon().getBsn().equals(burgerservicenummerPersoon)) ||
-            (plOuder2 != null && plOuder2.getPersoon() != null && plOuder2.getPersoon().getBsn().equals(burgerservicenummerPersoon)) ||
-            (plNietOuder != null && plNietOuder.getPersoon() != null && plNietOuder.getPersoon().getBsn().equals(burgerservicenummerPersoon));
+        return (plOuder1 != null && plOuder1.getPersoon() != null && plOuder1.getPersoon().getBurgerservicenummer().equals(burgerservicenummerPersoon)) ||
+            (plOuder2 != null && plOuder2.getPersoon() != null && plOuder2.getPersoon().getBurgerservicenummer().equals(burgerservicenummerPersoon)) ||
+            (plNietOuder != null && plNietOuder.getPersoon() != null && plNietOuder.getPersoon().getBurgerservicenummer().equals(burgerservicenummerPersoon));
     }
 
     public void addMissendeGegegevens(final String missendGegegeven) {

@@ -5,36 +5,25 @@ import lombok.Getter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * Een veld in de persoonslijst die potentieel in onderzoek kan zijn
  */
 @Getter
-public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
+public abstract class PotentieelInOnderzoek {
 
-    private final String categorie;
     private final Set<String> veldenInOnderzoek;
 
-    protected final Map<String, String> values;
-
-    protected final String aanduidingGegevensInOnderzoek;
-    protected final String datumIngangOnderzoek;
-    protected final String datumEindeOnderzoek;
+    protected String aanduidingGegevensInOnderzoek;
+    protected String datumEindeOnderzoek;
 
     private static final int GROEP_POSITIE_GETAL = 4;
     private static final int CATEGORIE_POSITIE_GETAL = 2;
 
     protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
 
-    protected PotentieelInOnderzoek(final String categorie, final Map<String, String> values) {
-        this.categorie = categorie;
-        this.values = values;
-
-        this.aanduidingGegevensInOnderzoek = categorie + "8310";
-        this.datumIngangOnderzoek = categorie + "8320";
-        this.datumEindeOnderzoek = categorie + "8330";
+    protected PotentieelInOnderzoek() {
         veldenInOnderzoek = new HashSet<>();
     }
 
@@ -42,59 +31,37 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
      * Haal de waarde van een veld op nadat gecontroleerd is of het veld in
      * onderzoek is
      *
-     * @param key het veld om op te halen
-     * @param fieldName de leesbare naam van het op te halen veld
+     * @param fieldName   het veld om op te halen
+     * @param calledClass het aangeroepen object
      */
-    protected void inOnderzoek(final String key, final String fieldName) {
-        String inOnderzoek = values.get(aanduidingGegevensInOnderzoek);
-        if (inOnderzoek == null) return;
-        if (inOnderzoek.isEmpty()) return;
+    protected void registerIfInOnderzoek(final String fieldName, final Class calledClass) {
+        if (aanduidingGegevensInOnderzoek == null) return;
+        if (aanduidingGegevensInOnderzoek.isEmpty()) return;
 
-        String formattedVeldName = getFormattedVeldName(inOnderzoek, key);
+        try {
+            VeldNummer annotation = calledClass.getDeclaredMethod(fieldName).getAnnotation(VeldNummer.class);
 
-        if (inOnderzoek.equals(key) || inOnderzoek.equals(formattedVeldName)) {
-            String datumEindeOnderzoekValue = values.get(datumEindeOnderzoek);
-            String veldInOnderzoek = formattedVeldName.endsWith("0000") ? getCategorieName() : fieldName;
+            String key = annotation.number();
+            String formattedVeldName = getFormattedVeldName(aanduidingGegevensInOnderzoek, key);
 
-            if (datumEindeOnderzoekValue != null && !datumEindeOnderzoekValue.isEmpty()) {
-                int datumEindeOnderzoekInt = Integer.parseInt(datumEindeOnderzoekValue);
-                int datumVandaag = Integer.parseInt(LocalDate.now().format(FORMATTER));
+            if (aanduidingGegevensInOnderzoek.equals(key) || aanduidingGegevensInOnderzoek.equals(formattedVeldName)) {
+                String datumEindeOnderzoekValue = datumEindeOnderzoek;
+                String veldInOnderzoek = formattedVeldName.endsWith("0000") ? getCategorieName(calledClass) : annotation.name();
 
-                if (datumVandaag <= datumEindeOnderzoekInt) {
+                if (datumEindeOnderzoekValue != null && !datumEindeOnderzoekValue.isEmpty()) {
+                    int datumEindeOnderzoekInt = Integer.parseInt(datumEindeOnderzoekValue);
+                    int datumVandaag = Integer.parseInt(LocalDate.now().format(FORMATTER));
+
+                    if (datumVandaag <= datumEindeOnderzoekInt) {
+                        veldenInOnderzoek.add(veldInOnderzoek);
+                    }
+                } else {
                     veldenInOnderzoek.add(veldInOnderzoek);
                 }
-            } else {
-                veldenInOnderzoek.add(veldInOnderzoek);
             }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
         }
-    }
-
-    protected abstract String getCategorieName();
-
-    @Override
-    public String get(final String key) {
-        inOnderzoek(key, key);
-
-        return values.get(key);
-    }
-
-    @Override
-    public String get(final String key, final String fieldName) {
-        inOnderzoek(key, fieldName);
-
-        return values.get(key);
-    }
-
-    protected String getAanduidingGegevensInOnderzoek() {
-        return get(aanduidingGegevensInOnderzoek);
-    }
-
-    protected String getDatumIngangOnderzoek() {
-        return get(datumIngangOnderzoek);
-    }
-
-    protected String getDatumEindeOnderzoek() {
-        return get(datumEindeOnderzoek);
     }
 
     private String getFormattedVeldName(final String inOnderzoek, final String key) {
@@ -108,5 +75,14 @@ public abstract class PotentieelInOnderzoek implements PersoonslijstVeld {
         }
 
         return formattedVeldName;
+    }
+
+    private String getCategorieName(final Class calledClass) {
+        Categorie annotation = (Categorie) calledClass.getAnnotation(Categorie.class);
+        if (annotation != null) {
+            return annotation.name();
+        } else {
+            return null;
+        }
     }
 }

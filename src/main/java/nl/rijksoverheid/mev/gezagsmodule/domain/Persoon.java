@@ -3,65 +3,60 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
  * Persoon (vanuit persoonslijst zoals opgenomen in de BRP)
  */
+@Categorie(number = "01", name = "persoon")
 public class Persoon extends PotentieelInOnderzoek {
 
-    public static final String BSN = "010120";
-    private static final String GEBOORTEDATUM = "010310";
-    private static final String GEBOORTELAND = "010330";
-    private static final String AKTENUMMER = "018120";
-    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "018310";
-    private static final String ONDERZOEK_START_DATUM = "018320";
-    private static final String ONDERZOEK_EIND_DATUM = "018330";
+    @VeldNummer(number = "010120", name = "burgerservicenummer van persoon")
+    private final String burgerservicenummer;
+    @VeldNummer(number = "010310", name = "geboortedatum van persoon")
+    private final String geboortedatum;
+    @VeldNummer(number = "010330", name = "geboorteland van persoon")
+    private final String geboorteland;
+    @VeldNummer(number = "018120", name = "aktenummer van persoon")
+    private final String aktenummer;
 
-    public static Persoon from(Lo3PlPersoonRecord lo3PlPersoonRecord) {
+    public Persoon(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
 
         var onderzoekGegevensAanduiding = lo3PlPersoonRecord.getOnderzoekGegevensAand();
         var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
-        Map<String, String> values = new HashMap<>();
-        values.put(BSN, burgerServiceNrAsString);
-        values.put(GEBOORTEDATUM, Objects.toString(lo3PlPersoonRecord.getGeboorteDatum(), null));
-        values.put(GEBOORTELAND, Objects.toString(lo3PlPersoonRecord.getGeboorteLandCode(), null));
-        values.put(AKTENUMMER, lo3PlPersoonRecord.getAkteNr());
-        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
-        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
-        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
-
-        return new Persoon(values);
+        burgerservicenummer = burgerServiceNrAsString;
+        geboortedatum = Objects.toString(lo3PlPersoonRecord.getGeboorteDatum(), null);
+        geboorteland = Objects.toString(lo3PlPersoonRecord.getGeboorteLandCode(), null);
+        aktenummer = lo3PlPersoonRecord.getAkteNr();
+        aanduidingGegevensInOnderzoek = onderzoekGegevensAanduidingAsString;
+        datumEindeOnderzoek = Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null);
     }
 
-    public Persoon(final Map<String, String> values) {
-        super(Categorie.PERSOON, values);
-    }
+    public String getBurgerservicenummer() {
+        registerIfInOnderzoek("burgerservicenummer", getClass());
 
-    public String getBsn() {
-        return get(BSN, "burgerservicenummer van persoon");
+        return burgerservicenummer;
     }
 
     public String getGeboortedatum() {
-        return get(GEBOORTEDATUM, "geboortedatum van persoon");
+        registerIfInOnderzoek("geboortedatum", getClass());
+
+        return geboortedatum;
     }
 
     public String getGeboorteland() {
-        return get(GEBOORTELAND, "geboorteland van persoon");
+        registerIfInOnderzoek("geboorteland", getClass());
+
+        return geboorteland;
     }
 
     public String getAktenummer() {
-        return get(AKTENUMMER, "aktenummer van persoon");
-    }
+        registerIfInOnderzoek("aktenummer", getClass());
 
-    @Override
-    public String getCategorieName() {
-        return "persoon";
+        return aktenummer;
     }
 
     @Override
@@ -72,12 +67,11 @@ public class Persoon extends PotentieelInOnderzoek {
     @Override
     public int hashCode() {
         return Objects.hash(
-            getBsn(),
+            getBurgerservicenummer(),
             getGeboortedatum(),
             getGeboorteland(),
             getAktenummer(),
             getAanduidingGegevensInOnderzoek(),
-            getDatumIngangOnderzoek(),
             getDatumEindeOnderzoek());
     }
 }

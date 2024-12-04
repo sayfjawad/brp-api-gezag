@@ -31,8 +31,8 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
         // Preconditie: minimaal 1 ouder moet een BSN hebben
         Ouder1 persoonOuder1 = plPersoon.getOuder1();
         Ouder2 persoonOuder2 = plPersoon.getOuder2();
-        if ((persoonOuder1 == null || persoonOuder1.getBsn() == null)
-            && (persoonOuder2 == null || persoonOuder2.getBsn() == null)) {
+        if ((persoonOuder1 == null || persoonOuder1.getBurgerservicenummer() == null)
+            && (persoonOuder2 == null || persoonOuder2.getBurgerservicenummer() == null)) {
             throw new AfleidingsregelException("Preconditie: Ouder moet een BSN hebben", "Ouder moet een BSN hebben");
         }
         Persoonslijst lplOuder1 = gezagBepaling.getPlOuder1();

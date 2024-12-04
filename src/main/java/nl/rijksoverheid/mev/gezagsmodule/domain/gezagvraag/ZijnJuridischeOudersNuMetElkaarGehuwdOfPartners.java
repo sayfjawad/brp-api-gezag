@@ -60,7 +60,7 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag 
             return null;
         }
         for (HuwelijkOfPartnerschap huwelijkOfPartnerschap : persoonslijst1.getHuwelijkOfPartnerschappen()) {
-            if (persoonslijst2.getPersoon() != null && persoonslijst2.getPersoon().getBsn().equals(huwelijkOfPartnerschap.getBsnPartner())) {
+            if (persoonslijst2.getPersoon() != null && persoonslijst2.getPersoon().getBurgerservicenummer().equals(huwelijkOfPartnerschap.getBsnPartner())) {
                 return huwelijkOfPartnerschap;
             }
         }

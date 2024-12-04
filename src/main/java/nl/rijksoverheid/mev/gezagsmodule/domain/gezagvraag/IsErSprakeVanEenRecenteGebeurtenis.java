@@ -77,8 +77,8 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
         if ((plOuder1 == null) || (plOuder2 == null)) {
             return false;
         }
-        List<HuwelijkOfPartnerschap> hopListOuder1 = getHuwelijkOfPartnerschap(plOuder1, plOuder2.getPersoon().getBsn());
-        List<HuwelijkOfPartnerschap> hopListOuder2 = getHuwelijkOfPartnerschap(plOuder2, plOuder1.getPersoon().getBsn());
+        List<HuwelijkOfPartnerschap> hopListOuder1 = getHuwelijkOfPartnerschap(plOuder1, plOuder2.getPersoon().getBurgerservicenummer());
+        List<HuwelijkOfPartnerschap> hopListOuder2 = getHuwelijkOfPartnerschap(plOuder2, plOuder1.getPersoon().getBurgerservicenummer());
 
         if (hopListOuder1.isEmpty() || hopListOuder2.isEmpty()) {
             return false;

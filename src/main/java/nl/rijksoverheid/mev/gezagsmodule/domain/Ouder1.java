@@ -3,65 +3,61 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
  * Ouder1 voor persoon
  */
+@Categorie(number = "02", name = "ouder 1")
 public class Ouder1 extends PotentieelInOnderzoek {
 
-    private static final String BSN = "020120";
-    private static final String GESLACHTSNAAM = "020240";
-    private static final String AKTENUMMER = "028120";
-    private static final String DATUM_INGANG_FAMILIEBETREKKING = "026210"; // yyyMMdd formaat
-    private static final String ONDERZOEK_GEGEVENS_AANDUIDING = "028310";
-    private static final String ONDERZOEK_START_DATUM = "028320";
-    private static final String ONDERZOEK_EIND_DATUM = "028330";
+    @VeldNummer(number = "020120", name = "burgerservicenummer van ouder 1")
+    private final String burgerservicenummer;
 
-    public static Ouder1 from(Lo3PlPersoonRecord lo3PlPersoonRecord) {
+    @VeldNummer(number = "020240", name = "geslachtsnaam van ouder 1")
+    private final String geslachtsnaam;
+    @VeldNummer(number = "028120", name = "aktenummer van ouder 1")
+    private final String aktenummer;
+    @VeldNummer(number = "026210", name = "datum ingang familiebetrekking van ouder 1")
+    private final String datumIngangFamilieBetrekking;
+
+    public Ouder1(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
         var burgerServiceNrAsString = burgerServiceNr == null ? null : "%09d".formatted(burgerServiceNr);
 
         var onderzoekGegevensAanduiding = lo3PlPersoonRecord.getOnderzoekGegevensAand();
         var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
-        Map<String, String> values = new HashMap<>();
-        values.put(BSN, burgerServiceNrAsString);
-        values.put(GESLACHTSNAAM, lo3PlPersoonRecord.getGeslachtsNaam());
-        values.put(AKTENUMMER, lo3PlPersoonRecord.getAkteNr());
-        values.put(DATUM_INGANG_FAMILIEBETREKKING, Objects.toString(lo3PlPersoonRecord.getFamilieBetrekStartDatum(), null));
-        values.put(ONDERZOEK_GEGEVENS_AANDUIDING, onderzoekGegevensAanduidingAsString);
-        values.put(ONDERZOEK_START_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekStartDatum(), null));
-        values.put(ONDERZOEK_EIND_DATUM, Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null));
-
-        return new Ouder1(values);
+        burgerservicenummer = burgerServiceNrAsString;
+        geslachtsnaam = lo3PlPersoonRecord.getGeslachtsNaam();
+        aktenummer = lo3PlPersoonRecord.getAkteNr();
+        datumIngangFamilieBetrekking = Objects.toString(lo3PlPersoonRecord.getFamilieBetrekStartDatum(), null);
+        aanduidingGegevensInOnderzoek = onderzoekGegevensAanduidingAsString;
+        datumEindeOnderzoek = Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null);
     }
 
-    public Ouder1(final Map<String, String> values) {
-        super(Categorie.OUDER_1, values);
-    }
+    public String getBurgerservicenummer() {
+        registerIfInOnderzoek("burgerservicenummer", getClass());
 
-    public String getBsn() {
-        return get(BSN, "burgerservicenummer van ouder 1");
+        return burgerservicenummer;
     }
 
     public String getGeslachtsnaam() {
-        return get(GESLACHTSNAAM, "geslachtsnaam van ouder 1");
+        registerIfInOnderzoek("geslachtsnaam", getClass());
+
+        return geslachtsnaam;
     }
 
     public String getDatumIngangFamiliebetrekking() {
-        return get(DATUM_INGANG_FAMILIEBETREKKING, "datum ingang familiebetrekking van ouder 1");
+        registerIfInOnderzoek("datumIngangFamilieBetrekking", getClass());
+
+        return datumIngangFamilieBetrekking;
     }
 
     public String getAktenummer() {
-        return get(AKTENUMMER, "aktenummer van ouder 1");
-    }
+        registerIfInOnderzoek("aktenummer", getClass());
 
-    @Override
-    public String getCategorieName() {
-        return "ouder 1";
+        return aktenummer;
     }
 
     @Override
@@ -72,12 +68,11 @@ public class Ouder1 extends PotentieelInOnderzoek {
     @Override
     public int hashCode() {
         return Objects.hash(
-                getBsn(),
-                getGeslachtsnaam(),
-                getDatumIngangFamiliebetrekking(),
-                getAktenummer(),
-                getAanduidingGegevensInOnderzoek(),
-                getDatumIngangOnderzoek(),
-                getDatumEindeOnderzoek());
+            getBurgerservicenummer(),
+            getGeslachtsnaam(),
+            getDatumIngangFamiliebetrekking(),
+            getAktenummer(),
+            getAanduidingGegevensInOnderzoek(),
+            getDatumEindeOnderzoek());
     }
 }
