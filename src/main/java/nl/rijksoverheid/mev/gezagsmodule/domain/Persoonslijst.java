@@ -228,17 +228,6 @@ public class Persoonslijst {
     @Getter
     private String receivedId;
 
-    public List<String> getBurgerservicenummersVanKinderen() {
-        if (getKinderen() == null) {
-            return Collections.emptyList();
-        }
-
-        return getKinderen().stream()
-            .map(Kind::getBsn)
-            .filter(Objects::nonNull)
-            .toList();
-    }
-
     public Stream<String> getBurgerservicenummersVanMinderjarigeKinderen() {
         if (getKinderen() == null) return Stream.empty();
 
@@ -486,15 +475,6 @@ public class Persoonslijst {
         }
     }
 
-    @JsonIgnore
-    public boolean isIngezeteneInBRP() {
-        Verblijfplaats verblijfplaats = getVerblijfplaats();
-        if (verblijfplaats != null && verblijfplaats.getGemeenteVanInschrijving() != null) {
-            return !verblijfplaats.getGemeenteVanInschrijving().equals("1999");
-        }
-        return false;
-    }
-
     public String hoeveelJuridischeOuders() {
         String geslachtsnaamOuder1 = getOuder1() == null ? null : getOuder1().getGeslachtsnaam();
         String geslachtsnaamOuder2 = getOuder2() == null ? null : getOuder2().getGeslachtsnaam();
@@ -559,29 +539,5 @@ public class Persoonslijst {
 
         int datumVolwassenVanaf = Integer.parseInt(LocalDate.now().format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
         return geboortedatum > datumVolwassenVanaf;
-    }
-
-    /**
-     * @return of een van de velden een waarde heeft in de persoonslijst
-     * @throws AfleidingsregelException als een invalide veld benaderd wordt
-     */
-    public boolean hasAnyValue() throws AfleidingsregelException {
-        try {
-            for (Field f : this.getClass().getDeclaredFields()) {
-                if (f.getType() == List.class) {
-                    List<?> x = (List) f.get(this);
-                    if (x != null && !x.isEmpty()) {
-                        return true;
-                    }
-                } else {
-                    if (f.get(this) != null) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        } catch (IllegalAccessException ex) {
-            throw new AfleidingsregelException(ex.getMessage(), "persoonslijst");
-        }
     }
 }
