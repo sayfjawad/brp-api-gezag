@@ -82,7 +82,7 @@ public class GezagService {
                 gezagBepaling = new GezagBepaling(persoon, this, vragenlijstService.getVragenMap());
                 arAntwoordenModel = gezagBepaling.start();
             }
-        } catch (VeldInOnderzoekException | AfleidingsregelException ex) {
+        } catch (AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
         }
         boolean hasVeldenInOnderzoek = gezagBepaling != null && gezagBepaling.warenVeldenInOnderzoek();
