@@ -1,4 +1,4 @@
-package nl.rijksoverheid.mev.brpadapter.soap.persoonlijst;
+package nl.rijksoverheid.mev.gezagsmodule.domain;
 
 /**
  * Categorieen die voorkomen in de persoonlijst met bijbehorende code

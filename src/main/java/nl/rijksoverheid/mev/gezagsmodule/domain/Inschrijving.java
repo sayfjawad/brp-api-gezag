@@ -1,7 +1,6 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import java.util.HashMap;

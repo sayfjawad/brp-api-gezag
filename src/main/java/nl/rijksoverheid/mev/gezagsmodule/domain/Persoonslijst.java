@@ -7,9 +7,6 @@ import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoud
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 
 import java.lang.reflect.Field;

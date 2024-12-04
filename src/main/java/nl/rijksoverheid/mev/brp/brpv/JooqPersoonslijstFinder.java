@@ -45,7 +45,13 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
     }
 
     @Override
-    public Optional<Persoonslijst> findPersoonslijst(Burgerservicenummer burgerservicenummer) {
+    public Optional<Persoonslijst> opvragenPersoonslijst(final String burgerservicenummerString) {
+        var burgerservicenummer = new Burgerservicenummer(Long.parseLong(burgerservicenummerString));
+
+        return findPersoonslijst(burgerservicenummer);
+    }
+
+    private Optional<Persoonslijst> findPersoonslijst(Burgerservicenummer burgerservicenummer) {
         var plPersoonPersoon = findPlPersoonByPersoonTypeIsPersoonAndBurgerservicenummer(burgerservicenummer);
         if (plPersoonPersoon.isEmpty()) return Optional.empty();
 

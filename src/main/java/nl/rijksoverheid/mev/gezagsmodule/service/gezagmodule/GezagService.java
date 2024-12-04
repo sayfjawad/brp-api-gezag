@@ -1,8 +1,7 @@
 package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import nl.rijksoverheid.mev.brpadapter.service.BrpService;
+import nl.rijksoverheid.mev.gezagsmodule.service.BrpService;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;

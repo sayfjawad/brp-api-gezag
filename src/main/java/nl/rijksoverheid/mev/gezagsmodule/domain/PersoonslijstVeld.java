@@ -1,4 +1,4 @@
-package nl.rijksoverheid.mev.brpadapter.soap.persoonlijst;
+package nl.rijksoverheid.mev.gezagsmodule.domain;
 
 /**
  * Een veld in de persoonslijst (key + value)

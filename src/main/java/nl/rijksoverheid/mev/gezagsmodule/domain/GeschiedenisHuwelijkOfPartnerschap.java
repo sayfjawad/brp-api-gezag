@@ -1,7 +1,5 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import java.time.Clock;

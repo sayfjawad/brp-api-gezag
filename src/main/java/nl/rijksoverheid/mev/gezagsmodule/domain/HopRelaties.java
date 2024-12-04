@@ -1,11 +1,7 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
-import lombok.extern.slf4j.Slf4j;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import nl.rijksoverheid.mev.brpadapter.service.BrpService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Comparator;
