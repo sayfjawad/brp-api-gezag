@@ -1,10 +1,11 @@
-package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
+package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
 import lombok.Getter;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import org.openapitools.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

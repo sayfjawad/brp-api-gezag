@@ -1,4 +1,4 @@
-package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
+package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import org.slf4j.Logger;

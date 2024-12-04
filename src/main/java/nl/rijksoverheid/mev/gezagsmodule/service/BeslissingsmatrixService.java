@@ -1,11 +1,9 @@
 package nl.rijksoverheid.mev.gezagsmodule.service;
 
-import lombok.extern.slf4j.Slf4j;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
-import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagBepaling;
-import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.IsErSprakeVanEenRecenteGebeurtenis;
+import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagBepaling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

@@ -2,7 +2,7 @@ package nl.rijksoverheid.mev.gmapi;
 
 import nl.rijksoverheid.mev.gezagsmodule.service.BrpService;
 import nl.rijksoverheid.mev.exception.GezagException;
-import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.logging.LoggingContext;
 import org.openapitools.model.AbstractGezagsrelatie;
 import org.openapitools.model.GezagRequest;

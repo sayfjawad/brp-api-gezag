@@ -1,7 +1,6 @@
-package nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule;
+package nl.rijksoverheid.mev.gezagsmodule.service;
 
 import lombok.RequiredArgsConstructor;
-import nl.rijksoverheid.mev.gezagsmodule.service.BrpService;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
@@ -9,9 +8,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
-import nl.rijksoverheid.mev.gezagsmodule.service.BeslissingsmatrixService;
-import nl.rijksoverheid.mev.gezagsmodule.service.ToelichtingService;
-import nl.rijksoverheid.mev.gezagsmodule.service.VragenlijstService;
+import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagBepaling;
 import nl.rijksoverheid.mev.logging.LoggingContext;
 import org.openapitools.model.AbstractGezagsrelatie;
 import org.openapitools.model.GezagNietTeBepalen;
