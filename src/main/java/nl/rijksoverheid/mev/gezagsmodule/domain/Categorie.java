@@ -16,7 +16,6 @@ public class Categorie {
     public static final String GESCHIEDENIS_PERSOON = "51";
     public static final String GESCHIEDENIS_OUDER_1 = "52";
     public static final String GESCHIEDENIS_OUDER_2 = "53";
-    public static final String GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP = "55";
 
     private Categorie() {
     }

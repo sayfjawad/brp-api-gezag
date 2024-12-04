@@ -167,14 +167,6 @@ public class Persoonslijst {
         }
     }
 
-    public List<GeschiedenisHuwelijkOfPartnerschap> getGeschiedenisHuwelijkOfPartnerschappen() {
-        if (listValues.containsKey(Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP)) {
-            return (List<GeschiedenisHuwelijkOfPartnerschap>) (Object) listValues.get(Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP);
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
     public List<GeschiedenisPersoon> getGeschiedenisPersoon() {
         if (listValues.containsKey(Categorie.GESCHIEDENIS_PERSOON)) {
             return (List<GeschiedenisPersoon>) (Object) listValues.get(Categorie.GESCHIEDENIS_PERSOON);
@@ -284,24 +276,6 @@ public class Persoonslijst {
                     gebeurtenis.getBsnPartner(),
                     gebeurtenis.getDatumVoltrokken(),
                     null);
-            }
-        }
-        if (getGeschiedenisHuwelijkOfPartnerschappen() != null) {
-            for (GeschiedenisHuwelijkOfPartnerschap gebeurtenis : getGeschiedenisHuwelijkOfPartnerschappen()) {
-                if (gebeurtenis.getDatumVoltrokken() != null) {
-                    hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
-                        gebeurtenis.getBsnPartner(),
-                        gebeurtenis.getDatumVoltrokken(),
-                        gebeurtenis.getRedenOntbinding()
-                    );
-                }
-                if (gebeurtenis.getDatumOntbinding() != null) {
-                    hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
-                        gebeurtenis.getBsnPartner(),
-                        gebeurtenis.getDatumOntbinding(),
-                        gebeurtenis.getRedenOntbinding()
-                    );
-                }
             }
         }
         hopRelaties.checkRelaties();
