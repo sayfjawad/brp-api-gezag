@@ -6,6 +6,9 @@ import nl.rijksoverheid.mev.brpadapter.soap.BrpClient;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.IsGeadopteerdMetNlAkte;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,14 +21,12 @@ import java.util.stream.Stream;
 /**
  * Service voor BRP functionaliteit
  */
-@Slf4j
+
 @Service
 @RequiredArgsConstructor
 public class BrpService {
 
     private final BrpClient client;
-
-    private static final String BRP_SERVICE_GET_BSNS_MINDERJARIGE_KINDEREN = "getBsnsMinderjarigeKinderen";
 
     /**
      * Ophalen persoonslijst

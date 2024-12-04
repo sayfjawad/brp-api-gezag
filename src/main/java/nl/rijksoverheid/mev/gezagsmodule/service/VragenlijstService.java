@@ -1,6 +1,8 @@
 package nl.rijksoverheid.mev.gezagsmodule.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,11 +17,12 @@ import nl.rijksoverheid.mev.exception.HoofdstroomSchemaNietGevondenExceptie;
  * van vragen en mogelijke antwoorden met de bijbehorende acties.
  */
 @Service
-@Slf4j
 public class VragenlijstService {
 
     private static final String HOOFDSTROOMSCHEMA = "/hoofdstroomschema_v2_2_1.csv";
     private final Map<String, Map<String, String>> vragenMap;
+
+    private static final Logger logger = LoggerFactory.getLogger(VragenlijstService.class);
 
     public VragenlijstService() {
         vragenMap = new HashMap<>();
@@ -49,7 +52,7 @@ public class VragenlijstService {
                 vragenMap.get(question).put(answer, action);
             }
         } catch (IOException | NullPointerException ex) {
-            log.error("Not able to read {} file in the classpath", HOOFDSTROOMSCHEMA, ex);
+            logger.error("Not able to read {} file in the classpath", HOOFDSTROOMSCHEMA, ex);
             throw new HoofdstroomSchemaNietGevondenExceptie("Kan hoofdstroomschema CSV niet lezen");
         }
     }

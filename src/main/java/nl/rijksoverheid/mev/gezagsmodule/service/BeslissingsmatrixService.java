@@ -5,6 +5,9 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagBepaling;
+import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.IsErSprakeVanEenRecenteGebeurtenis;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -15,7 +18,6 @@ import java.util.stream.Collectors;
 /**
  * Service voor beslissingsmatrix
  */
-@Slf4j
 @Component
 public class BeslissingsmatrixService {
 
@@ -24,6 +26,8 @@ public class BeslissingsmatrixService {
     private static final String MISSENDE_GEGEVENS_ANNOTATIE = "e";
 
     private Map<String, ARAntwoordenModel> routes;
+
+    private static final Logger logger = LoggerFactory.getLogger(BeslissingsmatrixService.class);
 
     public BeslissingsmatrixService() {
         determineRoutes();
@@ -41,7 +45,7 @@ public class BeslissingsmatrixService {
         if (routes.containsKey(route)) {
             return routes.get(route);
         } else {
-            log.error("Route kon niet worden gevonden, route is: {} en exceptie: {}", route, resultaat.getException());
+            logger.error("Route kon niet worden gevonden, route is: {} en exceptie: {}", route, resultaat.getException());
             throw new AfleidingsregelException("Route kon niet worden gevonden in het ingelezen antwoorden model, de route is: " + route, "onbekend");
         }
     }

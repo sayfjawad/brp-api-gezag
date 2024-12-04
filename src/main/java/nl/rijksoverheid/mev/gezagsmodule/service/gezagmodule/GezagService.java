@@ -16,6 +16,8 @@ import nl.rijksoverheid.mev.gezagsmodule.service.VragenlijstService;
 import nl.rijksoverheid.mev.logging.LoggingContext;
 import org.openapitools.model.AbstractGezagsrelatie;
 import org.openapitools.model.GezagNietTeBepalen;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -23,7 +25,6 @@ import java.util.*;
 /**
  * Service voor bepalen gezag
  */
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class GezagService {
@@ -38,6 +39,7 @@ public class GezagService {
     private static final String SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD = "N";
     private static final String BSN_MEERDERJARIGE_LEEG = "";
     private static final String TOELICHTING_ONBEKEND_PERSOON = "Voor het opgegeven burgerservicenummer kon geen persoonslijst worden gevonden";
+    private static final Logger logger = LoggerFactory.getLogger(BeslissingsmatrixService.class);
 
     /**
      * Bepaal gezag van kind
@@ -52,7 +54,7 @@ public class GezagService {
             try {
                 gezagRelaties.addAll(getGezagResultaat(burgerservicenummer, burgerservicenummerPersoon));
             } catch (AfleidingsregelException ex) {
-                log.error("Gezagsrelatie kon niet worden bepaald, dit is een urgent probleem! Resultaat 'N' wordt als antwoord gegeven", ex);
+                logger.error("Gezagsrelatie kon niet worden bepaald, dit is een urgent probleem! Resultaat 'N' wordt als antwoord gegeven", ex);
                 gezagRelaties.add(new GezagNietTeBepalen().toelichting(
                     "Gezagsrelatie kon niet worden bepaald vanwege een onverwachte exceptie, resultaat 'N' wordt als antwoord gegeven"));
             }
@@ -124,7 +126,7 @@ public class GezagService {
         loggingContext.addGezagType(arAntwoordenModel.getSoortGezag(), burgerservicenummer);
         loggingContext.addRoute(route, burgerservicenummer);
         loggingContext.addToelichting(arAntwoordenModel.getUitleg(), burgerservicenummer);
-        log.info("Gezag bepaald voor persoon \"{}\": {}", burgerservicenummer, arAntwoordenModel);
+        logger.info("Gezag bepaald voor persoon \"{}\": {}", burgerservicenummer, arAntwoordenModel);
         return gezagRelaties;
     }
 
@@ -152,7 +154,7 @@ public class GezagService {
                 });
             }
         } catch (GezagException ex) {
-            log.debug(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
 
         return plOuder1.orElse(null);
@@ -176,7 +178,7 @@ public class GezagService {
                 });
             }
         } catch (GezagException ex) {
-            log.debug(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
 
         return plOuder2.orElse(null);
@@ -207,7 +209,7 @@ public class GezagService {
             String burgerservicenummerNietOuder = hopGeborenInRelatie.getPartner();
             return brpService.getPersoonslijst(burgerservicenummerNietOuder).orElse(null);
         } catch (GezagException ex) {
-            log.debug(ex.getMessage());
+            logger.debug(ex.getMessage());
             return null;
         }
     }
