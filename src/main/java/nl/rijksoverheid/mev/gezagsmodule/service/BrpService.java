@@ -1,7 +1,7 @@
 package nl.rijksoverheid.mev.gezagsmodule.service;
 
 import lombok.RequiredArgsConstructor;
-import nl.rijksoverheid.mev.brpadapter.soap.BrpClient;
+import nl.rijksoverheid.mev.brp.PersoonslijstFinder;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class BrpService {
 
-    private final BrpClient client;
+    private final PersoonslijstFinder finder;
 
     /**
      * Ophalen persoonslijst
@@ -32,7 +32,7 @@ public class BrpService {
      * @throws GezagException wanneer BRP communicatie misgaat
      */
     public Optional<Persoonslijst> getPersoonslijst(final String bsn) {
-        return client.opvragenPersoonslijst(bsn);
+        return finder.opvragenPersoonslijst(bsn);
     }
 
     /**
@@ -43,13 +43,13 @@ public class BrpService {
      * @throws GezagException wanneer BRP communicatie misgaat
      */
     public Set<String> getBsnsMinderjarigeKinderenOuderEnPartners(final String bsn) {
-        var optionalPersoonslijstOuder = client.opvragenPersoonslijst(bsn);
+        var optionalPersoonslijstOuder = finder.opvragenPersoonslijst(bsn);
         List<Persoonslijst> partners = optionalPersoonslijstOuder.stream()
             .map(Persoonslijst::getHuwelijkOfPartnerschappen)
             .flatMap(List::stream)
             .map(HuwelijkOfPartnerschap::getBsnPartner)
             .filter(Objects::nonNull)
-            .map(client::opvragenPersoonslijst)
+            .map(finder::opvragenPersoonslijst)
             .flatMap(Optional::stream)
             .toList();
 
