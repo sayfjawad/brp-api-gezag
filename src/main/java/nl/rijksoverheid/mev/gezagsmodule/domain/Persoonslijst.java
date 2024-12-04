@@ -9,8 +9,6 @@ import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 
-import java.lang.reflect.Field;
-import java.time.Clock;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;

@@ -7,8 +7,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * v2a_1
- *
- * @return JA GEHUWD OF PARTNERS/NEE NA GEBOORTE NOOIT GEHUWD PARTNERS
+ * JA GEHUWD OF PARTNERS/NEE NA GEBOORTE NOOIT GEHUWD PARTNERS
  * GEWEEST MET ELKAAR / NEE GESCHEIDEN NA GEBOORTE
  */
 public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag {

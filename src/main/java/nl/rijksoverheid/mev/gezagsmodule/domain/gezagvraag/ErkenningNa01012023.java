@@ -7,8 +7,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * v2a_3
- *
- * @return VOOR of NA
+ * VOOR of NA
  */
 public class ErkenningNa01012023 extends GezagVraag {
 
@@ -35,10 +34,9 @@ public class ErkenningNa01012023 extends GezagVraag {
                 ? "beide ouders van bevraagde persoon" : "een ouder van de bevraagde persoon");
             throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geen twee ouders bij erkenning", missendeGegeven);
         }
-        // voor snelheid en gegevens in onderzoek
+
         boolean persoonErkend = plPersoon.geenOngeborenVruchtErkendOfGerechtelijkeVaststelling();
         boolean persoonOngeborenVruchtErkend = plPersoon.ongeborenVruchtErkend();
-
         boolean isPersoonErkend = persoonErkend || persoonOngeborenVruchtErkend;
         if(isPersoonErkend && persoonOuder1.getDatumIngangFamiliebetrekking() == null) {
             gezagBepaling.addMissendeGegegevens("datum ingang familie betrekking van ouder 1");

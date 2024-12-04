@@ -5,9 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * sv2_1
- *
- * @return EEN OUDER/TWEE OUDERS/GEEN OUDERS/2 PUNTOUDERS/ONBEKEND of
+ * v2_1
+ * EEN OUDER/TWEE OUDERS/GEEN OUDERS/2 PUNTOUDERS/ONBEKEND of
  * IN_ONDERZOEK
  */
 public class HoeveelJuridischeOudersHeeftMinderjarige extends GezagVraag {

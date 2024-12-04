@@ -6,8 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * v2a_2
- *
- * @return "Ja" als is adoptief ouders, anders "Nee"
+ * "Ja" als is adoptief ouders, anders "Nee"
  */
 public class AdoptiefOuders extends GezagVraag {
 

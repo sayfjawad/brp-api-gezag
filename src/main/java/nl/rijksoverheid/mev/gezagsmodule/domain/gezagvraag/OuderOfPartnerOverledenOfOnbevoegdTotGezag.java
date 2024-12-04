@@ -9,10 +9,8 @@ import java.util.Map;
 
 /**
  * v4b1
- * <p>
  * OuderOfPartnerOverledenOfOnbevoegdTotGezag
- *
- * @return if ouder of partner overleden of onbevoegd tot gezag is
+ * if ouder of partner overleden of onbevoegd tot gezag is
  */
 public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
 

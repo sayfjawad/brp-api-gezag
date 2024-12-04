@@ -5,10 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Sets the answer to {@code "Ja"} if <i>persoon is ingezetene</i>, otherwise {@code "Nee"}.
- *
- * <p>
- * This is question 1_1.
+ * v1_2
+ * "Ja" als persoon is ingezetene anders "Nee"
  */
 public class IsPersoonIngezeteneInBRP extends GezagVraag {
 

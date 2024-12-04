@@ -7,8 +7,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * v1_3
- *
- * @return "Ja" als is naar buitenland geëmigreerd geweest, anders "Nee"
+ * "Ja" als is naar buitenland geëmigreerd geweest, anders "Nee"
  */
 public class IsNaarBuitenlandGeemigreerdGeweest extends GezagVraag {
 

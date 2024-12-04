@@ -5,8 +5,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * v4a_2
- *
- * @return JA_OUDER1/JA_OUDER2/NEE/BEIDEN/ONBEKEND
+ * JA_OUDER1/JA_OUDER2/NEE/BEIDEN/ONBEKEND
  */
 public class OudersOverledenOfOnbevoegdTotGezag extends GezagVraag {
 

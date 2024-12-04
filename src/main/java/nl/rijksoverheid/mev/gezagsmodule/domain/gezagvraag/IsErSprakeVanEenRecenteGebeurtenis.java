@@ -11,7 +11,6 @@ import static java.util.Comparator.*;
 
 /**
  * v3.1
- * <p>
  * Ja, als er sprake is van een recente gebeurtenis anders Nee
  */
 public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {

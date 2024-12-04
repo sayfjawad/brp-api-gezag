@@ -2,7 +2,6 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 
 import lombok.Getter;
 
-import java.time.Clock;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;

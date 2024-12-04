@@ -6,8 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * v1_3b
- *
- * @return "Ja" als is geadopteerd met nederlandse akte anders "Nee"
+ * "Ja" als is geadopteerd met nederlandse akte anders "Nee"
  */
 public class IsGeadopteerdMetNlAkte extends GezagVraag {
 

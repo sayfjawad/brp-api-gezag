@@ -6,8 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * sv1_4
- *
- * @return JA/NEE of IN_ONDERZOEK
+ * JA/NEE of IN_ONDERZOEK
  */
 public class IsUitspraakGezagAanwezig extends GezagVraag {
 

@@ -7,8 +7,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * sv4a_3
- *
- * @return JA/NEE
+ * JA/NEE
  */
 public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
 

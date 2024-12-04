@@ -7,8 +7,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * v3_2
- *
- * @return 1/2/12/1D/2D/D/ONBEKEND
+ * 1/2/12/1D/2D/D/ONBEKEND
  */
 public class IndicatieGezagMinderjarige extends GezagVraag {
 

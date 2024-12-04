@@ -5,10 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Sets the answer to {@code "Ja"} if <i>persoon is in buitenland geboren</i>, otherwise {@code "Nee"}.
- *
- * <p>
- * This is question 1_3A.
+ * v1_3a
+ * "Ja" als de persoon is in buitenland geboren is en anders "Nee".
  */
 public class IsGeborenInBuitenland extends GezagVraag {
 

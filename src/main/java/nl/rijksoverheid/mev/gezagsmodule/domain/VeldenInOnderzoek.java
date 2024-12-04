@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Object met verzameling velden in onderzoek met koppeling aan welke persoon
@@ -20,11 +21,7 @@ public class VeldenInOnderzoek {
      * @return velden in onderzoek voor persoon
      */
     public List<String> getPersoon() {
-        if (persoon != null) {
-            return persoon;
-        } else {
-            return Collections.emptyList();
-        }
+        return Objects.requireNonNullElse(persoon, Collections.emptyList());
     }
 
     /**
@@ -38,11 +35,7 @@ public class VeldenInOnderzoek {
      * @return velden in onderzoek voor ouder1
      */
     public List<String> getOuder1() {
-        if (ouder1 != null) {
-            return ouder1;
-        } else {
-            return Collections.emptyList();
-        }
+        return Objects.requireNonNullElse(ouder1, Collections.emptyList());
     }
 
     /**
@@ -56,11 +49,7 @@ public class VeldenInOnderzoek {
      * @return velden in onderzoek voor ouder2
      */
     public List<String> getOuder2() {
-        if (ouder2 != null) {
-            return ouder2;
-        } else {
-            return Collections.emptyList();
-        }
+        return Objects.requireNonNullElse(ouder2, Collections.emptyList());
     }
 
     /**
@@ -74,11 +63,7 @@ public class VeldenInOnderzoek {
      * @return velden in onderzoek voor niet ouder
      */
     public List<String> getNietOuder() {
-        if (nietOuder != null) {
-            return nietOuder;
-        } else {
-            return Collections.emptyList();
-        }
+        return Objects.requireNonNullElse(nietOuder, Collections.emptyList());
     }
 
     /**

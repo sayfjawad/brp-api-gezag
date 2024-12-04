@@ -31,11 +31,9 @@ public class GezagService {
     private final LoggingContext loggingContext;
     private final ToelichtingService toelichtingService;
     private static final String DEFAULT_NEE = "Nee";
-    private static final String SOORT_GEZAG_NVT = "NVT";
     private static final String SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD = "N";
-    private static final String BSN_MEERDERJARIGE_LEEG = "";
     private static final String TOELICHTING_ONBEKEND_PERSOON = "Voor het opgegeven burgerservicenummer kon geen persoonslijst worden gevonden";
-    private static final Logger logger = LoggerFactory.getLogger(BeslissingsmatrixService.class);
+    private static final Logger logger = LoggerFactory.getLogger(GezagService.class);
 
     /**
      * Bepaal gezag van kind
@@ -144,7 +142,7 @@ public class GezagService {
             if (plPersoon.getOuder1() != null && plPersoon.getOuder1().getBsn() != null) {
                 plOuder1 = brpService.getPersoonslijst(
                     plPersoon.getOuder1().getBsn());
-                plOuder1.ifPresent((ouder1) -> {
+                plOuder1.ifPresent(ouder1-> {
                     ouder1.setHopRelaties(new HopRelaties());
                     ouder1.checkHopRelaties();
                 });
@@ -168,7 +166,7 @@ public class GezagService {
             if (plPersoon.getOuder2() != null && plPersoon.getOuder2().getBsn() != null) {
                 plOuder2 = brpService.getPersoonslijst(
                     plPersoon.getOuder2().getBsn());
-                plOuder2.ifPresent((ouder2) -> {
+                plOuder2.ifPresent(ouder2 -> {
                     ouder2.setHopRelaties(new HopRelaties());
                     ouder2.checkHopRelaties();
                 });

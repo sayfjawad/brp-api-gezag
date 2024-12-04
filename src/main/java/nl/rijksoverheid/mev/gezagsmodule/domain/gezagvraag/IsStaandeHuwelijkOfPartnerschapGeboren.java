@@ -10,9 +10,7 @@ import static nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst.isValideGes
 
 /**
  * v2b_1
- *
- * @return "Ja" als is staande huwelijk of partnerschap geboren, anders
- * "Nee"
+ * "Ja" als is staande huwelijk of partnerschap geboren, anders "Nee"
  */
 public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
 

@@ -6,11 +6,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * v1_2
- * <p>
  * Vraag {@link IsPersoonIngezeteneInBRP} in combinatie met {@code isAlsMinderjarigOpgeschort}
  * leidt ertoe dat het enige mogelijke antwoord {@code V1_2_NEE_OVERLEDEN} is.
  *
- * @return of minderjarig en niet overleden is
+ * of minderjarig en niet overleden is
  */
 public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
 
