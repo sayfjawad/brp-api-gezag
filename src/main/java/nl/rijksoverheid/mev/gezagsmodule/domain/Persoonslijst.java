@@ -72,7 +72,6 @@ public class Persoonslijst {
     public static final char TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP = 'V';
     public static final String PUNTOUDER_INDICATIE = ".";
     static final List<String> INDICATIE_GEZAG_CODES = Arrays.asList("1", "2", "12", "1D", "2D", "D");
-    static final String[] HUWELIJK_OF_PARTNERSCHAP_REDEN_ONTBINDING = new String[]{"O", "R"};
 
     @JsonIgnore
     @Getter
