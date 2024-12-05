@@ -13,15 +13,15 @@ import java.util.Set;
 @Getter
 public abstract class PotentieelInOnderzoek {
 
-    private final Set<String> veldenInOnderzoek;
-
-    protected String aanduidingGegevensInOnderzoek;
-    protected String datumEindeOnderzoek;
+    protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
 
     private static final int GROEP_POSITIE_GETAL = 4;
     private static final int CATEGORIE_POSITIE_GETAL = 2;
 
-    protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+    private final Set<String> veldenInOnderzoek;
+
+    protected String aanduidingGegevensInOnderzoek;
+    protected String datumEindeOnderzoek;
 
     protected PotentieelInOnderzoek() {
         veldenInOnderzoek = new HashSet<>();
