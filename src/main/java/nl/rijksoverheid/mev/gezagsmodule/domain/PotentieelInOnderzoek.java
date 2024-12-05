@@ -1,6 +1,8 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
 
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +16,8 @@ import java.util.Set;
 public abstract class PotentieelInOnderzoek {
 
     protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+
+    private static final Logger logger = LoggerFactory.getLogger(PotentieelInOnderzoek.class);
 
     private static final int GROEP_POSITIE_GETAL = 4;
     private static final int CATEGORIE_POSITIE_GETAL = 2;
@@ -60,7 +64,7 @@ public abstract class PotentieelInOnderzoek {
                 }
             }
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            logger.error("Should never happen. Probably a programming error.", e);
         }
     }
 
