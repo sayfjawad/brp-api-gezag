@@ -19,10 +19,12 @@ import java.util.Map;
 @Service
 public class VragenlijstService {
 
+    private static final Logger logger = LoggerFactory.getLogger(VragenlijstService.class);
+
     private static final String HOOFDSTROOMSCHEMA = "/hoofdstroomschema_v2_2_1.csv";
+
     private final Map<String, Map<String, String>> vragenMap;
 
-    private static final Logger logger = LoggerFactory.getLogger(VragenlijstService.class);
 
     public VragenlijstService() {
         vragenMap = new HashMap<>();
