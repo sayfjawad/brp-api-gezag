@@ -22,9 +22,6 @@ management:
       exposure:
         include: "*"
 
-correlation:
-  component-id: 02
-
 ---
 
 spring:
