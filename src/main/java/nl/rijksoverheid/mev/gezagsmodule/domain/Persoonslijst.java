@@ -243,7 +243,7 @@ public class Persoonslijst {
     }
 
     public static boolean isValideGeslachtsnaam(String str) {
-        return str != null && !str.isEmpty() && !str.isBlank() && !str.equals(PUNTOUDER_INDICATIE);
+        return str != null && !str.isBlank() && !str.equals(PUNTOUDER_INDICATIE);
     }
 
     /**
