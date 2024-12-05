@@ -1,9 +1,12 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
-import nl.rijksoverheid.mev.gezagsmodule.domain.*;
+import nl.rijksoverheid.mev.gezagsmodule.domain.Gezagsverhouding;
+import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
+import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 

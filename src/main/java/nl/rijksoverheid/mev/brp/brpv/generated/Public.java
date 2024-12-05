@@ -4,17 +4,16 @@
 package nl.rijksoverheid.mev.brp.brpv.generated;
 
 
-import java.util.Arrays;
-import java.util.List;
-
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3Pl;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlGezagsverhouding;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlPersoon;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlVerblijfplaats;
-
 import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
