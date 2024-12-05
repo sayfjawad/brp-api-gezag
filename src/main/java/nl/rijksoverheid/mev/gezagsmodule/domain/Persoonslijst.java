@@ -12,6 +12,7 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -132,31 +133,18 @@ public class Persoonslijst {
         inschrijving = new Inschrijving(lo3PlRecord);
     }
 
-    // TODO: dit kan nog iets beter
     public List<String> getUsedVeldenInOnderzoek() {
-        List<String> inOnderzoek = new ArrayList<>();
-        inOnderzoek.addAll(persoon.getVeldenInOnderzoek());
-        inOnderzoek.addAll(geschiedenisPersoon.stream()
-            .map(GeschiedenisPersoon::getVeldenInOnderzoek)
-            .flatMap(Set::stream)
-            .toList());
-        inOnderzoek.addAll(gezagsverhouding.getVeldenInOnderzoek());
-        inOnderzoek.addAll(huwelijkOfPartnerschappen.stream()
-            .map(HuwelijkOfPartnerschap::getVeldenInOnderzoek)
-            .flatMap(Set::stream)
-            .toList());
-        inOnderzoek.addAll(ouder1.getVeldenInOnderzoek());
-        inOnderzoek.addAll(geschiedenisOuder1.stream()
-            .map(GeschiedenisOuder1::getVeldenInOnderzoek)
-            .flatMap(Set::stream)
-            .toList());
-        inOnderzoek.addAll(ouder2.getVeldenInOnderzoek());
-        inOnderzoek.addAll(geschiedenisOuder2.stream()
-            .map(GeschiedenisOuder2::getVeldenInOnderzoek)
-            .flatMap(Set::stream)
-            .toList());
-
-        return inOnderzoek;
+        return Stream.of(
+                persoon.getVeldenInOnderzoek().stream(),
+                geschiedenisPersoon.stream().map(GeschiedenisPersoon::getVeldenInOnderzoek).flatMap(Set::stream),
+                gezagsverhouding.getVeldenInOnderzoek().stream(),
+                huwelijkOfPartnerschappen.stream().map(HuwelijkOfPartnerschap::getVeldenInOnderzoek).flatMap(Set::stream),
+                ouder1.getVeldenInOnderzoek().stream(),
+                geschiedenisOuder1.stream().map(GeschiedenisOuder1::getVeldenInOnderzoek).flatMap(Set::stream),
+                ouder2.getVeldenInOnderzoek().stream(),
+                geschiedenisOuder2.stream().map(GeschiedenisOuder2::getVeldenInOnderzoek).flatMap(Set::stream))
+            .flatMap(Function.identity())
+            .toList();
     }
 
     public Stream<String> getBurgerservicenummersVanMinderjarigeKinderen() {
