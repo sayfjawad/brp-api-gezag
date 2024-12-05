@@ -339,17 +339,14 @@ public class Persoonslijst {
     public boolean ongeborenVruchtErkend() {
         // controleer dan persoon op akte erkenning actueel en geschiedenis op A
         // voorbereiding, zet alle aktenummers in een lijst
-        List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(persoon.getAktenummer());
-        if (geschiedenisPersoon != null) {
-            for (GeschiedenisPersoon p : geschiedenisPersoon) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
-            TABEL_39_AKTEAANDUIDING_GEBOORTE));
+        var aktenummers = Stream.concat(
+            Stream.of(persoon.getAktenummer()),
+            geschiedenisPersoon.stream().map(GeschiedenisPersoon::getAktenummer)
+        ).toList();
+        var geldigeErkenningCodes = Set.of(TABEL_39_AKTEAANDUIDING_GEBOORTE);
+
         // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+        return controleerAkteNummers(aktenummers, geldigeErkenningCodes);
     }
 
 
@@ -415,17 +412,14 @@ public class Persoonslijst {
     }
 
     public boolean geadopteerdMetNlAkte() {
-        List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(persoon.getAktenummer());
-        if (geschiedenisPersoon != null) {
-            for (GeschiedenisPersoon p : geschiedenisPersoon) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
-            TABEL_39_AKTEAANDUIDING_ADOPTIE));
+        var aktenummers = Stream.concat(
+            Stream.of(persoon.getAktenummer()),
+            geschiedenisPersoon.stream().map(GeschiedenisPersoon::getAktenummer)
+        ).toList();
+        var geldigeErkenningCodes = Set.of(TABEL_39_AKTEAANDUIDING_ADOPTIE);
+
         // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+        return controleerAkteNummers(aktenummers, geldigeErkenningCodes);
     }
 
     public boolean heefIndicatieGezag() {
