@@ -25,7 +25,6 @@ public class VragenlijstService {
 
     private final Map<String, Map<String, String>> vragenMap;
 
-
     public VragenlijstService() {
         vragenMap = new HashMap<>();
 
