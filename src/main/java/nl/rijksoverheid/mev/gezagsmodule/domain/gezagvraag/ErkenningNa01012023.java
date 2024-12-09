@@ -21,14 +21,14 @@ public class ErkenningNa01012023 extends GezagVraag {
     private static final String V2A_3_NA = "Na";
     private static final int DATE_JAN_1_2023 = 20230101;
 
-    protected ErkenningNa01012023(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected ErkenningNa01012023(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v2a.3";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
         Ouder1 persoonOuder1 = plPersoon.getOuder1();
         Ouder2 persoonOuder2 = plPersoon.getOuder2();
         if (persoonOuder1 == null || persoonOuder2 == null) {
@@ -41,10 +41,10 @@ public class ErkenningNa01012023 extends GezagVraag {
         boolean persoonOngeborenVruchtErkend = plPersoon.ongeborenVruchtErkend();
         boolean isPersoonErkend = persoonErkend || persoonOngeborenVruchtErkend;
         if (isPersoonErkend && persoonOuder1.getDatumIngangFamiliebetrekking() == null) {
-            gezagBepaling.addMissendeGegegevens("datum ingang familie betrekking van ouder 1");
+            gezagsBepaling.addMissendeGegegevens("datum ingang familie betrekking van ouder 1");
             return;
         } else if (isPersoonErkend && persoonOuder2.getDatumIngangFamiliebetrekking() == null) {
-            gezagBepaling.addMissendeGegegevens("datum ingang familie betrekking van ouder 2");
+            gezagsBepaling.addMissendeGegegevens("datum ingang familie betrekking van ouder 2");
             return;
         }
 
@@ -56,7 +56,7 @@ public class ErkenningNa01012023 extends GezagVraag {
             logger.debug("""
                 2a.3 Erkenning voor of na 1-1-2023?
                 {}""", answer);
-            gezagBepaling.getArAntwoordenModel().setV02A03(answer);
+            gezagsBepaling.getArAntwoordenModel().setV02A03(answer);
         } else {
             throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen", "Geboortemoeder van bevraagde persoon niet te bepalen");
         }

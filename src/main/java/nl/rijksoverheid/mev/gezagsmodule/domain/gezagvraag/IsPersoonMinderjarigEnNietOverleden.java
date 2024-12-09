@@ -19,14 +19,14 @@ public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
     private static final String V1_2_NEE_MEERDERJARIG = "Nee_meerderjarig";
     private static final String V1_2_NEE_OVERLEDEN = "Nee_overleden";
 
-    protected IsPersoonMinderjarigEnNietOverleden(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected IsPersoonMinderjarigEnNietOverleden(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v1.2";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
 
         boolean isMinderjarig = plPersoon.minderjarig();
         boolean isAlsMinderjarigOpgeschort = plPersoon.alsMinderjarigeOpgeschort();
@@ -42,6 +42,6 @@ public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
         logger.debug("""
             1.2 Is persoon minderjarig en niet overleden?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV0102(answer);
+        gezagsBepaling.getArAntwoordenModel().setV0102(answer);
     }
 }

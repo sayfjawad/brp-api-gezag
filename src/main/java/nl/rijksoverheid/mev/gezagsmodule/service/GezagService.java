@@ -8,7 +8,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagBepaling;
+import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
 import nl.rijksoverheid.mev.logging.LoggingContext;
 import org.openapitools.model.AbstractGezagsrelatie;
 import org.openapitools.model.GezagNietTeBepalen;
@@ -25,6 +25,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class GezagService {
 
+    private final GezagbepalingService gezagbepalingService;
     private final VragenlijstService vragenlijstService;
     private final BrpService brpService;
     private final BeslissingsmatrixService beslissingsmatrixService;
@@ -70,22 +71,22 @@ public class GezagService {
         List<AbstractGezagsrelatie> gezagRelaties = new ArrayList<>();
         String route;
         Optional<Persoonslijst> plPersoon = Optional.empty();
-        GezagBepaling gezagBepaling = null;
+        GezagsBepaling gezagsBepaling = null;
         try {
             plPersoon = brpService.getPersoonslijst(burgerservicenummer);
             if (plPersoon.isPresent()) {
                 Persoonslijst persoon = plPersoon.get();
-                gezagBepaling = new GezagBepaling(persoon, this, vragenlijstService.getVragenMap());
-                arAntwoordenModel = gezagBepaling.start();
+                gezagsBepaling = new GezagsBepaling(burgerservicenummer, burgerservicenummerPersoon,  persoon, brpService, vragenlijstService.getVragenMap());
+                arAntwoordenModel = gezagsBepaling.start();
             }
         } catch (AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
         }
-        boolean hasVeldenInOnderzoek = gezagBepaling != null && gezagBepaling.warenVeldenInOnderzoek();
+        boolean hasVeldenInOnderzoek = gezagsBepaling != null && gezagsBepaling.warenVeldenInOnderzoek();
         if (hasVeldenInOnderzoek) {
             arAntwoordenModel.setException(new VeldInOnderzoekException("Preconditie: Velden mogen niet in onderzoek staan"));
         }
-        route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel, gezagBepaling);
+        route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel, gezagsBepaling);
         arAntwoordenModel.setRoute(route);
         setConfiguredValues(arAntwoordenModel, plPersoon.isPresent());
 
@@ -98,13 +99,12 @@ public class GezagService {
             arAntwoordenModel.setGezagOuder1(DEFAULT_NEE);
             arAntwoordenModel.setGezagOuder2(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
-            arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
-            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(unformattedUitleg, gezagBepaling.getVeldenInOnderzoek(), null));
+            arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(unformattedUitleg, gezagsBepaling.getVeldenInOnderzoek(), null));
         }
 
-        if (gezagBepaling != null) {
-            List<String> missendeGegegevens = gezagBepaling.getMissendeGegegevens();
-            UUID errorTraceCode = gezagBepaling.getErrorTraceCode();
+        if (gezagsBepaling != null) {
+            List<String> missendeGegegevens = gezagsBepaling.getMissendeGegegevens();
+            UUID errorTraceCode = gezagsBepaling.getErrorTraceCode();
 
             if (errorTraceCode != null) {
                 String toelichting = toelichtingService.setErrorReferenceToelichting(unformattedUitleg, errorTraceCode.toString());
@@ -114,7 +114,7 @@ public class GezagService {
                 arAntwoordenModel.setUitleg(toelichting);
             }
 
-            gezagBepaling.bepalenGezagdragers(burgerservicenummer, burgerservicenummerPersoon, arAntwoordenModel, gezagRelaties);
+            gezagRelaties = gezagbepalingService.bepaalGezagsrelaties(arAntwoordenModel, gezagsBepaling);
         }
 
         loggingContext.addGezagType(arAntwoordenModel.getSoortGezag(), burgerservicenummer);
@@ -124,110 +124,12 @@ public class GezagService {
         return gezagRelaties;
     }
 
-    /*
-     * Als een persoonslijst lokaal aanwezig is, wordt deze opgehaald.
-     * Anders wordt deze uit het BRP opgehaald en lokaal opgeslagen.
-     * De lokale kopie wordt gebruikt om de aanvullende businesslogica te voorzien van persoonsgegevens
-     */
-
-    /**
-     * Ophalen ouder1
-     *
-     * @param plPersoon           de persoon om ouder 1 voor op te halen
-     * @return ouder 1 of null
-     */
-    public Persoonslijst ophalenOuder1(final Persoonslijst plPersoon) {
-        Optional<Persoonslijst> plOuder1 = Optional.empty();
-        try {
-            if (plPersoon.getOuder1() != null && plPersoon.getOuder1().getBurgerservicenummer() != null) {
-                plOuder1 = brpService.getPersoonslijst(
-                    plPersoon.getOuder1().getBurgerservicenummer());
-                plOuder1.ifPresent(ouder1-> {
-                    ouder1.setHopRelaties(new HopRelaties());
-                    ouder1.checkHopRelaties();
-                });
-            }
-        } catch (GezagException ex) {
-            logger.debug(ex.getMessage());
-        }
-
-        return plOuder1.orElse(null);
-    }
-
-    /**
-     * Ophalen ouder 2
-     *
-     * @param plPersoon           de persoon om ouder2 voor op te halen
-     * @return ouder2 of null
-     */
-    public Persoonslijst ophalenOuder2(final Persoonslijst plPersoon) {
-        Optional<Persoonslijst> plOuder2 = Optional.empty();
-        try {
-            if (plPersoon.getOuder2() != null && plPersoon.getOuder2().getBurgerservicenummer() != null) {
-                plOuder2 = brpService.getPersoonslijst(
-                    plPersoon.getOuder2().getBurgerservicenummer());
-                plOuder2.ifPresent(ouder2 -> {
-                    ouder2.setHopRelaties(new HopRelaties());
-                    ouder2.checkHopRelaties();
-                });
-            }
-        } catch (GezagException ex) {
-            logger.debug(ex.getMessage());
-        }
-
-        return plOuder2.orElse(null);
-    }
-
-    /**
-     * Ophalen niet-ouder
-     *
-     * @param plPersoon           de persoon om niet ouder voor te bepalen
-     * @param plOuder1            de ouder 1
-     * @param plOuder2            de ouder 2
-     * @return de niet ouder of null
-     */
-    public Persoonslijst ophalenNietOuder(final Persoonslijst plPersoon, final Persoonslijst plOuder1, final Persoonslijst plOuder2) {
-        try {
-            if (!isValidPersoon(plPersoon) || !isOneParentPresent(plOuder1, plOuder2)) {
-                return null;
-            }
-
-            int geboortedatum = Integer.parseInt(plPersoon.getPersoon().getGeboortedatum());
-            Persoonslijst ouder = Objects.requireNonNullElse(plOuder1, plOuder2);
-            HopRelatie hopGeborenInRelatie = getHopGeborenInRelatie(ouder, geboortedatum);
-
-            if (hopGeborenInRelatie == null) {
-                return null;
-            }
-
-            String burgerservicenummerNietOuder = hopGeborenInRelatie.getPartner();
-            return brpService.getPersoonslijst(burgerservicenummerNietOuder).orElse(null);
-        } catch (GezagException ex) {
-            logger.debug(ex.getMessage());
-            return null;
-        }
-    }
-
-    private boolean isValidPersoon(Persoonslijst plPersoon) {
-        return plPersoon != null && plPersoon.getPersoon() != null && plPersoon.getPersoon().getGeboortedatum() != null;
-    }
-
-    private boolean isOneParentPresent(Persoonslijst plOuder1, Persoonslijst plOuder2) {
-        return plOuder1 == null ^ plOuder2 == null;
-    }
-
-    private HopRelatie getHopGeborenInRelatie(Persoonslijst ouder, int geboortedatum) {
-        HopRelaties hopRelaties = ouder.getHopRelaties();
-        return hopRelaties != null ? hopRelaties.geborenInRelatie(geboortedatum) : null;
-    }
-
     private void setConfiguredValues(final ARAntwoordenModel arAntwoordenModel, final boolean persoonslijstExists) throws AfleidingsregelException {
         ARAntwoordenModel configuredARAntwoordenModel = beslissingsmatrixService.getARAntwoordenModel(arAntwoordenModel);
         arAntwoordenModel.setSoortGezag(configuredARAntwoordenModel.getSoortGezag());
         arAntwoordenModel.setGezagOuder1(configuredARAntwoordenModel.getGezagOuder1());
         arAntwoordenModel.setGezagOuder2(configuredARAntwoordenModel.getGezagOuder2());
         arAntwoordenModel.setGezagNietOuder1(configuredARAntwoordenModel.getGezagNietOuder1());
-        arAntwoordenModel.setGezagNietOuder2(configuredARAntwoordenModel.getGezagNietOuder2());
         arAntwoordenModel.setUitleg((!persoonslijstExists ? TOELICHTING_ONBEKEND_PERSOON :
             configuredARAntwoordenModel.getUitleg()));
     }

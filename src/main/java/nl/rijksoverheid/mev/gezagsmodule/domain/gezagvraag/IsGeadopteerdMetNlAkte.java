@@ -15,14 +15,14 @@ public class IsGeadopteerdMetNlAkte extends GezagVraag {
     private static final String V1_3B_JA = "Ja";
     private static final String V1_3B_NEE = "Nee";
 
-    protected IsGeadopteerdMetNlAkte(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected IsGeadopteerdMetNlAkte(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v1.3b";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
 
         if (plPersoon.geadopteerdMetNlAkte()) {
             answer = V1_3B_JA;
@@ -33,6 +33,6 @@ public class IsGeadopteerdMetNlAkte extends GezagVraag {
         logger.debug("""
             1.3b Is deze minderjarige geadopteerd met een NL-akte?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV0103B(answer);
+        gezagsBepaling.getArAntwoordenModel().setV0103B(answer);
     }
 }

@@ -13,25 +13,25 @@ public class IndicatieGezagMinderjarige extends GezagVraag {
 
     private static final Logger logger = LoggerFactory.getLogger(IndicatieGezagMinderjarige.class);
 
-    protected IndicatieGezagMinderjarige(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected IndicatieGezagMinderjarige(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v3.2";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
 
         Gezagsverhouding gezagsverhouding = plPersoon.getGezagsverhouding();
         if (gezagsverhouding != null) {
             answer = plPersoon.getGezagsverhouding().getIndicatieGezagMinderjarige();
         } else {
-            gezagBepaling.addMissendeGegegevens("gezagsverhouding van bevraagde persoon");
+            gezagsBepaling.addMissendeGegegevens("gezagsverhouding van bevraagde persoon");
         }
 
         logger.debug("""
             3.2 Wat is de indicatie gezag minderjarige?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV0302(answer);
+        gezagsBepaling.getArAntwoordenModel().setV0302(answer);
     }
 }

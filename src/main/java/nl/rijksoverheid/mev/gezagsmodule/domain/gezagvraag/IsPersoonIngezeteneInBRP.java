@@ -16,28 +16,28 @@ public class IsPersoonIngezeteneInBRP extends GezagVraag {
     private static final String V1_1_JA = "Ja";
     private static final String REGISTRATIE_NIET_INGEZETENE = "1999";
 
-    protected IsPersoonIngezeteneInBRP(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected IsPersoonIngezeteneInBRP(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v1.1";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
-            gezagBepaling.addMissendeGegegevens("persoonlijst van bevraagde persoon");
+            gezagsBepaling.addMissendeGegegevens("persoonlijst van bevraagde persoon");
             return;
         }
 
         var verblijfplaats = plPersoon.getVerblijfplaats();
         if (verblijfplaats == null) {
-            gezagBepaling.addMissendeGegegevens("verblijfplaats van bevraagde persoon");
+            gezagsBepaling.addMissendeGegegevens("verblijfplaats van bevraagde persoon");
             return;
         }
 
         var gemeenteVanInschrijving = verblijfplaats.getGemeenteVanInschrijving();
         if (gemeenteVanInschrijving == null || gemeenteVanInschrijving.isEmpty()) {
-            gezagBepaling.addMissendeGegegevens("gemeente van inschrijving van bevraagde persoon");
+            gezagsBepaling.addMissendeGegegevens("gemeente van inschrijving van bevraagde persoon");
             return;
         }
 
@@ -50,6 +50,6 @@ public class IsPersoonIngezeteneInBRP extends GezagVraag {
         logger.debug("""
             1.1 Staat persoon (minderjarige) als ingezetene in de BRP?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV0101(answer);
+        gezagsBepaling.getArAntwoordenModel().setV0101(answer);
     }
 }

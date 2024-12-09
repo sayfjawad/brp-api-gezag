@@ -23,10 +23,10 @@ function configureSqlSettings(context) {
         cleanup: true,
         deleteIndividualRecords: true,
         poolConfig: {
-            user: 'root',
+            user: 'postgres',
             host: 'localhost',
-            database: 'rvig_haalcentraal_testdata',
-            password: 'root',
+            database: 'rvig_brp_api_testdata',
+            password: 'postgres',
             port: 5432,
             allowExitOnIdle: true
         }
@@ -78,7 +78,7 @@ class World {
     constructor(parameters) {
         this.context = parameters;
 
-        this.context.apiUrl = 'http://localhost:8080/haalcentraal/api'
+        this.context.apiUrl = 'http://localhost:8080/api/v1/opvragenBevoegdheidTotGezag'
 
         // wanneer een endpoint prefix mapping voorkomt, wordt bij de constructie van de endpoint url de prefix voor de resource naam gezet
         // bijv. voor de personen resource wordt de endpoint url <apiUrl>/brp/personen

@@ -3,7 +3,7 @@ package nl.rijksoverheid.mev.gezagsmodule.service;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagBepaling;
+import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -56,7 +56,7 @@ public class BeslissingsmatrixService {
      * @param arAntwoordenModel het model om de route voor te bepalen
      * @return de route of "-503i"
      */
-    public String findMatchingRoute(final ARAntwoordenModel arAntwoordenModel, final GezagBepaling gezagBepaling) {
+    public String findMatchingRoute(final ARAntwoordenModel arAntwoordenModel, final GezagsBepaling gezagsBepaling) {
         if (arAntwoordenModel.getRoute() != null) {
             return arAntwoordenModel.getRoute();
         } else if ((arAntwoordenModel.getException() != null)
@@ -64,9 +64,9 @@ public class BeslissingsmatrixService {
             return getRouteFromVraagModel(arAntwoordenModel);
         } else {
             String route = getRouteFromVraagModel(arAntwoordenModel);
-            if (gezagBepaling != null && ERROR_ROUTE.equals(route)
-                && gezagBepaling.getErrorTraceCode() == null
-                && !gezagBepaling.getMissendeGegegevens().isEmpty()) {
+            if (gezagsBepaling != null && ERROR_ROUTE.equals(route)
+                && gezagsBepaling.getErrorTraceCode() == null
+                && !gezagsBepaling.getMissendeGegegevens().isEmpty()) {
                 route = route + MISSENDE_GEGEVENS_ANNOTATIE;
             }
 

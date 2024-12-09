@@ -16,21 +16,21 @@ public class IsNaarBuitenlandGeemigreerdGeweest extends GezagVraag {
     private static final String V1_3_JA = "Ja";
     private static final String V1_3_NEE = "Nee";
 
-    protected IsNaarBuitenlandGeemigreerdGeweest(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected IsNaarBuitenlandGeemigreerdGeweest(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v1.3";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
 
         String geboorteland = plPersoon.getPersoon().getGeboorteland();
         Verblijfplaats verblijfplaats = plPersoon.getVerblijfplaats();
         if (geboorteland == null) {
-            gezagBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
+            gezagsBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
         } else if (verblijfplaats == null) {
-            gezagBepaling.addMissendeGegegevens("Verblijfplaats van bevraagde persoon");
+            gezagsBepaling.addMissendeGegegevens("Verblijfplaats van bevraagde persoon");
         } else if (geboorteland.equals("6030")
             && verblijfplaats.getDatumVestigingInNederland() != null
             && !verblijfplaats.getDatumVestigingInNederland().isEmpty()) {
@@ -42,6 +42,6 @@ public class IsNaarBuitenlandGeemigreerdGeweest extends GezagVraag {
         logger.debug("""
             1.3 Is minderjarige naar het buitenland geëmigreerd geweest?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV0103(answer);
+        gezagsBepaling.getArAntwoordenModel().setV0103(answer);
     }
 }

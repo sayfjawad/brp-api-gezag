@@ -18,20 +18,20 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag 
     private static final String V2A_1_NEE = "Nee";
     private static final String V2A_1_NEE_NA_GEBOORTE_NOOIT_GEHUWD_PARTNERS_GEWEEST_MET_ELKAAR = "Nee_nooit";
 
-    protected ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v2a.1";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
 
         String geboortedatumKind = plPersoon.getPersoon().getGeboortedatum();
         preconditieCheckOudersGeregistreerd();
 
-        Persoonslijst plOuder1 = gezagBepaling.getPlOuder1();
-        Persoonslijst plOuder2 = gezagBepaling.getPlOuder2();
+        Persoonslijst plOuder1 = gezagsBepaling.getPlOuder1();
+        Persoonslijst plOuder2 = gezagsBepaling.getPlOuder2();
         HuwelijkOfPartnerschap hopOuder1 = ouderGetHetHuwelijkOfPartnerschap(plOuder1, plOuder2);
         HuwelijkOfPartnerschap hopOuder2 = ouderGetHetHuwelijkOfPartnerschap(plOuder2, plOuder1);
         // Als er geen huwelijk tussen de ouders gevonden wordt is het antwoord "Nee_nooit"
@@ -52,7 +52,7 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners extends GezagVraag 
         logger.debug("""
             2a.1 Zijn beide juridische ouders nu met elkaar gehuwd/partners?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV02A01(answer);
+        gezagsBepaling.getArAntwoordenModel().setV02A01(answer);
     }
 
     private HuwelijkOfPartnerschap ouderGetHetHuwelijkOfPartnerschap(Persoonslijst persoonslijst1, Persoonslijst persoonslijst2) {

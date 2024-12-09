@@ -37,8 +37,8 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
         "ouder2,false,false", V4B_1_NEE
     );
 
-    protected OuderOfPartnerOverledenOfOnbevoegdTotGezag(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected OuderOfPartnerOverledenOfOnbevoegdTotGezag(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v4b.1";
     }
 
@@ -46,9 +46,9 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
     public void perform() {
         String key;
         // Preconditie: minimaal 1 ouder moet een BSN hebben
-        Persoonslijst lplOuder1 = gezagBepaling.getPlOuder1();
-        Persoonslijst lplOuder2 = gezagBepaling.getPlOuder2();
-        Persoonslijst lplNietOuder = gezagBepaling.getPlNietOuder();
+        Persoonslijst lplOuder1 = gezagsBepaling.getPlOuder1();
+        Persoonslijst lplOuder2 = gezagsBepaling.getPlOuder2();
+        Persoonslijst lplNietOuder = gezagsBepaling.getPlNietOuder();
         // Preconditie: minimaal 1 ouder moet geregistreerd staan in BRP
         if (lplOuder1 == null && lplOuder2 == null) {
             throw new AfleidingsregelException("Preconditie: Minimaal 1 ouder moet geregistreerd staan in BRP", "voor de bevraagde persoon moet minimaal 1 ouder geregistreerd staan in BRP");
@@ -71,6 +71,6 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
         logger.debug("""
             4b.1 Ouder, echtgenoot of partner overleden of onbevoegd tot gezag?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV04B01(answer);
+        gezagsBepaling.getArAntwoordenModel().setV04B01(answer);
     }
 }

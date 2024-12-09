@@ -15,14 +15,14 @@ public class IsUitspraakGezagAanwezig extends GezagVraag {
     private static final String V1_4_JA = "Ja";
     private static final String V1_4_NEE = "Nee";
 
-    protected IsUitspraakGezagAanwezig(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected IsUitspraakGezagAanwezig(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v1.4";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
 
         if (plPersoon.heefIndicatieGezag()) {
             answer = V1_4_JA;
@@ -33,6 +33,6 @@ public class IsUitspraakGezagAanwezig extends GezagVraag {
         logger.debug("""
             1.4 Uitspraak gezag aanwezig?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV0104(answer);
+        gezagsBepaling.getArAntwoordenModel().setV0104(answer);
     }
 }

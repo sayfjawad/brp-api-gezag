@@ -13,20 +13,20 @@ public class HoeveelJuridischeOudersHeeftMinderjarige extends GezagVraag {
 
     private static final Logger logger = LoggerFactory.getLogger(HoeveelJuridischeOudersHeeftMinderjarige.class);
 
-    protected HoeveelJuridischeOudersHeeftMinderjarige(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected HoeveelJuridischeOudersHeeftMinderjarige(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v2.1";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
 
         answer = plPersoon.hoeveelJuridischeOuders();
 
         logger.debug("""
             2.1 Hoeveel juridische ouders heeft de minderjarige?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV0201(answer);
+        gezagsBepaling.getArAntwoordenModel().setV0201(answer);
     }
 }

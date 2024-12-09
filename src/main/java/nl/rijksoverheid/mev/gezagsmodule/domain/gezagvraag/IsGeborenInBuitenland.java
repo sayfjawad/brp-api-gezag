@@ -16,21 +16,21 @@ public class IsGeborenInBuitenland extends GezagVraag {
     private static final String V1_3A_JA = "Ja";
     private static final String V1_3A_NEE = "Nee";
 
-    protected IsGeborenInBuitenland(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected IsGeborenInBuitenland(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v1.3a";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
-            gezagBepaling.addMissendeGegegevens("persoonlijst van bevraagde persoon");
+            gezagsBepaling.addMissendeGegegevens("persoonlijst van bevraagde persoon");
             return;
         }
         String geboorteland = plPersoon.getPersoon().getGeboorteland();
         if (geboorteland == null) {
-            gezagBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
+            gezagsBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
             return;
         }
 
@@ -39,6 +39,6 @@ public class IsGeborenInBuitenland extends GezagVraag {
         logger.debug("""
             1.3a Is minderjarige geboren in het buitenland?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV0103A(answer);
+        gezagsBepaling.getArAntwoordenModel().setV0103A(answer);
     }
 }

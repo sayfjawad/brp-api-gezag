@@ -21,14 +21,14 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
     private static final String OUDER_1 = "ouder1";
     private static final String OUDER_2 = "ouder2";
 
-    protected IsStaandeHuwelijkOfPartnerschapGeboren(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected IsStaandeHuwelijkOfPartnerschapGeboren(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v2b.1";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
 
         answer = V2B_1_NEE;
         String geboorteDatumKind = plPersoon.getPersoon().getGeboortedatum();
@@ -43,7 +43,7 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
         gelijk is aan de BSN van de actuele partner. Als dat het geval is, heeft deze partner ook gezag.
          */
         if (lOuder1 != null && isValideGeslachtsnaam(lOuder1.getGeslachtsnaam())) {
-            Persoonslijst plOuder1 = gezagBepaling.getPlOuder1();
+            Persoonslijst plOuder1 = gezagsBepaling.getPlOuder1();
             preconditieCheckGeregistreerd(OUDER_1, plOuder1);
             if (heeftOuderRelatieBijGeboorteKind(plOuder1, geboorteDatumKind) && !plPersoon.ontkenningOuderschapDoorOuder2()) {
                 answer = V2B_1_JA;
@@ -51,7 +51,7 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
         }
 
         if (lOuder2 != null && isValideGeslachtsnaam(lOuder2.getGeslachtsnaam())) {
-            Persoonslijst plOuder2 = gezagBepaling.getPlOuder2();
+            Persoonslijst plOuder2 = gezagsBepaling.getPlOuder2();
             preconditieCheckGeregistreerd(OUDER_2, plOuder2);
             if (heeftOuderRelatieBijGeboorteKind(plOuder2, geboorteDatumKind) && !plPersoon.ontkenningOuderschapDoorOuder1()) {
                 answer = V2B_1_JA;
@@ -61,7 +61,7 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
         logger.debug("""
             2b.1 Is het kind staande huwelijk of partnerschap geboren?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV02B01(answer);
+        gezagsBepaling.getArAntwoordenModel().setV02B01(answer);
     }
 
     public boolean heeftOuderRelatieBijGeboorteKind(Persoonslijst plOuder, String geboortedatum) {
