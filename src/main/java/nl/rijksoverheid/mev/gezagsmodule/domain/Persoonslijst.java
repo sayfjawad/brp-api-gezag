@@ -26,6 +26,24 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 @Setter
 public class Persoonslijst {
 
+    private static final int MEERDERJARIGE_LEEFTIJD = 180000;
+    private static final int AKTE_NUMMER_LENGTE = 3;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+    private static final String GEEN_OUDERS = "Geen_ouders";
+    private static final String EEN_OUDER = "Een_ouder";
+    private static final String TWEE_OUDERS = "Twee_ouders";
+    private static final String GESLACHTNAAM_AANDUIDING_PUNTOUDER = ".";
+    private static final String PUNTOUDERS = "1_of_2_puntouders";
+    private static final char TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE = 'B';
+    private static final char TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP = 'E'; // Rechtelijke uitspraak
+    private static final char TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE = 'C';
+    private static final char TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING = 'J';
+    private static final char TABEL_39_AKTEAANDUIDING_ADOPTIE = 'Q';
+    private static final char TABEL_39_AKTEAANDUIDING_GEBOORTE = 'A';
+    private static final char TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP = 'V';
+    private static final String PUNTOUDER_INDICATIE = ".";
+    private static final List<String> INDICATIE_GEZAG_CODES = Arrays.asList("1", "2", "12", "1D", "2D", "D");
+
     @Getter
     private Persoon persoon;
     private List<GeschiedenisPersoon> geschiedenisPersoon;
@@ -43,42 +61,8 @@ public class Persoonslijst {
     private Ouder2 ouder2;
     private List<GeschiedenisOuder2> geschiedenisOuder2;
     private Inschrijving inschrijving;
-
-    public static final int MEERDERJARIGE_LEEFTIJD = 180000;
-    public static final int AKTE_NUMMER_LENGTE = 3;
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
-    /*
-        In het BRP wordt een puntouder vastgelegd in de geslachtsnaam met een "."
-     */
-    public static final String GEEN_OUDERS = "Geen_ouders";
-    public static final String EEN_OUDER = "Een_ouder";
-    public static final String TWEE_OUDERS = "Twee_ouders";
-    public static final String GESLACHTNAAM_AANDUIDING_PUNTOUDER = ".";
-
-    /*
-        Mogelijke antwoorden op de vraag: Hoeveel Juridische Ouders
-     */
-    public static final String PUNTOUDERS = "1_of_2_puntouders";
-    /*
-        Akte aanduidingen die gebruikt worden om adoptie of erkenning vast te stellen
-        Vaderschap is toegevoegd om in situaties van 1 ouderlijk gezag de gezaghebbende ouder te kunnen bepalen
-     */
-    public static final char TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE = 'B';
-    public static final char TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP = 'E'; // Rechtelijke uitspraak
-    public static final char TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE = 'C';
-    public static final char TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING = 'J';
-    public static final char TABEL_39_AKTEAANDUIDING_ADOPTIE = 'Q';
-    public static final char TABEL_39_AKTEAANDUIDING_GEBOORTE = 'A';
-    public static final char TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP = 'V';
-    public static final String PUNTOUDER_INDICATIE = ".";
-    static final List<String> INDICATIE_GEZAG_CODES = Arrays.asList("1", "2", "12", "1D", "2D", "D");
-
-    @JsonIgnore
     @Getter
-    private HopRelaties hopRelaties = null;
-
-    @Getter
-    private String receivedId;
+    private HopRelaties hopRelaties;
 
     public Persoonslijst() {
         huwelijkOfPartnerschappen = new ArrayList<>();
