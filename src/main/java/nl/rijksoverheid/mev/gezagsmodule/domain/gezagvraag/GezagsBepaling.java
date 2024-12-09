@@ -86,30 +86,6 @@ public class GezagsBepaling {
         }
     }
 
-    public Persoonslijst getPlOuder1() {
-        if (plOuder1 == null) {
-            plOuder1 = ophalenOuder1(plPersoon);
-        }
-
-        return plOuder1;
-    }
-
-    public Persoonslijst getPlOuder2() {
-        if (plOuder2 == null) {
-            plOuder2 = ophalenOuder2(plPersoon);
-        }
-
-        return plOuder2;
-    }
-
-    public Persoonslijst getPlNietOuder() {
-        if (plNietOuder == null) {
-            plNietOuder = ophalenNietOuder(plPersoon, plOuder1, plOuder2);
-        }
-
-        return plNietOuder;
-    }
-
     /**
      * @return burgerservicenummer van ouder 1 of null wanneer ouder 1 geen waarde heeft
      */
@@ -130,6 +106,7 @@ public class GezagsBepaling {
     public String getBurgerservicenummerNietOuder() {
         return plNietOuder != null && plNietOuder.getPersoon() != null ? plNietOuder.getPersoon().getBurgerservicenummer() : null;
     }
+
     /**
      * @return of er velden in onderzoek waren (010120 en 080910 worden
      * gefiltered)
@@ -186,81 +163,81 @@ public class GezagsBepaling {
      */
 
     /**
-     * Ophalen ouder1
-     *
-     * @param plPersoon           de persoon om ouder 1 voor op te halen
      * @return ouder 1 of null
      */
-    private Persoonslijst ophalenOuder1(final Persoonslijst plPersoon) {
-        Optional<Persoonslijst> plOuder1 = Optional.empty();
-        try {
-            if (plPersoon.getOuder1() != null && plPersoon.getOuder1().getBurgerservicenummer() != null) {
-                plOuder1 = brpService.getPersoonslijst(
-                    plPersoon.getOuder1().getBurgerservicenummer());
-                plOuder1.ifPresent(ouder1-> {
-                    ouder1.setHopRelaties(new HopRelaties());
-                    ouder1.checkHopRelaties();
-                });
+    public Persoonslijst getPlOuder1() {
+        if (plOuder1 == null) {
+            try {
+                if (plPersoon.getOuder1() != null && plPersoon.getOuder1().getBurgerservicenummer() != null) {
+                    brpService.getPersoonslijst(
+                            plPersoon.getOuder1().getBurgerservicenummer())
+                        .ifPresent(ouder1 -> {
+                            ouder1.setHopRelaties(new HopRelaties());
+                            ouder1.checkHopRelaties();
+
+                            plOuder1 = ouder1;
+                        });
+                }
+            } catch (GezagException ex) {
+                logger.debug(ex.getMessage());
             }
-        } catch (GezagException ex) {
-            logger.debug(ex.getMessage());
         }
 
-        return plOuder1.orElse(null);
+        return plOuder1;
     }
 
     /**
-     * Ophalen ouder 2
-     *
-     * @param plPersoon           de persoon om ouder2 voor op te halen
      * @return ouder2 of null
      */
-    private Persoonslijst ophalenOuder2(final Persoonslijst plPersoon) {
-        Optional<Persoonslijst> plOuder2 = Optional.empty();
-        try {
-            if (plPersoon.getOuder2() != null && plPersoon.getOuder2().getBurgerservicenummer() != null) {
-                plOuder2 = brpService.getPersoonslijst(
-                    plPersoon.getOuder2().getBurgerservicenummer());
-                plOuder2.ifPresent(ouder2 -> {
-                    ouder2.setHopRelaties(new HopRelaties());
-                    ouder2.checkHopRelaties();
-                });
+    public Persoonslijst getPlOuder2() {
+        if (plOuder2 == null) {
+            try {
+                if (plPersoon.getOuder2() != null && plPersoon.getOuder2().getBurgerservicenummer() != null) {
+                    brpService.getPersoonslijst(
+                            plPersoon.getOuder2().getBurgerservicenummer())
+                        .ifPresent(ouder2 -> {
+                            ouder2.setHopRelaties(new HopRelaties());
+                            ouder2.checkHopRelaties();
+                            plOuder2 = ouder2;
+                        });
+                }
+            } catch (GezagException ex) {
+                logger.debug(ex.getMessage());
             }
-        } catch (GezagException ex) {
-            logger.debug(ex.getMessage());
         }
 
-        return plOuder2.orElse(null);
+        return plOuder2;
     }
 
     /**
-     * Ophalen niet-ouder
-     *
-     * @param plPersoon           de persoon om niet ouder voor te bepalen
-     * @param plOuder1            de ouder 1
-     * @param plOuder2            de ouder 2
      * @return de niet ouder of null
      */
-    private Persoonslijst ophalenNietOuder(final Persoonslijst plPersoon, final Persoonslijst plOuder1, final Persoonslijst plOuder2) {
-        try {
-            if (!isValidPersoon(plPersoon) || !isOneParentPresent(plOuder1, plOuder2)) {
+    public Persoonslijst getPlNietOuder() {
+        if (plNietOuder == null) {
+            try {
+                if (!isValidPersoon(plPersoon) || !isOneParentPresent(plOuder1, plOuder2)) {
+                    return null;
+                }
+
+                int geboortedatum = Integer.parseInt(plPersoon.getPersoon().getGeboortedatum());
+                Persoonslijst ouder = Objects.requireNonNullElse(plOuder1, plOuder2);
+                HopRelatie hopGeborenInRelatie = getHopGeborenInRelatie(ouder, geboortedatum);
+
+                if (hopGeborenInRelatie == null) {
+                    return null;
+                }
+
+                String burgerservicenummerNietOuder = hopGeborenInRelatie.getPartner();
+                brpService.getPersoonslijst(burgerservicenummerNietOuder)
+                    .ifPresent(nietOuder ->
+                        plNietOuder = nietOuder);
+            } catch (GezagException ex) {
+                logger.debug(ex.getMessage());
                 return null;
             }
-
-            int geboortedatum = Integer.parseInt(plPersoon.getPersoon().getGeboortedatum());
-            Persoonslijst ouder = Objects.requireNonNullElse(plOuder1, plOuder2);
-            HopRelatie hopGeborenInRelatie = getHopGeborenInRelatie(ouder, geboortedatum);
-
-            if (hopGeborenInRelatie == null) {
-                return null;
-            }
-
-            String burgerservicenummerNietOuder = hopGeborenInRelatie.getPartner();
-            return brpService.getPersoonslijst(burgerservicenummerNietOuder).orElse(null);
-        } catch (GezagException ex) {
-            logger.debug(ex.getMessage());
-            return null;
         }
+
+        return plNietOuder;
     }
 
     private boolean isValidPersoon(Persoonslijst plPersoon) {
