@@ -38,7 +38,7 @@ public abstract class PotentieelInOnderzoek {
      * @param fieldName   het veld om op te halen
      * @param calledClass het aangeroepen object
      */
-    protected void registerIfInOnderzoek(final String fieldName, final Class calledClass) {
+    protected <T> void registerIfInOnderzoek(final String fieldName, final Class<T> calledClass) {
         if (aanduidingGegevensInOnderzoek == null) return;
         if (aanduidingGegevensInOnderzoek.isEmpty()) return;
 
@@ -81,8 +81,8 @@ public abstract class PotentieelInOnderzoek {
         return formattedVeldName;
     }
 
-    private String getCategorieName(final Class calledClass) {
-        Categorie annotation = (Categorie) calledClass.getAnnotation(Categorie.class);
+    private <T>  String getCategorieName(final Class<T> calledClass) {
+        Categorie annotation = calledClass.getAnnotation(Categorie.class);
         if (annotation != null) {
             return annotation.name();
         } else {

@@ -98,8 +98,8 @@ public class GezagsrelatieService {
         final boolean bevraagdePersoonIsDeMinderjarige,
         final String burgerservicenummerOuder1,
         final String burgerservicenummerOuder2,
-        final String burgerservicenummerPersoon,
         final String burgerservicenummer,
+        final String burgerservicenummerPersoon,
         final List<AbstractGezagsrelatie> gezagsrelaties) {
         if (arAntwoordenModel.hasOuder1Gezag() && burgerservicenummerOuder1 != null && (bevraagdePersoonIsDeMinderjarige || burgerservicenummerPersoon.equals(burgerservicenummerOuder1))) {
             AbstractGezagsrelatie gezag = new EenhoofdigOuderlijkGezag()
