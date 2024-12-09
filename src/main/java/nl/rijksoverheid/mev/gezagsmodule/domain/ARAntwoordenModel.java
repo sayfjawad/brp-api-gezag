@@ -43,6 +43,18 @@ public class ARAntwoordenModel {
     @EqualsAndHashCode.Exclude
     private String uitleg = null;
 
+    public boolean hasOuder1Gezag() {
+        return gezagOuder1 != null && gezagOuder1.equals("Ja");
+    }
+
+    public boolean hasOuder2Gezag() {
+        return gezagOuder2 != null && gezagOuder2.equals("Ja");
+    }
+
+    public boolean hasNietOuderGezag() {
+        return gezagNietOuder1 != null && gezagNietOuder1.equals("Ja");
+    }
+
     @Override
     public String toString() {
         return "ARAntwoordenModel{" +

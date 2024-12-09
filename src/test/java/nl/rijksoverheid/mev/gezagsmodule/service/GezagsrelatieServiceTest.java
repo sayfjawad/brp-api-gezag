@@ -30,7 +30,6 @@ class GezagsrelatieServiceTest {
     private static final String BURGERSERVICENUMMER_ONE = "000000012";
     private static final String BURGERSERVICENUMMER_TWO = "000000024";
     private static final String BURGERSERVICENUMMER_THREE = "000000036";
-    private static final String BURGERSERVICENUMMER_FOUR = "000000048";
 
     @BeforeEach
     public void setup() {
