@@ -136,7 +136,7 @@ public class Persoonslijst {
         return Stream.of(
                 persoon.getVeldenInOnderzoek().stream(),
                 geschiedenisPersoon.stream().map(GeschiedenisPersoon::getVeldenInOnderzoek).flatMap(Set::stream),
-                gezagsverhouding.getVeldenInOnderzoek().stream(),
+                Optional.ofNullable(gezagsverhouding).stream().map(Gezagsverhouding::getVeldenInOnderzoek).flatMap(Collection::stream),
                 huwelijkOfPartnerschappen.stream().map(HuwelijkOfPartnerschap::getVeldenInOnderzoek).flatMap(Set::stream),
                 ouder1.getVeldenInOnderzoek().stream(),
                 geschiedenisOuder1.stream().map(GeschiedenisOuder1::getVeldenInOnderzoek).flatMap(Set::stream),
