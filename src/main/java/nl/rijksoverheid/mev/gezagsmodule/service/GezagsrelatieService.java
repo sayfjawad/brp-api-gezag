@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GezagsrelatieService {
@@ -32,7 +33,10 @@ public class GezagsrelatieService {
         final ARAntwoordenModel arAntwoordenModel,
         final GezagsBepaling gezagsBepaling) {
         List<AbstractGezagsrelatie> gezagsrelaties = new ArrayList<>();
-        if (arAntwoordenModel == null ||  gezagsBepaling == null) {
+        if (arAntwoordenModel == null ||
+            gezagsBepaling == null ||
+            gezagsBepaling.getBurgerservicenummer() == null ||
+            gezagsBepaling.getBurgerservicenummerPersoon() == null) {
             return gezagsrelaties;
         }
 
@@ -87,8 +91,11 @@ public class GezagsrelatieService {
                 case "GG" -> {
                     GezamenlijkGezag gezag = new GezamenlijkGezag()
                         .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
-                        .derde(new Meerderjarige().burgerservicenummer(burgerservicenummerNietOuder))
                         .type(TYPE_GEZAMELIJK_GEZAG);
+
+                    if(burgerservicenummerNietOuder != null) {
+                        gezag.setDerde(Optional.of(new Meerderjarige().burgerservicenummer(burgerservicenummerNietOuder)));
+                    }
 
                     if (ouder1Gezag) {
                         gezag.ouder(new GezagOuder().burgerservicenummer(burgerservicenummerOuder1));
