@@ -5,7 +5,6 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.*;
 import nl.rijksoverheid.mev.gezagsmodule.service.BrpService;
-import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

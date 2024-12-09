@@ -26,17 +26,17 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
     private static final String INDICATIE_GEZAG_OUDER1 = "1";
     private static final String INDICATIE_GEZAG_OUDER2 = "2";
 
-    protected IsErSprakeVanEenRecenteGebeurtenis(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected IsErSprakeVanEenRecenteGebeurtenis(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v3.1";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
         Gezagsverhouding gezagsverhouding = plPersoon.getGezagsverhouding();
         if (gezagsverhouding == null) {
-            gezagBepaling.addMissendeGegegevens("gezagsverhouding van bevraagde persoon");
+            gezagsBepaling.addMissendeGegegevens("gezagsverhouding van bevraagde persoon");
             return;
         }
 
@@ -59,8 +59,8 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
         // In geval van een reparatiehuwelijk na ingangsdatum is er sprake van een recente gebeurtenis
         if ((indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER1) || indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER2))
             && plPersoon.heeftTweeOuders() && plPersoon.beideOudersHebbenEenBSN()) {
-            Persoonslijst lplOuder1 = gezagBepaling.getPlOuder1();
-            Persoonslijst lplOuder2 = gezagBepaling.getPlOuder2();
+            Persoonslijst lplOuder1 = gezagsBepaling.getPlOuder1();
+            Persoonslijst lplOuder2 = gezagsBepaling.getPlOuder2();
             if (nuGehuwdOudersNaGeldigheidsdatum(lplOuder1, lplOuder2, ingangsdatumGeldigheidGezag)) {
                 answer = V3_1_JA;
             }
@@ -73,7 +73,7 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
         logger.debug("""
             3.1 Is er door een recente gebeurtenis het gezag toch (weer) van rechtswege, ondanks dat er eerder een uitspraak is gedaan?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV0301(answer);
+        gezagsBepaling.getArAntwoordenModel().setV0301(answer);
     }
 
     private boolean nuGehuwdOudersNaGeldigheidsdatum(final Persoonslijst plOuder1, final Persoonslijst plOuder2, final String geldigheidsdatum) {

@@ -109,7 +109,6 @@ public class BeslissingsmatrixService {
                         dataNullable.get(17), // route
                         dataNullable.get(18), // soortGezag
                         dataNullable.get(19), // gezag_ouder1
-                        dataNullable.get(20), // gezag_ouder2
                         dataNullable.get(21), // gezag_niet-ouder1
                         dataNullable.get(22), // gezag_niet-ouder2
                         dataNullable.get(23), // index

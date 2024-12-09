@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GezagbepalingService {
+public class GezagsrelatieService {
 
-    private static final Logger logger = LoggerFactory.getLogger(GezagbepalingService.class);
+    private static final Logger logger = LoggerFactory.getLogger(GezagsrelatieService.class);
     private static final String TYPE_TWEEHOOFDIG_OUDERLIJK_GEZAG = "TweehoofdigOuderlijkGezag";
     private static final String TYPE_EENHOOFDIG_OUDERLIJK_GEZAG = "EenhoofdigOuderlijkGezag";
     private static final String TYPE_GEZAMELIJK_GEZAG = "GezamenlijkGezag";

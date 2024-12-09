@@ -20,14 +20,14 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
     private static final String V4A_3_NEE = "Nee";
     private static final String V4A_3_JA = "Ja";
 
-    protected OuderOverledenOfOnbevoegdTotGezag(final GezagBepaling gezagBepaling) {
-        super(gezagBepaling);
+    protected OuderOverledenOfOnbevoegdTotGezag(final GezagsBepaling gezagsBepaling) {
+        super(gezagsBepaling);
         currentQuestion = "v4a.3";
     }
 
     @Override
     public void perform() {
-        Persoonslijst plPersoon = gezagBepaling.getPlPersoon();
+        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
         answer = V4A_3_JA;
         
         // Preconditie: minimaal 1 ouder moet een BSN hebben
@@ -37,8 +37,8 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
             && (persoonOuder2 == null || persoonOuder2.getBurgerservicenummer() == null)) {
             throw new AfleidingsregelException("Preconditie: Ouder moet een BSN hebben", "Ouder moet een BSN hebben");
         }
-        Persoonslijst lplOuder1 = gezagBepaling.getPlOuder1();
-        Persoonslijst lplOuder2 = gezagBepaling.getPlOuder2();
+        Persoonslijst lplOuder1 = gezagsBepaling.getPlOuder1();
+        Persoonslijst lplOuder2 = gezagsBepaling.getPlOuder2();
         if ((lplOuder1 == null) && (lplOuder2 == null)) {
             throw new AfleidingsregelException("Preconditie: Ouder moet geregistreerd staan in het BRP", "minimaal 1 ouder van de bevraagde persoon moet geregistreerd staan in het BRP");
         }
@@ -58,6 +58,6 @@ public class OuderOverledenOfOnbevoegdTotGezag extends GezagVraag {
         logger.debug("""
             4a.3 Ouder overleden of onbevoegd tot gezag?
             {}""", answer);
-        gezagBepaling.getArAntwoordenModel().setV04A03(answer);
+        gezagsBepaling.getArAntwoordenModel().setV04A03(answer);
     }
 }

@@ -11,16 +11,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class GezagbepalingServiceTest {
+class GezagsrelatieServiceTest {
 
     @Mock
     private GezagsBepaling gezagsBepalingMock;
 
-    private GezagbepalingService classUnderTest;
+    private GezagsrelatieService classUnderTest;
 
     @BeforeEach
     public void setup() {
-        classUnderTest = new GezagbepalingService();
+        classUnderTest = new GezagsrelatieService();
     }
 
     @Test
