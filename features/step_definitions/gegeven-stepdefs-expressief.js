@@ -318,6 +318,7 @@ function gegevenDePersonenZijnGehuwdGecorrigeerd(context, aanduiding1, aanduidin
             ['geslachtsnaam (02.40)', aanduiding2]
         ], dataTable),
         true,
+        true,
         true
     );
 
@@ -327,6 +328,7 @@ function gegevenDePersonenZijnGehuwdGecorrigeerd(context, aanduiding1, aanduidin
             ['burgerservicenummer (01.20)', getBsn(getPersoon(context, aanduiding1))],
             ['geslachtsnaam (02.40)', aanduiding1]
         ], dataTable),
+        true,
         true,
         true
     );

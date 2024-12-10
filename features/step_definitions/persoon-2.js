@@ -19,7 +19,7 @@ function createInschrijving() {
     }
 }
 
-function createPersoonType(persoonType, dataTable, stapelNr) {
+function createPersoonType(persoonType, dataTable, stapelNr, retainEmptyValues) {
     let persoon = {
         pl_id: 'null',
         stapel_nr: stapelNr + '',
@@ -27,14 +27,16 @@ function createPersoonType(persoonType, dataTable, stapelNr) {
         persoon_type: toDbPersoonType(persoonType)
     };
 
-    mapDataTableToEntiteit(persoon, dataTable);
+    mapDataTableToEntiteit(persoon, dataTable, retainEmptyValues);
 
-    Object.keys(persoon).forEach(property => {
-        if(!persoon[property]) {
-            delete persoon[property];
-        }
-    });
-
+    if(!retainEmptyValues) {
+        Object.keys(persoon).forEach(property => {
+            if(!persoon[property]) {
+                delete persoon[property];
+            }
+        });
+    }
+    
     return persoon;
 }
 
@@ -131,8 +133,8 @@ function createPartner(persoon, dataTable) {
     ];
 }
 
-function wijzigPartner(persoon, dataTable, isCorrectie = false, mergeProperties = false) {
-    let partnerData = createPersoonType('partner', dataTable, 0);
+function wijzigPartner(persoon, dataTable, isCorrectie = false, mergeProperties = false, retainEmptyValues = false) {
+    let partnerData = createPersoonType('partner', dataTable, 0, retainEmptyValues);
 
     let partner;
     Object.keys(persoon).forEach(property => {
