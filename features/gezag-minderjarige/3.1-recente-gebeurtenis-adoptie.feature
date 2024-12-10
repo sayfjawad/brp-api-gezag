@@ -212,9 +212,10 @@ Functionaliteit: 3.1 - is er sprake van een recente gebeurtenis - adoptie
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam          | waarde                                                                                                                  |
-      | type          | GezagNietTeBepalen                                                                                                      |
-      | toelichting   | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: ingangsdatum geldigheid van gezagsverhouding   |
+      | naam                             | waarde                                                                                                                  |
+      | type                             | GezagNietTeBepalen                                                                                                      |
+      | minderjarige.burgerservicenummer | 000000036                                                                                                               |
+      | toelichting                      | gezag is niet te bepalen omdat de volgende relevante gegevens ontbreken: ingangsdatum geldigheid van gezagsverhouding   |
 
   Regel: Als de datum van de gerechtelijke uitspraak over gezag gedeeltelijk onbekend is, wordt de eerste dag van de maand van de onzekerheidsperiode aangenomen
 
@@ -395,9 +396,10 @@ Functionaliteit: 3.1 - is er sprake van een recente gebeurtenis - adoptie
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                                                       |
-      | type        | GezagNietTeBepalen                                                                                                           |
-      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
+      | naam                             | waarde                                                                                                                       |
+      | type                             | GezagNietTeBepalen                                                                                                           |
+      | minderjarige.burgerservicenummer | 000000036                                                                                                                    |
+      | toelichting                      | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
 
       Voorbeelden:
       | aanduiding onderzoek Gerda | aanduiding onderzoek Aart | omschrijving                                           | toelichting                                |
@@ -452,9 +454,10 @@ Functionaliteit: 3.1 - is er sprake van een recente gebeurtenis - adoptie
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                                                       |
-      | type        | GezagNietTeBepalen                                                                                                           |
-      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
+      | naam                             | waarde                                                                                                                       |
+      | type                             | GezagNietTeBepalen                                                                                                           |
+      | minderjarige.burgerservicenummer | 000000036                                                                                                                    |
+      | toelichting                      | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
 
       Voorbeelden:
       | einde onderzoek Gerda | einde onderzoek Aart | toelichting                                |
@@ -474,9 +477,10 @@ Functionaliteit: 3.1 - is er sprake van een recente gebeurtenis - adoptie
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
       En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                                                                       |
-      | type        | GezagNietTeBepalen                                                                                                           |
-      | toelichting | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
+      | naam                                | waarde                                                                                                                       |
+      | type                                | GezagNietTeBepalen                                                                                                           |
+      | minderjarige.burgerservicenummer    | 000000036                                                                                                                    |
+      | toelichting                         | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: <toelichting>. |
 
       Voorbeelden:
       | aanduiding onderzoek | omschrijving                    | toelichting                   |
