@@ -37,7 +37,7 @@ public class ErkenningNa01012023 extends GezagVraag {
             throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geen twee ouders bij erkenning", missendeGegeven);
         }
 
-        boolean persoonErkend = plPersoon.geenOngeborenVruchtErkendOfGerechtelijkeVaststelling();
+        boolean persoonErkend = plPersoon.ongeborenVruchtErkendOfGerechtelijkeVaststelling();
         boolean persoonOngeborenVruchtErkend = plPersoon.ongeborenVruchtErkend();
         boolean isPersoonErkend = persoonErkend || persoonOngeborenVruchtErkend;
         if (isPersoonErkend && persoonOuder1.getDatumIngangFamiliebetrekking() == null) {
@@ -63,16 +63,18 @@ public class ErkenningNa01012023 extends GezagVraag {
     }
 
     private void isPersoonErkendOpOfNa01012023(final boolean isPersoonErkend, final Ouder1 persoonOuder1, final Ouder2 persoonOuder2) {
-        boolean ouder1ErkendOpOfNa01012023 = Integer.parseInt(persoonOuder1.getDatumIngangFamiliebetrekking()) >= DATE_JAN_1_2023;
-        boolean ouder2ErkendOpOfNa01012023 = Integer.parseInt(persoonOuder2.getDatumIngangFamiliebetrekking()) >= DATE_JAN_1_2023;
-        if (isPersoonErkend && (ouder1ErkendOpOfNa01012023 || ouder2ErkendOpOfNa01012023)) {
-            answer = V2A_3_NA;
+        if (isPersoonErkend) {
+            boolean ouder1ErkendOpOfNa01012023 = Integer.parseInt(persoonOuder1.getDatumIngangFamiliebetrekking()) >= DATE_JAN_1_2023;
+            boolean ouder2ErkendOpOfNa01012023 = Integer.parseInt(persoonOuder2.getDatumIngangFamiliebetrekking()) >= DATE_JAN_1_2023;
+            if (ouder1ErkendOpOfNa01012023 || ouder2ErkendOpOfNa01012023) {
+                answer = V2A_3_NA;
+            }
         }
     }
 
     private void doorWelkeOuderErkend(final Persoonslijst plPersoon) {
-        boolean ouder1Erkend = plPersoon.geenOngeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling();
-        boolean ouder2Erkend = plPersoon.geenOngeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling();
+        boolean ouder1Erkend = plPersoon.ongeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling();
+        boolean ouder2Erkend = plPersoon.ongeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling();
         if (answer == null && ouder1Erkend) {
             answer = V2A_3_VOOR_OUDER2;
         }
@@ -82,10 +84,11 @@ public class ErkenningNa01012023 extends GezagVraag {
     }
 
     private void isPersoonGeborenVoor01012023(final boolean persoonOngeborenVruchtErkend, final boolean persoonErkend, final Persoonslijst plPersoon) {
-        boolean persoonGeborenVoor01012023 = Integer.parseInt(plPersoon.getPersoon().getGeboortedatum()) < DATE_JAN_1_2023;
-        if (answer == null && !persoonErkend && persoonOngeborenVruchtErkend && persoonGeborenVoor01012023) {
-            answer = V2A_3_VOOR;
+        if(answer == null && !persoonErkend && persoonOngeborenVruchtErkend) {
+            boolean persoonGeborenVoor01012023 = Integer.parseInt(plPersoon.getPersoon().getGeboortedatum()) < DATE_JAN_1_2023;
+            if (persoonGeborenVoor01012023) {
+                answer = V2A_3_VOOR;
+            }
         }
     }
-
 }

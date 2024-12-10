@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class AdoptiefOudersTest {
+class IsGeadopteerdMetNlAkteTest {
 
     @Mock
     private GezagsBepaling gezagsBepaling;
@@ -24,13 +24,13 @@ class AdoptiefOudersTest {
     @Mock
     private ARAntwoordenModel arAntwoordenModel;
 
-    private AdoptiefOuders classUnderTest;
+    private IsGeadopteerdMetNlAkte classUnderTest;
 
-    private static final String V2A_2_JA = "Ja";
-    private static final String V2A_2_NEE = "Nee";
+    private static final String V1_3B_JA = "Ja";
+    private static final String V1_3B_NEE = "Nee";
 
-    private static final String AKTE_ERKENNING = "1AC0109";
-    private static final String AKTE_ADOPTIE = "1AQ0109";
+    private static  final String AKTE_ERKENNING = "1AC0109";
+    private static  final String AKTE_ADOPTIE = "1AQ0109";
 
     @BeforeEach
     public void setup() {
@@ -38,35 +38,35 @@ class AdoptiefOudersTest {
         persoonslijst.setPersoon(persoon);
         when(gezagsBepaling.getPlPersoon()).thenReturn(persoonslijst);
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
-        classUnderTest = new AdoptiefOuders(gezagsBepaling);
+        classUnderTest = new IsGeadopteerdMetNlAkte(gezagsBepaling);
     }
 
     @Test
-    void adoptiefOudersWithoutAktenummer() {
-        String expected = V2A_2_NEE;
+    void isGeadopteerdMetNlAkteWithoutAktenummer() {
+        String expected = V1_3B_NEE;
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A02(expected);
+        verify(arAntwoordenModel).setV0103B(expected);
     }
 
     @Test
-    void adoptiefOudersWithAktenummerNotBeingAdoptie() {
-        String expected = V2A_2_NEE;
+    void isGeadopteerdMetNlAkteWithAktenummerNotBeingAdoptie() {
+        String expected = V1_3B_NEE;
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A02(expected);
+        verify(arAntwoordenModel).setV0103B(expected);
     }
 
     @Test
-    void adoptiefOudersWithAktenummerBeingAdoptie() {
-        String expected = V2A_2_JA;
+    void isGeadopteerdMetNlAkteWithAktenummerBeingAdoptie() {
+        String expected = V1_3B_JA;
         when(persoon.getAktenummer()).thenReturn(AKTE_ADOPTIE);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A02(expected);
+        verify(arAntwoordenModel).setV0103B(expected);
     }
 }

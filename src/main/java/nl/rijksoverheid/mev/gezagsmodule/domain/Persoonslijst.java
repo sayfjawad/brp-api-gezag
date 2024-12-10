@@ -247,7 +247,7 @@ public class Persoonslijst {
             .anyMatch(aktenummer -> geldigeErkenningCodes.contains(aktenummer.charAt(2)));
     }
 
-    public boolean geenOngeborenVruchtErkendOfGerechtelijkeVaststelling() {
+    public boolean ongeborenVruchtErkendOfGerechtelijkeVaststelling() {
         // controleer dan persoon op akte erkenning actueel en geschiedenis op B, C, J en V
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
@@ -267,7 +267,7 @@ public class Persoonslijst {
     }
 
 
-    public boolean geenOngeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling() {
+    public boolean ongeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling() {
         // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
@@ -333,7 +333,7 @@ public class Persoonslijst {
     }
 
 
-    public boolean geenOngeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling() {
+    public boolean ongeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling() {
         // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
