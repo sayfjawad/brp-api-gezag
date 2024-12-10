@@ -5,6 +5,8 @@ import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.exception.VeldInOnderzoekException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
+import nl.rijksoverheid.mev.gezagsmodule.domain.Leeftijd;
+import nl.rijksoverheid.mev.gezagsmodule.domain.Persoon;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
 import nl.rijksoverheid.mev.logging.LoggingContext;
@@ -22,6 +24,11 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class GezagService {
+    private static final Logger logger = LoggerFactory.getLogger(GezagService.class);
+    private static final String DEFAULT_NEE = "Nee";
+    private static final String SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD = "N";
+    private static final String ROUTE_MEERDERJARIG = "2m";
+    private static final String TOELICHTING_ONBEKEND_PERSOON = "Voor het opgegeven burgerservicenummer kon geen persoonslijst worden gevonden";
 
     private final GezagsrelatieService gezagsrelatieService;
     private final VragenlijstService vragenlijstService;
@@ -29,10 +36,6 @@ public class GezagService {
     private final BeslissingsmatrixService beslissingsmatrixService;
     private final LoggingContext loggingContext;
     private final ToelichtingService toelichtingService;
-    private static final String DEFAULT_NEE = "Nee";
-    private static final String SOORT_GEZAG_KAN_NIET_WORDEN_BEPAALD = "N";
-    private static final String TOELICHTING_ONBEKEND_PERSOON = "Voor het opgegeven burgerservicenummer kon geen persoonslijst worden gevonden";
-    private static final Logger logger = LoggerFactory.getLogger(GezagService.class);
 
     /**
      * Bepaal gezag van kind
@@ -67,15 +70,20 @@ public class GezagService {
     public List<AbstractGezagsrelatie> getGezagResultaat(final String burgerservicenummer, final String burgerservicenummerPersoon) throws GezagException {
         ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
         List<AbstractGezagsrelatie> gezagsRelaties = new ArrayList<>();
-        String route;
+        String route = null;
         Optional<Persoonslijst> plPersoon = Optional.empty();
         GezagsBepaling gezagsBepaling = null;
         try {
             plPersoon = brpService.getPersoonslijst(burgerservicenummer);
             if (plPersoon.isPresent()) {
-                Persoonslijst persoon = plPersoon.get();
-                gezagsBepaling = new GezagsBepaling(burgerservicenummer, burgerservicenummerPersoon,  persoon, brpService, vragenlijstService.getVragenMap());
-                arAntwoordenModel = gezagsBepaling.start();
+                Persoonslijst persoonslijst = plPersoon.get();
+                Persoon persoon = persoonslijst.getPersoon();
+                if (persoon != null && Leeftijd.of(persoon.getGeboortedatum()).isMinderjarig()) {
+                    gezagsBepaling = new GezagsBepaling(burgerservicenummer, burgerservicenummerPersoon, persoonslijst, brpService, vragenlijstService.getVragenMap());
+                    arAntwoordenModel = gezagsBepaling.start();
+                } else {
+                    route = ROUTE_MEERDERJARIG;
+                }
             }
         } catch (AfleidingsregelException ex) {
             arAntwoordenModel.setException(ex);
@@ -84,7 +92,7 @@ public class GezagService {
         if (hasVeldenInOnderzoek) {
             arAntwoordenModel.setException(new VeldInOnderzoekException("Preconditie: Velden mogen niet in onderzoek staan"));
         }
-        route = beslissingsmatrixService.findMatchingRoute(arAntwoordenModel, gezagsBepaling);
+        route = (route == null ? beslissingsmatrixService.findMatchingRoute(arAntwoordenModel, gezagsBepaling) : route);
         arAntwoordenModel.setRoute(route);
         setConfiguredValues(arAntwoordenModel, plPersoon.isPresent());
 
