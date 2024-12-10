@@ -28,6 +28,10 @@ Functionaliteit: 2.1 - hoeveel juridische ouders heeft minderjarige
 
   Hoe achterhalen: Geslachtsnaam Ouder1 komt voor en is ongelijk aan ‘.’. Idem voor geslachtsnaam Ouder2.
 
+  Gebruikte velden:
+  - Geslachtsnaam ouder 1 -> 02.02.40
+  - Geslachtsnaam ouder 2 -> 03.02.40
+
   Achtergrond:
     Gegeven de persoon 'Gertruda' met burgerservicenummer '000000012'
     * is meerderjarig

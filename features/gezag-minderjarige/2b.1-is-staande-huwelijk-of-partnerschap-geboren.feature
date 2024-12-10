@@ -40,9 +40,25 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
   aangevuld met “of nietig verklaarde erkenning” en krijgt de partner met nietig verklaarde erkenning geen gezag.
 
   Gebruikte velden:
-  - Geboortedatum -> 01.03.10
-  - Huwelijk/geregistreerd partnerschap -> 05.06.10 of 55.06.20
+  - Geboortedatum persoon -> 01.03.10
+  - Burgerservicenummer ouder 1 -> 02.01.20
+  - Geslachtsnaam ouder 1 -> 02.02.40
   - Aktenummer ouder 1 -> 02.81.20
+  - Aktenummer ouder 1 historisch -> 52.81.20
+  - Burgerservicenummer ouder 2 -> 03.01.20
+  - Geslachtsnaam ouder 2 -> 03.02.40
+  - Aktenummer ouder 2 -> 03.81.20
+  - Aktenummer ouder 2 historisch -> 53.81.20
+  - Burgerservicenummer huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.01.20
+  - Burgerservicenummer huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.01.20
+  - Start datum huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.06.10
+  - Start datum huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.06.10
+  - Eind datum huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.07.10
+  - Eind datum huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.07.10
+  - Eind reden huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.07.40
+  - Eind reden huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.07.40
+  - Reden opschorting bijhouding (PL ouder 1) -> 07.67.20
+  - Reden opschorting bijhouding (PL ouder 2) -> 07.67.20
 
   Achtergrond:
     Gegeven de persoon 'Saskia' met burgerservicenummer '000000012'

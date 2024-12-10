@@ -33,14 +33,15 @@ Functionaliteit: 2a.3 - erkenning
   - Indien het kind of de ongeboren vrucht is erkend na 1-1-2023 is er sprake van gezamenlijk ouderlijk gezag en volgt stap 4a Achterhalen bevoegdheid tot gezag (gezamenlijk ouderlijk gezag)
 
   Gebruikte velden:
+  - Geboortedatum persoon -> 01.03.10
   - Aktenummer persoon -> 01.81.20
-  - Historische aktenummer -> 51.81.20
+  - Aktenummer persoon historisch -> 51.81.20
   - Aktenummer ouder 1 -> 02.81.20
+  - Aktenummer ouder 1 historisch -> 52.81.20
   - Aktenummer ouder 2 -> 03.81.20
-  - Actuele categorie -> 52.81.20
-  - Historische categorie -> 53.81.20
-  - Datum familierechtelijke betrekking -> 02.62.10 of 03.62.10
-  - Historische datum familierechtelijke betrekking -> 52.62.10 of 53.62.10
+  - Aktenummer ouder 2 historisch -> 53.81.20
+  - Datum ingang familiebetrekking ouder 1 -> 02.62.10
+  - Datum ingang familiebetrekking ouder 2 -> 03.62.10
 
   Achtergrond:
     Gegeven de persoon 'Lotte' met burgerservicenummer '000000012'
