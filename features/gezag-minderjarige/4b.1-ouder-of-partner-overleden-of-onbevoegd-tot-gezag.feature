@@ -39,15 +39,22 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
   • Meerderjarig verklaring: ophalen meerderjarig verklaring uit de aantekening in het Gezagsregister
 
   Gebruikte velden:
-  - Geboortedatum persoon -> 01.03.10
   - Burgerservicenummer ouder 1 -> 02.01.20
   - Burgerservicenummer ouder 2 -> 03.01.20
-  - Burgerservicenummer huwelijk/geregistreerd partnerschap -> 05.01.20
-  - Start datum huwelijk/geregistreerd partnerschap -> 05.06.10
-  - Eind datum huwelijk/geregistreerd partnerschap -> 05.07.10
-  - Eind reden huwelijk/geregistreerd partnerschap -> 05.07.40
-  - Datum opschorting bijhouding -> 07.67.10
-  - Indicatie curatele -> 11.33.10
+  - Geboortedatum persoon (PL ouder 1) -> 01.03.10
+  - Geboortedatum persoon (PL ouder 2) -> 01.03.10
+  - Burgerservicenummer huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.01.20
+  - Burgerservicenummer huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.01.20
+  - Start datum huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.06.10
+  - Start datum huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.06.10
+  - Eind datum huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.07.10
+  - Eind datum huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.07.10
+  - Eind reden huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.07.40
+  - Eind reden huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.07.40
+  - Datum opschorting bijhouding (PL ouder 1) -> 07.67.10
+  - Datum opschorting bijhouding (PL ouder 2) -> 07.67.10
+  - Indicatie curatele (PL ouder 1) -> 11.33.10
+  - Indicatie curatele (PL ouder 2) -> 11.33.10
 
   Achtergrond:
     Gegeven de persoon 'Quincy' met burgerservicenummer '000000012'

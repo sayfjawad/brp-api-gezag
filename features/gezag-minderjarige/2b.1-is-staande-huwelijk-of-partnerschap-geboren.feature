@@ -49,11 +49,16 @@ Functionaliteit: 2b.1 - is staande huwelijk of partnerschap geboren
   - Geslachtsnaam ouder 2 -> 03.02.40
   - Aktenummer ouder 2 -> 03.81.20
   - Aktenummer ouder 2 historisch -> 53.81.20
-  - Burgerservicenummer huwelijk/geregistreerd partnerschap -> 05.01.20
-  - Start datum huwelijk/geregistreerd partnerschap -> 05.06.10
-  - Eind datum huwelijk/geregistreerd partnerschap -> 05.07.10
-  - Eind reden huwelijk/geregistreerd partnerschap -> 05.07.40
-  - Reden opschorting bijhouding -> 07.67.20
+  - Burgerservicenummer huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.01.20
+  - Burgerservicenummer huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.01.20
+  - Start datum huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.06.10
+  - Start datum huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.06.10
+  - Eind datum huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.07.10
+  - Eind datum huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.07.10
+  - Eind reden huwelijk/geregistreerd partnerschap (PL ouder 1) -> 05.07.40
+  - Eind reden huwelijk/geregistreerd partnerschap (PL ouder 2) -> 05.07.40
+  - Reden opschorting bijhouding (PL ouder 1) -> 07.67.20
+  - Reden opschorting bijhouding (PL ouder 2) -> 07.67.20
 
   Achtergrond:
     Gegeven de persoon 'Saskia' met burgerservicenummer '000000012'
