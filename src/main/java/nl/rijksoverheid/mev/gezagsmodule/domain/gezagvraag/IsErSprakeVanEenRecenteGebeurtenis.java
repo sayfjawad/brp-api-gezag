@@ -59,7 +59,8 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
         }
         // Controleer op reparatiehuwelijk alleen als gezag aan een van de ouders is toegewezen
         // In geval van een reparatiehuwelijk na ingangsdatum is er sprake van een recente gebeurtenis
-        if ((indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER1) || indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER2))
+        if (indicatieGezagMinderjarige != null &&
+            (indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER1) || indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER2))
             && plPersoon.heeftTweeOuders() && plPersoon.beideOudersHebbenEenBSN()) {
             Persoonslijst lplOuder1 = gezagsBepaling.getPlOuder1();
             Persoonslijst lplOuder2 = gezagsBepaling.getPlOuder2();
