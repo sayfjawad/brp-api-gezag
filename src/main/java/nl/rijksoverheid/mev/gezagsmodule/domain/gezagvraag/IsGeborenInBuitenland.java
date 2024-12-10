@@ -24,12 +24,8 @@ public class IsGeborenInBuitenland extends GezagVraag {
     @Override
     public void perform() {
         Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
-        if (plPersoon == null) {
-            gezagsBepaling.addMissendeGegegevens("persoonlijst van bevraagde persoon");
-            return;
-        }
         String geboorteland = plPersoon.getPersoon().getGeboorteland();
-        if (geboorteland == null) {
+        if (geboorteland == null || geboorteland.isEmpty()) {
             gezagsBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
             return;
         }

@@ -43,7 +43,9 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
         String indicatieGezagMinderjarige = gezagsverhouding.getIndicatieGezagMinderjarige();
         String ingangsdatumGeldigheidGezag = gezagsverhouding.getIngangsdatumGeldigheidGezag();
         // Check voor ontkenning erkenning, als er niet erkend is, dan is er sprake van ontkenning erkenning
-        if ((indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_BEIDE_OUDERS)) && (!plPersoon.heeftTweeOuders())) {
+        if (indicatieGezagMinderjarige != null &&
+            indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_BEIDE_OUDERS)
+            && !plPersoon.heeftTweeOuders()) {
             answer = V3_1_JA;
         }
 

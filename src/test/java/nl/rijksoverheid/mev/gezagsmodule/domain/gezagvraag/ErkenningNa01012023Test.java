@@ -58,9 +58,7 @@ class ErkenningNa01012023Test {
 
     @Test
     void erkenningNa01012023WithoutValuesFailingPrecondition() {
-        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> {
-            classUnderTest.perform();
-        });
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
 
         assertNotNull(exception);
         assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_MISSING_PARENTS));
@@ -70,9 +68,7 @@ class ErkenningNa01012023Test {
     void erkenningNa01012023OnlyHavingOneParentAsOuder1FailingPrecondition() {
         persoonslijst.setOuder1(ouder1);
 
-        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> {
-            classUnderTest.perform();
-        });
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
 
         assertNotNull(exception);
         assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_MISSING_PARENTS));
@@ -82,9 +78,7 @@ class ErkenningNa01012023Test {
     void erkenningNa01012023OnlyHavingOneParentAsOuder2FailingPrecondition() {
         persoonslijst.setOuder2(ouder2);
 
-        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> {
-            classUnderTest.perform();
-        });
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
 
         assertNotNull(exception);
         assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_MISSING_PARENTS));
@@ -95,9 +89,7 @@ class ErkenningNa01012023Test {
         persoonslijst.setOuder1(ouder1);
         persoonslijst.setOuder2(ouder2);
 
-        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> {
-            classUnderTest.perform();
-        });
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
 
         assertNotNull(exception);
         assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_UNKNOWN_MOTHER));
