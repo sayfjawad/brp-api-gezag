@@ -7,11 +7,11 @@ import java.time.format.DateTimeFormatter
 plugins {
     application
 //    id("com.github.spotbugs") version "6.0.21"
-    id("io.freefair.lombok") version "8.10"
-    id("org.jooq.jooq-codegen-gradle") version "3.19.11"
-    id("org.openapi.generator") version "7.8.0"
+    id("io.freefair.lombok") version "8.11"
+    id("org.jooq.jooq-codegen-gradle") version "3.19.15"
+    id("org.openapi.generator") version "7.10.0"
 //    id("org.owasp.dependencycheck") version "10.0.3"
-    id("org.springframework.boot") version "3.3.3"
+    id("org.springframework.boot") version "3.4.0"
 }
 
 repositories {

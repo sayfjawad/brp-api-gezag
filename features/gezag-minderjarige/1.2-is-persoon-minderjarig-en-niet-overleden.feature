@@ -47,66 +47,63 @@ Functionaliteit: 1.2 - Is persoon minderjarig en niet overleden?
 
   Regel: gezag wordt niet bepaald wanneer het kind overleden is
 
-    Scenario: Wanneer gezag wordt opgevraagd van een overleden kind, wordt geen gezag teruggeven.
-      Gegeven persoon 'Linda'
-      * is minderjarig
-      * is overleden
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Wanneer gezag wordt opgevraagd van een overleden kind, wordt geen gezag teruggeven.
+    Gegeven persoon 'Linda'
+    * is minderjarig
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon geen gezag
+    En heeft de persoon geen gezag
 
   Regel: gezag wordt niet bepaald wanneer het kind meerderjarig is
 
-    Scenario: Wanneer gezag wordt opgevraagd van een kind die meerderjarig is, wordt geen gezag teruggeven.
-      Gegeven persoon 'Linda'
-      * is meerderjarig
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Wanneer gezag wordt opgevraagd van een kind die meerderjarig is, wordt geen gezag teruggeven.
+    Gegeven persoon 'Linda'
+    * is meerderjarig
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon geen gezag
+    En heeft de persoon geen gezag
 
   Regel: gezag wordt niet bepaald wanneer leeftijd onbekend is
 
-    Scenario: Wanneer gezag wordt opgevraagd van een kind waarvan leeftijd onbekend is, wordt geen gezag teruggeven.
-      Gegeven heeft de volgende gegevens
+  Scenario: Wanneer gezag wordt opgevraagd van een kind waarvan leeftijd onbekend is, wordt geen gezag teruggeven.
+    Gegeven heeft de volgende gegevens
       | geboortedatum (03.10) |
       | 00000000              |
-      Als gezag wordt gezocht met de volgende parameters
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam        | waarde                                                                      |
-      | type        | GezagNietTeBepalen                                                          |
-      | toelichting | gezag is niet te bepalen omdat de geboortedatum van persoon niet bekend is. |
+    En heeft de persoon geen gezag
 
   Regel: het bepalen van gezag gaat verder wanneer het kind minderjarig is
 
-    Scenario: Wanneer gezag wordt opgevraagd van een kind die minderjarig is, wordt tweehoofdig ouderlijk gezag teruggeven.
-      Gegeven persoon 'Linda'
-      * is minderjarig
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: Wanneer gezag wordt opgevraagd van een kind die minderjarig is, wordt tweehoofdig ouderlijk gezag teruggeven.
+    Gegeven persoon 'Linda'
+    * is minderjarig
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
+    En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
       | minderjarige.burgerservicenummer | 000000036                 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000012 |
-      En heeft 'gezag' een 'ouder' met de volgende gegevens
+    En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |

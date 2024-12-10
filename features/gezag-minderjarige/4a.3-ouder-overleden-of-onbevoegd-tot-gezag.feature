@@ -35,228 +35,240 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
   • Meerderjarig verklaring: ophalen meerderjarig verklaring uit de aantekening in het Gezagsregister
 
   Gebruikte velden:
-    - Datum opschorting bijhouding -> 07.67.10
-    - De geboortedatum van de ouder(s)n -> 02.03.10 en 03.03.10
-    - Indicatie curatele -> 11.33.10
-    - Beschrijving Document -> 11.82.30
+  - Datum opschorting bijhouding -> 07.67.10
+  - De geboortedatum van de ouder(s)n -> 02.03.10 en 03.03.10
+  - Indicatie curatele -> 11.33.10
+  - Beschrijving Document -> 11.82.30
 
-    Achtergrond:
-      Gegeven de persoon 'Lieke' met burgerservicenummer '000000012'
-      * is meerderjarig
-      En de persoon 'Ronald' met burgerservicenummer '000000024'
-      * is minderjarig
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
-      * heeft 'Lieke' als ouder 1
+  Achtergrond:
+    Gegeven de persoon 'Lieke' met burgerservicenummer '000000012'
+    * is meerderjarig
+    En de persoon 'Ronald' met burgerservicenummer '000000024'
+    * is minderjarig
+    * is in Nederland geboren
+    * is ingeschreven in de BRP
+    * heeft 'Lieke' als ouder 1
 
-      Gegeven de persoon 'Rik' met burgerservicenummer '000000036'
-      * is meerderjarig
-      En de persoon 'Thea' met burgerservicenummer '000000061'
-      * is minderjarig
-      * is in Nederland geboren
-      * is ingeschreven in de BRP
-      * heeft 'Rik' als ouder 2
+    Gegeven de persoon 'Rik' met burgerservicenummer '000000036'
+    * is meerderjarig
+    En de persoon 'Thea' met burgerservicenummer '000000061'
+    * is minderjarig
+    * is in Nederland geboren
+    * is ingeschreven in de BRP
+    * heeft 'Rik' als ouder 2
 
   Regel: De ouder is niet opgeschort, minderjarig of onder curatele
 
-    Scenario: De moeder (ouder 1 van 'Ronald') is niet opgeschort, minderjarig of onder curatele er is sprake van EenhoofdigOuderlijkGezag
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De moeder (ouder 1 van 'Ronald') is niet opgeschort, minderjarig of onder curatele er is sprake van EenhoofdigOuderlijkGezag
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000024                 |
-      | ouder.burgerservicenummer        | 000000012                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000024                |
+      | ouder.burgerservicenummer        | 000000012                |
 
-    Scenario: De vader (ouder 2 van 'Thea') is niet opgeschort, minderjarig of onder curatele er is sprake van EenhoofdigOuderlijkGezag
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De vader (ouder 2 van 'Thea') is niet opgeschort, minderjarig of onder curatele er is sprake van EenhoofdigOuderlijkGezag
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | EenhoofdigOuderlijkGezag  |
-      | minderjarige.burgerservicenummer | 000000061                 |
-      | ouder.burgerservicenummer        | 000000036                 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                   |
+      | type                             | EenhoofdigOuderlijkGezag |
+      | minderjarige.burgerservicenummer | 000000061                |
+      | ouder.burgerservicenummer        | 000000036                |
 
   Regel: De ouder is opgeschort
 
-    Scenario: De moeder (ouder 1 van 'Ronald') is opgeschort er is TijdelijkGeenGezag
-      Gegeven persoon 'Lieke'
-      * is overleden
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De moeder (ouder 1 van 'Ronald') is opgeschort er is TijdelijkGeenGezag
+    Gegeven persoon 'Lieke'
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000024          |
 
-    Scenario: De vader (ouder 2 van 'Thea') is opgeschort er is TijdelijkGeenGezag
-      Gegeven persoon 'Rik'
-      * is overleden
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De vader (ouder 2 van 'Thea') is opgeschort er is TijdelijkGeenGezag
+    Gegeven persoon 'Rik'
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000061          |
 
   Regel: De ouder is minderjarig
 
-    Scenario: De moeder (ouder 1 van 'Ronald') is minderjarig er is TijdelijkGeenGezag
-      Gegeven persoon 'Lieke'
-      * is minderjarig
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De moeder (ouder 1 van 'Ronald') is minderjarig er is TijdelijkGeenGezag
+    Gegeven persoon 'Lieke'
+    * is minderjarig
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000024          |
 
-    Scenario: De vader (ouder 2 van 'Thea') is minderjarig er is TijdelijkGeenGezag
-      Gegeven persoon 'Rik'
-      * is minderjarig
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De vader (ouder 2 van 'Thea') is minderjarig er is TijdelijkGeenGezag
+    Gegeven persoon 'Rik'
+    * is minderjarig
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000061          |
 
   Regel: De ouder is onder curatele gesteld
 
-    Scenario: De moeder (ouder 1 van 'Ronald') is onder curatele er is TijdelijkGeenGezag
-      Gegeven persoon 'Lieke'
-      * is onder curatele gesteld
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De moeder (ouder 1 van 'Ronald') is onder curatele er is TijdelijkGeenGezag
+    Gegeven persoon 'Lieke'
+    * is onder curatele gesteld
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000024          |
 
-    Scenario: De vader (ouder 2 van 'Thea') is onder curatele er is TijdelijkGeenGezag
-      Gegeven persoon 'Rik'
-      * is onder curatele gesteld
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De vader (ouder 2 van 'Thea') is onder curatele er is TijdelijkGeenGezag
+    Gegeven persoon 'Rik'
+    * is onder curatele gesteld
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000061          |
 
-  Regel: De ouder is als minderjarige opgeschort 
+  Regel: De ouder is als minderjarige opgeschort
 
-    Scenario: De moeder (ouder 1 van 'Ronald') is als minderjarige overleden er is TijdelijkGeenGezag
-      Gegeven persoon 'Lieke'
-      * is minderjarig
-      * is overleden
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De moeder (ouder 1 van 'Ronald') is als minderjarige overleden er is TijdelijkGeenGezag
+    Gegeven persoon 'Lieke'
+    * is minderjarig
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000024          |
 
-    Scenario: De vader (ouder 2 van 'Thea') is als minderjarige overleden er is TijdelijkGeenGezag
-      Gegeven persoon 'Rik'
-      * is minderjarig
-      * is overleden
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De vader (ouder 2 van 'Thea') is als minderjarige overleden er is TijdelijkGeenGezag
+    Gegeven persoon 'Rik'
+    * is minderjarig
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000061          |
 
-  Regel: De ouder is onder curatele gesteld en opgeschort 
+  Regel: De ouder is onder curatele gesteld en opgeschort
 
-    Scenario: De moeder (ouder 1 van 'Ronald') is onder curatele en overleden er is TijdelijkGeenGezag
-      Gegeven persoon 'Lieke'
-      * is minderjarig
-      * is overleden
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De moeder (ouder 1 van 'Ronald') is onder curatele en overleden er is TijdelijkGeenGezag
+    Gegeven persoon 'Lieke'
+    * is minderjarig
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000024          |
 
-    Scenario: De vader (ouder 2 van 'Thea') is onder curatele en overleden er is TijdelijkGeenGezag
-      Gegeven persoon 'Rik'
-      * is minderjarig
-      * is overleden
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De vader (ouder 2 van 'Thea') is onder curatele en overleden er is TijdelijkGeenGezag
+    Gegeven persoon 'Rik'
+    * is minderjarig
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000061          |
 
   Regel: De ouder is onder curatele gesteld, opgeschort en minderjarig
 
-   Scenario: De moeder (ouder 1 van 'Ronald') is onder curatele, overleden en minderjarig er is TijdelijkGeenGezag
-      Gegeven persoon 'Lieke'
-      * is minderjarig
-      * is onder curatele gesteld
-      * is overleden
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De moeder (ouder 1 van 'Ronald') is onder curatele, overleden en minderjarig er is TijdelijkGeenGezag
+    Gegeven persoon 'Lieke'
+    * is minderjarig
+    * is onder curatele gesteld
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000024          |
 
-    Scenario: De vader (ouder 2 van 'Thea') is onder curatele, overleden en minderjarig er is TijdelijkGeenGezag
-      Gegeven persoon 'Rik'
-      * is minderjarig
-      * is onder curatele gesteld
-      * is overleden
-      Als gezag wordt gezocht met de volgende parameters
+  Scenario: De vader (ouder 2 van 'Thea') is onder curatele, overleden en minderjarig er is TijdelijkGeenGezag
+    Gegeven persoon 'Rik'
+    * is minderjarig
+    * is onder curatele gesteld
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      Dan heeft de response een persoon met de volgende gegevens
+    Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
-      En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TijdelijkGeenGezag        |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde             |
+      | type                             | TijdelijkGeenGezag |
+      | minderjarige.burgerservicenummer | 000000061          |
