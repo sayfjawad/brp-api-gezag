@@ -22,7 +22,7 @@ function cloneEntityToDataTableArray(arrayOfArrays, entiteit) {
 
 function mapNaamWaardeDataTableToEntiteit(entiteit, dataTable) {
     dataTable.hashes().forEach(hash => {
-        if(hash.naam) {
+        if(hash.waarde) {
             entiteit[toDbColumnName(hash.naam)] = toDateOrString(hash.waarde, false);
         }
         else {
