@@ -2,14 +2,14 @@
 
 [versions]
 co-elastic-logging-logback-ecs-encoder = "1.6.0"
-com-fasterxml-jackson-dataformat-jackson-dataformat-yaml = "2.15.2"
-com-opencsv-opencsv = "5.7.1"
-io-micrometer-micrometer-registry-prometheus = "1.11.3"
+com-fasterxml-jackson-dataformat-jackson-dataformat-yaml = "2.18.2"
+com-opencsv-opencsv = "5.9"
+io-micrometer-micrometer-registry-prometheus = "1.14.1"
 net-logstash-logback-logstash-logback-encoder = "8.0"
-org-apache-commons-commons-lang3 = "3.13.0"
+org-apache-commons-commons-lang3 = "3.17.0"
 org-json-json = "20240303"
 org-openapitools-jackson-databind-nullable = "0.2.6"
-org-postgresql-postgresql = "42.7.3"
+org-postgresql-postgresql = "42.7.4"
 
 [libraries]
 co-elastic-logging-logback-ecs-encoder = { module = "co.elastic.logging:logback-ecs-encoder", version.ref = "co-elastic-logging-logback-ecs-encoder" }
