@@ -112,7 +112,7 @@ public class GezagsBepaling {
      * gefiltered)
      */
     public boolean warenVeldenInOnderzoek() {
-        List<String> veldenInOnderzoek = plPersoon.getUsedVeldenInOnderzoek();
+        List<String> veldenInOnderzoek = new ArrayList<>(plPersoon.getUsedVeldenInOnderzoek());
 
         if (plOuder1 != null) veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
         if (plOuder2 != null) veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());

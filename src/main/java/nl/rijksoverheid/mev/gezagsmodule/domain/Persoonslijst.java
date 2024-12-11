@@ -128,7 +128,7 @@ public class Persoonslijst {
                 ouder2 != null ? ouder2.getVeldenInOnderzoek().stream() : null,
                 geschiedenisOuder2.stream().map(GeschiedenisOuder2::getVeldenInOnderzoek).flatMap(Set::stream))
             .flatMap(Function.identity())
-            .collect(Collectors.toList());
+            .toList();
     }
 
     public Stream<String> getBurgerservicenummersVanMinderjarigeKinderen() {
@@ -400,6 +400,7 @@ public class Persoonslijst {
             Stream.of(persoon.getAktenummer()),
             geschiedenisPersoon.stream().map(GeschiedenisPersoon::getAktenummer)
         ).toList();
+
         var geldigeErkenningCodes = Set.of(TABEL_39_AKTEAANDUIDING_ADOPTIE);
 
         // controleer de lijst op de erkenningscodes uit de publieke tabel 39
