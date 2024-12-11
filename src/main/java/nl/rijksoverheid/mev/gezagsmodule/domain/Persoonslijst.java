@@ -125,7 +125,7 @@ public class Persoonslijst {
                 huwelijkOfPartnerschappen.stream().map(HuwelijkOfPartnerschap::getVeldenInOnderzoek).flatMap(Set::stream),
                 ouder1 != null ? ouder1.getVeldenInOnderzoek().stream() : null,
                 geschiedenisOuder1.stream().map(GeschiedenisOuder1::getVeldenInOnderzoek).flatMap(Set::stream),
-                ouder1 != null ? ouder2.getVeldenInOnderzoek().stream() : null,
+                ouder2 != null ? ouder2.getVeldenInOnderzoek().stream() : null,
                 geschiedenisOuder2.stream().map(GeschiedenisOuder2::getVeldenInOnderzoek).flatMap(Set::stream))
             .flatMap(Function.identity())
             .collect(Collectors.toList());
