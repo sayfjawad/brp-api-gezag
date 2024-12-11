@@ -167,20 +167,13 @@ Functionaliteit: 3.1 - is er sprake van een recente gebeurtenis - adoptie
       | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
       | D                                    | gisteren - 5 jaar               |
       En 'Bert' is geadopteerd door 'Gerda' als ouder 1 met de volgende gegevens
-      | aktenummer (81.20) | datum ingang familierechtelijke betrekking (62.10) |
-      | 1AQ0100            | morgen - 4 jaar                                    |
+      | datum ingang familierechtelijke betrekking (62.10) |
+      | morgen - 4 jaar                                    |
       En 'Bert' is geadopteerd door 'Aart' als ouder 2 met de volgende gegevens
-      | aktenummer (81.20) | datum ingang familierechtelijke betrekking (62.10) |
-      | 1AQ0100            | morgen - 4 jaar                                    |
-      En zijn de volgende gegevens gecorrigeerd
-      | aktenummer (81.20) |
-      | 1AR0200            |
-      En zijn van ouder 1 de volgende gegevens gecorrigeerd
-      | aktenummer (81.20) |
-      | 1AR0200            |
-      En zijn van ouder 2 de volgende gegevens gecorrigeerd
-      | aktenummer (81.20) |
-      | 1AR0200            |
+      | datum ingang familierechtelijke betrekking (62.10) |
+      | morgen - 4 jaar                                    |
+      En de adoptie van 'Bert' is herroepen voor 'Gerda' als ouder 1
+      En de adoptie van 'Bert' is herroepen voor 'Aart' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |

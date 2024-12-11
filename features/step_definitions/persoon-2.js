@@ -96,6 +96,17 @@ function wijzigPersoon(persoon, dataTable, isCorrectie = false) {
     persoon.persoon.push(createPersoonType('persoon', dataTable, 0));
 }
 
+function wijzigGeadopteerdPersoon(persoon, dataTable, isCorrectie = false) {
+    persoon.persoon.forEach(p => {
+        p.volg_nr = Number(p.volg_nr) + 1 + '';
+        if(isCorrectie) { // corrigeer voor alle inschrijvingen
+            p.onjuist_ind = 'O';
+        }
+    });
+
+    persoon.persoon.push(createPersoonType('persoon', dataTable, 0));
+}
+
 function createKind(persoon, dataTable) {
     const stapelNr = getNextStapelNr(persoon, 'kind');
 
@@ -233,6 +244,7 @@ module.exports = {
     createPersoon,
     aanvullenPersoon,
     wijzigPersoon,
+    wijzigGeadopteerdPersoon,
     createKind,
     createOuder,
     wijzigOuder,
