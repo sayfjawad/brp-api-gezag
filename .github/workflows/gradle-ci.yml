@@ -44,5 +44,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Run Cucumber
-      if: github.ref != 'refs/heads/main'
       uses: ./.github/actions/run-cucumber
