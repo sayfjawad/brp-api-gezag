@@ -29,13 +29,6 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Build OCI image and publish it to GitHub Packages
-      if: github.ref == 'refs/heads/main'
-      run: ./gradlew bootBuildImage --publishImage
-      env:
-        GITHUB_ACTOR: ${{ github.actor }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Build OCI image
       if: github.ref != 'refs/heads/main'
       run: ./gradlew bootBuildImage
@@ -43,6 +36,12 @@ jobs:
         GITHUB_ACTOR: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Build OCI image and publish it to GitHub Packages
+      if: github.ref == 'refs/heads/main'
+      run: ./gradlew bootBuildImage --publishImage
+      env:
+        GITHUB_ACTOR: ${{ github.actor }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Run Cucumber
-      if: github.ref != 'refs/heads/main'
       uses: ./.github/actions/run-cucumber

@@ -60,9 +60,8 @@ Functionaliteit: 2a.2 - adoptief ouders
   Ook hierbij geldt dat deze akteaanduiding in de historie kan voorkomen van de persoon.
 
   Gebruikte velden:
-  - Aktenummer van de persoon -> 01.81.20
-  - Aktenummer van ouder 1 -> 02.81.20
-  - Aktenummer van ouder 2 -> 03.81.20
+  - Aktenummer persoon -> 01.81.20
+  - Aktenummer persoon historisch -> 51.81.20
 
   Achtergrond:
     Gegeven de persoon 'Ingrid' met burgerservicenummer '000000012'

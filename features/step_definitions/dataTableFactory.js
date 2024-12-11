@@ -20,9 +20,9 @@ function cloneEntityToDataTableArray(arrayOfArrays, entiteit) {
     }
 }
 
-function mapNaamWaardeDataTableToEntiteit(entiteit, dataTable) {
+function mapNaamWaardeDataTableToEntiteit(entiteit, dataTable, retainEmptyValues) {
     dataTable.hashes().forEach(hash => {
-        if(hash.waarde) {
+        if(retainEmptyValues || hash.waarde) {
             entiteit[toDbColumnName(hash.naam)] = toDateOrString(hash.waarde, false);
         }
         else {
@@ -43,13 +43,13 @@ function mapHashToEntiteit(entiteit, hash) {
 
 }
 
-function mapDataTableToEntiteit(entiteit, dataTable) {
+function mapDataTableToEntiteit(entiteit, dataTable, retainEmptyValues) {
     if(!dataTable) {
         return;
     }
 
     if(dataTable.raw()[0][0] === 'naam') {
-        mapNaamWaardeDataTableToEntiteit(entiteit, dataTable);
+        mapNaamWaardeDataTableToEntiteit(entiteit, dataTable, retainEmptyValues);
     }
     else {
         const hash = dataTable.hashes()[0];

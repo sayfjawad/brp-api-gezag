@@ -102,12 +102,12 @@ public class IsErSprakeVanEenRecenteGebeurtenis extends GezagVraag {
         List<HuwelijkOfPartnerschap> hopList = new ArrayList<>();
         if (plOuder.getHuwelijkOfPartnerschappen() != null) {
             for (HuwelijkOfPartnerschap hop : plOuder.getHuwelijkOfPartnerschappen()) {
-                if (bsnPartner.equals(hop.getBsnPartner())) {
+                if ((hop.getDatumVoltrokken() != null || hop.getDatumOntbinding() != null) && bsnPartner.equals(hop.getBsnPartner())) {
                     hopList.add(hop);
                 }
             }
         }
-        hopList.sort(comparing(HuwelijkOfPartnerschap::getDatumVoltrokken, nullsFirst(naturalOrder())));
+        hopList.sort(comparing(HuwelijkOfPartnerschap::getDatumVoltrokken,nullsFirst(naturalOrder())));
         return hopList;
     }
 }
