@@ -43,30 +43,26 @@ class AdoptiefOudersTest {
 
     @Test
     void adoptiefOudersWithoutAktenummer() {
-        String expected = V2A_2_NEE;
-
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A02(expected);
+        verify(arAntwoordenModel).setV02A02(V2A_2_NEE);
     }
 
     @Test
     void adoptiefOudersWithAktenummerNotBeingAdoptie() {
-        String expected = V2A_2_NEE;
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A02(expected);
+        verify(arAntwoordenModel).setV02A02(V2A_2_NEE);
     }
 
     @Test
     void adoptiefOudersWithAktenummerBeingAdoptie() {
-        String expected = V2A_2_JA;
         when(persoon.getAktenummer()).thenReturn(AKTE_ADOPTIE);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A02(expected);
+        verify(arAntwoordenModel).setV02A02(V2A_2_JA);
     }
 }

@@ -43,30 +43,26 @@ class IsGeadopteerdMetNlAkteTest {
 
     @Test
     void isGeadopteerdMetNlAkteWithoutAktenummer() {
-        String expected = V1_3B_NEE;
-
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0103B(expected);
+        verify(arAntwoordenModel).setV0103B(V1_3B_NEE);
     }
 
     @Test
     void isGeadopteerdMetNlAkteWithAktenummerNotBeingAdoptie() {
-        String expected = V1_3B_NEE;
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0103B(expected);
+        verify(arAntwoordenModel).setV0103B(V1_3B_NEE);
     }
 
     @Test
     void isGeadopteerdMetNlAkteWithAktenummerBeingAdoptie() {
-        String expected = V1_3B_JA;
         when(persoon.getAktenummer()).thenReturn(AKTE_ADOPTIE);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0103B(expected);
+        verify(arAntwoordenModel).setV0103B(V1_3B_JA);
     }
 }

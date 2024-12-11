@@ -27,7 +27,7 @@ public class IsNaarBuitenlandGeemigreerdGeweest extends GezagVraag {
 
         String geboorteland = plPersoon.getPersoon().getGeboorteland();
         Verblijfplaats verblijfplaats = plPersoon.getVerblijfplaats();
-        if (geboorteland == null) {
+        if (geboorteland == null || geboorteland.isEmpty()) {
             gezagsBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
         } else if (verblijfplaats == null) {
             gezagsBepaling.addMissendeGegegevens("Verblijfplaats van bevraagde persoon");

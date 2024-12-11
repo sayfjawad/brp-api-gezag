@@ -56,26 +56,22 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
 
     @Test
     void isErSprakeVanEenRecenteGebeurtenisWithoutValues() {
-        String missendeGegeven = MISSING_GEZAGSVERHOUDING;
-
         classUnderTest.perform();
 
-        verify(gezagsBepaling).addMissendeGegegevens(missendeGegeven);
+        verify(gezagsBepaling).addMissendeGegegevens(MISSING_GEZAGSVERHOUDING);
     }
 
     @Test
     void isErSprakeVanEenRecenteGebeurtenisWithEmptyGezagsverhouding() {
-        String expectedException = INDICATION_MISSING_INGANGSDATUM;
         persoonslijst.setGezagsverhouding(gezagsverhouding);
 
         AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
 
-        assertTrue(exception.getMessage().contains(expectedException));
+        assertTrue(exception.getMessage().contains(INDICATION_MISSING_INGANGSDATUM));
     }
 
     @Test
     void isErSprakeVanEenRecenteGebeurtenisIndicatingTwoParentsWithoutParentsHavingRecenteGebeurtenis() {
-        String expected = V3_1_JA;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(gezagsverhouding.getIndicatieGezagMinderjarige()).thenReturn(INDICATIE_ONE_AND_TWO);
         when(gezagsverhouding.getIngangsdatumGeldigheidGezag()).thenReturn(DATE_FIRST_DAY_2021);
@@ -84,12 +80,11 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0301(expected);
+        verify(arAntwoordenModel).setV0301(V3_1_JA);
     }
 
     @Test
     void isErSprakeVanEenRecenteGebeurtenisIndicatingTwoParentsWithOneParentHavingRecenteGebeurtenis() {
-        String expected = V3_1_JA;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(gezagsverhouding.getIndicatieGezagMinderjarige()).thenReturn(INDICATIE_ONE_AND_TWO);
         when(gezagsverhouding.getIngangsdatumGeldigheidGezag()).thenReturn(DATE_FIRST_DAY_2021);
@@ -99,12 +94,11 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0301(expected);
+        verify(arAntwoordenModel).setV0301(V3_1_JA);
     }
 
     @Test
     void isErSprakeVanEenRecenteGebeurtenisIndicatingTwoParentsWithHavingTwoParents() {
-        String expected = V3_1_NEE;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(gezagsverhouding.getIndicatieGezagMinderjarige()).thenReturn(INDICATIE_ONE_AND_TWO);
         when(gezagsverhouding.getIngangsdatumGeldigheidGezag()).thenReturn(DATE_FIRST_DAY_2021);
@@ -117,12 +111,11 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0301(expected);
+        verify(arAntwoordenModel).setV0301(V3_1_NEE);
     }
 
     @Test
     void isErSprakeVanEenRecenteGebeurtenisAdoptieNaIngangsDatum() {
-        String expected = V3_1_JA;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(gezagsverhouding.getIndicatieGezagMinderjarige()).thenReturn(INDICATIE_ONE_AND_TWO);
         when(gezagsverhouding.getIngangsdatumGeldigheidGezag()).thenReturn(DATE_FIRST_DAY_2021);
@@ -139,6 +132,6 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0301(expected);
+        verify(arAntwoordenModel).setV0301(V3_1_JA);
     }
 }

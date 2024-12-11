@@ -48,69 +48,61 @@ class HoeveelJuridischeOudersHeeftMinderjarigeTest {
 
     @Test
     void hoeveelJuridischeOudersHeeftMinderjarigeWithoutValues() {
-        String expected = GEEN_OUDERS;
-
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0201(expected);
+        verify(arAntwoordenModel).setV0201(GEEN_OUDERS);
     }
 
     @Test
     void hoeveelJuridischeOudersWithOneParentOuder1NotHavingGeslachtsnaam() {
-        String expected = GEEN_OUDERS;
         persoonslijst.setOuder1(ouder1);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0201(expected);
+        verify(arAntwoordenModel).setV0201(GEEN_OUDERS);
     }
 
     @Test
     void hoeveelJuridischeOudersWithOneParentOuder2NotHavingGeslachtsnaam() {
-        String expected = GEEN_OUDERS;
         persoonslijst.setOuder2(ouder2);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0201(expected);
+        verify(arAntwoordenModel).setV0201(GEEN_OUDERS);
     }
 
     @Test
     void hoeveelJuridischeOudersWithOneParentPuntOuder() {
-        String expected = PUNTOUDERS;
         when(ouder1.getGeslachtsnaam()).thenReturn(INDICATION_PUNTOUDER);
         persoonslijst.setOuder1(ouder1);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0201(expected);
+        verify(arAntwoordenModel).setV0201(PUNTOUDERS);
     }
 
     @Test
     void hoeveelJuridischeOudersWithOneParentOuder1() {
-        String expected = EEN_OUDER;
         when(ouder1.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM);
         persoonslijst.setOuder1(ouder1);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0201(expected);
+        verify(arAntwoordenModel).setV0201(EEN_OUDER);
     }
 
     @Test
     void hoeveelJuridischeOudersWithOneParentOuder2() {
-        String expected = EEN_OUDER;
         when(ouder2.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM);
         persoonslijst.setOuder2(ouder2);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0201(expected);
+        verify(arAntwoordenModel).setV0201(EEN_OUDER);
     }
 
     @Test
     void hoeveelJuridischeOudersWithTwoParents() {
-        String expected = TWEE_OUDERS;
         when(ouder1.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM);
         when(ouder2.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM);
         persoonslijst.setOuder1(ouder1);
@@ -118,12 +110,11 @@ class HoeveelJuridischeOudersHeeftMinderjarigeTest {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0201(expected);
+        verify(arAntwoordenModel).setV0201(TWEE_OUDERS);
     }
 
     @Test
     void hoeveelJuridischeOudersWithTwoParentsOneBeingPuntOuder() {
-        String expected = PUNTOUDERS;
         when(ouder1.getGeslachtsnaam()).thenReturn(INDICATION_PUNTOUDER);
         when(ouder2.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM);
         persoonslijst.setOuder1(ouder1);
@@ -131,6 +122,6 @@ class HoeveelJuridischeOudersHeeftMinderjarigeTest {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0201(expected);
+        verify(arAntwoordenModel).setV0201(PUNTOUDERS);
     }
 }

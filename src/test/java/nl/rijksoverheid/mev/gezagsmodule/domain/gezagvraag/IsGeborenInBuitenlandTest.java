@@ -42,42 +42,37 @@ class IsGeborenInBuitenlandTest {
 
     @Test
     void isGeborenInBuitenlandWithoutValues() {
-        String expectingMissendVeld = INDICATION_MISSING_GEBOORTELAND;
-
         classUnderTest.perform();
 
-        verify(gezagsBepaling).addMissendeGegegevens(expectingMissendVeld);
+        verify(gezagsBepaling).addMissendeGegegevens(INDICATION_MISSING_GEBOORTELAND);
     }
 
     @Test
     void isGeborenInBuitenlandWithEmptyGeboorteland() {
-        String expectingMissendVeld = INDICATION_MISSING_GEBOORTELAND;
         when(persoon.getGeboorteland()).thenReturn("");
 
         classUnderTest.perform();
 
-        verify(gezagsBepaling).addMissendeGegegevens(expectingMissendVeld);
+        verify(gezagsBepaling).addMissendeGegegevens(INDICATION_MISSING_GEBOORTELAND);
     }
 
     @Test
     void isGeborenInBuitenlandWithGeboortelandNederland() {
-        String expected = V1_3A_NEE;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoon.getGeboorteland()).thenReturn(CODE_IS_NEDERLAND);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0103A(expected);
+        verify(arAntwoordenModel).setV0103A(V1_3A_NEE);
     }
 
     @Test
     void isGeborenInBuitenlandWithGeboortelandNotNederland() {
-        String expected = V1_3A_JA;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoon.getGeboorteland()).thenReturn(CODE_IS_NOT_NEDERLAND);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0103A(expected);
+        verify(arAntwoordenModel).setV0103A(V1_3A_JA);
     }
 }

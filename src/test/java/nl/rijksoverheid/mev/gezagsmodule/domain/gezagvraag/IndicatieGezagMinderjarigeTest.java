@@ -39,44 +39,38 @@ class IndicatieGezagMinderjarigeTest {
 
     @Test
     void indicatieGezagMinderjarigeNoGezagsverhouding() {
-        String expected = null;
-        String missendeGegeven = MISSING_GEZAGSVERHOUDING;
-
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0302(expected);
-        verify(gezagsBepaling).addMissendeGegegevens(missendeGegeven);
+        verify(arAntwoordenModel).setV0302(null);
+        verify(gezagsBepaling).addMissendeGegegevens(MISSING_GEZAGSVERHOUDING);
     }
 
     @Test
     void indicatieGezagMinderjarigeEmptyGezagsverhouding() {
-        String expected = null;
         persoonslijst.setGezagsverhouding(gezagsverhouding);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0302(expected);
+        verify(arAntwoordenModel).setV0302(null);
     }
 
     @Test
     void indicatieGezagMinderjarigeGezagsverhoudingWithEmptyIndicatieGezag() {
-        String expected = "";
         when(gezagsverhouding.getIndicatieGezagMinderjarige()).thenReturn("");
         persoonslijst.setGezagsverhouding(gezagsverhouding);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0302(expected);
+        verify(arAntwoordenModel).setV0302("");
     }
 
     @Test
     void indicatieGezagMinderjarigeGezagsverhoudingWithValue() {
-        String expected = GEZAGSVERHOUDING_VALUE;
         when(gezagsverhouding.getIndicatieGezagMinderjarige()).thenReturn(GEZAGSVERHOUDING_VALUE);
         persoonslijst.setGezagsverhouding(gezagsverhouding);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV0302(expected);
+        verify(arAntwoordenModel).setV0302(GEZAGSVERHOUDING_VALUE);
     }
 }

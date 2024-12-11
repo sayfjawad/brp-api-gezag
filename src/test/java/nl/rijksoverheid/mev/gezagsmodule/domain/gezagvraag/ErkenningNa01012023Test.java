@@ -120,7 +120,6 @@ class ErkenningNa01012023Test {
 
     @Test
     void erkenningNa01012023HavingOuderErkendAfterDate() {
-        String expected = V2A_3_NA;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_AFTER_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_AFTER_01012023);
@@ -130,12 +129,11 @@ class ErkenningNa01012023Test {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A03(expected);
+        verify(arAntwoordenModel).setV02A03(V2A_3_NA);
     }
 
     @Test
     void erkenningNa01012023HavingOuderErkendOnDate() {
-        String expected = V2A_3_NA;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_ON_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_ON_01012023);
@@ -145,12 +143,11 @@ class ErkenningNa01012023Test {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A03(expected);
+        verify(arAntwoordenModel).setV02A03(V2A_3_NA);
     }
 
     @Test
     void erkenningNa01012023HavingOuder1ErkendBeforeDate() {
-        String expected = V2A_3_VOOR_OUDER2;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder1.getAktenummer()).thenReturn(AKTE_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE);
@@ -161,12 +158,11 @@ class ErkenningNa01012023Test {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A03(expected);
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR_OUDER2);
     }
 
     @Test
     void erkenningNa01012023HavingOuder2ErkendBeforeDate() {
-        String expected = V2A_3_VOOR_OUDER1;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder2.getAktenummer()).thenReturn(AKTE_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE);
@@ -177,12 +173,11 @@ class ErkenningNa01012023Test {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A03(expected);
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR_OUDER1);
     }
 
     @Test
     void erkenningNa01012023HavingBeenBornBefore() {
-        String expected = V2A_3_VOOR;
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
@@ -193,6 +188,6 @@ class ErkenningNa01012023Test {
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV02A03(expected);
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
     }
 }
