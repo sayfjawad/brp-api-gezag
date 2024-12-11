@@ -11,6 +11,13 @@ import static nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst.isValideGes
 /**
  * v2b_1
  * "Ja" als is staande huwelijk of partnerschap geboren, anders "Nee"
+ * <p>
+ * Nu vastgesteld is dat het kind 1 ouder heeft kan gecontroleerd worden of deze ouder
+ * een relatie had tijdens de geboorte van het kind, indien dat het geval is, dan wordt gekeken
+ * of dit nog steeds de actuele relatie is. Het maakt daarbij niet uit of de ouder overleden is,
+ * de registratie in het BRP is in zo'n geval bij de ouder onveranderd, bij de partner daarentegen
+ * is de relatie ontbonden met als reden overlijden. Controleer of de BSN van de partner bij geboorte
+ * gelijk is aan de BSN van de actuele partner. Als dat het geval is, heeft deze partner ook gezag.
  */
 public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
 
@@ -34,14 +41,7 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
         String geboorteDatumKind = plPersoon.getPersoon().getGeboortedatum();
         Ouder1 lOuder1 = plPersoon.getOuder1();
         Ouder2 lOuder2 = plPersoon.getOuder2();
-        /*
-        Nu vastgesteld is dat het kind 1 ouder heeft kan gecontroleerd worden of deze ouder
-        een relatie had tijdens de geboorte van het kind, indien dat het geval is, dan wordt gekeken
-        of dit nog steeds de actuele relatie is. Het maakt daarbij niet uit of de ouder overleden is,
-        de registratie in het BRP is in zo'n geval bij de ouder onveranderd, bij de partner daarentegen
-        is de relatie ontbonden met als reden overlijden. Controleer of de BSN van de partner bij geboorte
-        gelijk is aan de BSN van de actuele partner. Als dat het geval is, heeft deze partner ook gezag.
-         */
+
         if (lOuder1 != null && isValideGeslachtsnaam(lOuder1.getGeslachtsnaam())) {
             Persoonslijst plOuder1 = gezagsBepaling.getPlOuder1();
             preconditieCheckGeregistreerd(OUDER_1, plOuder1);
@@ -64,7 +64,7 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren extends GezagVraag {
         gezagsBepaling.getArAntwoordenModel().setV02B01(answer);
     }
 
-    public boolean heeftOuderRelatieBijGeboorteKind(Persoonslijst plOuder, String geboortedatum) {
+    public boolean heeftOuderRelatieBijGeboorteKind(final Persoonslijst plOuder, final String geboortedatum) {
         List<HuwelijkOfPartnerschap> hopPlOuder = plOuder.getHuwelijkOfPartnerschappen();
         if (!hopPlOuder.isEmpty() && (hopPlOuder.get(0).getBsnPartner() != null)) {
             HopRelaties hopRelaties = plOuder.getHopRelaties();

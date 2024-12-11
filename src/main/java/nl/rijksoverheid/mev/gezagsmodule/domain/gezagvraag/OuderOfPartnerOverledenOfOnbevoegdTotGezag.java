@@ -55,7 +55,7 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
         }
 
         if (lplNietOuder == null) {
-            throw new AfleidingsregelException("Preconditie: niet_ouder  moet geregistreerd staan in BRP", "voor de bevraagde persoon moet niet_ouder geregistreerd staan in BRP");
+            throw new AfleidingsregelException("Preconditie: niet_ouder moet geregistreerd staan in BRP", "voor de bevraagde persoon moet niet_ouder geregistreerd staan in BRP");
         }
 
         if (lplOuder1 != null) {
