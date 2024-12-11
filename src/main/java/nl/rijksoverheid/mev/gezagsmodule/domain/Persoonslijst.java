@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -118,16 +119,16 @@ public class Persoonslijst {
 
     public List<String> getUsedVeldenInOnderzoek() {
         return Stream.of(
-                persoon.getVeldenInOnderzoek().stream(),
+                persoon != null ? persoon.getVeldenInOnderzoek().stream() : null,
                 geschiedenisPersoon.stream().map(GeschiedenisPersoon::getVeldenInOnderzoek).flatMap(Set::stream),
                 Optional.ofNullable(gezagsverhouding).stream().map(Gezagsverhouding::getVeldenInOnderzoek).flatMap(Collection::stream),
                 huwelijkOfPartnerschappen.stream().map(HuwelijkOfPartnerschap::getVeldenInOnderzoek).flatMap(Set::stream),
-                ouder1.getVeldenInOnderzoek().stream(),
+                ouder1 != null ? ouder1.getVeldenInOnderzoek().stream() : null,
                 geschiedenisOuder1.stream().map(GeschiedenisOuder1::getVeldenInOnderzoek).flatMap(Set::stream),
-                ouder2.getVeldenInOnderzoek().stream(),
+                ouder1 != null ? ouder2.getVeldenInOnderzoek().stream() : null,
                 geschiedenisOuder2.stream().map(GeschiedenisOuder2::getVeldenInOnderzoek).flatMap(Set::stream))
             .flatMap(Function.identity())
-            .toList();
+            .collect(Collectors.toList());
     }
 
     public Stream<String> getBurgerservicenummersVanMinderjarigeKinderen() {
