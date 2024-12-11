@@ -29,16 +29,16 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Build OCI image and publish it to GitHub Packages
-      if: github.ref == 'refs/heads/main'
-      run: ./gradlew bootBuildImage --publishImage
+    - name: Build OCI image
+      if: github.ref != 'refs/heads/main'
+      run: ./gradlew bootBuildImage
       env:
         GITHUB_ACTOR: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build OCI image
-      if: github.ref != 'refs/heads/main'
-      run: ./gradlew bootBuildImage
+    - name: Build OCI image and publish it to GitHub Packages
+      if: github.ref == 'refs/heads/main'
+      run: ./gradlew bootBuildImage --publishImage
       env:
         GITHUB_ACTOR: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
