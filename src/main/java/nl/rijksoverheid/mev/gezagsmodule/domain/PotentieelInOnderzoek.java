@@ -57,7 +57,7 @@ public abstract class PotentieelInOnderzoek {
                     int datumEindeOnderzoekInt = Integer.parseInt(datumEindeOnderzoekValue);
                     int datumVandaag = Integer.parseInt(LocalDate.now().format(FORMATTER));
 
-                    if (datumVandaag <= datumEindeOnderzosysekInt) {
+                    if (datumVandaag <= datumEindeOnderzoekInt) {
                         veldenInOnderzoek.add(veldInOnderzoek);
                     }
                 } else {

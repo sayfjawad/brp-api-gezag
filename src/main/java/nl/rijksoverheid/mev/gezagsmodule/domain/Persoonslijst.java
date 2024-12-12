@@ -117,7 +117,7 @@ public class Persoonslijst {
         inschrijving = new Inschrijving(lo3PlRecord);
     }
 
-    public List<String> getUsedVeldenInOnderzoek() {
+    public Set<String> getUsedVeldenInOnderzoek() {
         return Stream.of(
                 persoon != null ? persoon.getVeldenInOnderzoek().stream() : null,
                 geschiedenisPersoon.stream().map(GeschiedenisPersoon::getVeldenInOnderzoek).flatMap(Set::stream),
@@ -128,7 +128,7 @@ public class Persoonslijst {
                 ouder2 != null ? ouder2.getVeldenInOnderzoek().stream() : null,
                 geschiedenisOuder2.stream().map(GeschiedenisOuder2::getVeldenInOnderzoek).flatMap(Set::stream))
             .flatMap(Function.identity())
-            .toList();
+            .collect(Collectors.toSet());
     }
 
     public Stream<String> getBurgerservicenummersVanMinderjarigeKinderen() {
