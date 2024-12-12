@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -43,7 +44,7 @@ public abstract class PotentieelInOnderzoek {
         if (aanduidingGegevensInOnderzoek.isEmpty()) return;
 
         try {
-            VeldNummer annotation = calledClass.getDeclaredMethod(fieldName).getAnnotation(VeldNummer.class);
+            VeldNummer annotation = calledClass.getDeclaredField(fieldName).getAnnotation(VeldNummer.class);
 
             String key = annotation.number();
             String formattedVeldName = getFormattedVeldName(aanduidingGegevensInOnderzoek, key);
@@ -56,14 +57,14 @@ public abstract class PotentieelInOnderzoek {
                     int datumEindeOnderzoekInt = Integer.parseInt(datumEindeOnderzoekValue);
                     int datumVandaag = Integer.parseInt(LocalDate.now().format(FORMATTER));
 
-                    if (datumVandaag <= datumEindeOnderzoekInt) {
+                    if (datumVandaag <= datumEindeOnderzosysekInt) {
                         veldenInOnderzoek.add(veldInOnderzoek);
                     }
                 } else {
                     veldenInOnderzoek.add(veldInOnderzoek);
                 }
             }
-        } catch (NoSuchMethodException e) {
+        } catch (NoSuchFieldException e) {
             logger.error("Should never happen. Probably a programming error.", e);
         }
     }
