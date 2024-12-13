@@ -748,12 +748,8 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
     Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
-    En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                                                               |
-      | type                             | GezagNietTeBepalen                                                   |
-      | minderjarige.burgerservicenummer | 000000048                                                            |
-      | toelichting                      | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
-
+    En heeft de persoon geen gezag
+    
   Scenario: Lg01_045 - minderjarige, emigratie
     # Route: 1 - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters

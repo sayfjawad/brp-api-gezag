@@ -477,12 +477,8 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
-    En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                                                               |
-      | type                             | GezagNietTeBepalen                                                   |
-      | minderjarige.burgerservicenummer | 000000048                                                            |
-      | toelichting                      | gezag is niet te bepalen omdat minderjarige niet in Nederland woont. |
-
+    En heeft de persoon geen gezag
+    
   Scenario: Lg01_021 - minderjarig kind, geboren tijdens huwelijk ouders, geen categorie 11, vader ingeschreven in RNI, kind Nederlandse nationaliteit
     # Route: 45e - Wie heeft gezag?:  (N)
     Als gezag wordt gezocht met de volgende parameters
