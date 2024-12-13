@@ -233,6 +233,28 @@ class GezagsrelatieServiceTest {
     }
 
     @Test
+    void bepaalGezagsrelatiesWithAntwoordenModelVAndHavingOneParentNietOuder2() {
+        ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
+        arAntwoordenModel.setSoortGezag(V);
+        arAntwoordenModel.setGezagNietOuder2(INDICATION_GEZAG);
+
+        String minderjarige = BURGERSERVICENUMMER_ONE;
+        String bevraagdePersoon = minderjarige;
+        String nietOuder = BURGERSERVICENUMMER_TWO;
+        when(gezagsBepalingMock.getBurgerservicenummer()).thenReturn(minderjarige);
+        when(gezagsBepalingMock.getBurgerservicenummerPersoon()).thenReturn(bevraagdePersoon);
+        when(gezagsBepalingMock.getBurgerservicenummerNietOuder()).thenReturn(nietOuder);
+        GezagsBepaling gezagsBepaling = gezagsBepalingMock;
+
+        List<AbstractGezagsrelatie> gezagsRelaties = classUnderTest.bepaalGezagsrelaties(arAntwoordenModel, gezagsBepaling);
+
+        assertFalse(gezagsRelaties.isEmpty());
+        Voogdij gezag = (Voogdij) gezagsRelaties.getFirst();
+        assertEquals(minderjarige, gezag.getMinderjarige().get().getBurgerservicenummer());
+        assertEquals(nietOuder, gezag.getDerden().get(0).getBurgerservicenummer().get());
+    }
+
+    @Test
     void bepaalGezagsrelatiesWithAntwoordenModelGGAndHavingOneParentOuder1AndNoNietOuder() {
         ARAntwoordenModel arAntwoordenModel = new ARAntwoordenModel();
         arAntwoordenModel.setSoortGezag(GG);

@@ -123,7 +123,6 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     void ouderOfPartnerOverledenOfOnbevoegdTotGezagWithAllParentsOuder2OverledenOfOnbevoegd() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(false);
-        when(persoonslijstOuder2.isOverledenOfOnbevoegd()).thenReturn(true);
         when(persoonslijstNietOuder.isOverledenOfOnbevoegd()).thenReturn(false);
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(gezagsBepaling.getPlOuder2()).thenReturn(persoonslijstOuder2);

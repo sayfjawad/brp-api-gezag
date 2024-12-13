@@ -105,6 +105,7 @@ public class GezagService {
             arAntwoordenModel.setGezagOuder1(DEFAULT_NEE);
             arAntwoordenModel.setGezagOuder2(DEFAULT_NEE);
             arAntwoordenModel.setGezagNietOuder1(DEFAULT_NEE);
+            arAntwoordenModel.setGezagNietOuder2(DEFAULT_NEE);
             arAntwoordenModel.setUitleg(toelichtingService.decorateToelichting(unformattedUitleg, gezagsBepaling.getVeldenInOnderzoek(), null));
         }
 
@@ -136,6 +137,7 @@ public class GezagService {
         arAntwoordenModel.setGezagOuder1(configuredARAntwoordenModel.getGezagOuder1());
         arAntwoordenModel.setGezagOuder2(configuredARAntwoordenModel.getGezagOuder2());
         arAntwoordenModel.setGezagNietOuder1(configuredARAntwoordenModel.getGezagNietOuder1());
+        arAntwoordenModel.setGezagNietOuder2(configuredARAntwoordenModel.getGezagNietOuder2());
         arAntwoordenModel.setUitleg((!persoonslijstExists ? TOELICHTING_ONBEKEND_PERSOON :
             configuredARAntwoordenModel.getUitleg()));
     }

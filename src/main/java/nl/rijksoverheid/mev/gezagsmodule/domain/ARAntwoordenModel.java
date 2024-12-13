@@ -39,6 +39,8 @@ public class ARAntwoordenModel {
     @EqualsAndHashCode.Exclude
     private String gezagNietOuder1 = null;
     @EqualsAndHashCode.Exclude
+    private String gezagNietOuder2 = null;
+    @EqualsAndHashCode.Exclude
     private String index = null;
     @EqualsAndHashCode.Exclude
     private String uitleg = null;
@@ -52,7 +54,8 @@ public class ARAntwoordenModel {
     }
 
     public boolean hasNietOuderGezag() {
-        return gezagNietOuder1 != null && gezagNietOuder1.equals("Ja");
+        return (gezagNietOuder1 != null && gezagNietOuder1.equals("Ja")) ||
+            (gezagNietOuder2 != null && gezagNietOuder2.equals("Ja"));
     }
 
     @Override
@@ -62,6 +65,7 @@ public class ARAntwoordenModel {
             ", gezagOuder1='" + gezagOuder1 + '\'' +
             ", gezagOuder2='" + gezagOuder2 + '\'' +
             ", gezagNietOuder1='" + gezagNietOuder1 + '\'' +
+            ", gezagNietOuder2='" + gezagNietOuder2 + '\'' +
             ", route='" + route + '\'' +
             ", uitleg='" + uitleg + '\'' +
             ", exception=" + exception +

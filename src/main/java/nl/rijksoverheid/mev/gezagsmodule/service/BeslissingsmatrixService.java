@@ -87,7 +87,6 @@ public class BeslissingsmatrixService {
                     var route = data[17];
 
                     var dataNullable = Arrays.stream(data).map(it -> it.isEmpty() ? null : it).toList();
-
                     var antwoordenModel = new ARAntwoordenModel(
                         dataNullable.get(0), // v0101
                         dataNullable.get(1), // v0102
@@ -111,6 +110,7 @@ public class BeslissingsmatrixService {
                         dataNullable.get(19), // gezag_ouder1
                         dataNullable.get(20), // gezag_ouder2
                         dataNullable.get(21), // gezag_niet-ouder1
+                        dataNullable.get(22), // gezag_niet-ouder2
                         dataNullable.get(23), // index
                         dataNullable.get(24) // uitleg
                     );
