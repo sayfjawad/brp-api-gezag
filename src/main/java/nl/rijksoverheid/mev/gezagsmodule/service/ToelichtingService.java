@@ -4,6 +4,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Service voor het samenstellen van de toelichting bij het gezag uitspraak.
@@ -52,25 +53,25 @@ public class ToelichtingService {
 
     private void setInOnderzoek(final StringBuilder sb, final VeldenInOnderzoek veldenInOnderzoek) {
         sb.append(IN_ONDERZOEK);
-        List<String> persoonInOnderzoekVelden = veldenInOnderzoek.getPersoon();
+        Set<String> persoonInOnderzoekVelden = veldenInOnderzoek.getPersoon();
         if (!persoonInOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_PERSOONSVELDEN);
             sb.append(String.join(", ", persoonInOnderzoekVelden));
             sb.append(".");
         }
-        List<String> ouder1InOnderzoekVelden = veldenInOnderzoek.getOuder1();
+        Set<String> ouder1InOnderzoekVelden = veldenInOnderzoek.getOuder1();
         if (!ouder1InOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_VELDEN_OUDER_1);
             sb.append(String.join(", ", ouder1InOnderzoekVelden));
             sb.append(".");
         }
-        List<String> ouder2InOnderzoekVelden = veldenInOnderzoek.getOuder2();
+        Set<String> ouder2InOnderzoekVelden = veldenInOnderzoek.getOuder2();
         if (!ouder2InOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_VELDEN_OUDER_2);
             sb.append(String.join(", ", ouder2InOnderzoekVelden));
             sb.append(".");
         }
-        List<String> nietOuderInOnderzoekVelden = veldenInOnderzoek.getNietOuder();
+        Set<String> nietOuderInOnderzoekVelden = veldenInOnderzoek.getNietOuder();
         if (!nietOuderInOnderzoekVelden.isEmpty()) {
             sb.append(IN_ONDERZOEK_VELDEN_NIET_OUDER);
             sb.append(String.join(", ", nietOuderInOnderzoekVelden));

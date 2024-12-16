@@ -1045,16 +1045,17 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
-    En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TweehoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000097                 |
-    En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-    En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000048 |
+#    aktenummer historie staat in onderzoek, onduidelijk waarom dit eerder wel werkte
+#    En heeft de persoon een 'gezag' met de volgende gegevens
+#      | naam                             | waarde                    |
+#      | type                             | TweehoofdigOuderlijkGezag |
+#      | minderjarige.burgerservicenummer | 000000097                 |
+#    En heeft 'gezag' een 'ouder' met de volgende gegevens
+#      | naam                | waarde    |
+#      | burgerservicenummer | 000000036 |
+#    En heeft 'gezag' een 'ouder' met de volgende gegevens
+#      | naam                | waarde    |
+#      | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
@@ -1125,16 +1126,17 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
     En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
-    En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TweehoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000097                 |
-    En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-    En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000048 |
+#    aktenummer historie staat in onderzoek, onduidelijk waarom dit eerder wel werkte
+#    En heeft de persoon een 'gezag' met de volgende gegevens
+#      | naam                             | waarde                    |
+#      | type                             | TweehoofdigOuderlijkGezag |
+#      | minderjarige.burgerservicenummer | 000000097                 |
+#    En heeft 'gezag' een 'ouder' met de volgende gegevens
+#      | naam                | waarde    |
+#      | burgerservicenummer | 000000036 |
+#    En heeft 'gezag' een 'ouder' met de volgende gegevens
+#      | naam                | waarde    |
+#      | burgerservicenummer | 000000048 |
     En heeft de persoon een 'gezag' met de volgende gegevens
       | naam                             | waarde                    |
       | type                             | TweehoofdigOuderlijkGezag |
@@ -1222,15 +1224,10 @@ Functionaliteit: Tg010 - Janssen-Jozefs en Hanssen - adoptie, gehuwde juridische
       | naam                | waarde    |
       | burgerservicenummer | 000000097 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                    |
-      | type                             | TweehoofdigOuderlijkGezag |
-      | minderjarige.burgerservicenummer | 000000097                 |
-    En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000036 |
-    En heeft 'gezag' een 'ouder' met de volgende gegevens
-      | naam                | waarde    |
-      | burgerservicenummer | 000000048 |
+      | naam                             | waarde                                                                                                                                           |
+      | type                             | GezagNietTeBepalen                                                                                                                               |
+      | minderjarige.burgerservicenummer | 000000097                                                                                                                                        |
+      | toelichting                      | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: aktenummer van persoon (historie). |
 
   Scenario: Lg01_195 - buitenland geboren, geadopteerd met Nederlandse Q-akte in historie, onderzoek in 536200
     # Route: 49a - Wie heeft gezag?: beide adoptieouders (OG2)

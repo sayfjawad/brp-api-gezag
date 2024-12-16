@@ -12,7 +12,6 @@ import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoud
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
-
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;

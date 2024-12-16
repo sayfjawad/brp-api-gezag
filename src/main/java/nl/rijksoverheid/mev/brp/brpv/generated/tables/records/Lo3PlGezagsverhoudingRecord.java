@@ -5,7 +5,6 @@ package nl.rijksoverheid.mev.brp.brpv.generated.tables.records;
 
 
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlGezagsverhouding;
-
 import org.jooq.Record2;
 import org.jooq.impl.UpdatableRecordImpl;
 

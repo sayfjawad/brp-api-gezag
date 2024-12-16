@@ -469,7 +469,7 @@ Functionaliteit: Tg005 - Donkers-Dangor-Dass - Gezag kan niet bepaald worden
     En heeft de persoon geen gezag
 
   Scenario: Lg01_020 - gehuwd, 2 minderjarige kinderen geboren tijdens huwelijk ouders, zelf + 2 kinderen geëmigreerd (RNI), 1 kind weer teruggekeerd (immigratie).
-    # Meerderjarig
+    # Meerderjarig 
     # Route: 1 - Wie heeft gezag?:  (N)
     Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |

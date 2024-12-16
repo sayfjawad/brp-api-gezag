@@ -20,23 +20,6 @@ public class LoggingContext {
         this.plIds = new ArrayList<>();
         this.gezagResultaten = new HashMap<>();
     }
-    
-    private static String mapGezagType(String gezagType) {
-        // temporary until GezagService returns typed responses
-        return switch (gezagType) {
-            case "OG1" -> "EenhoofdigOuderlijkGezag";
-            case "OG2" -> "TweehoofdigOuderlijkGezag";
-            case "GG" -> "GezamenlijkGezag";
-            case "V" -> "Voogdij";
-            case "G" -> "TijdelijkGeenGezag";
-            case "N" -> "GezagNietTeBepalen";
-            case "NVT" -> "GezagNietVanToepassing*";
-            default -> { // should never happen
-                logger.error("Unknown gezag type: {}", gezagType);
-                yield "OnbekendGezagType";
-            }
-        };
-    }
 
     public void addBurgerservicenummers(Collection<String> burgerservicenummers) {
         burgerservicenummers.forEach(burgerservicenummer ->
@@ -84,5 +67,22 @@ public class LoggingContext {
 
     public Collection<GezagResultaat> getGezagResultaten() {
         return Collections.unmodifiableCollection(gezagResultaten.values());
+    }
+
+    private static String mapGezagType(String gezagType) {
+        // temporary until GezagService returns typed responses
+        return switch (gezagType) {
+            case "OG1" -> "EenhoofdigOuderlijkGezag";
+            case "OG2" -> "TweehoofdigOuderlijkGezag";
+            case "GG" -> "GezamenlijkGezag";
+            case "V" -> "Voogdij";
+            case "G" -> "TijdelijkGeenGezag";
+            case "N" -> "GezagNietTeBepalen";
+            case "NVT" -> "GezagNietVanToepassing*";
+            default -> { // should never happen
+                logger.error("Unknown gezag type: {}", gezagType);
+                yield "OnbekendGezagType";
+            }
+        };
     }
 }

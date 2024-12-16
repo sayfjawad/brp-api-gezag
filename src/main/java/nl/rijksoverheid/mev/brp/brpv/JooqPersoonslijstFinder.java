@@ -14,7 +14,6 @@ import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Clock;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -33,23 +32,26 @@ public class JooqPersoonslijstFinder implements PersoonslijstFinder {
     private static final String OUDER_2 = "2";
     private static final String KIND = "K";
     private static final String RELATIE = "R";
-
-    private final Clock clock;
     private final DSLContext create;
     private final LoggingContext loggingContext;
 
-    public JooqPersoonslijstFinder(Clock clock, DSLContext create, LoggingContext loggingContext) {
-        this.clock = clock;
+    public JooqPersoonslijstFinder(DSLContext create, LoggingContext loggingContext) {
         this.create = create;
         this.loggingContext = loggingContext;
     }
 
     @Override
-    public Optional<Persoonslijst> findPersoonslijst(Burgerservicenummer burgerservicenummer) {
+    public Optional<Persoonslijst> opvragenPersoonslijst(final String burgerservicenummerString) {
+        var burgerservicenummer = new Burgerservicenummer(Long.parseLong(burgerservicenummerString));
+
+        return findPersoonslijst(burgerservicenummer);
+    }
+
+    private Optional<Persoonslijst> findPersoonslijst(Burgerservicenummer burgerservicenummer) {
         var plPersoonPersoon = findPlPersoonByPersoonTypeIsPersoonAndBurgerservicenummer(burgerservicenummer);
         if (plPersoonPersoon.isEmpty()) return Optional.empty();
 
-        var result = new Persoonslijst(clock);
+        var result = new Persoonslijst();
 
         var plPersoonPersoonRecent = plPersoonPersoon.getFirst();
         result.addPersoon(plPersoonPersoonRecent);

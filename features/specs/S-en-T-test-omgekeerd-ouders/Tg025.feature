@@ -381,10 +381,10 @@ Functionaliteit: Tg025 - Geus-Goverwelle - Gegevens in onderzoek
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                                                                                                                                                                                         |
-      | type                             | GezagNietTeBepalen                                                                                                                                                                             |
-      | minderjarige.burgerservicenummer | 000000036                                                                                                                                                                                      |
-      | toelichting                      | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: geboortedatum van persoon. Persoonslijst van ouder 1: geboortedatum van persoon. |
+      | naam                             | waarde                                                                                                                                                                                                                       |
+      | type                             | GezagNietTeBepalen                                                                                                                                                                                                           |
+      | minderjarige.burgerservicenummer | 000000036                                                                                                                                                                                                                    |
+      | toelichting                      | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van persoon: geboortedatum van persoon. Persoonslijst van ouder 1: datum voltrokken van relatie, geboortedatum van persoon. |
 
   Scenario: Lg01_137 - kind geboren tijdens huwelijk in onderzoek 010330 (voorvoegsel ontbreekt), 040510, 081420, 113210
     # Route: 3ai - Wie heeft gezag?: niet te bepalen (N )

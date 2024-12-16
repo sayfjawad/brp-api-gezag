@@ -5,7 +5,6 @@ package nl.rijksoverheid.mev.brp.brpv.generated.tables.records;
 
 
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlPersoon;
-
 import org.jooq.Record4;
 import org.jooq.impl.UpdatableRecordImpl;
 

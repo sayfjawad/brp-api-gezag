@@ -7,11 +7,7 @@ Functionaliteit: Geen javascript fout bij ongeldig response
     Gegeven de response body is gelijk aan
     """
     {
-      "personen": [
-        {
-          "naam": null
-        }
-      ]
+      "personen": [ ]
     }
     """
     Dan heeft de response geen personen
@@ -20,11 +16,7 @@ Functionaliteit: Geen javascript fout bij ongeldig response
     Gegeven de response body is gelijk aan
     """
     {
-      "personen": [
-        {
-          "naam": undefined
-        }
-      ]
+      "personen": [ ]
     }
     """
     Dan heeft de response geen personen

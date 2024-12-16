@@ -374,12 +374,40 @@ Functionaliteit: 3.1 - is er sprake van een recente gebeurtenis - hertrouwen
 
       Voorbeelden:
       | aanduiding onderzoek | omschrijving                                |
-      | 050000               | hele categorie partnerschap                 |
-      | 050600               | hele groep aangaan huwelijk of partnerschap |
-      | 050610               | datum aangaan huwelijk of partnerschap      |
-      | 050120               | burgerservicenummer partner                 |
       | 050200               | hele groep naam van partner                 |
       | 050240               | geslachtsnaam van partner                   |
       | 050300               | hele groep geboorte van partner             |
       | 050620               | plaats aangaan huwelijk of partnerschap     |
       | 050670               | land aangaan huwelijk of partnerschap       |
+
+    Abstract Scenario: Gezag wordt van rechtswege bepaald na reparatiehuwelijk en <omschrijving> staat in onderzoek er is sprake van GezagNietTeBepalen
+      Gegeven voor 'Linda' is een gerechtelijke uitspraak over het gezag gedaan met de volgende gegevens 
+      | indicatie gezag minderjarige (32.10) | ingangsdatum geldigheid (85.10) |
+      | 1                                    | gisteren - 5 jaar               |
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) |
+      | gisteren - 20 jaar                                                 |
+      En 'Laura' en 'Lido' zijn gescheiden met de volgende gegevens
+      | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) |
+      | gisteren - 6 jaar                                            |
+      En 'Laura' en 'Lido' zijn met elkaar gehuwd met de volgende gegevens
+      | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | aanduiding in onderzoek (83.10) |
+      | gisteren - 2 jaar                                                  | <aanduiding onderzoek>          |
+      Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000036 |
+      En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                    |
+      | type                             | GezagNietTeBepalen        |
+      | minderjarige.burgerservicenummer | 000000036                 |
+      | toelichting                      | <toelichting>             |
+
+      Voorbeelden:
+      | aanduiding onderzoek | omschrijving                                | toelichting |
+      | 050120               | burgerservicenummer partner                 | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van ouder 1: burgerservicenummer partner van relatie. Persoonslijst van ouder 2: burgerservicenummer partner van relatie. |
+      | 050000               | hele categorie partnerschap                 | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van ouder 1: relatie. Persoonslijst van ouder 2: relatie. |
+      | 050600               | hele groep aangaan huwelijk of partnerschap | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van ouder 1: datum voltrokken van relatie. Persoonslijst van ouder 2: datum voltrokken van relatie. |
+      | 050610               | datum aangaan huwelijk of partnerschap      | Gezag is niet te bepalen, omdat de volgende relevante gegevens in onderzoek staan. Persoonslijst van ouder 1: datum voltrokken van relatie. Persoonslijst van ouder 2: datum voltrokken van relatie. |    

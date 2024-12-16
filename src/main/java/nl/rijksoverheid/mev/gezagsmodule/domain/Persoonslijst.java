@@ -7,16 +7,13 @@ import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlGezagsverhoud
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlPersoonRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlRecord;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.records.Lo3PlVerblijfplaatsRecord;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.Categorie;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PersoonslijstVeld;
-import nl.rijksoverheid.mev.brpadapter.soap.persoonlijst.PotentieelInOnderzoek;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 
-import java.lang.reflect.Field;
-import java.time.Clock;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -30,236 +27,116 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 @Setter
 public class Persoonslijst {
 
-    private Map<String, PersoonslijstVeld> values;
-    private Map<String, List<PersoonslijstVeld>> listValues;
+    private static final int MEERDERJARIGE_LEEFTIJD = 180000;
+    private static final int AKTE_NUMMER_LENGTE = 3;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+    private static final String GEEN_OUDERS = "Geen_ouders";
+    private static final String EEN_OUDER = "Een_ouder";
+    private static final String TWEE_OUDERS = "Twee_ouders";
+    private static final String GESLACHTNAAM_AANDUIDING_PUNTOUDER = ".";
+    private static final String PUNTOUDERS = "1_of_2_puntouders";
+    private static final char TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE = 'B';
+    private static final char TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP = 'E'; // Rechtelijke uitspraak
+    private static final char TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE = 'C';
+    private static final char TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING = 'J';
+    private static final char TABEL_39_AKTEAANDUIDING_ADOPTIE = 'Q';
+    private static final char TABEL_39_AKTEAANDUIDING_GEBOORTE = 'A';
+    private static final char TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP = 'V';
+    private static final String PUNTOUDER_INDICATIE = ".";
+    private static final List<String> INDICATIE_GEZAG_CODES = Arrays.asList("1", "2", "12", "1D", "2D", "D");
 
-    private final Clock clock;
+    @Getter
+    private Persoon persoon;
+    private List<GeschiedenisPersoon> geschiedenisPersoon;
+    @Getter
+    private Gezagsverhouding gezagsverhouding;
+    @Getter
+    private Verblijfplaats verblijfplaats;
+    @Getter
+    private List<HuwelijkOfPartnerschap> huwelijkOfPartnerschappen;
+    private List<Kind> kinderen;
+    @Getter
+    private Ouder1 ouder1;
+    private List<GeschiedenisOuder1> geschiedenisOuder1;
+    @Getter
+    private Ouder2 ouder2;
+    private List<GeschiedenisOuder2> geschiedenisOuder2;
+    private Inschrijving inschrijving;
+    @Getter
+    private HopRelaties hopRelaties;
 
-    public Persoonslijst(final Clock clock) {
-        values = new HashMap<>();
-        listValues = new HashMap<>();
-
-        this.clock = clock;
+    public Persoonslijst() {
+        huwelijkOfPartnerschappen = new ArrayList<>();
+        kinderen = new ArrayList<>();
+        geschiedenisOuder1 = new ArrayList<>();
+        geschiedenisOuder2 = new ArrayList<>();
+        geschiedenisPersoon = new ArrayList<>();
     }
 
     public void addGezagsverhouding(final Lo3PlGezagsverhoudingRecord lo3PlGezagsverhoudingRecord) {
-        addVeld(Categorie.GEZAGSVERHOUDING, Gezagsverhouding.from(lo3PlGezagsverhoudingRecord, clock));
+        gezagsverhouding = new Gezagsverhouding(lo3PlGezagsverhoudingRecord);
     }
 
     public void addVerblijfplaats(final Lo3PlVerblijfplaatsRecord lo3PlVerblijfplaatsRecord) {
-        addVeld(Categorie.VERBLIJFPLAATS, Verblijfplaats.from(lo3PlVerblijfplaatsRecord, clock));
+        verblijfplaats = new Verblijfplaats(lo3PlVerblijfplaatsRecord);
     }
 
     public void addRelatie(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.HUWELIJK_OF_PARTNERSCHAP, HuwelijkOfPartnerschap.from(lo3PlPersoonRecord, clock));
+        huwelijkOfPartnerschappen.add(new HuwelijkOfPartnerschap(lo3PlPersoonRecord));
     }
 
     public void addKind(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.KIND, Kind.from(lo3PlPersoonRecord, clock));
+        kinderen.add(new Kind(lo3PlPersoonRecord));
     }
 
     public void addOuder1(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeld(Categorie.OUDER_1, Ouder1.from(lo3PlPersoonRecord, clock));
+        ouder1 = new Ouder1(lo3PlPersoonRecord);
     }
 
     public void addOuder1Geschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.GESCHIEDENIS_OUDER_1, GeschiedenisOuder1.from(lo3PlPersoonRecord, clock));
+        geschiedenisOuder1.add(new GeschiedenisOuder1(lo3PlPersoonRecord));
     }
 
     public void addOuder2(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeld(Categorie.OUDER_2, Ouder2.from(lo3PlPersoonRecord, clock));
+        ouder2 = new Ouder2(lo3PlPersoonRecord);
     }
 
     public void addOuder2Geschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.GESCHIEDENIS_OUDER_2, GeschiedenisOuder2.from(lo3PlPersoonRecord, clock));
+        geschiedenisOuder2.add(new GeschiedenisOuder2(lo3PlPersoonRecord));
     }
 
     public void addPersoon(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeld(Categorie.PERSOON, Persoon.from(lo3PlPersoonRecord, clock));
+        persoon = new Persoon(lo3PlPersoonRecord);
     }
 
     public void addPersoonGeschiedenis(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
-        addVeldToList(Categorie.GESCHIEDENIS_PERSOON, GeschiedenisPersoon.from(lo3PlPersoonRecord, clock));
+        geschiedenisPersoon.add(new GeschiedenisPersoon(lo3PlPersoonRecord));
     }
 
     public void addInschrijving(final Lo3PlRecord lo3PlRecord) {
-        addVeld(Categorie.INSCHRIJVING, Inschrijving.from(lo3PlRecord));
+        inschrijving = new Inschrijving(lo3PlRecord);
     }
 
-    public <T extends PersoonslijstVeld> void addVeld(final String categorie, final T veld) {
-        values.put(categorie, veld);
-    }
-
-    public <T extends PersoonslijstVeld> void addVeldToList(final String categorie, final T veld) {
-        listValues.merge(
-            categorie,
-            List.of(veld),
-            (list1, list2) -> Stream.of(list1, list2)
-                .flatMap(Collection::stream).toList());
-    }
-
-    public List<String> getUsedVeldenInOnderzoek() {
-        List<String> inOnderzoek = new ArrayList<>();
-        for (PersoonslijstVeld value : values.values()) {
-            // list values
-            if (value instanceof PotentieelInOnderzoek potentieelInOnderzoek) {
-                inOnderzoek.addAll(potentieelInOnderzoek.getVeldenInOnderzoek());
-            }
-        }
-
-        return inOnderzoek;
-    }
-
-    public Persoon getPersoon() {
-        if (values.containsKey(Categorie.PERSOON)) {
-            return (Persoon) values.get(Categorie.PERSOON);
-        } else {
-            return null;
-        }
-    }
-
-    public Ouder1 getOuder1() {
-        if (values.containsKey(Categorie.OUDER_1)) {
-            return (Ouder1) values.get(Categorie.OUDER_1);
-        } else {
-            return null;
-        }
-    }
-
-    public Ouder2 getOuder2() {
-        if (values.containsKey(Categorie.OUDER_2)) {
-            return (Ouder2) values.get(Categorie.OUDER_2);
-        } else {
-            return null;
-        }
-    }
-
-    public List<HuwelijkOfPartnerschap> getHuwelijkOfPartnerschappen() {
-        if (listValues.containsKey(Categorie.HUWELIJK_OF_PARTNERSCHAP)) {
-            return (List<HuwelijkOfPartnerschap>) (Object) listValues.get(Categorie.HUWELIJK_OF_PARTNERSCHAP);
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
-    public Inschrijving getInschrijving() {
-        if (values.containsKey(Categorie.INSCHRIJVING)) {
-            return (Inschrijving) values.get(Categorie.INSCHRIJVING);
-        } else {
-            return null;
-        }
-    }
-
-    public Verblijfplaats getVerblijfplaats() {
-        if (values.containsKey(Categorie.VERBLIJFPLAATS)) {
-            return (Verblijfplaats) values.get(Categorie.VERBLIJFPLAATS);
-        } else {
-            return null;
-        }
-    }
-
-    public List<Kind> getKinderen() {
-        if (listValues.containsKey(Categorie.KIND)) {
-            return (List<Kind>) (Object) listValues.get(Categorie.KIND);
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
-    public Gezagsverhouding getGezagsverhouding() {
-        if (values.containsKey(Categorie.GEZAGSVERHOUDING)) {
-            return (Gezagsverhouding) values.get(Categorie.GEZAGSVERHOUDING);
-        } else {
-            return null;
-        }
-    }
-
-    public List<GeschiedenisHuwelijkOfPartnerschap> getGeschiedenisHuwelijkOfPartnerschappen() {
-        if (listValues.containsKey(Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP)) {
-            return (List<GeschiedenisHuwelijkOfPartnerschap>) (Object) listValues.get(Categorie.GESCHIEDENIS_HUWELIJK_OF_PARTNERSCHAP);
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
-    public List<GeschiedenisPersoon> getGeschiedenisPersoon() {
-        if (listValues.containsKey(Categorie.GESCHIEDENIS_PERSOON)) {
-            return (List<GeschiedenisPersoon>) (Object) listValues.get(Categorie.GESCHIEDENIS_PERSOON);
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
-    public List<GeschiedenisOuder1> getGeschiedenisOuder1() {
-        if (listValues.containsKey(Categorie.GESCHIEDENIS_OUDER_1)) {
-            return (List<GeschiedenisOuder1>) (Object) listValues.get(Categorie.GESCHIEDENIS_OUDER_1);
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
-    public List<GeschiedenisOuder2> getGeschiedenisOuder2() {
-        if (listValues.containsKey(Categorie.GESCHIEDENIS_OUDER_2)) {
-            return (List<GeschiedenisOuder2>) (Object) listValues.get(Categorie.GESCHIEDENIS_OUDER_2);
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
-    public static final int MEERDERJARIGE_LEEFTIJD = 180000;
-    public static final int AKTE_NUMMER_LENGTE = 3;
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
-    /*
-        In het BRP wordt een puntouder vastgelegd in de geslachtsnaam met een "."
-     */
-    public static final String GEEN_OUDERS = "Geen_ouders";
-    public static final String EEN_OUDER = "Een_ouder";
-    public static final String TWEE_OUDERS = "Twee_ouders";
-    public static final String GESLACHTNAAM_AANDUIDING_PUNTOUDER = ".";
-
-    /*
-        Mogelijke antwoorden op de vraag: Hoeveel Juridische Ouders
-     */
-    public static final String PUNTOUDERS = "1_of_2_puntouders";
-    /*
-        Akte aanduidingen die gebruikt worden om adoptie of erkenning vast te stellen
-        Vaderschap is toegevoegd om in situaties van 1 ouderlijk gezag de gezaghebbende ouder te kunnen bepalen
-     */
-    public static final char TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE = 'B';
-    public static final char TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP = 'E'; // Rechterlijke uitspraak
-    public static final char TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE = 'C';
-    public static final char TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING = 'J';
-    public static final char TABEL_39_AKTEAANDUIDING_ADOPTIE = 'Q';
-    public static final char TABEL_39_AKTEAANDUIDING_GEBOORTE = 'A';
-    public static final char TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP = 'V';
-    public static final String PUNTOUDER_INDICATIE = ".";
-    static final List<String> INDICATIE_GEZAG_CODES = Arrays.asList("1", "2", "12", "1D", "2D", "D");
-    static final String[] HUWELIJK_OF_PARTNERSCHAP_REDEN_ONTBINDING = new String[]{"O", "R"};
-
-    @JsonIgnore
-    @Getter
-    private HopRelaties hopRelaties = null;
-
-    @Getter
-    private String receivedId;
-
-    public List<String> getBurgerservicenummersVanKinderen() {
-        if (getKinderen() == null) {
-            return Collections.emptyList();
-        }
-
-        return getKinderen().stream()
-            .map(Kind::getBsn)
-            .filter(Objects::nonNull)
-            .toList();
+    public Set<String> getUsedVeldenInOnderzoek() {
+        return Stream.of(
+                Optional.ofNullable(persoon).stream().map(Persoon::getVeldenInOnderzoek).flatMap(Collection::stream),
+                geschiedenisPersoon.stream().map(GeschiedenisPersoon::getVeldenInOnderzoek).flatMap(Set::stream),
+                Optional.ofNullable(gezagsverhouding).stream().map(Gezagsverhouding::getVeldenInOnderzoek).flatMap(Collection::stream),
+                huwelijkOfPartnerschappen.stream().map(HuwelijkOfPartnerschap::getVeldenInOnderzoek).flatMap(Set::stream),
+                Optional.ofNullable(ouder1).stream().map(Ouder1::getVeldenInOnderzoek).flatMap(Collection::stream),
+                geschiedenisOuder1.stream().map(GeschiedenisOuder1::getVeldenInOnderzoek).flatMap(Set::stream),
+                Optional.ofNullable(ouder2).stream().map(Ouder2::getVeldenInOnderzoek).flatMap(Collection::stream),
+                geschiedenisOuder2.stream().map(GeschiedenisOuder2::getVeldenInOnderzoek).flatMap(Set::stream))
+            .flatMap(Function.identity())
+            .collect(Collectors.toSet());
     }
 
     public Stream<String> getBurgerservicenummersVanMinderjarigeKinderen() {
-        if (getKinderen() == null) return Stream.empty();
+        if (kinderen == null) return Stream.empty();
 
-        return getKinderen().stream()
+        return kinderen.stream()
             .filter(Kind::isMinderjarig)
-            .map(Kind::getBsn)
+            .map(Kind::getBurgerservicenummer)
             .filter(Objects::nonNull);
     }
 
@@ -278,7 +155,7 @@ public class Persoonslijst {
      * dit is het geval als de reden van ontbinding het overlijden van de partner betreft.
      */
     public void checkHopRelaties() {
-        for (HuwelijkOfPartnerschap gebeurtenis : getHuwelijkOfPartnerschappen()) {
+        for (HuwelijkOfPartnerschap gebeurtenis : huwelijkOfPartnerschappen) {
             if (gebeurtenis.getDatumOntbinding() != null) {
                 hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
                     gebeurtenis.getBsnPartner(),
@@ -293,31 +170,12 @@ public class Persoonslijst {
                     null);
             }
         }
-        if (getGeschiedenisHuwelijkOfPartnerschappen() != null) {
-            for (GeschiedenisHuwelijkOfPartnerschap gebeurtenis : getGeschiedenisHuwelijkOfPartnerschappen()) {
-                if (gebeurtenis.getDatumVoltrokken() != null) {
-                    hopRelaties.voegGebeurtenisToe(HopRelaties.START_RELATIE,
-                        gebeurtenis.getBsnPartner(),
-                        gebeurtenis.getDatumVoltrokken(),
-                        gebeurtenis.getRedenOntbinding()
-                    );
-                }
-                if (gebeurtenis.getDatumOntbinding() != null) {
-                    hopRelaties.voegGebeurtenisToe(HopRelaties.ONTBINDING_RELATIE,
-                        gebeurtenis.getBsnPartner(),
-                        gebeurtenis.getDatumOntbinding(),
-                        gebeurtenis.getRedenOntbinding()
-                    );
-                }
-            }
-        }
         hopRelaties.checkRelaties();
     }
 
     @JsonIgnore
     public boolean isOpgeschort() {
         // PL 1/2 : 07.67.10
-        Inschrijving inschrijving = getInschrijving();
         return (inschrijving != null
             && inschrijving.getDatumOpschortingBijhouding() != null);
     }
@@ -325,7 +183,6 @@ public class Persoonslijst {
     @JsonIgnore
     public boolean isOverleden() {
         // PL 1/2 : 07.67.10
-        Inschrijving inschrijving = getInschrijving();
         return (inschrijving != null
             && inschrijving.getDatumOpschortingBijhouding() != null)
             && inschrijving.getRedenOpschortingBijhouding().equals("O");
@@ -334,19 +191,16 @@ public class Persoonslijst {
     @JsonIgnore
     public boolean isNietIngeschrevenInRNI() {
         // PL 1/2 : 07.67.20
-        Inschrijving inschrijving = getInschrijving();
         return !(inschrijving != null && Objects.equals(inschrijving.getRedenOpschortingBijhouding(), "R"));
     }
 
     @JsonIgnore
     public boolean isNietGeemigreerd() {
         // PL 1/2 : 07.67.20
-        Inschrijving inschrijving = getInschrijving();
         return !(inschrijving != null && Objects.equals(inschrijving.getRedenOpschortingBijhouding(), "E"));
     }
 
     public boolean onderCurateleGesteld() {
-        Gezagsverhouding gezagsverhouding = getGezagsverhouding();
         return gezagsverhouding != null
             && isNotBlank(gezagsverhouding.getIndicatieCurateleRegister());
     }
@@ -358,8 +212,8 @@ public class Persoonslijst {
 
     public boolean alsMinderjarigeOpgeschort() throws AfleidingsregelException {
         if (isOpgeschort()) {
-            int datumOpschorting = Integer.parseInt(getInschrijving().getDatumOpschortingBijhouding());
-            int meerderjarigheidDatum = Integer.parseInt(getPersoon().getGeboortedatum())
+            int datumOpschorting = Integer.parseInt(inschrijving.getDatumOpschortingBijhouding());
+            int meerderjarigheidDatum = Integer.parseInt(persoon.getGeboortedatum())
                 + MEERDERJARIGE_LEEFTIJD;
             return datumOpschorting < meerderjarigheidDatum;
         }
@@ -367,14 +221,14 @@ public class Persoonslijst {
     }
 
     public boolean heeftTweeOuders() {
-        if ((getOuder1() != null) && (getOuder2() != null)) {
-            return isValideGeslachtsnaam(getOuder1().getGeslachtsnaam()) && isValideGeslachtsnaam(getOuder2().getGeslachtsnaam());
+        if (ouder1 != null && ouder2 != null) {
+            return isValideGeslachtsnaam(ouder1.getGeslachtsnaam()) && isValideGeslachtsnaam(ouder2.getGeslachtsnaam());
         }
         return false;
     }
 
     public static boolean isValideGeslachtsnaam(String str) {
-        return str != null && !str.isEmpty() && !str.isBlank() && !str.equals(PUNTOUDER_INDICATIE);
+        return str != null && !str.isBlank() && !str.equals(PUNTOUDER_INDICATIE);
     }
 
     /**
@@ -394,12 +248,11 @@ public class Persoonslijst {
             .anyMatch(aktenummer -> geldigeErkenningCodes.contains(aktenummer.charAt(2)));
     }
 
-    public boolean geenOngeborenVruchtErkendOfGerechtelijkeVaststelling() {
+    public boolean ongeborenVruchtErkendOfGerechtelijkeVaststelling() {
         // controleer dan persoon op akte erkenning actueel en geschiedenis op B, C, J en V
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getPersoon().getAktenummer());
-        List<GeschiedenisPersoon> geschiedenisPersoon = getGeschiedenisPersoon();
+        akteNummers.add(persoon.getAktenummer());
         if (geschiedenisPersoon != null) {
             for (GeschiedenisPersoon p : geschiedenisPersoon) {
                 akteNummers.add(p.getAktenummer());
@@ -415,12 +268,11 @@ public class Persoonslijst {
     }
 
 
-    public boolean geenOngeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling() {
+    public boolean ongeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling() {
         // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getOuder1().getAktenummer());
-        List<GeschiedenisOuder1> geschiedenisOuder1 = getGeschiedenisOuder1();
+        akteNummers.add(ouder1.getAktenummer());
         if (geschiedenisOuder1 != null) {
             for (GeschiedenisOuder1 p : geschiedenisOuder1) {
                 akteNummers.add(p.getAktenummer());
@@ -439,8 +291,7 @@ public class Persoonslijst {
         // controleer dan op akte erkenning actueel en geschiedenis op E
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getOuder1().getAktenummer());
-        List<GeschiedenisOuder1> geschiedenisOuder1 = getGeschiedenisOuder1();
+        akteNummers.add(ouder1.getAktenummer());
         if (geschiedenisOuder1 != null) {
             for (GeschiedenisOuder1 p : geschiedenisOuder1) {
                 akteNummers.add(p.getAktenummer());
@@ -456,10 +307,8 @@ public class Persoonslijst {
         // controleer dan op akte erkenning actueel en geschiedenis op E
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
-        Ouder2 ouder2 = getOuder2();
-        if(ouder2 != null) {
+        if (ouder2 != null) {
             akteNummers.add(ouder2.getAktenummer());
-            List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
             for (GeschiedenisOuder2 p : geschiedenisOuder2) {
                 akteNummers.add(p.getAktenummer());
             }
@@ -474,27 +323,22 @@ public class Persoonslijst {
     public boolean ongeborenVruchtErkend() {
         // controleer dan persoon op akte erkenning actueel en geschiedenis op A
         // voorbereiding, zet alle aktenummers in een lijst
-        List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getPersoon().getAktenummer());
-        List<GeschiedenisPersoon> geschiedenisPersoon = getGeschiedenisPersoon();
-        if (geschiedenisPersoon != null) {
-            for (GeschiedenisPersoon p : geschiedenisPersoon) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
-            TABEL_39_AKTEAANDUIDING_GEBOORTE));
+        var aktenummers = Stream.concat(
+            Stream.of(persoon.getAktenummer()),
+            geschiedenisPersoon.stream().map(GeschiedenisPersoon::getAktenummer)
+        ).toList();
+        var geldigeErkenningCodes = Set.of(TABEL_39_AKTEAANDUIDING_GEBOORTE);
+
         // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+        return controleerAkteNummers(aktenummers, geldigeErkenningCodes);
     }
 
 
-    public boolean geenOngeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling() {
+    public boolean ongeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling() {
         // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
         // voorbereiding, zet alle aktenummers in een lijst
         List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getOuder2().getAktenummer());
-        List<GeschiedenisOuder2> geschiedenisOuder2 = getGeschiedenisOuder2();
+        akteNummers.add(ouder2.getAktenummer());
         if (geschiedenisOuder2 != null) {
             for (GeschiedenisOuder2 p : geschiedenisOuder2) {
                 akteNummers.add(p.getAktenummer());
@@ -510,8 +354,8 @@ public class Persoonslijst {
     }
 
     public boolean beideOudersHebbenEenBSN() {
-        String bsnOuder1 = getOuder1().getBsn();
-        String bsnOuder2 = getOuder2().getBsn();
+        String bsnOuder1 = ouder1.getBurgerservicenummer();
+        String bsnOuder2 = ouder2.getBurgerservicenummer();
         if (bsnOuder1 != null && bsnOuder2 != null) {
             return !bsnOuder1.isEmpty() && !bsnOuder2.isEmpty();
         } else {
@@ -519,18 +363,9 @@ public class Persoonslijst {
         }
     }
 
-    @JsonIgnore
-    public boolean isIngezeteneInBRP() {
-        Verblijfplaats verblijfplaats = getVerblijfplaats();
-        if (verblijfplaats != null && verblijfplaats.getGemeenteVanInschrijving() != null) {
-            return !verblijfplaats.getGemeenteVanInschrijving().equals("1999");
-        }
-        return false;
-    }
-
     public String hoeveelJuridischeOuders() {
-        String geslachtsnaamOuder1 = getOuder1() == null ? null : getOuder1().getGeslachtsnaam();
-        String geslachtsnaamOuder2 = getOuder2() == null ? null : getOuder2().getGeslachtsnaam();
+        String geslachtsnaamOuder1 = ouder1 == null ? null : ouder1.getGeslachtsnaam();
+        String geslachtsnaamOuder2 = ouder2 == null ? null : ouder2.getGeslachtsnaam();
         if (Objects.equals(geslachtsnaamOuder1, GESLACHTNAAM_AANDUIDING_PUNTOUDER)
             || Objects.equals(geslachtsnaamOuder2, GESLACHTNAAM_AANDUIDING_PUNTOUDER)) {
             return PUNTOUDERS;
@@ -546,14 +381,14 @@ public class Persoonslijst {
     public boolean adoptieNaIngangGeldigheidsdatum() {
         if (!geadopteerdMetNlAkte()) return false;
 
-        String ingangsdatumGeldigheidGezag = getGezagsverhouding().getIngangsdatumGeldigheidGezag();
+        String ingangsdatumGeldigheidGezag = gezagsverhouding.getIngangsdatumGeldigheidGezag();
         if (ingangsdatumGeldigheidGezag == null) return false;
 
-        String datumIngangFamiliebetrekkingOuder1 = getOuder1().getDatumIngangFamiliebetrekking();
+        String datumIngangFamiliebetrekkingOuder1 = ouder1.getDatumIngangFamiliebetrekking();
         if (datumIngangFamiliebetrekkingOuder1 == null) return false;
         boolean ouder1AdoptieNa = Integer.parseInt(datumIngangFamiliebetrekkingOuder1) >= Integer.parseInt(ingangsdatumGeldigheidGezag);
 
-        String datumIngangFamiliebetrekkingOuder2 = getOuder2().getDatumIngangFamiliebetrekking();
+        String datumIngangFamiliebetrekkingOuder2 = ouder2.getDatumIngangFamiliebetrekking();
         if (datumIngangFamiliebetrekkingOuder2 == null) return false;
         boolean ouder2AdoptieNa = Integer.parseInt(datumIngangFamiliebetrekkingOuder2) >= Integer.parseInt(ingangsdatumGeldigheidGezag);
 
@@ -561,60 +396,32 @@ public class Persoonslijst {
     }
 
     public boolean geadopteerdMetNlAkte() {
-        List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(getPersoon().getAktenummer());
-        List<GeschiedenisPersoon> geschiedenisPersoon = getGeschiedenisPersoon();
-        if (geschiedenisPersoon != null) {
-            for (GeschiedenisPersoon p : geschiedenisPersoon) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
-            TABEL_39_AKTEAANDUIDING_ADOPTIE));
+        var aktenummers = Stream.concat(
+            Stream.of(persoon.getAktenummer()),
+            geschiedenisPersoon.stream().map(GeschiedenisPersoon::getAktenummer)
+        ).toList();
+
+        var geldigeErkenningCodes = Set.of(TABEL_39_AKTEAANDUIDING_ADOPTIE);
+
         // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+        return controleerAkteNummers(aktenummers, geldigeErkenningCodes);
     }
 
     public boolean heefIndicatieGezag() {
-        Gezagsverhouding gezagsverhouding = getGezagsverhouding();
         return gezagsverhouding != null
             && INDICATIE_GEZAG_CODES.contains(gezagsverhouding.getIndicatieGezagMinderjarige());
     }
 
     public boolean minderjarig() throws AfleidingsregelException {
-        // PL 1/2 : 01.03.10 
-        var persoon = getPersoon();
+        // PL 1/2 : 01.03.10
         if (persoon == null) throw new AfleidingsregelException("Preconditie: persoon mag niet leeg zijn", "persoon");
 
         var geboortedatumAsString = persoon.getGeboortedatum();
         int geboortedatum = Optional.ofNullable(geboortedatumAsString).map(Integer::parseInt).orElse(0);
-        if (geboortedatum == 0) throw new AfleidingsregelException("Preconditie: geboortedatum mag niet onbekend zijn", "geboortedatum");
+        if (geboortedatum == 0)
+            throw new AfleidingsregelException("Preconditie: geboortedatum mag niet onbekend zijn", "geboortedatum");
 
-        int datumVolwassenVanaf = Integer.parseInt(LocalDate.now(clock).format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
+        int datumVolwassenVanaf = Integer.parseInt(LocalDate.now().format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
         return geboortedatum > datumVolwassenVanaf;
-    }
-
-    /**
-     * @return of een van de velden een waarde heeft in de persoonslijst
-     * @throws AfleidingsregelException als een invalide veld benaderd wordt
-     */
-    public boolean hasAnyValue() throws AfleidingsregelException {
-        try {
-            for (Field f : this.getClass().getDeclaredFields()) {
-                if (f.getType() == List.class) {
-                    List<?> x = (List) f.get(this);
-                    if (x != null && !x.isEmpty()) {
-                        return true;
-                    }
-                } else {
-                    if (f.get(this) != null) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        } catch (IllegalAccessException ex) {
-            throw new AfleidingsregelException(ex.getMessage(), "persoonslijst");
-        }
     }
 }

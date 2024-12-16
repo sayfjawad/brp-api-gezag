@@ -2,8 +2,10 @@ package nl.rijksoverheid.mev.gezagsmodule.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import java.util.Collections;
-import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Object met verzameling velden in onderzoek met koppeling aan welke persoon
@@ -11,80 +13,64 @@ import java.util.List;
 @JsonInclude(Include.NON_NULL)
 public class VeldenInOnderzoek {
 
-    private List<String> persoon;
-    private List<String> ouder1;
-    private List<String> ouder2;
-    private List<String> nietOuder;
+    private Set<String> persoon;
+    private Set<String> ouder1;
+    private Set<String> ouder2;
+    private Set<String> nietOuder;
 
     /**
      * @return velden in onderzoek voor persoon
      */
-    public List<String> getPersoon() {
-        if (persoon != null) {
-            return persoon;
-        } else {
-            return Collections.emptyList();
-        }
+    public Set<String> getPersoon() {
+        return Objects.requireNonNullElse(persoon, Collections.emptySet());
     }
 
     /**
      * @param persoon velden in onderzoek voor persoon
      */
-    public void setPersoon(final List<String> persoon) {
+    public void setPersoon(final Set<String> persoon) {
         this.persoon = persoon;
     }
 
     /**
      * @return velden in onderzoek voor ouder1
      */
-    public List<String> getOuder1() {
-        if (ouder1 != null) {
-            return ouder1;
-        } else {
-            return Collections.emptyList();
-        }
+    public Set<String> getOuder1() {
+        return Objects.requireNonNullElse(ouder1, Collections.emptySet());
     }
 
     /**
      * @param ouder1 velden in onderzoek voor ouder1
      */
-    public void setOuder1(final List<String> ouder1) {
+    public void setOuder1(final Set<String> ouder1) {
         this.ouder1 = ouder1;
     }
 
     /**
      * @return velden in onderzoek voor ouder2
      */
-    public List<String> getOuder2() {
-        if (ouder2 != null) {
-            return ouder2;
-        } else {
-            return Collections.emptyList();
-        }
+    public Set<String> getOuder2() {
+        return Objects.requireNonNullElse(ouder2, Collections.emptySet());
     }
 
     /**
      * @param ouder2 velden in onderzoek voor ouder2
      */
-    public void setOuder2(final List<String> ouder2) {
+    public void setOuder2(final Set<String> ouder2) {
         this.ouder2 = ouder2;
     }
 
     /**
      * @return velden in onderzoek voor niet ouder
      */
-    public List<String> getNietOuder() {
-        if (nietOuder != null) {
-            return nietOuder;
-        } else {
-            return Collections.emptyList();
-        }
+    public Set<String> getNietOuder() {
+        return Objects.requireNonNullElse(nietOuder, Collections.emptySet());
     }
 
     /**
      * @param nietOuder velden in onderzoek voor niet ouder
      */
-    public void setNietOuder(final List<String> nietOuder) {
+    public void setNietOuder(final Set<String> nietOuder) {
         this.nietOuder = nietOuder;
     }
 
