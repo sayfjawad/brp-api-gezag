@@ -119,13 +119,13 @@ public class Persoonslijst {
 
     public Set<String> getUsedVeldenInOnderzoek() {
         return Stream.of(
-                persoon != null ? persoon.getVeldenInOnderzoek().stream() : null,
+                Optional.ofNullable(persoon).stream().map(Persoon::getVeldenInOnderzoek).flatMap(Collection::stream),
                 geschiedenisPersoon.stream().map(GeschiedenisPersoon::getVeldenInOnderzoek).flatMap(Set::stream),
                 Optional.ofNullable(gezagsverhouding).stream().map(Gezagsverhouding::getVeldenInOnderzoek).flatMap(Collection::stream),
                 huwelijkOfPartnerschappen.stream().map(HuwelijkOfPartnerschap::getVeldenInOnderzoek).flatMap(Set::stream),
-                ouder1 != null ? ouder1.getVeldenInOnderzoek().stream() : null,
+                Optional.ofNullable(ouder1).stream().map(Ouder1::getVeldenInOnderzoek).flatMap(Collection::stream),
                 geschiedenisOuder1.stream().map(GeschiedenisOuder1::getVeldenInOnderzoek).flatMap(Set::stream),
-                ouder2 != null ? ouder2.getVeldenInOnderzoek().stream() : null,
+                Optional.ofNullable(ouder2).stream().map(Ouder2::getVeldenInOnderzoek).flatMap(Collection::stream),
                 geschiedenisOuder2.stream().map(GeschiedenisOuder2::getVeldenInOnderzoek).flatMap(Set::stream))
             .flatMap(Function.identity())
             .collect(Collectors.toSet());
