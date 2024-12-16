@@ -7,6 +7,6 @@ PARAMS="{ \
 npx cucumber-js -f json:./test-reports/cucumber-js/gezag/test-result.json \
                 -f summary:./test-reports/cucumber-js/gezag/test-result-summary.txt \
                 -f summary \
-                features/gezag-minderjarige \
+                features/specs \
                 --tags "not @skip-verify" \
                 --world-parameters "$PARAMS"

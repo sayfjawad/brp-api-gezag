@@ -749,7 +749,7 @@ Functionaliteit: Tg009 - Harmsen-Henegouwen-Hapert-Hanssen
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
     En heeft de persoon geen gezag
-    
+
   Scenario: Lg01_045 - minderjarige, emigratie
     # Route: 1 - Wie heeft gezag?: niet te bepalen (N)
     Als gezag wordt gezocht met de volgende parameters
