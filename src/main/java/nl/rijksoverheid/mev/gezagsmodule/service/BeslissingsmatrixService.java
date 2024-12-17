@@ -45,7 +45,8 @@ public class BeslissingsmatrixService {
         if (routes.containsKey(route)) {
             return routes.get(route);
         } else {
-            logger.error("Route kon niet worden gevonden, route is: {} en exceptie: {}", route, resultaat.getException().getMessage());
+            var exceptionMessage = resultaat.getException() == null ? null : resultaat.getException().getMessage();
+            logger.error("Route kon niet worden gevonden, route is: {} en exceptie: {}", route, exceptionMessage);
             throw new AfleidingsregelException("Route kon niet worden gevonden in het ingelezen antwoorden model, de route is: " + route, "onbekend");
         }
     }
