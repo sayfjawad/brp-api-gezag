@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -36,10 +38,10 @@ class OuderOverledenOfOnbevoegdTotGezagTest {
     private Persoonslijst persoonslijstOuder2;
     private OuderOverledenOfOnbevoegdTotGezag classUnderTest;
 
+    private static final String JA_OUDER_OVERLEDEN = "Ja_ouder_overleden";
     private static final String V4A_3_NEE_OUDER1 = "Nee_ouder1";
     private static final String V4A_3_NEE_OUDER2 = "Nee_ouder2";
     private static final String V4A_3_NEE = "Nee";
-    private static final String V4A_3_JA = "Ja";
     private static final String INDICATION_PARENT_MISSING = "Preconditie: Ouder moet een BSN hebben";
     private static final String INDICATION_PARENT_NOT_REGISTERED = "Ouder moet geregistreerd staan in het BRP";
     private static final String BURGERSERVICENUMMER = "mock";
@@ -93,11 +95,12 @@ class OuderOverledenOfOnbevoegdTotGezagTest {
         when(ouder1.getBurgerservicenummer()).thenReturn(BURGERSERVICENUMMER);
         persoonslijst.setOuder1(ouder1);
         when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(true);
+        when(persoonslijstOuder1.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of('o'));
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV04A03(V4A_3_JA);
+        verify(arAntwoordenModel).setV04A03(JA_OUDER_OVERLEDEN);
     }
 
     @Test
@@ -106,11 +109,12 @@ class OuderOverledenOfOnbevoegdTotGezagTest {
         when(ouder2.getBurgerservicenummer()).thenReturn(BURGERSERVICENUMMER);
         persoonslijst.setOuder2(ouder2);
         when(persoonslijstOuder2.isOverledenOfOnbevoegd()).thenReturn(true);
+        when(persoonslijstOuder2.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of('o'));
         when(gezagsBepaling.getPlOuder2()).thenReturn(persoonslijstOuder2);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV04A03(V4A_3_JA);
+        verify(arAntwoordenModel).setV04A03(JA_OUDER_OVERLEDEN);
     }
 
     @Test

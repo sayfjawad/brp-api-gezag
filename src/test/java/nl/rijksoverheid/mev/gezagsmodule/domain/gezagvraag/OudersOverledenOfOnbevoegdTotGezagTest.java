@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -36,7 +38,6 @@ class OudersOverledenOfOnbevoegdTotGezagTest {
     private Persoonslijst persoonslijstOuder2;
     private OudersOverledenOfOnbevoegdTotGezag classUnderTest;
 
-    private static final String V4A_2_JA_BEIDEN = "Ja_beiden";
     private static final String V4A_2_JA_OUDER1 = "Ja_ouder1";
     private static final String V4A_2_JA_OUDER2 = "Ja_ouder2";
     private static final String V4A_2_NEE = "Nee";
@@ -131,7 +132,7 @@ class OudersOverledenOfOnbevoegdTotGezagTest {
         persoonslijst.setOuder2(ouder2);
         when(persoonslijstOuder1.isNietIngeschrevenInRNI()).thenReturn(true);
         when(persoonslijstOuder1.isNietGeemigreerd()).thenReturn(true);
-        when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(true);
+        when(persoonslijstOuder1.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of('o'));
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(persoonslijstOuder2.isNietIngeschrevenInRNI()).thenReturn(true);
         when(persoonslijstOuder2.isNietGeemigreerd()).thenReturn(true);
@@ -154,7 +155,7 @@ class OudersOverledenOfOnbevoegdTotGezagTest {
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(persoonslijstOuder2.isNietIngeschrevenInRNI()).thenReturn(true);
         when(persoonslijstOuder2.isNietGeemigreerd()).thenReturn(true);
-        when(persoonslijstOuder2.isOverledenOfOnbevoegd()).thenReturn(true);
+        when(persoonslijstOuder2.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of('o'));
         when(gezagsBepaling.getPlOuder2()).thenReturn(persoonslijstOuder2);
 
         classUnderTest.perform();
@@ -171,15 +172,15 @@ class OudersOverledenOfOnbevoegdTotGezagTest {
         persoonslijst.setOuder2(ouder2);
         when(persoonslijstOuder1.isNietIngeschrevenInRNI()).thenReturn(true);
         when(persoonslijstOuder1.isNietGeemigreerd()).thenReturn(true);
-        when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(true);
+        when(persoonslijstOuder1.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of('o'));
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(persoonslijstOuder2.isNietIngeschrevenInRNI()).thenReturn(true);
         when(persoonslijstOuder2.isNietGeemigreerd()).thenReturn(true);
-        when(persoonslijstOuder2.isOverledenOfOnbevoegd()).thenReturn(true);
+        when(persoonslijstOuder2.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of('o'));
         when(gezagsBepaling.getPlOuder2()).thenReturn(persoonslijstOuder2);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV04A02(V4A_2_JA_BEIDEN);
+        verify(arAntwoordenModel).setV04A02("Ja_beiden_overleden");
     }
 }
