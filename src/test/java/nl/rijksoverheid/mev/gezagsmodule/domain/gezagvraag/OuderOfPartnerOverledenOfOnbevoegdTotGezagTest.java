@@ -33,6 +33,7 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     private Persoonslijst persoonslijstNietOuder;
     private OuderOfPartnerOverledenOfOnbevoegdTotGezag classUnderTest;
 
+    private static final char OVERLEDEN_TOKEN = 'o';
     private static final String V4B_1_NEE = "Nee";
     private static final String V4B_1_JA_BEIDEN_OVERLEDEN = "Ja_beiden_overleden";
     private static final String V4B_1_JA_OUDER1 = "Ja_ouder1";
@@ -98,7 +99,7 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     void ouderOfPartnerOverledenOfOnbevoegdTotGezagWithNietOuderOverledenOfOnbevoegd() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(false);
-        when(persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of('o'));
+        when(persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of(OVERLEDEN_TOKEN));
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(gezagsBepaling.getPlNietOuder()).thenReturn(persoonslijstNietOuder);
 
@@ -136,8 +137,8 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     void ouderOfPartnerOverledenOfOnbevoegdTotGezagWithBothParentsOverledenOfOnbevoegd() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(true);
-        when(persoonslijstOuder1.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of('o'));
-        when(persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of('o'));
+        when(persoonslijstOuder1.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of(OVERLEDEN_TOKEN));
+        when(persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of(OVERLEDEN_TOKEN));
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(gezagsBepaling.getPlNietOuder()).thenReturn(persoonslijstNietOuder);
 
