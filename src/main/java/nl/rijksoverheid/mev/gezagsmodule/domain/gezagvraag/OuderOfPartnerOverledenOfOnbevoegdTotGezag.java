@@ -77,7 +77,7 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag extends GezagVraag {
         if (answer.equals(V4B_1_JA_BEIDEN)) {
             var persoonslijstOuder = persoonslijstOuder1 == null ? persoonslijstOuder2 : persoonslijstOuder1;
             var isOuderOverledenOfOnbevoegdToken = persoonslijstOuder.isOverledenOfOnbevoegdEncoded().orElseThrow();
-            var isNietOuderOverledenOfOnbevoegdToken = persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded().orElseThrow();
+            var isNietOuderOverledenOfOnbevoegdToken = optionalIsNietOuderOverledenOfOnbevoegdToken.orElseThrow();
             var key2 = "%c%c".formatted(isOuderOverledenOfOnbevoegdToken, isNietOuderOverledenOfOnbevoegdToken);
             answer = JA_BEIDEN_ANTWOORDEN.get(key2);
         }
