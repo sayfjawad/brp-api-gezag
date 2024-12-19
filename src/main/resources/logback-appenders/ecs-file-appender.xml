@@ -1,0 +1,24 @@
+<included>
+    <!-- derived from co/elastic/logging/logback/boot/ecs-file-appender.xml -->
+    <appender name="ECS_JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <version>ecs.version</version>
+                <level>log.level</level>
+                <levelValue>[ignore]</levelValue>
+                <logger>log.logger</logger>
+                <stackTrace>error.stack_trace</stackTrace>
+                <thread>process.thread.name</thread>
+            </fieldNames>
+            <version>${ecs.version}</version>
+        </encoder>
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <cleanHistoryOnStart>${LOG_FILE_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY:-7}</maxHistory>
+            <totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+</included>
