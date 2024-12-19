@@ -4,6 +4,8 @@
     <springProperty name="LOG_FILE_MASKED" source="logging.file-masked.name"/>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <include resource="logback-appenders/ecs-console-appender.xml"/>
+    <include resource="logback-appenders/ecs-console-appender-masked.xml"/>
     <include resource="logback-appenders/ecs-file-appender.xml"/>
     <include resource="logback-appenders/ecs-file-appender-masked.xml"/>
 
@@ -19,9 +21,22 @@
     <springProperty scope="context" name="service.type" source="null" defaultValue="brp-api"/>
     <springProperty scope="context" name="service.version" source="build.customVersion"/>
 
-    <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="ECS_JSON_FILE"/>
-        <appender-ref ref="ECS_JSON_FILE_MASKED"/>
-    </root>
+    <!-- development-->
+    <springProfile name="default">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ECS_JSON_FILE"/>
+            <appender-ref ref="ECS_JSON_FILE_MASKED"/>
+        </root>
+    </springProfile>
+
+    <!-- non-development-->
+    <springProfile name="!default">
+        <root level="INFO">
+            <appender-ref ref="ECS_CONSOLE"/>
+            <appender-ref ref="ECS_CONSOLE_MASKED"/>
+            <appender-ref ref="ECS_JSON_FILE"/>
+            <appender-ref ref="ECS_JSON_FILE_MASKED"/>
+        </root>
+    </springProfile>
 </configuration>

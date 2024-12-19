@@ -1,0 +1,32 @@
+<included>
+    <!-- derived from org/springframework/boot/logging/logback/console-appender.xml -->
+    <appender name="ECS_CONSOLE_MASKED" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${CONSOLE_LOG_THRESHOLD}</level>
+        </filter>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"labels.log_type":"insecure"}</customFields>
+            <fieldNames>
+                <version>ecs.version</version>
+                <level>log.level</level>
+                <levelValue>[ignore]</levelValue>
+                <logger>log.logger</logger>
+                <stackTrace>error.stack_trace</stackTrace>
+                <thread>process.thread.name</thread>
+            </fieldNames>
+            <jsonGeneratorDecorator class="net.logstash.logback.mask.MaskingJsonGeneratorDecorator">
+                <!-- burgerservicenummer mask -->
+                <valueMask>
+                    <value>\\*"\d{9}\\*"</value>
+                    <mask>"***MASKED***"</mask>
+                </valueMask>
+                <!-- authorization header mask -->
+                <valueMask>
+                    <value>\\*"authorization\\*":\\*".+?\\*"</value>
+                    <mask>"authorization":"***MASKED***"</mask>
+                </valueMask>
+            </jsonGeneratorDecorator>
+            <version>${ecs.version}</version>
+        </encoder>
+    </appender>
+</included>

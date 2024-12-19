@@ -1,0 +1,20 @@
+<included>
+    <!-- derived from org/springframework/boot/logging/logback/console-appender.xml -->
+    <appender name="ECS_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${CONSOLE_LOG_THRESHOLD}</level>
+        </filter>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"labels.log_type":"secure"}</customFields>
+            <fieldNames>
+                <version>ecs.version</version>
+                <level>log.level</level>
+                <levelValue>[ignore]</levelValue>
+                <logger>log.logger</logger>
+                <stackTrace>error.stack_trace</stackTrace>
+                <thread>process.thread.name</thread>
+            </fieldNames>
+            <version>${ecs.version}</version>
+        </encoder>
+    </appender>
+</included>
