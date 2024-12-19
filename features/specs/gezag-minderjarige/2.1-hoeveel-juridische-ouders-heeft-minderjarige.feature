@@ -108,9 +108,10 @@ Functionaliteit: 2.1 - hoeveel juridische ouders heeft minderjarige
       | naam                | waarde    |
       | burgerservicenummer | 000000036 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde             |
-      | type                             | TijdelijkGeenGezag |
-      | minderjarige.burgerservicenummer | 000000036          |
+      | naam                             | waarde                                                 |
+      | type                             | TijdelijkGeenGezag                                     |
+      | minderjarige.burgerservicenummer | 000000036                                              |
+      | toelichting                      | Tijdelijk geen gezag omdat beide ouders onbekend zijn. |
 
   Regel: Kind heeft puntouders
 

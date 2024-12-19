@@ -9,6 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -31,8 +33,9 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     private Persoonslijst persoonslijstNietOuder;
     private OuderOfPartnerOverledenOfOnbevoegdTotGezag classUnderTest;
 
+    private static final char OVERLEDEN_TOKEN = 'o';
     private static final String V4B_1_NEE = "Nee";
-    private static final String V4B_1_JA_BEIDEN = "Ja_beiden";
+    private static final String V4B_1_JA_BEIDEN_OVERLEDEN = "Ja_beiden_overleden";
     private static final String V4B_1_JA_OUDER1 = "Ja_ouder1";
     private static final String V4B_1_JA_OUDER2 = "Ja_ouder2";
     private static final String V4B_1_JA_NIET_OUDER1 = "Ja_nietouder1";
@@ -84,7 +87,6 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     void ouderOfPartnerOverledenOfOnbevoegdTotGezagWithOuderOverledenOfOnbevoegd() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(true);
-        when(persoonslijstNietOuder.isOverledenOfOnbevoegd()).thenReturn(false);
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(gezagsBepaling.getPlNietOuder()).thenReturn(persoonslijstNietOuder);
 
@@ -97,7 +99,7 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     void ouderOfPartnerOverledenOfOnbevoegdTotGezagWithNietOuderOverledenOfOnbevoegd() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(false);
-        when(persoonslijstNietOuder.isOverledenOfOnbevoegd()).thenReturn(true);
+        when(persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of(OVERLEDEN_TOKEN));
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(gezagsBepaling.getPlNietOuder()).thenReturn(persoonslijstNietOuder);
 
@@ -110,7 +112,6 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     void ouderOfPartnerOverledenOfOnbevoegdTotGezagWithOuder2OverledenOfOnbevoegd() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoonslijstOuder2.isOverledenOfOnbevoegd()).thenReturn(true);
-        when(persoonslijstNietOuder.isOverledenOfOnbevoegd()).thenReturn(false);
         when(gezagsBepaling.getPlOuder2()).thenReturn(persoonslijstOuder2);
         when(gezagsBepaling.getPlNietOuder()).thenReturn(persoonslijstNietOuder);
 
@@ -123,7 +124,6 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     void ouderOfPartnerOverledenOfOnbevoegdTotGezagWithAllParentsOuder2OverledenOfOnbevoegd() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(false);
-        when(persoonslijstNietOuder.isOverledenOfOnbevoegd()).thenReturn(false);
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(gezagsBepaling.getPlOuder2()).thenReturn(persoonslijstOuder2);
         when(gezagsBepaling.getPlNietOuder()).thenReturn(persoonslijstNietOuder);
@@ -137,12 +137,13 @@ class OuderOfPartnerOverledenOfOnbevoegdTotGezagTest {
     void ouderOfPartnerOverledenOfOnbevoegdTotGezagWithBothParentsOverledenOfOnbevoegd() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoonslijstOuder1.isOverledenOfOnbevoegd()).thenReturn(true);
-        when(persoonslijstNietOuder.isOverledenOfOnbevoegd()).thenReturn(true);
+        when(persoonslijstOuder1.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of(OVERLEDEN_TOKEN));
+        when(persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded()).thenReturn(Optional.of(OVERLEDEN_TOKEN));
         when(gezagsBepaling.getPlOuder1()).thenReturn(persoonslijstOuder1);
         when(gezagsBepaling.getPlNietOuder()).thenReturn(persoonslijstNietOuder);
 
         classUnderTest.perform();
 
-        verify(arAntwoordenModel).setV04B01(V4B_1_JA_BEIDEN);
+        verify(arAntwoordenModel).setV04B01(V4B_1_JA_BEIDEN_OVERLEDEN);
     }
 }

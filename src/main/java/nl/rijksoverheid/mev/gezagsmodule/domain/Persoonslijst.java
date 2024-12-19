@@ -205,6 +205,14 @@ public class Persoonslijst {
             && isNotBlank(gezagsverhouding.getIndicatieCurateleRegister());
     }
 
+    public Optional<Character> isOverledenOfOnbevoegdEncoded() {
+        if (isOpgeschort()) return Optional.of('o');
+        if (onderCurateleGesteld()) return Optional.of('c');
+        if (minderjarig()) return Optional.of('m');
+
+        return Optional.empty();
+    }
+
     @JsonIgnore
     public boolean isOverledenOfOnbevoegd() throws AfleidingsregelException {
         return isOpgeschort() || minderjarig() || onderCurateleGesteld();
@@ -423,5 +431,13 @@ public class Persoonslijst {
 
         int datumVolwassenVanaf = Integer.parseInt(LocalDate.now().format(FORMATTER)) - MEERDERJARIGE_LEEFTIJD;
         return geboortedatum > datumVolwassenVanaf;
+    }
+
+    public Optional<Ouder1> getOuder1AsOptional() {
+        return Optional.ofNullable(getOuder1());
+    }
+
+    public Optional<Ouder2> getOuder2AsOptional() {
+        return Optional.ofNullable(getOuder2());
     }
 }

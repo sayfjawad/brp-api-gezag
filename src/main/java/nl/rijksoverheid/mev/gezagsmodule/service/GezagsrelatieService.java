@@ -75,7 +75,7 @@ public class GezagsrelatieService {
                     arAntwoordenModel.hasNietOuderGezag(),
                     gezagsrelaties);
                 case "G" ->
-                    createTijdelijkeGeenGezag(bevraagdePersoonIsDeMinderjarige, burgerservicenummer, gezagsrelaties);
+                    createTijdelijkeGeenGezag(bevraagdePersoonIsDeMinderjarige, burgerservicenummer, arAntwoordenModel.getUitleg(), gezagsrelaties);
                 case "N" ->
                     createGezagNietTeBepalen(bevraagdePersoonIsDeMinderjarige, burgerservicenummer, arAntwoordenModel.getUitleg(), gezagsrelaties);
                 case "NVT" -> logger.info("Gezag uitkomst is NVT");
@@ -178,13 +178,15 @@ public class GezagsrelatieService {
     private void createTijdelijkeGeenGezag(
         final boolean bevraagdePersoonIsDeMinderjarige,
         final String burgerservicenummer,
+        final String uitleg,
         final List<AbstractGezagsrelatie> gezagsrelaties) {
         if (bevraagdePersoonIsDeMinderjarige) {
             gezagsrelaties.add(
                 new TijdelijkGeenGezag()
                     .type(TYPE_TIJDELIJK_GEEN_GEZAG)
-                    .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer)));
-
+                    .minderjarige(new Minderjarige().burgerservicenummer(burgerservicenummer))
+                    .toelichting(uitleg)
+            );
         }
     }
 
