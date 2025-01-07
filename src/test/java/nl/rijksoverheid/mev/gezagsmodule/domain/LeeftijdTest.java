@@ -115,7 +115,7 @@ class LeeftijdTest {
 
     @Test
     void leeftijdVoorPersoonMetOnbekendeDagEnMaandDieDitJaarMeerderjarigWordt() {
-        String geboorteDatum = makeDayUnknown(getDateFor(17, 1, 4));
+        String geboorteDatum = makeDayUnknown(getDateFor(17, 0, 4));
         geboorteDatum = makeMonthUnknown(geboorteDatum);
 
         Leeftijd leeftijd = Leeftijd.of(geboorteDatum);
