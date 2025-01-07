@@ -173,20 +173,17 @@ public class Persoonslijst {
         hopRelaties.checkRelaties();
     }
 
-    @JsonIgnore
     public boolean isOverleden() {
-        return (inschrijving != null
-            && inschrijving.getDatumOpschortingBijhouding() != null)
-            && inschrijving.getRedenOpschortingBijhouding().equals("O");
+        return inschrijving != null
+            && inschrijving.getDatumOpschortingBijhouding() != null
+            && "O".equals(inschrijving.getRedenOpschortingBijhouding());
     }
 
-    @JsonIgnore
     public boolean isNietIngeschrevenInRNI() {
         // PL 1/2 : 07.67.20
         return !(inschrijving != null && Objects.equals(inschrijving.getRedenOpschortingBijhouding(), "R"));
     }
 
-    @JsonIgnore
     public boolean isNietGeemigreerd() {
         // PL 1/2 : 07.67.20
         return !(inschrijving != null && Objects.equals(inschrijving.getRedenOpschortingBijhouding(), "E"));
@@ -205,7 +202,6 @@ public class Persoonslijst {
         return Optional.empty();
     }
 
-    @JsonIgnore
     public boolean isOverledenOfOnbevoegd() throws AfleidingsregelException {
         return isOverleden() || minderjarig() || onderCurateleGesteld();
     }
