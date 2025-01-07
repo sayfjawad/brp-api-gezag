@@ -210,7 +210,7 @@ public class Persoonslijst {
         return isOverleden() || minderjarig() || onderCurateleGesteld();
     }
 
-    public boolean alsMinderjarigeOpgeschort() throws AfleidingsregelException {
+    public boolean alsMinderjarigeOverleden() throws AfleidingsregelException {
         if (isOverleden()) {
             int datumOpschorting = Integer.parseInt(inschrijving.getDatumOpschortingBijhouding());
             int meerderjarigheidDatum = Integer.parseInt(persoon.getGeboortedatum())
