@@ -174,15 +174,7 @@ public class Persoonslijst {
     }
 
     @JsonIgnore
-    public boolean isOpgeschort() {
-        // PL 1/2 : 07.67.10
-        return (inschrijving != null
-            && inschrijving.getDatumOpschortingBijhouding() != null);
-    }
-
-    @JsonIgnore
     public boolean isOverleden() {
-        // PL 1/2 : 07.67.10
         return (inschrijving != null
             && inschrijving.getDatumOpschortingBijhouding() != null)
             && inschrijving.getRedenOpschortingBijhouding().equals("O");
@@ -206,7 +198,7 @@ public class Persoonslijst {
     }
 
     public Optional<Character> isOverledenOfOnbevoegdEncoded() {
-        if (isOpgeschort()) return Optional.of('o');
+        if (isOverleden()) return Optional.of('o');
         if (onderCurateleGesteld()) return Optional.of('c');
         if (minderjarig()) return Optional.of('m');
 
@@ -215,11 +207,11 @@ public class Persoonslijst {
 
     @JsonIgnore
     public boolean isOverledenOfOnbevoegd() throws AfleidingsregelException {
-        return isOpgeschort() || minderjarig() || onderCurateleGesteld();
+        return isOverleden() || minderjarig() || onderCurateleGesteld();
     }
 
     public boolean alsMinderjarigeOpgeschort() throws AfleidingsregelException {
-        if (isOpgeschort()) {
+        if (isOverleden()) {
             int datumOpschorting = Integer.parseInt(inschrijving.getDatumOpschortingBijhouding());
             int meerderjarigheidDatum = Integer.parseInt(persoon.getGeboortedatum())
                 + MEERDERJARIGE_LEEFTIJD;
