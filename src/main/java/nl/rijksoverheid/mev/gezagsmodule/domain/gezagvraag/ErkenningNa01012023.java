@@ -19,6 +19,8 @@ public class ErkenningNa01012023 extends GezagVraag {
     private static final String V2A_3_VOOR_OUDER1 = "Voor_ouder1";
     private static final String V2A_3_VOOR_OUDER2 = "Voor_ouder2";
     private static final String V2A_3_NA = "Na";
+    private static final String GESLACHTSAAND_VROUW = "V";
+    private static final String GESLACHTSAAND_MAN = "M";
     private static final int DATE_JAN_1_2023 = 20230101;
 
     protected ErkenningNa01012023(final GezagsBepaling gezagsBepaling) {
@@ -50,7 +52,38 @@ public class ErkenningNa01012023 extends GezagVraag {
 
         isPersoonErkendOpOfNa01012023(isPersoonErkend, persoonOuder1, persoonOuder2);
         doorWelkeOuderErkend(plPersoon);
-        isPersoonGeborenVoor01012023(persoonOngeborenVruchtErkend, persoonErkend, plPersoon);
+        boolean persoonGeborenVoor01012023 = isPersoonGeborenVoor01012023(persoonOngeborenVruchtErkend, persoonErkend, plPersoon);
+
+        String geslachtsAandOuder1 = persoonOuder1.getGeslachtsAanduiding();
+        String geslachtsAandOuder2 = persoonOuder2.getGeslachtsAanduiding();
+        if(persoonGeborenVoor01012023
+            && GESLACHTSAAND_VROUW.equals(geslachtsAandOuder1)
+            && !GESLACHTSAAND_VROUW.equals(geslachtsAandOuder2)) {
+            answer = V2A_3_VOOR_OUDER1;
+        } else if(persoonGeborenVoor01012023
+            && !GESLACHTSAAND_VROUW.equals(geslachtsAandOuder1)
+            && GESLACHTSAAND_VROUW.equals(geslachtsAandOuder2)) {
+            answer = V2A_3_VOOR_OUDER2;
+        } else if(persoonGeborenVoor01012023
+            && GESLACHTSAAND_VROUW.equals(geslachtsAandOuder1)
+            && GESLACHTSAAND_VROUW.equals(geslachtsAandOuder2)) {
+            String geslachtsnaamPersoon = plPersoon.getPersoon().getGeslachtsnaam();
+            String geslachtsnaamOuder1 = persoonOuder1.getGeslachtsnaam();
+            String geslachtsnaamOuder2 = persoonOuder2.getGeslachtsnaam();
+
+            if(geslachtsnaamPersoon != null
+                && geslachtsnaamPersoon.equals(geslachtsnaamOuder1)
+                && !geslachtsnaamPersoon.equals(geslachtsnaamOuder2)) {
+                answer = V2A_3_VOOR_OUDER1;
+            }
+            if(geslachtsnaamPersoon != null
+                && !geslachtsnaamPersoon.equals(geslachtsnaamOuder1)
+                && geslachtsnaamPersoon.equals(geslachtsnaamOuder2)) {
+                answer = V2A_3_VOOR_OUDER2;
+            }
+        } else if(persoonGeborenVoor01012023) {
+            answer = V2A_3_VOOR;
+        }
 
         if (answer != null) {
             logger.debug("""
@@ -83,12 +116,11 @@ public class ErkenningNa01012023 extends GezagVraag {
         }
     }
 
-    private void isPersoonGeborenVoor01012023(final boolean persoonOngeborenVruchtErkend, final boolean persoonErkend, final Persoonslijst plPersoon) {
-        if(answer == null && !persoonErkend && persoonOngeborenVruchtErkend) {
-            boolean persoonGeborenVoor01012023 = Integer.parseInt(plPersoon.getPersoon().getGeboortedatum()) < DATE_JAN_1_2023;
-            if (persoonGeborenVoor01012023) {
-                answer = V2A_3_VOOR;
-            }
+    private boolean isPersoonGeborenVoor01012023(final boolean persoonOngeborenVruchtErkend, final boolean persoonErkend, final Persoonslijst plPersoon) {
+        if (answer == null && !persoonErkend && persoonOngeborenVruchtErkend) {
+            return Integer.parseInt(plPersoon.getPersoon().getGeboortedatum()) < DATE_JAN_1_2023;
         }
+
+        return false;
     }
 }

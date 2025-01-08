@@ -13,6 +13,8 @@ public class Persoon extends PotentieelInOnderzoek {
 
     @VeldNummer(number = "010120", name = "burgerservicenummer van persoon")
     private final String burgerservicenummer;
+    @VeldNummer(number = "010240", name = "geslachtsnaam van ouder 2")
+    private final String geslachtsnaam;
     @VeldNummer(number = "010310", name = "geboortedatum van persoon")
     private final String geboortedatum;
     @VeldNummer(number = "010330", name = "geboorteland van persoon")
@@ -30,6 +32,7 @@ public class Persoon extends PotentieelInOnderzoek {
         var onderzoekGegevensAanduidingAsString = onderzoekGegevensAanduiding == null ? null : "%06d".formatted(onderzoekGegevensAanduiding);
 
         burgerservicenummer = burgerServiceNrAsString;
+        geslachtsnaam = lo3PlPersoonRecord.getGeslachtsNaam();
         geboortedatum = Objects.toString(lo3PlPersoonRecord.getGeboorteDatum(), null);
         geboorteland = Objects.toString(lo3PlPersoonRecord.getGeboorteLandCode(), null);
         aktenummer = lo3PlPersoonRecord.getAkteNr();
@@ -42,6 +45,12 @@ public class Persoon extends PotentieelInOnderzoek {
         registerIfInOnderzoek("burgerservicenummer", getClass());
 
         return burgerservicenummer;
+    }
+
+    public String getGeslachtsnaam() {
+        registerIfInOnderzoek("geslachtsnaam", getClass());
+
+        return geslachtsnaam;
     }
 
     public String getGeboortedatum() {

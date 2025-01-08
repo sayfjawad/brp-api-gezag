@@ -13,7 +13,6 @@ public class Ouder1 extends PotentieelInOnderzoek {
 
     @VeldNummer(number = "020120", name = "burgerservicenummer van ouder 1")
     private final String burgerservicenummer;
-
     @VeldNummer(number = "020240", name = "geslachtsnaam van ouder 1")
     private final String geslachtsnaam;
     @VeldNummer(number = "028120", name = "aktenummer van ouder 1")
