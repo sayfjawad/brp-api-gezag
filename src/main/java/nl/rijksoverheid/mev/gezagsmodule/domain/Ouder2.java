@@ -20,6 +20,8 @@ public class Ouder2 extends PotentieelInOnderzoek {
     private final String aktenummer;
     @VeldNummer(number = "036210", name = "datum ingang familiebetrekking van ouder 2")
     private final String datumIngangFamilieBetrekking;
+    @VeldNummer(number = "030410", name = "geslachts aanduiding van persoon")
+    private final String geslachtsAanduiding;
 
     public Ouder2(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
@@ -34,6 +36,7 @@ public class Ouder2 extends PotentieelInOnderzoek {
         datumIngangFamilieBetrekking = Objects.toString(lo3PlPersoonRecord.getFamilieBetrekStartDatum(), null);
         aanduidingGegevensInOnderzoek = onderzoekGegevensAanduidingAsString;
         datumEindeOnderzoek = Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null);
+        geslachtsAanduiding = Objects.toString(lo3PlPersoonRecord.getGeslachtsAand(), null);
     }
 
     public String getBurgerservicenummer() {
@@ -58,6 +61,12 @@ public class Ouder2 extends PotentieelInOnderzoek {
         registerIfInOnderzoek("aktenummer", getClass());
 
         return aktenummer;
+    }
+
+    public String getGeslachtsAanduiding() {
+        registerIfInOnderzoek("geslachtsAanduiding", getClass());
+
+        return geslachtsAanduiding;
     }
 
     @Override
