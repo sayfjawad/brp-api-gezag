@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Component
 public class BeslissingsmatrixService {
 
-    private static final String ANTWOORDEN_MODEL_FILENAME = "AntwoordenModel_v2_2_3.csv";
+    private static final String ANTWOORDEN_MODEL_FILENAME = "AntwoordenModel_v2_2_4.csv";
     private static final String ERROR_ROUTE = "0";
     private static final String MISSENDE_GEGEVENS_ANNOTATIE = "e";
 

@@ -296,3 +296,24 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | type                             | TijdelijkGeenGezag                                |
       | minderjarige.burgerservicenummer | 000000061                                         |
       | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
+
+  Regel: Wanneer de gezaghebbende ouder overlijdt of onbevoegd wordt tot gezag, krijgt de andere ouder niet het gezag
+
+  Scenario: Dirk heeft Ronald erkend voor 01-01-2023. De moeder (ouder 1 van 'Ronald') is overleden. Dirk krijgt geen gezag. Er is TijdelijkGeenGezag.
+    Gegeven de persoon 'Dirk' met burgerservicenummer '000000048'
+    * is meerderjarig
+    Gegeven persoon 'Ronald'
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 30-12-2022
+    Gegeven persoon 'Lieke'
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
+    Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                                                         |
+      | type                             | TijdelijkGeenGezag                                             |
+      | minderjarige.burgerservicenummer | 000000024                                                      |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden of onbevoegd is. |
