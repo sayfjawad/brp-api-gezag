@@ -9,7 +9,7 @@ import java.util.Objects;
  * Ouder2 voor persoon
  */
 @Categorie(number = "03", name = "ouder 2")
-public class Ouder2 extends PotentieelInOnderzoek {
+public class Ouder2 extends PotentieelInOnderzoek implements WithAktenummer {
 
     @VeldNummer(number = "030120", name = "burgerservicenummer van ouder 2")
     private final String burgerservicenummer;
@@ -54,6 +54,7 @@ public class Ouder2 extends PotentieelInOnderzoek {
         return datumIngangFamilieBetrekking;
     }
 
+    @Override
     public String getAktenummer() {
         registerIfInOnderzoek("aktenummer", getClass());
 

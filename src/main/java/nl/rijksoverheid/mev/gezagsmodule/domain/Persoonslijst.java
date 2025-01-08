@@ -28,20 +28,12 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 public class Persoonslijst {
 
     private static final int MEERDERJARIGE_LEEFTIJD = 180000;
-    private static final int AKTE_NUMMER_LENGTE = 3;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
     private static final String GEEN_OUDERS = "Geen_ouders";
     private static final String EEN_OUDER = "Een_ouder";
     private static final String TWEE_OUDERS = "Twee_ouders";
     private static final String GESLACHTNAAM_AANDUIDING_PUNTOUDER = ".";
     private static final String PUNTOUDERS = "1_of_2_puntouders";
-    private static final char TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE = 'B';
-    private static final char TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP = 'E'; // Rechtelijke uitspraak
-    private static final char TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE = 'C';
-    private static final char TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING = 'J';
-    private static final char TABEL_39_AKTEAANDUIDING_ADOPTIE = 'Q';
-    private static final char TABEL_39_AKTEAANDUIDING_GEBOORTE = 'A';
-    private static final char TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP = 'V';
     private static final String PUNTOUDER_INDICATIE = ".";
     private static final List<String> INDICATIE_GEZAG_CODES = Arrays.asList("1", "2", "12", "1D", "2D", "D");
 
@@ -227,126 +219,41 @@ public class Persoonslijst {
         return str != null && !str.isBlank() && !str.equals(PUNTOUDER_INDICATIE);
     }
 
-    /**
-     * Controleert een lijst van aktenummers op geldige erkenningscodes.
-     *
-     * @param akteNummers           Een lijst van String objecten die de te controleren aktenummers bevat.
-     *                              Elk aktenummer moet minimaal {@value #AKTE_NUMMER_LENGTE} tekens lang zijn.
-     * @param geldigeErkenningCodes Een Set van Character objecten die de geldige erkenningscodes bevat.
-     *                              Deze codes worden vergeleken met het derde teken van elk aktenummer.
-     * @return {@code true} als er minstens één aktenummer is gevonden met een geldige erkenningscode,
-     * {@code false} als er geen enkel aktenummer met een geldige erkenningscode is gevonden.
-     * @throws NullPointerException als {@code akteNummers} of {@code geldigeErkenningCodes} null is.
-     */
-    public static boolean controleerAkteNummers(List<String> akteNummers, Set<Character> geldigeErkenningCodes) {
-        return akteNummers.stream()
-            .filter(aktenummer -> aktenummer != null && aktenummer.length() >= AKTE_NUMMER_LENGTE)
-            .anyMatch(aktenummer -> geldigeErkenningCodes.contains(aktenummer.charAt(2)));
-    }
-
     public boolean ongeborenVruchtErkendOfGerechtelijkeVaststelling() {
-        // controleer dan persoon op akte erkenning actueel en geschiedenis op B, C, J en V
-        // voorbereiding, zet alle aktenummers in een lijst
-        List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(persoon.getAktenummer());
-        if (geschiedenisPersoon != null) {
-            for (GeschiedenisPersoon p : geschiedenisPersoon) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        Set<Character> geldigeErkenningCodes = new HashSet<>(Arrays.asList(
-            TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE,
-            TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE,
-            TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING,
-            TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP));
-        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+        return AktenummerAfleiding
+            .ongeborenVruchtErkendOfGerechtelijkeVaststelling(persoon, new ArrayList<>(geschiedenisPersoon));
     }
 
 
     public boolean ongeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling() {
-        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
-        // voorbereiding, zet alle aktenummers in een lijst
-        List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(ouder1.getAktenummer());
-        if (geschiedenisOuder1 != null) {
-            for (GeschiedenisOuder1 p : geschiedenisOuder1) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        Set<Character> geldigeErkenningCodes = new HashSet<>(Arrays.asList(
-            TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE,
-            TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE,
-            TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING,
-            TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP));
-        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+        return AktenummerAfleiding
+            .ongeborenVruchtErkendOfGerechtelijkeVaststelling(ouder1, new ArrayList<>(geschiedenisOuder1));
     }
 
+    public boolean ongeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling() {
+        return AktenummerAfleiding
+            .ongeborenVruchtErkendOfGerechtelijkeVaststelling(ouder2, new ArrayList<>(geschiedenisOuder2));
+    }
+
+
     public boolean ontkenningOuderschapDoorOuder1() {
-        // controleer dan op akte erkenning actueel en geschiedenis op E
-        // voorbereiding, zet alle aktenummers in een lijst
-        List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(ouder1.getAktenummer());
-        if (geschiedenisOuder1 != null) {
-            for (GeschiedenisOuder1 p : geschiedenisOuder1) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
-            TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP));
-        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+        return AktenummerAfleiding
+            .ontkenningOuderschapDoorOuder(ouder1, new ArrayList<>(geschiedenisOuder1));
     }
 
     public boolean ontkenningOuderschapDoorOuder2() {
-        // controleer dan op akte erkenning actueel en geschiedenis op E
-        // voorbereiding, zet alle aktenummers in een lijst
-        List<String> akteNummers = new ArrayList<>();
-        if (ouder2 != null) {
-            akteNummers.add(ouder2.getAktenummer());
-            for (GeschiedenisOuder2 p : geschiedenisOuder2) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        Set<Character> geldigeErkenningCodes = new HashSet<>(List.of(
-            TABEL_39_AKTEAANDUIDING_ONTKENNING_OUDERSCHAP));
-        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+        return AktenummerAfleiding
+            .ontkenningOuderschapDoorOuder(ouder2, new ArrayList<>(geschiedenisOuder2));
     }
 
     public boolean ongeborenVruchtErkend() {
-        // controleer dan persoon op akte erkenning actueel en geschiedenis op A
-        // voorbereiding, zet alle aktenummers in een lijst
-        var aktenummers = Stream.concat(
-            Stream.of(persoon.getAktenummer()),
-            geschiedenisPersoon.stream().map(GeschiedenisPersoon::getAktenummer)
-        ).toList();
-        var geldigeErkenningCodes = Set.of(TABEL_39_AKTEAANDUIDING_GEBOORTE);
-
-        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(aktenummers, geldigeErkenningCodes);
+        return AktenummerAfleiding
+            .ongeborenVruchtErkend(persoon, new ArrayList<>(geschiedenisPersoon));
     }
 
-
-    public boolean ongeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling() {
-        // controleer dan op akte erkenning actueel en geschiedenis op B, C, J en V
-        // voorbereiding, zet alle aktenummers in een lijst
-        List<String> akteNummers = new ArrayList<>();
-        akteNummers.add(ouder2.getAktenummer());
-        if (geschiedenisOuder2 != null) {
-            for (GeschiedenisOuder2 p : geschiedenisOuder2) {
-                akteNummers.add(p.getAktenummer());
-            }
-        }
-        Set<Character> geldigeErkenningCodes = new HashSet<>(Arrays.asList(
-            TABEL_39_AKTEAANDUIDING_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE,
-            TABEL_39_AKTEAANDUIDING_ERKENNING_NA_DE_GEBOORTEAANGIFTE,
-            TABEL_39_AKTEAANDUIDING_NOTARIELE_AKTE_VAN_ERKENNING,
-            TABEL_39_AKTEAANDUIDING_GERECHTELIJKE_VASTSTELLING_OUDERSCHAP));
-        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(akteNummers, geldigeErkenningCodes);
+    public boolean geadopteerdMetNlAkte() {
+        return AktenummerAfleiding
+            .geadopteerdMetNlAkte(persoon, new ArrayList<>(geschiedenisPersoon));
     }
 
     public boolean beideOudersHebbenEenBSN() {
@@ -389,18 +296,6 @@ public class Persoonslijst {
         boolean ouder2AdoptieNa = Integer.parseInt(datumIngangFamiliebetrekkingOuder2) >= Integer.parseInt(ingangsdatumGeldigheidGezag);
 
         return ouder1AdoptieNa || ouder2AdoptieNa;
-    }
-
-    public boolean geadopteerdMetNlAkte() {
-        var aktenummers = Stream.concat(
-            Stream.of(persoon.getAktenummer()),
-            geschiedenisPersoon.stream().map(GeschiedenisPersoon::getAktenummer)
-        ).toList();
-
-        var geldigeErkenningCodes = Set.of(TABEL_39_AKTEAANDUIDING_ADOPTIE);
-
-        // controleer de lijst op de erkenningscodes uit de publieke tabel 39
-        return controleerAkteNummers(aktenummers, geldigeErkenningCodes);
     }
 
     public boolean heefIndicatieGezag() {

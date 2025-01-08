@@ -9,7 +9,7 @@ import java.util.Objects;
  * Geschiedenis persoon
  */
 @Categorie(number = "53", name = "ouder 2 (historie)")
-public class GeschiedenisOuder2 extends PotentieelInOnderzoek {
+public class GeschiedenisOuder2 extends PotentieelInOnderzoek implements WithAktenummer {
 
     @VeldNummer(number = "538120", name = "aktenummer van ouder 2")
     private final String aktenummer;
@@ -23,6 +23,7 @@ public class GeschiedenisOuder2 extends PotentieelInOnderzoek {
         datumEindeOnderzoek = Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null);
     }
 
+    @Override
     public String getAktenummer() {
         registerIfInOnderzoek("aktenummer", getClass());
 
