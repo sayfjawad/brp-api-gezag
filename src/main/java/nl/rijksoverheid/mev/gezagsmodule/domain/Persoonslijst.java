@@ -173,28 +173,17 @@ public class Persoonslijst {
         hopRelaties.checkRelaties();
     }
 
-    @JsonIgnore
-    public boolean isOpgeschort() {
-        // PL 1/2 : 07.67.10
-        return (inschrijving != null
-            && inschrijving.getDatumOpschortingBijhouding() != null);
-    }
-
-    @JsonIgnore
     public boolean isOverleden() {
-        // PL 1/2 : 07.67.10
-        return (inschrijving != null
-            && inschrijving.getDatumOpschortingBijhouding() != null)
-            && inschrijving.getRedenOpschortingBijhouding().equals("O");
+        return inschrijving != null
+            && inschrijving.getDatumOpschortingBijhouding() != null
+            && "O".equals(inschrijving.getRedenOpschortingBijhouding());
     }
 
-    @JsonIgnore
     public boolean isNietIngeschrevenInRNI() {
         // PL 1/2 : 07.67.20
         return !(inschrijving != null && Objects.equals(inschrijving.getRedenOpschortingBijhouding(), "R"));
     }
 
-    @JsonIgnore
     public boolean isNietGeemigreerd() {
         // PL 1/2 : 07.67.20
         return !(inschrijving != null && Objects.equals(inschrijving.getRedenOpschortingBijhouding(), "E"));
@@ -206,20 +195,19 @@ public class Persoonslijst {
     }
 
     public Optional<Character> isOverledenOfOnbevoegdEncoded() {
-        if (isOpgeschort()) return Optional.of('o');
+        if (isOverleden()) return Optional.of('o');
         if (onderCurateleGesteld()) return Optional.of('c');
         if (minderjarig()) return Optional.of('m');
 
         return Optional.empty();
     }
 
-    @JsonIgnore
     public boolean isOverledenOfOnbevoegd() throws AfleidingsregelException {
-        return isOpgeschort() || minderjarig() || onderCurateleGesteld();
+        return isOverleden() || minderjarig() || onderCurateleGesteld();
     }
 
-    public boolean alsMinderjarigeOpgeschort() throws AfleidingsregelException {
-        if (isOpgeschort()) {
+    public boolean alsMinderjarigeOverleden() throws AfleidingsregelException {
+        if (isOverleden()) {
             int datumOpschorting = Integer.parseInt(inschrijving.getDatumOpschortingBijhouding());
             int meerderjarigheidDatum = Integer.parseInt(persoon.getGeboortedatum())
                 + MEERDERJARIGE_LEEFTIJD;
