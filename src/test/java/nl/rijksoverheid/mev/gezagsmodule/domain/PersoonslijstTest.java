@@ -6,7 +6,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,55 +28,49 @@ class PersoonslijstTest {
 
     @Test
     void isOverledenWithoutValues() {
-        boolean expected = false;
-
         boolean result = classUnderTest.isOverleden();
 
-        assertEquals(expected, result);
+        assertFalse(result);
     }
 
     @Test
     void isOverledenWithEmptyInschrijving() {
-        boolean expected = false;
         classUnderTest.setInschrijving(inschrijving);
 
         boolean result = classUnderTest.isOverleden();
 
-        assertEquals(expected, result);
+        assertFalse(result);
     }
 
     @Test
     void isOverledenWithInschrijvingHavingDatumOpschortingButNoOpschortReden() {
-        boolean expected = false;
         when(inschrijving.getDatumOpschortingBijhouding()).thenReturn(DATE_FIRST_DAY_2021);
         classUnderTest.setInschrijving(inschrijving);
 
         boolean result = classUnderTest.isOverleden();
 
-        assertEquals(expected, result);
+        assertFalse(result);
     }
 
     @Test
     void isOverledenWithInschrijvingHavingDatumOpschortingAndOpschortRedenNotO() {
-        boolean expected = false;
         when(inschrijving.getDatumOpschortingBijhouding()).thenReturn(DATE_FIRST_DAY_2021);
         when(inschrijving.getRedenOpschortingBijhouding()).thenReturn(OPSCHORT_REDEN_EMIGRATION);
         classUnderTest.setInschrijving(inschrijving);
 
         boolean result = classUnderTest.isOverleden();
 
-        assertEquals(expected, result);
+        assertFalse(result);
     }
 
     @Test
     void isOverledenWithInschrijvingHavingDatumOpschortingAndOpschortRedenO() {
-        boolean expected = true;
         when(inschrijving.getDatumOpschortingBijhouding()).thenReturn(DATE_FIRST_DAY_2021);
         when(inschrijving.getRedenOpschortingBijhouding()).thenReturn(OPSCHORT_REDEN_OVERLIJDEN);
         classUnderTest.setInschrijving(inschrijving);
 
         boolean result = classUnderTest.isOverleden();
 
-        assertEquals(expected, result);
+        assertTrue(result);
     }
 }
