@@ -6,55 +6,27 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LoggingContext {
 
     private static final Logger logger = LoggerFactory.getLogger(LoggingContext.class);
 
     private final Instant eventStart;
-    private final Set<Long> plIds;
-    private final Map<String, GezagResultaat> gezagResultaten;
+    private final Map<Long, Long> plIdByBurgerservicenummer;
 
     public LoggingContext() {
         this.eventStart = Instant.now();
-        this.plIds = new HashSet<>();
-        this.gezagResultaten = new HashMap<>();
-    }
-
-    public void addBurgerservicenummers(Collection<String> burgerservicenummers) {
-        burgerservicenummers.forEach(burgerservicenummer ->
-            gezagResultaten.put(burgerservicenummer, new GezagResultaat())
-        );
+        this.plIdByBurgerservicenummer = new HashMap<>();
     }
 
     public void addPlId(long plId, Burgerservicenummer burgerservicenummer) {
-        gezagResultaten.computeIfPresent(burgerservicenummer.asString(), (unused, gezagResultaat) -> {
-            gezagResultaat.setPlId(plId);
-            return gezagResultaat;
-        });
-        plIds.add(plId);
+        plIdByBurgerservicenummer.put(burgerservicenummer.value(), plId);
     }
 
-    public void addGezagType(String gezagType, String burgerservicenummer) {
-        gezagResultaten.computeIfPresent(burgerservicenummer, (unused, gezagResultaat) -> {
-            var translatedGezagType = mapGezagType(gezagType);
-            gezagResultaat.setType(translatedGezagType);
-            return gezagResultaat;
-        });
-    }
-
-    public void addRoute(String route, String burgerservicenummer) {
-        gezagResultaten.computeIfPresent(burgerservicenummer, (unused, gezagResultaat) -> {
-            gezagResultaat.setRoute(route);
-            return gezagResultaat;
-        });
-    }
-
-    public void addToelichting(String toelichting, String burgerservicenummer) {
-        gezagResultaten.computeIfPresent(burgerservicenummer, (unused, gezagResultaat) -> {
-            gezagResultaat.setToelichting(toelichting);
-            return gezagResultaat;
-        });
+    public long getPlIdBy(String burgerservicenummerAsString) {
+        var burgerservicenummerAsLong = Long.valueOf(burgerservicenummerAsString);
+        return plIdByBurgerservicenummer.get(burgerservicenummerAsLong);
     }
 
     public Instant getEventStart() {
@@ -62,11 +34,8 @@ public class LoggingContext {
     }
 
     public Set<Long> getPlIds() {
-        return Collections.unmodifiableSet(plIds);
-    }
-
-    public Collection<GezagResultaat> getGezagResultaten() {
-        return Collections.unmodifiableCollection(gezagResultaten.values());
+        return plIdByBurgerservicenummer.values().stream()
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     private static String mapGezagType(String gezagType) {

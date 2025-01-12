@@ -52,7 +52,6 @@ public class BevoegdheidTotGezagService {
      */
     public List<Persoon> bepaalBevoegdheidTotGezag(final GezagRequest gezagRequest) throws GezagException {
         List<String> burgerservicenummers = gezagRequest.getBurgerservicenummer();
-        loggingContext.addBurgerservicenummers(burgerservicenummers);
 
         return burgerservicenummers.stream()
             .map(this::bepaalGezagVoorPersoon)
