@@ -154,12 +154,10 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         }
         var responseHeaders = cachedResponse == null ? null : headersToMap(cachedResponse.getHeaderNames(), cachedResponse::getHeader);
 
-        var isError = response.getStatus() >= 400;
-
         var metadata = new HashMap<String, Object>();
         metadata.put("gezag_resultaten", loggingContext.getGezagResultaten());
         metadata.put("pl_ids", loggingContext.getPlIds());
-        if (isError) metadata.put("response.body", responseBodyAsJsonString);
+        metadata.put("response.body", responseBodyAsJsonString);
         metadata.put("response.headers", responseHeaders);
         metadata.put("request.body", requestBodyAsJsonString);
         metadata.put("request.headers", requestHeaders);
