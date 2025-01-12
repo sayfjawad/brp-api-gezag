@@ -12,12 +12,12 @@ public class LoggingContext {
     private static final Logger logger = LoggerFactory.getLogger(LoggingContext.class);
 
     private final Instant eventStart;
-    private final List<Long> plIds;
+    private final Set<Long> plIds;
     private final Map<String, GezagResultaat> gezagResultaten;
 
     public LoggingContext() {
         this.eventStart = Instant.now();
-        this.plIds = new ArrayList<>();
+        this.plIds = new HashSet<>();
         this.gezagResultaten = new HashMap<>();
     }
 
@@ -61,8 +61,8 @@ public class LoggingContext {
         return eventStart;
     }
 
-    public List<Long> getPlIds() {
-        return Collections.unmodifiableList(plIds);
+    public Set<Long> getPlIds() {
+        return Collections.unmodifiableSet(plIds);
     }
 
     public Collection<GezagResultaat> getGezagResultaten() {
