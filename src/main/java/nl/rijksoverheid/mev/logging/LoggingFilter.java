@@ -29,6 +29,8 @@ import java.util.Map;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
+import static net.logstash.logback.marker.Markers.append;
+
 public class LoggingFilter extends OncePerRequestFilter implements ApplicationContextAware {
 
     /**
@@ -81,10 +83,10 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
         var event = processEvent();
         var http = processHttp(request, response);
         var url = processUrl(request);
-
-        processMetadata(request, response);
+        var metadata = processMetadata(request, response);
 
         log.info(
+            append("metadata", metadata),
             "HTTP {} {} responded {} in {} ms",
             http.requestMethod, url.path, http.responseStatusCode, event.duration.toMillis()
         );
@@ -136,7 +138,7 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
     private record Url(String path) {
     }
 
-    private void processMetadata(HttpServletRequest request, HttpServletResponse response) {
+    private Map<String, Object> processMetadata(HttpServletRequest request, HttpServletResponse response) {
         var loggingContext = applicationContext.getBean(LoggingContext.class);
 
         var requestHeaders = headersToMap(Collections.list(request.getHeaderNames()), request::getHeader);
@@ -156,18 +158,22 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
 
         var metadata = new HashMap<String, Object>();
         metadata.put("pl_ids", loggingContext.getPlIds());
-        metadata.put("response.body", responseBodyAsJsonString);
         metadata.put("response.headers", responseHeaders);
-        metadata.put("request.body", requestBodyAsJsonString);
         metadata.put("request.headers", requestHeaders);
 
         try {
-            var metadataAsJsonString = objectMapper.writeValueAsString(metadata);
-            MDC.put("metadata", metadataAsJsonString);
+            var responseBody = objectMapper.readValue(responseBodyAsJsonString, Object.class);
+            var requestBody = objectMapper.readValue(requestBodyAsJsonString, Object.class);
+
+            metadata.put("response.body", responseBody);
+            metadata.put("request.body", requestBody);
         } catch (JsonProcessingException e) {
-            log.error("Failed to serialize headers to JSON; fallback to writing headers as Java object", e);
-            MDC.put("metadata", metadata.toString());
+            log.error("Failed to serialize HTTP body to JSON; fallback to writing headers as Java object", e);
+            metadata.put("response.body", responseBodyAsJsonString);
+            metadata.put("request.body", requestBodyAsJsonString);
         }
+
+        return metadata;
     }
 
     private Map<String, String> headersToMap(Collection<String> headerNames, UnaryOperator<String> headerValueResolver) {
