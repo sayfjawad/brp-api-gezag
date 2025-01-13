@@ -69,9 +69,9 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
     * is ingeschreven in de BRP
     * heeft 'Rik' als ouder 2
 
-  Regel: De ouder is niet opgeschort, minderjarig of onder curatele
+  Regel: De ouder is niet overleden, minderjarig of onder curatele
 
-  Scenario: De moeder (ouder 1 van 'Ronald') is niet opgeschort, minderjarig of onder curatele er is sprake van EenhoofdigOuderlijkGezag
+  Scenario: De moeder (ouder 1 van 'Ronald') is niet overleden, minderjarig of onder curatele er is sprake van EenhoofdigOuderlijkGezag
     Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
@@ -84,7 +84,7 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | minderjarige.burgerservicenummer | 000000024                |
       | ouder.burgerservicenummer        | 000000012                |
 
-  Scenario: De vader (ouder 2 van 'Thea') is niet opgeschort, minderjarig of onder curatele er is sprake van EenhoofdigOuderlijkGezag
+  Scenario: De vader (ouder 2 van 'Thea') is niet overleden, minderjarig of onder curatele er is sprake van EenhoofdigOuderlijkGezag
     Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
@@ -97,9 +97,9 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | minderjarige.burgerservicenummer | 000000061                |
       | ouder.burgerservicenummer        | 000000036                |
 
-  Regel: De ouder is opgeschort
+  Regel: De ouder is overleden
 
-  Scenario: De moeder (ouder 1 van 'Ronald') is opgeschort er is TijdelijkGeenGezag
+  Scenario: De moeder (ouder 1 van 'Ronald') is overleden er is TijdelijkGeenGezag
     Gegeven persoon 'Lieke'
     * is overleden
     Als gezag wordt gezocht met de volgende parameters
@@ -114,7 +114,7 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | minderjarige.burgerservicenummer | 000000024                                         |
       | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
-  Scenario: De vader (ouder 2 van 'Thea') is opgeschort er is TijdelijkGeenGezag
+  Scenario: De vader (ouder 2 van 'Thea') is overleden er is TijdelijkGeenGezag
     Gegeven persoon 'Rik'
     * is overleden
     Als gezag wordt gezocht met de volgende parameters
@@ -193,7 +193,7 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | minderjarige.burgerservicenummer | 000000061                                                 |
       | toelichting                      | Tijdelijk geen gezag omdat de ouder onder curatele staat. |
 
-  Regel: De ouder is als minderjarige opgeschort
+  Regel: De ouder is als minderjarige overleden
 
   Scenario: De moeder (ouder 1 van 'Ronald') is als minderjarige overleden er is TijdelijkGeenGezag
     Gegeven persoon 'Lieke'
@@ -227,7 +227,7 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | minderjarige.burgerservicenummer | 000000061                                         |
       | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
-  Regel: De ouder is onder curatele gesteld en opgeschort
+  Regel: De ouder is onder curatele gesteld en overleden
 
   Scenario: De moeder (ouder 1 van 'Ronald') is onder curatele en overleden er is TijdelijkGeenGezag
     Gegeven persoon 'Lieke'
@@ -261,7 +261,7 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | minderjarige.burgerservicenummer | 000000061                                         |
       | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
 
-  Regel: De ouder is onder curatele gesteld, opgeschort en minderjarig
+  Regel: De ouder is onder curatele gesteld, overleden en minderjarig
 
   Scenario: De moeder (ouder 1 van 'Ronald') is onder curatele, overleden en minderjarig er is TijdelijkGeenGezag
     Gegeven persoon 'Lieke'
@@ -296,3 +296,24 @@ Functionaliteit: 4a.3 - Ouder overleden of onbevoegd tot gezag
       | type                             | TijdelijkGeenGezag                                |
       | minderjarige.burgerservicenummer | 000000061                                         |
       | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden is. |
+
+  Regel: Wanneer de gezaghebbende ouder overlijdt of onbevoegd wordt tot gezag, krijgt de andere ouder niet het gezag
+
+  Scenario: Dirk heeft Ronald erkend voor 01-01-2023. De moeder (ouder 1 van 'Ronald') is overleden. Dirk krijgt geen gezag. Er is TijdelijkGeenGezag.
+    Gegeven de persoon 'Dirk' met burgerservicenummer '000000048'
+    * is meerderjarig
+    Gegeven persoon 'Ronald'
+    * is erkend door 'Dirk' als ouder 2 met erkenning bij notariële akte op 30-12-2022
+    Gegeven persoon 'Lieke'
+    * is overleden
+    Als gezag wordt gezocht met de volgende parameters
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
+    Dan heeft de response een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 000000024 |
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                                                         |
+      | type                             | TijdelijkGeenGezag                                             |
+      | minderjarige.burgerservicenummer | 000000024                                                      |
+      | toelichting                      | Tijdelijk geen gezag omdat de ouder overleden of onbevoegd is. |

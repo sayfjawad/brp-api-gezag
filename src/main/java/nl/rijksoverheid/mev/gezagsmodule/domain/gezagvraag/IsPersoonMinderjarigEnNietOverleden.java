@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * v1_2
- * Vraag {@link IsPersoonIngezeteneInBRP} in combinatie met {@code isAlsMinderjarigOpgeschort}
+ * Vraag {@link IsPersoonIngezeteneInBRP} in combinatie met {@code isAlsMinderjarigOverleden}
  * leidt ertoe dat het enige mogelijke antwoord {@code V1_2_NEE_OVERLEDEN} is.
  *
  * of minderjarig en niet overleden is
@@ -29,9 +29,9 @@ public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
         Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
 
         boolean isMinderjarig = plPersoon.minderjarig();
-        boolean isAlsMinderjarigOpgeschort = plPersoon.alsMinderjarigeOpgeschort();
+        boolean isAlsMinderjarigOverleden = plPersoon.alsMinderjarigeOverleden();
 
-        if (isAlsMinderjarigOpgeschort) {
+        if (isAlsMinderjarigOverleden) {
             answer = V1_2_NEE_OVERLEDEN;
         } else if (isMinderjarig) {
             answer = V1_2_JA; // Minderjarig en niet overleden

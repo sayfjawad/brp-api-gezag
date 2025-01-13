@@ -68,7 +68,7 @@ Functionaliteit: 4b.1 - Ouder of partner overleden of onbevoegd tot gezag
     * is ingeschreven in de BRP
     * heeft 'Quincy' als ouder 1
 
-  Regel: De ouder en partner zijn niet opgeschort, niet minderjarig en staan niet onder curatele
+  Regel: De ouder en partner zijn niet overleden, niet minderjarig en staan niet onder curatele
 
   Scenario: De moeder en de partner hebben gezag er is sprake van GezamenlijkGezag
     Gegeven persoon 'Quincy'

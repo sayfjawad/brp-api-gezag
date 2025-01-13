@@ -28,7 +28,6 @@ class IsGeadopteerdMetNlAkteTest {
 
     private static final String V1_3B_JA = "Ja";
     private static final String V1_3B_NEE = "Nee";
-
     private static  final String AKTE_ERKENNING = "1AC0109";
     private static  final String AKTE_ADOPTIE = "1AQ0109";
 
