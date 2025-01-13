@@ -9,7 +9,7 @@ import java.util.Objects;
  * Persoon (vanuit persoonslijst zoals opgenomen in de BRP)
  */
 @Categorie(number = "01", name = "persoon")
-public class Persoon extends PotentieelInOnderzoek {
+public class Persoon extends PotentieelInOnderzoek implements WithAktenummer {
 
     @VeldNummer(number = "010120", name = "burgerservicenummer van persoon")
     private final String burgerservicenummer;
@@ -53,6 +53,7 @@ public class Persoon extends PotentieelInOnderzoek {
         return geboorteland;
     }
 
+    @Override
     public String getAktenummer() {
         registerIfInOnderzoek("aktenummer", getClass());
 
