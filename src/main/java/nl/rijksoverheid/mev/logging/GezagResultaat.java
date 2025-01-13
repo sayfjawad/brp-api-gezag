@@ -1,7 +1,7 @@
 package nl.rijksoverheid.mev.logging;
 
 public record GezagResultaat(
-    long plId,
+    Long plId,
     String type,
     String toelichting,
     String route

@@ -22,7 +22,7 @@ public class LoggingContext {
         plIdByBurgerservicenummer.put(burgerservicenummer.value(), plId);
     }
 
-    public long getPlIdBy(String burgerservicenummerAsString) {
+    public Long getPlIdBy(String burgerservicenummerAsString) {
         var burgerservicenummerAsLong = Long.valueOf(burgerservicenummerAsString);
         return plIdByBurgerservicenummer.get(burgerservicenummerAsLong);
     }
