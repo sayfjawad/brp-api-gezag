@@ -9,6 +9,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Leeftijd;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoon;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
+import nl.rijksoverheid.mev.logging.GezagResultaat;
 import nl.rijksoverheid.mev.logging.LoggingContext;
 import org.openapitools.model.AbstractGezagsrelatie;
 import org.openapitools.model.GezagNietTeBepalen;
@@ -17,6 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+
+import static net.logstash.logback.argument.StructuredArguments.value;
 
 /**
  * Service voor bepalen gezag
@@ -124,10 +127,20 @@ public class GezagService {
             gezagsRelaties = gezagsrelatieService.bepaalGezagsrelaties(arAntwoordenModel, gezagsBepaling);
         }
 
-        loggingContext.addGezagType(arAntwoordenModel.getSoortGezag(), burgerservicenummer);
-        loggingContext.addRoute(route, burgerservicenummer);
-        loggingContext.addToelichting(arAntwoordenModel.getUitleg(), burgerservicenummer);
-        logger.info("Gezag bepaald voor persoon \"{}\": {}", burgerservicenummer, arAntwoordenModel);
+        if (logger.isInfoEnabled()) {
+            var gezagResultaat = new GezagResultaat(
+                loggingContext.getPlIdBy(burgerservicenummer),
+                arAntwoordenModel.getSoortGezag(),
+                arAntwoordenModel.getUitleg(),
+                route
+            );
+            logger.info(
+                """
+                   Gezag bepaald voor persoon "{}": {}
+                   {}""",
+                burgerservicenummer, value("gezag_resultaat", gezagResultaat), value("antwoorden_model", arAntwoordenModel)
+            );
+        }
         return gezagsRelaties;
     }
 

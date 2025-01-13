@@ -11,7 +11,7 @@ plugins {
     id("org.jooq.jooq-codegen-gradle") version "3.19.15"
     id("org.openapi.generator") version "7.10.0"
 //    id("org.owasp.dependencycheck") version "10.0.3"
-    id("org.springframework.boot") version "3.4.0"
+    id("org.springframework.boot") version "3.4.1"
 }
 
 repositories {
