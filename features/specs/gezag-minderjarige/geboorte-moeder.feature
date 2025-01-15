@@ -53,11 +53,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
     Scenario: Voor een kind waarvan beide ouders een onbekende geslachtsaanduiding hebben, kan niet worden bepaald wie gezag heeft er is sprake van GezagNietTeBepalen
       Gegeven persoon 'Vanessa'
       * heeft 'Noah' als ouder 1 met de volgende gegevens    
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | O                               | gisteren - 17 jaar                                  |     
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | O                               | gisteren - 17 jaar                                  |     
       * heeft 'Marijn' als ouder 2 met de volgende gegevens    
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | O                               | gisteren - 17 jaar                                  |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | O                               | gisteren - 17 jaar                                  |   
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -73,8 +73,8 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
     Scenario: Voor een kind waarvan een ouder de geslachtsaanduiding vrouw heeft, kan worden bepaald wie gezag heeft er is sprake van EenhoofdigOuderlijkGezag
       Gegeven persoon 'Vanessa'
       * heeft 'Noah' als ouder 1 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | gisteren - 17 jaar                                  |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | gisteren - 17 jaar                                  |   
       * heeft 'Marijn' als ouder 2
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
@@ -92,8 +92,8 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
       Gegeven persoon 'Vanessa'
       * heeft 'Noah' als ouder 1 
       * heeft 'Marijn' als ouder 2 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | gisteren - 17 jaar                                  |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | gisteren - 17 jaar                                  |   
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -109,11 +109,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
     Scenario: Voor een kind waarvan een ouder de geslachtsaanduiding vrouw heeft en de andere man, kan worden bepaald wie gezag heeft er is sprake van EenhoofdigOuderlijkGezag
       Gegeven persoon 'Vanessa'
       * heeft 'Noah' als ouder 1 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | gisteren - 17 jaar                                  |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | gisteren - 17 jaar                                  |   
       * heeft 'Marijn' als ouder 2 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | M                               | gisteren - 17 jaar                                  |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | M                               | gisteren - 17 jaar                                  |   
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -129,11 +129,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
     Scenario: Voor een kind waarvan beide ouders de geslachtsaanduiding vrouw hebben en geen overeenkomende geslachtsnaam, kan niet worden bepaald wie gezag heeft er is sprake van GezagNietTeBepalen
       Gegeven persoon 'Vanessa'
       * heeft 'Noah' als ouder 1 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | gisteren - 17 jaar                                  |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | gisteren - 17 jaar                                  |   
       * heeft 'Marijn' als ouder 2 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | gisteren - 17 jaar                                  |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | gisteren - 17 jaar                                  |   
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -149,14 +149,14 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
     Scenario: Voor een kind waarvan beide ouders de geslachtsaanduiding vrouw hebben en een ouder een overeenkomstige geslachtsnaam, kan worden bepaald wie gezag heeft er is sprake van EenhoofdigOuderlijkGezag
       Gegeven persoon 'Vanessa'
       * heeft de volgende gegevens
-      | geslachtsnaam (02.40) |
-      | Visser                |
+        | geslachtsnaam (02.40) |
+        | Visser                |
       * heeft 'Noah' als ouder 1 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | Visser                | gisteren - 17 jaar                                  |
+        | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | Visser                | gisteren - 17 jaar                                  |
       * heeft 'Marijn' als ouder 2 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | gisteren - 17 jaar                                  |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | gisteren - 17 jaar                                  |   
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -172,11 +172,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
     Scenario: Voor een kind waarvan beide ouders de geslachtsaanduiding vrouw hebben en dezelfde overeenkomende geslachtsnaam, kan niet worden bepaald wie gezag heeft er is sprake van GezagNietTeBepalen
       Gegeven persoon 'Vanessa'
       * heeft 'Noah' als ouder 1 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | Visser                | gisteren - 17 jaar                                  |
+        | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | Visser                | gisteren - 17 jaar                                  |
       * heeft 'Marijn' als ouder 2 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | Visser                | gisteren - 17 jaar                                  |
+        | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | Visser                | gisteren - 17 jaar                                  |
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -195,11 +195,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
       Gegeven persoon 'Vanessa'
       * is geboren op 02-02-2023
       * heeft 'Noah' als ouder 1 met de volgende gegevens    
-      | datum ingang familierechtelijke betrekking (62.10)  |
-      | 20230202                                            |     
+        | datum ingang familierechtelijke betrekking (62.10)  |
+        | 20230202                                            |     
       * heeft 'Marijn' als ouder 2 met de volgende gegevens    
-      | datum ingang familierechtelijke betrekking (62.10)  |
-      | 20230202                                            |   
+        | datum ingang familierechtelijke betrekking (62.10)  |
+        | 20230202                                            |   
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -221,11 +221,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
       Gegeven persoon 'Vanessa'
       * is geboren op 02-02-2023
       * heeft 'Noah' als ouder 1 met de volgende gegevens    
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | O                               | 20230202                                            |     
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | O                               | 20230202                                            |     
       * heeft 'Marijn' als ouder 2 met de volgende gegevens    
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | O                               | 20230202                                            |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | O                               | 20230202                                            |   
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -247,11 +247,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
       Gegeven persoon 'Vanessa'
       * is geboren op 02-02-2023
       * heeft 'Noah' als ouder 1 met de volgende gegevens    
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | 20230202                                            |     
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | 20230202                                            |     
       * heeft 'Marijn' als ouder 2 met de volgende gegevens    
-      | datum ingang familierechtelijke betrekking (62.10)  |
-      | 20230202                                            | 
+        | datum ingang familierechtelijke betrekking (62.10)  |
+        | 20230202                                            | 
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -273,11 +273,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
       Gegeven persoon 'Vanessa'
       * is geboren op 02-02-2023
       * heeft 'Noah' als ouder 1 met de volgende gegevens    
-      | datum ingang familierechtelijke betrekking (62.10)  |
-      | 20230202                                            |    
+        | datum ingang familierechtelijke betrekking (62.10)  |
+        | 20230202                                            |    
       * heeft 'Marijn' als ouder 2 met de volgende gegevens    
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | 20230202                                            |  
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | 20230202                                            |  
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -299,11 +299,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
       Gegeven persoon 'Vanessa'
       * is geboren op 02-02-2023
       * heeft 'Noah' als ouder 1 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | 20230202                                            |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | 20230202                                            |   
       * heeft 'Marijn' als ouder 2 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | M                               | 20230202                                            |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | M                               | 20230202                                            |   
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -325,11 +325,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
       Gegeven persoon 'Vanessa'
       * is geboren op 02-02-2023
       * heeft 'Noah' als ouder 1 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | 20230202                                            |   
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | 20230202                                            |   
       * heeft 'Marijn' als ouder 2 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | 20230202                                            |    
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | 20230202                                            |    
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -351,14 +351,14 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
       Gegeven persoon 'Vanessa'
       * is geboren op 02-02-2023
       * heeft de volgende gegevens
-      | geslachtsnaam (02.40) |
-      | Visser                |
+        | geslachtsnaam (02.40) |
+        | Visser                |
       * heeft 'Noah' als ouder 1 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | Visser                | 20230202                                            |
+        | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | Visser                | 20230202                                            |
       * heeft 'Marijn' als ouder 2 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | 20230202                                            |  
+        | geslachtsaanduiding (04.10)     | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | 20230202                                            |  
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
@@ -380,11 +380,11 @@ Functionaliteit: Wie is de geboortemoeder van het kind?
       Gegeven persoon 'Vanessa'
       * is geboren op 02-02-2023
       * heeft 'Noah' als ouder 1 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | Visser                | 20230202                                            |
+        | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | Visser                | 20230202                                            |
       * heeft 'Marijn' als ouder 2 met de volgende gegevens
-      | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
-      | V                               | Visser                | 20230202                                            |
+        | geslachtsaanduiding (04.10)     | geslachtsnaam (02.40) | datum ingang familierechtelijke betrekking (62.10)  |
+        | V                               | Visser                | 20230202                                            |
       Als gezag wordt gezocht met de volgende parameters
         | naam                | waarde    |
         | burgerservicenummer | 000000036 |
