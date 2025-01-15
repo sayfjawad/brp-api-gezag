@@ -15,12 +15,12 @@ public class Ouder1 extends PotentieelInOnderzoek implements WithAktenummer {
     private final String burgerservicenummer;
     @VeldNummer(number = "020240", name = "geslachtsnaam van ouder 1")
     private final String geslachtsnaam;
+    @VeldNummer(number = "020410", name = "geslachts aanduiding van ouder 1")
+    private final String geslachtsAanduiding;
     @VeldNummer(number = "028120", name = "aktenummer van ouder 1")
     private final String aktenummer;
     @VeldNummer(number = "026210", name = "datum ingang familiebetrekking van ouder 1")
     private final String datumIngangFamilieBetrekking;
-    @VeldNummer(number = "020410", name = "geslachts aanduiding van persoon")
-    private final String geslachtsAanduiding;
 
     public Ouder1(final Lo3PlPersoonRecord lo3PlPersoonRecord) {
         var burgerServiceNr = lo3PlPersoonRecord.getBurgerServiceNr();
@@ -31,11 +31,11 @@ public class Ouder1 extends PotentieelInOnderzoek implements WithAktenummer {
 
         burgerservicenummer = burgerServiceNrAsString;
         geslachtsnaam = lo3PlPersoonRecord.getGeslachtsNaam();
+        geslachtsAanduiding = Objects.toString(lo3PlPersoonRecord.getGeslachtsAand(), null);
         aktenummer = lo3PlPersoonRecord.getAkteNr();
         datumIngangFamilieBetrekking = Objects.toString(lo3PlPersoonRecord.getFamilieBetrekStartDatum(), null);
         aanduidingGegevensInOnderzoek = onderzoekGegevensAanduidingAsString;
         datumEindeOnderzoek = Objects.toString(lo3PlPersoonRecord.getOnderzoekEindDatum(), null);
-        geslachtsAanduiding = Objects.toString(lo3PlPersoonRecord.getGeslachtsAand(), null);
     }
 
     public String getBurgerservicenummer() {
@@ -50,6 +50,12 @@ public class Ouder1 extends PotentieelInOnderzoek implements WithAktenummer {
         return geslachtsnaam;
     }
 
+    public String getGeslachtsAanduiding() {
+        registerIfInOnderzoek("geslachtsAanduiding", getClass());
+
+        return geslachtsAanduiding;
+    }
+
     public String getDatumIngangFamiliebetrekking() {
         registerIfInOnderzoek("datumIngangFamilieBetrekking", getClass());
 
@@ -61,12 +67,6 @@ public class Ouder1 extends PotentieelInOnderzoek implements WithAktenummer {
         registerIfInOnderzoek("aktenummer", getClass());
 
         return aktenummer;
-    }
-
-    public String getGeslachtsAanduiding() {
-        registerIfInOnderzoek("geslachtsAanduiding", getClass());
-
-        return geslachtsAanduiding;
     }
 
     @Override

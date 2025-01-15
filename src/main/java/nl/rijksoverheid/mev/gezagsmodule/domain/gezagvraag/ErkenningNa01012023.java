@@ -19,7 +19,7 @@ public class ErkenningNa01012023 extends GezagVraag {
     private static final String V2A_3_VOOR_OUDER1 = "Voor_ouder1";
     private static final String V2A_3_VOOR_OUDER2 = "Voor_ouder2";
     private static final String V2A_3_NA = "Na";
-    private static final String GESLACHTSAAND_VROUW = "V";
+    private static final String GESLACHTSAANDUIDING_VROUW = "V";
     private static final int DATE_JAN_1_2023 = 20230101;
 
     protected ErkenningNa01012023(final GezagsBepaling gezagsBepaling) {
@@ -36,23 +36,24 @@ public class ErkenningNa01012023 extends GezagVraag {
         boolean persoonErkend = plPersoon.ongeborenVruchtErkendOfGerechtelijkeVaststelling();
         boolean persoonOngeborenVruchtErkend = plPersoon.ongeborenVruchtErkend();
         boolean isPersoonErkend = persoonErkend || persoonOngeborenVruchtErkend;
+        if (!requirementsForRuleAreMet(persoonOuder1, persoonOuder2, isPersoonErkend)) {
+            return;
+        }
 
-        if (requirementsForRuleAreMet(persoonOuder1, persoonOuder2, isPersoonErkend)) {
-            isPersoonErkendOpOfNa01012023(isPersoonErkend, persoonOuder1, persoonOuder2);
-            doorWelkeOuderErkend(plPersoon);
-            boolean persoonGeborenVoor01012023 = isPersoonGeborenVoor01012023(persoonErkend, persoonOngeborenVruchtErkend, plPersoon);
-            if (persoonGeborenVoor01012023) {
-                bepaalGezagIncombinatieMetGeboortemoeder(plPersoon, persoonOuder1, persoonOuder2);
-            }
+        isPersoonErkendOpOfNa01012023(isPersoonErkend, persoonOuder1, persoonOuder2);
+        doorWelkeOuderErkend(plPersoon);
+        boolean persoonGeborenVoor01012023 = isPersoonGeborenVoor01012023(persoonErkend, persoonOngeborenVruchtErkend, plPersoon);
+        if (persoonGeborenVoor01012023) {
+            bepaalGezagInCombinatieMetGeboortemoeder(plPersoon, persoonOuder1, persoonOuder2);
+        }
 
-            if (answer != null) {
-                logger.debug("""
-                    2a.3 Erkenning voor of na 1-1-2023?
-                    {}""", answer);
-                gezagsBepaling.getArAntwoordenModel().setV02A03(answer);
-            } else {
-                throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen", "Geboortemoeder van bevraagde persoon niet te bepalen");
-            }
+        if (answer != null) {
+            logger.debug("""
+                2a.3 Erkenning voor of na 1-1-2023?
+                {}""", answer);
+            gezagsBepaling.getArAntwoordenModel().setV02A03(answer);
+        } else {
+            throw new AfleidingsregelException("Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen", "Geboortemoeder van bevraagde persoon niet te bepalen");
         }
     }
 
@@ -112,7 +113,7 @@ public class ErkenningNa01012023 extends GezagVraag {
      * @param persoonOuder1 ouder 1 van de persoon
      * @param persoonOuder2 ouder 2 van de persoon
      */
-    private void bepaalGezagIncombinatieMetGeboortemoeder(
+    private void bepaalGezagInCombinatieMetGeboortemoeder(
         final Persoonslijst plPersoon,
         final Ouder1 persoonOuder1,
         final Ouder2 persoonOuder2) {
@@ -132,7 +133,7 @@ public class ErkenningNa01012023 extends GezagVraag {
     }
 
     private boolean isVrouw(final String geslachtsAand) {
-        return GESLACHTSAAND_VROUW.equals(geslachtsAand);
+        return GESLACHTSAANDUIDING_VROUW.equals(geslachtsAand);
     }
 
     private boolean eenVanDeOudersVrouw(final boolean isOuder1Vrouw, final boolean isOuder2Vrouw) {
@@ -145,12 +146,14 @@ public class ErkenningNa01012023 extends GezagVraag {
 
     private void bepaalOpBasisVanGeslachtsNaam(
         final String geslachtsnaam, final String geslachtsnaamOuder1, final String geslachtsnaamOuder2) {
-        if (geslachtsnaam != null &&
-            geslachtsnaam.equals(geslachtsnaamOuder1)
+        if(geslachtsnaam == null) {
+            return;
+        }
+
+        if (geslachtsnaam.equals(geslachtsnaamOuder1)
             && !geslachtsnaam.equals(geslachtsnaamOuder2)) {
             answer = V2A_3_VOOR_OUDER1;
-        } else if (geslachtsnaam != null &&
-            !geslachtsnaam.equals(geslachtsnaamOuder1)
+        } else if (!geslachtsnaam.equals(geslachtsnaamOuder1)
             && geslachtsnaam.equals(geslachtsnaamOuder2)) {
             answer = V2A_3_VOOR_OUDER2;
         }

@@ -47,9 +47,9 @@ class ErkenningNa01012023Test {
     private static final String DATE_BEFORE_01012023 = "20221201";
     private static final String DATE_ON_01012023 = "20230101";
     private static final String DATE_AFTER_01012023 = "20230102";
-    private static final String GESLACHT_AAND_UNKNOWN = "O";
-    private static final String GESLACHT_AAND_WOMAN = "V";
-    private static final String GESLACHT_AAND_MAN = "M";
+    private static final String GESLACHT_AANDUIDING_UNKNOWN = "O";
+    private static final String GESLACHT_AANDUIDING_WOMAN = "V";
+    private static final String GESLACHT_AANDUIDING_MAN = "M";
     private static final String GESLACHTSNAAM_ONE = "mock";
     private static final String GESLACHTSNAAM_TWO = "mock2";
 
@@ -233,8 +233,8 @@ class ErkenningNa01012023Test {
     @Test
     void erkenningNa01012023HavingBeenBornBeforeAndParentsHavingUnknownGeslachtsAand() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
-        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_UNKNOWN);
-        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_UNKNOWN);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_UNKNOWN);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_UNKNOWN);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         persoonslijst.setOuder1(ouder1);
@@ -250,7 +250,7 @@ class ErkenningNa01012023Test {
     @Test
     void erkenningNa01012023HavingBeenBornBeforeAndOneParentHavingWomanGeslachtsAand() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
-        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_WOMAN);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         persoonslijst.setOuder1(ouder1);
@@ -266,7 +266,7 @@ class ErkenningNa01012023Test {
     @Test
     void erkenningNa01012023HavingBeenBornBeforeAndSecondParentHavingWomanGeslachtsAand() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
-        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_WOMAN);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         persoonslijst.setOuder1(ouder1);
@@ -282,8 +282,8 @@ class ErkenningNa01012023Test {
     @Test
     void erkenningNa01012023HavingBeenBornBeforeAndBothParentHavingManGeslachtsAand() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
-        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_MAN);
-        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_MAN);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_MAN);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_MAN);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         persoonslijst.setOuder1(ouder1);
@@ -298,8 +298,8 @@ class ErkenningNa01012023Test {
 
     @Test
     void erkenningNa01012023HavingBeenBornBeforeAndBothParentHavingWomanGeslachtsAndNoGeslachtsnaam() {
-        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_WOMAN);
-        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_WOMAN);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         persoonslijst.setOuder1(ouder1);
@@ -315,9 +315,9 @@ class ErkenningNa01012023Test {
 
     @Test
     void erkenningNa01012023HavingBeenBornBeforeAndBothWomanHavingGeslachtsnaamButNotEqualToPerson() {
-        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_WOMAN);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
         when(ouder1.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM_ONE);
-        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_WOMAN);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
         when(ouder2.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM_TWO);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
@@ -335,9 +335,9 @@ class ErkenningNa01012023Test {
     @Test
     void erkenningNa01012023HavingBeenBornBeforeAndOneWomanHavingGeslachtsnaamEqualToPerson() {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
-        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_WOMAN);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
         when(ouder1.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM_ONE);
-        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AAND_WOMAN);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
         when(ouder2.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM_TWO);
         when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
         when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
