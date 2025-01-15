@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -85,7 +86,7 @@ class ToelichtingServiceTest {
         var expected = EXPECTED.formatted("Persoonslijst van persoon: field 1.");
 
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
-        veldenInOnderzoek.setPersoon(List.of(FIELD_1));
+        veldenInOnderzoek.setPersoon(Set.of(FIELD_1));
         List<String> missendeGegevens = new ArrayList<>();
 
         String result = classUnderTest.decorateToelichting(BASE_TOELICHTING, veldenInOnderzoek, missendeGegevens);
@@ -98,8 +99,8 @@ class ToelichtingServiceTest {
         var expected = EXPECTED.formatted("Persoonslijst van persoon: field 1. Persoonslijst van ouder 1: field 1.");
 
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
-        veldenInOnderzoek.setPersoon(List.of(FIELD_1));
-        veldenInOnderzoek.setOuder1(List.of(FIELD_1));
+        veldenInOnderzoek.setPersoon(Set.of(FIELD_1));
+        veldenInOnderzoek.setOuder1(Set.of(FIELD_1));
         List<String> missendeGegevens = new ArrayList<>();
 
         String result = classUnderTest.decorateToelichting(BASE_TOELICHTING, veldenInOnderzoek, missendeGegevens);
@@ -138,8 +139,8 @@ class ToelichtingServiceTest {
         var expected = EXPECTED.formatted("Persoonslijst van persoon: field 1. Persoonslijst van ouder 1: field 1.");
 
         VeldenInOnderzoek veldenInOnderzoek = new VeldenInOnderzoek();
-        veldenInOnderzoek.setPersoon(List.of(FIELD_1));
-        veldenInOnderzoek.setOuder1(List.of(FIELD_1));
+        veldenInOnderzoek.setPersoon(Set.of(FIELD_1));
+        veldenInOnderzoek.setOuder1(Set.of(FIELD_1));
         List<String> missendeGegevens = List.of(FIELD_1, FIELD_2);
 
         String result = classUnderTest.decorateToelichting(BASE_TOELICHTING, veldenInOnderzoek, missendeGegevens);

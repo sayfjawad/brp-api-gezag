@@ -28,9 +28,14 @@ runs:
       run: sleep 5s
       shell: bash
 
+    - name: Validate step definitions
+      run: |
+        ./scripts/verify-step-definitions.sh
+      shell: bash
+
     - name: Validate functional specification
       run: |
-        ./scripts/specs-verify.sh
+        ./scripts/verify-functional-specification.sh
       shell: bash
 
     - name: Stop containers

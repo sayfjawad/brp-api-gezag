@@ -1,8 +1,8 @@
 package nl.rijksoverheid.mev.gmapi;
 
-import nl.rijksoverheid.mev.brpadapter.service.BrpService;
 import nl.rijksoverheid.mev.exception.GezagException;
-import nl.rijksoverheid.mev.gezagsmodule.service.gezagmodule.GezagService;
+import nl.rijksoverheid.mev.gezagsmodule.service.BrpService;
+import nl.rijksoverheid.mev.gezagsmodule.service.GezagService;
 import nl.rijksoverheid.mev.logging.LoggingContext;
 import org.openapitools.model.AbstractGezagsrelatie;
 import org.openapitools.model.GezagRequest;
@@ -52,7 +52,6 @@ public class BevoegdheidTotGezagService {
      */
     public List<Persoon> bepaalBevoegdheidTotGezag(final GezagRequest gezagRequest) throws GezagException {
         List<String> burgerservicenummers = gezagRequest.getBurgerservicenummer();
-        loggingContext.addBurgerservicenummers(burgerservicenummers);
 
         return burgerservicenummers.stream()
             .map(this::bepaalGezagVoorPersoon)

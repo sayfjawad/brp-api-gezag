@@ -1,8 +1,8 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain;
-import lombok.extern.slf4j.Slf4j;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Slf4j
 public class HopRelaties {
 
     public static final String START_RELATIE = "Start relatie";

@@ -21,16 +21,12 @@ class PersoonTest {
     @ParameterizedTest
     @ValueSource(longs = {0, 1, 22, 333, 4444, 55555, 666666, 7777777, 88888888, 999999999})
     void getBsn(long input) {
-        // given
         var plPersoonRecord = new Lo3PlPersoonRecord();
         plPersoonRecord.setBurgerServiceNr(input);
 
-        var subject = Persoon.from(plPersoonRecord, null);
+        var subject = new Persoon(plPersoonRecord);
+        var result = subject.getBurgerservicenummer();
 
-        // when
-        var result = subject.getBsn();
-
-        // then
         assertEquals(9, result.length());
     }
 }

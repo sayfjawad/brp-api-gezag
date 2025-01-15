@@ -1,8 +1,3 @@
-app:
-  features:
-    brp:
-      dataset-path: src/test/resources/fixtures/persoonslijsten/GegenereerdUitExcelData/CGR_testbestand-20230525
-
 logging:
   file:
     name: build/brp-api-gezag.json

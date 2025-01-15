@@ -6,7 +6,6 @@ package nl.rijksoverheid.mev.brp.brpv.generated;
 
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlPersoon;
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3PlVerblijfplaats;
-
 import org.jooq.Index;
 import org.jooq.OrderField;
 import org.jooq.impl.DSL;

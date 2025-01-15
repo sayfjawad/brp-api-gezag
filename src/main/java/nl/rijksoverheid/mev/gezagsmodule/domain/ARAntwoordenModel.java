@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class ARAntwoordenModel {
+
     private String v0101 = null;
     private String v0102 = null;
     private String v0103 = null;
@@ -25,10 +26,8 @@ public class ARAntwoordenModel {
     private String v04A02 = null;
     private String v04A03 = null;
     private String v04B01 = null;
-    // Voorlopig ongebruikte input
     @EqualsAndHashCode.Exclude
     private Exception exception = null;
-    // Dit zijn outputs
     @EqualsAndHashCode.Exclude
     private String route = null;
     @EqualsAndHashCode.Exclude
@@ -45,6 +44,19 @@ public class ARAntwoordenModel {
     private String index = null;
     @EqualsAndHashCode.Exclude
     private String uitleg = null;
+
+    public boolean hasOuder1Gezag() {
+        return gezagOuder1 != null && gezagOuder1.equals("Ja");
+    }
+
+    public boolean hasOuder2Gezag() {
+        return gezagOuder2 != null && gezagOuder2.equals("Ja");
+    }
+
+    public boolean hasNietOuderGezag() {
+        return (gezagNietOuder1 != null && gezagNietOuder1.equals("Ja")) ||
+            (gezagNietOuder2 != null && gezagNietOuder2.equals("Ja"));
+    }
 
     @Override
     public String toString() {

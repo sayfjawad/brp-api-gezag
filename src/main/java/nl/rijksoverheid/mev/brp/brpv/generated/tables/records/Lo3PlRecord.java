@@ -4,12 +4,11 @@
 package nl.rijksoverheid.mev.brp.brpv.generated.tables.records;
 
 
-import java.time.LocalDateTime;
-
 import nl.rijksoverheid.mev.brp.brpv.generated.tables.Lo3Pl;
-
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
+
+import java.time.LocalDateTime;
 
 
 /**
