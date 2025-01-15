@@ -372,7 +372,11 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
     Dan heeft de response een persoon met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000048 |
-    En heeft de persoon geen gezag
+    En heeft de persoon een 'gezag' met de volgende gegevens
+      | naam                             | waarde                        |
+      | type                             | EenhoofdigOuderlijkGezag      |
+      | minderjarige.burgerservicenummer | 000000073                     |
+      | ouder.burgerservicenummer        | 000000048                     |
 
   Scenario: Lg01_082 - huwelijk personen gelijk geslacht (V), echtgenote 1 minderjarig kind erkend als ongeboren vrucht door vader
     # Meerderjarig
@@ -385,8 +389,7 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
       | burgerservicenummer | 000000061 |
     En heeft de persoon geen gezag
 
-  Scenario: Lg01_083 - geboren uit huwelijk 2 vrouwen, als ongeboren vrucht erkend door vader (huwelijkspartner moeder is daardoor geen ouder), geen categorie 11
-    # Route: 54 - Wie heeft gezag?: moeder, maar valt niet te achterhalen (N)
+  Scenario: Lg01_083 - geboren uit huwelijk 2 vrouwen, als ongeboren vrucht erkend door vader (huwelijkspartner moeder is daardoor geen ouder) gezag voor de geboortemoeder
     Als gezag wordt gezocht met de volgende parameters
       | naam                | waarde    |
       | burgerservicenummer | 000000073 |
@@ -394,7 +397,7 @@ Functionaliteit: Tg014 - Nicolaesen-Niemandsverdiet-Nijman
       | naam                | waarde    |
       | burgerservicenummer | 000000073 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                                                                                            |
-      | type                             | GezagNietTeBepalen                                                                                |
-      | minderjarige.burgerservicenummer | 000000073                                                                                         |
-      | toelichting                      | gezag kan niet worden bepaald omdat niet kan worden vastgesteld welke ouder de geboortemoeder is. |
+      | naam                             | waarde                        |
+      | type                             | EenhoofdigOuderlijkGezag      |
+      | minderjarige.burgerservicenummer | 000000073                     |
+      | ouder.burgerservicenummer        | 000000048                     |
