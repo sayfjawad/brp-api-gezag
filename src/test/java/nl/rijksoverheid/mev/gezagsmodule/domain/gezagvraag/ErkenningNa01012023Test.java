@@ -47,6 +47,11 @@ class ErkenningNa01012023Test {
     private static final String DATE_BEFORE_01012023 = "20221201";
     private static final String DATE_ON_01012023 = "20230101";
     private static final String DATE_AFTER_01012023 = "20230102";
+    private static final String GESLACHT_AANDUIDING_UNKNOWN = "O";
+    private static final String GESLACHT_AANDUIDING_WOMAN = "V";
+    private static final String GESLACHT_AANDUIDING_MAN = "M";
+    private static final String GESLACHTSNAAM_ONE = "mock";
+    private static final String GESLACHTSNAAM_TWO = "mock2";
 
     @BeforeEach
     public void setup() {
@@ -189,5 +194,161 @@ class ErkenningNa01012023Test {
         classUnderTest.perform();
 
         verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+    }
+
+    @Test
+    void erkenningNa01012023HavingBeenBornBeforeAndParentsNotHavingGeslachtsAand() {
+        when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(null);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(null);
+        when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        persoonslijst.setOuder1(ouder1);
+        persoonslijst.setOuder2(ouder2);
+        when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
+        when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
+
+        classUnderTest.perform();
+
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+    }
+
+    @Test
+    void erkenningNa01012023HavingBeenBornBeforeAndParentsHavingEmptyGeslachtsAand() {
+        when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn("");
+        when(ouder2.getGeslachtsAanduiding()).thenReturn("");
+        when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        persoonslijst.setOuder1(ouder1);
+        persoonslijst.setOuder2(ouder2);
+        when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
+        when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
+
+        classUnderTest.perform();
+
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+    }
+
+    @Test
+    void erkenningNa01012023HavingBeenBornBeforeAndParentsHavingUnknownGeslachtsAand() {
+        when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_UNKNOWN);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_UNKNOWN);
+        when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        persoonslijst.setOuder1(ouder1);
+        persoonslijst.setOuder2(ouder2);
+        when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
+        when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
+
+        classUnderTest.perform();
+
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+    }
+
+    @Test
+    void erkenningNa01012023HavingBeenBornBeforeAndOneParentHavingWomanGeslachtsAand() {
+        when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
+        when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        persoonslijst.setOuder1(ouder1);
+        persoonslijst.setOuder2(ouder2);
+        when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
+        when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
+
+        classUnderTest.perform();
+
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR_OUDER1);
+    }
+
+    @Test
+    void erkenningNa01012023HavingBeenBornBeforeAndSecondParentHavingWomanGeslachtsAand() {
+        when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
+        when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        persoonslijst.setOuder1(ouder1);
+        persoonslijst.setOuder2(ouder2);
+        when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
+        when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
+
+        classUnderTest.perform();
+
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR_OUDER2);
+    }
+
+    @Test
+    void erkenningNa01012023HavingBeenBornBeforeAndBothParentHavingManGeslachtsAand() {
+        when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_MAN);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_MAN);
+        when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        persoonslijst.setOuder1(ouder1);
+        persoonslijst.setOuder2(ouder2);
+        when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
+        when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
+
+        classUnderTest.perform();
+
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+    }
+
+    @Test
+    void erkenningNa01012023HavingBeenBornBeforeAndBothParentHavingWomanGeslachtsAndNoGeslachtsnaam() {
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
+        when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        persoonslijst.setOuder1(ouder1);
+        persoonslijst.setOuder2(ouder2);
+        when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
+        when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
+
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
+
+        assertNotNull(exception);
+        assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_UNKNOWN_MOTHER));
+    }
+
+    @Test
+    void erkenningNa01012023HavingBeenBornBeforeAndBothWomanHavingGeslachtsnaamButNotEqualToPerson() {
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
+        when(ouder1.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM_ONE);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
+        when(ouder2.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM_TWO);
+        when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        persoonslijst.setOuder1(ouder1);
+        persoonslijst.setOuder2(ouder2);
+        when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
+        when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
+
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
+
+        assertNotNull(exception);
+        assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_UNKNOWN_MOTHER));
+    }
+
+    @Test
+    void erkenningNa01012023HavingBeenBornBeforeAndOneWomanHavingGeslachtsnaamEqualToPerson() {
+        when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
+        when(ouder1.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
+        when(ouder1.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM_ONE);
+        when(ouder2.getGeslachtsAanduiding()).thenReturn(GESLACHT_AANDUIDING_WOMAN);
+        when(ouder2.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM_TWO);
+        when(ouder1.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        when(ouder2.getDatumIngangFamiliebetrekking()).thenReturn(DATE_BEFORE_01012023);
+        persoonslijst.setOuder1(ouder1);
+        persoonslijst.setOuder2(ouder2);
+        when(persoon.getGeslachtsnaam()).thenReturn(GESLACHTSNAAM_ONE);
+        when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
+        when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
+
+        classUnderTest.perform();
+
+        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR_OUDER1);
     }
 }

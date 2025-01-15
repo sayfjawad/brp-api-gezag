@@ -13,9 +13,10 @@ public class Ouder2 extends PotentieelInOnderzoek implements WithAktenummer {
 
     @VeldNummer(number = "030120", name = "burgerservicenummer van ouder 2")
     private final String burgerservicenummer;
-
     @VeldNummer(number = "030240", name = "geslachtsnaam van ouder 2")
     private final String geslachtsnaam;
+    @VeldNummer(number = "030410", name = "geslachts aanduiding van ouder 2")
+    private final String geslachtsAanduiding;
     @VeldNummer(number = "038120", name = "aktenummer van ouder 2")
     private final String aktenummer;
     @VeldNummer(number = "036210", name = "datum ingang familiebetrekking van ouder 2")
@@ -30,6 +31,7 @@ public class Ouder2 extends PotentieelInOnderzoek implements WithAktenummer {
 
         burgerservicenummer = burgerServiceNrAsString;
         geslachtsnaam = lo3PlPersoonRecord.getGeslachtsNaam();
+        geslachtsAanduiding = Objects.toString(lo3PlPersoonRecord.getGeslachtsAand(), null);
         aktenummer = lo3PlPersoonRecord.getAkteNr();
         datumIngangFamilieBetrekking = Objects.toString(lo3PlPersoonRecord.getFamilieBetrekStartDatum(), null);
         aanduidingGegevensInOnderzoek = onderzoekGegevensAanduidingAsString;
@@ -46,6 +48,12 @@ public class Ouder2 extends PotentieelInOnderzoek implements WithAktenummer {
         registerIfInOnderzoek("geslachtsnaam", getClass());
 
         return geslachtsnaam;
+    }
+
+    public String getGeslachtsAanduiding() {
+        registerIfInOnderzoek("geslachtsAanduiding", getClass());
+
+        return geslachtsAanduiding;
     }
 
     public String getDatumIngangFamiliebetrekking() {
