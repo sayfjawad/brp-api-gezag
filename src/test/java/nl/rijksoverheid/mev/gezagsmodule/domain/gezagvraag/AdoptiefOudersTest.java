@@ -3,12 +3,14 @@ package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 import nl.rijksoverheid.mev.gezagsmodule.domain.ARAntwoordenModel;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoon;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
+import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.AdoptiefOudersFunction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -24,7 +26,7 @@ class AdoptiefOudersTest {
     @Mock
     private ARAntwoordenModel arAntwoordenModel;
 
-    private AdoptiefOuders classUnderTest;
+    private AdoptiefOudersFunction classUnderTest;
 
     private static final String V2A_2_JA = "Ja";
     private static final String V2A_2_NEE = "Nee";
@@ -38,12 +40,12 @@ class AdoptiefOudersTest {
         persoonslijst.setPersoon(persoon);
         when(gezagsBepaling.getPlPersoon()).thenReturn(persoonslijst);
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
-        classUnderTest = new AdoptiefOuders(gezagsBepaling);
+        classUnderTest = new AdoptiefOudersFunction();
     }
 
     @Test
     void adoptiefOudersWithoutAktenummer() {
-        classUnderTest.perform();
+        classUnderTest.perform(gezagsBepaling);
 
         verify(arAntwoordenModel).setV02A02(V2A_2_NEE);
     }
@@ -52,7 +54,7 @@ class AdoptiefOudersTest {
     void adoptiefOudersWithAktenummerNotBeingAdoptie() {
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING);
 
-        classUnderTest.perform();
+        classUnderTest.perform(gezagsBepaling);
 
         verify(arAntwoordenModel).setV02A02(V2A_2_NEE);
     }
@@ -61,8 +63,8 @@ class AdoptiefOudersTest {
     void adoptiefOudersWithAktenummerBeingAdoptie() {
         when(persoon.getAktenummer()).thenReturn(AKTE_ADOPTIE);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A02(V2A_2_JA);
+        assertThat(antwoord.answer()).isEqualTo(V2A_2_JA);
     }
 }
