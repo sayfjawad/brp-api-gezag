@@ -9,4 +9,6 @@ public interface GezagVraagFunction {
      * en geeft een resultaat terug (bestaande uit bijv. de questionId en het antwoord).
      */
     GezagVraagResult perform(GezagsBepaling gezagsBepaling);
+
+    String getQuestionId();
 }

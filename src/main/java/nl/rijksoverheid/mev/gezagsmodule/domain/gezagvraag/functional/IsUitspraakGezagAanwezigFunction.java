@@ -18,6 +18,12 @@ public class IsUitspraakGezagAanwezigFunction implements GezagVraagFunction {
     private static final String V1_4_NEE = "Nee";
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
 
         var plPersoon = gezagsBepaling.getPlPersoon();

@@ -31,6 +31,12 @@ public class IsStaandeHuwelijkOfPartnerschapGeborenFunction implements GezagVraa
     private static final String OUDER_2 = "ouder2";
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // Lokaal 'answer' i.p.v. veld
         String answer = V2B_1_NEE;

@@ -19,6 +19,12 @@ public class IsNaarBuitenlandGeemigreerdGeweestFunction implements GezagVraagFun
     private static final String V1_3_NEE = "Nee";
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // Lokale variabele voor answer (in plaats van class-veld)
         String answer = null;
@@ -33,11 +39,13 @@ public class IsNaarBuitenlandGeemigreerdGeweestFunction implements GezagVraagFun
         Verblijfplaats verblijfplaats = plPersoon.getVerblijfplaats();
         if (geboorteland == null || geboorteland.isEmpty()) {
             // Markeer als missend en geef eventueel null terug
+            gezagsBepaling.getArAntwoordenModel().setV0103(null);
             gezagsBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
             return new GezagVraagResult(QUESTION_ID, null);
         }
         if (verblijfplaats == null) {
             gezagsBepaling.addMissendeGegegevens("Verblijfplaats van bevraagde persoon");
+            gezagsBepaling.getArAntwoordenModel().setV0103(null);
             return new GezagVraagResult(QUESTION_ID, null);
         }
         // Bepaal het antwoord

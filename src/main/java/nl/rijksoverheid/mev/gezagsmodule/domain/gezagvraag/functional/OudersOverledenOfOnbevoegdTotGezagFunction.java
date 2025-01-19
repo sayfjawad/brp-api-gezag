@@ -1,6 +1,7 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional;
 
 
+import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
 import org.slf4j.Logger;
@@ -39,6 +40,12 @@ public class OudersOverledenOfOnbevoegdTotGezagFunction implements GezagVraagFun
             "om", "Ja_ouder_overleden_en_andere_ouder_minderjarig",
             "oo", "Ja_beiden_overleden"
     );
+
+    @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
 
     @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
@@ -88,8 +95,11 @@ public class OudersOverledenOfOnbevoegdTotGezagFunction implements GezagVraagFun
     private void preconditieCheckOudersGeregistreerd(GezagsBepaling gb) {
         var plPersoon = gb.getPlPersoon();
         if (!plPersoon.heeftTweeOuders()) {
-            // Gooi exception of verwerk het op een andere manier
-            throw new IllegalStateException("Preconditie: Kind moet twee ouders hebben");
+            // Throw the same exception type and message the old code used:
+            throw new AfleidingsregelException(
+                    "Preconditie: Kind moet twee ouders hebben",
+                    "Van de bevraagde persoon zijn geen twee ouders bekend"
+            );
         }
         preconditieCheckGeregistreerd("ouder1", gb.getPlOuder1());
         preconditieCheckGeregistreerd("ouder2", gb.getPlOuder2());
@@ -100,9 +110,11 @@ public class OudersOverledenOfOnbevoegdTotGezagFunction implements GezagVraagFun
                 && plOuder.isNietIngeschrevenInRNI()
                 && plOuder.isNietGeemigreerd();
         if (!ouderGeregistreerdInBrp) {
-            throw new IllegalStateException(
-                    "Preconditie: " + beschrijving + " moet in BRP geregistreerd staan"
+            throw new AfleidingsregelException(
+                    "Preconditie: " + beschrijving + " moet in BRP geregistreerd staan",
+                    beschrijving + " van bevraagde persoon is niet in BRP geregistreerd"
             );
         }
     }
+
 }

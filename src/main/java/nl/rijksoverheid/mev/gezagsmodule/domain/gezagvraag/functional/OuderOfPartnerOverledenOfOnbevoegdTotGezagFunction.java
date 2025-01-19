@@ -50,6 +50,13 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezagFunction implements Gezag
             "oo", "Ja_beiden_overleden"
     );
 
+
+    @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
     @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // We zullen aan het einde een (questionId, answer) teruggeven.

@@ -28,6 +28,12 @@ public class ErkenningNa01012023Function implements GezagVraagFunction {
     private static final int DATE_JAN_1_2023 = 20230101;
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // Houd de 'answer' als een lokale variabele bij
         String answer;

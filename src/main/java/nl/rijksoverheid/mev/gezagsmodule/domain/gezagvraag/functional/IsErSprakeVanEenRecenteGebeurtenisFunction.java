@@ -28,6 +28,12 @@ public class IsErSprakeVanEenRecenteGebeurtenisFunction implements GezagVraagFun
     private static final String INDICATIE_GEZAG_OUDER2 = "2";
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // Lokale variabele voor het antwoord (i.p.v. this.answer)
         String answer = null;
