@@ -17,6 +17,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class AdoptiefOudersFunctionTest {
 
+    private static final String V2A_2_JA = "Ja";
+    private static final String V2A_2_NEE = "Nee";
+    private static final String AKTE_ERKENNING = "1AC0109";
+    private static final String AKTE_ADOPTIE = "1AQ0109";
     @Mock
     private GezagsBepaling gezagsBepaling;
     @Mock
@@ -24,10 +28,6 @@ class AdoptiefOudersFunctionTest {
     @Mock
     private ARAntwoordenModel arAntwoordenModel;
     private AdoptiefOudersFunction classUnderTest;
-    private static final String V2A_2_JA = "Ja";
-    private static final String V2A_2_NEE = "Nee";
-    private static final String AKTE_ERKENNING = "1AC0109";
-    private static final String AKTE_ADOPTIE = "1AQ0109";
 
     @BeforeEach
     public void setup() {
