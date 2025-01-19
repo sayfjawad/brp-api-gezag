@@ -1,6 +1,7 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional;
 
 import java.util.Objects;
+import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
@@ -20,6 +21,12 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartnersFunction implements 
     private static final String V2A_1_NEE = "Nee";
     private static final String V2A_1_NEE_NA_GEBOORTE_NOOIT_GEHUWD_PARTNERS_GEWEEST_MET_ELKAAR
             = "Nee_nooit";
+
+    @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
 
     @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
@@ -75,26 +82,22 @@ public class ZijnJuridischeOudersNuMetElkaarGehuwdOfPartnersFunction implements 
      * Dezelfde preconditie-checks als in de originele code, maar nu als private helper.
      */
     private void preconditieCheckOudersGeregistreerd(GezagsBepaling gezagsBepaling) {
-        // In de oude code deed je: preconditieCheckOudersGeregistreerd() in GezagVraag
-        // Nu kun je het in een private method doen of in een utility-class.
         var plPersoon = gezagsBepaling.getPlPersoon();
         if (!plPersoon.heeftTweeOuders()) {
-            throw new IllegalStateException("Preconditie: Kind moet twee ouders hebben");
+            throw new AfleidingsregelException("Preconditie: Kind moet twee ouders hebben",
+                    "van de bevraagde persoon zijn geen twee ouders bekend");
         }
         preconditieCheckGeregistreerd("ouder1", gezagsBepaling.getPlOuder1());
         preconditieCheckGeregistreerd("ouder2", gezagsBepaling.getPlOuder2());
     }
 
-    private void preconditieCheckGeregistreerd(final String beschrijving,
-            final Persoonslijst plOuder) {
-
-        boolean ouderGeregistreerdInBrp =
-                plOuder != null
-                        && plOuder.isNietIngeschrevenInRNI()
-                        && plOuder.isNietGeemigreerd();
+    private void preconditieCheckGeregistreerd(final String beschrijving, Persoonslijst plOuder) {
+        boolean ouderGeregistreerdInBrp = plOuder != null
+                && plOuder.isNietIngeschrevenInRNI()
+                && plOuder.isNietGeemigreerd();
         if (!ouderGeregistreerdInBrp) {
-            throw new IllegalStateException(
-                    "Preconditie: " + beschrijving + " moet in BRP geregistreerd staan");
+            throw new AfleidingsregelException("Preconditie: " + beschrijving + " moet in BRP geregistreerd staan",
+                    beschrijving + " van bevraagde persoon is niet in BRP geregistreerd");
         }
     }
 

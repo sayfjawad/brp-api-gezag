@@ -18,6 +18,12 @@ public class IsGeborenInBuitenlandFunction implements GezagVraagFunction {
     private static final String V1_3A_NEE = "Nee";
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // Haal de persoonslijst op
         var plPersoon = gezagsBepaling.getPlPersoon();

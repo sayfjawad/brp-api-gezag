@@ -19,6 +19,12 @@ public class IsPersoonMinderjarigEnNietOverledenFunction implements GezagVraagFu
     private static final String V1_2_NEE_OVERLEDEN = "Nee_overleden";
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // Haal de Persoonslijst op
         Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();

@@ -17,6 +17,12 @@ public class IndicatieGezagMinderjarigeFunction implements GezagVraagFunction {
     private static final String QUESTION_ID = "v3.2";
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // Haal de persoonslijst op
         Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();

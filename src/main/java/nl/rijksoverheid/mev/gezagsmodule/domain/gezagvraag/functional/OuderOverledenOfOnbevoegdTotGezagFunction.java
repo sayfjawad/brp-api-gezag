@@ -39,6 +39,12 @@ public class OuderOverledenOfOnbevoegdTotGezagFunction implements GezagVraagFunc
     );
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // Lokale variabele voor antwoord
         String answer = null;

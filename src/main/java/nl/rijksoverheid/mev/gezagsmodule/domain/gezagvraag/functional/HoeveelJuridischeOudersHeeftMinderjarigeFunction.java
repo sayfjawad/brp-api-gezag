@@ -18,6 +18,12 @@ public class HoeveelJuridischeOudersHeeftMinderjarigeFunction implements GezagVr
     private static final String QUESTION_ID = "v2.1";
 
     @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
+    }
+
+    @Override
     public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
         // Haal de benodigde data op
         Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
