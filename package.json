@@ -9,7 +9,8 @@
   "scripts": {
     "oas:lint": "bash scripts/oas-lint.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cz:commit": "cz"
+    "cz:commit": "cz",
+    "test:cucumber": "cucumber-js features/specs/"
   },
   "keywords": [],
   "author": "",
