@@ -359,11 +359,6 @@ Functionaliteit: Tg012 - Loon-Liebeek
     En heeft 'gezag' een 'ouder' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 000000024 |
-    En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                        |
-      | type                             | EenhoofdigOuderlijkGezag      |
-      | minderjarige.burgerservicenummer | 000000061                     |
-      | ouder.burgerservicenummer        | 000000024                     |
       
   Scenario: Lg01_067 - geboorte uit ongehuwde vrouw, adoptie met terugwerkende kracht tot geboortedatum door duo-moeder
     # Route: 55 - Wie heeft gezag?: beide ouders (OG2)
@@ -411,7 +406,7 @@ Functionaliteit: Tg012 - Loon-Liebeek
       | naam                | waarde    |
       | burgerservicenummer | 000000061 |
     En heeft de persoon een 'gezag' met de volgende gegevens
-      | naam                             | waarde                        |
-      | type                             | EenhoofdigOuderlijkGezag      |
-      | minderjarige.burgerservicenummer | 000000061                     |
-      | ouder.burgerservicenummer        | 000000024                     |
+      | naam                             | waarde                                                                                            |
+      | type                             | GezagNietTeBepalen                                                                                |
+      | minderjarige.burgerservicenummer | 000000061                                                                                         |
+      | toelichting                      | gezag kan niet worden bepaald omdat niet kan worden vastgesteld welke ouder de geboortemoeder is. |
