@@ -44,7 +44,7 @@ public class ErkenningNa01012023 extends GezagVraag {
         doorWelkeOuderErkend(plPersoon);
         boolean persoonGeborenVoor01012023 = isPersoonGeborenVoor01012023(persoonErkend, persoonOngeborenVruchtErkend, plPersoon);
         if (persoonGeborenVoor01012023) {
-            bepaalGezagInCombinatieMetGeboortemoeder(plPersoon, persoonOuder1, persoonOuder2);
+            bepaalGezagOpBasisVanGeboortemoeder(persoonOuder1, persoonOuder2);
         }
 
         if (answer != null) {
@@ -107,14 +107,11 @@ public class ErkenningNa01012023 extends GezagVraag {
     /**
      * Geboortemoeder bepaling:
      * - als 1 van de ouders vrouw is en de andere niet, is de vrouw de moeder
-     * - als beide ouders vrouw zijn, en 1 van de vrouwen heeft dezelfde geslachtsnaam als het kind, is de vrouw de moeder
      *
-     * @param plPersoon     de persoon
      * @param persoonOuder1 ouder 1 van de persoon
      * @param persoonOuder2 ouder 2 van de persoon
      */
-    private void bepaalGezagInCombinatieMetGeboortemoeder(
-        final Persoonslijst plPersoon,
+    private void bepaalGezagOpBasisVanGeboortemoeder(
         final Ouder1 persoonOuder1,
         final Ouder2 persoonOuder2) {
         boolean isOuder1Vrouw = isVrouw(persoonOuder1.getGeslachtsAanduiding());
@@ -122,11 +119,6 @@ public class ErkenningNa01012023 extends GezagVraag {
 
         if(eenVanDeOudersVrouw(isOuder1Vrouw, isOuder2Vrouw)) {
             answer = isOuder1Vrouw ? V2A_3_VOOR_OUDER1 : V2A_3_VOOR_OUDER2;
-        } else if (beideOudersVrouw(isOuder1Vrouw, isOuder2Vrouw)) {
-            bepaalOpBasisVanGeslachtsNaam(
-                plPersoon.getPersoon().getGeslachtsnaam(),
-                persoonOuder1.getGeslachtsnaam(),
-                persoonOuder2.getGeslachtsnaam());
         } else {
             answer = V2A_3_VOOR;
         }
@@ -138,24 +130,5 @@ public class ErkenningNa01012023 extends GezagVraag {
 
     private boolean eenVanDeOudersVrouw(final boolean isOuder1Vrouw, final boolean isOuder2Vrouw) {
         return isOuder1Vrouw ^ isOuder2Vrouw;
-    }
-
-    private boolean beideOudersVrouw(final boolean isOuder1Vrouw, final boolean isOuder2Vrouw) {
-        return isOuder1Vrouw && isOuder2Vrouw;
-    }
-
-    private void bepaalOpBasisVanGeslachtsNaam(
-        final String geslachtsnaam, final String geslachtsnaamOuder1, final String geslachtsnaamOuder2) {
-        if(geslachtsnaam == null) {
-            return;
-        }
-
-        if (geslachtsnaam.equals(geslachtsnaamOuder1)
-            && !geslachtsnaam.equals(geslachtsnaamOuder2)) {
-            answer = V2A_3_VOOR_OUDER1;
-        } else if (!geslachtsnaam.equals(geslachtsnaamOuder1)
-            && geslachtsnaam.equals(geslachtsnaamOuder2)) {
-            answer = V2A_3_VOOR_OUDER2;
-        }
     }
 }
