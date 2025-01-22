@@ -1,11 +1,12 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional;
 
-
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -17,11 +18,14 @@ import java.util.Map;
  * - Ja_beiden_onder_curatele, Ja_beiden_minderjarig, Ja_beiden_overleden, etc.
  * - Nee
  */
+@Component
+@Scope("prototype")
 public class OudersOverledenOfOnbevoegdTotGezagFunction implements GezagVraagFunction {
 
-    private static final Logger logger = LoggerFactory.getLogger(OudersOverledenOfOnbevoegdTotGezagFunction.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            OudersOverledenOfOnbevoegdTotGezagFunction.class);
 
-    private static final String QUESTION_ID        = "v4a.2";
+    private static final String QUESTION_ID = "v4a.2";
 
     // Mogelijke antwoorden
     private static final String V4A_2_JA_OUDER1 = "Ja_ouder1";
@@ -43,29 +47,30 @@ public class OudersOverledenOfOnbevoegdTotGezagFunction implements GezagVraagFun
 
     @Override
     public String getQuestionId() {
-
         return QUESTION_ID;
     }
 
     @Override
-    public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
+    public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
         // Je kunt (indien nodig) eerst een preconditiecheck doen:
         preconditieCheckOudersGeregistreerd(gezagsBepaling);
 
-        // Lokaal 'answer'
+        // Lokaal 'answer' (niet final, want wordt in de if-else-branches reassigned)
         String answer;
 
-        // Haal de (mogelijke) tokens op of check booleans
-        var optionalIsOuder1OverledenOfOnbevoegdToken = gezagsBepaling.getPlOuder1().isOverledenOfOnbevoegdEncoded();
-        var optionalIsOuder2OverledenOfOnbevoegdToken = gezagsBepaling.getPlOuder2().isOverledenOfOnbevoegdEncoded();
-        var isOuder1OverledenOfOnbevoegd = optionalIsOuder1OverledenOfOnbevoegdToken.isPresent();
-        var isOuder2OverledenOfOnbevoegd = optionalIsOuder2OverledenOfOnbevoegdToken.isPresent();
+        // Haal de (mogelijke) tokens of booleans op
+        final var optionalIsOuder1OverledenOfOnbevoegdToken
+                = gezagsBepaling.getPlOuder1().isOverledenOfOnbevoegdEncoded();
+        final var optionalIsOuder2OverledenOfOnbevoegdToken
+                = gezagsBepaling.getPlOuder2().isOverledenOfOnbevoegdEncoded();
+        final var isOuder1OverledenOfOnbevoegd = optionalIsOuder1OverledenOfOnbevoegdToken.isPresent();
+        final var isOuder2OverledenOfOnbevoegd = optionalIsOuder2OverledenOfOnbevoegdToken.isPresent();
 
         if (isOuder1OverledenOfOnbevoegd && isOuder2OverledenOfOnbevoegd) {
             // Beide ouders
-            var isOuder1OverledenOfOnbevoegdToken = optionalIsOuder1OverledenOfOnbevoegdToken.get();
-            var isOuder2OverledenOfOnbevoegdToken = optionalIsOuder2OverledenOfOnbevoegdToken.get();
-            var key = "%c%c".formatted(isOuder1OverledenOfOnbevoegdToken, isOuder2OverledenOfOnbevoegdToken);
+            final var isOuder1OverledenOfOnbevoegdToken = optionalIsOuder1OverledenOfOnbevoegdToken.get();
+            final var isOuder2OverledenOfOnbevoegdToken = optionalIsOuder2OverledenOfOnbevoegdToken.get();
+            final var key = "%c%c".formatted(isOuder1OverledenOfOnbevoegdToken, isOuder2OverledenOfOnbevoegdToken);
             answer = JA_BEIDEN_ANTWOORDEN.get(key);
         } else if (isOuder1OverledenOfOnbevoegd) {
             // Alleen Ouder1
@@ -92,10 +97,9 @@ public class OudersOverledenOfOnbevoegdTotGezagFunction implements GezagVraagFun
      * Kopie van de oorspronkelijke 'preconditieCheckOudersGeregistreerd()'
      * (aangepast voor een functionele benadering).
      */
-    private void preconditieCheckOudersGeregistreerd(GezagsBepaling gb) {
-        var plPersoon = gb.getPlPersoon();
+    private void preconditieCheckOudersGeregistreerd(final GezagsBepaling gb) {
+        final var plPersoon = gb.getPlPersoon();
         if (!plPersoon.heeftTweeOuders()) {
-            // Throw the same exception type and message the old code used:
             throw new AfleidingsregelException(
                     "Preconditie: Kind moet twee ouders hebben",
                     "Van de bevraagde persoon zijn geen twee ouders bekend"
@@ -105,8 +109,8 @@ public class OudersOverledenOfOnbevoegdTotGezagFunction implements GezagVraagFun
         preconditieCheckGeregistreerd("ouder2", gb.getPlOuder2());
     }
 
-    private void preconditieCheckGeregistreerd(String beschrijving, Persoonslijst plOuder) {
-        boolean ouderGeregistreerdInBrp = plOuder != null
+    private void preconditieCheckGeregistreerd(final String beschrijving, final Persoonslijst plOuder) {
+        final var ouderGeregistreerdInBrp = plOuder != null
                 && plOuder.isNietIngeschrevenInRNI()
                 && plOuder.isNietGeemigreerd();
         if (!ouderGeregistreerdInBrp) {
@@ -116,5 +120,4 @@ public class OudersOverledenOfOnbevoegdTotGezagFunction implements GezagVraagFun
             );
         }
     }
-
 }

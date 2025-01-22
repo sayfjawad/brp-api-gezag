@@ -1,39 +1,41 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional;
 
-
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * v2_1
- * EEN OUDER/TWEE OUDERS/GEEN OUDERS/2 PUNTOUDERS/ONBEKEND of
+ * EEN OUDER / TWEE OUDERS / GEEN OUDERS / 2 PUNTOUDERS / ONBEKEND of
  * IN_ONDERZOEK
  */
+@Component
+@Scope("prototype")
 public class HoeveelJuridischeOudersHeeftMinderjarigeFunction implements GezagVraagFunction {
 
-    private static final Logger logger = LoggerFactory.getLogger(HoeveelJuridischeOudersHeeftMinderjarigeFunction.class);
+    private static final Logger logger =
+            LoggerFactory.getLogger(HoeveelJuridischeOudersHeeftMinderjarigeFunction.class);
 
     private static final String QUESTION_ID = "v2.1";
 
     @Override
     public String getQuestionId() {
-
         return QUESTION_ID;
     }
 
     @Override
-    public GezagVraagResult perform(GezagsBepaling gezagsBepaling) {
+    public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
         // Haal de benodigde data op
-        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
+        final var plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
-            // Of gooi een specifieke exception als je die al hebt (AfleidingsregelException of iets dergelijks)
             throw new IllegalStateException("Persoonslijst van bevraagde persoon ontbreekt.");
         }
 
         // Bepaal het antwoord
-        String answer = plPersoon.hoeveelJuridischeOuders();
+        final var answer = plPersoon.hoeveelJuridischeOuders();
 
         // Logging
         logger.debug("2.1 Hoeveel juridische ouders heeft de minderjarige? -> {}", answer);

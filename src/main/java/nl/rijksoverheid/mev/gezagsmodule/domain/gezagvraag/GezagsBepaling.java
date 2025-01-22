@@ -1,7 +1,6 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -16,23 +15,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.AdoptiefOudersFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.ErkenningNa01012023Function;
 import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.GezagVraagFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.HoeveelJuridischeOudersHeeftMinderjarigeFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.IndicatieGezagMinderjarigeFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.IsErSprakeVanEenRecenteGebeurtenisFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.IsGeadopteerdMetNlAkteFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.IsGeborenInBuitenlandFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.IsNaarBuitenlandGeemigreerdGeweestFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.IsPersoonIngezeteneInBRPFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.IsPersoonMinderjarigEnNietOverledenFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.IsStaandeHuwelijkOfPartnerschapGeborenFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.IsUitspraakGezagAanwezigFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.OuderOfPartnerOverledenOfOnbevoegdTotGezagFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.OuderOverledenOfOnbevoegdTotGezagFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.OudersOverledenOfOnbevoegdTotGezagFunction;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.ZijnJuridischeOudersNuMetElkaarGehuwdOfPartnersFunction;
 import nl.rijksoverheid.mev.gezagsmodule.service.BrpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,7 +54,8 @@ public class GezagsBepaling {
             final String burgerservicenummerPersoon,
             final Persoonslijst plPersoon,
             final BrpService brpService,
-            final Map<String, Map<String, String>> hoofdstroomschema
+            final Map<String, Map<String, String>> hoofdstroomschema,
+            final Map<String, GezagVraagFunction> vragenMap
     ) {
 
         this.burgerservicenummer = burgerservicenummer;
@@ -80,9 +64,8 @@ public class GezagsBepaling {
         this.brpService = brpService;
         this.hoofdstroomschema = hoofdstroomschema;
         arAntwoordenModel = new ARAntwoordenModel();
-        vragenMap = new HashMap<>();
+        this.vragenMap = vragenMap;
         missendeGegegevens = new ArrayList<>();
-        initializeVragenMap();
     }
 
     /**
@@ -290,25 +273,5 @@ public class GezagsBepaling {
 
         HopRelaties hopRelaties = ouder.getHopRelaties();
         return hopRelaties != null ? hopRelaties.geborenInRelatie(geboortedatum) : null;
-    }
-
-    private void initializeVragenMap() {
-
-        vragenMap.put("v1.1", new IsPersoonIngezeteneInBRPFunction());
-        vragenMap.put("v1.2", new IsPersoonMinderjarigEnNietOverledenFunction());
-        vragenMap.put("v1.3", new IsNaarBuitenlandGeemigreerdGeweestFunction());
-        vragenMap.put("v1.3a", new IsGeborenInBuitenlandFunction());
-        vragenMap.put("v1.3b", new IsGeadopteerdMetNlAkteFunction());
-        vragenMap.put("v1.4", new IsUitspraakGezagAanwezigFunction());
-        vragenMap.put("v2.1", new HoeveelJuridischeOudersHeeftMinderjarigeFunction());
-        vragenMap.put("v2a.1", new ZijnJuridischeOudersNuMetElkaarGehuwdOfPartnersFunction());
-        vragenMap.put("v2a.2", new AdoptiefOudersFunction());
-        vragenMap.put("v2a.3", new ErkenningNa01012023Function());
-        vragenMap.put("v2b.1", new IsStaandeHuwelijkOfPartnerschapGeborenFunction());
-        vragenMap.put("v3.1", new IsErSprakeVanEenRecenteGebeurtenisFunction());
-        vragenMap.put("v3.2", new IndicatieGezagMinderjarigeFunction());
-        vragenMap.put("v4a.2", new OudersOverledenOfOnbevoegdTotGezagFunction());
-        vragenMap.put("v4a.3", new OuderOverledenOfOnbevoegdTotGezagFunction());
-        vragenMap.put("v4b.1", new OuderOfPartnerOverledenOfOnbevoegdTotGezagFunction());
     }
 }
