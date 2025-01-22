@@ -11,7 +11,6 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Gezagsverhouding;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.IsErSprakeVanEenRecenteGebeurtenis;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
