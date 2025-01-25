@@ -15,7 +15,6 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelatie;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HopRelaties;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.GezagVraagFunction;
 import nl.rijksoverheid.mev.gezagsmodule.service.BrpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +44,7 @@ public class GezagsBepaling {
     private final String burgerservicenummerPersoon;
     private final BrpService brpService;
     private final Map<String, Map<String, String>> hoofdstroomschema;
-    private Map<String, GezagVraagFunction> vragenMap;
+    private Map<String, GezagVraag> vragenMap;
     @Getter
     private final ARAntwoordenModel arAntwoordenModel;
 
@@ -55,7 +54,7 @@ public class GezagsBepaling {
             final Persoonslijst plPersoon,
             final BrpService brpService,
             final Map<String, Map<String, String>> hoofdstroomschema,
-            final Map<String, GezagVraagFunction> vragenMap
+            final Map<String, GezagVraag> vragenMap
     ) {
 
         this.burgerservicenummer = burgerservicenummer;

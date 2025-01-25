@@ -16,7 +16,7 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Leeftijd;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoon;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsBepaling;
-import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.functional.GezagsVragenMapFactory;
+import nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag.GezagsVragenMapFactory;
 import nl.rijksoverheid.mev.logging.GezagResultaat;
 import nl.rijksoverheid.mev.logging.LoggingContext;
 import org.openapitools.model.AbstractGezagsrelatie;
