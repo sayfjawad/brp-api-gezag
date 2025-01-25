@@ -55,12 +55,14 @@ class ErkenningNa01012023FunctionTest {
 
     @BeforeEach
     public void setup() {
-
+        // create a real ARAntwoordenModel or mock one
         persoonslijst = new Persoonslijst();
         persoonslijst.setPersoon(persoon);
         when(gezagsBepaling.getPlPersoon()).thenReturn(persoonslijst);
+
         classUnderTest = new ErkenningNa01012023Function();
     }
+
 
     @Test
     void erkenningNa01012023WithoutValuesFailingPrecondition() {

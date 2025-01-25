@@ -41,7 +41,7 @@ public class ErkenningNa01012023Function implements GezagVraagFunction {
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
         // Houd de 'answer' als een lokale variabele bij (niet final, want hij wordt herhaaldelijk toegewezen)
-        String answer;
+        String answer = null;
 
         final var plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
@@ -58,7 +58,7 @@ public class ErkenningNa01012023Function implements GezagVraagFunction {
 
         // Check de precondities. Als niet voldaan: return een leeg resultaat
         if (!requirementsForRuleAreMet(persoonOuder1, persoonOuder2, isPersoonErkend, gezagsBepaling)) {
-            return new GezagVraagResult(QUESTION_ID, null);
+            return new GezagVraagResult(QUESTION_ID, answer);
         }
 
         // 1. Bepaal of de erkenning (van Ouder1 of Ouder2) op of na 01-01-2023 is
@@ -207,45 +207,11 @@ public class ErkenningNa01012023Function implements GezagVraagFunction {
         if (isOuder1Vrouw ^ isOuder2Vrouw) {
             return isOuder1Vrouw ? V2A_3_VOOR_OUDER1 : V2A_3_VOOR_OUDER2;
         }
-        // 2) Beide ouders vrouw => baseer op de geslachtsnaam
-        else if (isOuder1Vrouw && isOuder2Vrouw) {
-            return bepaalOpBasisVanGeslachtsNaam(
-                    plPersoon.getPersoon().getGeslachtsnaam(),
-                    persoonOuder1.getGeslachtsnaam(),
-                    persoonOuder2.getGeslachtsnaam()
-            );
-        }
         // 3) Geen van beide is vrouw => "Voor"
         return V2A_3_VOOR;
     }
 
     private boolean isVrouw(final String geslachtsAand) {
         return GESLACHTSAANDUIDING_VROUW.equals(geslachtsAand);
-    }
-
-    /**
-     * Bepaalt op basis van de geslachtsnaam van het kind welke ouder de geboortemoeder is
-     * (indien beide ouders vrouw zijn).
-     */
-    private String bepaalOpBasisVanGeslachtsNaam(
-            final String geslachtsnaamKind,
-            final String geslachtsnaamOuder1,
-            final String geslachtsnaamOuder2) {
-
-        if (geslachtsnaamKind == null) {
-            return null;
-        }
-        // Kind = ouder1 maar niet ouder2 => ouder1
-        if (geslachtsnaamKind.equals(geslachtsnaamOuder1)
-                && !geslachtsnaamKind.equals(geslachtsnaamOuder2)) {
-            return V2A_3_VOOR_OUDER1;
-        }
-        // Kind = ouder2 maar niet ouder1 => ouder2
-        else if (!geslachtsnaamKind.equals(geslachtsnaamOuder1)
-                && geslachtsnaamKind.equals(geslachtsnaamOuder2)) {
-            return V2A_3_VOOR_OUDER2;
-        }
-        // Anders => niet eenduidig
-        return null;
     }
 }
