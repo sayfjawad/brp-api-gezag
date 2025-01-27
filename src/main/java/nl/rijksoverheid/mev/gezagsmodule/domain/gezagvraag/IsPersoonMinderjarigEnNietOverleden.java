@@ -1,47 +1,46 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
-import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
- * v1_2
- * Vraag {@link IsPersoonIngezeteneInBRP} in combinatie met {@code isAlsMinderjarigOverleden}
- * leidt ertoe dat het enige mogelijke antwoord {@code V1_2_NEE_OVERLEDEN} is.
- *
- * of minderjarig en niet overleden is
+ * v1_2 3 mogelijke antwoorden: - "Ja" (minderjarig en niet overleden) - "Nee_meerderjarig" (geen
+ * minderjarige) - "Nee_overleden" (als minderjarige overleden).
  */
-public class IsPersoonMinderjarigEnNietOverleden extends GezagVraag {
+@Component
+public class IsPersoonMinderjarigEnNietOverleden implements GezagVraag {
 
-    private static final Logger logger = LoggerFactory.getLogger(IsPersoonMinderjarigEnNietOverleden.class);
-
+    private static final Logger logger = LoggerFactory.getLogger(
+            IsPersoonMinderjarigEnNietOverleden.class);
+    private static final String QUESTION_ID = "v1.2";
     private static final String V1_2_JA = "Ja";
     private static final String V1_2_NEE_MEERDERJARIG = "Nee_meerderjarig";
     private static final String V1_2_NEE_OVERLEDEN = "Nee_overleden";
 
-    protected IsPersoonMinderjarigEnNietOverleden(final GezagsBepaling gezagsBepaling) {
-        super(gezagsBepaling);
-        currentQuestion = "v1.2";
+    @Override
+    public String getQuestionId() {
+        return QUESTION_ID;
     }
 
     @Override
-    public void perform() {
-        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
-
-        boolean isMinderjarig = plPersoon.minderjarig();
-        boolean isAlsMinderjarigOverleden = plPersoon.alsMinderjarigeOverleden();
-
+    public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
+        final var plPersoon = gezagsBepaling.getPlPersoon();
+        if (plPersoon == null) {
+            throw new IllegalStateException("Persoonslijst van bevraagde persoon ontbreekt.");
+        }
+        final var isMinderjarig = plPersoon.minderjarig();
+        final var isAlsMinderjarigOverleden = plPersoon.alsMinderjarigeOverleden();
+        String answer;
         if (isAlsMinderjarigOverleden) {
             answer = V1_2_NEE_OVERLEDEN;
         } else if (isMinderjarig) {
-            answer = V1_2_JA; // Minderjarig en niet overleden
+            answer = V1_2_JA;
         } else {
             answer = V1_2_NEE_MEERDERJARIG;
         }
-
-        logger.debug("""
-            1.2 Is persoon minderjarig en niet overleden?
-            {}""", answer);
+        logger.debug("1.2 Is persoon minderjarig en niet overleden? -> {}", answer);
         gezagsBepaling.getArAntwoordenModel().setV0102(answer);
+        return new GezagVraagResult(QUESTION_ID, answer);
     }
 }

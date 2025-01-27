@@ -1,47 +1,52 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
-import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
-import nl.rijksoverheid.mev.gezagsmodule.domain.Verblijfplaats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
- * v1_3
- * "Ja" als is naar buitenland geëmigreerd geweest, anders "Nee"
+ * v1_3 "Ja" als de persoon (die in NL geboren is) ooit naar buitenland geëmigreerd is geweest,
+ * anders "Nee".
  */
-public class IsNaarBuitenlandGeemigreerdGeweest extends GezagVraag {
-
-    private static final Logger logger = LoggerFactory.getLogger(IsNaarBuitenlandGeemigreerdGeweest.class);
-
+@Component
+public class IsNaarBuitenlandGeemigreerdGeweest implements GezagVraag {
+    private static final Logger logger =
+            LoggerFactory.getLogger(IsNaarBuitenlandGeemigreerdGeweest.class);
+    private static final String QUESTION_ID = "v1.3";
     private static final String V1_3_JA = "Ja";
     private static final String V1_3_NEE = "Nee";
 
-    protected IsNaarBuitenlandGeemigreerdGeweest(final GezagsBepaling gezagsBepaling) {
-        super(gezagsBepaling);
-        currentQuestion = "v1.3";
+    @Override
+    public String getQuestionId() {
+
+        return QUESTION_ID;
     }
 
     @Override
-    public void perform() {
-        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
-
-        String geboorteland = plPersoon.getPersoon().getGeboorteland();
-        Verblijfplaats verblijfplaats = plPersoon.getVerblijfplaats();
-        if (geboorteland == null || geboorteland.isEmpty()) {
-            gezagsBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
-        } else if (verblijfplaats == null) {
-            gezagsBepaling.addMissendeGegegevens("Verblijfplaats van bevraagde persoon");
-        } else if (geboorteland.equals("6030")
-            && verblijfplaats.getDatumVestigingInNederland() != null
-            && !verblijfplaats.getDatumVestigingInNederland().isEmpty()) {
-            answer = V1_3_JA;
-        } else {
-            answer = V1_3_NEE;
+    public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
+        final var plPersoon = gezagsBepaling.getPlPersoon();
+        if (plPersoon == null) {
+            throw new IllegalStateException("Persoonslijst van bevraagde persoon ontbreekt.");
         }
-
-        logger.debug("""
-            1.3 Is minderjarige naar het buitenland geëmigreerd geweest?
-            {}""", answer);
+        final var geboorteland = plPersoon.getPersoon().getGeboorteland();
+        final var verblijfplaats = plPersoon.getVerblijfplaats();
+        if (geboorteland == null || geboorteland.isEmpty()) {
+            gezagsBepaling.getArAntwoordenModel().setV0103(null);
+            gezagsBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
+            return new GezagVraagResult(QUESTION_ID, null);
+        }
+        if (verblijfplaats == null) {
+            gezagsBepaling.addMissendeGegegevens("Verblijfplaats van bevraagde persoon");
+            gezagsBepaling.getArAntwoordenModel().setV0103(null);
+            return new GezagVraagResult(QUESTION_ID, null);
+        }
+        final var answer = ("6030".equals(geboorteland)
+                && verblijfplaats.getDatumVestigingInNederland() != null
+                && !verblijfplaats.getDatumVestigingInNederland().isEmpty())
+                ? V1_3_JA
+                : V1_3_NEE;
+        logger.debug("1.3 Is minderjarige naar het buitenland geëmigreerd geweest? -> {}", answer);
         gezagsBepaling.getArAntwoordenModel().setV0103(answer);
+        return new GezagVraagResult(QUESTION_ID, answer);
     }
 }
