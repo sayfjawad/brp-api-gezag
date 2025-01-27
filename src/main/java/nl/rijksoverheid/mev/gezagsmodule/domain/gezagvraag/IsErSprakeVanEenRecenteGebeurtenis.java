@@ -1,17 +1,18 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
-import static java.util.Comparator.comparing;
-import static java.util.Comparator.naturalOrder;
-import static java.util.Comparator.nullsFirst;
-
-import java.util.ArrayList;
-import java.util.List;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.HuwelijkOfPartnerschap;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Comparator.comparing;
+import static java.util.Comparator.naturalOrder;
+import static java.util.Comparator.nullsFirst;
 
 /**
  * v3.1 Ja, als er sprake is van een recente gebeurtenis, anders Nee
@@ -30,7 +31,6 @@ public class IsErSprakeVanEenRecenteGebeurtenis implements GezagVraag {
 
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-
         final var plPersoon = gezagsBepaling.getPlPersoon();
         final var gezagsverhouding = plPersoon.getGezagsverhouding();
         if (gezagsverhouding == null) {
@@ -40,25 +40,19 @@ public class IsErSprakeVanEenRecenteGebeurtenis implements GezagVraag {
         String answer = null;
         final var indicatieGezagMinderjarige = gezagsverhouding.getIndicatieGezagMinderjarige();
         final var ingangsdatumGeldigheidGezag = gezagsverhouding.getIngangsdatumGeldigheidGezag();
-        // Check voor ontkenning erkenning: als indicatie = "12" (beide ouders) maar de persoon
-        // heeft maar 1 ouder => recente gebeurtenis
         if (indicatieGezagMinderjarige != null
                 && indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_BEIDE_OUDERS)
                 && !plPersoon.heeftTweeOuders()) {
             answer = V3_1_JA;
         }
-        // Check geldigheidsdatum (moet aanwezig zijn)
         if (!gezagsverhouding.hasIngangsdatumGeldigheidGezag()) {
             throw new AfleidingsregelException(
                     "Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten",
                     "ingangsdatum geldigheid van gezagsverhouding");
         }
-        // Controleer of adoptie na de ingangsdatum heeft plaatsgevonden => recente gebeurtenis
         if (plPersoon.adoptieNaIngangGeldigheidsdatum()) {
             answer = V3_1_JA;
         }
-        // Controleer op 'reparatiehuwelijk' alleen als gezag maar aan 1 ouder is toegekend
-        // en beide ouders een BSN hebben.
         if (indicatieGezagMinderjarige != null
                 && (indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER1)
                 || indicatieGezagMinderjarige.equals(INDICATIE_GEZAG_OUDER2))
@@ -89,9 +83,8 @@ public class IsErSprakeVanEenRecenteGebeurtenis implements GezagVraag {
     }
 
     private boolean nuGehuwdOudersNaGeldigheidsdatum(final Persoonslijst plOuder1,
-            final Persoonslijst plOuder2,
-            final String geldigheidsdatum) {
-
+                                                     final Persoonslijst plOuder2,
+                                                     final String geldigheidsdatum) {
         if (plOuder1 == null || plOuder2 == null) {
             return false;
         }
@@ -114,8 +107,7 @@ public class IsErSprakeVanEenRecenteGebeurtenis implements GezagVraag {
     }
 
     private List<HuwelijkOfPartnerschap> getHuwelijkOfPartnerschap(final Persoonslijst plOuder,
-            final String bsnPartner) {
-
+                                                                   final String bsnPartner) {
         final var hopList = new ArrayList<HuwelijkOfPartnerschap>();
         if (plOuder.getHuwelijkOfPartnerschappen() != null) {
             for (final var hop : plOuder.getHuwelijkOfPartnerschappen()) {

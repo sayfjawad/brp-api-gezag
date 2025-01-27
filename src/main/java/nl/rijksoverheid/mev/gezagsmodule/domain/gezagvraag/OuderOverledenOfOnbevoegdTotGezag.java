@@ -1,8 +1,5 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Optional;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder1;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder2;
@@ -10,6 +7,10 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * v4a_3 "Ja" / "Nee" in verschillende varianten, afhankelijk van de status (overleden / onbevoegd)
@@ -38,20 +39,17 @@ public class OuderOverledenOfOnbevoegdTotGezag implements GezagVraag {
 
     @Override
     public String getQuestionId() {
-
         return QUESTION_ID;
     }
 
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-        // Lokale variabele voor antwoord (niet final omdat het wordt herhaaldelijk toegewezen)
         String answer = null;
         final var plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
             throw new IllegalStateException(
                     "Preconditie: Persoonslijst (kind) ontbreekt in GezagsBepaling.");
         }
-        // Check: Is er minstens één ouder met BSN in de persoonslijst van het kind?
         final var heeftOuder1Burgerservicenummer =
                 plPersoon.getOuder1AsOptional().map(Ouder1::getBurgerservicenummer).isPresent();
         final var heeftOuder2Burgerservicenummer =
@@ -62,7 +60,6 @@ public class OuderOverledenOfOnbevoegdTotGezag implements GezagVraag {
                     "Ouder moet een BSN hebben"
             );
         }
-        // Haal de bijbehorende ouder-PL op
         final var persoonslijstOuder1 = gezagsBepaling.getPlOuder1();
         final var persoonslijstOuder2 = gezagsBepaling.getPlOuder2();
         if (persoonslijstOuder1 == null && persoonslijstOuder2 == null) {
@@ -71,43 +68,31 @@ public class OuderOverledenOfOnbevoegdTotGezag implements GezagVraag {
                     "Minimaal 1 ouder van de bevraagde persoon moet geregistreerd staan in het BRP"
             );
         }
-        // Als Ouder1 bestaat en níet is overleden of onbevoegd => "Nee_ouder1"
         if (persoonslijstOuder1 != null && !persoonslijstOuder1.isOverledenOfOnbevoegd()) {
             answer = V4A_3_NEE_OUDER1;
         }
 
-        /*
-         * Als Ouder2 bestaat en níet is overleden of onbevoegd
-         *   - en er is al "Nee_ouder1" => antwoord = "Nee"
-         *   - anders => "Nee_ouder2"
-         */
         if (persoonslijstOuder2 != null && !persoonslijstOuder2.isOverledenOfOnbevoegd()) {
             if (V4A_3_NEE_OUDER1.equals(answer)) {
                 answer = V4A_3_NEE;
             } else {
                 answer = V4A_3_NEE_OUDER2;
             }
-        }
-        // Anders, als answer == null => (beide ouders niet bekend of één/both overleden/onbevoegd)
-        else if (answer == null) {
+        } else if (answer == null) {
             final var isOuder1OverledenOfOnbevoegdToken = Optional.ofNullable(persoonslijstOuder1)
                     .flatMap(Persoonslijst::isOverledenOfOnbevoegdEncoded)
                     .orElse('?');
             final var isOuder2OverledenOfOnbevoegdToken = Optional.ofNullable(persoonslijstOuder2)
                     .flatMap(Persoonslijst::isOverledenOfOnbevoegdEncoded)
                     .orElse('?');
-            // Sorteer ze lexicografisch
             final var tokenArray = new char[]{isOuder1OverledenOfOnbevoegdToken,
                     isOuder2OverledenOfOnbevoegdToken};
             Arrays.sort(tokenArray);
             final var key = new String(tokenArray);
             answer = JA_ANTWOORDEN.get(key);
         }
-        // Logging
         logger.debug("4a.3 Ouder overleden of onbevoegd tot gezag? -> {}", answer);
-        // Optionele mutatie in je (legacy) model
         gezagsBepaling.getArAntwoordenModel().setV04A03(answer);
-        // Retourneer functioneel resultaat
         return new GezagVraagResult(QUESTION_ID, answer);
     }
 }

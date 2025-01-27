@@ -1,10 +1,11 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
-import java.util.Map;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * v4b1 "Ja_..." of "Nee" als ouder of partner overleden of onbevoegd is.
@@ -53,15 +54,12 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag implements GezagVraag {
 
     @Override
     public String getQuestionId() {
-
         return QUESTION_ID;
     }
 
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-        // We zullen aan het einde een (questionId, answer) teruggeven.
         String answer;
-        // 1. Check precondities
         final var persoonslijstOuder1 = gezagsBepaling.getPlOuder1();
         final var persoonslijstOuder2 = gezagsBepaling.getPlOuder2();
         if (persoonslijstOuder1 == null && persoonslijstOuder2 == null) {
@@ -75,11 +73,9 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag implements GezagVraag {
                     "Preconditie: niet_ouder moet geregistreerd staan in BRP",
                     "Voor de bevraagde persoon moet niet_ouder geregistreerd staan in BRP");
         }
-        // 2. Bepaal of de niet-ouder overleden of onbevoegd is
         final var optionalIsNietOuderOverledenOfOnbevoegdToken =
                 persoonslijstNietOuder.isOverledenOfOnbevoegdEncoded();
         final var isNietOuderOverledenOfOnbevoegd = optionalIsNietOuderOverledenOfOnbevoegdToken.isPresent();
-        // 3. Stel de key samen op basis van 'ouder1 of ouder2?', en booleans.
         if (persoonslijstOuder1 != null) {
             final var key = "ouder1,"
                     + persoonslijstOuder1.isOverledenOfOnbevoegd() + ","
@@ -91,29 +87,21 @@ public class OuderOfPartnerOverledenOfOnbevoegdTotGezag implements GezagVraag {
                     + isNietOuderOverledenOfOnbevoegd;
             answer = ouderOfPartnerOverledenOfOnbevoegdTotGezagMap.get(key);
         }
-        // 4. Als het 'Ja_beiden' is, checken we de tokens (bv. 'cm', 'oo', etc.)
         if (V4B_1_JA_BEIDEN.equals(answer)) {
-            // Bepaal welke ouder je gebruikt:
             final var persoonslijstOuder =
                     (persoonslijstOuder1 != null) ? persoonslijstOuder1 : persoonslijstOuder2;
-            // Haal token (bv. 'c', 'm', 'o') op voor de ouder
             final var isOuderOverledenOfOnbevoegdToken = persoonslijstOuder
                     .isOverledenOfOnbevoegdEncoded()
-                    .orElseThrow(); // in principe is het er, want we hadden 'true' hierboven
-            // Haal token van niet-ouder
+                    .orElseThrow();
             final var isNietOuderOverledenOfOnbevoegdToken =
                     optionalIsNietOuderOverledenOfOnbevoegdToken.orElseThrow();
-            // Maak er bv. "cm" of "oo" van
             final var key2 =
                     "" + isOuderOverledenOfOnbevoegdToken + isNietOuderOverledenOfOnbevoegdToken;
-            // Geef het antwoord uit de map
             answer = JA_BEIDEN_ANTWOORDEN.get(key2);
         }
-        // 5. Log en mutatie in ArAntwoordenModel
         logger.debug("4b.1 Ouder, echtgenoot of partner overleden of onbevoegd tot gezag? -> {}",
                 answer);
         gezagsBepaling.getArAntwoordenModel().setV04B01(answer);
-        // 6. Retourneer functioneel resultaat
         return new GezagVraagResult(QUESTION_ID, answer);
     }
 }

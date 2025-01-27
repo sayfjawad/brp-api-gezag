@@ -16,24 +16,22 @@ public class HoeveelJuridischeOudersHeeftMinderjarige implements GezagVraag {
 
     @Override
     public String getQuestionId() {
-
         return QUESTION_ID;
     }
 
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-        // Haal de benodigde data op
         final var plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
             throw new IllegalStateException("Persoonslijst van bevraagde persoon ontbreekt.");
         }
-        // Bepaal het antwoord
+
         final var answer = plPersoon.hoeveelJuridischeOuders();
-        // Logging
+
         logger.debug("2.1 Hoeveel juridische ouders heeft de minderjarige? -> {}", answer);
-        // Mutatie in het bestaande model (optioneel)
+
         gezagsBepaling.getArAntwoordenModel().setV0201(answer);
-        // Return als functioneel resultaat
+
         return new GezagVraagResult(QUESTION_ID, answer);
     }
 }

@@ -22,7 +22,6 @@ public class IsPersoonIngezeteneInBRP implements GezagVraag {
 
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-
         final var plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
             gezagsBepaling.addMissendeGegegevens("persoonlijst van bevraagde persoon");
@@ -38,14 +37,11 @@ public class IsPersoonIngezeteneInBRP implements GezagVraag {
             gezagsBepaling.addMissendeGegegevens("gemeente van inschrijving van bevraagde persoon");
             return new GezagVraagResult(getQuestionId(), null);
         }
-        // Alles aanwezig, bepaal antwoord
         final var answer = REGISTRATIE_NIET_INGEZETENE.equals(gemeenteVanInschrijving)
                 ? V1_1_NEE
                 : V1_1_JA;
         logger.debug("1.1 Staat persoon (minderjarige) als ingezetene in de BRP? => {}", answer);
-        // Zet in ARAntwoordenModel
         gezagsBepaling.getArAntwoordenModel().setV0101(answer);
-        // Geef ook terug als functioneel resultaat
         return new GezagVraagResult(getQuestionId(), answer);
     }
 }

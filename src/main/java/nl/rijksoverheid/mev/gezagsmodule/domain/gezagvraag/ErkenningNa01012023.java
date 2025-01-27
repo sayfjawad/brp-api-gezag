@@ -1,7 +1,5 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
-import static java.lang.Integer.parseInt;
-
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder1;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Ouder2;
@@ -9,6 +7,8 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * v2a_3 VOOR of NA
@@ -28,13 +28,11 @@ public class ErkenningNa01012023 implements GezagVraag {
 
     @Override
     public String getQuestionId() {
-
         return QUESTION_ID;
     }
 
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-        // Houd de 'answer' als een lokale variabele bij (niet final, want hij wordt herhaaldelijk toegewezen)
         String answer = null;
         final var plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
@@ -47,16 +45,12 @@ public class ErkenningNa01012023 implements GezagVraag {
         final var persoonErkend = plPersoon.ongeborenVruchtErkendOfGerechtelijkeVaststelling();
         final var persoonOngeborenVruchtErkend = plPersoon.ongeborenVruchtErkend();
         final var isPersoonErkend = persoonErkend || persoonOngeborenVruchtErkend;
-        // Check de precondities. Als niet voldaan: return een leeg resultaat
         if (!requirementsForRuleAreMet(persoonOuder1, persoonOuder2, isPersoonErkend,
                 gezagsBepaling)) {
             return new GezagVraagResult(QUESTION_ID, answer);
         }
-        // 1. Bepaal of de erkenning (van Ouder1 of Ouder2) op of na 01-01-2023 is
         answer = isPersoonErkendOpOfNa01012023(isPersoonErkend, persoonOuder1, persoonOuder2);
-        // 2. Check welke ouder erkend heeft (als 'answer' nog null is)
         answer = doorWelkeOuderErkend(plPersoon, answer);
-        // 3. Check of persoon geboren is voor 01-01-2023
         final var persoonGeborenVoor01012023 = isPersoonGeborenVoor01012023(
                 persoonErkend,
                 persoonOngeborenVruchtErkend,
@@ -67,13 +61,11 @@ public class ErkenningNa01012023 implements GezagVraag {
             answer = bepaalGezagInCombinatieMetGeboortemoeder(plPersoon, persoonOuder1,
                     persoonOuder2, answer);
         }
-        // 4. Als we nu een definitief antwoord hebben, loggen we en zetten we het in het ArAntwoordenModel
         if (answer != null) {
             logger.debug("2a.3 Erkenning voor of na 1-1-2023? -> {}", answer);
             gezagsBepaling.getArAntwoordenModel().setV02A03(answer);
             return new GezagVraagResult(QUESTION_ID, answer);
         } else {
-            // Preconditie niet te bepalen
             throw new AfleidingsregelException(
                     "Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen",
                     "Geboortemoeder van bevraagde persoon niet te bepalen"
@@ -90,7 +82,6 @@ public class ErkenningNa01012023 implements GezagVraag {
             final Ouder2 persoonOuder2,
             final boolean isPersoonErkend,
             final GezagsBepaling gezagsBepaling) {
-
         if (persoonOuder1 == null || persoonOuder2 == null) {
             final var missendeGegeven = (persoonOuder1 == null && persoonOuder2 == null)
                     ? "beide ouders van bevraagde persoon"
@@ -100,7 +91,6 @@ public class ErkenningNa01012023 implements GezagVraag {
                     missendeGegeven
             );
         }
-        // Als de persoon is erkend, check of we een 'datumIngangFamiliebetrekking' hebben
         if (isPersoonErkend && persoonOuder1.getDatumIngangFamiliebetrekking() == null) {
             gezagsBepaling.addMissendeGegegevens("datum ingang familiebetrekking van ouder 1");
             return false;
@@ -119,7 +109,6 @@ public class ErkenningNa01012023 implements GezagVraag {
             final boolean isPersoonErkend,
             final Ouder1 persoonOuder1,
             final Ouder2 persoonOuder2) {
-
         String localAnswer = null;
         if (isPersoonErkend) {
             final var ouder1ErkendOpOfNa01012023 =
@@ -138,13 +127,11 @@ public class ErkenningNa01012023 implements GezagVraag {
      * null), vullen we het op basis van de ouder die erkend heeft.
      */
     private String doorWelkeOuderErkend(final Persoonslijst plPersoon, final String currentAnswer) {
-
         if (currentAnswer != null) {
             return currentAnswer;
         }
         final var ouder1Erkend = plPersoon.ongeborenVruchtDoorOuder1ErkendOfGerechtelijkeVaststelling();
         final var ouder2Erkend = plPersoon.ongeborenVruchtDoorOuder2ErkendOfGerechtelijkeVaststelling();
-        // Op basis van de oorspronkelijke logica
         if (ouder1Erkend) {
             return V2A_3_VOOR_OUDER2;
         }
@@ -163,7 +150,6 @@ public class ErkenningNa01012023 implements GezagVraag {
             final boolean persoonOngeborenVruchtErkend,
             final Persoonslijst plPersoon,
             final String currentAnswer) {
-
         if (currentAnswer == null && !persoonErkend && persoonOngeborenVruchtErkend) {
             return parseInt(plPersoon.getPersoon().getGeboortedatum()) < DATE_JAN_1_2023;
         }
@@ -179,22 +165,18 @@ public class ErkenningNa01012023 implements GezagVraag {
             final Ouder1 persoonOuder1,
             final Ouder2 persoonOuder2,
             final String currentAnswer) {
-
         if (currentAnswer != null) {
             return currentAnswer;
         }
         final var isOuder1Vrouw = isVrouw(persoonOuder1.getGeslachtsAanduiding());
         final var isOuder2Vrouw = isVrouw(persoonOuder2.getGeslachtsAanduiding());
-        // 1) Exact één ouder vrouw => die is de moeder
         if (isOuder1Vrouw ^ isOuder2Vrouw) {
             return isOuder1Vrouw ? V2A_3_VOOR_OUDER1 : V2A_3_VOOR_OUDER2;
         }
-        // 3) Geen van beide is vrouw => "Voor"
         return V2A_3_VOOR;
     }
 
     private boolean isVrouw(final String geslachtsAand) {
-
         return GESLACHTSAANDUIDING_VROUW.equals(geslachtsAand);
     }
 }

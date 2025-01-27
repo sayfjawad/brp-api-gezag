@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class IsNaarBuitenlandGeemigreerdGeweest implements GezagVraag {
-
     private static final Logger logger =
             LoggerFactory.getLogger(IsNaarBuitenlandGeemigreerdGeweest.class);
     private static final String QUESTION_ID = "v1.3";
@@ -25,15 +24,12 @@ public class IsNaarBuitenlandGeemigreerdGeweest implements GezagVraag {
 
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-        // Haal de persoonslijst op
         final var plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
-            // Kies zelf of je een exception gooit of een null-result teruggeeft
             throw new IllegalStateException("Persoonslijst van bevraagde persoon ontbreekt.");
         }
         final var geboorteland = plPersoon.getPersoon().getGeboorteland();
         final var verblijfplaats = plPersoon.getVerblijfplaats();
-        // Check benodigde data
         if (geboorteland == null || geboorteland.isEmpty()) {
             gezagsBepaling.getArAntwoordenModel().setV0103(null);
             gezagsBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
@@ -44,21 +40,13 @@ public class IsNaarBuitenlandGeemigreerdGeweest implements GezagVraag {
             gezagsBepaling.getArAntwoordenModel().setV0103(null);
             return new GezagVraagResult(QUESTION_ID, null);
         }
-        // Bepaal het antwoord
-        // Let op de logica in de oorspronkelijke code:
-        // - Als het geboorteland "6030" (= Nederland) is,
-        // - en de persoon heeft een (niet-lege) datumVestigingInNederland => "Ja"
-        // - Anders => "Nee"
         final var answer = ("6030".equals(geboorteland)
                 && verblijfplaats.getDatumVestigingInNederland() != null
                 && !verblijfplaats.getDatumVestigingInNederland().isEmpty())
                 ? V1_3_JA
                 : V1_3_NEE;
-        // Logging
         logger.debug("1.3 Is minderjarige naar het buitenland geëmigreerd geweest? -> {}", answer);
-        // Mutatie in het gezagsBepaling-model
         gezagsBepaling.getArAntwoordenModel().setV0103(answer);
-        // Retourneer het (functionele) resultaat
         return new GezagVraagResult(QUESTION_ID, answer);
     }
 }

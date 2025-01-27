@@ -1,12 +1,5 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
 import lombok.Getter;
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
@@ -18,6 +11,14 @@ import nl.rijksoverheid.mev.gezagsmodule.domain.VeldenInOnderzoek;
 import nl.rijksoverheid.mev.gezagsmodule.service.BrpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Gezag bepaling bevat alle informatie voor een gezag bepaling voor een persoon
@@ -44,7 +45,7 @@ public class GezagsBepaling {
     private final String burgerservicenummerPersoon;
     private final BrpService brpService;
     private final Map<String, Map<String, String>> hoofdstroomschema;
-    private Map<String, GezagVraag> vragenMap;
+    private final Map<String, GezagVraag> vragenMap;
     @Getter
     private final ARAntwoordenModel arAntwoordenModel;
 
@@ -71,14 +72,12 @@ public class GezagsBepaling {
      * Start de gezag bepaling
      */
     public ARAntwoordenModel start() {
-
         var result = vragenMap.get("v1.1").perform(this);
         this.next(result.questionId(), result.answer());
         return arAntwoordenModel;
     }
 
     public void next(final String currentQuestion, final String answer) {
-
         try {
             Map<String, String> antwoordEnActieParen = hoofdstroomschema.get(currentQuestion);
             if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
@@ -100,7 +99,6 @@ public class GezagsBepaling {
      * @return burgerservicenummer van ouder 1 of null wanneer ouder 1 geen waarde heeft
      */
     public String getBurgerservicenummerOuder1() {
-
         return plOuder1 != null && plOuder1.getPersoon() != null ? plOuder1.getPersoon()
                 .getBurgerservicenummer() : null;
     }
@@ -109,7 +107,6 @@ public class GezagsBepaling {
      * @return burgerservicenummer van ouder 2 of null wanneer ouder 2 geen waarde heeft
      */
     public String getBurgerservicenummerOuder2() {
-
         return plOuder2 != null && plOuder2.getPersoon() != null ? plOuder2.getPersoon()
                 .getBurgerservicenummer() : null;
     }
@@ -118,7 +115,6 @@ public class GezagsBepaling {
      * @return burgerservicenummer van niet ouder of null wanneer niet ouder geen waarde heeft
      */
     public String getBurgerservicenummerNietOuder() {
-
         return plNietOuder != null && plNietOuder.getPersoon() != null ? plNietOuder.getPersoon()
                 .getBurgerservicenummer() : null;
     }
@@ -127,7 +123,6 @@ public class GezagsBepaling {
      * @return of er velden in onderzoek waren (010120 en 080910 worden gefiltered)
      */
     public boolean warenVeldenInOnderzoek() {
-
         Set<String> veldenInOnderzoek = new HashSet<>(plPersoon.getUsedVeldenInOnderzoek());
         if (plOuder1 != null) {
             veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
@@ -151,7 +146,6 @@ public class GezagsBepaling {
      * @return velden in onderzoek per persoon
      */
     public VeldenInOnderzoek getVeldenInOnderzoek() {
-
         VeldenInOnderzoek velden = new VeldenInOnderzoek();
         velden.setPersoon(plPersoon.getUsedVeldenInOnderzoek());
         if (plOuder1 != null) {
@@ -167,7 +161,6 @@ public class GezagsBepaling {
     }
 
     public void addMissendeGegegevens(final String missendGegegeven) {
-
         if (missendeGegegevens == null) {
             missendeGegegevens = new ArrayList<>();
         }
@@ -175,17 +168,10 @@ public class GezagsBepaling {
     }
 
 
-    /*
-     * Als een persoonslijst lokaal aanwezig is, wordt deze opgehaald.
-     * Anders wordt deze uit het BRP opgehaald en lokaal opgeslagen.
-     * De lokale kopie wordt gebruikt om de aanvullende businesslogica te voorzien van persoonsgegevens
-     */
-
     /**
      * @return ouder 1 of null
      */
     public Persoonslijst getPlOuder1() {
-
         if (plOuder1 == null) {
             try {
                 if (plPersoon.getOuder1() != null
@@ -209,7 +195,6 @@ public class GezagsBepaling {
      * @return ouder2 of null
      */
     public Persoonslijst getPlOuder2() {
-
         if (plOuder2 == null) {
             try {
                 if (plPersoon.getOuder2() != null
@@ -233,7 +218,6 @@ public class GezagsBepaling {
      * @return de niet ouder of null
      */
     public Persoonslijst getPlNietOuder() {
-
         if (plNietOuder == null) {
             try {
                 if (!isValidPersoon(plPersoon) || !isOneParentPresent(plOuder1, plOuder2)) {
@@ -258,18 +242,15 @@ public class GezagsBepaling {
     }
 
     private boolean isValidPersoon(Persoonslijst plPersoon) {
-
         return plPersoon != null && plPersoon.getPersoon() != null
                 && plPersoon.getPersoon().getGeboortedatum() != null;
     }
 
     private boolean isOneParentPresent(Persoonslijst plOuder1, Persoonslijst plOuder2) {
-
         return plOuder1 == null ^ plOuder2 == null;
     }
 
     private HopRelatie getHopGeborenInRelatie(Persoonslijst ouder, int geboortedatum) {
-
         HopRelaties hopRelaties = ouder.getHopRelaties();
         return hopRelaties != null ? hopRelaties.geborenInRelatie(geboortedatum) : null;
     }

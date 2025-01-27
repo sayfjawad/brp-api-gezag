@@ -19,13 +19,11 @@ public class IsUitspraakGezagAanwezig implements GezagVraag {
 
     @Override
     public String getQuestionId() {
-
         return QUESTION_ID;
     }
 
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-
         final var plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
             // Kies je eigen manier van foutafhandeling (exception, null-result, etc.)

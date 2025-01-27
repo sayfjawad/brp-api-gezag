@@ -1,13 +1,13 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
-import static nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst.isValideGeslachtsnaam;
-
 import nl.rijksoverheid.mev.exception.AfleidingsregelException;
 import nl.rijksoverheid.mev.exception.GezagException;
 import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import static nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst.isValideGeslachtsnaam;
 
 /**
  * v2b_1 "Ja" als kind staande huwelijk of partnerschap geboren is, anders "Nee".
@@ -35,10 +35,8 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren implements GezagVraag {
 
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-
         final var plPersoon = gezagsBepaling.getPlPersoon();
-        // Initialize answer; this may be changed to "Ja" if conditions are met.
-        String answer = V2B_1_NEE;
+        var answer = V2B_1_NEE;
         final var geboorteDatumKind = plPersoon.getPersoon().getGeboortedatum();
         final var lOuder1 = plPersoon.getOuder1();
         final var lOuder2 = plPersoon.getOuder2();
@@ -66,8 +64,7 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren implements GezagVraag {
     }
 
     public boolean heeftOuderRelatieBijGeboorteKind(final Persoonslijst plOuder,
-            final String geboortedatum) {
-
+                                                    final String geboortedatum) {
         final var hopPlOuder = plOuder.getHuwelijkOfPartnerschappen();
         if (!hopPlOuder.isEmpty() && hopPlOuder.get(0).getBsnPartner() != null) {
             final var hopRelaties = plOuder.getHopRelaties();
@@ -79,9 +76,8 @@ public class IsStaandeHuwelijkOfPartnerschapGeboren implements GezagVraag {
     }
 
     public void preconditieCheckGeregistreerd(final String beschrijving,
-            final Persoonslijst plOuder)
+                                              final Persoonslijst plOuder)
             throws GezagException {
-
         final var ouderGeregistreerdInBrp =
                 plOuder != null
                         && plOuder.isNietIngeschrevenInRNI()

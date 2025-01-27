@@ -23,33 +23,36 @@ public class IsGeborenInBuitenland implements GezagVraag {
         return QUESTION_ID;
     }
 
+    /**
+     * Determines if a person is born outside of the Netherlands based on their birth country.
+     * <p>
+     * If the person is born outside of the Netherlands, the method returns an answer indicating "Ja" (Yes).
+     * Otherwise, it returns "Nee" (No).
+     * <p>
+     * If required data is missing, the method logs the missing information and returns null as the answer.
+     *
+     * @param gezagsBepaling Object containing data about the person being queried. This includes their personal list data.
+     *                       The object must not be null, and it must contain a valid person entry with a birth country.
+     * @return A {@code GezagVraagResult} instance containing the question identifier and the result ("Ja" or "Nee").
+     * Returns {@code null} as the answer if required data is missing.
+     * @throws IllegalStateException if the person's personal list is missing.
+     */
     @Override
     public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
-        // Haal de persoonslijst op
         final var plPersoon = gezagsBepaling.getPlPersoon();
         if (plPersoon == null) {
-            // Ofwel throwen we een exception:
             throw new IllegalStateException("Persoonslijst van bevraagde persoon ontbreekt.");
-            // Of je geeft een 'leeg' resultaat terug:
-            // return new GezagVraagResult(QUESTION_ID, null);
         }
-        // Check geboorteland
         final var geboorteland = plPersoon.getPersoon().getGeboorteland();
         if (geboorteland == null || geboorteland.isEmpty()) {
-            // Missing data -> vul je missendeGegevens-lijst aan
             gezagsBepaling.addMissendeGegegevens("Geboorteland van bevraagde persoon");
-            // Eventueel hier: return een 'null'-antwoord of throw
             return new GezagVraagResult(QUESTION_ID, null);
         }
-        // Bepaal het antwoord
         final var answer = geboorteland.equals(GEBOORTELAND_CODE_NEDERLAND)
                 ? V1_3A_NEE
                 : V1_3A_JA;
-        // Logging
         logger.debug("1.3a Is minderjarige geboren in het buitenland? -> {}", answer);
-        // (Optioneel) mutatie in 'gezagsBepaling'
         gezagsBepaling.getArAntwoordenModel().setV0103A(answer);
-        // Retourneer een immutable resultaat
         return new GezagVraagResult(QUESTION_ID, answer);
     }
 }
