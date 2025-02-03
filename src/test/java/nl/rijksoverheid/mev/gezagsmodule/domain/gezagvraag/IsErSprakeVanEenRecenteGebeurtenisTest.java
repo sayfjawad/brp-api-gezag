@@ -8,33 +8,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class IsErSprakeVanEenRecenteGebeurtenisTest {
-
-    @Mock
-    private Gezagsverhouding gezagsverhouding;
-
-    @Mock
-    private GezagsBepaling gezagsBepaling;
-
-    @Mock
-    private Persoon persoon;
-
-    @Mock
-    private ARAntwoordenModel arAntwoordenModel;
-
-    @Mock
-    private Ouder1 ouder1;
-
-    @Mock
-    private Ouder2 ouder2;
-
-    private Persoonslijst persoonslijst;
-    private IsErSprakeVanEenRecenteGebeurtenis classUnderTest;
 
     private static final String MISSING_GEZAGSVERHOUDING = "gezagsverhouding van bevraagde persoon";
     private static final String INDICATION_MISSING_INGANGSDATUM = "Preconditie: Ingangsdatum geldigheid gezag moet een valide datum bevatten";
@@ -45,18 +26,32 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
     private static final String V3_1_JA = "Ja";
     private static final String V3_1_NEE = "Nee";
     private static final String AKTE_ADOPTIE = "1AQ0109";
+    @Mock
+    private Gezagsverhouding gezagsverhouding;
+    @Mock
+    private GezagsBepaling gezagsBepaling;
+    @Mock
+    private Persoon persoon;
+    @Mock
+    private ARAntwoordenModel arAntwoordenModel;
+    @Mock
+    private Ouder1 ouder1;
+    @Mock
+    private Ouder2 ouder2;
+    private Persoonslijst persoonslijst;
+    private IsErSprakeVanEenRecenteGebeurtenis classUnderTest;
 
     @BeforeEach
     public void setup() {
         persoonslijst = new Persoonslijst();
         persoonslijst.setPersoon(persoon);
         when(gezagsBepaling.getPlPersoon()).thenReturn(persoonslijst);
-        classUnderTest = new IsErSprakeVanEenRecenteGebeurtenis(gezagsBepaling);
+        classUnderTest = new IsErSprakeVanEenRecenteGebeurtenis();
     }
 
     @Test
     void isErSprakeVanEenRecenteGebeurtenisWithoutValues() {
-        classUnderTest.perform();
+        classUnderTest.perform(gezagsBepaling);
 
         verify(gezagsBepaling).addMissendeGegegevens(MISSING_GEZAGSVERHOUDING);
     }
@@ -65,7 +60,8 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
     void isErSprakeVanEenRecenteGebeurtenisWithEmptyGezagsverhouding() {
         persoonslijst.setGezagsverhouding(gezagsverhouding);
 
-        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class,
+            () -> classUnderTest.perform(gezagsBepaling));
 
         assertTrue(exception.getMessage().contains(INDICATION_MISSING_INGANGSDATUM));
     }
@@ -78,9 +74,9 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
         when(gezagsverhouding.hasIngangsdatumGeldigheidGezag()).thenReturn(true);
         persoonslijst.setGezagsverhouding(gezagsverhouding);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV0301(V3_1_JA);
+        assertThat(antwoord.answer()).isEqualTo(V3_1_JA);
     }
 
     @Test
@@ -91,10 +87,11 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
         when(gezagsverhouding.hasIngangsdatumGeldigheidGezag()).thenReturn(true);
         persoonslijst.setOuder1(ouder1);
         persoonslijst.setGezagsverhouding(gezagsverhouding);
+        classUnderTest.perform(gezagsBepaling);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV0301(V3_1_JA);
+        assertThat(antwoord.answer()).isEqualTo(V3_1_JA);
     }
 
     @Test
@@ -109,9 +106,9 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
         persoonslijst.setOuder2(ouder2);
         persoonslijst.setGezagsverhouding(gezagsverhouding);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV0301(V3_1_NEE);
+        assertThat(antwoord.answer()).isEqualTo(V3_1_NEE);
     }
 
     @Test
@@ -130,8 +127,8 @@ class IsErSprakeVanEenRecenteGebeurtenisTest {
         persoonslijst.setPersoon(persoon);
         persoonslijst.setGezagsverhouding(gezagsverhouding);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV0301(V3_1_JA);
+        assertThat(antwoord.answer()).isEqualTo(V3_1_JA);
     }
 }

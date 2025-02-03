@@ -8,31 +8,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ErkenningNa01012023Test {
-
-    @Mock
-    private GezagsBepaling gezagsBepaling;
-
-    @Mock
-    private Persoon persoon;
-
-    @Mock
-    private Ouder1 ouder1;
-
-    @Mock
-    private Ouder2 ouder2;
-
-    @Mock
-    private ARAntwoordenModel arAntwoordenModel;
-
-    private Persoonslijst persoonslijst;
-
-    private ErkenningNa01012023 classUnderTest;
 
     private static final String V2A_3_VOOR = "Voor";
     private static final String V2A_3_VOOR_OUDER1 = "Voor_ouder1";
@@ -42,26 +24,39 @@ class ErkenningNa01012023Test {
     private static final String PRECONDITION_INDICATION_UNKNOWN_MOTHER = "Preconditie: vraag 2a.3 - Geboortemoeder niet te bepalen";
     private static final String AKTE_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE = "1AB0109";
     private static final String AKTE_AANDUIDING_GEBOORTE = "1AA0109";
-    private static final String MISSING_DATUM_INGANG_OUDER_1 = "datum ingang familie betrekking van ouder 1";
-    private static final String MISSING_DATUM_INGANG_OUDER_2 = "datum ingang familie betrekking van ouder 2";
+    private static final String MISSING_DATUM_INGANG_OUDER_1 = "datum ingang familiebetrekking van ouder 1";
+    private static final String MISSING_DATUM_INGANG_OUDER_2 = "datum ingang familiebetrekking van ouder 2";
     private static final String DATE_BEFORE_01012023 = "20221201";
     private static final String DATE_ON_01012023 = "20230101";
     private static final String DATE_AFTER_01012023 = "20230102";
     private static final String GESLACHT_AANDUIDING_UNKNOWN = "O";
     private static final String GESLACHT_AANDUIDING_WOMAN = "V";
     private static final String GESLACHT_AANDUIDING_MAN = "M";
+    @Mock
+    private GezagsBepaling gezagsBepaling;
+    @Mock
+    private Persoon persoon;
+    @Mock
+    private Ouder1 ouder1;
+    @Mock
+    private Ouder2 ouder2;
+    @Mock
+    private ARAntwoordenModel arAntwoordenModel;
+    private Persoonslijst persoonslijst;
+    private ErkenningNa01012023 classUnderTest;
 
     @BeforeEach
     public void setup() {
         persoonslijst = new Persoonslijst();
         persoonslijst.setPersoon(persoon);
         when(gezagsBepaling.getPlPersoon()).thenReturn(persoonslijst);
-        classUnderTest = new ErkenningNa01012023(gezagsBepaling);
+        classUnderTest = new ErkenningNa01012023();
     }
 
     @Test
     void erkenningNa01012023WithoutValuesFailingPrecondition() {
-        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class,
+            () -> classUnderTest.perform(gezagsBepaling));
 
         assertNotNull(exception);
         assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_MISSING_PARENTS));
@@ -71,7 +66,8 @@ class ErkenningNa01012023Test {
     void erkenningNa01012023OnlyHavingOneParentAsOuder1FailingPrecondition() {
         persoonslijst.setOuder1(ouder1);
 
-        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class,
+            () -> classUnderTest.perform(gezagsBepaling));
 
         assertNotNull(exception);
         assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_MISSING_PARENTS));
@@ -81,7 +77,8 @@ class ErkenningNa01012023Test {
     void erkenningNa01012023OnlyHavingOneParentAsOuder2FailingPrecondition() {
         persoonslijst.setOuder2(ouder2);
 
-        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class,
+            () -> classUnderTest.perform(gezagsBepaling));
 
         assertNotNull(exception);
         assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_MISSING_PARENTS));
@@ -92,7 +89,8 @@ class ErkenningNa01012023Test {
         persoonslijst.setOuder1(ouder1);
         persoonslijst.setOuder2(ouder2);
 
-        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class, () -> classUnderTest.perform());
+        AfleidingsregelException exception = assertThrows(AfleidingsregelException.class,
+            () -> classUnderTest.perform(gezagsBepaling));
 
         assertNotNull(exception);
         assertTrue(exception.getMessage().contains(PRECONDITION_INDICATION_UNKNOWN_MOTHER));
@@ -104,7 +102,7 @@ class ErkenningNa01012023Test {
         persoonslijst.setOuder2(ouder2);
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE);
 
-        classUnderTest.perform();
+        classUnderTest.perform(gezagsBepaling);
 
         verify(gezagsBepaling).addMissendeGegegevens(MISSING_DATUM_INGANG_OUDER_1);
     }
@@ -116,7 +114,7 @@ class ErkenningNa01012023Test {
         persoonslijst.setOuder2(ouder2);
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE);
 
-        classUnderTest.perform();
+        classUnderTest.perform(gezagsBepaling);
 
         verify(gezagsBepaling).addMissendeGegegevens(MISSING_DATUM_INGANG_OUDER_2);
     }
@@ -130,9 +128,9 @@ class ErkenningNa01012023Test {
         persoonslijst.setOuder2(ouder2);
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_NA);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_NA);
     }
 
     @Test
@@ -144,9 +142,9 @@ class ErkenningNa01012023Test {
         persoonslijst.setOuder2(ouder2);
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_NA);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_NA);
     }
 
     @Test
@@ -159,9 +157,9 @@ class ErkenningNa01012023Test {
         persoonslijst.setOuder2(ouder2);
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR_OUDER2);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_VOOR_OUDER2);
     }
 
     @Test
@@ -174,9 +172,9 @@ class ErkenningNa01012023Test {
         persoonslijst.setOuder2(ouder2);
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING_BIJ_DE_GEBOORTE_AANGIFTE);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR_OUDER1);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_VOOR_OUDER1);
     }
 
     @Test
@@ -189,9 +187,9 @@ class ErkenningNa01012023Test {
         when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
         when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_VOOR);
     }
 
     @Test
@@ -206,9 +204,9 @@ class ErkenningNa01012023Test {
         when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
         when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_VOOR);
     }
 
     @Test
@@ -223,9 +221,9 @@ class ErkenningNa01012023Test {
         when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
         when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_VOOR);
     }
 
     @Test
@@ -240,9 +238,9 @@ class ErkenningNa01012023Test {
         when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
         when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_VOOR);
     }
 
     @Test
@@ -256,9 +254,9 @@ class ErkenningNa01012023Test {
         when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
         when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR_OUDER1);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_VOOR_OUDER1);
     }
 
     @Test
@@ -272,9 +270,9 @@ class ErkenningNa01012023Test {
         when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
         when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR_OUDER2);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_VOOR_OUDER2);
     }
 
     @Test
@@ -289,8 +287,8 @@ class ErkenningNa01012023Test {
         when(persoon.getAktenummer()).thenReturn(AKTE_AANDUIDING_GEBOORTE);
         when(persoon.getGeboortedatum()).thenReturn(DATE_BEFORE_01012023);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02A03(V2A_3_VOOR);
+        assertThat(antwoord.answer()).isEqualTo(V2A_3_VOOR);
     }
 }

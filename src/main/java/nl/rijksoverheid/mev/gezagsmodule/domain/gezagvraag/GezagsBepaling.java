@@ -20,7 +20,6 @@ public class GezagsBepaling {
         "burgerservicenummer van persoon",
         "gemeente van inschrijving"
     );
-
     @Getter
     private UUID errorTraceCode;
     @Getter
@@ -36,7 +35,7 @@ public class GezagsBepaling {
     private final String burgerservicenummerPersoon;
     private final BrpService brpService;
     private final Map<String, Map<String, String>> hoofdstroomschema;
-    private Map<String, GezagVraag> vragenMap;
+    private final Map<String, GezagVraag> vragenMap;
     @Getter
     private final ARAntwoordenModel arAntwoordenModel;
 
@@ -45,34 +44,34 @@ public class GezagsBepaling {
         final String burgerservicenummerPersoon,
         final Persoonslijst plPersoon,
         final BrpService brpService,
-        final Map<String, Map<String, String>> hoofdstroomschema
+        final Map<String, Map<String, String>> hoofdstroomschema,
+        final Map<String, GezagVraag> vragenMap
     ) {
         this.burgerservicenummer = burgerservicenummer;
         this.burgerservicenummerPersoon = burgerservicenummerPersoon;
         this.plPersoon = plPersoon;
         this.brpService = brpService;
         this.hoofdstroomschema = hoofdstroomschema;
-
+        this.vragenMap = vragenMap;
         arAntwoordenModel = new ARAntwoordenModel();
-        vragenMap = new HashMap<>();
         missendeGegegevens = new ArrayList<>();
-
-        initializeVragenMap();
     }
 
     /**
      * Start de gezag bepaling
      */
     public ARAntwoordenModel start() {
-        vragenMap.get("v1.1").step();
-        return arAntwoordenModel;
-    }
+        String nextQuestion = "v1.1";
 
-    public void next(final String currentQuestion, final String answer) {
+        GezagVraagResult result;
+        boolean hasNextQuestion = true;
         try {
-            Map<String, String> antwoordEnActieParen = hoofdstroomschema.get(currentQuestion);
-            if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
-                vragenMap.get(antwoordEnActieParen.get(answer)).step();
+            while (hasNextQuestion) {
+                result = vragenMap.get(nextQuestion).perform(this);
+                nextQuestion = determineNext(result.questionId(), result.answer());
+                if (nextQuestion == null) {
+                    hasNextQuestion = false;
+                }
             }
         } catch (AfleidingsregelException ex) {
             addMissendeGegegevens(ex.getMissendVeld());
@@ -80,48 +79,63 @@ public class GezagsBepaling {
         } catch (Exception ex) {
             errorTraceCode = UUID.randomUUID();
             logger.error("Programmeerfout tijdens het bepalen van gezag ({})", errorTraceCode, ex);
-
             arAntwoordenModel.setRoute("0");
             arAntwoordenModel.setException(ex);
         }
+
+        return arAntwoordenModel;
+    }
+
+    public String determineNext(final String currentQuestion, final String answer) {
+        Map<String, String> antwoordEnActieParen = hoofdstroomschema.get(currentQuestion);
+        if (antwoordEnActieParen != null && antwoordEnActieParen.containsKey(answer)) {
+            return antwoordEnActieParen.get(answer);
+        }
+
+        return null;
     }
 
     /**
      * @return burgerservicenummer van ouder 1 of null wanneer ouder 1 geen waarde heeft
      */
     public String getBurgerservicenummerOuder1() {
-        return plOuder1 != null && plOuder1.getPersoon() != null ? plOuder1.getPersoon().getBurgerservicenummer() : null;
+        return plOuder1 != null && plOuder1.getPersoon() != null ? plOuder1.getPersoon()
+            .getBurgerservicenummer() : null;
     }
 
     /**
      * @return burgerservicenummer van ouder 2 of null wanneer ouder 2 geen waarde heeft
      */
     public String getBurgerservicenummerOuder2() {
-        return plOuder2 != null && plOuder2.getPersoon() != null ? plOuder2.getPersoon().getBurgerservicenummer() : null;
+        return plOuder2 != null && plOuder2.getPersoon() != null ? plOuder2.getPersoon()
+            .getBurgerservicenummer() : null;
     }
 
     /**
      * @return burgerservicenummer van niet ouder of null wanneer niet ouder geen waarde heeft
      */
     public String getBurgerservicenummerNietOuder() {
-        return plNietOuder != null && plNietOuder.getPersoon() != null ? plNietOuder.getPersoon().getBurgerservicenummer() : null;
+        return plNietOuder != null && plNietOuder.getPersoon() != null ? plNietOuder.getPersoon()
+            .getBurgerservicenummer() : null;
     }
 
     /**
-     * @return of er velden in onderzoek waren (010120 en 080910 worden
-     * gefiltered)
+     * @return of er velden in onderzoek waren (010120 en 080910 worden gefiltered)
      */
     public boolean warenVeldenInOnderzoek() {
         Set<String> veldenInOnderzoek = new HashSet<>(plPersoon.getUsedVeldenInOnderzoek());
-
-        if (plOuder1 != null) veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
-        if (plOuder2 != null) veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
-        if (plNietOuder != null) veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
-
+        if (plOuder1 != null) {
+            veldenInOnderzoek.addAll(plOuder1.getUsedVeldenInOnderzoek());
+        }
+        if (plOuder2 != null) {
+            veldenInOnderzoek.addAll(plOuder2.getUsedVeldenInOnderzoek());
+        }
+        if (plNietOuder != null) {
+            veldenInOnderzoek.addAll(plNietOuder.getUsedVeldenInOnderzoek());
+        }
         if (!veldenInOnderzoek.isEmpty()) {
             logger.info("De volgende velden zijn in onderzoek: {}", veldenInOnderzoek);
         }
-
         return veldenInOnderzoek.stream()
             .anyMatch(veldInOnderzoek ->
                 TE_NEGEREN_VELDEN_IN_ONDERZOEK.stream().noneMatch(veldInOnderzoek::contains)
@@ -143,7 +157,6 @@ public class GezagsBepaling {
         if (plNietOuder != null) {
             velden.setNietOuder(plNietOuder.getUsedVeldenInOnderzoek());
         }
-
         return velden;
     }
 
@@ -151,16 +164,8 @@ public class GezagsBepaling {
         if (missendeGegegevens == null) {
             missendeGegegevens = new ArrayList<>();
         }
-
         missendeGegegevens.add(missendGegegeven);
     }
-
-
-    /*
-     * Als een persoonslijst lokaal aanwezig is, wordt deze opgehaald.
-     * Anders wordt deze uit het BRP opgehaald en lokaal opgeslagen.
-     * De lokale kopie wordt gebruikt om de aanvullende businesslogica te voorzien van persoonsgegevens
-     */
 
     /**
      * @return ouder 1 of null
@@ -168,13 +173,13 @@ public class GezagsBepaling {
     public Persoonslijst getPlOuder1() {
         if (plOuder1 == null) {
             try {
-                if (plPersoon.getOuder1() != null && plPersoon.getOuder1().getBurgerservicenummer() != null) {
+                if (plPersoon.getOuder1() != null
+                    && plPersoon.getOuder1().getBurgerservicenummer() != null) {
                     brpService.getPersoonslijst(
                             plPersoon.getOuder1().getBurgerservicenummer())
                         .ifPresent(ouder1 -> {
                             ouder1.setHopRelaties(new HopRelaties());
                             ouder1.checkHopRelaties();
-
                             plOuder1 = ouder1;
                         });
                 }
@@ -182,7 +187,6 @@ public class GezagsBepaling {
                 logger.debug(ex.getMessage());
             }
         }
-
         return plOuder1;
     }
 
@@ -192,7 +196,8 @@ public class GezagsBepaling {
     public Persoonslijst getPlOuder2() {
         if (plOuder2 == null) {
             try {
-                if (plPersoon.getOuder2() != null && plPersoon.getOuder2().getBurgerservicenummer() != null) {
+                if (plPersoon.getOuder2() != null
+                    && plPersoon.getOuder2().getBurgerservicenummer() != null) {
                     brpService.getPersoonslijst(
                             plPersoon.getOuder2().getBurgerservicenummer())
                         .ifPresent(ouder2 -> {
@@ -205,7 +210,6 @@ public class GezagsBepaling {
                 logger.debug(ex.getMessage());
             }
         }
-
         return plOuder2;
     }
 
@@ -218,15 +222,12 @@ public class GezagsBepaling {
                 if (!isValidPersoon(plPersoon) || !isOneParentPresent(plOuder1, plOuder2)) {
                     return null;
                 }
-
                 int geboortedatum = Integer.parseInt(plPersoon.getPersoon().getGeboortedatum());
                 Persoonslijst ouder = Objects.requireNonNullElse(plOuder1, plOuder2);
                 HopRelatie hopGeborenInRelatie = getHopGeborenInRelatie(ouder, geboortedatum);
-
                 if (hopGeborenInRelatie == null) {
                     return null;
                 }
-
                 String burgerservicenummerNietOuder = hopGeborenInRelatie.getPartner();
                 brpService.getPersoonslijst(burgerservicenummerNietOuder)
                     .ifPresent(nietOuder ->
@@ -236,12 +237,12 @@ public class GezagsBepaling {
                 return null;
             }
         }
-
         return plNietOuder;
     }
 
     private boolean isValidPersoon(Persoonslijst plPersoon) {
-        return plPersoon != null && plPersoon.getPersoon() != null && plPersoon.getPersoon().getGeboortedatum() != null;
+        return plPersoon != null && plPersoon.getPersoon() != null
+            && plPersoon.getPersoon().getGeboortedatum() != null;
     }
 
     private boolean isOneParentPresent(Persoonslijst plOuder1, Persoonslijst plOuder2) {
@@ -251,24 +252,5 @@ public class GezagsBepaling {
     private HopRelatie getHopGeborenInRelatie(Persoonslijst ouder, int geboortedatum) {
         HopRelaties hopRelaties = ouder.getHopRelaties();
         return hopRelaties != null ? hopRelaties.geborenInRelatie(geboortedatum) : null;
-    }
-
-    private void initializeVragenMap() {
-        vragenMap.put("v1.1", new IsPersoonIngezeteneInBRP(this));
-        vragenMap.put("v1.2", new IsPersoonMinderjarigEnNietOverleden(this));
-        vragenMap.put("v1.3", new IsNaarBuitenlandGeemigreerdGeweest(this));
-        vragenMap.put("v1.3a", new IsGeborenInBuitenland(this));
-        vragenMap.put("v1.3b", new IsGeadopteerdMetNlAkte(this));
-        vragenMap.put("v1.4", new IsUitspraakGezagAanwezig(this));
-        vragenMap.put("v2.1", new HoeveelJuridischeOudersHeeftMinderjarige(this));
-        vragenMap.put("v2a.1", new ZijnJuridischeOudersNuMetElkaarGehuwdOfPartners(this));
-        vragenMap.put("v2a.2", new AdoptiefOuders(this));
-        vragenMap.put("v2a.3", new ErkenningNa01012023(this));
-        vragenMap.put("v2b.1", new IsStaandeHuwelijkOfPartnerschapGeboren(this));
-        vragenMap.put("v3.1", new IsErSprakeVanEenRecenteGebeurtenis(this));
-        vragenMap.put("v3.2", new IndicatieGezagMinderjarige(this));
-        vragenMap.put("v4a.2", new OudersOverledenOfOnbevoegdTotGezag(this));
-        vragenMap.put("v4a.3", new OuderOverledenOfOnbevoegdTotGezag(this));
-        vragenMap.put("v4b.1", new OuderOfPartnerOverledenOfOnbevoegdTotGezag(this));
     }
 }

@@ -1,30 +1,31 @@
 package nl.rijksoverheid.mev.gezagsmodule.domain.gezagvraag;
 
-import nl.rijksoverheid.mev.gezagsmodule.domain.Gezagsverhouding;
-import nl.rijksoverheid.mev.gezagsmodule.domain.Persoonslijst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
- * v3_2
- * 1/2/12/1D/2D/D/ONBEKEND
+ * v3_2 1/2/12/1D/2D/D/ONBEKEND
  */
-public class IndicatieGezagMinderjarige extends GezagVraag {
+@Component
+public class IndicatieGezagMinderjarige implements GezagVraag {
 
     private static final Logger logger = LoggerFactory.getLogger(IndicatieGezagMinderjarige.class);
+    private static final String QUESTION_ID = "v3.2";
 
-    protected IndicatieGezagMinderjarige(final GezagsBepaling gezagsBepaling) {
-        super(gezagsBepaling);
-        currentQuestion = "v3.2";
+    @Override
+    public String getQuestionId() {
+        return QUESTION_ID;
     }
 
     @Override
-    public void perform() {
-        Persoonslijst plPersoon = gezagsBepaling.getPlPersoon();
+    public GezagVraagResult perform(final GezagsBepaling gezagsBepaling) {
+        final var plPersoon = gezagsBepaling.getPlPersoon();
 
-        Gezagsverhouding gezagsverhouding = plPersoon.getGezagsverhouding();
+        var gezagsverhouding = plPersoon.getGezagsverhouding();
+        String answer = null;
         if (gezagsverhouding != null) {
-            answer = plPersoon.getGezagsverhouding().getIndicatieGezagMinderjarige();
+            answer = gezagsverhouding.getIndicatieGezagMinderjarige();
         } else {
             gezagsBepaling.addMissendeGegegevens("gezagsverhouding van bevraagde persoon");
         }
@@ -33,5 +34,6 @@ public class IndicatieGezagMinderjarige extends GezagVraag {
             3.2 Wat is de indicatie gezag minderjarige?
             {}""", answer);
         gezagsBepaling.getArAntwoordenModel().setV0302(answer);
+        return new GezagVraagResult(QUESTION_ID, answer);
     }
 }

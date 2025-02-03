@@ -152,10 +152,10 @@ class LeeftijdTest {
     }
 
     private String makeDayUnknown(final String geboorteDatum) {
-        return geboorteDatum.substring(0,6) + "00";
+        return geboorteDatum.substring(0, 6) + "00";
     }
 
     private String makeMonthUnknown(final String geboorteDatum) {
-        return geboorteDatum.substring(0,4) + "00" + geboorteDatum.substring(6,8);
+        return geboorteDatum.substring(0, 4) + "00" + geboorteDatum.substring(6, 8);
     }
 }

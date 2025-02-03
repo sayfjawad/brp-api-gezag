@@ -9,29 +9,21 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-/**
- * TODO: verdere testen schrijven
- */
 @ExtendWith(MockitoExtension.class)
 class IsStaandeHuwelijkOfPartnerschapGeborenTest {
 
+    private static final String V2B_1_NEE = "Nee";
     @Mock
     private GezagsBepaling gezagsBepaling;
-
     @Mock
     private Persoon persoon;
-
     @Mock
     private ARAntwoordenModel arAntwoordenModel;
-
     private IsStaandeHuwelijkOfPartnerschapGeboren classUnderTest;
-
     private Persoonslijst persoonslijst;
-
-    private static final String V2B_1_NEE = "Nee";
 
     @BeforeEach
     public void setup() {
@@ -39,14 +31,13 @@ class IsStaandeHuwelijkOfPartnerschapGeborenTest {
         persoonslijst.setPersoon(persoon);
         when(gezagsBepaling.getPlPersoon()).thenReturn(persoonslijst);
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
-        classUnderTest = new IsStaandeHuwelijkOfPartnerschapGeboren(gezagsBepaling);
+        classUnderTest = new IsStaandeHuwelijkOfPartnerschapGeboren();
     }
 
     @Test
     void isStaandeHuwelijkOfPartnerschapGeborenWithoutValues() {
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV02B01(V2B_1_NEE);
+        assertThat(antwoord.answer()).isEqualTo(V2B_1_NEE);
     }
-
 }

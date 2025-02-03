@@ -9,40 +9,37 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class IsGeborenInBuitenlandTest {
 
-    @Mock
-    private GezagsBepaling gezagsBepaling;
-
-    @Mock
-    private Persoon persoon;
-
-    @Mock
-    private ARAntwoordenModel arAntwoordenModel;
-
-    private IsGeborenInBuitenland classUnderTest;
-
     private static final String INDICATION_MISSING_GEBOORTELAND = "Geboorteland van bevraagde persoon";
     private static final String CODE_IS_NEDERLAND = "6030";
     private static final String CODE_IS_NOT_NEDERLAND = "7766";
     private static final String V1_3A_JA = "Ja";
     private static final String V1_3A_NEE = "Nee";
+    @Mock
+    private GezagsBepaling gezagsBepaling;
+    @Mock
+    private Persoon persoon;
+    @Mock
+    private ARAntwoordenModel arAntwoordenModel;
+    private IsGeborenInBuitenland classUnderTest;
 
     @BeforeEach
     public void setup() {
         Persoonslijst persoonslijst = new Persoonslijst();
         persoonslijst.setPersoon(persoon);
         when(gezagsBepaling.getPlPersoon()).thenReturn(persoonslijst);
-        classUnderTest = new IsGeborenInBuitenland(gezagsBepaling);
+        classUnderTest = new IsGeborenInBuitenland();
     }
 
     @Test
     void isGeborenInBuitenlandWithoutValues() {
-        classUnderTest.perform();
+        classUnderTest.perform(gezagsBepaling);
 
         verify(gezagsBepaling).addMissendeGegegevens(INDICATION_MISSING_GEBOORTELAND);
     }
@@ -51,7 +48,7 @@ class IsGeborenInBuitenlandTest {
     void isGeborenInBuitenlandWithEmptyGeboorteland() {
         when(persoon.getGeboorteland()).thenReturn("");
 
-        classUnderTest.perform();
+        classUnderTest.perform(gezagsBepaling);
 
         verify(gezagsBepaling).addMissendeGegegevens(INDICATION_MISSING_GEBOORTELAND);
     }
@@ -61,9 +58,9 @@ class IsGeborenInBuitenlandTest {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoon.getGeboorteland()).thenReturn(CODE_IS_NEDERLAND);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV0103A(V1_3A_NEE);
+        assertThat(antwoord.answer()).isEqualTo(V1_3A_NEE);
     }
 
     @Test
@@ -71,8 +68,8 @@ class IsGeborenInBuitenlandTest {
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
         when(persoon.getGeboorteland()).thenReturn(CODE_IS_NOT_NEDERLAND);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV0103A(V1_3A_JA);
+        assertThat(antwoord.answer()).isEqualTo(V1_3A_JA);
     }
 }

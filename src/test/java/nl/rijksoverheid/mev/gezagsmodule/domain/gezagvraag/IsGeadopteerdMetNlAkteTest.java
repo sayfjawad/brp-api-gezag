@@ -9,27 +9,23 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class IsGeadopteerdMetNlAkteTest {
 
-    @Mock
-    private GezagsBepaling gezagsBepaling;
-
-    @Mock
-    private Persoon persoon;
-
-    @Mock
-    private ARAntwoordenModel arAntwoordenModel;
-
-    private IsGeadopteerdMetNlAkte classUnderTest;
-
     private static final String V1_3B_JA = "Ja";
     private static final String V1_3B_NEE = "Nee";
-    private static  final String AKTE_ERKENNING = "1AC0109";
-    private static  final String AKTE_ADOPTIE = "1AQ0109";
+    private static final String AKTE_ERKENNING = "1AC0109";
+    private static final String AKTE_ADOPTIE = "1AQ0109";
+    @Mock
+    private GezagsBepaling gezagsBepaling;
+    @Mock
+    private Persoon persoon;
+    @Mock
+    private ARAntwoordenModel arAntwoordenModel;
+    private IsGeadopteerdMetNlAkte classUnderTest;
 
     @BeforeEach
     public void setup() {
@@ -37,31 +33,31 @@ class IsGeadopteerdMetNlAkteTest {
         persoonslijst.setPersoon(persoon);
         when(gezagsBepaling.getPlPersoon()).thenReturn(persoonslijst);
         when(gezagsBepaling.getArAntwoordenModel()).thenReturn(arAntwoordenModel);
-        classUnderTest = new IsGeadopteerdMetNlAkte(gezagsBepaling);
+        classUnderTest = new IsGeadopteerdMetNlAkte();
     }
 
     @Test
     void isGeadopteerdMetNlAkteWithoutAktenummer() {
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV0103B(V1_3B_NEE);
+        assertThat(antwoord.answer()).isEqualTo(V1_3B_NEE);
     }
 
     @Test
     void isGeadopteerdMetNlAkteWithAktenummerNotBeingAdoptie() {
         when(persoon.getAktenummer()).thenReturn(AKTE_ERKENNING);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV0103B(V1_3B_NEE);
+        assertThat(antwoord.answer()).isEqualTo(V1_3B_NEE);
     }
 
     @Test
     void isGeadopteerdMetNlAkteWithAktenummerBeingAdoptie() {
         when(persoon.getAktenummer()).thenReturn(AKTE_ADOPTIE);
 
-        classUnderTest.perform();
+        var antwoord = classUnderTest.perform(gezagsBepaling);
 
-        verify(arAntwoordenModel).setV0103B(V1_3B_JA);
+        assertThat(antwoord.answer()).isEqualTo(V1_3B_JA);
     }
 }
