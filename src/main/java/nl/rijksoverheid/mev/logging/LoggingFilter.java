@@ -38,6 +38,13 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
      */
     private static final Logger log = LoggerFactory.getLogger(LoggingFilter.class);
 
+    /**
+     * Spring Framework 6.1+ removed the single-argument
+     * {@link ContentCachingRequestWrapper#ContentCachingRequestWrapper(HttpServletRequest)} constructor; the
+     * request body is now cached up to a configurable limit (in bytes) instead of unbounded.
+     */
+    private static final int MAX_CONTENT_CACHE_SIZE = 1024 * 1024;
+
     private final ObjectMapper objectMapper;
 
     private ApplicationContext applicationContext;
@@ -50,7 +57,7 @@ public class LoggingFilter extends OncePerRequestFilter implements ApplicationCo
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var isFirstRequest = !isAsyncDispatch(request);
         var cachedRequest = isFirstRequest && !(request instanceof ContentCachingRequestWrapper)
-            ? new ContentCachingRequestWrapper(request)
+            ? new ContentCachingRequestWrapper(request, MAX_CONTENT_CACHE_SIZE)
             : request;
         var cachedResponse = isFirstRequest && !(response instanceof ContentCachingResponseWrapper)
             ? new ContentCachingResponseWrapper(response)
